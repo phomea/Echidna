@@ -1,0 +1,35 @@
+<section class="container content slider-products {{ class ? class }} ">
+    <div class="row">
+        <div class="col-md-6 {{ contenuto.right ? 'pull-right' }} ">
+        <div class="subtitle">
+            <br>
+            <div>
+                <span>{{ contenuto.titolo }}</span>
+            </div>
+        </div>
+        <p>{{ contenuto.descrizione | raw }}</p>
+        <br><br>
+
+            {% if contenuto.link %}
+                <a href="{{ contenuto.link }}" class="btn-default">{{ contenuto.testolink }}</a>
+            {% endif %}
+    </div>
+
+    <div class="col-md-6">
+        <div class="general-carousel owl-carousel owl-theme nav-in" data-n="2">
+            {%  for prodotto in prodotti %}
+                {% include 'parti/shop/product-thumb.twig' with prodotto %}
+            {% endfor %}
+        </div>
+    </div>
+    </div>
+    <div class="pull-left carousel_outer">
+        <!-- product view ajax container -->
+        <div class="product-view-ajax-container">
+        </div>
+        <!-- //end product view ajax container -->
+    </div>
+    <!-- //end Products list -->
+    <div class="clearfix">
+    </div>
+</section>

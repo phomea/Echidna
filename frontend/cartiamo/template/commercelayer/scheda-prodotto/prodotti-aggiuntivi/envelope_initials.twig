@@ -1,0 +1,16 @@
+<div class="rect-nohover" ng-controller="Accordion">
+    <h4 ng-click="toggleAccordion()"><i class="" ng-class="{'flaticon-up22' : open, 'flaticon-add133': !open}"></i> Iniziali partecipazione</h4>
+
+    {% for iniziali in prodottoAggiuntivo %}
+    <div ng-if="open" class="item" data-relatedtype="envelope_initials" data-relatedto="{{ prodotto.id }}" data-relatedid="{{ iniziali.id}}">
+
+        <input type="hidden" value="{{ iniziali.id }}" class="product_id">
+        <div class="text">
+            <span class="title"><input type="radio" name="envelope_initials" class="check_related"> {{ iniziali.name }}</span>
+            <!--<span class="description">Incluso</span>-->
+            ( + {{ iniziali.price.formatted_amount }} )<br><br>
+        </div>
+        <br>
+    </div>
+    {% endfor %}
+</div>

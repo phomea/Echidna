@@ -1,0 +1,20 @@
+{% set matrimoni = clmanager.catalog.matrimoni %}
+<div class="col-xs-6 col-md-4 col-lg-3">
+
+    {% for categoria in matrimoni.children %}
+        <div class="submenu-block">
+            <!--<span class="icon"><img src="images/icon-category1.png" alt=""></span>-->
+            <a class="name" href="{{ clmanager.catalog.getCategoryLink(categoria) }}">{{ categoria.name }}</a>
+
+            <p><a  href="{{ clmanager.catalog.getCategoryLink(categoria)}}">sadasdas asd dsa as</a></p>
+
+        </div>
+
+        {% if loop.index % 2 == 0 and loop.index != 0 %}
+            </div>
+            <div class="col-xs-6 col-md-4 col-lg-3">
+        {% endif %}
+
+    {% endfor %}
+
+</div>

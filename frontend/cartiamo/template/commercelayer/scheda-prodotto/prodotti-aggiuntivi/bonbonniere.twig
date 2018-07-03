@@ -1,0 +1,24 @@
+<div class="rect-nohover" ng-controller="Accordion">
+    <h4 ng-click="toggleAccordion()"><i class="" ng-class="{'flaticon-up22' : open, 'flaticon-add133': !open}"></i> Bomboniera ringraziamento</h4>
+    {% for bomboniera in prodottoAggiuntivo %}
+    <p ng-if="open">
+        Per bomboniera si intende soltanto il biglietto pieghevole con stampa, presente all'interno della bomboniera.
+    </p>
+
+    <div ng-if="open" class="item" data-relatedtype="bonbonniere" data-relatedto="{{ prodotto.id }}" data-relatedid="{{ bomboniera.id }}">
+        <br>
+        <input type="hidden" value="{{ bomboniera.id }}" class="product_id">
+        <div class="text">
+            <span class="title"><input type="checkbox" class="check_related"> {{ bomboniera.name }}</span>
+            <!--<span class="description">Incluso</span>-->
+            ( + {{ bomboniera.price.formatted_amount }} cad.)<br><br>
+            <div class="form-inputs inputs-float">
+
+                <label>Scegli la quantita:</label>
+                <input type="text" class="form-control input-quantity" name="quantity" value="1">
+            </div>
+        </div>
+        <br>
+    </div>
+   {% endfor %}
+</div>

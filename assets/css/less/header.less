@@ -1,0 +1,51 @@
+@headerSpeedTransition : 300ms;
+
+
+.main-header{
+  position: fixed;
+  width:100%;
+  z-index: 999;
+  padding-top: 1em;
+  padding-bottom: 1em;
+
+
+  transition: all @headerSpeedTransition ;
+  
+  &.fixed{
+    background: rgba(255,255,255,0.85);
+    color: #000;
+    padding:0;
+    a{
+      color: #000;
+    }
+    .navbar .logo{
+      max-height: 4em;
+    }
+  }
+}
+
+.navbar{
+  #mainmenu{
+    white-space: nowrap;
+  }
+  nav{
+    display: inline-block;
+    a{
+      margin-right: 2em;
+      margin-left: 2em;
+      font-weight: 500;
+      color: #fff;
+      font-size: 1.1em;
+
+      transition: all @headerSpeedTransition ;
+    }
+  }
+  .logo{
+    max-width: 15em;
+    margin-right: 2em;
+    margin-left: 2em;
+
+    transition: all @headerSpeedTransition ;
+
+  }
+}

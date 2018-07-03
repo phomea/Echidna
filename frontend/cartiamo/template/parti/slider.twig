@@ -1,0 +1,32 @@
+{% set slides = slider.slides %}
+
+<div class="container p-t1">
+    <section id="slider" class="slider-home">
+        <div class="slider-full owl-carousel owl-theme">
+
+            {% for slide in slides %}
+                <div class="item">
+                    <a href="slide.link"  title="{{ slide.link_text}}">
+                        {{ slide.getImmagineMedia().render() |raw }}
+
+                        {#
+                        <?php
+                    if ( Service(Request)->isMobile() ){
+                        ?>
+                        <img src="<?=$value->media_mobile->permalink?>" alt="<?=$value->testo?>">
+                        <?php
+                    }else{
+                        ?>
+                        <img src="<?=$value->media->permalink?>" alt="<?=$value->testo?>">
+                        <?php
+                    }
+                    ?>
+
+                    #}
+                    </a>
+                </div>
+            {% endfor %}
+
+        </div>
+    </section>
+</div>

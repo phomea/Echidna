@@ -1,0 +1,65 @@
+<!-- Navbar -->
+<header class="main-header">
+
+    <section class="navbar">
+
+            <div class="row">
+                <div class="col">
+
+                </div>
+                <div class="text-center">
+                    <div id="mainmenu" class="container">
+                        <nav>
+                            <a href="">Divani</a>
+                            <a href="">Poltrone</a>
+                            <a href="">Divani letto</a>
+                        </nav>
+
+                        <a href="/">
+                            <img class="logo" src="/assets/img/logo.png" alt="Cartiamo">
+                        </a>
+
+                        <nav>
+                            <a href="">Divani</a>
+                            <a href="">Poltrone</a>
+                            <a href="">Divani letto</a>
+                        </nav>
+
+
+                    </div>
+                </div>
+                <div class="col">
+
+                </div>
+            </div>
+
+        <!-- Main menu -->
+
+        <!-- //end Main menu -->
+
+    </section>
+
+    <!-- //end Navbar height -->
+</header>
+<!-- //end Navbar -->
+
+{% if breadcrumbs%}
+<!-- Breadcrumbs-->
+<section class="breadcrumbs">
+    <div class="container">
+        <a href="/">home</a>
+
+        {% for value in breadcrumbs %}
+            {% if value.nolink %}
+                <span class="divider">&nbsp;</span>
+                <a >{{ value.label }}</a>
+            {% else %}
+                <span class="divider">&nbsp;</span>
+                <a href="{{ value.url }}">{{ value.label }}</a>
+            {% endif%}
+        {% endfor %}
+
+    </div>
+</section>
+<!-- //end Breadcrumbs -->
+{% endif %}

@@ -1,0 +1,67 @@
+<html lang="it">
+<head>
+    <title>{{ meta.title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+
+
+    {% if host != "localhost" %}
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46469827-14"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-46469827-14');
+        </script>
+    {% endif %}
+</head>
+<body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/it_IT/sdk.js#xfbml=1&version=v2.11&appId=162933811019998&autoLogAppEvents=1';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+{% block header %}
+<header>
+    {% block bg %}<img src="{{ mainbg }}" class="mainbg">{% endblock bg %}
+
+    {% block  nav%}
+    <div class="container text-center">
+        <nav>
+            <div class="menu1">
+                <div class="ama">
+                    <a href="/about" >About</a>
+                    &
+                    <a href="/contatti">Contatti</a>
+                </div>
+            </div>
+            <a href="/"><h1 class="logo"><span>phomea</span></h1></a>
+            <div class="menu2">
+                <div class="ama">
+                    <a href="/live" >Live</a>
+                    &
+                    <a href="/musica">Musica</a>
+                </div>
+            </div>
+        </nav>
+        <div class="giu"></div>
+    </div>
+
+    {% endblock nav %}
+</header>
+{% endblock header %}
+
+{% block content %}{% endblock content %}
+
+{% block scripts %}{% endblock %}
+
+</body></html>

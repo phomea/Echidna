@@ -1,0 +1,15 @@
+<div class="form-group">
+    <label for="company" class=" form-control-label">{{ label ? label : property }}</label>
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-font"></i></span>
+        </div>
+
+        <select name="{{ property }}" class="form-control" >
+            {% for option in options %}
+                <option value="{{ option.value }}">{{ option.label }}</option>
+            {% endfor %}
+        </select>
+    </div>
+</div>

@@ -1,0 +1,4 @@
+(function($){
+
+    Header.init()
+})(jQuery);

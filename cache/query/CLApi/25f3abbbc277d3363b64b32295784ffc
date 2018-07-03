@@ -1,0 +1,24 @@
+<?php return /* 6a2bf24945775d8abfae4f12dae800bc */ array (
+  'lastResponse' => '{"products":[{"id":686,"sku":"140436","slug":"bomboniera","name":"Bomboniera","description":"","product_properties":[],"content_fields":[],"meta_fields":[],"images":[],"taxonomies":{"prodotti-correlati":[{"name":"Prodotti Correlati","taxons":["Bomboniere"],"path":"/prodotti-correlati/bomboniere","hero":false}]},"available":true,"available_quantity":999999999999999999,"min_lead_time_days":3.0,"max_lead_time_days":5.0,"sellable":true,"price":{"currency":"EUR","amount":0.08,"compare_at_amount":0.08,"discount_amount":0.0,"formatted_amount":"€0,08","formatted_compare_at_amount":"€0,08","formatted_discount_amount":"€0,00","discount_percentage":0.0,"discount_percentage_rounded":0,"discounted":false},"has_variants":false,"has_available_variants":false,"has_sellable_variants":false,"min_price_including_variants":{"currency":"EUR","amount":0.08,"compare_at_amount":0.08,"discount_amount":0.0,"formatted_amount":"€0,08","formatted_compare_at_amount":"€0,08","formatted_discount_amount":"€0,00","discount_percentage":0.0,"discount_percentage_rounded":0,"discounted":false},"max_prices_including_variants":{"currency":"EUR","amount":0.08,"compare_at_amount":0.08,"discount_amount":0.0,"formatted_amount":"€0,08","formatted_compare_at_amount":"€0,08","formatted_discount_amount":"€0,00","discount_percentage":0.0,"discount_percentage_rounded":0,"discounted":false},"variants":[]}],"filters":{"taxonomies":{"prodotti-correlati":{"name":"Prodotti Correlati","children":{"bomboniere":{"name":"Bomboniere","children":{},"filter":{"prodotti-correlati":"bomboniere"},"count":1}}}},"product_properties":{},"variant_options":{},"price_range":{"min":{"name":"€0,07","value":0.07999999821186066,"currency_code":"EUR"},"max":{"name":"€0,07","value":0.07999999821186066,"currency_code":"EUR"}}}}',
+  'lastResponseCode' => 200,
+  'responseHeaders' => 
+  array (
+    'Date' => ' Wed, 30 May 2018 15',
+    'Content-Type' => ' application/json',
+    'Content-Length' => ' 1803',
+    'Connection' => ' keep-alive',
+    'Set-Cookie' => ' __cfduid=dfacd82623dabf11a093321a69234426c1527692863; expires=Thu, 30-May-19 15',
+    'Vary' => ' Authorization, Accept-Language, Origin',
+    'X-Commerce-Layer-Environment' => ' Production',
+    'X-Commerce-Layer-Consumer' => ' default',
+    'Content-Language' => ' it',
+    'X-Total' => ' 1',
+    'X-Total-Pages' => ' 1',
+    'X-Per-Page' => ' 100',
+    'X-Page' => ' 1',
+    'X-Offset' => ' 0',
+    'Via' => ' 1.1 vegur',
+    'Server' => ' cloudflare',
+    'CF-RAY' => ' 42321cad023d3dc5-MXP',
+  ),
+);?>

@@ -1,0 +1,101 @@
+
+
+<div class="container">
+    <div class="product-view row">
+        <div class="col-sm-6 col-md-4 col-lg-4">
+            <div class="single-product">
+                <br>
+                <img src="{{ prodotto.images[0].base_url }}" class="line-item-img" alt=""/>
+            </div>
+
+        </div>
+        <div class="col-sm-6 col-md-8 col-lg-8 p-t3 p-b5 aggiunta-dati">
+            <form action="/api/CLCampioneomaggio/richiedi" class="form-richiedi-omaggio">
+                <input type="hidden" value="{{ prodotto.id }}" name="value">
+
+                <h2>Richiedi campione</h2>
+                <p>Stai per richiedere un campione omaggio di {{ prodotto.name }}</p>
+                <p>Puoi richiedere una massimo di 3 campioni omaggio ogni mese</p>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="light">Nome</label>
+                            <input class="form-control" name="nome"  id="meta_field_indirizzo_value" placeholder="Nome per la spedizione">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="light">Cognome</label>
+                            <input class="form-control" name="cognome"  id="meta_field_indirizzo_value" placeholder="Nome per la spedizione">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="light">Email</label>
+                            <input class="form-control" name="email"  id="meta_field_indirizzo_value" placeholder="Email">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="light">Numero di telefono</label>
+                            <input class="form-control" name="telefono"  id="meta_field_indirizzo_value" placeholder="Numero di telefono">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-9">
+                        <div class="form-group">
+                            <label class="light">Indirizzo</label>
+                            <input class="form-control" name="indirizzo"  id="meta_field_indirizzo_value" placeholder="Indirizzo di spedizione">
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label class="light">N°</label>
+                            <input class="form-control" name="numero"  id="meta_field_indirizzo_value" >
+                        </div>
+                    </div>
+
+                    <div class="col-lg-7">
+                        <div class="form-group">
+                            <label class="light">Città</label>
+                            <input class="form-control" name="citta"  id="meta_field_indirizzo_value" placeholder="Città">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            <label class="light">Provincia</label>
+                            <input class="form-control" name="provincia" maxlength="2" id="meta_field_indirizzo_value" placeholder="Provincia">
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label class="light">C.A.P.</label>
+                            <input class="form-control" name="cap" maxlength="6"  id="meta_field_indirizzo_value" placeholder="Cap">
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="azioni">
+                    <button class="btn btn-cool btn" type="submit"><i class="icon flaticon-shopping66"></i>RICHIEDI</button>
+                    <button class="btn btn-cool btn chiudi-popup" type="button"><i class="icon flaticon-shopping66"></i>ANNULLA</button>
+                </div>
+
+            </form>
+
+
+
+
+        </div>
+    </div>
+</div>

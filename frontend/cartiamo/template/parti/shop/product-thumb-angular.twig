@@ -1,0 +1,24 @@
+
+
+
+<div class="product-preview-outer" ng-repeat="item in {{ ngRepeat }} <?=$item['ng-repeat']?>">
+    <div class="product-preview">
+        <div class="preview">
+            <div class="preview-image-outer">
+                <a href="/{{ '{{item.slug}}'}}" class="preview-image">
+                    <img class="img-responsive img-default" src="{{ "{{item.images[0] ? item.images[0].base_url+'?w=300&fm=jpg&q=60' : '/assets/img/noimg.png'}}"}}" alt="">
+                    <img class="img-responsive img-second" src="{{  "{{item.images[1] ? item.images[1].base_url+'?w=300&fm=jpg&q=60' :  (item.images[0] ? item.images[0].base_url+'?w=348&fm=jpg&q=70' :'/assets/img/noimg.png' ) }}"}}" alt=""></a>
+            </div>
+
+        </div>
+        <h3 class="title"><a href="product.html">{{ "{{item.name}}"}}</a></h3>
+        <hr class="separator-1">
+        <span class="price">{{ "{{item['price']['formatted_amount']}}"}}</span>
+
+        <div class="info">
+            <p>
+                {{  "{{item['description']}}"}}</p>
+
+        </div>
+    </div>
+</div>

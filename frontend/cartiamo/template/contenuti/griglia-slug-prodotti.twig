@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        {% for prodotto in prodotti  %}
+
+            <div class="col-md-{{ classe }}">
+
+                {% include 'parti/shop/product-thumb.twig' with  {'prodotto' : prodotto} %}
+
+            </div>
+                    {% if loop.index % n == 0 and loop.index > 0  %}
+                        </div>
+                        <br>
+                        <div class="row">
+
+                    {% endif %}
+                {% endfor %}
+
+    </div>
+</div>

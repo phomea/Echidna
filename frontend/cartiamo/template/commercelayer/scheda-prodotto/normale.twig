@@ -1,0 +1,292 @@
+{% extends "base/template.twig" %}
+{% block content %}
+    <!-- Product view -->
+
+
+    <div class="container scheda-prodotto-normale" >
+
+        <?php
+
+    $this->template_part("parti/scheda-prodotto/ajax-aggiungi",$item);
+        ?>
+
+        <section class="ajax-popup ajax-richiedi-omaggio">
+
+        </section>
+
+
+
+        <div class="product-view row p-t5">
+
+            <div class="col-sm-1">
+
+                <div class="slider-nav-simple product-detail-thumbs">
+                    {% for immagine in prodotto.images %}
+                        <div class="carousel-item">
+                            <img  src="{{ immagine.base_url }}?w=86&fm=jpg&q=70" alt="">
+                        </div>
+                    {% endfor %}
+                </div>
+
+
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-7">
+                <div class="single-product">
+                    {% for immagine in prodotto.images %}
+                        <div class="carousel-item">
+                            <img  src="{{ immagine.base_url }}?w=1000&fm=jpg&q=80" alt="" data-cloudzoom="zoomImage: {{ immagine.base_url }}, autoInside : 991, zoomSizeMode: 'image'" >
+                        </div>
+                    {% endfor %}
+                </div>
+
+
+
+                <!-- Tabs -->
+                <section class="producttab p-t2">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#tab-descrizione">Descrizione</a></li>
+                        <!--<li><a data-toggle="tab" href="#tab-2">Reviews</a></li>-->
+                        <!--<li><a data-toggle="tab" href="#tab-3">Custom block</a></li>-->
+                    </ul>
+                    <div class="tab-content">
+
+
+                        <div id="#tab-descrizione" class="tab-pane fade active in">
+                            <p>
+                                {{ prodotto.description }}
+                            </p>
+
+                            {% for prop in proprieta %}
+                                <p>
+
+                                    <b>{{ prop.property_type.name }}</b> : {{ prop.property_value.name }}
+                                </p>
+                            {% endfor %}
+
+                            {#
+                        <div id="tab-2" class="tab-pane fade">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    Write Your Own Review<br>
+                                    <br>
+                                    How do you rate this product? *<br>
+                                    <br>
+                                    <br>
+                                    <table class="table table-row">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">
+                                                &nbsp;
+                                            </th>
+                                            <th scope="col">
+                                                <strong>1 *</strong>
+                                            </th>
+                                            <th scope="col">
+                                                <strong>2 *</strong>
+                                            </th>
+                                            <th scope="col">
+                                                <strong>3 *</strong>
+                                            </th>
+                                            <th scope="col">
+                                                <strong>4 *</strong>
+                                            </th>
+                                            <th scope="col">
+                                                <strong>5 *</strong>
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <strong>Quality</strong>
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="radio" id="radio" value="radio">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="radio" id="radio2" value="radio">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="radio" id="radio3" value="radio">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="radio" id="radio4" value="radio">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="radio" id="radio5" value="radio">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>Price </strong>
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="radio1" id="radio6" value="radio">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="radio1" id="radio7" value="radio">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="radio1" id="radio8" value="radio">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="radio1" id="radio9" value="radio">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="radio1" id="radio10" value="radio">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>Value</strong>
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="radio2" id="radio11" value="radio">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="radio2" id="radio12" value="radio">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="radio2" id="radio13" value="radio">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="radio2" id="radio14" value="radio">
+                                            </td>
+                                            <td>
+                                                <input type="radio" name="radio2" id="radio15" value="radio">
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <input class="form-control" name="textfield" type="text" id="textfield" value="Nickname..." onfocus="if (this.value==this.defaultValue) this.value=''; " onblur="if(this.value=='') this.value=this.defaultValue;">
+                                            <input class="form-control" name="textfield2" type="text" id="textfield2" value="Your e-mail..." onfocus="if (this.value==this.defaultValue) this.value=''; " onblur="if(this.value=='') this.value=this.defaultValue;">
+                                        </div>
+                                    </div>
+                                    <textarea class="form-control" name="textarea" cols="1" rows="6" onfocus="if (this.value==this.defaultValue) this.value=''; " onblur="if(this.value=='') this.value=this.defaultValue;">Review...</textarea>
+                                    <button class="button btn-cool" type="submit"><span class="icon flaticon-star129"></span>SUBMIT REVIEW</button>
+                                </div>
+                            </div>
+
+                        </div>
+                            #}
+                        <!--<div id="tab-3" class="tab-pane fade">
+                          <p>
+                            Curabitur convallis facilisis lorem. Vivamus euismod nulla vel nunc. Fusce tincidunt, justo congue egestas molestie, tortor tortor blandit erat, et scelerisque metus metus at ipsum. Maecenas tincidunt adipiscing tellus. Nunc tristique pede. Ut condimentum mattis est. Duis sit amet augue.
+                          </p>
+                        </div>
+                      -->
+                    </div>
+                </section>
+                <!-- //end Tabs -->
+
+            </div>
+            <div class="clearfix visible-xs">
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-4">
+                <h2 class="p-b05">{{ prodotto.name }}</h2>
+                <h1 class="small-h1 p-b2">{{ meta.title }}</h1>
+                <!--<span class="price old">$214.99</span><span class="price new">$214.99</span>-->
+
+                <span class="price new">{{ prodotto.price.formatted_amount }}<small>(cadauno)</small></span>
+
+
+
+                <div class="p-t2">
+                    <p>
+                        Le partecipazioni vengono fornite di busta e non montate. Tutte le partecipazioni fanno parte della collezione a sostegno di <strong>Save the Children</strong> e ognuna di esse è fornita dell’apposita pergamena. Il biglietto per la Bomboniera può essere aggiunto separatamente
+                    </p>
+                    <button class="btn btn-cool btn richiedi-omaggio" form="formProdotto" type="button" data-id="{{ prodotto.id }}" ><i class="icon flaticon-gift1"></i>Richiedi campione omaggio</button>
+
+
+                </div>
+
+
+                <p class="text-center">oppure</p>
+                <form action="#" id="formProdotto" class="form-prodotto p-t1" data-product-image="{{ prodotto.images[0].base_url }}">
+                    <input type="hidden" name="sellable_id" value="{{ prodotto.id }}">
+                    <input type="hidden"  name="sellable_resource" value="product">
+                    <h3>Scegli la quantità</h3>
+                    <div class="form-inputs inputs-float">
+                        <label>Quantità: </label>
+                        <input type="text" class="form-control input-quantity" data-summax="{{ prodotto.id }}" name="quantity" value="1">
+                    </div>
+
+                    <br>
+                    <br>
+
+                    {% block prodottiCorrelatiInclusi %}
+                        {{ prodottiCorrelatiInclusi | raw }}
+                    {% endblock prodottiCorrelatiInclusi %}
+
+
+                </form>
+
+                <div class="line-divider p-t2">
+                </div>
+
+                {% if not nascondiProdottiAggiuntivi %}
+                {% include "commercelayer/scheda-prodotto/prodotti-aggiuntivi/index.twig" with {'item'  : prodotto } %}
+                {% endif %}
+                <div class=" ">
+                    <button class="btn btn-cool btn btn-add-to-cart" form="formProdotto" type="submit"><i class="icon flaticon-shopping66"></i>AGGIUNGI AL CARRELLO</button>
+
+                </div>
+
+
+                <div class="line-divider">
+                </div>
+                <div class="divider divider-md">
+                </div>
+
+
+                <div class="divider divider-xs">
+                </div>
+                <div class="social-buttons">
+                    <span class="pull-left">Condividi:&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <ul class="socials">
+                        <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ urlManager.currentUrl() }}"><span class="icon flaticon-facebook12"></span></a></li>
+                        <li><a href="https://twitter.com/home?status={{ urlManager.currentUrl() }}"><span class="icon flaticon-twitter20"></span></a></li>
+                        <li><a href="https://plus.google.com/share?url={{ urlManager.currentUrl() }}"><span class="icon flaticon-google10"></span></a></li>
+                        <li><a href="https://pinterest.com/pin/create/button/?url={{ urlManager.currentUrl() }}&media=&description="><span class="icon flaticon-pinterest9"></span></a></li>
+                    </ul>
+                </div>
+                <div class="divider divider-md">
+                </div>
+            </div>
+
+        </div>
+        <!-- //end Product view -->
+
+    </div>
+
+
+
+
+    <script type="application/ld+json">
+        {
+          "@context": "http://schema.org/",
+          "@type": "Product",
+          "name": "<?=$item->name?>",
+          "image": "<?=$item->images[0]['base_url']?>",
+          "description": "<?=$item->description?>",
+          "mpn": "<?=$item->id?>",
+          "brand": {
+            "@type": "Thing",
+            "name": "Cartiamo"
+          },
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "EUR",
+            "price": "<?=$item->price['compare_at_amount']?>",
+            "url" : "https://<?=$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"]?>"
+
+          }
+        }
+        </script>
+
+{% endblock content %}
+

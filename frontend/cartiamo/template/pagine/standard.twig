@@ -1,0 +1,11 @@
+{% extends "base/template.twig" %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="ama text-center">{{ content.h2 }}</h1>
+
+        <div class="content">
+            {{ content.content|raw }}
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,24 @@
+<?php return /* 6f56ef40da3c885e4faf589a3dc45336 */ array (
+  'lastResponse' => '{"products":[{"id":2202,"sku":"CMONTP","slug":"montaggio-partecipazione","name":"Montaggio Partecipazione","description":"","product_properties":[],"content_fields":[],"meta_fields":[],"images":[],"taxonomies":{"prodotti-correlati":[{"name":"Prodotti Correlati","taxons":["Personalizzazioni e Servizi"],"path":"/prodotti-correlati/personalizzazioni-servizi","hero":false}]},"available":true,"available_quantity":999999999999999999,"min_lead_time_days":3.0,"max_lead_time_days":5.0,"sellable":true,"price":{"currency":"EUR","amount":0.37,"compare_at_amount":0.37,"discount_amount":0.0,"formatted_amount":"€0,37","formatted_compare_at_amount":"€0,37","formatted_discount_amount":"€0,00","discount_percentage":0.0,"discount_percentage_rounded":0,"discounted":false},"has_variants":false,"has_available_variants":false,"has_sellable_variants":false,"min_price_including_variants":{"currency":"EUR","amount":0.37,"compare_at_amount":0.37,"discount_amount":0.0,"formatted_amount":"€0,37","formatted_compare_at_amount":"€0,37","formatted_discount_amount":"€0,00","discount_percentage":0.0,"discount_percentage_rounded":0,"discounted":false},"max_prices_including_variants":{"currency":"EUR","amount":0.37,"compare_at_amount":0.37,"discount_amount":0.0,"formatted_amount":"€0,37","formatted_compare_at_amount":"€0,37","formatted_discount_amount":"€0,00","discount_percentage":0.0,"discount_percentage_rounded":0,"discounted":false},"variants":[]}],"filters":{"taxonomies":{"prodotti-correlati":{"name":"Prodotti Correlati","children":{"personalizzazioni-servizi":{"name":"Personalizzazioni e Servizi","children":{},"filter":{"prodotti-correlati":"personalizzazioni-servizi"},"count":1}}}},"product_properties":{},"variant_options":{},"price_range":{"min":{"name":"€0,37","value":0.3700000047683716,"currency_code":"EUR"},"max":{"name":"€0,37","value":0.3700000047683716,"currency_code":"EUR"}}}}',
+  'lastResponseCode' => 200,
+  'responseHeaders' => 
+  array (
+    'Date' => ' Wed, 30 May 2018 15',
+    'Content-Type' => ' application/json',
+    'Content-Length' => ' 1909',
+    'Connection' => ' keep-alive',
+    'Set-Cookie' => ' __cfduid=df5073502b69cac42d296949c0fc4af341527692870; expires=Thu, 30-May-19 15',
+    'Vary' => ' Authorization, Accept-Language, Origin',
+    'X-Commerce-Layer-Environment' => ' Production',
+    'X-Commerce-Layer-Consumer' => ' default',
+    'Content-Language' => ' it',
+    'X-Total' => ' 1',
+    'X-Total-Pages' => ' 1',
+    'X-Per-Page' => ' 100',
+    'X-Page' => ' 1',
+    'X-Offset' => ' 0',
+    'Via' => ' 1.1 vegur',
+    'Server' => ' cloudflare',
+    'CF-RAY' => ' 42321cd5b0ef42fe-MXP',
+  ),
+);?>

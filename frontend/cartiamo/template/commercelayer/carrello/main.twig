@@ -1,0 +1,397 @@
+{#<?php
+use echidna\entities\CLOrder;
+$carrello = CLOrder::getLocalCart();
+
+if(!empty($carrello) && !empty($carrello->line_items)){
+foreach ($carrello->line_items as $key => $value) {
+$value->expandMetaFields();
+}
+}
+
+?>
+
+<?php
+
+	echo Service(Response)->template_part("parti/informative/breadcrumbs");
+?>
+#}
+
+{% extends "base/template.twig" %}
+{% block content %}
+
+
+
+<section class="container content">
+    <div class="subtitle">
+        <div>
+            <span>Shopping Cart</span>
+        </div>
+    </div>
+
+
+
+
+
+    <?php
+$carrello = $item;
+
+?>
+    <section class="ajax-aggiungi">
+    </section>
+    <div ng-controller="CarrelloPage" class="loading loading-animate" ng-class="{'loading':loading}">
+        <div class="rect-nohover">
+            <div class="inside">
+                <table class="table-shop" id="carrelloPage-table">
+                    <thead>
+                    <tr>
+                        <th class="product-image" style="width:170px">&nbsp;
+
+                        </th>
+                        <th class="product-name">
+                            Info prodotto
+                        </th>
+                        <th class="text-center">&nbsp;
+
+                        </th>
+                        <th class="text-center">
+                            Prezzo unitario
+                        </th>
+                        <th class="text-center">
+                            Quantità
+                        </th>
+                        <th class="text-center">
+                            Subtotale
+                        </th>
+                        <th class="text-center">&nbsp;
+
+                        </th>
+                    </tr>
+                    </thead>
+
+
+
+
+
+
+                    <tbody ng-repeat="item in carrello.line_items"
+                           ng-if="! (item.meta_fields[0].namespace=='parentproduct' && item.meta_fields[0].name=='id')"
+
+                           ng-disabled="loadingLineItems[item.id]"
+                    >
+                    <tr ng-if="item.sellable_id != 2203" >
+                        <td class="notitle">
+                            <img src="{{ '{{item.featured_image.localized_url}}'}}?w=170" alt="">
+                        </td>
+                        <td>
+                            <div class="th_title visible-xs">
+
+                                Nom prodotto:
+                            </div>
+
+
+
+                            <a href="#">{{ '{{item.name}}'}}</a>
+
+                            <br>
+                            <br>
+
+
+
+                            <div ng-repeat="meta in item.meta_fields" ng-if="meta.namespace=='personalization'">
+                                <b>{{'{{ meta.name }}'}}</b> : {{'{{ meta.value}}'}}
+                            </div>
+                        </td>
+                        <td class="text-center notitle">
+                            <a href="#" class="line_item-edit btn btn-small btn-default" data-id="{{'{{ item.id }}'}}" style="display: none;">Aggiorna dati</a>
+                        </td>
+                        <td class="text-center">
+                            <div class="th_title visible-xs">
+                                Prezzo unitario:
+                            </div>
+
+                            {{'{{ item.formatted_unit_amount}}'}}
+                        </td>
+                        <td class="text-center">
+                            <div class="th_title visible-xs input-label">
+                                Quantità:
+                            </div>
+
+                            <!--
+data-summax="{{item.id}}"
+          -->
+                            <input type="text"   class="form-control input-quantity" ng-blur="updateQuantity(item)" ng-model="item.quantity" value="{{'{{ item.quantity}}'}}">
+                        </td>
+                        <td class="text-center">
+                            <div class="th_title visible-xs">
+                                Subtotale:
+                            </div>
+
+                            {{'{{ item.formatted_amount}}'}}
+                        </td>
+                        <td class="text-center notitle">
+                            <div ng-class="{'loading':loadingLineItems[item.id]}" style="position:relative">
+                                <a class="icon icon-sm flaticon-recycle59 remove-from-cart" href="" ng-click="removeFromCart(item.id)" data-id="item.id"></a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- inviti embed -->
+
+
+                    <tr class="carrello-related" ng-repeat="itemi in item.meta_fields" ng-if="
+      (itemi.namespace=='invitation')
+      ">
+                        <td class="notitle">
+
+
+                        </td>
+                        <td>
+
+                            <a href="#">{{"{{ itemi.name=='invitation' ? 'Inviti' : 'Inviti al party' }}"}}</a>
+
+                            <div ng-repeat="meta in itemi.meta_fields"  ng-if="meta.namespace=='personalization'">
+
+                                <b>{{'{{ meta.name}}'}}</b> : {{'{{ meta.value}}'}}
+
+                            </div>
+                        </td>
+                        <td class="text-center notitle">
+                            <a href="#" class="line_item-edit btn btn-small btn-default" data-id="{{'{{ itemi.id}}'}}" ng-if="itemi.meta_fields[1].value=='invitation'|| itemi.meta_fields[1].value=='party_invitation' || itemi.meta_fields[1].value=='bonbonniere' || itemi.meta_fields[1].value=='bonbonniere_date'" style="display: none;">Aggiorna dati</a>
+                        </td>
+                        <td class="text-center">
+                            <div class="th_title visible-xs">
+                                Prezzo unitario:
+                            </div>
+
+                            {{'{{ itemi.formatted_unit_amount}}'}}
+                        </td>
+                        <td class="text-center">
+                            <div class="th_title visible-xs input-label">
+                                Quantità:
+                            </div>
+                            <!--
+          <input  type="text" class="form-control input-quantity" ng-blur="updateMetaLineItem(item,itemi)"   ng-model="itemi.value">
+
+
+data-sumcalc="{{'{{ item.id}}'}}"
+          itemi.meta_fields[1].value=='invitation' || itemi.meta_fields[1].value=='party_invitation' ||-->
+
+                            <input  type="text" class="form-control input-quantity" ng-change="updateMetaLineItem(item,itemi)" ng-model="itemi.value" ng-model-options="{updateOn: 'blur'}" value="{{'{{ itemi.value}}'}}" >
+
+
+                        </td>
+                        <td class="text-center">
+                            <div class="th_title visible-xs">
+                                Subtotale:
+                            </div>
+
+                            {{'{{ itemi.formatted_amount}}'}}
+                        </td>
+                        <td class="text-center notitle">
+
+                        </td>
+                    </tr>
+
+
+
+                    <!-- related -->
+
+                    <tr class="carrello-related" ng-repeat="itemi in carrello.line_items" ng-if="
+      (itemi.meta_fields[0].namespace=='parentproduct' && itemi.meta_fields[0].name=='id' && itemi.meta_fields[0].value==item.id)
+      ">
+                        <td class="notitle">
+
+
+                        </td>
+                        <td>
+
+                            <a href="#">{{itemi.name}}</a>
+
+                            <div ng-repeat="meta in itemi.meta_fields"  ng-if="meta.namespace=='personalization'">
+
+                                <b>{{'{{ meta.name}}'}}</b> : {{'{{ meta.value}}'}}
+
+                            </div>
+                        </td>
+                        <td class="text-center notitle">
+
+                            <a href="#" class="line_item-edit btn btn-small btn-default" data-id="{{'{{ itemi.id}}'}}" ng-if="itemi.meta_fields[1].value=='invitation'|| itemi.meta_fields[1].value=='party_invitation' || itemi.meta_fields[1].value=='bonbonniere' ||  itemi.meta_fields[1].value=='bonbonniere_date'" style="display: none;">Aggiorna dati</a>
+                        </td>
+                        <td class="text-center">
+                            <div class="th_title visible-xs">
+                                Prezzo unitario:
+                            </div>
+
+                            {{'{{ itemi.formatted_unit_amount}}'}}
+                        </td>
+                        <td class="text-center">
+                            <div class="th_title visible-xs input-label">
+                                Quantità:
+                            </div>
+                            <p ng-if="itemi.meta_fields[1].value=='mounting'"
+                               class="form-control input-quantity" ng-bind="item.quantity"></p>
+
+                            <input ng-if="itemi.meta_fields[1].value=='invitation' || itemi.meta_fields[1].value=='party_invitation' || itemi.meta_fields[1].value=='bonbonniere' ||  itemi.meta_fields[1].value=='bonbonniere_date'" type="text" class="form-control input-quantity" ng-blur="updateQuantity(itemi)" ng-model="itemi.quantity">
+
+                        </td>
+                        <td class="text-center">
+                            <div class="th_title visible-xs">
+                                Subtotale:
+                            </div>
+
+                            {{'{{ itemi.formatted_amount}}'}}
+                        </td>
+                        <td class="text-center notitle">
+                            <a class="icon icon-sm flaticon-recycle59 remove-from-cart" href="" ng-click="removeFromCart(itemi.id)" data-id="itemi.id"></a>
+                        </td>
+                    </tr>
+
+                    <!-- fin related -->
+
+
+
+
+
+
+
+
+
+
+
+
+                    </tbody>
+
+
+
+                    <tbody ng-repeat="item in carrello.line_items">
+                    <tr ng-if="item.sellable_id == 2203" >
+                        <td class="notitle">
+
+                        </td>
+                        <td>
+
+
+                            {{'{{ item.name}}'}}
+
+                            <br>
+                            <br>
+
+
+
+
+                        </td>
+                        <td class="text-center notitle">
+
+                        </td>
+                        <td class="text-center">
+                            <div class="th_title visible-xs">
+                                Prezzo unitario:
+                            </div>
+
+                            {{'{{ item.formatted_unit_amount}}'}}
+                        </td>
+                        <td class="text-center">
+
+                            <!--
+  data-summax="{{'{{ item.id}}'}}"
+            -->
+
+                        </td>
+                        <td class="text-center">
+                            <div class="th_title visible-xs">
+                                Subtotale:
+                            </div>
+
+                            {{'{{ item.formatted_amount}}'}}
+                        </td>
+                        <td class="text-center notitle">
+
+                        </td>
+                    </tr>
+                    </tbody>
+                    <?php
+      //}
+      ?>
+
+
+
+                </table>
+                <div class="wrapper clearfix">
+                    <a href="/shop" class="btn-cool btn-md-sm pull-left">TORNA ALLO SHOP</a><span class="pull-left btn-space">&nbsp;</span>
+                    <!--<a href="#" class="btn-cool btn-md-sm pull-left">CLEAR SHOPPING CART</a>-->
+                    <div class="divider divider-sm visible-xs">
+                    </div>
+                    <!--<a href="#" class="btn-cool btn-md-sm pull-right">AGGIORNA CARRELLO</a>-->
+                </div>
+            </div>
+        </div>
+        <div class="divider divider-sm">
+        </div>
+        <div class="row">
+
+            <div class="col-sm-6 col-md-4 ">
+                <div class="rect-nohover">
+                    <h3>CODICI SCONTO</h3>
+                    <p>
+                        Inserisci il coupon per ricevere uno sconto
+                    </p>
+                    <form action="#">
+                        <div class="form-group">
+                            <input name="coupon-code" type="text" class="form-control" id="coupon-code">
+                        </div>
+                        <button class="btn btn-cool btn-md-sm" type="submit">ASSEGNA COUPON</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+
+            </div>
+
+            <div class="divider divider-sm visible-sm">
+            </div>
+
+            <div class="col-sm-12 col-md-4 ">
+                <div class="rect-nohover">
+                    <table class="table table-total">
+                        <tr>
+                            <th class="text-right">
+                                Subtotale
+                            </th>
+                            <th class="td-divider">
+                            </th>
+                            <th ng-bind="carrello.formatted_total_amount">
+                                {{  carrello.formatted_total_amount}}
+
+                            </th>
+                        </tr>
+                        <tr>
+                            <td class="text-right">
+                                <h2>TOTALE</h2>
+                            </td>
+                            <th class="td-divider">
+                            </th>
+                            <td>
+                                <h2 ng-bind="carrello.formatted_total_amount_with_tax">{{ carrello.formatted_total_amount_with_tax}}</h2>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="text-center">
+                        <a class="btn btn-cool btn-md invert-color" href="/checkout/inserisci-dati">VAI AL CHECKOUT</a>
+                        <div class="divider divider-sm">
+                        </div>
+                        <div class="upper">
+                            <a href="#"> Ti chiederemo i dati personali e di pagamento </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</section>
+<!-- //end Page Content -->
+
+{% endblock %}

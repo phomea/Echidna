@@ -1,0 +1,365 @@
+
+<section class="p-t2 prodotti-aggiuntivi ">
+
+    <?php
+    if(!empty($item->relatedProducts)){
+    ?>
+    <h3>Cosa puoi aggiungere</h3>
+    A questa partecipazione puoi aggiungere anche :
+    <!-- Services -->
+    <section class="custom-block">
+
+        <?php
+
+
+        if(!empty($item->relatedProducts['thanksgiving'])){
+
+        ?>
+
+        <div class="rect-nohover" ng-controller="Accordion">
+            <h4 ng-click="toggleAccordion()"><i class="" ng-class="{'flaticon-up22' : open, 'flaticon-add133': !open}"></i> Ringraziamenti</h4>
+
+            <?php
+                foreach ($item->relatedProducts['thanksgiving'] as $key => $value) {
+
+            ?>
+
+            <p ng-if="open">
+                Un biglietto aggiuntivo alla partecipazione, comprensivo di busta, per ringraziare l'invitato della sua presenza.
+                <span class="over-show-preview">
+                            <i class="flaticon-view9  "></i>
+                            <span class="over-preview">
+                                <img src="/assets/img/ringraziamenti/BIANCO.jpg">
+                                <img src="/assets/img/ringraziamenti/AVORIO.jpg"
+                            </span>
+                        </span>
+
+            </p>
+
+
+            <div ng-if="open"  class="item" data-relatedtype="thanksgiving" data-relatedto="<?=$item->id?>" data-relatedid="<?=$value['id']?>">
+                <!--  <figure>
+            <img src="<?=$value['featured_image']['url']?>?w=60">
+          </figure>-->
+                <input type="hidden" value="<?=$value['id']?>" class="product_id">
+                <div class="text">
+                    <span class="title"><input type="checkbox" class="check_related"> <?=$value['name']?> </span>
+                    ( + <?=$value['price']['formatted_amount']?> cad.)<br><br>
+                    <!--<span class="description">Incluso</span>-->
+                    <div class="form-inputs inputs-float">
+
+                        <label>Scegli la quantita:</label>
+                        <input type="text" class="form-control input-quantity" name="quantity" value="1">
+                    </div>
+                </div>
+
+
+
+
+
+            </div >
+            <?php
+                }
+
+                ?>
+        </div>
+        <?php
+        }
+
+
+        if(!empty($item->relatedProducts['initials']) ){
+
+        ?>
+        <div class="rect-nohover" ng-controller="Accordion">
+            <h4 ng-click="toggleAccordion()"><i class="" ng-class="{'flaticon-up22' : open, 'flaticon-add133': !open}"></i> Iniziali partecipazione</h4>
+
+            <?php
+                foreach ($item->relatedProducts['initials'] as $key => $value) {
+
+            ?>
+
+
+            <div ng-if="open" class="item" data-relatedtype="initials" data-relatedto="<?=$item->id?>" data-relatedid="<?=$value['id']?>">
+                <!--  <figure>
+            <img src="<?=$value['featured_image']['url']?>?w=60">
+          </figure>-->
+                <input type="hidden" value="<?=$value['id']?>" class="product_id">
+                <div class="text">
+                    <span class="title"><input type="radio" name="initials" class="check_related"> <?=$value['name']?></span>
+                    ( + <?=$value['price']['formatted_amount']?>)<br><br>
+                    <!--<span class="description">Incluso</span>-->
+                    <div class="form-inputs inputs-float" >
+
+                        <!--<label></label>-->
+                        <!--<input type="text" class="form-control input-quantity" name="quantity" value="1">-->
+                    </div>
+                </div>
+                <br>
+            </div>
+            <?php
+                }
+
+                ?>
+
+        </div>
+        <?php
+        }
+
+        if(!empty($item->relatedProducts['envelope_initials'])){
+        ?>
+        <div class="rect-nohover" ng-controller="Accordion">
+            <h4 ng-click="toggleAccordion()"><i class="" ng-class="{'flaticon-up22' : open, 'flaticon-add133': !open}"></i>  Iniziali busta</h4>
+
+
+
+
+            <?php
+                foreach ($item->relatedProducts['envelope_initials'] as $key => $value) {
+
+
+            ?>
+
+            <div ng-if="open" class="item" data-relatedtype="envelope_initials" data-relatedto="<?=$item->id?>" data-relatedid="<?=$value['id']?>">
+                <!--  <figure>
+            <img src="<?=$value['featured_image']['url']?>?w=60">
+          </figure>-->
+                <input type="hidden" value="<?=$value['id']?>" class="product_id">
+                <div class="text">
+                    <span class="title"><input type="radio" name="envelope_initials" class="check_related"> <?=$value['name']?></span>
+                    <!--<span class="description">Incluso</span>-->
+                    ( + <?=$value['price']['formatted_amount']?>)<br><br>
+                    <div class="form-inputs inputs-float" >
+
+                        <!--<label></label>-->
+                        <!--<input type="text" class="form-control input-quantity" name="quantity" value="1">-->
+                    </div>
+
+                </div>
+                <br>
+            </div>
+
+            <?php
+                }
+                ?>
+        </div>
+        <?php
+        }
+
+        if(!empty($item->relatedProducts['mounting'])){
+        ?>
+        <div class="rect-nohover" ng-controller="Accordion">
+            <h4 ng-click="toggleAccordion()"><i class="" ng-class="{'flaticon-up22' : open, 'flaticon-add133': !open}"></i> Montaggio</h4>
+
+
+            <?php
+                foreach ($item->relatedProducts['mounting'] as $key => $value) {
+
+            ?>
+
+            <div ng-if="open" class="item" data-relatedtype="mounting" data-relatedto="<?=$item->id?>" data-relatedid="<?=$value['id']?>">
+                <!--  <figure>
+            <img src="<?=$value['featured_image']['url']?>?w=60">
+          </figure>-->
+                <input type="hidden" value="<?=$value['id']?>" class="product_id">
+                <div class="text">
+                    <span class="title"><input type="checkbox" class="check_related"> <?=$value['name']?></span>
+                    <!--<span class="description">Incluso</span>-->
+                    <!--<div class="form-inputs ">
+
+                      <label>Scegli la quantita:</label>
+                      <input type="text" class="form-control input-quantity" name="quantity" value="1">
+                  </div>-->
+
+                    ( + <?=$value['price']['formatted_amount']?> per ogni partecipazione)
+
+                    <div class="form-inputs inputs-float" >
+
+                        <!--<label></label>-->
+
+                    </div>
+                </div>
+
+            </div>
+
+            <?php
+                }
+
+                ?>
+        </div>
+        <?php
+        }
+
+
+
+        if(!empty($item->relatedProducts['party_invitation'])){
+
+        ?>
+
+        <div class="rect-nohover" ng-controller="Accordion">
+            <h4 ng-click="toggleAccordion()"><i class="" ng-class="{'flaticon-up22' : open, 'flaticon-add133': !open}"></i> Inviti al ristorante</h4>
+
+            <?php
+                foreach ($item->relatedProducts['party_invitation'] as $key => $value) {
+
+            ?>
+
+            <div ng-if="open"  class="item" data-relatedtype="party_invitation" data-relatedto="<?=$item->id?>" data-relatedid="<?=$value['id']?>">
+                <!--  <figure>
+            <img src="<?=$value['featured_image']['url']?>?w=60">
+          </figure>-->
+                <input type="hidden" value="<?=$value['id']?>" class="product_id">
+                <div class="text">
+                    <span class="title"><input type="checkbox" class="check_related"> <?=$value['name']?></span>
+                    <!--<span class="description">Incluso</span>-->
+                    ( + <?=$value['price']['formatted_amount']?> cad.)<br><br>
+                    <div class="form-inputs inputs-float ">
+
+                        <label>Scegli la quantita:</label>
+                        <input type="text" class="form-control input-quantity" name="quantity" value="1">
+                    </div>
+                </div>
+                <br>
+            </div >
+            <?php
+                }
+
+                ?>
+        </div>
+        <?php
+        }
+
+        if(!empty($item->relatedProducts['invitation'])){
+
+        ?>
+
+        <div class="rect-nohover" ng-controller="Accordion">
+            <h4 ng-click="toggleAccordion()"><i class="" ng-class="{'flaticon-up22' : open, 'flaticon-add133': !open}"></i> Inviti al party</h4>
+
+            <?php
+                foreach ($item->relatedProducts['invitation'] as $key => $value) {
+
+            ?>
+
+            <div ng-if="open"  class="item" data-relatedtype="invitation" data-relatedto="<?=$item->id?>" data-relatedid="<?=$value['id']?>">
+                <!--  <figure>
+            <img src="<?=$value['featured_image']['url']?>?w=60">
+          </figure>-->
+                <input type="hidden" value="<?=$value['id']?>" class="product_id">
+                <div class="text">
+                    <span class="title"><input type="checkbox" class="check_related"> <?=$value['name']?> </span>
+                    <!--<span class="description">Incluso</span>-->
+                    ( + <?=$value['price']['formatted_amount']?> cad.)<br><br>
+                    <div class="form-inputs inputs-float">
+
+                        <label>Scegli la quantita:</label>
+                        <input type="text" class="form-control input-quantity" name="quantity" value="1">
+                    </div>
+                </div>
+
+
+
+
+
+            </div >
+            <?php
+                }
+
+                ?>
+        </div>
+        <?php
+        }
+
+        if(!empty($item->relatedProducts['bonbonniere'])){
+
+        ?>
+        <div class="rect-nohover" ng-controller="Accordion">
+            <h4 ng-click="toggleAccordion()"><i class="" ng-class="{'flaticon-up22' : open, 'flaticon-add133': !open}"></i> Bomboniera ringraziamento</h4>
+            <?php
+                foreach ($item->relatedProducts['bonbonniere'] as $key => $value) {
+
+            ?>
+            <p ng-if="open">
+                Per bomboniera si intende soltanto il biglietto pieghevole con stampa, presente all'interno della bomboniera.
+            </p>
+
+            <div ng-if="open" class="item" data-relatedtype="bonbonniere" data-relatedto="<?=$item->id?>" data-relatedid="<?=$value['id']?>">
+
+                <br>
+                <!--  <figure>
+            <img src="<?=$value['featured_image']['url']?>?w=60">
+          </figure>-->
+                <input type="hidden" value="<?=$value['id']?>" class="product_id">
+                <div class="text">
+                    <span class="title"><input type="checkbox" class="check_related"> <?=$value['name']?></span>
+                    <!--<span class="description">Incluso</span>-->
+                    ( + <?=$value['price']['formatted_amount']?> cad.)<br><br>
+                    <div class="form-inputs inputs-float">
+
+                        <label>Scegli la quantita:</label>
+                        <input type="text" class="form-control input-quantity" name="quantity" value="1">
+                    </div>
+                </div>
+                <br>
+            </div>
+            <?php
+                }
+
+                ?>
+        </div>
+        <?php
+        }
+
+
+
+
+
+
+
+
+
+        if(!empty($item->relatedProducts['bonbonniere_date'])){
+
+        ?>
+        <div class="rect-nohover" ng-controller="Accordion">
+            <h4 ng-click="toggleAccordion()"><i class="" ng-class="{'flaticon-up22' : open, 'flaticon-add133': !open}"></i> Bomboniera con data</h4>
+            <?php
+                foreach ($item->relatedProducts['bonbonniere_date'] as $key => $value) {
+
+            ?>
+
+            <p ng-if="open">
+                Per bomboniera si intende soltanto il biglietto pieghevole con stampa, presente all'interno della bomboniera.
+            </p>
+
+            <div ng-if="open" class="item" data-relatedtype="bonbonniere_date" data-relatedto="<?=$item->id?>" data-relatedid="<?=$value['id']?>">
+                <!--  <figure>
+            <img src="<?=$value['featured_image']['url']?>?w=60">
+          </figure>-->
+                <input type="hidden" value="<?=$value['id']?>" class="product_id">
+                <div class="text">
+                    <span class="title"><input type="checkbox" class="check_related"> <?=$value['name']?></span>
+                    <!--<span class="description">Incluso</span>-->
+                    ( + <?=$value['price']['formatted_amount']?> cad.)<br><br>
+                    <div class="form-inputs inputs-float">
+
+                        <label>Scegli la quantita:</label>
+                        <input type="text" class="form-control input-quantity" name="quantity" value="1">
+                    </div>
+                </div>
+                <br>
+            </div>
+            <?php
+                }
+
+                ?>
+        </div>
+        <?php
+        }
+
+        }
+        ?>
+
+
+        <!-- //end Services -->
+    </section>
+</section>
