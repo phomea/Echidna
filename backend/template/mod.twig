@@ -13,6 +13,13 @@
         <input value="{{ data.id }}" type="hidden" name="id">
         {% endif %}
         <div class="card">
+            <div class="card-header">
+                <div class="mod-actions float-right">
+                    <a href="" class="btn btn-sm btn-light btn-icon" data-toggle="tooltip" title="Clona"><i class="fa fa-plus"></i></a>
+                    <a href="" class="btn btn-sm btn-light btn-icon" data-toggle="tooltip" title="Elimina"><i class="fa fa-trash"></i></a>
+                    <a href="" class="btn btn-sm btn-light btn-icon" data-toggle="tooltip" title="Attiva o disattiva"><i class="fa fa-eye"></i></a>
+                </div>
+            </div>
          <div class="card-body">
         {% for field in fields %}
           {{ field|raw }}

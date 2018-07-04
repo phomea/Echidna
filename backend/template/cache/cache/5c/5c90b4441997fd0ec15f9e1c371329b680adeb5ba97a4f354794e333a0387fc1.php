@@ -66,13 +66,20 @@ class __TwigTemplate_61406cccebc93e99496bc99b24ec270c4ff6d5d3eeefd5100ee028c99c3
         }
         // line 15
         echo "        <div class=\"card\">
+            <div class=\"card-header\">
+                <div class=\"mod-actions float-right\">
+                    <a href=\"\" class=\"btn btn-sm btn-light btn-icon\" data-toggle=\"tooltip\" title=\"Clona\"><i class=\"fa fa-plus\"></i></a>
+                    <a href=\"\" class=\"btn btn-sm btn-light btn-icon\" data-toggle=\"tooltip\" title=\"Elimina\"><i class=\"fa fa-trash\"></i></a>
+                    <a href=\"\" class=\"btn btn-sm btn-light btn-icon\" data-toggle=\"tooltip\" title=\"Attiva o disattiva\"><i class=\"fa fa-eye\"></i></a>
+                </div>
+            </div>
          <div class=\"card-body\">
         ";
-        // line 17
+        // line 24
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(($context["fields"] ?? null));
         foreach ($context['_seq'] as $context["_key"] => $context["field"]) {
-            // line 18
+            // line 25
             echo "          ";
             echo $context["field"];
             echo "
@@ -81,13 +88,13 @@ class __TwigTemplate_61406cccebc93e99496bc99b24ec270c4ff6d5d3eeefd5100ee028c99c3
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['field'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 20
+        // line 27
         echo "
 
              ";
-        // line 22
+        // line 29
         $this->displayBlock('additionalFields', $context, $blocks);
-        // line 23
+        // line 30
         echo "
 
              <button type=\"submit\" class=\"btn btn-success\" ><i class=\"fa fa-save\"></i> Salva</button>
@@ -102,23 +109,23 @@ class __TwigTemplate_61406cccebc93e99496bc99b24ec270c4ff6d5d3eeefd5100ee028c99c3
 ";
     }
 
-    // line 22
+    // line 29
     public function block_additionalFields($context, array $blocks = array())
     {
     }
 
-    // line 36
+    // line 43
     public function block_afterContent($context, array $blocks = array())
     {
-        // line 37
+        // line 44
         echo "        </form>
   ";
     }
 
-    // line 40
+    // line 47
     public function block_scripts($context, array $blocks = array())
     {
-        // line 41
+        // line 48
         echo "
 ";
     }
@@ -135,7 +142,7 @@ class __TwigTemplate_61406cccebc93e99496bc99b24ec270c4ff6d5d3eeefd5100ee028c99c3
 
     public function getDebugInfo()
     {
-        return array (  122 => 41,  119 => 40,  114 => 37,  111 => 36,  106 => 22,  91 => 23,  89 => 22,  85 => 20,  76 => 18,  72 => 17,  68 => 15,  62 => 13,  60 => 12,  56 => 11,  50 => 7,  47 => 6,  38 => 3,  35 => 2,  26 => 1,);
+        return array (  129 => 48,  126 => 47,  121 => 44,  118 => 43,  113 => 29,  98 => 30,  96 => 29,  92 => 27,  83 => 25,  79 => 24,  68 => 15,  62 => 13,  60 => 12,  56 => 11,  50 => 7,  47 => 6,  38 => 3,  35 => 2,  26 => 1,);
     }
 
     public function getSourceContext()
@@ -155,6 +162,13 @@ class __TwigTemplate_61406cccebc93e99496bc99b24ec270c4ff6d5d3eeefd5100ee028c99c3
         <input value=\"{{ data.id }}\" type=\"hidden\" name=\"id\">
         {% endif %}
         <div class=\"card\">
+            <div class=\"card-header\">
+                <div class=\"mod-actions float-right\">
+                    <a href=\"\" class=\"btn btn-sm btn-light btn-icon\" data-toggle=\"tooltip\" title=\"Clona\"><i class=\"fa fa-plus\"></i></a>
+                    <a href=\"\" class=\"btn btn-sm btn-light btn-icon\" data-toggle=\"tooltip\" title=\"Elimina\"><i class=\"fa fa-trash\"></i></a>
+                    <a href=\"\" class=\"btn btn-sm btn-light btn-icon\" data-toggle=\"tooltip\" title=\"Attiva o disattiva\"><i class=\"fa fa-eye\"></i></a>
+                </div>
+            </div>
          <div class=\"card-body\">
         {% for field in fields %}
           {{ field|raw }}

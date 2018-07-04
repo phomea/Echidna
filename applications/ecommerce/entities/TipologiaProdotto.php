@@ -5,11 +5,12 @@ namespace applications\ecommerce\entities;
 
 use core\db\Field;
 use core\Model;
+use core\services\Db;
 
-class Prodotto extends Model{
+class TipologiaProdotto extends Model{
     static function getTable()
     {
-        return "ecommerce_prodotto";
+        return "ecommerce_tipologia_prodotto";
     }
 
     static function schema()
@@ -19,13 +20,21 @@ class Prodotto extends Model{
             "nome"  =>  Field::varchar(256)->editable(),
             "slug"  =>  Field::varchar(64)->editable()->setTemplate("slug")->setTemplateVar("nome"),
             "descrizione"   =>  Field::text()->editable()->setTemplate("textarea"),
-            "id_ecommerce_tipologia_prodotto"   =>  Field::int()
+            "prezzo"        =>  Field::int()->editable()
         ];
     }
 
-    public function expand(){
-        $this->tipologia = TipologiaProdotto::findById($this->id_ecommerce_tipologia_prodotto);
-        $this->tipologia->getFields();
+
+    public function getFields(){
+        $sql = "SELECT * FROM ecommerce_tipologia_prodotto_campi WHERE id_ecommerce_tipologia_prodotto=:id";
+        $campi = Db::$connection->fetchAll($sql,[
+                "id" => $this->id
+            ]
+        );
+
+        $this->campi = $campi;
+        return $campi;
     }
+
 
 }

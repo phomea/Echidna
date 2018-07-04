@@ -21,17 +21,23 @@ abstract class BackendApplication{
         return [];
     }
 
-    static function declareRoutes(){
+    static function getEntityClass(){
         $appllication = static::getApplication();
-        $entity = $appllication::getEntityClass();
+        return $appllication::getEntityClass();
+    }
+
+    static function declareRoutes(){
+
+        $entity = static::getEntityClass();
+
         return [
             $entity::getEntity().".list"       =>  new Route("list",$entity::getListLink(),[static::class,"actionList"]),
             $entity::getEntity().".mod"        =>  new Route("mod",$entity::getModLink(),[static::class,"actionMod"]),
             $entity::getEntity().".add"        =>  new Route("add",$entity::getAddLink(),[static::class,"actionAdd"]),
 
 
-            $entity::getEntity().".update"     =>  (new Route("update","{id:(.*)}",[static::class,'actionUpdate']))->method(Route::METHOD_PUT),
-            $entity::getEntity().".insert"     =>  (new Route("insert","aggiungi",[static::class,'actionInsert']))->method(Route::METHOD_POST)
+            $entity::getEntity().".update"     =>  (new Route("update",$entity::getListLink(),[static::class,'actionUpdate']))->method(Route::METHOD_PUT),
+            $entity::getEntity().".insert"     =>  (new Route("insert",$entity::getAddLink(),[static::class,'actionInsert']))->method(Route::METHOD_POST)
         ];
     }
 
@@ -62,8 +68,9 @@ abstract class BackendApplication{
     }
 
     static function actionAdd( $params =[] ){
-        $parent = static::getApplication();
-        $entity = $parent::getEntityClass();
+
+        $entity = static::getEntityClass();
+
 
         $fields = static::generateFields($entity,new $entity());
 
@@ -80,8 +87,8 @@ abstract class BackendApplication{
     }
 
     static function actionMod( $params =[] ){
-        $parent = static::getApplication();
-        $entity = $parent::getEntityClass();
+        $entity = static::getEntityClass();
+
 
 
 
@@ -105,8 +112,9 @@ abstract class BackendApplication{
     }
 
     static function actionInsert( $params = [] , $data = null){
-        $parent = static::getApplication();
-        $entity = $parent::getEntityClass();
+        $entity = static::getEntityClass();
+
+
         /**
          * @var $e Model
          */
@@ -134,8 +142,9 @@ abstract class BackendApplication{
 
 
     static function actionList( $params = [] ){
-        $parent = static::getApplication();
-        $entity = $parent::getEntityClass();
+        $entity = static::getEntityClass();
+
+
 
         $data = $entity::query()->getAll();
 

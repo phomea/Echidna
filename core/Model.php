@@ -221,6 +221,17 @@ abstract class Model {
         }
     }
 
+    function remove(){
+        if( isset($this->id) ){
+            $sql = "DELETE FROM ".$this->getTable()." WHERE id=:id";
+
+            $r = Db::$connection->perform($sql,[
+                "id"=>$this->id
+            ]);
+            return $r;
+        }
+    }
+
     static function __set_state($an_array)
     {
         return new static($an_array);

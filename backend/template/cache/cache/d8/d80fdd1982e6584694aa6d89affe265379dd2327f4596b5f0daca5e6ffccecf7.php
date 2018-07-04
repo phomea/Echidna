@@ -33,6 +33,42 @@ class __TwigTemplate_1ef757083c9a51bc2569331a97512ae707b55fc1a002bda8ad4143dcb63
     {
         // line 5
         echo "
+    <div class=\"form-group\">
+        <label>Tipologia prodotto</label>
+        <select class=\"form-control\" name=\"id_ecommerce_tipologia_prodotto\">
+            ";
+        // line 9
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable(($context["tipologieProdotto"] ?? null));
+        foreach ($context['_seq'] as $context["_key"] => $context["tipologia"]) {
+            // line 10
+            echo "                <option value=\"";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["tipologia"], "id", array()), "html", null, true);
+            echo "\" ";
+            echo (((twig_get_attribute($this->env, $this->source, $context["tipologia"], "id", array()) == twig_get_attribute($this->env, $this->source, ($context["data"] ?? null), "id_ecommerce_tipologia_prodotto", array()))) ? ("selected") : (""));
+            echo ">";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["tipologia"], "nome", array()), "html", null, true);
+            echo "</option>
+            ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['tipologia'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 12
+        echo "        </select>
+    </div>
+
+
+    <div class=\"form-group\">
+        <label>Prezzo base</label>
+        <input class=\"form-control\" value=\"";
+        // line 18
+        echo twig_escape_filter($this->env, ((twig_get_attribute($this->env, $this->source, ($context["data"] ?? null), "prezzo", array())) ? (twig_get_attribute($this->env, $this->source, ($context["data"] ?? null), "prezzo", array())) : (twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["data"] ?? null), "tipologia", array()), "prezzo", array()))), "html", null, true);
+        echo "\">
+    </div>
+
+
+
 
 ";
     }
@@ -49,7 +85,7 @@ class __TwigTemplate_1ef757083c9a51bc2569331a97512ae707b55fc1a002bda8ad4143dcb63
 
     public function getDebugInfo()
     {
-        return array (  35 => 5,  32 => 4,  15 => 1,);
+        return array (  66 => 18,  58 => 12,  45 => 10,  41 => 9,  35 => 5,  32 => 4,  15 => 1,);
     }
 
     public function getSourceContext()
@@ -58,6 +94,23 @@ class __TwigTemplate_1ef757083c9a51bc2569331a97512ae707b55fc1a002bda8ad4143dcb63
 
 
 {% block additionalFields %}
+
+    <div class=\"form-group\">
+        <label>Tipologia prodotto</label>
+        <select class=\"form-control\" name=\"id_ecommerce_tipologia_prodotto\">
+            {% for tipologia in tipologieProdotto %}
+                <option value=\"{{ tipologia.id }}\" {{ tipologia.id == data.id_ecommerce_tipologia_prodotto ? 'selected' : \"\"  }}>{{ tipologia.nome }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+
+    <div class=\"form-group\">
+        <label>Prezzo base</label>
+        <input class=\"form-control\" value=\"{{ data.prezzo ? data.prezzo : data.tipologia.prezzo }}\">
+    </div>
+
+
 
 
 {% endblock %}

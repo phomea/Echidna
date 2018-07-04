@@ -84,6 +84,11 @@ class Field{
         ]);
     }
 
+    static function custom(){
+        return new static([
+            "Type"  =>  "custom"
+        ]);
+    }
 
     static function int(){
         return new static([

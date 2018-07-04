@@ -1,7 +1,7 @@
 <?php
 
-/* ecommerce/templates/prodotto.edit.categorie.twig */
-class __TwigTemplate_dcd77d2f0c52a8d6ce15dfbfe0066e597230b0655c10c6e05f97807d3c2f4a4b extends Twig_Template
+/* ecommerce/templates/tipologiaprodotto.attributi.twig */
+class __TwigTemplate_e81b2c93f87de7f5f138799169c59d9306c0d63a541954793a5ee6ce66e86d37 extends Twig_Template
 {
     private $source;
 
@@ -96,27 +96,28 @@ class __TwigTemplate_dcd77d2f0c52a8d6ce15dfbfe0066e597230b0655c10c6e05f97807d3c2
 </div>
 
 
+
 ";
-        // line 48
+        // line 49
         $this->displayBlock('scripts', $context, $blocks);
     }
 
     public function block_scripts($context, array $blocks = array())
     {
-        // line 49
+        // line 50
         echo "    <script>
         (function(){
             var categorieDisponibili;
             var urlAddCategory = \"";
-        // line 52
+        // line 53
         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["router_service"] ?? null), "getRoute", array(0 => "ecommerce.catalogo.prodotto.category.add"), "method"), "build", array(0 => array("id" => ($context["idProdotto"] ?? null))), "method"), "html", null, true);
         echo "\";
             var urlRemoveCategory = \"";
-        // line 53
+        // line 54
         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["router_service"] ?? null), "getRoute", array(0 => "ecommerce.catalogo.prodotto.category.remove"), "method"), "build", array(0 => array("id" => ($context["idProdotto"] ?? null))), "method"), "html", null, true);
         echo "\";
             var urlGetCategoris = \"";
-        // line 54
+        // line 55
         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["router_service"] ?? null), "getRoute", array(0 => "ecommerce.catalogo.prodotto.category"), "method"), "build", array(0 => array("id" => ($context["idProdotto"] ?? null))), "method"), "html", null, true);
         echo "\";
 
@@ -167,7 +168,7 @@ class __TwigTemplate_dcd77d2f0c52a8d6ce15dfbfe0066e597230b0655c10c6e05f97807d3c2
 
     public function getTemplateName()
     {
-        return "ecommerce/templates/prodotto.edit.categorie.twig";
+        return "ecommerce/templates/tipologiaprodotto.attributi.twig";
     }
 
     public function isTraitable()
@@ -177,7 +178,7 @@ class __TwigTemplate_dcd77d2f0c52a8d6ce15dfbfe0066e597230b0655c10c6e05f97807d3c2
 
     public function getDebugInfo()
     {
-        return array (  120 => 54,  116 => 53,  112 => 52,  107 => 49,  101 => 48,  89 => 38,  78 => 36,  74 => 35,  50 => 13,  39 => 11,  35 => 10,  24 => 1,);
+        return array (  121 => 55,  117 => 54,  113 => 53,  108 => 50,  102 => 49,  89 => 38,  78 => 36,  74 => 35,  50 => 13,  39 => 11,  35 => 10,  24 => 1,);
     }
 
     public function getSourceContext()
@@ -227,6 +228,7 @@ class __TwigTemplate_dcd77d2f0c52a8d6ce15dfbfe0066e597230b0655c10c6e05f97807d3c2
         </div>
     </div>
 </div>
+
 
 
 {% block scripts %}
@@ -279,6 +281,6 @@ class __TwigTemplate_dcd77d2f0c52a8d6ce15dfbfe0066e597230b0655c10c6e05f97807d3c2
             })
         })(jQuery)
     </script>
-{% endblock %}", "ecommerce/templates/prodotto.edit.categorie.twig", "/Users/phomea/Siti/Spagnesi/applications/ecommerce/templates/prodotto.edit.categorie.twig");
+{% endblock %}", "ecommerce/templates/tipologiaprodotto.attributi.twig", "/Users/phomea/Siti/Spagnesi/applications/ecommerce/templates/tipologiaprodotto.attributi.twig");
     }
 }

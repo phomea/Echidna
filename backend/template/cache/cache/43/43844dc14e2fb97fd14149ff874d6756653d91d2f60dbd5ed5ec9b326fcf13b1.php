@@ -155,11 +155,12 @@ class __TwigTemplate_48d5a2828e79c22404d7cdf899c615a0669f84add05e8b2da06d91898f5
 
 
 <script src=\"/backend/assets/js/forms.js\"></script>
+<script src=\"/backend/assets/js/main.js\"></script>
 
 ";
-        // line 117
+        // line 118
         $this->displayBlock('scripts', $context, $blocks);
-        // line 119
+        // line 120
         echo "<script type=\"text/javascript\">
     (function (\$) {
         \$(document).ready(function() {
@@ -244,7 +245,7 @@ class __TwigTemplate_48d5a2828e79c22404d7cdf899c615a0669f84add05e8b2da06d91898f5
         echo "        ";
     }
 
-    // line 117
+    // line 118
     public function block_scripts($context, array $blocks = array())
     {
     }
@@ -261,7 +262,7 @@ class __TwigTemplate_48d5a2828e79c22404d7cdf899c615a0669f84add05e8b2da06d91898f5
 
     public function getDebugInfo()
     {
-        return array (  248 => 117,  244 => 105,  241 => 104,  237 => 102,  234 => 101,  230 => 99,  227 => 98,  215 => 87,  212 => 86,  208 => 70,  205 => 69,  163 => 119,  161 => 117,  148 => 106,  146 => 104,  143 => 103,  141 => 101,  138 => 100,  136 => 98,  132 => 96,  130 => 86,  125 => 83,  123 => 82,  120 => 81,  118 => 80,  111 => 75,  109 => 74,  104 => 71,  102 => 69,  97 => 67,  29 => 1,);
+        return array (  249 => 118,  245 => 105,  242 => 104,  238 => 102,  235 => 101,  231 => 99,  228 => 98,  216 => 87,  213 => 86,  209 => 70,  206 => 69,  164 => 120,  162 => 118,  148 => 106,  146 => 104,  143 => 103,  141 => 101,  138 => 100,  136 => 98,  132 => 96,  130 => 86,  125 => 83,  123 => 82,  120 => 81,  118 => 80,  111 => 75,  109 => 74,  104 => 71,  102 => 69,  97 => 67,  29 => 1,);
     }
 
     public function getSourceContext()
@@ -381,6 +382,7 @@ class __TwigTemplate_48d5a2828e79c22404d7cdf899c615a0669f84add05e8b2da06d91898f5
 
 
 <script src=\"/backend/assets/js/forms.js\"></script>
+<script src=\"/backend/assets/js/main.js\"></script>
 
 {% block scripts %}
 {% endblock %}

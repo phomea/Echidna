@@ -32,4 +32,10 @@ class Catalogo extends BackendApplication {
         ];
     }
 
+    static function gestioneProdotto(){
+
+        return TipologiaProdotto::actionList();
+
+    }
+
 }

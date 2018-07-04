@@ -4,13 +4,14 @@
 
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col">
             <a href="{{ router_service.getRoute(entita.categoria ~ ".list").build() }}" class="btn btn-primary">Gestisci Categorie</a>
         </div>
 
-        <div class="col-md-6">
-            <a href="{{ router_service.getRoute(entita.prodotto ~ ".list").build() }}" class="btn btn-primary">Gestisci Categorie</a>
+        <div class="col">
+            <a href="{{ router_service.getRoute(entita.prodotto ~ ".list").build() }}" class="btn btn-primary">Gestisci Prodotti</a>
         </div>
+
 
     </div>
 {% endblock %}

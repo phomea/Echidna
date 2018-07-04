@@ -4,6 +4,9 @@
         $(this).addClass("loading");
         var url = $(this).attr("action");
         var form = this;
+
+        var postevent = $(this).attr("data-postevent");
+
         (function (form) {
             $.ajax({
                 url : url,
@@ -18,6 +21,9 @@
                 })
                 .complete(function(o){
                     $(form).removeClass("loading");
+
+                    if(postevent != undefined )
+                        $(form).trigger(postevent);
                 });
         })(form);
 

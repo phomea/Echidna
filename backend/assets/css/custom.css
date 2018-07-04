@@ -232,3 +232,24 @@ aside.left-panel{
 .card {
     border-radius: 0.3rem;
 }
+
+.btn-icon{
+    padding: 0;
+    width: 2em;
+    height: 2em;
+    line-height: 2em;
+}
+
+.card-body {
+
+    max-width: 80em;
+    align-self: center;
+    justify-self: center;
+    width: 100%;
+}
+
+.btn-xs{
+    font-size: .8em;
+    line-height: 1.5;
+    padding: 0.3em 1.5em;
+}

@@ -4,6 +4,7 @@ namespace applications\ecommerce;
 
 use applications\ecommerce\entities\Categoria;
 use applications\ecommerce\entities\Prodotto;
+use applications\ecommerce\entities\TipologiaProdotto;
 use applications\pages\entities\Pagina;
 use core\abstracts\Application;
 use core\Model;
@@ -25,11 +26,14 @@ class EcommerceApplication extends Application {
                         ["label" => "Catalogo","href" =>  "/backend/".static::$name."/catalogo"],
                         ["label" => "Clienti","href" =>  "/backend/".static::$name."/clienti"],
                         ["label" => "Spedizioni","href" =>  "/backend/".static::$name."/spedizioni"],
-                        ["label" => "Pagamenti","href" =>  "/backend/".static::$name."/pagamenti"]
+                        ["label" => "Pagamenti","href" =>  "/backend/".static::$name."/pagamenti"],
+                        ["label" => "Attributi","href" =>   RouterService::getRoute(\applications\ecommerce\entities\Attributo::class.".list")->build()],
                     ]
                 ]
                 ]]
         ]);
+
+
     }
 
     static function declareRoutes()
@@ -44,19 +48,44 @@ class EcommerceApplication extends Application {
             $entity::getEntity().".insert"     =>  (new Route("insert","aggiungi",[static::class,'actionInsert']))->method(Route::METHOD_POST)
         */
 
-
-        return [
-            "ecommerce.ordini"  =>  new Route("ecommerce.ordini","/backend/ecommerce/ordini",[Ordini::class ,"ordini"]),
-            "ecommerce.catalogo"  =>  new Route("ecommerce.catalogo","/backend/ecommerce/catalogo",[Catalogo::class ,"catalogo"]),
+        $categoria = [
             Categoria::getEntity().".list"  =>  new Route( Categoria::getEntity()."list" ,"/backend/ecommerce/catalogo/categorie",[Catalogo::class,"listaCategorie"]),
             Categoria::getEntity().".mod"  =>  new Route( Categoria::getEntity()."mod" ,"/backend/ecommerce/catalogo/categorie/".Categoria::getModLink(),[Catalogo::class,"editCategoria"]),
             Categoria::getEntity().".update"  =>  (new Route( Categoria::getEntity()."mod" ,"/backend/ecommerce/catalogo/categorie/".Categoria::getModLink(),[Catalogo::class,"updateCategoria"]))->method(Route::METHOD_PUT),
             Categoria::getEntity().".add"  =>  (new Route( Categoria::getEntity()."mod" ,"/backend/ecommerce/catalogo/categorie/".Categoria::getAddLink(),[Catalogo::class,"updateCategoria"])),
 
+        ];
+
+        $prodotto = [
             Prodotto::getEntity().".list"  =>  new Route( Prodotto::getEntity()."list" ,"/backend/ecommerce/catalogo/prodotti",[Catalogo::class,"listaProdotti"]),
             Prodotto::getEntity().".mod"  =>  new Route( Prodotto::getEntity()."mod" ,"/backend/ecommerce/catalogo/prodotti/".Prodotto::getModLink(),[Catalogo::class,"editProdotto"]),
-            Prodotto::getEntity().".update"  =>  (new Route( Prodotto::getEntity()."mod" ,"/backend/ecommerce/catalogo/prodotti/".Prodotto::getModLink(),[Catalogo::class,"updateProdotto"]))->method(Route::METHOD_PUT),
-            Prodotto::getEntity().".add"  =>  (new Route( Prodotto::getEntity()."mod" ,"/backend/ecommerce/catalogo/prodotti/".Prodotto::getAddLink(),[Catalogo::class,"updateProdotto"])),
+            Prodotto::getEntity().".update"  =>  (new Route( Prodotto::getEntity()."update" ,"/backend/ecommerce/catalogo/prodotti/".Prodotto::getModLink(),[Catalogo::class,"updateProdotto"]))->method(Route::METHOD_PUT),
+            Prodotto::getEntity().".add"  =>  (new Route( Prodotto::getEntity()."add" ,"/backend/ecommerce/catalogo/prodotti/".Prodotto::getAddLink(),[Catalogo::class,"updateProdotto"])),
+
+            "ecommerce.catalogo.prodotto.gestione"  =>  (new Route("ecommerce.catalogo.prodotto.gestione","/backend/ecommerce/catalogo/prodotti/gestione",[Catalogo::class,"gestioneProdotto"])),
+
+            "ecommerce.catalogo.prodotto.category"  =>  (new Route( "ecommerce.catalogo.prodotto.category" ,"/backend/ecommerce/catalogo/prodotti/".Prodotto::getModLink()."/category",[Catalogo::class,"getCategories"])),
+            "ecommerce.catalogo.prodotto.category.add"  =>  (new Route( "ecommerce.catalogo.prodotto.category.add" ,"/backend/ecommerce/catalogo/prodotti/".Prodotto::getModLink()."/category/add",[Catalogo::class,"addCategories"]))->method(Route::METHOD_POST),
+            "ecommerce.catalogo.prodotto.category.remove"  =>  (new Route( "ecommerce.catalogo.prodotto.category.remove" ,"/backend/ecommerce/catalogo/prodotti/".Prodotto::getModLink()."/category/remove",[Catalogo::class,"removeCategories"]))->method(Route::METHOD_POST),
+        ];
+
+
+        $attributo = Attributo::declareRoutes();
+
+        RouterService::addRoutesPrefixed(Attributo::declareRoutes(),"/backend/ecommerce/");
+        RouterService::addRoutesPrefixed(\applications\ecommerce\TipologiaProdotto::declareRoutes(),"/backend/ecommerce/tipologia-prodotto/");
+
+        return array_merge(
+            [
+                "ecommerce.ordini"  =>  new Route("ecommerce.ordini","/backend/ecommerce/ordini",[Ordini::class ,"ordini"]),
+                "ecommerce.catalogo"  =>  new Route("ecommerce.catalogo","/backend/ecommerce/catalogo",[Catalogo::class ,"catalogo"]),
+
+            ],$categoria,$prodotto
+        );
+        return [
+            "ecommerce.ordini"  =>  new Route("ecommerce.ordini","/backend/ecommerce/ordini",[Ordini::class ,"ordini"]),
+            "ecommerce.catalogo"  =>  new Route("ecommerce.catalogo","/backend/ecommerce/catalogo",[Catalogo::class ,"catalogo"]),
+
 
         ];
     }

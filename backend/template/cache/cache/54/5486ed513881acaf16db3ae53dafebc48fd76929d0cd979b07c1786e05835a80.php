@@ -44,6 +44,11 @@ class __TwigTemplate_9c2c8b19b31dfa0a3a2b61982e6f1cf4e1033717569bffcb9eca023f12c
         // line 10
         echo twig_escape_filter($this->env, ($context["title"] ?? null), "html", null, true);
         echo "</strong>
+
+                        <div class=\"list-actions float-right\">
+                            <a href=\"\" class=\"btn btn-sm btn-light btn-icon\" data-toggle=\"tooltip\" title=\"Aggiungi\"><i class=\"fa fa-plus\"></i></a>
+                        </div>
+
                     </div>
 
 
@@ -51,19 +56,19 @@ class __TwigTemplate_9c2c8b19b31dfa0a3a2b61982e6f1cf4e1033717569bffcb9eca023f12c
                     <div class=\"card-body\">
                         <div class=\"table-responsive\">
                             ";
-        // line 17
+        // line 22
         if ((twig_length_filter($this->env, ($context["data"] ?? null)) > 0)) {
-            // line 18
+            // line 23
             echo "                                <table id=\"bootstrap-data-table\" class=\"table table-striped \">
                                     <thead>
 
                                     <tr>
                                         ";
-            // line 22
+            // line 27
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable(call_user_func_array($this->env->getFilter('cast_to_array')->getCallable(), array((($__internal_7cd7461123377b8c9c1b6a01f46c7bbd94bd12e59266005df5e93029ddbc0ec5 = ($context["data"] ?? null)) && is_array($__internal_7cd7461123377b8c9c1b6a01f46c7bbd94bd12e59266005df5e93029ddbc0ec5) || $__internal_7cd7461123377b8c9c1b6a01f46c7bbd94bd12e59266005df5e93029ddbc0ec5 instanceof ArrayAccess ? ($__internal_7cd7461123377b8c9c1b6a01f46c7bbd94bd12e59266005df5e93029ddbc0ec5[0] ?? null) : null))));
             foreach ($context['_seq'] as $context["_key"] => $context["v"]) {
-                // line 23
+                // line 28
                 echo "                                        <th>";
                 echo twig_escape_filter($this->env, (($__internal_3e28b7f596c58d7729642bcf2acc6efc894803703bf5fa7e74cd8d2aa1f8c68a = $context["v"]) && is_array($__internal_3e28b7f596c58d7729642bcf2acc6efc894803703bf5fa7e74cd8d2aa1f8c68a) || $__internal_3e28b7f596c58d7729642bcf2acc6efc894803703bf5fa7e74cd8d2aa1f8c68a instanceof ArrayAccess ? ($__internal_3e28b7f596c58d7729642bcf2acc6efc894803703bf5fa7e74cd8d2aa1f8c68a[0] ?? null) : null), "html", null, true);
                 echo "</th>
@@ -72,33 +77,33 @@ class __TwigTemplate_9c2c8b19b31dfa0a3a2b61982e6f1cf4e1033717569bffcb9eca023f12c
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['v'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 25
+            // line 30
             echo "                                    </tr>
                                     </thead>
                                     <tbody>
 
                                     ";
-            // line 29
+            // line 34
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable(($context["data"] ?? null));
             foreach ($context['_seq'] as $context["_key"] => $context["item"]) {
-                // line 30
+                // line 35
                 echo "
                                     <tr>
                                         ";
-                // line 32
+                // line 37
                 $context['_parent'] = $context;
                 $context['_seq'] = twig_ensure_traversable(call_user_func_array($this->env->getFilter('cast_to_array')->getCallable(), array($context["item"])));
                 foreach ($context['_seq'] as $context["_key"] => $context["v"]) {
-                    // line 33
+                    // line 38
                     echo "                                            <td>
                                                 ";
-                    // line 34
+                    // line 39
                     if ((twig_get_attribute($this->env, $this->source, (($__internal_b0b3d6199cdf4d15a08b3fb98fe017ecb01164300193d18d78027218d843fc57 = twig_get_attribute($this->env, $this->source, $context["item"], "schema", array(), "method")) && is_array($__internal_b0b3d6199cdf4d15a08b3fb98fe017ecb01164300193d18d78027218d843fc57) || $__internal_b0b3d6199cdf4d15a08b3fb98fe017ecb01164300193d18d78027218d843fc57 instanceof ArrayAccess ? ($__internal_b0b3d6199cdf4d15a08b3fb98fe017ecb01164300193d18d78027218d843fc57[(($__internal_81ccf322d0988ca0aa9ae9943d772c435c5ff01fb50b956278e245e40ae66ab9 = $context["v"]) && is_array($__internal_81ccf322d0988ca0aa9ae9943d772c435c5ff01fb50b956278e245e40ae66ab9) || $__internal_81ccf322d0988ca0aa9ae9943d772c435c5ff01fb50b956278e245e40ae66ab9 instanceof ArrayAccess ? ($__internal_81ccf322d0988ca0aa9ae9943d772c435c5ff01fb50b956278e245e40ae66ab9[0] ?? null) : null)] ?? null) : null), "template", array()) == "media")) {
-                        // line 35
+                        // line 40
                         echo "                                                    <div class=\"form-group field-media\">
                                                         <input type=\"hidden\" class=\"field-media-id\" placeholder=\"Enter your company name\" class=\"form-control\" value=\"";
-                        // line 36
+                        // line 41
                         echo twig_escape_filter($this->env, (($__internal_add9db1f328aaed12ef1a33890510da978cc9cf3e50f6769d368473a9c90c217 = $context["v"]) && is_array($__internal_add9db1f328aaed12ef1a33890510da978cc9cf3e50f6769d368473a9c90c217) || $__internal_add9db1f328aaed12ef1a33890510da978cc9cf3e50f6769d368473a9c90c217 instanceof ArrayAccess ? ($__internal_add9db1f328aaed12ef1a33890510da978cc9cf3e50f6769d368473a9c90c217[1] ?? null) : null), "html", null, true);
                         echo "\">
                                                         <figure>
@@ -107,32 +112,34 @@ class __TwigTemplate_9c2c8b19b31dfa0a3a2b61982e6f1cf4e1033717569bffcb9eca023f12c
                                                     </div>
                                                 ";
                     } else {
-                        // line 42
+                        // line 47
                         echo "
+
+
                                                     <a href=\"";
-                        // line 43
-                        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["router_service"] ?? null), "getRoute", array(0 => (twig_get_attribute($this->env, $this->source, $context["item"], "getEntity", array(), "method") . ".update")), "method"), "build", array(0 => array("id" => twig_get_attribute($this->env, $this->source, $context["item"], "id", array()))), "method"), "html", null, true);
+                        // line 50
+                        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["router_service"] ?? null), "getRoute", array(0 => (twig_get_attribute($this->env, $this->source, $context["item"], "getEntity", array(), "method") . ".mod")), "method"), "build", array(0 => array("id" => twig_get_attribute($this->env, $this->source, $context["item"], "id", array()))), "method"), "html", null, true);
                         echo "\">
                                                         <div style=\"max-width: 300px;max-height: 1.5em;overflow: hidden;\">
                                                             ";
-                        // line 45
+                        // line 52
                         if (twig_test_iterable((($__internal_128c19eb75d89ae9acc1294da2e091b433005202cb9b9351ea0c5dd5f69ee105 = $context["v"]) && is_array($__internal_128c19eb75d89ae9acc1294da2e091b433005202cb9b9351ea0c5dd5f69ee105) || $__internal_128c19eb75d89ae9acc1294da2e091b433005202cb9b9351ea0c5dd5f69ee105 instanceof ArrayAccess ? ($__internal_128c19eb75d89ae9acc1294da2e091b433005202cb9b9351ea0c5dd5f69ee105[1] ?? null) : null))) {
-                            // line 46
+                            // line 53
                             echo "                                                            ";
                         } else {
-                            // line 47
+                            // line 54
                             echo "                                                                ";
                             echo twig_escape_filter($this->env, (($__internal_921de08f973aabd87ecb31654784e2efda7404f12bd27e8e56991608c76e7779 = $context["v"]) && is_array($__internal_921de08f973aabd87ecb31654784e2efda7404f12bd27e8e56991608c76e7779) || $__internal_921de08f973aabd87ecb31654784e2efda7404f12bd27e8e56991608c76e7779 instanceof ArrayAccess ? ($__internal_921de08f973aabd87ecb31654784e2efda7404f12bd27e8e56991608c76e7779[1] ?? null) : null), "html", null, true);
                             echo "
                                                             ";
                         }
-                        // line 49
+                        // line 56
                         echo "                                                        </div>
                                                     </a>
 
                                                 ";
                     }
-                    // line 53
+                    // line 60
                     echo "
                                             </td>
                                         ";
@@ -140,7 +147,7 @@ class __TwigTemplate_9c2c8b19b31dfa0a3a2b61982e6f1cf4e1033717569bffcb9eca023f12c
                 $_parent = $context['_parent'];
                 unset($context['_seq'], $context['_iterated'], $context['_key'], $context['v'], $context['_parent'], $context['loop']);
                 $context = array_intersect_key($context, $_parent) + $_parent;
-                // line 56
+                // line 63
                 echo "                                    </tr>
 
                                     ";
@@ -148,17 +155,17 @@ class __TwigTemplate_9c2c8b19b31dfa0a3a2b61982e6f1cf4e1033717569bffcb9eca023f12c
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['item'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 59
+            // line 66
             echo "                                    </tbody>
                                 </table>
 
                             ";
         } else {
-            // line 63
+            // line 70
             echo "                                <h2>Nessun risultato</h2>
                             ";
         }
-        // line 65
+        // line 72
         echo "                        </div>
                     </div>
                 </div>
@@ -172,10 +179,10 @@ class __TwigTemplate_9c2c8b19b31dfa0a3a2b61982e6f1cf4e1033717569bffcb9eca023f12c
 ";
     }
 
-    // line 78
+    // line 85
     public function block_scripts($context, array $blocks = array())
     {
-        // line 79
+        // line 86
         echo "<script type=\"text/javascript\">
     (function (\$) {
         \$(document).ready(function() {
@@ -199,7 +206,7 @@ class __TwigTemplate_9c2c8b19b31dfa0a3a2b61982e6f1cf4e1033717569bffcb9eca023f12c
 
     public function getDebugInfo()
     {
-        return array (  179 => 79,  176 => 78,  162 => 65,  158 => 63,  152 => 59,  144 => 56,  136 => 53,  130 => 49,  124 => 47,  121 => 46,  119 => 45,  114 => 43,  111 => 42,  102 => 36,  99 => 35,  97 => 34,  94 => 33,  90 => 32,  86 => 30,  82 => 29,  76 => 25,  67 => 23,  63 => 22,  57 => 18,  55 => 17,  45 => 10,  36 => 3,  33 => 2,  15 => 1,);
+        return array (  186 => 86,  183 => 85,  169 => 72,  165 => 70,  159 => 66,  151 => 63,  143 => 60,  137 => 56,  131 => 54,  128 => 53,  126 => 52,  121 => 50,  116 => 47,  107 => 41,  104 => 40,  102 => 39,  99 => 38,  95 => 37,  91 => 35,  87 => 34,  81 => 30,  72 => 28,  68 => 27,  62 => 23,  60 => 22,  45 => 10,  36 => 3,  33 => 2,  15 => 1,);
     }
 
     public function getSourceContext()
@@ -214,6 +221,11 @@ class __TwigTemplate_9c2c8b19b31dfa0a3a2b61982e6f1cf4e1033717569bffcb9eca023f12c
                 <div class=\"card\">
                     <div class=\"card-header\">
                         <strong class=\"card-title\">{{ title }}</strong>
+
+                        <div class=\"list-actions float-right\">
+                            <a href=\"\" class=\"btn btn-sm btn-light btn-icon\" data-toggle=\"tooltip\" title=\"Aggiungi\"><i class=\"fa fa-plus\"></i></a>
+                        </div>
+
                     </div>
 
 
@@ -246,7 +258,9 @@ class __TwigTemplate_9c2c8b19b31dfa0a3a2b61982e6f1cf4e1033717569bffcb9eca023f12c
                                                     </div>
                                                 {% else %}
 
-                                                    <a href=\"{{ router_service.getRoute(item.getEntity()~\".update\").build({id:item.id}) }}\">
+
+
+                                                    <a href=\"{{ router_service.getRoute(item.getEntity()~\".mod\").build({id:item.id}) }}\">
                                                         <div style=\"max-width: 300px;max-height: 1.5em;overflow: hidden;\">
                                                             {% if v[1] is iterable %}
                                                             {%  else %}

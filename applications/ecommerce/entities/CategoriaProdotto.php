@@ -27,7 +27,7 @@ class CategoriaProdotto extends Model{
 
     public function updateFromDb(){
         $this->prodotto = Prodotto::findById($this->id_prodotto);
-        $this->categoria = Prodotto::findById($this->id_categoria);
+        $this->categoria = Categoria::findById($this->id_categoria);
     }
 
 }

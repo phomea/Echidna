@@ -35,19 +35,20 @@ class __TwigTemplate_8af94f06a03066b20a6977bc0506a65213aad5a26d7f6686132c6186126
 
 
     <div class=\"row\">
-        <div class=\"col-md-6\">
+        <div class=\"col\">
             <a href=\"";
         // line 8
         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["router_service"] ?? null), "getRoute", array(0 => (twig_get_attribute($this->env, $this->source, ($context["entita"] ?? null), "categoria", array()) . ".list")), "method"), "build", array(), "method"), "html", null, true);
         echo "\" class=\"btn btn-primary\">Gestisci Categorie</a>
         </div>
 
-        <div class=\"col-md-6\">
+        <div class=\"col\">
             <a href=\"";
         // line 12
         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["router_service"] ?? null), "getRoute", array(0 => (twig_get_attribute($this->env, $this->source, ($context["entita"] ?? null), "prodotto", array()) . ".list")), "method"), "build", array(), "method"), "html", null, true);
-        echo "\" class=\"btn btn-primary\">Gestisci Categorie</a>
+        echo "\" class=\"btn btn-primary\">Gestisci Prodotti</a>
         </div>
+
 
     </div>
 ";
@@ -76,13 +77,14 @@ class __TwigTemplate_8af94f06a03066b20a6977bc0506a65213aad5a26d7f6686132c6186126
 
 
     <div class=\"row\">
-        <div class=\"col-md-6\">
+        <div class=\"col\">
             <a href=\"{{ router_service.getRoute(entita.categoria ~ \".list\").build() }}\" class=\"btn btn-primary\">Gestisci Categorie</a>
         </div>
 
-        <div class=\"col-md-6\">
-            <a href=\"{{ router_service.getRoute(entita.prodotto ~ \".list\").build() }}\" class=\"btn btn-primary\">Gestisci Categorie</a>
+        <div class=\"col\">
+            <a href=\"{{ router_service.getRoute(entita.prodotto ~ \".list\").build() }}\" class=\"btn btn-primary\">Gestisci Prodotti</a>
         </div>
+
 
     </div>
 {% endblock %}", "ecommerce/templates/catalogo.twig", "/Users/phomea/Siti/Spagnesi/applications/ecommerce/templates/catalogo.twig");

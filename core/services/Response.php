@@ -123,11 +123,15 @@ class Response extends Service {
 
     /**
      * @param null $template
-     * @param null $response
+     * @param null $responsed
+     * @param string $template_extend
      * @return BaseTemplate
      */
-    static function getTemplateToUse($template = null, $response = false){
+    static function getTemplateToUse($template = null, $response = false ,$template_extend = ""){
 
+        if($template_extend!=""){
+            $response['template_extend'] = $template_extend;
+        }
 
         $mainResponse = true;
         if( $template == null ) $template = self::$template;
