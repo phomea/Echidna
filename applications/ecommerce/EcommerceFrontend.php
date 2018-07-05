@@ -1,8 +1,10 @@
 <?php
 namespace applications\ecommerce;
 
+use applications\ecommerce\entities\Carrello;
 use applications\ecommerce\entities\Prodotto;
 use core\Route;
+use core\services\RouterService;
 use core\services\SessionService;
 
 class EcommerceFrontend extends \core\abstracts\FrontendApplication{
@@ -10,13 +12,22 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
     {
         return [
             "frontend.ecommerce.carrello"   =>  new Route("","/carrello",[self::class,"_carrello"]),
+            "frontend.ecommerce.carrello.aggiungi"   =>  (new Route("","/carrello/aggiungi",[self::class,"_carrelloAggiungi"]))->method(Route::METHOD_POST),
+
             "frontend.ecommerce.schedaprodotto"   =>  new Route("","/{slug:([0-9a-zA-Z-]*)}",[self::class,"_schedaProdotto"])
+
         ];
     }
 
 
+    static function _carrelloAggiungi($params=[],$data){
+        $carrello = Carrello::get()->createLineItem($data['id_variante'],$data['quantita']);
+       RouterService::getRoute("frontend.ecommerce.carrello")->go();
+
+    }
+
     static function _carrello( $params =[]){
-        $carrello = SessionService::get( Carrello::SESSION_NAME );
+        $carrello = Carrello::get();
         return [
             "ecommerce/carrello",[
                 "carrello"  =>  $carrello
@@ -37,6 +48,7 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
         foreach ($prodotto[0]->varianti as $item) {
 
 
+            $dataparents = [];
 
 
             foreach ($item->attributi as $key => $value){
@@ -65,9 +77,13 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
 
 
                  if($key>0) {
+                     $dataparents[] = [
+                         $item->attributi[$key - 1]->attributo->id,
+                         $item->attributi[$key - 1]->valore->id
+                     ];
                    $o["attributoprecedentevalore"] = $item->attributi[$key - 1]->valore->id;
                    $o["attributoprecedenteid"] = $item->attributi[$key - 1]->attributo->id;
-
+                   $o["parents"] = $dataparents;
                 }
 
 

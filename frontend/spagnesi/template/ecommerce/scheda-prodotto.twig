@@ -12,38 +12,37 @@
                     <p>{{ prodotto.descrizione }}</p>
 
                     {% if prodotto.varianti|length > 1 %}
-                        {% for variante in prodotto.varianti %}
-                            <form class="variante"
-                                    {% for attributo in variante.attributi %}
 
+                        <form class="variante" method="post" action="/carrello/aggiungi">
+                            {% for variante in prodotto.varianti %}
+
+
+                                <input type="radio" name="id_variante" value="{{ variante.id }}"
+                                {% for attributo in variante.attributi %}
                                     data-attribute{{ attributo.attributo.id }}="{{ attributo.valore.id }}"
 
-                                    {% endfor %}>
-                                    <input type="hidden" name="id_variante" value="{{ variante.id }}">
-                            </form>
 
 
-                        {% endfor  %}
+                            {% endfor %}>
+                            {% endfor  %}
 
 
-                       {# <form class="scelta-attributi">
-                        {% for attributo in attributi %}
-                            <select name="{{ attributo.attributo.id }}">
 
-                                <option value="">...scegli</option>
 
-                                 {% for valore in attributo.valori %}
+                                    <span class="prezzo">{{ variante.prezzo }}</span>
 
-                                    <option>{{ valore.valore }}</option>
-                                {% endfor %}
+                            <input type="text" name="quantita">
+                                    <input type="submit" value="aggiungi">
 
-                            </select>
-                        {% endfor %}
+
+
+
                         </form>
-                        #}
+
+
 
                         <form class="scelta-attributi">
-                            {% for attributo in attributi %}
+                            {#{% for attributo in attributi %}
                                 <label>{{ attributo.attributo.nome }}</label>
                                 <select name="{{ attributo.attributo.id }}" class="form-control">
 
@@ -54,6 +53,32 @@
                                         <option value="{{ valore.valore.id }}" {% if valore.attributoprecedentevalore %}
                                             data-idprec="{{ valore.attributoprecedenteid }}" data-valueprec="{{ valore.attributoprecedentevalore }}"
                                         {% endif %}>{{ valore.valore.valore }}</option>
+                                    {% endfor %}
+
+                                </select>
+                            {% endfor %}
+                            #}
+
+
+                            {% for attributo in attributi %}
+                                <label>{{ attributo.attributo.nome }}</label>
+                                <select name="{{ attributo.attributo.id }}" class="form-control">
+
+                                    <option value="">...scegli</option>
+
+                                    {% for valore in attributo.valori %}
+
+                                        <option value="{{ valore.valore.id }}"
+                                                {% if valore.parents %}
+                                                    {% for p in valore.parents %}
+                                                        data-attribute{{ p[0] }}="{{ p[1] }}"
+                                                    {% endfor  %}
+                                                {% endif %}
+
+
+                                                {% if valore.attributoprecedentevalore %}
+                                            data-idprec="{{ valore.attributoprecedenteid }}" data-valueprec="{{ valore.attributoprecedentevalore }}"
+                                                {% endif %}>{{ valore.valore.valore }}</option>
                                     {% endfor %}
 
                                 </select>
@@ -83,6 +108,7 @@
     <script>
     (function( $ ){
 
+
         $('.scelta-attributi [data-idprec]').hide();
 
         $(document).on("change","form.scelta-attributi",function () {
@@ -92,22 +118,43 @@
             selettore = [];
             selettoreVariante = [];
 
+            selettoreAttributi = [];
+            selettoreNot =[];
             variante = null;
             $('.scelta-attributi [data-idprec]').hide();
 
-            $(this).serializeArray().forEach(function( o ){
+
+            $(this).serializeArray().forEach(function( o , index){
+
+                var s = '[data-attribute' + o.name +'="'+ o.value +'"]';
+
                 selettoreVariante.push('[data-attribute' + o.name +'="'+ o.value +'"]' );
 
                 if(o.value !="") {
-
+                    selettoreAttributi.push('[data-attribute' + o.name +'="'+ o.value +'"]' );
+                    selettoreNot.push('[data-attribute' + o.name+'][data-attribute' + o.name +'!="'+ o.value +'"]' );
                     selettore.push('[data-idprec="' + o.name + '"][data-valueprec="' + o.value + '"]');
-
                 }
+                $(selettoreAttributi.join("")).show();
+                $(selettoreNot.join("")).hide();
+                $( '[data-attribute' + o.name+'][data-attribute' + o.name +'!="'+ o.value +'"]' ).hide();
+
+                /*
+                selettoreVariante.push('[data-attribute' + o.name +'="'+ o.value +'"]' );
+                if(o.value !="") {
+                    selettoreAttributi.push('[data-attribute' + o.name +'="'+ o.value +'"]' );
+                    selettore.push('[data-idprec="' + o.name + '"][data-valueprec="' + o.value + '"]');
+                }*/
 
             });
-            $('.scelta-attributi '+selettore.join()).show();
 
-            console.log( $(selettoreVariante.join("")).first().find('[name="id_variante"]').val() );
+
+            $(selettoreAttributi.join("")).show();
+
+
+            $(selettoreVariante.join("")).prop("checked",true);
+
+
 
 
 

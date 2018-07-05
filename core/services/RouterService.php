@@ -405,23 +405,24 @@ class RouterService extends Service{
             if( is_array($r) ){
                 call_user_func([$route->callback[0],"init"]);
 
-                if( in_array(Request::getMethod(),["POST","PUT"] )){
+                $response = false;
 
-                    Response::add( call_user_func_array($route->callback,
+                if( in_array(Request::getMethod(),["POST","PUT"] )){
+                    $response = call_user_func_array($route->callback,
                         [
                             "params"=>$r,
                             "data"  =>  Request::getData()
                         ]
-                    ) );
+                    );
                 }else{
-
-
-                    Response::add( call_user_func($route->callback,$r) );
-
+                    $response = call_user_func($route->callback,$r);
                 }
 
+                if($response) {
+                    Response::add($response);
 
-                return;
+                    return;
+                }
 
 
             }

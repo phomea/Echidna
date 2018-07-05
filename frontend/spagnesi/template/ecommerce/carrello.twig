@@ -1,9 +1,25 @@
 {% extends "base/template.twig" %}
 
 {% block content %}
-    <main>
+    <main style="padding-top: 150px">
         <div class="container">
+            {% for lineitem in carrello.lineitems %}
+            <div class="row">
+                <div class="col">
+                    {{ lineitem.prodotto.nome }}
+                </div>
+                <div class="col">
+                    {{ lineitem.quantity }}
+                </div>
+                <div class="col">
+                    {{ lineitem.single_price }}
+                </div>
 
+                <div class="col">
+                    {{ lineitem.price_total}}
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </main>
 {% endblock %}
