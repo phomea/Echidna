@@ -1,4 +1,6 @@
 <div class="form-group">
+
+
     <label for="company" class=" form-control-label">{{ label ? label : property }}</label>
 
     <div class="input-group">
@@ -7,7 +9,7 @@
         </div>
 
         <select name="{{ property }}" class="form-control" >
-            {% for option in options %}
+            {% for option in field.templateVar %}
                 <option value="{{ option.value }}">{{ option.label }}</option>
             {% endfor %}
         </select>

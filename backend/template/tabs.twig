@@ -4,8 +4,8 @@
 <!-- Nav tabs -->
 <ul class="nav nav-tabs" id="myTab" role="tablist">
     {% for key,tab in tabs %}
-        <li class="nav-item">
-            <a class="nav-link" id="{{ key }}-tab" data-toggle="tab" href="#{{ key }}" role="tab" aria-controls="{{ key }}" aria-selected="true">{{ tab.label }}</a>
+        <li class="nav-item {{ loop.index==1 ? "active":"" }}" >
+            <a class="nav-link {{ loop.index==1 ? "active show":"" }}" id="{{ key }}-tab" data-toggle="tab" href="#{{ key }}" role="tab" aria-controls="{{ key }}" aria-selected="true">{{ tab.label }}</a>
         </li>
     {% endfor %}
 
@@ -14,7 +14,7 @@
 <!-- Tab panes -->
 <div class="tab-content">
     {% for key,tab in tabs %}
-        <div class="tab-pane" id="{{ key }}" role="tabpanel" aria-labelledby="{{ key }}-tab">{{ tab.content|raw }}</div>
+        <div class="tab-pane {{ loop.index==1 ? "active show":"" }}" id="{{ key }}" role="tabpanel" aria-labelledby="{{ key }}-tab">{{ tab.content|raw }}</div>
     {% endfor %}
 
 </div>

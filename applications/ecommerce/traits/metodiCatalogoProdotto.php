@@ -5,7 +5,9 @@ use \applications\ecommerce\entities\Categoria;
 use applications\ecommerce\entities\CategoriaProdotto;
 use applications\ecommerce\entities\Prodotto;
 use applications\ecommerce\entities\TipologiaProdotto;
+use core\services\Db;
 use \core\services\Response;
+use core\services\RouterService;
 
 trait metodiCatalogoProdotto{
 
@@ -25,6 +27,40 @@ trait metodiCatalogoProdotto{
             ]
         ];
     }
+
+    static function addProdotto( $params){
+
+        $entity = Prodotto::class;
+
+
+        $fields = static::generateFields($entity,new $entity());
+
+
+
+        return [
+            "mod",[
+                "title" =>  "Modifica",
+                "data"  =>  new $entity(),
+                "fields"    =>  $fields
+            ]
+        ];
+
+    }
+
+    static function insertProdotto( $params = [] , $data = null){
+        $entity = Prodotto::class;
+
+
+        /**
+         * @var $e Model
+         */
+        $e = new $entity($data);
+        $e->save();
+
+        return Response::redirect(RouterService::$routes[$e::getEntity().".mod"]->build(['id'=>$e->id]));
+    }
+
+
     static function editProdotto( $params ){
 
         $data = Prodotto::findById( $params['id'] );
@@ -74,6 +110,17 @@ trait metodiCatalogoProdotto{
                         "content"   => Response::getTemplateToUse(
                             "ecommerce/templates/prodotto.edit.campi",[
                             "template_extend"   =>  "empty.twig",
+                            "prodotto"  =>  $data,
+                            "idProdotto"            =>  $params['id'],
+                            "campi" =>  $data->tipologia->campi
+                        ])->render()
+                    ],
+                    "varianti"    =>  [
+                        "label" =>  "Varianti",
+                        "content"   => Response::getTemplateToUse(
+                            "ecommerce/templates/prodotto.edit.campi",[
+                            "template_extend"   =>  "empty.twig",
+                            "prodotto"  =>  $data,
                             "idProdotto"            =>  $params['id'],
                             "campi" =>  $data->tipologia->campi
                         ])->render()
@@ -143,5 +190,33 @@ trait metodiCatalogoProdotto{
                 "data"  =>  $c
             ]
         ];
+    }
+
+    static function saveProperties( $params=[],$data){
+        foreach ($data as $key=>$value) {
+            $sql = "SELECT * FROM ecommerce_prodotto_campi WHERE id_ecommerce_prodotto=:id AND slug=:slug";
+            $r = Db::$connection->fetchOne($sql,[
+                "id"    =>  $params['id'],
+                "slug"  =>  $key
+            ]);
+            if($r == false){
+                $sql = "INSERT INTO ecommerce_prodotto_campi (id_ecommerce_prodotto,slug,valore) VALUES (:id,:slug,:valore)";
+                Db::$connection->perform($sql,[
+                    "id"    =>  $params['id'],
+                    "slug"  =>  $key,
+                    "valore"=>  $value
+                ]);
+            }else{
+                $sql = "UPDATE ecommerce_prodotto_campi SET valore=:valore WHERE id_ecommerce_prodotto=:id AND slug=:slug";
+                Db::$connection->perform($sql,[
+                    "id"    =>  $params['id'],
+                    "slug"  =>  $key,
+                    "valore"=>  $value
+                ]);
+            }
+
+        }
+
+        exit;
     }
 }

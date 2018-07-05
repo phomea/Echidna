@@ -24,7 +24,7 @@ class GallerySlugProdottiContentType extends \applications\pages\contents\Conten
     {
         echo Response::getTemplateToUse("fields/select",[
             "label"=>"Colonne",
-            "options"   =>  [
+            "templateVar" =>  [
                 [
                     "label" =>  "2",
                     "value" =>  2
@@ -37,7 +37,7 @@ class GallerySlugProdottiContentType extends \applications\pages\contents\Conten
                     "label" =>  "4",
                     "value" =>  4
                 ]
-            ]
+            ]]
         ])->render();
 
 

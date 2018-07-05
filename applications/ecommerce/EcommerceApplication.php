@@ -60,7 +60,10 @@ class EcommerceApplication extends Application {
             Prodotto::getEntity().".list"  =>  new Route( Prodotto::getEntity()."list" ,"/backend/ecommerce/catalogo/prodotti",[Catalogo::class,"listaProdotti"]),
             Prodotto::getEntity().".mod"  =>  new Route( Prodotto::getEntity()."mod" ,"/backend/ecommerce/catalogo/prodotti/".Prodotto::getModLink(),[Catalogo::class,"editProdotto"]),
             Prodotto::getEntity().".update"  =>  (new Route( Prodotto::getEntity()."update" ,"/backend/ecommerce/catalogo/prodotti/".Prodotto::getModLink(),[Catalogo::class,"updateProdotto"]))->method(Route::METHOD_PUT),
-            Prodotto::getEntity().".add"  =>  (new Route( Prodotto::getEntity()."add" ,"/backend/ecommerce/catalogo/prodotti/".Prodotto::getAddLink(),[Catalogo::class,"updateProdotto"])),
+            Prodotto::getEntity().".insert"  =>  (new Route( Prodotto::getEntity()."insert" ,"/backend/ecommerce/catalogo/prodotti/".Prodotto::getAddLink(),[Catalogo::class,"insertProdotto"]))->method(Route::METHOD_POST),
+            Prodotto::getEntity().".add"  =>  (new Route( Prodotto::getEntity()."add" ,"/backend/ecommerce/catalogo/prodotti/".Prodotto::getAddLink(),[Catalogo::class,"addProdotto"])),
+
+            "ecommerce.catalogo.prodotto.saveproperties"  =>  (new Route( "ecommerce.catalogo.prodotto.saveproperties" ,"/backend/ecommerce/catalogo/prodotti/".Prodotto::getModLink()."/saveproperties",[Catalogo::class,"saveProperties"]))->method(Route::METHOD_POST),
 
             "ecommerce.catalogo.prodotto.gestione"  =>  (new Route("ecommerce.catalogo.prodotto.gestione","/backend/ecommerce/catalogo/prodotti/gestione",[Catalogo::class,"gestioneProdotto"])),
 

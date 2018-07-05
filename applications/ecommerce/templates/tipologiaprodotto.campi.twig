@@ -3,9 +3,9 @@
 
 
         {% for campo in campi %}
-        <form class="ajax-form" action="" method="post">
+        <form class="form-ajax" action="{{ router_service.getRoute("ecommerce.tipologiaprodotto.campi.update").build() }}" method="post">
 
-            <input type="hidden" name="id_ecommerce_tipologia_prodotto" value="{{ campo.id_ecommerce_tipologia_prodotto}}">
+            <input type="hidden" name="id" value="{{ campo.id}}">
             <div class="row">
                 <div class="col">
                     <div class="form-group">

@@ -2,15 +2,24 @@
 
 
     <div class="card-body">
-        <form class="form-ajax">
+        <form class="form-ajax" method="post" action="{{ router_service.getRoute("ecommerce.catalogo.prodotto.saveproperties").build({id:idProdotto}) }}">
             {% for campo in campi %}
 
                 {% include "fields/default.twig" with {
                     label : campo.nome,
-                    property : campo.slug
+                    property : campo.slug,
+                    field:{
+                        value : prodotto.valoriCampi[campo.slug].valore
+                    }
+
                 }%}
 
             {% endfor %}
+
+
+            <div class="form-group">
+                <input type="submit" class="btn btn-success" value="Salva">
+            </div>
         </form>
 
     </div>

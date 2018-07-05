@@ -5,6 +5,8 @@
         var url = $(this).attr("action");
         var form = this;
 
+        var redirect = $(this).attr("data-redirect");
+
         var postevent = $(this).attr("data-postevent");
 
         (function (form) {
@@ -17,10 +19,19 @@
                 .success(function ( o ) {
                     if(o.type!== undefined && o.type == 'redirect'){
                         window.location = o.to;
+                        return;
                     }
+
+
                 })
                 .complete(function(o){
                     $(form).removeClass("loading");
+
+
+                    if(redirect != undefined ){
+                        window.location = redirect;
+                        return;
+                    }
 
                     if(postevent != undefined )
                         $(form).trigger(postevent);

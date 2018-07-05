@@ -56,6 +56,7 @@ abstract class BackendApplication{
                 if( $data && property_exists( $data, $key) ) {
                     $item->value = $data->$key;
                 }
+
                 $fields[$key] = Response::getTemplateToUse("fields/".$item->template,
                     [
                         "data"  =>  $data,

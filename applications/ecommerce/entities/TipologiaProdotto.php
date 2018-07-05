@@ -31,8 +31,9 @@ class TipologiaProdotto extends Model{
                 "id" => $this->id
             ]
         );
-
         $this->campi = $campi;
+
+
         return $campi;
     }
 

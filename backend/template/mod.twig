@@ -1,6 +1,6 @@
 {% extends template_extend %}
     {% block beforeContent %}
-        <form action="{{ data.id ? router_service.getRoute(data.getEntity()~".update").build({id:data.id}) : router_service.getRoute(data.getEntity()~".insert").build() }}" class="form-mod" method="{{ data.id ? "PUT" : "POST" }}">
+        <form data-redirect="" action="{{ data.id ? router_service.getRoute(data.getEntity()~".update").build({id:data.id}) : router_service.getRoute(data.getEntity()~".insert").build() }}" class="form-mod" method="{{ data.id ? "PUT" : "POST" }}">
     {% endblock %}
 
 {% block content %}
@@ -29,7 +29,6 @@
              {% block additionalFields %}{% endblock %}
 
 
-             <button type="submit" class="btn btn-success" ><i class="fa fa-save"></i> Salva</button>
 
 
 
@@ -37,6 +36,11 @@
 
         </div>
 
+        <div class="card">
+            <div class="card-body">
+                <button type="submit" class="btn btn-success" ><i class="fa fa-save"></i> Salva</button>
+            </div>
+        </div>
 
 {% endblock %}
 
