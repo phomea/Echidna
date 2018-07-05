@@ -35,7 +35,7 @@ class __TwigTemplate_61406cccebc93e99496bc99b24ec270c4ff6d5d3eeefd5100ee028c99c3
     public function block_beforeContent($context, array $blocks = array())
     {
         // line 3
-        echo "        <form action=\"";
+        echo "        <form data-redirect=\"\" action=\"";
         echo twig_escape_filter($this->env, ((twig_get_attribute($this->env, $this->source, ($context["data"] ?? null), "id", array())) ? (twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["router_service"] ?? null), "getRoute", array(0 => (twig_get_attribute($this->env, $this->source, ($context["data"] ?? null), "getEntity", array(), "method") . ".update")), "method"), "build", array(0 => array("id" => twig_get_attribute($this->env, $this->source, ($context["data"] ?? null), "id", array()))), "method")) : (twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["router_service"] ?? null), "getRoute", array(0 => (twig_get_attribute($this->env, $this->source, ($context["data"] ?? null), "getEntity", array(), "method") . ".insert")), "method"), "build", array(), "method"))), "html", null, true);
         echo "\" class=\"form-mod\" method=\"";
         echo ((twig_get_attribute($this->env, $this->source, ($context["data"] ?? null), "id", array())) ? ("PUT") : ("POST"));
@@ -97,7 +97,6 @@ class __TwigTemplate_61406cccebc93e99496bc99b24ec270c4ff6d5d3eeefd5100ee028c99c3
         // line 30
         echo "
 
-             <button type=\"submit\" class=\"btn btn-success\" ><i class=\"fa fa-save\"></i> Salva</button>
 
 
 
@@ -105,6 +104,11 @@ class __TwigTemplate_61406cccebc93e99496bc99b24ec270c4ff6d5d3eeefd5100ee028c99c3
 
         </div>
 
+        <div class=\"card\">
+            <div class=\"card-body\">
+                <button type=\"submit\" class=\"btn btn-success\" ><i class=\"fa fa-save\"></i> Salva</button>
+            </div>
+        </div>
 
 ";
     }
@@ -114,18 +118,18 @@ class __TwigTemplate_61406cccebc93e99496bc99b24ec270c4ff6d5d3eeefd5100ee028c99c3
     {
     }
 
-    // line 43
+    // line 47
     public function block_afterContent($context, array $blocks = array())
     {
-        // line 44
+        // line 48
         echo "        </form>
   ";
     }
 
-    // line 47
+    // line 51
     public function block_scripts($context, array $blocks = array())
     {
-        // line 48
+        // line 52
         echo "
 ";
     }
@@ -142,14 +146,14 @@ class __TwigTemplate_61406cccebc93e99496bc99b24ec270c4ff6d5d3eeefd5100ee028c99c3
 
     public function getDebugInfo()
     {
-        return array (  129 => 48,  126 => 47,  121 => 44,  118 => 43,  113 => 29,  98 => 30,  96 => 29,  92 => 27,  83 => 25,  79 => 24,  68 => 15,  62 => 13,  60 => 12,  56 => 11,  50 => 7,  47 => 6,  38 => 3,  35 => 2,  26 => 1,);
+        return array (  133 => 52,  130 => 51,  125 => 48,  122 => 47,  117 => 29,  98 => 30,  96 => 29,  92 => 27,  83 => 25,  79 => 24,  68 => 15,  62 => 13,  60 => 12,  56 => 11,  50 => 7,  47 => 6,  38 => 3,  35 => 2,  26 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Twig_Source("{% extends template_extend %}
     {% block beforeContent %}
-        <form action=\"{{ data.id ? router_service.getRoute(data.getEntity()~\".update\").build({id:data.id}) : router_service.getRoute(data.getEntity()~\".insert\").build() }}\" class=\"form-mod\" method=\"{{ data.id ? \"PUT\" : \"POST\" }}\">
+        <form data-redirect=\"\" action=\"{{ data.id ? router_service.getRoute(data.getEntity()~\".update\").build({id:data.id}) : router_service.getRoute(data.getEntity()~\".insert\").build() }}\" class=\"form-mod\" method=\"{{ data.id ? \"PUT\" : \"POST\" }}\">
     {% endblock %}
 
 {% block content %}
@@ -178,7 +182,6 @@ class __TwigTemplate_61406cccebc93e99496bc99b24ec270c4ff6d5d3eeefd5100ee028c99c3
              {% block additionalFields %}{% endblock %}
 
 
-             <button type=\"submit\" class=\"btn btn-success\" ><i class=\"fa fa-save\"></i> Salva</button>
 
 
 
@@ -186,6 +189,11 @@ class __TwigTemplate_61406cccebc93e99496bc99b24ec270c4ff6d5d3eeefd5100ee028c99c3
 
         </div>
 
+        <div class=\"card\">
+            <div class=\"card-body\">
+                <button type=\"submit\" class=\"btn btn-success\" ><i class=\"fa fa-save\"></i> Salva</button>
+            </div>
+        </div>
 
 {% endblock %}
 

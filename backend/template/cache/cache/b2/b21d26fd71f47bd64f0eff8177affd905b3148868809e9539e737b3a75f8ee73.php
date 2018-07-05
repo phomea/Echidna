@@ -880,6 +880,6 @@ class __TwigTemplate_65ca402d4e412786690859cb4ffb5e8f761c9cd44350a17021519391a38
     </div> <!-- .content -->
 
 
-{% endblock %}", "main/templates/dashboard.twig", "/Users/phomea/Siti/Echidna2/applications/main/templates/dashboard.twig");
+{% endblock %}", "main/templates/dashboard.twig", "/Users/phomea/Siti/Spagnesi/applications/main/templates/dashboard.twig");
     }
 }

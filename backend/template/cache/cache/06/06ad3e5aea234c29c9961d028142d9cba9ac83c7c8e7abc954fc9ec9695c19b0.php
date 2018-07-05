@@ -68,6 +68,6 @@ class __TwigTemplate_de3838dfe6ecef00296d5bb1748645e00a5fdb32ce86a0d644b2144b9fe
         </div>
     <input type=\"text\" id=\"company\" placeholder=\"Enter your company name\" class=\"form-control form-control-sm\" slug-from=\"{{ field.templateVar }}\" name=\"{{ property }}\" value=\"{{ field.value }}\">
     </div>
-</div>", "fields/slug.twig", "/Users/phomea/Siti/Echidna2/backend/template/fields/slug.twig");
+</div>", "fields/slug.twig", "/Users/phomea/Siti/Spagnesi/backend/template/fields/slug.twig");
     }
 }

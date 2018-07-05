@@ -14,6 +14,7 @@ class __TwigTemplate_c49d7b34771e37802c609323e8d321a29a601fa9bc07ca0605173d8f640
         $this->parent = false;
 
         $this->blocks = array(
+            'scripts' => array($this, 'block_scripts'),
             'javascript_footer' => array($this, 'block_javascript_footer'),
         );
     }
@@ -145,12 +146,21 @@ class __TwigTemplate_c49d7b34771e37802c609323e8d321a29a601fa9bc07ca0605173d8f640
 </div>
 </div>
 
+";
+        // line 125
+        $this->displayBlock('scripts', $context, $blocks);
+        // line 127
+        echo "
+
 
 ";
-        // line 126
+        // line 130
         $this->displayBlock('javascript_footer', $context, $blocks);
-        // line 131
-        echo "<!-- BEGIN JIVOSITE CODE {literal} -->
+        // line 135
+        echo "
+
+
+<!-- BEGIN JIVOSITE CODE {literal} -->
 <script type='text/javascript'>
     (function(){ var widget_id = '7liyChKD9i';var d=document;var w=window;function l(){
         var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//code.jivosite.com/script/widget/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);}if(d.readyState=='complete'){l();}else{if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();</script>
@@ -160,15 +170,20 @@ class __TwigTemplate_c49d7b34771e37802c609323e8d321a29a601fa9bc07ca0605173d8f640
 ";
     }
 
-    // line 126
+    // line 125
+    public function block_scripts($context, array $blocks = array())
+    {
+    }
+
+    // line 130
     public function block_javascript_footer($context, array $blocks = array())
     {
-        // line 127
+        // line 131
         echo "
 ";
-        // line 128
-        $this->loadTemplate("base/footer/js.twig", "base/footer/footer.twig", 128)->display($context);
-        // line 129
+        // line 132
+        $this->loadTemplate("base/footer/js.twig", "base/footer/footer.twig", 132)->display($context);
+        // line 133
         echo "
 ";
     }
@@ -180,7 +195,7 @@ class __TwigTemplate_c49d7b34771e37802c609323e8d321a29a601fa9bc07ca0605173d8f640
 
     public function getDebugInfo()
     {
-        return array (  172 => 129,  170 => 128,  167 => 127,  164 => 126,  153 => 131,  151 => 126,  24 => 1,);
+        return array (  187 => 133,  185 => 132,  182 => 131,  179 => 130,  174 => 125,  160 => 135,  158 => 130,  153 => 127,  151 => 125,  25 => 1,);
     }
 
     public function getSourceContext()
@@ -309,12 +324,19 @@ class __TwigTemplate_c49d7b34771e37802c609323e8d321a29a601fa9bc07ca0605173d8f640
 </div>
 </div>
 
+{% block scripts %}
+{% endblock %}
+
+
 
 {% block javascript_footer %}
 
 {% include 'base/footer/js.twig' %}
 
 {% endblock javascript_footer %}
+
+
+
 <!-- BEGIN JIVOSITE CODE {literal} -->
 <script type='text/javascript'>
     (function(){ var widget_id = '7liyChKD9i';var d=document;var w=window;function l(){

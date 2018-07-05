@@ -62,6 +62,6 @@ class __TwigTemplate_78fc196a84e9057684bbf04c2377f0009a426a71252574d61b6a2b3dc12
     <figure>
         <img src=\"\" class=\"field-media-img\">
     </figure>
-</div>", "fields/media.twig", "/Users/phomea/Siti/Echidna2/backend/template/fields/media.twig");
+</div>", "fields/media.twig", "/Users/phomea/Siti/Spagnesi/backend/template/fields/media.twig");
     }
 }

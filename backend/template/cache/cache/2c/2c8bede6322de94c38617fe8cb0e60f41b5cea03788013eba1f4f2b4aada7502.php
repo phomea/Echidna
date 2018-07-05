@@ -31,11 +31,13 @@ class __TwigTemplate_55740079667e794421f34e340fda245b28a381b443e30426e28534ff467
         $context['_seq'] = twig_ensure_traversable(($context["campi"] ?? null));
         foreach ($context['_seq'] as $context["_key"] => $context["campo"]) {
             // line 6
-            echo "        <form class=\"ajax-form\" action=\"\" method=\"post\">
+            echo "        <form class=\"form-ajax\" action=\"";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["router_service"] ?? null), "getRoute", array(0 => "ecommerce.tipologiaprodotto.campi.update"), "method"), "build", array(), "method"), "html", null, true);
+            echo "\" method=\"post\">
 
-            <input type=\"hidden\" name=\"id_ecommerce_tipologia_prodotto\" value=\"";
+            <input type=\"hidden\" name=\"id\" value=\"";
             // line 8
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["campo"], "id_ecommerce_tipologia_prodotto", array()), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["campo"], "id", array()), "html", null, true);
             echo "\">
             <div class=\"row\">
                 <div class=\"col\">
@@ -192,7 +194,7 @@ class __TwigTemplate_55740079667e794421f34e340fda245b28a381b443e30426e28534ff467
 
     public function getDebugInfo()
     {
-        return array (  172 => 111,  166 => 110,  127 => 74,  122 => 72,  96 => 48,  73 => 31,  69 => 30,  57 => 21,  46 => 13,  38 => 8,  34 => 6,  30 => 5,  24 => 1,);
+        return array (  174 => 111,  168 => 110,  129 => 74,  124 => 72,  98 => 48,  75 => 31,  71 => 30,  59 => 21,  48 => 13,  40 => 8,  34 => 6,  30 => 5,  24 => 1,);
     }
 
     public function getSourceContext()
@@ -202,9 +204,9 @@ class __TwigTemplate_55740079667e794421f34e340fda245b28a381b443e30426e28534ff467
 
 
         {% for campo in campi %}
-        <form class=\"ajax-form\" action=\"\" method=\"post\">
+        <form class=\"form-ajax\" action=\"{{ router_service.getRoute(\"ecommerce.tipologiaprodotto.campi.update\").build() }}\" method=\"post\">
 
-            <input type=\"hidden\" name=\"id_ecommerce_tipologia_prodotto\" value=\"{{ campo.id_ecommerce_tipologia_prodotto}}\">
+            <input type=\"hidden\" name=\"id\" value=\"{{ campo.id}}\">
             <div class=\"row\">
                 <div class=\"col\">
                     <div class=\"form-group\">

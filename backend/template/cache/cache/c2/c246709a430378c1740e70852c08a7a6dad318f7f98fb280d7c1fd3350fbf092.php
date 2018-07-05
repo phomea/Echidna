@@ -25,99 +25,107 @@ class __TwigTemplate_e81b2c93f87de7f5f138799169c59d9306c0d63a541954793a5ee6ce66e
 <div class=\"card\">
     <div class=\"card-body\">
 
-        <div class=\"row\">
-            <div class=\"col-md-4\">
-                <div class=\"form-group\">
-                    <label>Categorie associate</label>
-                    <select size=\"10\" class=\"form-control\" multiple id=\"categorieAssociate\">
-                        ";
-        // line 10
+
+        <form class=\"form-ajax\" action=\"";
+        // line 6
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["router_service"] ?? null), "getRoute", array(0 => "ecommerce.tipologiaprodotto.attributi.save"), "method"), "build", array(), "method"), "html", null, true);
+        echo "\" method=\"post\">
+            <input type=\"hidden\" name=\"id\"  value=\"";
+        // line 7
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["data"] ?? null), "id", array()), "html", null, true);
+        echo "\">
+
+        ";
+        // line 9
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable(($context["categorieAssociate"] ?? null));
-        foreach ($context['_seq'] as $context["_key"] => $context["cat"]) {
-            // line 11
-            echo "                            <option value=\"";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["cat"], "categoria", array()), "id", array()), "html", null, true);
-            echo "\" name=\"categorieAssociate[]\">";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["cat"], "categoria", array()), "nome", array()), "html", null, true);
-            echo "</option>
+        $context['_seq'] = twig_ensure_traversable(($context["attributiDisponibili"] ?? null));
+        foreach ($context['_seq'] as $context["_key"] => $context["attributo"]) {
+            // line 10
+            echo "            <div class=\"form-group\">
+                <label class=\"border-info\">
+                    <input type=\"hidden\" name=\"attributi[";
+            // line 12
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["attributo"], "id", array()), "html", null, true);
+            echo "]\" value=\"off\">
+                    <input type=\"checkbox\" name=\"attributi[";
+            // line 13
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["attributo"], "id", array()), "html", null, true);
+            echo "]\" value=\"on\" ";
+            $context['_parent'] = $context;
+            $context['_seq'] = twig_ensure_traversable(($context["attributiAssegnati"] ?? null));
+            foreach ($context['_seq'] as $context["_key"] => $context["as"]) {
+                // line 14
+                echo "
                         ";
+                // line 15
+                echo (((twig_get_attribute($this->env, $this->source, $context["as"], "id_attributo", array()) == twig_get_attribute($this->env, $this->source, $context["attributo"], "id", array()))) ? ("checked") : (""));
+                echo "
+                    ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['as'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 16
+            echo "> ";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["attributo"], "nome", array()), "html", null, true);
+            echo "
+                    <p class=\"small\">
+                        Possibili valori : ";
+            // line 18
+            $context['_parent'] = $context;
+            $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, $context["attributo"], "possibili_valori", array()));
+            foreach ($context['_seq'] as $context["_key"] => $context["valore"]) {
+                // line 19
+                echo "                            \"";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["valore"], "valore", array()), "html", null, true);
+                echo "\"
+                        ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['valore'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 21
+            echo "                    </p>
+                </label>
+
+            </div>
+
+
+        ";
         }
         $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['cat'], $context['_parent'], $context['loop']);
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['attributo'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 13
-        echo "                    </select>
-                </div>
-            </div>
-
-            <div class=\"col-md-4\" style=\"align-items: center;
-    justify-items: center;
-    justify-content: center;
-    align-content: center;
-    display: flex;
-    flex-direction: column;\">
-                <div>
-                    <button type=\"button\" id=\"moveRight\"> > </button>
-                </div>
-                <div>
-                    <button type=\"button\" id=\"moveLeft\"> < </button>
-                </div>
-            </div>
-
-            <div class=\"col-md-4\">
-                <div class=\"form-group\">
-                    <label>Categorie disponibili</label>
-                    <select size=\"10\" class=\"form-control\" id=\"categorieDisponibili\" multiple>
-                        ";
-        // line 35
-        $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable(($context["categorieDisponibili"] ?? null));
-        foreach ($context['_seq'] as $context["_key"] => $context["cat"]) {
-            // line 36
-            echo "                            <option value=\"";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["cat"], "id", array()), "html", null, true);
-            echo "\" class=\"categoria-disponibile\">";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["cat"], "nome", array()), "html", null, true);
-            echo "</option>
-                        ";
-        }
-        $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['cat'], $context['_parent'], $context['loop']);
-        $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 38
-        echo "                    </select>
-                </div>
-            </div>
-
-
-        </div>
+        // line 28
+        echo "
+            <input type=\"submit\" class=\"btn btn-success\" value=\"Salva\">
+        </form>
     </div>
 </div>
 
 
 
 ";
-        // line 49
+        // line 36
         $this->displayBlock('scripts', $context, $blocks);
     }
 
     public function block_scripts($context, array $blocks = array())
     {
-        // line 50
+        // line 37
         echo "    <script>
         (function(){
             var categorieDisponibili;
             var urlAddCategory = \"";
-        // line 53
+        // line 40
         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["router_service"] ?? null), "getRoute", array(0 => "ecommerce.catalogo.prodotto.category.add"), "method"), "build", array(0 => array("id" => ($context["idProdotto"] ?? null))), "method"), "html", null, true);
         echo "\";
             var urlRemoveCategory = \"";
-        // line 54
+        // line 41
         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["router_service"] ?? null), "getRoute", array(0 => "ecommerce.catalogo.prodotto.category.remove"), "method"), "build", array(0 => array("id" => ($context["idProdotto"] ?? null))), "method"), "html", null, true);
         echo "\";
             var urlGetCategoris = \"";
-        // line 55
+        // line 42
         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["router_service"] ?? null), "getRoute", array(0 => "ecommerce.catalogo.prodotto.category"), "method"), "build", array(0 => array("id" => ($context["idProdotto"] ?? null))), "method"), "html", null, true);
         echo "\";
 
@@ -178,7 +186,7 @@ class __TwigTemplate_e81b2c93f87de7f5f138799169c59d9306c0d63a541954793a5ee6ce66e
 
     public function getDebugInfo()
     {
-        return array (  121 => 55,  117 => 54,  113 => 53,  108 => 50,  102 => 49,  89 => 38,  78 => 36,  74 => 35,  50 => 13,  39 => 11,  35 => 10,  24 => 1,);
+        return array (  129 => 42,  125 => 41,  121 => 40,  116 => 37,  110 => 36,  100 => 28,  88 => 21,  79 => 19,  75 => 18,  69 => 16,  61 => 15,  58 => 14,  52 => 13,  48 => 12,  44 => 10,  40 => 9,  35 => 7,  31 => 6,  24 => 1,);
     }
 
     public function getSourceContext()
@@ -187,45 +195,32 @@ class __TwigTemplate_e81b2c93f87de7f5f138799169c59d9306c0d63a541954793a5ee6ce66e
 <div class=\"card\">
     <div class=\"card-body\">
 
-        <div class=\"row\">
-            <div class=\"col-md-4\">
-                <div class=\"form-group\">
-                    <label>Categorie associate</label>
-                    <select size=\"10\" class=\"form-control\" multiple id=\"categorieAssociate\">
-                        {% for cat in categorieAssociate %}
-                            <option value=\"{{ cat.categoria.id }}\" name=\"categorieAssociate[]\">{{ cat.categoria.nome }}</option>
+
+        <form class=\"form-ajax\" action=\"{{ router_service.getRoute(\"ecommerce.tipologiaprodotto.attributi.save\").build() }}\" method=\"post\">
+            <input type=\"hidden\" name=\"id\"  value=\"{{ data.id }}\">
+
+        {% for attributo in attributiDisponibili %}
+            <div class=\"form-group\">
+                <label class=\"border-info\">
+                    <input type=\"hidden\" name=\"attributi[{{ attributo.id }}]\" value=\"off\">
+                    <input type=\"checkbox\" name=\"attributi[{{ attributo.id }}]\" value=\"on\" {% for as in attributiAssegnati %}
+
+                        {{ as.id_attributo == attributo.id ? \"checked\" : \"\"}}
+                    {% endfor %}> {{ attributo.nome }}
+                    <p class=\"small\">
+                        Possibili valori : {% for valore in  attributo.possibili_valori %}
+                            \"{{ valore.valore }}\"
                         {% endfor %}
-                    </select>
-                </div>
-            </div>
+                    </p>
+                </label>
 
-            <div class=\"col-md-4\" style=\"align-items: center;
-    justify-items: center;
-    justify-content: center;
-    align-content: center;
-    display: flex;
-    flex-direction: column;\">
-                <div>
-                    <button type=\"button\" id=\"moveRight\"> > </button>
-                </div>
-                <div>
-                    <button type=\"button\" id=\"moveLeft\"> < </button>
-                </div>
-            </div>
-
-            <div class=\"col-md-4\">
-                <div class=\"form-group\">
-                    <label>Categorie disponibili</label>
-                    <select size=\"10\" class=\"form-control\" id=\"categorieDisponibili\" multiple>
-                        {% for cat in categorieDisponibili %}
-                            <option value=\"{{ cat.id }}\" class=\"categoria-disponibile\">{{ cat.nome }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
             </div>
 
 
-        </div>
+        {%  endfor %}
+
+            <input type=\"submit\" class=\"btn btn-success\" value=\"Salva\">
+        </form>
     </div>
 </div>
 

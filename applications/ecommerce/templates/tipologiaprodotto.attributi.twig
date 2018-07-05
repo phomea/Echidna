@@ -2,45 +2,32 @@
 <div class="card">
     <div class="card-body">
 
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label>Categorie associate</label>
-                    <select size="10" class="form-control" multiple id="categorieAssociate">
-                        {% for cat in categorieAssociate %}
-                            <option value="{{ cat.categoria.id }}" name="categorieAssociate[]">{{ cat.categoria.nome }}</option>
+
+        <form class="form-ajax" action="{{ router_service.getRoute("ecommerce.tipologiaprodotto.attributi.save").build() }}" method="post">
+            <input type="hidden" name="id"  value="{{ data.id }}">
+
+        {% for attributo in attributiDisponibili %}
+            <div class="form-group">
+                <label class="border-info">
+                    <input type="hidden" name="attributi[{{ attributo.id }}]" value="off">
+                    <input type="checkbox" name="attributi[{{ attributo.id }}]" value="on" {% for as in attributiAssegnati %}
+
+                        {{ as.id_attributo == attributo.id ? "checked" : ""}}
+                    {% endfor %}> {{ attributo.nome }}
+                    <p class="small">
+                        Possibili valori : {% for valore in  attributo.possibili_valori %}
+                            "{{ valore.valore }}"
                         {% endfor %}
-                    </select>
-                </div>
-            </div>
+                    </p>
+                </label>
 
-            <div class="col-md-4" style="align-items: center;
-    justify-items: center;
-    justify-content: center;
-    align-content: center;
-    display: flex;
-    flex-direction: column;">
-                <div>
-                    <button type="button" id="moveRight"> > </button>
-                </div>
-                <div>
-                    <button type="button" id="moveLeft"> < </button>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label>Categorie disponibili</label>
-                    <select size="10" class="form-control" id="categorieDisponibili" multiple>
-                        {% for cat in categorieDisponibili %}
-                            <option value="{{ cat.id }}" class="categoria-disponibile">{{ cat.nome }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
             </div>
 
 
-        </div>
+        {%  endfor %}
+
+            <input type="submit" class="btn btn-success" value="Salva">
+        </form>
     </div>
 </div>
 

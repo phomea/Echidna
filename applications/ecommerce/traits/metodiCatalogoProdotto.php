@@ -81,6 +81,9 @@ trait metodiCatalogoProdotto{
         }
 
         $tipologieProdotto = TipologiaProdotto::query()->getAll();
+        $attributiTipologia = $data->tipologia->getAttributes();
+
+
         return [
             "tabs",[
                 "tabs"=>[
@@ -118,11 +121,12 @@ trait metodiCatalogoProdotto{
                     "varianti"    =>  [
                         "label" =>  "Varianti",
                         "content"   => Response::getTemplateToUse(
-                            "ecommerce/templates/prodotto.edit.campi",[
+                            "ecommerce/templates/prodotto.edit.varianti",[
                             "template_extend"   =>  "empty.twig",
                             "prodotto"  =>  $data,
                             "idProdotto"            =>  $params['id'],
-                            "campi" =>  $data->tipologia->campi
+                            "campi" =>  $data->tipologia->campi,
+                            "attributiTipologia"=>$attributiTipologia
                         ])->render()
                     ],
                 ]
@@ -217,6 +221,27 @@ trait metodiCatalogoProdotto{
 
         }
 
+        exit;
+    }
+
+
+    static function addVariant( $params=[],$data){
+
+
+
+        $sql = "INSERT INTO ecommerce_prodotto_variante (id_prodotto) VALUES (:id)";
+        Db::$connection->perform($sql,$params);
+
+        $idvariante = Db::$connection->lastInsertId();
+
+        foreach ($data['attributi'] as $key=> $value) {
+            $sql = "INSERT into ecommerce_prodotto_variante_attributi (id_ecommerce_prodotto_variante,id_ecommerce_attributo,id_valore) VALUE(:idvariante,:idattributo,:valore)";
+            Db::$connection->perform($sql,[
+                "idvariante"    =>  $idvariante,
+                "idattributo"   =>  $key,
+                "valore"        =>  $value
+            ]);
+        }
         exit;
     }
 }

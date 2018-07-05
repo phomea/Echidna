@@ -51,6 +51,6 @@ class __TwigTemplate_8f1d5168157e16ab993096f04a2fd69cd06ab7d86503e0fb8f59bdac8a8
     {
         return new Twig_Source("<div class=\"form-group\"><label for=\"company\" class=\" form-control-label\">{{ property }}</label>
     <textarea class=\"form-control\" name=\"{{ property }}\">{{ field.value }}</textarea>
-</div>", "fields/textarea.twig", "/Users/phomea/Siti/Echidna2/backend/template/fields/textarea.twig");
+</div>", "fields/textarea.twig", "/Users/phomea/Siti/Spagnesi/backend/template/fields/textarea.twig");
     }
 }

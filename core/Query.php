@@ -304,7 +304,8 @@ class Query
         if(!$data) return $data;
 
         $e = $this->getEntity();
-        return new $e($data);
+
+        return $e::getInstance($data);// new $e($data);
         exit;
 
         var_dump($data);

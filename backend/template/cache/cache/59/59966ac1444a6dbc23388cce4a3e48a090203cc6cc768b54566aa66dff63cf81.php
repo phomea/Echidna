@@ -308,6 +308,6 @@ class __TwigTemplate_81401b1a1f51a91758206e9efe46d8f360d7ba2c360078570bb33003793
     </nav>
 </aside><!-- /#left-panel -->
 
-<!-- Left Panel -->", "parts/left-panel.twig", "/Users/phomea/Siti/Echidna2/backend/template/parts/left-panel.twig");
+<!-- Left Panel -->", "parts/left-panel.twig", "/Users/phomea/Siti/Spagnesi/backend/template/parts/left-panel.twig");
     }
 }

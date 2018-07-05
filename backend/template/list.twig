@@ -1,4 +1,4 @@
-{% extends "base.twig" %}
+{% extends template_extend %}
 {% block content %}
 
     <div class="animated fadeIn">
@@ -10,6 +10,7 @@
                         <strong class="card-title">{{ title }}</strong>
 
                         <div class="list-actions float-right">
+
                             <a href="{{ router_service.getRoute(data[0].getEntity()~".add").build() }}" class="btn btn-sm btn-light btn-icon" data-toggle="tooltip" title="Aggiungi"><i class="fa fa-plus"></i></a>
                         </div>
 
@@ -50,7 +51,7 @@
                                                     <a href="{{ router_service.getRoute(item.getEntity()~".mod").build({id:item.id}) }}">
                                                         <div style="max-width: 300px;max-height: 1.5em;overflow: hidden;">
                                                             {% if v[1] is iterable %}
-                                                            {%  else %}
+                                                            {%  elseif v[1] is string  %}
                                                                 {{ v[1] }}
                                                             {% endif %}
                                                         </div>

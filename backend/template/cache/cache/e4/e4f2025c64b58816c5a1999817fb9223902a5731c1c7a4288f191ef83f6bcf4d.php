@@ -50,6 +50,6 @@ class __TwigTemplate_36848a041524e740fc03ccad012731223e0861f40628bd753b3a0a9b12e
             </div>
         </div>
     </div>
-</div>#}", "parts/breadcrumbs.twig", "/Users/phomea/Siti/Echidna2/backend/template/parts/breadcrumbs.twig");
+</div>#}", "parts/breadcrumbs.twig", "/Users/phomea/Siti/Spagnesi/backend/template/parts/breadcrumbs.twig");
     }
 }

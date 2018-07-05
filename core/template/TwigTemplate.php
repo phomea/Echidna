@@ -60,6 +60,9 @@ abstract class TwigTemplate extends BaseTemplate {
 
 
 
+        $this->twig->addTest(new \Twig_Test('string',function($value){
+            return is_string($value);
+        }));
 
         /*
         $twigFunction = new \Twig_SimpleFunction('CLCatalog', function($method,$var) {

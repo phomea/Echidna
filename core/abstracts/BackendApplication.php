@@ -77,6 +77,7 @@ abstract class BackendApplication{
 
 
 
+
         return [
             "mod",[
                 "title" =>  "Modifica",
@@ -89,7 +90,6 @@ abstract class BackendApplication{
 
     static function actionMod( $params =[] ){
         $entity = static::getEntityClass();
-
 
 
 

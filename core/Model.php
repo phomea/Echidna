@@ -55,7 +55,7 @@ abstract class Model {
              */
             $field = static::schema()[$var];
             if( $field->isUnique()) {
-                return new static(
+                return static::getInstance(
                     Db::getInstance()->fetchOne("select * from $table where $var = :arguments", [
                         "table" => self::getTable(),
                         "arguments" => $arguments
@@ -66,7 +66,7 @@ abstract class Model {
                     "table" => self::getTable(),
                     "arguments" => $arguments
                 ]) as $key => $value){
-                    $r[] = new static( $value );
+                    $r[] = static::getInstance($value); // new static( $value );
                 }
 
                 return $r;
@@ -225,6 +225,7 @@ abstract class Model {
         if( isset($this->id) ){
             $sql = "DELETE FROM ".$this->getTable()." WHERE id=:id";
 
+
             $r = Db::$connection->perform($sql,[
                 "id"=>$this->id
             ]);
@@ -234,7 +235,7 @@ abstract class Model {
 
     static function __set_state($an_array)
     {
-        return new static($an_array);
+        return static::getInstance($an_array);
     }
 
 
@@ -251,4 +252,21 @@ abstract class Model {
 
 
 
+    static function getInstance( $data ){
+        return new static($data);
+    }
+
+
+    static function generateRoutes( $application,$prefixurl="",$prefixmethod ="" ){
+        $entity = static::class;
+        return [
+            $entity::getEntity().".list"       =>  new Route("list",$prefixurl.$entity::getListLink(),[$application,$prefixmethod."actionList"]),
+            $entity::getEntity().".mod"        =>  new Route("mod",$prefixurl.$entity::getModLink(),[$application,$prefixmethod."actionMod"]),
+            $entity::getEntity().".add"        =>  new Route("add",$prefixurl.$entity::getAddLink(),[$application,$prefixmethod."actionAdd"]),
+
+
+            $entity::getEntity().".update"     =>  (new Route("update",$prefixurl.$entity::getListLink(),[$application,$prefixmethod.'actionUpdate']))->method(Route::METHOD_PUT),
+            $entity::getEntity().".insert"     =>  (new Route("insert",$prefixurl.$entity::getAddLink(),[$application,$prefixmethod.'actionInsert']))->method(Route::METHOD_POST)
+        ];
+    }
 }

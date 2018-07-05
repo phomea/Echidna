@@ -38,4 +38,28 @@ class TipologiaProdotto extends Model{
     }
 
 
+    public function getAttributes(){
+        $sql = "SELECT * FROM ecommerce_attributo_entita as a
+                JOIN ecommerce_attributo as b on a.id_attributo=b.id
+
+                WHERE entita=:entita AND id_entita=:id_entita 
+        ";
+
+        $r = Db::$connection->fetchAll($sql,[
+            "entita"    => "ecommerce_tipologia_prodotto",
+            "id_entita" =>  $this->id
+        ]);
+
+        foreach ($r as $key=>$item) {
+            $sql = "SELECT * FROM ecommerce_attributo_valore WHERE id_ecommerce_attributo=:id";
+            $valori = Db::$connection->fetchAll($sql,[
+                "id" => $item['id_attributo']
+            ]);
+
+            $r[$key]["possibili_valori"] = $valori;
+        }
+
+        return $r;
+    }
+
 }

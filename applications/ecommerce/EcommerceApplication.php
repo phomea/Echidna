@@ -25,7 +25,7 @@ class EcommerceApplication extends Application {
                         ["label" => "Ordini", "href" =>  "/backend/".static::$name."/ordini"],
                         ["label" => "Catalogo","href" =>  "/backend/".static::$name."/catalogo"],
                         ["label" => "Clienti","href" =>  "/backend/".static::$name."/clienti"],
-                        ["label" => "Spedizioni","href" =>  "/backend/".static::$name."/spedizioni"],
+                        ["label" => "Spedizioni","href" =>  "/backend/".static::$name."/spedizioni/"],
                         ["label" => "Pagamenti","href" =>  "/backend/".static::$name."/pagamenti"],
                         ["label" => "Attributi","href" =>   RouterService::getRoute(\applications\ecommerce\entities\Attributo::class.".list")->build()],
                     ]
@@ -39,14 +39,6 @@ class EcommerceApplication extends Application {
     static function declareRoutes()
     {
 
-        /*$entity::getEntity().".list"       =>  new Route("list",$entity::getListLink(),[static::class,"actionList"]),
-            $entity::getEntity().".mod"        =>  new Route("mod",$entity::getModLink(),[static::class,"actionMod"]),
-            $entity::getEntity().".add"        =>  new Route("add",$entity::getAddLink(),[static::class,"actionAdd"]),
-
-
-            $entity::getEntity().".update"     =>  (new Route("update","{id:(.*)}",[static::class,'actionUpdate']))->method(Route::METHOD_PUT),
-            $entity::getEntity().".insert"     =>  (new Route("insert","aggiungi",[static::class,'actionInsert']))->method(Route::METHOD_POST)
-        */
 
         $categoria = [
             Categoria::getEntity().".list"  =>  new Route( Categoria::getEntity()."list" ,"/backend/ecommerce/catalogo/categorie",[Catalogo::class,"listaCategorie"]),
@@ -70,6 +62,15 @@ class EcommerceApplication extends Application {
             "ecommerce.catalogo.prodotto.category"  =>  (new Route( "ecommerce.catalogo.prodotto.category" ,"/backend/ecommerce/catalogo/prodotti/".Prodotto::getModLink()."/category",[Catalogo::class,"getCategories"])),
             "ecommerce.catalogo.prodotto.category.add"  =>  (new Route( "ecommerce.catalogo.prodotto.category.add" ,"/backend/ecommerce/catalogo/prodotti/".Prodotto::getModLink()."/category/add",[Catalogo::class,"addCategories"]))->method(Route::METHOD_POST),
             "ecommerce.catalogo.prodotto.category.remove"  =>  (new Route( "ecommerce.catalogo.prodotto.category.remove" ,"/backend/ecommerce/catalogo/prodotti/".Prodotto::getModLink()."/category/remove",[Catalogo::class,"removeCategories"]))->method(Route::METHOD_POST),
+
+
+            "ecommerce.catalogo.prodotto.variant"  =>  (new Route( "ecommerce.catalogo.prodotto.variant" ,"/backend/ecommerce/catalogo/prodotti/".Prodotto::getModLink()."/variant",[Catalogo::class,"getVariants"])),
+            "ecommerce.catalogo.prodotto.variant.add"  =>  (new Route( "ecommerce.catalogo.prodotto.variant.add" ,"/backend/ecommerce/catalogo/prodotti/".Prodotto::getModLink()."/variant/add",[Catalogo::class,"addVariant"]))->method(Route::METHOD_POST),
+            "ecommerce.catalogo.prodotto.variant.remove"  =>  (new Route( "ecommerce.catalogo.prodotto.variant.remove" ,"/backend/ecommerce/catalogo/prodotti/".Prodotto::getModLink()."/variant/remove",[Catalogo::class,"removeVariant"]))->method(Route::METHOD_POST),
+
+
+
+
         ];
 
 
@@ -77,6 +78,8 @@ class EcommerceApplication extends Application {
 
         RouterService::addRoutesPrefixed(Attributo::declareRoutes(),"/backend/ecommerce/");
         RouterService::addRoutesPrefixed(\applications\ecommerce\TipologiaProdotto::declareRoutes(),"/backend/ecommerce/tipologia-prodotto/");
+
+        RouterService::addRoutesPrefixed(\applications\ecommerce\Spedizioni::declareRoutes(),"/backend/ecommerce/spedizioni/");
 
         return array_merge(
             [
@@ -101,7 +104,7 @@ class EcommerceApplication extends Application {
 
     static function getFrontendApplication()
     {
-        return null;
+        return EcommerceFrontend::class;
     }
 
     static function getBackendApplication()
