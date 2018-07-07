@@ -101,50 +101,56 @@ class __TwigTemplate_48d5a2828e79c22404d7cdf899c615a0669f84add05e8b2da06d91898f5
         // line 69
         $this->displayBlock('styles', $context, $blocks);
         // line 71
-        echo "</head>
+        echo "
+    <script src=\"/backend/assets/js/forms.js\"></script>
+    <script src=\"/backend/assets/js/main.js\"></script>
+    <script src=\"/backend/assets/js/image.js\"></script>
+
+
+</head>
 <body>
 
 ";
-        // line 74
-        $this->loadTemplate("parts/left-panel.twig", "base.twig", 74)->display($context);
-        // line 75
+        // line 80
+        $this->loadTemplate("parts/left-panel.twig", "base.twig", 80)->display($context);
+        // line 81
         echo "
 <!-- Right Panel -->
 
 <div id=\"right-panel\" class=\"right-panel\">
 
     ";
-        // line 80
-        $this->loadTemplate("parts/header.twig", "base.twig", 80)->display($context);
-        // line 81
+        // line 86
+        $this->loadTemplate("parts/header.twig", "base.twig", 86)->display($context);
+        // line 87
         echo "
     ";
-        // line 82
-        $this->loadTemplate("parts/breadcrumbs.twig", "base.twig", 82)->display($context);
-        // line 83
+        // line 88
+        $this->loadTemplate("parts/breadcrumbs.twig", "base.twig", 88)->display($context);
+        // line 89
         echo "
     <div class=\"content mt-3\">
 
         ";
-        // line 86
+        // line 92
         $this->displayBlock('content_notification', $context, $blocks);
-        // line 96
+        // line 102
         echo "
 
         ";
-        // line 98
-        $this->displayBlock('beforeContent', $context, $blocks);
-        // line 100
-        echo "
-        ";
-        // line 101
-        $this->displayBlock('content', $context, $blocks);
-        // line 103
-        echo "
-        ";
         // line 104
-        $this->displayBlock('afterContent', $context, $blocks);
+        $this->displayBlock('beforeContent', $context, $blocks);
         // line 106
+        echo "
+        ";
+        // line 107
+        $this->displayBlock('content', $context, $blocks);
+        // line 109
+        echo "
+        ";
+        // line 110
+        $this->displayBlock('afterContent', $context, $blocks);
+        // line 112
         echo "
     </div> <!-- .content -->
 </div><!-- /#right-panel -->
@@ -154,13 +160,13 @@ class __TwigTemplate_48d5a2828e79c22404d7cdf899c615a0669f84add05e8b2da06d91898f5
 
 
 
-<script src=\"/backend/assets/js/forms.js\"></script>
-<script src=\"/backend/assets/js/main.js\"></script>
+
+
 
 ";
-        // line 118
+        // line 124
         $this->displayBlock('scripts', $context, $blocks);
-        // line 120
+        // line 126
         echo "<script type=\"text/javascript\">
     (function (\$) {
         \$(document).ready(function() {
@@ -209,10 +215,10 @@ class __TwigTemplate_48d5a2828e79c22404d7cdf899c615a0669f84add05e8b2da06d91898f5
         echo "    ";
     }
 
-    // line 86
+    // line 92
     public function block_content_notification($context, array $blocks = array())
     {
-        // line 87
+        // line 93
         echo "        <!--<div class=\"col-sm-12\">
             <div class=\"alert  alert-success alert-dismissible fade show\" role=\"alert\">
                 <span class=\"badge badge-pill badge-success\">Success</span> You successfully read this important alert message.
@@ -224,28 +230,28 @@ class __TwigTemplate_48d5a2828e79c22404d7cdf899c615a0669f84add05e8b2da06d91898f5
         ";
     }
 
-    // line 98
-    public function block_beforeContent($context, array $blocks = array())
-    {
-        // line 99
-        echo "        ";
-    }
-
-    // line 101
-    public function block_content($context, array $blocks = array())
-    {
-        // line 102
-        echo "        ";
-    }
-
     // line 104
-    public function block_afterContent($context, array $blocks = array())
+    public function block_beforeContent($context, array $blocks = array())
     {
         // line 105
         echo "        ";
     }
 
-    // line 118
+    // line 107
+    public function block_content($context, array $blocks = array())
+    {
+        // line 108
+        echo "        ";
+    }
+
+    // line 110
+    public function block_afterContent($context, array $blocks = array())
+    {
+        // line 111
+        echo "        ";
+    }
+
+    // line 124
     public function block_scripts($context, array $blocks = array())
     {
     }
@@ -262,7 +268,7 @@ class __TwigTemplate_48d5a2828e79c22404d7cdf899c615a0669f84add05e8b2da06d91898f5
 
     public function getDebugInfo()
     {
-        return array (  249 => 118,  245 => 105,  242 => 104,  238 => 102,  235 => 101,  231 => 99,  228 => 98,  216 => 87,  213 => 86,  209 => 70,  206 => 69,  164 => 120,  162 => 118,  148 => 106,  146 => 104,  143 => 103,  141 => 101,  138 => 100,  136 => 98,  132 => 96,  130 => 86,  125 => 83,  123 => 82,  120 => 81,  118 => 80,  111 => 75,  109 => 74,  104 => 71,  102 => 69,  97 => 67,  29 => 1,);
+        return array (  255 => 124,  251 => 111,  248 => 110,  244 => 108,  241 => 107,  237 => 105,  234 => 104,  222 => 93,  219 => 92,  215 => 70,  212 => 69,  170 => 126,  168 => 124,  154 => 112,  152 => 110,  149 => 109,  147 => 107,  144 => 106,  142 => 104,  138 => 102,  136 => 92,  131 => 89,  129 => 88,  126 => 87,  124 => 86,  117 => 81,  115 => 80,  104 => 71,  102 => 69,  97 => 67,  29 => 1,);
     }
 
     public function getSourceContext()
@@ -337,6 +343,12 @@ class __TwigTemplate_48d5a2828e79c22404d7cdf899c615a0669f84add05e8b2da06d91898f5
     </style>
     {% block styles %}
     {% endblock %}
+
+    <script src=\"/backend/assets/js/forms.js\"></script>
+    <script src=\"/backend/assets/js/main.js\"></script>
+    <script src=\"/backend/assets/js/image.js\"></script>
+
+
 </head>
 <body>
 
@@ -381,8 +393,8 @@ class __TwigTemplate_48d5a2828e79c22404d7cdf899c615a0669f84add05e8b2da06d91898f5
 
 
 
-<script src=\"/backend/assets/js/forms.js\"></script>
-<script src=\"/backend/assets/js/main.js\"></script>
+
+
 
 {% block scripts %}
 {% endblock %}

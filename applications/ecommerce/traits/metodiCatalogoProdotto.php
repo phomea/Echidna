@@ -129,6 +129,18 @@ trait metodiCatalogoProdotto{
                             "attributiTipologia"=>$attributiTipologia
                         ])->render()
                     ],
+                    "immagini"    =>  [
+                        "label" =>  "Immagini",
+                        "content"   => Response::getTemplateToUse(
+                            "ecommerce/templates/prodotto.edit.immagini",[
+                            "template_extend"   =>  "empty.twig",
+                            "prodotto"  =>  $data,
+                            "idProdotto"            =>  $params['id'],
+                            "immagini" =>  $data->images
+
+                        ])->render()
+                    ]
+
                 ]
             ]
 
@@ -242,6 +254,21 @@ trait metodiCatalogoProdotto{
                 "valore"        =>  $value
             ]);
         }
+        exit;
+    }
+    
+    
+    static function addImage( $params = [] , $data ){
+
+        $sql = "INSERT INTO ecommerce_prodotto_immagine (id_prodotto,permalink) VALUES (:id,:permalink)";
+
+        Db::$connection->perform($sql,[
+            "id" => $params['id'],
+            "permalink" => $data['permalink']
+        ]);
+
+
+
         exit;
     }
 }

@@ -43,7 +43,7 @@ class __TwigTemplate_0aab8a76516231835aba545baac36ed0256222fc77e84880f829c9441f4
         echo "
 </head>
 
-<body class=\"responsive\" ng-app=\"ArteSposa\">
+<body>
 
 
 <div id=\"outer\">
@@ -84,7 +84,7 @@ class __TwigTemplate_0aab8a76516231835aba545baac36ed0256222fc77e84880f829c9441f4
 
 </head>
 
-<body class=\"responsive\" ng-app=\"ArteSposa\">
+<body>
 
 
 <div id=\"outer\">

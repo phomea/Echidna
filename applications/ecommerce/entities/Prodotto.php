@@ -43,6 +43,7 @@ class Prodotto extends Model{
         }
 
         $instance->varianti = $instance->getVariants();
+        $instance->images = $instance->getImages();
         return $instance;
     }
 
@@ -62,4 +63,11 @@ class Prodotto extends Model{
         return $varianti;
     }
 
+    public function getImages(){
+        $sql =  "SELECT * FROM ecommerce_prodotto_immagine WHERE id_prodotto=:id_prodotto";
+
+        return Db::$connection->fetchAll($sql,[
+            "id_prodotto"   =>  $this->id
+        ]);
+    }
 }

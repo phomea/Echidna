@@ -1,0 +1,58 @@
+
+<div class="image-dropper">
+    <span>Drop files</span>
+</div>
+
+
+<div class="text-center">
+
+        oppure
+        <br>
+        <a href="" id="filebrowser" class="btn btn-primary btn-sm">Aggiungi da media</a>
+    <br>
+    <br>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="row lista-thumbnail">
+
+            {% for immagine in immagini %}
+            <figure class="float-left d-flex" style="margin: 0.5em;">
+                <img src="{{ immagine.permalink }}" alt="" class="img-thumbnail">
+            </figure>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+
+{% block scripts %}
+<script>
+    new FileDropper(".image-dropper","catalogo/prodotti/");
+
+    var mediabrowser = new MediaBrowser("#filebrowser");
+
+    mediabrowser.fileChoose(function( file ){
+        console.log(file);
+
+
+
+        $.post( "{{ router_service.getRoute("ecommerce.catalogo.prodotto.image.add").build({id:prodotto.id}) }}",{
+                permalink : file.permalink
+        }).complete(function(d){
+            console.log(d);
+        })
+
+    });
+
+    $(window).ready(function(){
+        $("#filebrowser").on( "click",function (e) {
+            e.preventDefault();
+            mediabrowser.open();
+        })
+    })
+
+</script>
+{% endblock %}
