@@ -1,5 +1,6 @@
 (function ($) {
-    $(".form-mod, .form-ajax").on("submit",function (e) {
+
+    $(document).on("submit",".form-mod, .form-ajax",function (e) {
         e.preventDefault();
         $(this).addClass("loading");
         var url = $(this).attr("action");
@@ -17,6 +18,7 @@
                 data :$(form).serialize()
             })
                 .success(function ( o ) {
+
                     if(o.type!== undefined && o.type == 'redirect'){
                         window.location = o.to;
                         return;
@@ -71,14 +73,18 @@
           /(['" ]+)/g
           ,"-").toLowerCase();
     };
-    $('[slug-from]').each(function () {
-        var me = $(this);
-        var form = $(this).closest("form");
-        var slugFrom = form.find('[name="'+$(this).attr("slug-from")+'"]');
 
-        slugFrom.on("keyup",function () {
-            me.val( slugify($(this).val()) );
+    $(window).ready(function() {
+
+        $('[slug-from]').each(function () {
+            var me = $(this);
+            var form = $(this).closest("form");
+            var slugFrom = form.find('[name="' + $(this).attr("slug-from") + '"]');
+
+            slugFrom.on("keyup", function () {
+                me.val(slugify($(this).val()));
+            })
+
         })
-
-    })
+    });
 })(jQuery)

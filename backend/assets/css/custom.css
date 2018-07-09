@@ -392,3 +392,15 @@ aside.left-panel{
 .fileBrowser-navigation{
     border-bottom:1px solid #ccc;
 }
+
+.thumbnail-actions .btn{
+    color:#fff;
+}
+.thumbnail-actions{
+    position: absolute;
+    width: 100%;
+    background: rgba(0,0,0,0.8);
+    bottom: 0;
+    color: #fff;
+    text-align: center;
+}

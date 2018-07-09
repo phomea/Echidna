@@ -37,7 +37,8 @@ abstract class BackendApplication{
 
 
             $entity::getEntity().".update"     =>  (new Route("update",$entity::getListLink(),[static::class,'actionUpdate']))->method(Route::METHOD_PUT),
-            $entity::getEntity().".insert"     =>  (new Route("insert",$entity::getAddLink(),[static::class,'actionInsert']))->method(Route::METHOD_POST)
+            $entity::getEntity().".insert"     =>  (new Route("insert",$entity::getAddLink(),[static::class,'actionInsert']))->method(Route::METHOD_POST),
+            $entity::getEntity().".delete"     =>  (new Route("insert",$entity::getModLink()."/delete",[static::class,'actionDelete']))
         ];
     }
 
@@ -159,12 +160,19 @@ abstract class BackendApplication{
             ]
         );
 
-
-
         return [
             "list",[
-                "data" => $data
+                "data"      => $data,
+                "entity"    =>  $entity
             ]
         ];
+    }
+
+
+    static function actionDelete( $params =[]){
+        $entity = static::getEntityClass();
+        $entity::findById($params['id'])->remove();
+        RouterService::getRoute($entity::getEntity().".list")->go();
+
     }
 }

@@ -41,6 +41,10 @@ class RouterService extends Service{
         //self::$routes += $routes;
     }
 
+    /**
+     * @param $name
+     * @return Route|mixed
+     */
     public static function getRoute( $name ){
 
         return isset(self::$routes[$name]) ? self::$routes[$name] : new Route("","",[]) ;

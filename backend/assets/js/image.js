@@ -204,7 +204,14 @@
                 "box-shadow"    : "0px 0px 30px rgba(0,0,0,0.3)"
             });
 
+            this.overlay.on("click",function ( e ) {
+                if( $( e.target).is(me.overlay) ){
+                    me.close();
+                }
+            })
+
             this.overlay.append(this.window);
+
 
             this.navigation = $("<div></div>").addClass("fileBrowser-navigation");
             var indietro = $('<a href="" class="btn btn-primaaru">Indietro</a>').on("click",me.back)
@@ -261,7 +268,7 @@
 
             dir.append('<h5>'+d.name+'</h5>')
 
-            dir.on("click",function( e ){
+            dir.on("dblclick",function( e ){
 
                 e.preventDefault();
 
@@ -280,10 +287,12 @@
 
             div.append('<h5>'+d.name+'</h5>')
 
-            file.on("click", function ( e ) {
+            file.on("dblclick", function ( e ) {
                 e.preventDefault();
                 me.fileClick( d );
-            })
+            });
+
+
 
             div.append(file);
             return div;

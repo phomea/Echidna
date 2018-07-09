@@ -1,0 +1,21 @@
+{% extends "base/template.twig" %}
+
+{% block content %}
+<main style="padding-top: 300px;">
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col">
+                <div class="row">
+                    {% for prodotto in prodotti %}
+                        <div class="col-6">
+                        {% include "ecommerce/product/thumbnail-preview.twig" with {prodotto : prodotto} %}
+                    {% endfor %}
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

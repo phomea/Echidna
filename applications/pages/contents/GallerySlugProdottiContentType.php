@@ -37,7 +37,7 @@ class GallerySlugProdottiContentType extends \applications\pages\contents\Conten
                     "label" =>  "4",
                     "value" =>  4
                 ]
-            ]]
+            ]
         ])->render();
 
 

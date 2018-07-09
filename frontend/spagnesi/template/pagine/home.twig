@@ -33,6 +33,12 @@
         {{ pagina.content | raw}}
     </div>
 
+
+    {% for prodotto in prodotti %}
+        {% include "parti/anteprima-prodotto.twig" with {prodotto : prodotto} %}
+    {% endfor %}
+
+    <!--
     <div class="anteprima-prodotto mb-5">
         <div class="row">
             <div class="col">
@@ -124,7 +130,7 @@
                 </div>
             </div>
         </section>
-    </div>
+    </div>-->
 
 
 

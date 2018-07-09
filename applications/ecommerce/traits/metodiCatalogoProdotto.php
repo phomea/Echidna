@@ -5,6 +5,7 @@ use \applications\ecommerce\entities\Categoria;
 use applications\ecommerce\entities\CategoriaProdotto;
 use applications\ecommerce\entities\Prodotto;
 use applications\ecommerce\entities\TipologiaProdotto;
+use applications\ecommerce\entities\Variante;
 use core\services\Db;
 use \core\services\Response;
 use core\services\RouterService;
@@ -23,7 +24,8 @@ trait metodiCatalogoProdotto{
         );
         return [
             "ecommerce/templates/prodotto.list",[
-                "data" => $data
+                "data" => $data,
+                "entity"    =>  Prodotto::class
             ]
         ];
     }
@@ -151,6 +153,17 @@ trait metodiCatalogoProdotto{
         return parent::actionUpdate($params,$data);
     }
 
+    static function deleteProdotto( $params = []){
+
+        Prodotto::findById($params['id'])->remove();
+        foreach( Variante::findById_prodotto($params['id']) as $value){
+            $value->remove();
+        }
+
+        RouterService::getRoute(Prodotto::getEntity().".list")->go();
+        exit;
+    }
+
 
     static function addCategories( $params = [], $data = null){
         $idProdotto = $params['id'];
@@ -241,8 +254,8 @@ trait metodiCatalogoProdotto{
 
 
 
-        $sql = "INSERT INTO ecommerce_prodotto_variante (id_prodotto) VALUES (:id)";
-        Db::$connection->perform($sql,$params);
+        $sql = "INSERT INTO ecommerce_prodotto_variante (id_prodotto,prezzo,sku) VALUES (:id,:prezzo,:sku)";
+        Db::$connection->perform($sql,array_merge($params,$data));
 
         $idvariante = Db::$connection->lastInsertId();
 
@@ -256,7 +269,15 @@ trait metodiCatalogoProdotto{
         }
         exit;
     }
-    
+
+    static function removeVariant( $params=[], $data){
+
+        var_dump($data);
+        $v = Variante::findById($data['id']);
+        $v->remove();
+        exit;
+
+    }
     
     static function addImage( $params = [] , $data ){
 
@@ -268,7 +289,23 @@ trait metodiCatalogoProdotto{
         ]);
 
 
+        $lastid = Db::$connection->lastInsertId();
 
+        $sql = "SELECT * FROM ecommerce_prodotto_immagine where id=:id";
+        return ["",[
+            "data"=>Db::$connection->fetchOne($sql,["id"=>$lastid])
+        ]
+        ];
+
+    }
+
+    static function removeImage( $params = [], $data ){
+
+        var_dump($params);
+
+        $sql = "DELETE FROM ecommerce_prodotto_immagine where id=:id";
+
+        Db::$connection->perform($sql,$params);
         exit;
     }
 }

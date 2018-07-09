@@ -44,7 +44,9 @@ class EcommerceApplication extends Application {
             Categoria::getEntity().".list"  =>  new Route( Categoria::getEntity()."list" ,"/backend/ecommerce/catalogo/categorie",[Catalogo::class,"listaCategorie"]),
             Categoria::getEntity().".mod"  =>  new Route( Categoria::getEntity()."mod" ,"/backend/ecommerce/catalogo/categorie/".Categoria::getModLink(),[Catalogo::class,"editCategoria"]),
             Categoria::getEntity().".update"  =>  (new Route( Categoria::getEntity()."mod" ,"/backend/ecommerce/catalogo/categorie/".Categoria::getModLink(),[Catalogo::class,"updateCategoria"]))->method(Route::METHOD_PUT),
-            Categoria::getEntity().".add"  =>  (new Route( Categoria::getEntity()."mod" ,"/backend/ecommerce/catalogo/categorie/".Categoria::getAddLink(),[Catalogo::class,"updateCategoria"])),
+            Categoria::getEntity().".add"  =>  (new Route( Categoria::getEntity()."mod" ,"/backend/ecommerce/catalogo/categorie/".Categoria::getAddLink(),[Catalogo::class,"addCategoria"])),
+            Categoria::getEntity().".delete"  =>  (new Route( Categoria::getEntity()."mod" ,"/backend/ecommerce/catalogo/categorie/".Categoria::getModLink()."/delete",[Catalogo::class,"deleteCategoria"])),
+            Categoria::getEntity().".insert"  =>  (new Route( Categoria::getEntity()."insert" ,"/backend/ecommerce/catalogo/categorie/".Categoria::getAddLink(),[Catalogo::class,"insertCategoria"]))->method(Route::METHOD_POST),
 
         ];
 
@@ -54,6 +56,7 @@ class EcommerceApplication extends Application {
             Prodotto::getEntity().".update"  =>  (new Route( Prodotto::getEntity()."update" ,"/backend/ecommerce/catalogo/prodotti/".Prodotto::getModLink(),[Catalogo::class,"updateProdotto"]))->method(Route::METHOD_PUT),
             Prodotto::getEntity().".insert"  =>  (new Route( Prodotto::getEntity()."insert" ,"/backend/ecommerce/catalogo/prodotti/".Prodotto::getAddLink(),[Catalogo::class,"insertProdotto"]))->method(Route::METHOD_POST),
             Prodotto::getEntity().".add"  =>  (new Route( Prodotto::getEntity()."add" ,"/backend/ecommerce/catalogo/prodotti/".Prodotto::getAddLink(),[Catalogo::class,"addProdotto"])),
+            Prodotto::getEntity().".delete"  =>  (new Route( Prodotto::getEntity()."delete" ,"/backend/ecommerce/catalogo/prodotti/".Prodotto::getModLink()."/delete",[Catalogo::class,"deleteProdotto"])),
 
             "ecommerce.catalogo.prodotto.saveproperties"  =>  (new Route( "ecommerce.catalogo.prodotto.saveproperties" ,"/backend/ecommerce/catalogo/prodotti/".Prodotto::getModLink()."/saveproperties",[Catalogo::class,"saveProperties"]))->method(Route::METHOD_POST),
 
@@ -71,7 +74,7 @@ class EcommerceApplication extends Application {
 
             "ecommerce.catalogo.prodotto.image"  =>  (new Route( "" ,"/backend/ecommerce/catalogo/prodotti/".Prodotto::getModLink()."/image",[Catalogo::class,"getImages"])),
             "ecommerce.catalogo.prodotto.image.add"  =>  (new Route( "" ,"/backend/ecommerce/catalogo/prodotti/".Prodotto::getModLink()."/image/add",[Catalogo::class,"addImage"]))->method(Route::METHOD_POST),
-            "ecommerce.catalogo.prodotto.image.remove"  =>  (new Route( "" ,"/backend/ecommerce/catalogo/prodotti/".Prodotto::getModLink()."/image/remove",[Catalogo::class,"removeImage"]))->method(Route::METHOD_POST),
+            "ecommerce.catalogo.prodotto.image.remove"  =>  (new Route( "" ,"/backend/ecommerce/catalogo/prodotti/image/remove/".Prodotto::getModLink(),[Catalogo::class,"removeImage"]))->method(Route::METHOD_POST),
 
 
 

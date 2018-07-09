@@ -29,4 +29,20 @@ class Variante extends Model{
 
         $this->attributi = $attributi;
     }
+
+
+    public function gotAttributeValue ( $id ){
+
+
+
+
+        $got = false;
+        foreach ($this->attributi as $key => $value){
+            if( $value->valore->id == $id){
+                $got = true;
+            }
+        }
+
+        return $got;
+    }
 }

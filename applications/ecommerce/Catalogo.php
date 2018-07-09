@@ -38,4 +38,10 @@ class Catalogo extends BackendApplication {
 
     }
 
+    /**
+     * @return CatalogoSearch
+     */
+    static function search(){
+        return new CatalogoSearch();
+    }
 }

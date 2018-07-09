@@ -22,10 +22,14 @@
         var n = $(this).attr("data-n");
         if(n == undefined ) n =1;
 
+        var nav =false;
+        if( $(this).attr("data-nav")!== undefined ){
+            nav = true;
+        }
         $(this).owlCarousel({
             loop:true,
             margin:10,
-            nav:false,
+            nav:nav,
             items:n
         });
     });

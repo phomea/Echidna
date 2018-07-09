@@ -2,6 +2,7 @@
 namespace applications\ecommerce;
 
 use applications\ecommerce\entities\Carrello;
+use applications\ecommerce\entities\Categoria;
 use applications\ecommerce\entities\Prodotto;
 use core\Route;
 use core\services\RouterService;
@@ -12,6 +13,8 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
     {
         return [
             "frontend.ecommerce.carrello"   =>  new Route("","/carrello",[self::class,"_carrello"]),
+
+            "frontend.ecommerce.categoria"   =>  new Route("","/{slug:([0-9a-zA-Z-]*)}",[self::class,"_categoria"]),
             "frontend.ecommerce.carrello.aggiungi"   =>  (new Route("","/carrello/aggiungi",[self::class,"_carrelloAggiungi"]))->method(Route::METHOD_POST),
 
             "frontend.ecommerce.schedaprodotto"   =>  new Route("","/{slug:([0-9a-zA-Z-]*)}",[self::class,"_schedaProdotto"])
@@ -115,14 +118,37 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
         }
         */
 
+        $variante = $prodotto[0]->varianti[0];
+
 
         return [
             "ecommerce/scheda-prodotto",[
                 "prodotto"  =>  $prodotto[0],
-                "attributi" =>  $attributi
+                "attributi" =>  $attributi,
+                "variante"  =>  $variante
             ]
         ];
         exit;
+    }
+
+
+    static function _categoria( $params =[]){
+
+        $cat = Categoria::findBySlug($params['slug']);
+        if(empty($cat)){
+            return false;
+        }
+        $categoria = $cat[0];
+
+
+        $prodotti = Catalogo::search()->byCategory($categoria);
+
+        return [
+            "ecommerce/shop/category",[
+                "categoria" =>  $categoria,
+                "prodotti"  =>  $prodotti
+            ]
+        ];
     }
 
 }

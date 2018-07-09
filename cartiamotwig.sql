@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 05, 2018 at 08:52 PM
+-- Generation Time: Jul 09, 2018 at 10:21 AM
 -- Server version: 5.6.34-log
 -- PHP Version: 7.1.7
 
@@ -3971,7 +3971,7 @@ INSERT INTO `contenuto` (`id`, `titolo`, `tipo`, `contenuto`, `hook`, `ordine`, 
 (6, 'Banner top chi siamo', 'banner', '{\"id\":\"2\"}', 'banner', 0, 3),
 (7, 'Banner cima contatti', 'banner', '{\"id\":\"3\"}', 'banner', 0, 7),
 (8, 'BANNER-LIVE-PREVIEW', 'banner', '{\"id\":\"4\"}', 'banner', 0, 11),
-(9, 'Carousel Comunioni', 'carousel-descrizione-prodotti', '{\"titolo\":\"Prima comunione\",\"descrizione\":\"Grazie alla <b>creativitÃ  che porta alla nascita di nuove idee</b>, all\'intuizione che da origine a design e contenuti originali ed  efficaci, da oggi sarÃ  possibile comunicare con classe ed eleganza, un <em>momento importante della vita familiare</em>, come quello della <strong>prima comunione</strong>, contribuendo a renderlo unico ed indelebile nella memoria dei vostri cari.\",\"id\":\"2115,2116,2117,2118\",\"right\":\"true\",\"testolink\":\"Vedi tutti\",\"link\":\"/shop/comunioni\"}', 'spazioCarousel', 0, 1),
+(9, 'Carousel Comunioni', 'carousel-descrizione-prodotti', '{\"titolo\":\"Prima comunione\",\"descrizione\":\"Grazie alla <b>creativitÃ  che porta alla nascita di nuove idee</b>, all\'intuizione che da origine a design e contenuti originali ed  efficaci, da oggi sarÃ  possibile comunicare con classe ed eleganza, un <em>momento importante della vita familiare</em>, come quello della <strong>prima comunione</strong>, contribuendo a renderlo unico ed indelebile nella memoria dei vostri cari.\",\"id\":\"2115,2116,2117,2118\",\"right\":\"true\",\"testolink\":\"Vedi tutti\",\"link\":\"/shop/comunioni\"}', 'spazioCarousel', 2, 1),
 (10, 'BANNER-TOP-FAQ', 'banner', '{\"id\":\"5\"}', 'banner', 0, 4),
 (11, 'Carousel Matrimonio', 'carousel-descrizione-prodotti', '{\"titolo\":\"Matrimonio\",\"descrizione\":\"<b>Finalmente lui ti ha chiesto di sposarlo</b> e tu sei al settimo cielo , adesso perÃ² Ã¨ arrivato il momento di <strong>organizzare il matrimonio</strong> . stabilita la data matrimoniale , la chiesa per la cerimonia , il ristorante e la lista degli invitati â€¦ non rimane altro che passare alla scelta della <em>partecipazione di nozze</em>, <strong>inviti matrimonio</strong> e <em>biglietti matrimonio</em> piÃ¹ adatti al tuo stile ed al tipo di cerimonia che hai intenzione di organizzare .  tradizione vuole che tale compito spetti alla <strong>sposa</strong> , solitamente piÃ¹ predisposta dello <strong>sposo</strong> nella scelta di questo indispensabile accessorio nuziale .\",\"id\":\"499,536,538,539\",\"right\":\"\",\"testolink\":\"Vedi tutti\",\"link\":\"/shop/matrimoni/trendy\"}', 'spazioCarousel', 8, 1),
 (12, 'BANNER-TOP-COME-FUNZIONA', 'banner', '{\"id\":\"6\"}', 'banner', 0, 8),
@@ -3984,7 +3984,7 @@ INSERT INTO `contenuto` (`id`, `titolo`, `tipo`, `contenuto`, `hook`, `ordine`, 
 (20, 'Lasciati ispirare', 'gallery-5-img', '{\"img1\":\"https://cartiamo.it/media//350x400-true-partecipazione_di_matrimonio_rosa.jpg\",\"img2\":\"https://cartiamo.it/media//350x400-true-partecipazione_matrimonio_rossa.jpg\",\"img3\":\"https://cartiamo.it/media//350x400-true-partecipazione_matrimonio_tiffany.jpg\",\"img4\":\"https://cartiamo.it/media//350x400-true-partecipazione_shabby_chic.jpg\",\"img5\":\"https://cartiamo.it/media//350x400-true-partecipazione_di_matrimonio.jpg\"}', 'prefooter', 11, 1),
 (22, 'Lasciati ispirare testo', 'titolo-testo', '{\"titolo\":\"LASCIATI ISPIRARE\",\"testo\":\"Laciati ispirare per il tuo matrimonio! Scopri tutte le nuove tendenze in coordinato con le tu partecipazioni di matrimonio.\"}', 'prefooter', 10, 1),
 (25, 'Banner', 'banner', '{\"id\":\"9\"}', 'banner', NULL, 18),
-(26, 'Ultimi articoli blog', 'ultimi-articoli-blog', '{\"numero\":\"2\"}', 'prefooter', 1, 1),
+(26, 'Ultimi articoli blog', 'ultimi-articoli-blog', '{\"numero\":\"2\"}', 'prefooter', 0, 1),
 (27, 'Banner top', 'banner', '{\"id\":\"14\"}', 'banner', NULL, 22),
 (28, 'Lista slug', 'griglia-slug-prodotti', '{\"slugs\":\"ginepro;dafne;petunia;girasole;togheter;margherita;erica;easy\",\"colonne\":\"\"}', 'ciao', NULL, 22),
 (29, 'Pulsante vedi tutti', 'titolo-testo', '{\"titolo\":\"\",\"testo\":\"<span class=\\\"text-center\\\"><a href=\\\"/shop/matrimoni/classica\\\" title=\\\"matrimonio al sud\\\" class=\\\"btn btn-cool btn-red btn\\\">Vedi tutte le partecipazioni classiche</a></span>\"}', 'ciao', NULL, 22),
@@ -3996,7 +3996,7 @@ INSERT INTO `contenuto` (`id`, `titolo`, `tipo`, `contenuto`, `hook`, `ordine`, 
 (36, 'Pulsante vedi tutti', 'titolo-testo', '{\"titolo\":\"\",\"testo\":\"<span class=\\\"text-center\\\"><a href=\\\"/shop/comunioni\\\" title=\\\"Partecipazioni prima comunione\\\" class=\\\"btn btn-cool btn-red btn\\\">Vedi tutte le partecipazioni per auguri prima comunione</a></span>\"}', 'ciao', NULL, 23),
 (37, 'Banner', 'banner', '{\"id\":\"15\"}', 'banner', NULL, 23),
 (38, 'Banner prima comunione', 'banner', '{\"id\":\"15\"}', 'contenutoCentrale', 7, 1),
-(39, 'Testo prima comunione', 'titolo-testo', '{\"titolo\":\"La prima comunione\",\"testo\":\"Scopri anche le nostre partecipazioni per la <strong>prima comunione</strong> di tuo figlio! Trova <em>idee per frasi</em> di <a href=\\\"https://cartiamo.it/auguri-prima-comunione\\\">auguri prima comunione</a> e partecipazioni da personalizzare!\"}', 'contenutoCentrale', 2, 1),
+(39, 'Testo prima comunione', 'titolo-testo', '{\"titolo\":\"La prima comunione\",\"testo\":\"Scopri anche le nostre partecipazioni per la <strong>prima comunione</strong> di tuo figlio! Trova <em>idee per frasi</em> di <a href=\\\"https://cartiamo.it/auguri-prima-comunione\\\">auguri prima comunione</a> e partecipazioni da personalizzare!\"}', 'contenutoCentrale', 1, 1),
 (40, 'Banner top', 'banner', '{\"id\":\"16\"}', 'banner', NULL, 24),
 (41, 'Prima riha', 'riga-2-colonne', '{\"dimsinistra\":\"\",\"sinistra\":\"<h3 style=\\\"text-align: center;\\\" data-mce-style=\\\"text-align: center;\\\">Partecipazioni senza Montaggio</h3><p style=\\\"text-align: center;\\\" data-mce-style=\\\"text-align: center;\\\"><img src=\\\"https://cartiamo.it/media//SCATOLA 1.jpg\\\" alt=\\\"Scatola senza montaggio\\\" data-mce-src=\\\"https://cartiamo.it/media//SCATOLA 1.jpg\\\"></p>\",\"dimdestra\":\"\",\"destra\":\"<h2 style=\\\"text-align: center;\\\" data-mce-style=\\\"text-align: center;\\\">Procedura di Montaggio</h2><p style=\\\"text-align: center;\\\" data-mce-style=\\\"text-align: center;\\\">Tutte le partecipazioni vengono montate rigorosamente a mano per garantire una qualità eccellente</p><h4 style=\\\"text-align: center;\\\" data-mce-style=\\\"text-align: center;\\\"><img src=\\\"https://cartiamo.it/media//SFUSTELLAMENTO.jpg\\\" alt=\\\"Sfustellamento partecipazione\\\" data-mce-src=\\\"https://cartiamo.it/media//SFUSTELLAMENTO.jpg\\\"><br></h4><h4 style=\\\"text-align: center;\\\" data-mce-style=\\\"text-align: center;\\\"><em>Montaggio</em></h4><p style=\\\"text-align: center;\\\" data-mce-style=\\\"text-align: center;\\\"><img src=\\\"https://cartiamo.it/media//MONTAGGIO.jpg\\\" alt=\\\"Montaggio Partecipazione\\\" data-mce-src=\\\"https://cartiamo.it/media//MONTAGGIO.jpg\\\"></p>\"}', 'ciao', 0, 21),
 (42, 'seconda riga', 'html', '{\"html\":\"<div class=\\\"container\\\" style=\\\"max-width: 900px\\\">\\r\\n<h3 style=\\\"text-align: center;\\\">Partecipazioni Montate</h3>\\r\\n\\r\\n<p>\\r\\nL\' attenzione che mettiamo nel montaggio della vostra partecipazione di matrimonio vi garantirà un risultato eccezionale, elegante e curato nei minimi dettagli. Con un piccolo costo aggiuntivo ci occuperemo noi di farvi arrivare le partecipazioni già pronte, pronte per essere inviate... non dovrete fare altro! Solo godervi il vostro meraviglioso matrimonio!\\r\\n</p>\\r\\n\\r\\n<p style=\\\"text-align: center;\\\"><img src=\\\"https://cartiamo.it/media//SCATOLA 2.jpg\\\" alt=\\\"Scatola con partecipazione montata\\\" /></p>\\r\\n</div>\"}', 'ciao', 1, 21);
@@ -4019,10 +4019,9 @@ CREATE TABLE `ecommerce_attributo` (
 --
 
 INSERT INTO `ecommerce_attributo` (`id`, `slug`, `nome`, `descrizione`) VALUES
-(1, 'taglia-asd', 'Taglia asd', 'Taglia'),
-(2, 'prova', 'Prova', 'asdasd'),
-(3, 'colore-asdas', 'Colore asdas', 'sadasd'),
-(4, 'numero-posti', 'Numero posti', '');
+(5, 'numero-di-posti', 'Numero di posti', 'Numero di posti per il divano'),
+(6, 'rivestimento', 'Rivestimento', 'Rivestimento, tessuto o pelle'),
+(7, 'colore', 'Colore', '');
 
 -- --------------------------------------------------------
 
@@ -4045,7 +4044,12 @@ INSERT INTO `ecommerce_attributo_entita` (`id`, `entita`, `id_attributo`, `id_en
 (2, 'ecommerce_tipologia_prodotto', 1, 1),
 (6, 'ecommerce_tipologia_prodotto', 4, 1),
 (7, 'ecommerce_tipologia_prodotto', 2, 1),
-(8, 'ecommerce_tipologia_prodotto', 3, 1);
+(8, 'ecommerce_tipologia_prodotto', 3, 1),
+(9, 'ecommerce_tipologia_prodotto', 5, 1),
+(10, 'ecommerce_tipologia_prodotto', 6, 1),
+(11, 'ecommerce_tipologia_prodotto', 7, 1),
+(12, 'ecommerce_tipologia_prodotto', 6, 2),
+(13, 'ecommerce_tipologia_prodotto', 7, 2);
 
 -- --------------------------------------------------------
 
@@ -4071,8 +4075,16 @@ INSERT INTO `ecommerce_attributo_valore` (`id`, `id_ecommerce_attributo`, `valor
 (14, 3, 'verde'),
 (15, 4, '2'),
 (16, 4, '3'),
-(17, 4, '4'),
-(18, 2, 'sasadsadasdasdasdasdasdasd');
+(18, 2, 'sasadsadasdasdasdasdasdasd'),
+(19, 5, '2'),
+(20, 5, '3'),
+(21, 5, '4'),
+(25, 6, 'Tessuto'),
+(26, 6, 'Pelle'),
+(27, 7, 'Bianco'),
+(28, 7, 'Beige'),
+(29, 7, 'Marrone'),
+(30, 7, 'Nero');
 
 -- --------------------------------------------------------
 
@@ -4092,8 +4104,9 @@ CREATE TABLE `ecommerce_categoria` (
 --
 
 INSERT INTO `ecommerce_categoria` (`id`, `slug`, `nome`, `descrizione`) VALUES
-(1, 'prova', 'Prova', 'asdasdasdasd'),
-(2, 'prova3', 'prova2', 'adas');
+(3, 'divani', 'Divani', 'divani'),
+(4, 'poltrone', 'Poltrone', ''),
+(5, 'divani-letto', 'Divani letto', '');
 
 -- --------------------------------------------------------
 
@@ -4113,7 +4126,8 @@ CREATE TABLE `ecommerce_categoria_prodotto` (
 
 INSERT INTO `ecommerce_categoria_prodotto` (`id`, `id_prodotto`, `id_categoria`) VALUES
 (2, 1, 1),
-(6, 3, 2);
+(6, 3, 2),
+(7, 4, 3);
 
 -- --------------------------------------------------------
 
@@ -4405,9 +4419,8 @@ CREATE TABLE `ecommerce_prodotto` (
 --
 
 INSERT INTO `ecommerce_prodotto` (`id`, `nome`, `slug`, `descrizione`, `id_ecommerce_tipologia_prodotto`, `sku`) VALUES
-(1, 'Divanosad as', 'divanosad-as', 'asasdas', 1, NULL),
-(2, 'Prova nuovo prodotto', 'prova-nuovo-prodotto', 'asd', 2, NULL),
-(3, 'Prova nuovo prodotto ancora', 'prova-nuovo-prodotto-ancora', 'asd', 1, NULL);
+(4, 'Cecilia', 'cecilia', '', 1, 'CECILIA001'),
+(5, 'Hernandez', 'hernandez', '', 2, 'HERNANDEZ002');
 
 -- --------------------------------------------------------
 
@@ -4440,6 +4453,29 @@ INSERT INTO `ecommerce_prodotto_campi` (`id`, `slug`, `id_ecommerce_prodotto`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ecommerce_prodotto_immagine`
+--
+
+CREATE TABLE `ecommerce_prodotto_immagine` (
+  `id` int(11) NOT NULL,
+  `id_prodotto` int(11) NOT NULL,
+  `permalink` text COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `ecommerce_prodotto_immagine`
+--
+
+INSERT INTO `ecommerce_prodotto_immagine` (`id`, `id_prodotto`, `permalink`) VALUES
+(10, 3, '/media/Schermata 2018-06-26 alle 16.43.02.png'),
+(12, 4, '/media/catalogo/prodotti/divan1.png'),
+(13, 4, '/media/catalogo/prodotti/divano1ambient.png'),
+(14, 5, '/media/catalogo/prodotti/divano2.png'),
+(15, 5, '/media/catalogo/prodotti/divano2ambient.png');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `ecommerce_prodotto_variante`
 --
 
@@ -4455,13 +4491,10 @@ CREATE TABLE `ecommerce_prodotto_variante` (
 --
 
 INSERT INTO `ecommerce_prodotto_variante` (`id`, `id_prodotto`, `sku`, `prezzo`) VALUES
-(18, 1, '', 4500),
-(19, 3, '', 20),
-(20, 3, '', 30),
-(21, 3, '', 40),
-(22, 3, '', 0),
-(23, 3, '', 0),
-(24, 3, '', 0);
+(37, 4, 'CECILIA001-TB2', 1200),
+(38, 4, 'CECILIA001-TB3', 1500),
+(40, 5, 'HERNANDEZ002-TN', 2000),
+(41, 5, 'asd', 123);
 
 -- --------------------------------------------------------
 
@@ -4505,7 +4538,59 @@ INSERT INTO `ecommerce_prodotto_variante_attributi` (`id`, `id_ecommerce_prodott
 (30, 24, 1, 10),
 (31, 24, 2, 12),
 (32, 24, 3, 14),
-(33, 24, 4, 15);
+(33, 24, 4, 15),
+(34, 25, 1, 10),
+(35, 25, 2, 12),
+(36, 25, 3, 13),
+(37, 25, 4, 16),
+(38, 26, 1, 10),
+(39, 26, 2, 12),
+(40, 26, 3, 13),
+(41, 26, 4, 16),
+(42, 27, 1, 10),
+(43, 27, 2, 12),
+(44, 27, 3, 13),
+(45, 27, 4, 15),
+(46, 28, 1, 10),
+(47, 28, 2, 12),
+(48, 28, 3, 13),
+(49, 28, 4, 15),
+(50, 29, 1, 10),
+(51, 29, 2, 12),
+(52, 29, 3, 13),
+(53, 29, 4, 15),
+(54, 30, 1, 10),
+(55, 30, 2, 12),
+(56, 30, 3, 13),
+(57, 30, 4, 15),
+(58, 31, 1, 10),
+(59, 31, 2, 12),
+(60, 31, 3, 13),
+(61, 31, 4, 15),
+(62, 32, 1, 10),
+(63, 32, 2, 12),
+(64, 32, 3, 13),
+(65, 32, 4, 15),
+(66, 33, 1, 10),
+(67, 33, 2, 12),
+(68, 33, 3, 13),
+(69, 33, 4, 15),
+(70, 36, 1, 10),
+(71, 36, 2, 12),
+(72, 36, 3, 13),
+(73, 36, 4, 15),
+(74, 37, 5, 19),
+(75, 37, 6, 25),
+(76, 37, 7, 27),
+(77, 38, 5, 20),
+(78, 38, 6, 25),
+(79, 38, 7, 27),
+(80, 39, 6, 27),
+(81, 39, 7, 25),
+(82, 40, 6, 25),
+(83, 40, 7, 30),
+(84, 41, 6, 25),
+(85, 41, 7, 27);
 
 -- --------------------------------------------------------
 
@@ -4895,7 +4980,7 @@ CREATE TABLE `ecommerce_tipologia_prodotto` (
 --
 
 INSERT INTO `ecommerce_tipologia_prodotto` (`id`, `nome`, `slug`, `descrizione`, `prezzo`) VALUES
-(1, 'Divano a 3 posti a', 'divano-a-3-posti-a', 'asdasd', 1200),
+(1, 'Divano a 3 posti', 'divano-a-3-posti', 'Divano piccolo a 3 posti', 1200),
 (2, 'Divano a 5 posti', 'divano-a-5-posti', '', 500);
 
 -- --------------------------------------------------------
@@ -4917,7 +5002,7 @@ CREATE TABLE `ecommerce_tipologia_prodotto_campi` (
 --
 
 INSERT INTO `ecommerce_tipologia_prodotto_campi` (`id`, `nome`, `slug`, `valore`, `id_ecommerce_tipologia_prodotto`) VALUES
-(1, 'cambiato', 'asdasdas', 'Numero', 1),
+(1, 'sa', 'asdasdas', 'Testo', 1),
 (2, 'Prezzo', 'prezzo', 'Numero', 1),
 (3, 'Schienale', 'schienale', 'Numero', 2),
 (4, 'Testata', 'testata', 'Testo', 1),
@@ -5596,6 +5681,12 @@ ALTER TABLE `ecommerce_prodotto_campi`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `ecommerce_prodotto_immagine`
+--
+ALTER TABLE `ecommerce_prodotto_immagine`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `ecommerce_prodotto_variante`
 --
 ALTER TABLE `ecommerce_prodotto_variante`
@@ -5827,27 +5918,27 @@ ALTER TABLE `contenuto`
 -- AUTO_INCREMENT for table `ecommerce_attributo`
 --
 ALTER TABLE `ecommerce_attributo`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `ecommerce_attributo_entita`
 --
 ALTER TABLE `ecommerce_attributo_entita`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `ecommerce_attributo_valore`
 --
 ALTER TABLE `ecommerce_attributo_valore`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `ecommerce_categoria`
 --
 ALTER TABLE `ecommerce_categoria`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `ecommerce_categoria_prodotto`
 --
 ALTER TABLE `ecommerce_categoria_prodotto`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `ecommerce_country`
 --
@@ -5857,22 +5948,27 @@ ALTER TABLE `ecommerce_country`
 -- AUTO_INCREMENT for table `ecommerce_prodotto`
 --
 ALTER TABLE `ecommerce_prodotto`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `ecommerce_prodotto_campi`
 --
 ALTER TABLE `ecommerce_prodotto_campi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
+-- AUTO_INCREMENT for table `ecommerce_prodotto_immagine`
+--
+ALTER TABLE `ecommerce_prodotto_immagine`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+--
 -- AUTO_INCREMENT for table `ecommerce_prodotto_variante`
 --
 ALTER TABLE `ecommerce_prodotto_variante`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 --
 -- AUTO_INCREMENT for table `ecommerce_prodotto_variante_attributi`
 --
 ALTER TABLE `ecommerce_prodotto_variante_attributi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 --
 -- AUTO_INCREMENT for table `ecommerce_provincia`
 --

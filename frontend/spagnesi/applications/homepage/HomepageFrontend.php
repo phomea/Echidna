@@ -1,6 +1,7 @@
 <?php
 namespace frontend\spagnesi\applications\homepage;
 
+use applications\ecommerce\entities\Prodotto;
 use applications\pages\PagesApplication;
 use applications\pages\PagesFrontend;
 use core\abstracts\FrontendApplication;
@@ -23,11 +24,14 @@ class HomepageFrontend extends FrontendApplication{
         $templatedausare = "tshirt";
 
 
+        $prodotti = Prodotto::query()->getAll();
+
 
         return[
             "pagine/home",
             [
-                "pagina" =>  $homepage['pagina']
+                "pagina" =>  $homepage['pagina'],
+                "prodotti"  =>  $prodotti
             ]
         ];
 

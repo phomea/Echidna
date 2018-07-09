@@ -26,6 +26,7 @@ class HomepageBackend extends \core\abstracts\BackendApplication{
         $homepage = Db::$connection->fetchOne($query);
         $pagina = Pagina::findById($homepage['pagina_id']);
         $homepage['pagina']=$pagina;
+
         return $homepage;
     }
 
