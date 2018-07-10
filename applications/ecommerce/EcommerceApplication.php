@@ -89,9 +89,13 @@ class EcommerceApplication extends Application {
 
         RouterService::addRoutesPrefixed(\applications\ecommerce\Spedizioni::declareRoutes(),"/backend/ecommerce/spedizioni/");
 
+        RouterService::addRoutesPrefixed(\applications\ecommerce\Clienti::declareRoutes(),"/backend/ecommerce/clienti/");
+        RouterService::addRoutesPrefixed(\applications\ecommerce\Ordini::declareRoutes(),"/backend/ecommerce/ordini/");
+
+
         return array_merge(
             [
-                "ecommerce.ordini"  =>  new Route("ecommerce.ordini","/backend/ecommerce/ordini",[Ordini::class ,"ordini"]),
+               //"ecommerce.ordini"  =>  new Route("ecommerce.ordini","/backend/ecommerce/ordini",[Ordini::class ,"ordini"]),
                 "ecommerce.catalogo"  =>  new Route("ecommerce.catalogo","/backend/ecommerce/catalogo",[Catalogo::class ,"catalogo"]),
 
             ],$categoria,$prodotto

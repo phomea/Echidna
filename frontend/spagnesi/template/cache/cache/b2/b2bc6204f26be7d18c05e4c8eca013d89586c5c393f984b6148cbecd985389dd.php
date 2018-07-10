@@ -74,6 +74,8 @@ class __TwigTemplate_d5526b95d8d4ec8124e923aa21361882bc4efeb82795c5ceb5094b8d9fd
         $context = array_intersect_key($context, $_parent) + $_parent;
         // line 23
         echo "        </div>
+
+        <a href=\"/checkout\" class=\"btn btn-primary\">Checkout</a>
     </main>
 ";
     }
@@ -118,6 +120,8 @@ class __TwigTemplate_d5526b95d8d4ec8124e923aa21361882bc4efeb82795c5ceb5094b8d9fd
             </div>
             {% endfor %}
         </div>
+
+        <a href=\"/checkout\" class=\"btn btn-primary\">Checkout</a>
     </main>
 {% endblock %}", "ecommerce/carrello.twig", "/Users/phomea/Siti/Spagnesi/frontend/spagnesi/template/ecommerce/carrello.twig");
     }

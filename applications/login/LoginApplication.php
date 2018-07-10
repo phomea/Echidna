@@ -4,6 +4,7 @@ namespace applications\login;
 
 use applications\login\entities\User;
 use core\Route;
+use core\RouteFilter;
 use core\services\Response;
 use core\services\RouterService;
 use core\services\SessionService;
@@ -43,9 +44,12 @@ class LoginApplication extends \core\abstracts\Application{
             (new Route("backend.logout","/backend/logout",[self::class,"actionLogout"]))
         );
 
-        RouterService::addRoute("backend.checklogin",
-            (new Route("backend.login","/backend/{a:(.*)}",[self::class,"actionLogin"]))->addFilter([self::class,"loginBackendFilter"])
+        RouterService::addFilter(
+            (new RouteFilter())->setName("filter.backend.login")->setRegex("/backend/{a:(.*)}")->setCallback([self::class,"loginBackendFilter"])
         );
+       /*RouterService::addRoute("backend.checklogin",
+            (new Route("backend.login","/backend/{a:(.*)}",[self::class,"actionLogin"]))->addFilter([self::class,"loginBackendFilter"])
+        );*/
 
     }
 
@@ -84,8 +88,18 @@ class LoginApplication extends \core\abstracts\Application{
 
     static function loginBackendFilter(&$route){
 
+
+
+        if($route->name == "backend.login" || $route->name == "backend.authenticate"){
+            return true;
+        }
+
+
+
+
         if( SessionService::get(self::LOGGED_KEY)  ){
-                return false;
+
+            return true;
         }else{
             RouterService::getRoute("backend.login")->go(["a"=> "login"]);
             echo "wewqeqweqweqw";

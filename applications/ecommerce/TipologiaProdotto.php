@@ -126,6 +126,10 @@ class TipologiaProdotto extends BackendApplication {
         $tipologie = \applications\ecommerce\entities\TipologiaProdotto::query()->getAll();
 
         $options = [];
+        $options[] = [
+            "label" =>  "---scegli---",
+            "value"=> 0
+        ];
         foreach ($tipologie as $item) {
             $options[] = [
                 "label" =>  $item->nome,

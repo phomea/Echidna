@@ -10,12 +10,17 @@ abstract class Model {
      */
     function __construct($data = array())
     {
-        global $echidna;
 
+
+       $this->buildProperties($data);
+
+    }
+
+
+    public function buildProperties( $data = array() ){
         foreach ($data as $key=>$value) {
             $this->$key = $value;
         }
-
     }
     /**
      * @return Field[]
@@ -205,7 +210,7 @@ abstract class Model {
 
 
         $r = Db::$connection->perform($sql);
-        var_dump($r);
+
         return true;
         exit;
         $db=new Db();

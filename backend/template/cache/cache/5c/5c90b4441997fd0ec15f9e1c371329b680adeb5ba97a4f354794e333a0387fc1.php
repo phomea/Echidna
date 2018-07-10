@@ -67,19 +67,30 @@ class __TwigTemplate_61406cccebc93e99496bc99b24ec270c4ff6d5d3eeefd5100ee028c99c3
         // line 15
         echo "        <div class=\"card\">
             <div class=\"card-header\">
-                <div class=\"mod-actions float-right\">
+
+                ";
+        // line 18
+        if (twig_get_attribute($this->env, $this->source, ($context["data"] ?? null), "id", array())) {
+            // line 19
+            echo "                <div class=\"mod-actions float-right\">
                     <a href=\"\" class=\"btn btn-sm btn-light btn-icon\" data-toggle=\"tooltip\" title=\"Clona\"><i class=\"fa fa-plus\"></i></a>
-                    <a href=\"\" class=\"btn btn-sm btn-light btn-icon\" data-toggle=\"tooltip\" title=\"Elimina\"><i class=\"fa fa-trash\"></i></a>
+                    <a href=\"";
+            // line 21
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["router_service"] ?? null), "getRoute", array(0 => (twig_get_attribute($this->env, $this->source, ($context["data"] ?? null), "getEntity", array(), "method") . ".delete")), "method"), "build", array(0 => array("id" => twig_get_attribute($this->env, $this->source, ($context["data"] ?? null), "id", array()))), "method"), "html", null, true);
+            echo "\" class=\"btn btn-sm btn-light btn-icon\" data-toggle=\"tooltip\" title=\"Elimina\"><i class=\"fa fa-trash\"></i></a>
                     <a href=\"\" class=\"btn btn-sm btn-light btn-icon\" data-toggle=\"tooltip\" title=\"Attiva o disattiva\"><i class=\"fa fa-eye\"></i></a>
                 </div>
-            </div>
+                ";
+        }
+        // line 25
+        echo "            </div>
          <div class=\"card-body\">
         ";
-        // line 24
+        // line 27
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(($context["fields"] ?? null));
         foreach ($context['_seq'] as $context["_key"] => $context["field"]) {
-            // line 25
+            // line 28
             echo "          ";
             echo $context["field"];
             echo "
@@ -88,13 +99,13 @@ class __TwigTemplate_61406cccebc93e99496bc99b24ec270c4ff6d5d3eeefd5100ee028c99c3
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['field'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 27
+        // line 30
         echo "
 
              ";
-        // line 29
+        // line 32
         $this->displayBlock('additionalFields', $context, $blocks);
-        // line 30
+        // line 33
         echo "
 
 
@@ -113,23 +124,23 @@ class __TwigTemplate_61406cccebc93e99496bc99b24ec270c4ff6d5d3eeefd5100ee028c99c3
 ";
     }
 
-    // line 29
+    // line 32
     public function block_additionalFields($context, array $blocks = array())
     {
     }
 
-    // line 47
+    // line 50
     public function block_afterContent($context, array $blocks = array())
     {
-        // line 48
+        // line 51
         echo "        </form>
   ";
     }
 
-    // line 51
+    // line 54
     public function block_scripts($context, array $blocks = array())
     {
-        // line 52
+        // line 55
         echo "
 ";
     }
@@ -146,7 +157,7 @@ class __TwigTemplate_61406cccebc93e99496bc99b24ec270c4ff6d5d3eeefd5100ee028c99c3
 
     public function getDebugInfo()
     {
-        return array (  133 => 52,  130 => 51,  125 => 48,  122 => 47,  117 => 29,  98 => 30,  96 => 29,  92 => 27,  83 => 25,  79 => 24,  68 => 15,  62 => 13,  60 => 12,  56 => 11,  50 => 7,  47 => 6,  38 => 3,  35 => 2,  26 => 1,);
+        return array (  144 => 55,  141 => 54,  136 => 51,  133 => 50,  128 => 32,  109 => 33,  107 => 32,  103 => 30,  94 => 28,  90 => 27,  86 => 25,  79 => 21,  75 => 19,  73 => 18,  68 => 15,  62 => 13,  60 => 12,  56 => 11,  50 => 7,  47 => 6,  38 => 3,  35 => 2,  26 => 1,);
     }
 
     public function getSourceContext()
@@ -167,11 +178,14 @@ class __TwigTemplate_61406cccebc93e99496bc99b24ec270c4ff6d5d3eeefd5100ee028c99c3
         {% endif %}
         <div class=\"card\">
             <div class=\"card-header\">
+
+                {% if data.id %}
                 <div class=\"mod-actions float-right\">
                     <a href=\"\" class=\"btn btn-sm btn-light btn-icon\" data-toggle=\"tooltip\" title=\"Clona\"><i class=\"fa fa-plus\"></i></a>
-                    <a href=\"\" class=\"btn btn-sm btn-light btn-icon\" data-toggle=\"tooltip\" title=\"Elimina\"><i class=\"fa fa-trash\"></i></a>
+                    <a href=\"{{ router_service.getRoute(data.getEntity()~\".delete\").build({id:data.id})}}\" class=\"btn btn-sm btn-light btn-icon\" data-toggle=\"tooltip\" title=\"Elimina\"><i class=\"fa fa-trash\"></i></a>
                     <a href=\"\" class=\"btn btn-sm btn-light btn-icon\" data-toggle=\"tooltip\" title=\"Attiva o disattiva\"><i class=\"fa fa-eye\"></i></a>
                 </div>
+                {% endif %}
             </div>
          <div class=\"card-body\">
         {% for field in fields %}

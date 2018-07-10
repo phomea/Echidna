@@ -15,8 +15,8 @@ class __TwigTemplate_9861ea831c297722285c782338da0c3dea11955850fde64ed03bd749101
 
         $this->blocks = array(
             'content' => array($this, 'block_content'),
-            'scripts' => array($this, 'block_scripts'),
             'javascript_footer' => array($this, 'block_javascript_footer'),
+            'scripts' => array($this, 'block_scripts'),
         );
     }
 
@@ -156,16 +156,16 @@ class __TwigTemplate_9861ea831c297722285c782338da0c3dea11955850fde64ed03bd749101
 </div>
 </div>
 
+
+
 ";
-        // line 130
-        $this->displayBlock('scripts', $context, $blocks);
         // line 132
-        echo "
-
-
-";
-        // line 135
         $this->displayBlock('javascript_footer', $context, $blocks);
+        // line 137
+        echo "
+";
+        // line 138
+        $this->displayBlock('scripts', $context, $blocks);
         // line 140
         echo "
 
@@ -185,22 +185,22 @@ class __TwigTemplate_9861ea831c297722285c782338da0c3dea11955850fde64ed03bd749101
     {
     }
 
-    // line 130
-    public function block_scripts($context, array $blocks = array())
-    {
-    }
-
-    // line 135
+    // line 132
     public function block_javascript_footer($context, array $blocks = array())
     {
-        // line 136
+        // line 133
         echo "
     ";
-        // line 137
-        $this->loadTemplate("base/footer/js.twig", "base/template.twig", 137)->display($context);
-        // line 138
+        // line 134
+        $this->loadTemplate("base/footer/js.twig", "base/template.twig", 134)->display($context);
+        // line 135
         echo "
 ";
+    }
+
+    // line 138
+    public function block_scripts($context, array $blocks = array())
+    {
     }
 
     public function getTemplateName()
@@ -215,7 +215,7 @@ class __TwigTemplate_9861ea831c297722285c782338da0c3dea11955850fde64ed03bd749101
 
     public function getDebugInfo()
     {
-        return array (  202 => 138,  200 => 137,  197 => 136,  194 => 135,  189 => 130,  184 => 3,  170 => 140,  168 => 135,  163 => 132,  161 => 130,  33 => 4,  31 => 3,  28 => 2,  26 => 1,);
+        return array (  202 => 138,  197 => 135,  195 => 134,  192 => 133,  189 => 132,  184 => 3,  170 => 140,  168 => 138,  165 => 137,  163 => 132,  33 => 4,  31 => 3,  28 => 2,  26 => 1,);
     }
 
     public function getSourceContext()
@@ -349,9 +349,6 @@ class __TwigTemplate_9861ea831c297722285c782338da0c3dea11955850fde64ed03bd749101
 </div>
 </div>
 
-{% block scripts %}
-{% endblock %}
-
 
 
 {% block javascript_footer %}
@@ -359,6 +356,9 @@ class __TwigTemplate_9861ea831c297722285c782338da0c3dea11955850fde64ed03bd749101
     {% include 'base/footer/js.twig' %}
 
 {% endblock javascript_footer %}
+
+{% block scripts %}
+{% endblock %}
 
 
 

@@ -5,6 +5,8 @@ class LineItem{
     public $variant = null;
     public $id_variant;
     public $quantity = 0;
+    public $cart = null;
+    public $price_total = 0;
 
     /**
      * LineItem constructor.
@@ -21,15 +23,29 @@ class LineItem{
         $this->update();
     }
 
-    public function update(){
+    public function update( $cart = null ){
 
+        $this->cart = $cart;
         $this->variant = Variante::findById($this->id_variant);
 
-        $this->single_price = $this->variant->prezzo;
-        $this->price_total = $this->variant->prezzo * $this->quantity;
+        if( $this->variant) {
+            $this->single_price = $this->variant->prezzo;
+            $this->price_total = $this->variant->prezzo * $this->quantity;
 
-        $this->prodotto = Prodotto::findById($this->variant->id_prodotto);
-        return $this;
+            $this->prodotto = Prodotto::findById($this->variant->id_prodotto);
+            return $this;
+        }else{
+           $this->remove();
+        }
     }
+
+    public function remove(){
+
+        $key = array_search($this,$this->cart->lineitems);
+
+        unset($this->cart->lineitems[$key]);
+        $this->cart->lineitems = array_values($this->cart->lineitems);
+    }
+
 
 }

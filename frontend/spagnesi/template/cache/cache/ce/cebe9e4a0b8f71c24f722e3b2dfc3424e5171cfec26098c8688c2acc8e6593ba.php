@@ -83,6 +83,45 @@ class __TwigTemplate_8a21cddeb273528097ae480b0aa24772881ea3c1f8872e367b6ac2a43a8
         echo "
     </div>
 
+
+    ";
+        // line 37
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable(($context["prodotti"] ?? null));
+        $context['loop'] = array(
+          'parent' => $context['_parent'],
+          'index0' => 0,
+          'index'  => 1,
+          'first'  => true,
+        );
+        if (is_array($context['_seq']) || (is_object($context['_seq']) && $context['_seq'] instanceof Countable)) {
+            $length = count($context['_seq']);
+            $context['loop']['revindex0'] = $length - 1;
+            $context['loop']['revindex'] = $length;
+            $context['loop']['length'] = $length;
+            $context['loop']['last'] = 1 === $length;
+        }
+        foreach ($context['_seq'] as $context["_key"] => $context["prodotto"]) {
+            // line 38
+            echo "        ";
+            $this->loadTemplate("parti/anteprima-prodotto.twig", "pagine/home.twig", 38)->display(array_merge($context, array("prodotto" => $context["prodotto"])));
+            // line 39
+            echo "    ";
+            ++$context['loop']['index0'];
+            ++$context['loop']['index'];
+            $context['loop']['first'] = false;
+            if (isset($context['loop']['length'])) {
+                --$context['loop']['revindex0'];
+                --$context['loop']['revindex'];
+                $context['loop']['last'] = 0 === $context['loop']['revindex0'];
+            }
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['prodotto'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 40
+        echo "
+    <!--
     <div class=\"anteprima-prodotto mb-5\">
         <div class=\"row\">
             <div class=\"col\">
@@ -174,7 +213,7 @@ class __TwigTemplate_8a21cddeb273528097ae480b0aa24772881ea3c1f8872e367b6ac2a43a8
                 </div>
             </div>
         </section>
-    </div>
+    </div>-->
 
 
 
@@ -216,11 +255,11 @@ class __TwigTemplate_8a21cddeb273528097ae480b0aa24772881ea3c1f8872e367b6ac2a43a8
     <div class=\"bg1\">
 
     ";
-        // line 168
+        // line 174
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["pagina"] ?? null), "hooks", array()), "spazioCarousel", array()));
         foreach ($context['_seq'] as $context["_key"] => $context["hook"]) {
-            // line 169
+            // line 175
             echo "        ";
             echo $context["hook"];
             echo "
@@ -229,14 +268,14 @@ class __TwigTemplate_8a21cddeb273528097ae480b0aa24772881ea3c1f8872e367b6ac2a43a8
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['hook'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 171
+        // line 177
         echo "
     ";
-        // line 172
+        // line 178
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["pagina"] ?? null), "hooks", array()), "prefooter", array()));
         foreach ($context['_seq'] as $context["_key"] => $context["hook"]) {
-            // line 173
+            // line 179
             echo "        ";
             echo $context["hook"];
             echo "
@@ -245,7 +284,7 @@ class __TwigTemplate_8a21cddeb273528097ae480b0aa24772881ea3c1f8872e367b6ac2a43a8
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['hook'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 175
+        // line 181
         echo "
 
 ";
@@ -263,7 +302,7 @@ class __TwigTemplate_8a21cddeb273528097ae480b0aa24772881ea3c1f8872e367b6ac2a43a8
 
     public function getDebugInfo()
     {
-        return array (  249 => 175,  240 => 173,  236 => 172,  233 => 171,  224 => 169,  220 => 168,  82 => 33,  78 => 31,  69 => 29,  65 => 28,  61 => 26,  59 => 25,  35 => 3,  32 => 2,  15 => 1,);
+        return array (  288 => 181,  279 => 179,  275 => 178,  272 => 177,  263 => 175,  259 => 174,  123 => 40,  109 => 39,  106 => 38,  89 => 37,  82 => 33,  78 => 31,  69 => 29,  65 => 28,  61 => 26,  59 => 25,  35 => 3,  32 => 2,  15 => 1,);
     }
 
     public function getSourceContext()
@@ -303,6 +342,12 @@ class __TwigTemplate_8a21cddeb273528097ae480b0aa24772881ea3c1f8872e367b6ac2a43a8
         {{ pagina.content | raw}}
     </div>
 
+
+    {% for prodotto in prodotti %}
+        {% include \"parti/anteprima-prodotto.twig\" with {prodotto : prodotto} %}
+    {% endfor %}
+
+    <!--
     <div class=\"anteprima-prodotto mb-5\">
         <div class=\"row\">
             <div class=\"col\">
@@ -394,7 +439,7 @@ class __TwigTemplate_8a21cddeb273528097ae480b0aa24772881ea3c1f8872e367b6ac2a43a8
                 </div>
             </div>
         </section>
-    </div>
+    </div>-->
 
 
 

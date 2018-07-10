@@ -267,6 +267,16 @@ trait metodiCatalogoProdotto{
                 "valore"        =>  $value
             ]);
         }
+
+        foreach ($data['campi'] as $key=> $value) {
+            $sql = "INSERT into ecommerce_prodotto_variante_campi (id_ecommerce_prodotto_variante,slug,valore) VALUE(:idvariante,:slug,:valore)";
+            Db::$connection->perform($sql,[
+                "idvariante"    =>  $idvariante,
+                "slug"   =>  $key,
+                "valore"        =>  $value
+            ]);
+        }
+
         exit;
     }
 

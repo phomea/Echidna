@@ -43,12 +43,17 @@ class ComposerStaticInit07ff76982de57da43cf59d41c55ef274
         'S' => 
         array (
             'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Stripe\\' => 7,
         ),
         'P' => 
         array (
             'Psr\\Log\\' => 8,
             'Phroute\\Phroute\\' => 16,
             'PHPMailer\\PHPMailer\\' => 20,
+        ),
+        'B' => 
+        array (
+            'Braintree\\' => 10,
         ),
         'A' => 
         array (
@@ -93,6 +98,10 @@ class ComposerStaticInit07ff76982de57da43cf59d41c55ef274
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
         ),
+        'Stripe\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/stripe/stripe-php/lib',
+        ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
@@ -104,6 +113,10 @@ class ComposerStaticInit07ff76982de57da43cf59d41c55ef274
         'PHPMailer\\PHPMailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
+        ),
+        'Braintree\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/braintree/braintree_php/lib/Braintree',
         ),
         'Aura\\Sql\\' => 
         array (
@@ -124,6 +137,13 @@ class ComposerStaticInit07ff76982de57da43cf59d41c55ef274
             'Less' => 
             array (
                 0 => __DIR__ . '/..' . '/oyejorge/less.php/lib',
+            ),
+        ),
+        'B' => 
+        array (
+            'Braintree' => 
+            array (
+                0 => __DIR__ . '/..' . '/braintree/braintree_php/lib',
             ),
         ),
     );

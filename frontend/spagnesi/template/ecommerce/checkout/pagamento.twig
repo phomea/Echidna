@@ -1,0 +1,75 @@
+{% extends "base/template.twig" %}
+
+
+{% block content %}
+    <main style="padding-top: 200px ;">
+
+        <div class="container">
+            <form id="dropin-container" action="{{ router_service.getRoute("frontend.ecommerce.checkout.charge").build() }}" method="post">
+                <div id="payment-form"></div>
+                <input type="submit" value="Paga adesso {{ totale }}" class="btn btn-secondary d-block">
+            </form>
+
+
+        </div>
+        <button id="submit-button">Request payment method</button>
+
+
+
+
+
+    </main>
+{% endblock %}
+
+{% block scripts %}
+
+    <script src="https://js.braintreegateway.com/js/braintree-2.32.1.min.js"></script>
+
+    <script>
+
+
+
+        var button = document.querySelector('#submit-button');
+        var clientToken = "{{ token }}";
+
+
+        braintree.setup(clientToken, "dropin", {
+            container: "payment-form"
+        });
+
+
+
+       /* function paga( payload ){
+
+            $.ajax({
+                url : "{{ router_service.getRoute("frontend.ecommerce.checkout.charge").build() }}",
+                data :
+                    {
+                        nonce : payload.nonce,
+                        amount : {{ totale }}
+                    }
+            });
+
+        }
+
+
+        braintree.dropin.create({
+            authorization: '{{ token }}',
+            container: '#dropin-container'
+        }, function (createErr, instance) {
+
+            $(button).on("click",function(){
+                instance.requestPaymentMethod(function (err, payload) {
+                    // Submit payload.nonce to your server
+
+                    paga( payload );
+
+                });
+            })
+
+        });
+        */
+
+    </script>
+
+{% endblock %}

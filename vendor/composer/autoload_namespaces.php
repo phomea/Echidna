@@ -8,4 +8,5 @@ $baseDir = dirname($vendorDir);
 return array(
     'Twig_' => array($vendorDir . '/twig/twig/lib'),
     'Less' => array($vendorDir . '/oyejorge/less.php/lib'),
+    'Braintree' => array($vendorDir . '/braintree/braintree_php/lib'),
 );

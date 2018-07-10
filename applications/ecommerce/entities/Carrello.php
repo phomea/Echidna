@@ -8,6 +8,7 @@ class Carrello{
 
     public $lineitems = [];
 
+
     static function get(){
         if($carrello = SessionService::get( Carrello::SESSION_NAME )) {
 
@@ -45,8 +46,7 @@ class Carrello{
     public function update(){
         if(count($this->lineitems)>0){
             foreach ($this->lineitems as $value){
-                $value->update();
-
+                $value->update( $this );
             }
         }
     }
@@ -55,4 +55,13 @@ class Carrello{
         SessionService::set(Carrello::SESSION_NAME,$this);
     }
 
+    public function getTotal(){
+        $this->update();
+        $totale = 0;
+        foreach ($this->lineitems as $lineitem) {
+            $totale += $lineitem->price_total;
+        }
+
+        return $totale;
+    }
 }

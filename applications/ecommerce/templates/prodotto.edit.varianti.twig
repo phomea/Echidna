@@ -72,47 +72,83 @@
 </div>
 
 <div class="modal" tabindex="-1" role="dialog" id="modalInsertContent">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog" role="document" style="max-width: 1000px">
         <div class="modal-content">
             <div class="modal-header">
 
+                <strong>Aggiungi variante</strong>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
 
+
+            <form class="form-ajax" action="{{ router_service.getRoute("ecommerce.catalogo.prodotto.variant.add").build({id:prodotto.id}) }}" method="post" >
+
+
             <div class="modal-body">
-                <form class="form-ajax" action="{{ router_service.getRoute("ecommerce.catalogo.prodotto.variant.add").build({id:prodotto.id}) }}" method="post" >
 
-                    {% for attributo in attributiTipologia %}
-                    <div class="form-group">
-                        <label>{{ attributo.nome }}</label>
-                        <select class="form-control" name="attributi[{{ attributo.id }}]">
-                            {% for valore in attributo.possibili_valori %}
-                                <option value="{{ valore.id }}">{{ valore.valore }}</option>
+
+
+                    <div class="row">
+                        <div class="col-6">
+                            <h5>Impostazioni variante</h5>
+                            <br>
+
+                            {% for attributo in attributiTipologia %}
+                            <div class="form-group">
+                                <label>{{ attributo.nome }}</label>
+                                <select class="form-control" name="attributi[{{ attributo.id }}]">
+                                    {% for valore in attributo.possibili_valori %}
+                                        <option value="{{ valore.id }}">{{ valore.valore }}</option>
+                                    {% endfor %}
+
+                                </select>
+                            </div>
                             {% endfor %}
+                            <div class="form-group">
+                                <label>Sku</label>
+                                <input type="text" class="form-control" name="sku">
+                            </div>
+                            <div class="form-group">
+                                <label>Prezzo</label>
+                                <input type="text" class="form-control" name="prezzo">
+                            </div>
+                            <div class="form-group">
+                                <label>Disponibilità</label>
+                                <input type="text" class="form-control">
+                            </div>
 
-                        </select>
+                        </div>
+
+                        <div class="col-6">
+                            <h5>Sovrascrivi campi prodotto</h5>
+                            <br>
+                            {% for campo in prodotto.tipologia.campi %}
+
+                                {% include "fields/default.twig" with {
+                                    label : campo.nome,
+                                    property : "campi["~campo.slug~"]",
+                                    field:{
+                                        value : prodotto.valoriCampi[campo.slug].valore
+                                    }
+
+                                    }
+                                %}
+                            {% endfor %}
+                        </div>
                     </div>
-                    {% endfor %}
-                    <div class="form-group">
-                        <label>Sku</label>
-                        <input type="text" class="form-control" name="sku">
-                    </div>
-                    <div class="form-group">
-                        <label>Prezzo</label>
-                        <input type="text" class="form-control" name="prezzo">
-                    </div>
-                    <div class="form-group">
-                        <label>Disponibilità</label>
-                        <input type="text" class="form-control">
-                    </div>
+
+
+            </div>
+
+                <div class="card-header text-center">
                     <div class="form-group">
                         <input type="submit" class="btn btn-success" value="Salva">
                     </div>
+                </div>
+            </form>
 
-                </form>
-            </div>
 
         </div>
     </div>

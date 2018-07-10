@@ -38,7 +38,13 @@ class Route{
     }
 
     public function addFilter( $callback ){
-        $this->filters[] = $callback;
+
+
+
+        $filter = (new RouteFilter())->setCallback( $callback )->setName("filter.".$this->regex)->setRegex($this->regex);
+
+        RouterService::addFilter($filter);
+        //$this->filters[] = $callback;
         return $this;
     }
     public function build( $params = []){
@@ -49,13 +55,47 @@ class Route{
 
     }
 
-    public function applyFilters(){
-        foreach ($this->filters as $filter){
+    public function applyFilters( $query ){
+
+
+
+
+        foreach (RouterService::$filters as $filter){
+
+
+
+            $pattern = $filter->regex;
+            preg_match_all("|{([a-z-_]*):([\[\]\^/\(\)\.\[\]a-zA-Z0-9+*-]*)}|i",$filter->regex,$mm);
+
+
+
+
+
+            foreach($mm[0] as $key=>$value){
+                $pattern = str_replace($mm[0][$key],$mm[2][$key],$pattern);
+            }
+
+            $v = preg_match("/".str_replace("/","\/",$pattern)."/","/".$query);
+            if($v !== 1){
+
+            }else {
+
+                $r = $filter->callback[0]::{$filter->callback[1]}($this);
+
+
+                if ($r !== null) return $r;
+                //call_user_func($filter,[&$this]);
+            }
+        }
+
+        return;
+
+        /*foreach ($this->filters as $filter){
             $r = $filter[0]::{$filter[1]}($this);
 
             if($r !== null ) return $r;
             //call_user_func($filter,[&$this]);
-        }
+        }*/
     }
 
 

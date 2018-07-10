@@ -4,13 +4,20 @@ namespace core\services;
 use core\abstracts\Service;
 use core\exceptions\NotFoundException;
 use core\Route;
-
+use core\RouteFilter;
 
 
 class RouterService extends Service{
 
     static public $config;
     static public $routes = [];
+
+    /**
+     * @var RouteFilter[]
+     */
+    static public $filters = [];
+
+
     static function getName(){
         return "router";
     }
@@ -384,6 +391,12 @@ class RouterService extends Service{
     }
 
 
+    static function addFilter( $filter ){
+
+
+        self::$filters[$filter->name] = $filter;
+
+    }
 
     static function dispatch(){
 
@@ -398,7 +411,7 @@ class RouterService extends Service{
         foreach (self::$routes as $key => $route) {
 
 
-            if( $route->applyFilters() === false ) continue;
+            //if( $route->applyFilters() === false ) continue;
 
             /**
              * @var $route Route
@@ -407,6 +420,13 @@ class RouterService extends Service{
 
 
             if( is_array($r) ){
+
+
+
+                if( $route->applyFilters( $query ) === false ) continue;
+
+
+
                 call_user_func([$route->callback[0],"init"]);
 
                 $response = false;

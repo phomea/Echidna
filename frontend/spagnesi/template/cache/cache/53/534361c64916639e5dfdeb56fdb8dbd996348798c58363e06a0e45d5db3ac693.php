@@ -32,9 +32,9 @@ class __TwigTemplate_e3a4976ed828983ce4a2f66a73a443d12193e1f6b3ed5ae71417897f0f4
                 <div class=\"text-center\">
                     <div id=\"mainmenu\" class=\"container\">
                         <nav>
-                            <a href=\"\">Divani</a>
-                            <a href=\"\">Poltrone</a>
-                            <a href=\"\">Divani letto</a>
+                            <a href=\"/divani\">Divani</a>
+                            <a href=\"/poltrone\">Poltrone</a>
+                            <a href=\"/divani-letto\">Divani letto</a>
                         </nav>
 
                         <a href=\"/\">
@@ -42,9 +42,9 @@ class __TwigTemplate_e3a4976ed828983ce4a2f66a73a443d12193e1f6b3ed5ae71417897f0f4
                         </a>
 
                         <nav>
-                            <a href=\"\">Divani</a>
-                            <a href=\"\">Poltrone</a>
-                            <a href=\"\">Divani letto</a>
+                            <a href=\"/divani\">Divani</a>
+                            <a href=\"/poltrone\">Poltrone</a>
+                            <a href=\"/divani-letto\">Divani letto</a>
                         </nav>
 
 
@@ -144,9 +144,9 @@ class __TwigTemplate_e3a4976ed828983ce4a2f66a73a443d12193e1f6b3ed5ae71417897f0f4
                 <div class=\"text-center\">
                     <div id=\"mainmenu\" class=\"container\">
                         <nav>
-                            <a href=\"\">Divani</a>
-                            <a href=\"\">Poltrone</a>
-                            <a href=\"\">Divani letto</a>
+                            <a href=\"/divani\">Divani</a>
+                            <a href=\"/poltrone\">Poltrone</a>
+                            <a href=\"/divani-letto\">Divani letto</a>
                         </nav>
 
                         <a href=\"/\">
@@ -154,9 +154,9 @@ class __TwigTemplate_e3a4976ed828983ce4a2f66a73a443d12193e1f6b3ed5ae71417897f0f4
                         </a>
 
                         <nav>
-                            <a href=\"\">Divani</a>
-                            <a href=\"\">Poltrone</a>
-                            <a href=\"\">Divani letto</a>
+                            <a href=\"/divani\">Divani</a>
+                            <a href=\"/poltrone\">Poltrone</a>
+                            <a href=\"/divani-letto\">Divani letto</a>
                         </nav>
 
 

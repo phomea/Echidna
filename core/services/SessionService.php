@@ -25,4 +25,9 @@ class SessionService extends Service {
     static function get( $varname ){
         return static::exists($varname) ? $_SESSION[$varname] : null;
     }
+    static function delete( $varname){
+        if( self::exists($varname)){
+            unset($_SESSION[$varname]);
+        }
+    }
 }

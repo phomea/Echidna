@@ -25,9 +25,5 @@ class Provincia extends Model{
         ];
     }
 
-    public function expand(){
-        $attributi = VarianteAttributo::findByVariante( $this->id );
 
-        $this->attributi = $attributi;
-    }
 }

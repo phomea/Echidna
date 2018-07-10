@@ -1,0 +1,63 @@
+{% extends "base/template.twig" %}
+
+{% block content %}
+
+    <main style="padding-top: 300px;">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    1 account
+                </div>
+                <div class="col">
+                    2 spedizione
+                </div>
+                <div class="col">
+                    3 riepilogo
+                </div>
+                <div class="col">
+                    4 pagamento
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-4 offset-2">
+                    <h2>Hai già un account?</h2>
+                    <p>Ciao! Bentornato, effettua il login per procedere con l'ordine!</p>
+                    <form action="{{ router_service.getRoute("frontend.ecommerce.checkout.login").build() }}" method="post">
+                        <div class="form-group">
+                            <label>Username o email</label>
+                            <input type="text" name="username" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="text" name="password" class="form-control">
+                        </div>
+
+
+
+                        <div class="">
+                            <button type="submit" class="btn btn-secondary d-block">Login</button>
+                        </div>
+
+                        <div>
+                            Dimenticata la password? <a href="">Recupera password</a>
+                        </div>
+
+                    </form>
+
+                    <h2 class="mt-5">Sei un nuovo utente?</h2>
+                    <p>Benvenuto! Ti chiederemo solo i dati necessari per completare il tuo ordine</p>
+                    <a href="/checkout/registrazione" class="btn btn-secondary d-block">Registrati adesso</a>
+                </div>
+                <div class="col-6">
+                    {% include "ecommerce/checkout/parti/riepilogo.twig" with { carrello:carrello }%}
+                </div>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}
