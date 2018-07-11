@@ -9,6 +9,7 @@
     <input type="hidden" name="spedizione[id]"  value="{{ indirizzoSpedizione.id }}">
 {% endif %}
 
+<h2>Indirizzo di spedizione</h2>
 <div class="row">
     <div class="col-6">
         <div class="form-group">
@@ -27,28 +28,29 @@
 
 
 <div class="row">
-    <div class="col-5">
+    <div class="col-9">
         <div class="form-group">
             <label>Via / Piazza</label>
             <input type="text" name="spedizione[via]" class="form-control" value="{{ indirizzoSpedizione.via }}">
         </div>
     </div>
 
-    <div class="col-1">
+    <div class="col-3">
         <div class="form-group">
             <label>Numero</label>
             <input type="text" name="spedizione[numero]" class="form-control" value="{{ indirizzoSpedizione.numero }}">
         </div>
     </div>
-
-    <div class="col-3">
+</div>
+<div class="row">
+    <div class="col-8">
         <div class="form-group">
             <label>Città</label>
             <input type="text" name="spedizione[citta]" class="form-control" value="{{ indirizzoSpedizione.citta }}">
         </div>
     </div>
 
-    <div class="col-3">
+    <div class="col-4">
         <div class="form-group">
             <label>Provincia</label>
             <select name="spedizione[id_provincia]" class="form-control">
@@ -61,6 +63,9 @@
     </div>
 
 </div>
-
-
-<input type="submit" class="btn btn-secondary" value="Salva indirizzo">
+<div class="row">
+    <div class="col text-right">
+        <a href="" class="btn btn-white">Crea nuovo indirizzo <i class="fa fa-plus"></i> </a>
+        <button type="submit" class="btn btn-secondary" >Salva e utilizza questo indirizzo <i class="fa fa-truck"></i> </button>
+    </div>
+</div>

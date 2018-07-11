@@ -169,8 +169,10 @@ trait metodiCatalogoProdotto{
         $idProdotto = $params['id'];
         $ids = $data['ids'];
 
+
+
         foreach ($ids as $key=>$id_category){
-            $present = CategoriaProdotto::findById_categoria($id_category);
+            $present = CategoriaProdotto::query()->where("id_categoria=".$id_category)->where('id_prodotto='.$idProdotto)->getOne();
 
             if( empty($present) ){
                 $cp = new CategoriaProdotto();
@@ -209,11 +211,14 @@ trait metodiCatalogoProdotto{
 
         $idProdotto = $params['id'];
         $c = CategoriaProdotto::findById_prodotto( $idProdotto );
+
+
         if(!empty($c)){
             foreach ($c as $value){
                 $value->updateFromDb();
             }
         }
+
         return [
             "empty",[
                 "data"  =>  $c

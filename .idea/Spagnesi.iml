@@ -8,6 +8,8 @@
       <sourceFolder url="file://$MODULE_DIR$/models" isTestSource="false" packagePrefix="models\" />
       <sourceFolder url="file://$MODULE_DIR$/controllers" isTestSource="false" packagePrefix="controllers\" />
       <sourceFolder url="file://$MODULE_DIR$/applications" isTestSource="false" packagePrefix="applications\" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/braintree/braintree_php" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/stripe/stripe-php" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

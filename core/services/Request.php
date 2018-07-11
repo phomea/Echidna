@@ -34,7 +34,6 @@ class Request extends Service{
       self::$headers = getallheaders();
 
 
-
       self::$get = $_GET;
       self::$query = $_GET['query'];
       self::$post = $_POST;

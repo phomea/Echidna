@@ -19,3 +19,21 @@
     border:none;
   }
 }
+
+.scelta-tipologia{
+  
+  label{
+    cursor: pointer;
+  }
+  input[type="checkbox"]{
+    opacity: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+  input[type="checkbox"] + img{
+    opacity: 0.6;
+  }
+  input[type="checkbox"]:checked + img{
+    opacity: 1;
+  }
+}

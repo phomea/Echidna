@@ -14,14 +14,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="scheda-prodotto.twig" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/frontend/spagnesi/template/ecommerce/scheda-prodotto.twig">
+      <file leaf-file-name="barra-ricerca.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/spagnesi/template/parti/barra-ricerca.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1241">
-              <caret line="98" column="67" lean-forward="false" selection-start-line="98" selection-start-column="67" selection-end-line="98" selection-end-column="67" />
-              <folding>
-                <element signature="e#816#838#0#HTML" expanded="true" />
-              </folding>
+            <state relative-caret-position="582">
+              <caret line="53" column="45" lean-forward="false" selection-start-line="53" selection-start-column="45" selection-end-line="53" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="search-bar.less" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/css/less/search-bar.less">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="25" column="19" lean-forward="false" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -29,28 +37,43 @@
       <file leaf-file-name="EcommerceFrontend.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/applications/ecommerce/EcommerceFrontend.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="122" column="0" lean-forward="false" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
+            <state relative-caret-position="667">
+              <caret line="394" column="59" lean-forward="false" selection-start-line="394" selection-start-column="59" selection-end-line="394" selection-end-column="59" />
+              <folding>
+                <marker date="1531305565972" expanded="true" signature="13993:13994" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CatalogoSearch.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/applications/ecommerce/CatalogoSearch.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="684">
+              <caret line="83" column="65" lean-forward="false" selection-start-line="83" selection-start-column="65" selection-end-line="83" selection-end-column="65" />
+              <folding>
+                <element signature="e#43#89#0#PHP" expanded="true" />
+                <marker date="1531306633296" expanded="true" signature="1369:1422" ph="SELECT * FRO... ecommerce_prodotto" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Db.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/services/Db.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="14" lean-forward="false" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Variante.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/applications/ecommerce/entities/Variante.php">
+      <file leaf-file-name="DbPdo.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/db/DbPdo.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="prodotto.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/css/less/prodotto.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="844">
-              <caret line="124" column="16" lean-forward="false" selection-start-line="124" selection-start-column="16" selection-end-line="124" selection-end-column="16" />
+            <state relative-caret-position="102">
+              <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -60,13 +83,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>findBy</find>
-      <find>getInstance</find>
-      <find>findB</find>
-      <find>new self</find>
-      <find>self</find>
-      <find>new</find>
-      <find>new stat</find>
       <find>new sta</find>
       <find>this</find>
       <find>tipologia-</find>
@@ -90,6 +106,13 @@
       <find>quantit</find>
       <find>deleteProdotto</find>
       <find>inset</find>
+      <find>schedaPr</find>
+      <find>checkout</find>
+      <find>aggiungi</find>
+      <find>actionInsert</find>
+      <find>HEADER</find>
+      <find>header</find>
+      <find>JSO</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -110,19 +133,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/applications/ecommerce/entities/Provincia.php" />
-        <option value="$PROJECT_DIR$/applications/ecommerce/Provincie.php" />
-        <option value="$PROJECT_DIR$/applications/ecommerce/templates/spedizioni.home.twig" />
-        <option value="$PROJECT_DIR$/applications/ecommerce/entities/SpedizionePrezzo.php" />
-        <option value="$PROJECT_DIR$/applications/ecommerce/templates/spedizioni.edit.prezzi.twig" />
-        <option value="$PROJECT_DIR$/applications/ecommerce/Spedizioni.php" />
-        <option value="$PROJECT_DIR$/applications/ecommerce/entities/Spedizione.php" />
-        <option value="$PROJECT_DIR$/applications/ecommerce/Carrello.php" />
-        <option value="$PROJECT_DIR$/frontend/spagnesi/template/base/footer/footer.twig" />
-        <option value="$PROJECT_DIR$/frontend/spagnesi/template/base/template.twig" />
-        <option value="$PROJECT_DIR$/applications/ecommerce/entities/LineItem.php" />
         <option value="$PROJECT_DIR$/applications/ecommerce/entities/Carrello.php" />
-        <option value="$PROJECT_DIR$/assets/css/style.less" />
         <option value="$PROJECT_DIR$/frontend/spagnesi/template/ecommerce/carrello.twig" />
         <option value="$PROJECT_DIR$/frontend/spagnesi/template/base/head/head.twig" />
         <option value="$PROJECT_DIR$/frontend/spagnesi/template/404.twig" />
@@ -140,11 +151,9 @@
         <option value="$PROJECT_DIR$/backend/template/mod.twig" />
         <option value="$PROJECT_DIR$/core/Model.php" />
         <option value="$PROJECT_DIR$/core/services/RouterService.php" />
-        <option value="$PROJECT_DIR$/core/abstracts/BackendApplication.php" />
         <option value="$PROJECT_DIR$/backend/template/list.twig" />
         <option value="$PROJECT_DIR$/backend/template/base.twig" />
         <option value="$PROJECT_DIR$/backend/assets/js/forms.js" />
-        <option value="$PROJECT_DIR$/applications/ecommerce/traits/metodiCatalogoProdotto.php" />
         <option value="$PROJECT_DIR$/frontend/spagnesi/template/pagine/home.twig" />
         <option value="$PROJECT_DIR$/frontend/spagnesi/applications/homepage/HomepageFrontend.php" />
         <option value="$PROJECT_DIR$/frontend/spagnesi/template/parti/anteprima-prodotto.twig" />
@@ -153,14 +162,28 @@
         <option value="$PROJECT_DIR$/applications/ecommerce/traits/metodiCatalogoCategoria.php" />
         <option value="$PROJECT_DIR$/applications/ecommerce/entities/Categoria.php" />
         <option value="$PROJECT_DIR$/applications/ecommerce/Catalogo.php" />
-        <option value="$PROJECT_DIR$/applications/ecommerce/CatalogoSearch.php" />
         <option value="$PROJECT_DIR$/frontend/spagnesi/template/ecommerce/shop/category.twig" />
         <option value="$PROJECT_DIR$/frontend/spagnesi/template/ecommerce/product/thumbnail-preview.twig" />
         <option value="$PROJECT_DIR$/frontend/spagnesi/template/base/header/header.twig" />
         <option value="$PROJECT_DIR$/assets/css/less/prodotto.less" />
-        <option value="$PROJECT_DIR$/applications/ecommerce/EcommerceFrontend.php" />
         <option value="$PROJECT_DIR$/applications/ecommerce/entities/Variante.php" />
         <option value="$PROJECT_DIR$/frontend/spagnesi/template/ecommerce/scheda-prodotto.twig" />
+        <option value="$PROJECT_DIR$/applications/ecommerce/entities/TipologiaProdotto.php" />
+        <option value="$PROJECT_DIR$/frontend/spagnesi/template/ecommerce/checkout/spedizione.twig" />
+        <option value="$PROJECT_DIR$/assets/css/less/buttons.less" />
+        <option value="$PROJECT_DIR$/frontend/spagnesi/template/ecommerce/checkout/parti/form-spedizione.twig" />
+        <option value="$PROJECT_DIR$/assets/css/style.less" />
+        <option value="$PROJECT_DIR$/assets/css/less/forms.less" />
+        <option value="$PROJECT_DIR$/core/abstracts/BackendApplication.php" />
+        <option value="$PROJECT_DIR$/applications/ecommerce/traits/metodiCatalogoProdotto.php" />
+        <option value="$PROJECT_DIR$/core/services/Request.php" />
+        <option value="$PROJECT_DIR$/core/services/Response.php" />
+        <option value="$PROJECT_DIR$/core/template/JsonTemplate.php" />
+        <option value="$PROJECT_DIR$/assets/css/less/search-bar.less" />
+        <option value="$PROJECT_DIR$/applications/ecommerce/EcommerceFrontend.php" />
+        <option value="$PROJECT_DIR$/frontend/spagnesi/template/parti/barra-ricerca.twig" />
+        <option value="$PROJECT_DIR$/core/db/DbPdo.php" />
+        <option value="$PROJECT_DIR$/applications/ecommerce/CatalogoSearch.php" />
       </list>
     </option>
   </component>
@@ -184,6 +207,8 @@
       <path value="$PROJECT_DIR$/vendor/phpmailer/phpmailer" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
       <path value="$PROJECT_DIR$/vendor/filp/whoops" />
+      <path value="$PROJECT_DIR$/vendor/stripe/stripe-php" />
+      <path value="$PROJECT_DIR$/vendor/braintree/braintree_php" />
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
@@ -231,7 +256,7 @@
               <item name="Spagnesi" type="cbb8eebc:String" user="Spagnesi" />
               <item name="applications" type="cbb8eebc:String" user="applications" />
               <item name="ecommerce" type="cbb8eebc:String" user="ecommerce" />
-              <item name="entities" type="cbb8eebc:String" user="entities" />
+              <item name="traits" type="cbb8eebc:String" user="traits" />
             </path>
             <path>
               <item name="Root" type="cbb8eebc:String" user="Root" />
@@ -254,6 +279,23 @@
             <path>
               <item name="Root" type="cbb8eebc:String" user="Root" />
               <item name="Spagnesi" type="cbb8eebc:String" user="Spagnesi" />
+              <item name="core" type="cbb8eebc:String" user="core" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="Spagnesi" type="cbb8eebc:String" user="Spagnesi" />
+              <item name="core" type="cbb8eebc:String" user="core" />
+              <item name="services" type="cbb8eebc:String" user="services" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="Spagnesi" type="cbb8eebc:String" user="Spagnesi" />
+              <item name="core" type="cbb8eebc:String" user="core" />
+              <item name="template" type="cbb8eebc:String" user="template" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="Spagnesi" type="cbb8eebc:String" user="Spagnesi" />
               <item name="frontend" type="cbb8eebc:String" user="frontend" />
             </path>
             <path>
@@ -268,39 +310,6 @@
               <item name="frontend" type="cbb8eebc:String" user="frontend" />
               <item name="spagnesi" type="cbb8eebc:String" user="spagnesi" />
               <item name="template" type="cbb8eebc:String" user="template" />
-            </path>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="Spagnesi" type="cbb8eebc:String" user="Spagnesi" />
-              <item name="frontend" type="cbb8eebc:String" user="frontend" />
-              <item name="spagnesi" type="cbb8eebc:String" user="spagnesi" />
-              <item name="template" type="cbb8eebc:String" user="template" />
-              <item name="base" type="cbb8eebc:String" user="base" />
-            </path>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="Spagnesi" type="cbb8eebc:String" user="Spagnesi" />
-              <item name="frontend" type="cbb8eebc:String" user="frontend" />
-              <item name="spagnesi" type="cbb8eebc:String" user="spagnesi" />
-              <item name="template" type="cbb8eebc:String" user="template" />
-              <item name="base" type="cbb8eebc:String" user="base" />
-              <item name="header" type="cbb8eebc:String" user="header" />
-            </path>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="Spagnesi" type="cbb8eebc:String" user="Spagnesi" />
-              <item name="frontend" type="cbb8eebc:String" user="frontend" />
-              <item name="spagnesi" type="cbb8eebc:String" user="spagnesi" />
-              <item name="template" type="cbb8eebc:String" user="template" />
-              <item name="ecommerce" type="cbb8eebc:String" user="ecommerce" />
-            </path>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="Spagnesi" type="cbb8eebc:String" user="Spagnesi" />
-              <item name="frontend" type="cbb8eebc:String" user="frontend" />
-              <item name="spagnesi" type="cbb8eebc:String" user="spagnesi" />
-              <item name="template" type="cbb8eebc:String" user="template" />
-              <item name="pagine" type="cbb8eebc:String" user="pagine" />
             </path>
             <path>
               <item name="Root" type="cbb8eebc:String" user="Root" />
@@ -445,27 +454,29 @@
       <workItem from="1530806121240" duration="1419000" />
       <workItem from="1530886977365" duration="10243000" />
       <workItem from="1530969411522" duration="13126000" />
+      <workItem from="1531253982770" duration="4213000" />
+      <workItem from="1531304172442" duration="2782000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="134950000" />
+    <option name="totallyTimeSpent" value="141945000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="22" width="1936" height="1066" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19010417" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32931727" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24980143" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -473,6 +484,7 @@
       <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32931727" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32931727" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32931727" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -489,150 +501,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/applications/ecommerce/frontend/carrello.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/banner/BannerApplication.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="15" column="50" lean-forward="false" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/media/MediaApplication.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/standard_4.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="824" column="9" lean-forward="false" selection-start-line="824" selection-start-column="9" selection-end-line="824" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="37" lean-forward="false" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/media/MediaBackend.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1125">
-          <caret line="88" column="12" lean-forward="false" selection-start-line="88" selection-start-column="12" selection-end-line="88" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/template/JsonTemplate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="34" lean-forward="true" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/media/entities/Media.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="16" column="3" lean-forward="false" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/services/Response.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="129" column="29" lean-forward="true" selection-start-line="129" selection-start-column="29" selection-end-line="129" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/Environment.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/template/BaseTemplate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="15" lean-forward="false" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/media/templates/add.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/assets/css/custom.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="786">
-          <caret line="396" column="15" lean-forward="false" selection-start-line="396" selection-start-column="15" selection-end-line="396" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/pages/contents/GallerySlugProdottiContentType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="18" lean-forward="true" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/spagnesi/applications/homepage/HomepageBackend.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding>
-            <marker date="1531040686970" expanded="true" signature="677:710" ph="SELECT * fro... homepage" />
-            <marker date="1531040686970" expanded="true" signature="1237:1256" ph="UPDATE homepage... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/ecommerce/templates/prodotto.edit.immagini.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding>
-            <marker date="1531040245319" expanded="true" signature="1208:1222" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/applications/ecommerce/templates/prodotto.edit.varianti.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="752">
           <caret line="134" column="14" lean-forward="true" selection-start-line="134" selection-start-column="14" selection-end-line="134" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/Model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="701">
-          <caret line="269" column="101" lean-forward="false" selection-start-line="269" selection-start-column="101" selection-end-line="269" selection-end-column="101" />
-          <folding>
-            <marker date="1531042455636" expanded="true" signature="1347:1391" ph="select * fro... ${$table}" />
-            <marker date="1531042455636" expanded="true" signature="1622:1666" ph="select * fro... ${$table}" />
-            <marker date="1531042455636" expanded="true" signature="3951:3986" ph="insert into ${$this-&gt;getTable()}... " />
-            <marker date="1531042455636" expanded="true" signature="5818:5864" ph="DELETE FROM ${$this-&gt;getTable()}... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -648,7 +520,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -656,7 +527,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -664,15 +534,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
           <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/ecommerce/Ordini.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="7" column="34" lean-forward="false" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -680,15 +541,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="71" column="1" lean-forward="false" selection-start-line="71" selection-start-column="1" selection-end-line="74" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/abstracts/BackendApplication.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="616">
-          <caret line="165" column="23" lean-forward="false" selection-start-line="165" selection-start-column="17" selection-end-line="165" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -696,7 +548,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="20" column="105" lean-forward="false" selection-start-line="20" selection-start-column="105" selection-end-line="20" selection-end-column="105" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -704,7 +555,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="19" lean-forward="true" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -712,9 +562,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
           <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding>
-            <element signature="e#58#103#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -722,7 +569,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -730,7 +576,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -738,7 +583,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -746,7 +590,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -754,7 +597,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="25" column="49" lean-forward="false" selection-start-line="25" selection-start-column="49" selection-end-line="25" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -762,26 +604,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="680">
           <caret line="48" column="193" lean-forward="false" selection-start-line="48" selection-start-column="193" selection-end-line="48" selection-end-column="193" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/ecommerce/traits/metodiCatalogoProdotto.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="61" selection-end-column="105" />
-          <folding>
-            <marker date="1531043362067" expanded="true" signature="7179:7264" ph="SELECT * FRO... ecommerce_prodotto_campi" />
-            <marker date="1531043362067" expanded="true" signature="7462:7561" ph="INSERT INTO ecommerce_prodotto_campi... " />
-            <marker date="1531043362067" expanded="true" signature="7799:7896" ph="UPDATE ecommerce_prodotto_campi... " />
-            <marker date="1531043362067" expanded="true" signature="8209:8299" ph="INSERT INTO ecommerce_prodotto_variante... " />
-            <marker date="1531043362067" expanded="true" signature="8502:8657" ph="INSERT into ecommerce_prodotto_variante_attributi... " />
-            <marker date="1531043362067" expanded="true" signature="9131:9218" ph="INSERT INTO ecommerce_prodotto_immagine... " />
-            <marker date="1531043362067" expanded="true" signature="9425:9479" ph="SELECT * FRO... ecommerce_prodotto_immagine" />
-            <marker date="1531043362067" expanded="true" signature="9438:9479" ph="INSERT INTO ecommerce_prodotto_immagine... " />
-            <marker date="1531043362067" expanded="true" signature="9701:9753" ph="DELETE FROM ecommerce_prodotto_immagine... " />
-            <marker date="1531043362067" expanded="true" signature="9707:9753" ph="INSERT INTO ecommerce_prodotto_immagine... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -789,17 +611,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/ecommerce/CatalogoSearch.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="9" lean-forward="false" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
-          <folding>
-            <element signature="e#43#89#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -815,13 +626,83 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/spagnesi/template/parti/anteprima-prodotto.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="33" column="135" lean-forward="false" selection-start-line="33" selection-start-column="41" selection-end-line="33" selection-end-column="135" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/spagnesi/template/pagine/home.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/spagnesi/template/ecommerce/product/thumbnail-preview.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="63" lean-forward="false" selection-start-line="4" selection-start-column="63" selection-end-line="4" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/spagnesi/template/ecommerce/shop/category.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/ecommerce/Attributo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/ecommerce/traits/metodiCatalogoCategoria.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="718">
+          <caret line="77" column="32" lean-forward="false" selection-start-line="77" selection-start-column="32" selection-end-line="77" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/spagnesi/template/base/header/header.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="68" lean-forward="false" selection-start-line="14" selection-start-column="68" selection-end-line="14" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/css/less/prodotto.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2108">
+          <caret line="124" column="16" lean-forward="false" selection-start-line="124" selection-start-column="16" selection-end-line="124" selection-end-column="16" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/spagnesi/template/ecommerce/scheda-prodotto.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="871">
+          <caret line="98" column="67" lean-forward="false" selection-start-line="98" selection-start-column="67" selection-end-line="98" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/ecommerce/entities/TipologiaProdotto.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="42" column="41" lean-forward="false" selection-start-line="42" selection-start-column="41" selection-end-line="42" selection-end-column="41" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/ecommerce/entities/Prodotto.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-387">
+        <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <marker date="1530969205255" expanded="true" signature="1112:1182" ph="SELECT * FRO... ecommerce_prodotto_campi" />
@@ -830,102 +711,190 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/spagnesi/template/parti/anteprima-prodotto.twig">
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/_types.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="135" lean-forward="false" selection-start-line="33" selection-start-column="41" selection-end-line="33" selection-end-column="135" />
-          <folding>
-            <element signature="n#style#0;n#button#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/spagnesi/template/pagine/home.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="309">
+          <caret line="63" column="13" lean-forward="false" selection-start-line="63" selection-start-column="13" selection-end-line="63" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/spagnesi/template/ecommerce/product/thumbnail-preview.twig">
+    <entry file="file://$PROJECT_DIR$/assets/css/less/forms.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="63" lean-forward="false" selection-start-line="4" selection-start-column="63" selection-end-line="4" selection-end-column="63" />
-          <folding />
+        <state relative-caret-position="289">
+          <caret line="17" column="20" lean-forward="false" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/spagnesi/template/ecommerce/shop/category.twig">
+    <entry file="file://$PROJECT_DIR$/frontend/spagnesi/template/ecommerce/checkout/parti/form-spedizione.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding>
-            <element signature="e#62#89#0#HTML" expanded="true" />
-          </folding>
+        <state relative-caret-position="89">
+          <caret line="25" column="10" lean-forward="true" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/applications/ecommerce/Attributo.php">
+    <entry file="file://$PROJECT_DIR$/frontend/spagnesi/template/ecommerce/checkout/parti/form-registrazione.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1530727693329" expanded="true" signature="1884:1957" ph="SELECT * FRO... ecommerce_attributo_valore" />
-            <marker date="1530727693329" expanded="true" signature="2167:2278" ph="INSERT into ecommerce_attributo_valore... " />
-            <marker date="1530727693329" expanded="true" signature="2531:2626" ph="UPDATE ecommerce_attributo_valore... " />
-            <marker date="1530727693329" expanded="true" signature="2796:2847" ph="DELETE FROM ecommerce_attributo_valore... " />
-            <marker date="1530727693329" expanded="true" signature="3186:3259" ph="SELECT * FRO... ecommerce_attributo_valore" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/applications/ecommerce/traits/metodiCatalogoCategoria.php">
+    <entry file="file://$PROJECT_DIR$/frontend/spagnesi/template/ecommerce/checkout/spedizione.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="31" lean-forward="false" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/css/style.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="691">
+          <caret line="59" column="21" lean-forward="false" selection-start-line="59" selection-start-column="21" selection-end-line="59" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/css/less/buttons.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="19" lean-forward="false" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/spagnesi/template/ecommerce/checkout/index.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="718">
-          <caret line="77" column="32" lean-forward="false" selection-start-line="77" selection-start-column="32" selection-end-line="77" selection-end-column="32" />
+          <caret line="57" column="22" lean-forward="true" selection-start-line="55" selection-start-column="15" selection-end-line="57" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/ecommerce/entities/Variante.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="33" column="37" lean-forward="false" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/template/JsonTemplate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="21" lean-forward="false" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/spagnesi/template/base/header/header.twig">
+    <entry file="file://$PROJECT_DIR$/core/services/Response.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="68" lean-forward="false" selection-start-line="14" selection-start-column="68" selection-end-line="14" selection-end-column="68" />
+        <state relative-caret-position="539">
+          <caret line="146" column="0" lean-forward="false" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/less/prodotto.less">
+    <entry file="file://$PROJECT_DIR$/applications/ecommerce/traits/metodiCatalogoProdotto.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="844">
-          <caret line="124" column="16" lean-forward="false" selection-start-line="124" selection-start-column="16" selection-end-line="124" selection-end-column="16" />
+        <state relative-caret-position="731">
+          <caret line="220" column="0" lean-forward="false" selection-start-line="220" selection-start-column="0" selection-end-line="220" selection-end-column="0" />
+          <folding>
+            <marker date="1531257390004" expanded="true" signature="7241:7326" ph="SELECT * FRO... ecommerce_prodotto_campi" />
+            <marker date="1531257390004" expanded="true" signature="7524:7623" ph="INSERT INTO ecommerce_prodotto_campi... " />
+            <marker date="1531257390004" expanded="true" signature="7861:7958" ph="UPDATE ecommerce_prodotto_campi... " />
+            <marker date="1531257390004" expanded="true" signature="8271:8361" ph="INSERT INTO ecommerce_prodotto_variante... " />
+            <marker date="1531257390004" expanded="true" signature="8564:8719" ph="INSERT into ecommerce_prodotto_variante_attributi... " />
+            <marker date="1531257390004" expanded="true" signature="8999:9122" ph="INSERT into ecommerce_prodotto_variante_campi... " />
+            <marker date="1531257390004" expanded="true" signature="9590:9677" ph="INSERT INTO ecommerce_prodotto_immagine... " />
+            <marker date="1531257390004" expanded="true" signature="9884:9938" ph="SELECT * FRO... ecommerce_prodotto_immagine" />
+            <marker date="1531257390004" expanded="true" signature="10160:10212" ph="DELETE FROM ecommerce_prodotto_immagine... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/abstracts/BackendApplication.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="126" column="5" lean-forward="false" selection-start-line="126" selection-start-column="5" selection-end-line="126" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/ecommerce/Ordini.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="8" column="35" lean-forward="false" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/Model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="871">
+          <caret line="140" column="22" lean-forward="false" selection-start-line="140" selection-start-column="22" selection-end-line="140" selection-end-column="22" />
+          <folding>
+            <marker date="1531253816483" expanded="true" signature="1425:1469" ph="select * fro... ${$table}" />
+            <marker date="1531253816483" expanded="true" signature="1700:1744" ph="select * fro... ${$table}" />
+            <marker date="1531253816483" expanded="true" signature="4029:4064" ph="insert into ${$this-&gt;getTable()}... " />
+            <marker date="1531253816483" expanded="true" signature="5875:5921" ph="DELETE FROM ${$this-&gt;getTable()}... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/services/Request.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1067">
+          <caret line="100" column="20" lean-forward="false" selection-start-line="100" selection-start-column="20" selection-end-line="100" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/spagnesi/template/parti/barra-ricerca.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="582">
+          <caret line="53" column="45" lean-forward="false" selection-start-line="53" selection-start-column="45" selection-end-line="53" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/css/less/search-bar.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="19" lean-forward="false" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/db/DbPdo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/services/Db.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="14" lean-forward="false" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/applications/ecommerce/EcommerceFrontend.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="122" column="0" lean-forward="false" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/applications/ecommerce/entities/Variante.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/spagnesi/template/ecommerce/scheda-prodotto.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1241">
-          <caret line="98" column="67" lean-forward="false" selection-start-line="98" selection-start-column="67" selection-end-line="98" selection-end-column="67" />
+        <state relative-caret-position="667">
+          <caret line="394" column="59" lean-forward="false" selection-start-line="394" selection-start-column="59" selection-end-line="394" selection-end-column="59" />
           <folding>
-            <element signature="e#816#838#0#HTML" expanded="true" />
+            <marker date="1531305565972" expanded="true" signature="13993:13994" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/applications/ecommerce/CatalogoSearch.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="684">
+          <caret line="83" column="65" lean-forward="false" selection-start-line="83" selection-start-column="65" selection-end-line="83" selection-end-column="65" />
+          <folding>
+            <element signature="e#43#89#0#PHP" expanded="true" />
+            <marker date="1531306633296" expanded="true" signature="1369:1422" ph="SELECT * FRO... ecommerce_prodotto" />
           </folding>
         </state>
       </provider>

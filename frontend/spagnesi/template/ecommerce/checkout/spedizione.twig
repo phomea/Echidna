@@ -4,7 +4,7 @@
     <main style="padding-top: 200px">
         <div class="container">
             <div class="row">
-                <div class="col-10 offset-1">
+                <div class="col">
 
                     <form method="post">
                         {% include "ecommerce/checkout/parti/form-spedizione.twig" with {
@@ -15,6 +15,9 @@
                         } %}
                     </form>
 
+                </div>
+                <div class="col-5">
+                    {% include "ecommerce/checkout/parti/riepilogo.twig" with { carrello:carrello }%}
                 </div>
             </div>
         </div>

@@ -9,6 +9,7 @@ use applications\ecommerce\entities\Ordine;
 use applications\ecommerce\entities\Prodotto;
 use applications\ecommerce\entities\Provincia;
 use applications\ecommerce\entities\Spedizione;
+use applications\ecommerce\entities\Variante;
 use applications\ecommerce\gateway\Braintree;
 use applications\ecommerce\gateway\Stripe;
 use applications\login\LoginApplication;
@@ -16,6 +17,7 @@ use core\Config;
 use core\Route;
 use core\RouteFilter;
 use core\services\Request;
+use core\services\Response;
 use core\services\RouterService;
 use core\services\SessionService;
 
@@ -31,6 +33,10 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
 
     const ROUTE_SPEDIZIONE = "frontend.ecommerce.checkout.spedizione";
     const ROUTE_SPEDIZIONE_SAVE = "frontend.ecommerce.checkout.spedizione.save";
+
+
+
+    const ROUTE_RICERCA = "frontend.ecommerce.ricerca";
 
     static function init()
     {
@@ -69,7 +75,9 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
             "frontend.ecommerce.categoria"   =>  new Route("frontend.ecommerce.categoria","/{slug:([0-9a-zA-Z-]*)}",[self::class,"_categoria"]),
             "frontend.ecommerce.carrello.aggiungi"   =>  (new Route("frontend.ecommerce.carrello.aggiungi" ,"/carrello/aggiungi",[self::class,"_carrelloAggiungi"]))->method(Route::METHOD_POST),
 
-            "frontend.ecommerce.schedaprodotto"   =>  new Route( "frontend.ecommerce.schedaprodotto","/{slug:([0-9a-zA-Z-]*)}",[self::class,"_schedaProdotto"])
+            "frontend.ecommerce.schedaprodotto"   =>  new Route( "frontend.ecommerce.schedaprodotto","/{slug:([0-9a-zA-Z-]*)}",[self::class,"_schedaProdotto"]),
+            "frontend.ecommerce.schedaprodotto.variante"   =>  new Route( "frontend.ecommerce.schedaprodotto.variante","/{slug:([0-9a-zA-Z-]*)}/{slug-variante:([0-9a-zA-Z-]*)}",[self::class,"_schedaProdotto"]),
+            self::ROUTE_RICERCA =>  new Route(self::ROUTE_RICERCA,"/shop/cerca",[self::class,"_ricerca"])
 
         ];
 
@@ -90,6 +98,10 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
                 RouterService::getRoute(self::ROUTE_CHECKOUT)->go();
             }
         }
+
+        Response::addVariable([
+            "carrello"  =>  Carrello::get()
+        ]);
         return true;
     }
 
@@ -109,6 +121,41 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
         ];
     }
 
+    static function preparaFromAttributi( $varianti ){
+        $attributi = [];
+        foreach ($varianti as $item) {
+            $dataparents = [];
+            foreach ($item->attributi as $key => $value){
+                if(!isset($attributi[$value->attributo->id])){
+                    $attributi[$value->attributo->id] = [
+                        "idattributo" =>  $value->attributo->id,
+                        "attributo" =>  $value->attributo,
+                        "valori"    =>  []
+                    ];
+                }
+                if($key>0) {
+                    $attributi[$value->attributo->id]['attributo_precedente'] = $item->attributi[$key - 1]->attributo->id;
+                }
+                $o = [
+                    "idvalore"  =>  $value->valore->id,
+                    "valore"    =>  $value->valore
+                ];
+                if($key>0) {
+                    $dataparents[] = [
+                        $item->attributi[$key - 1]->attributo->id,
+                        $item->attributi[$key - 1]->valore->id
+                    ];
+                    $o["attributoprecedentevalore"] = $item->attributi[$key - 1]->valore->id;
+                    $o["attributoprecedenteid"] = $item->attributi[$key - 1]->attributo->id;
+                    $o["parents"] = $dataparents;
+                }
+                if(!in_array($o,$attributi[$value->attributo->id]['valori']))
+                    $attributi[$value->attributo->id]['valori'][] = $o;
+
+            }
+        }
+        return $attributi;
+    }
     static function _schedaProdotto( $params=[]){
         $prodotto = Prodotto::findBySlug($params['slug']);
         if( !$prodotto ){
@@ -116,10 +163,10 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
         }
 
 
-        $attributi = [];
+        $attributi = self::preparaFromAttributi($prodotto[0]->varianti);
 
 
-        foreach ($prodotto[0]->varianti as $item) {
+        /*foreach ($prodotto[0]->varianti as $item) {
 
 
             $dataparents = [];
@@ -147,9 +194,6 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
                     "valore"    =>  $value->valore
 
                 ];
-
-
-
                  if($key>0) {
                      $dataparents[] = [
                          $item->attributi[$key - 1]->attributo->id,
@@ -159,38 +203,23 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
                    $o["attributoprecedenteid"] = $item->attributi[$key - 1]->attributo->id;
                    $o["parents"] = $dataparents;
                 }
-
-
-
                 if(!in_array($o,$attributi[$value->attributo->id]['valori']))
                     $attributi[$value->attributo->id]['valori'][] = $o;
 
             }
-
-        }
-
-
-        /*
-        foreach ($prodotto[0]->varianti as $item) {
-            foreach ($item->attributi as $key => $value){
-
-                if(!isset($attributi[$value->attributo->id])){
-                    $attributi[$value->attributo->id] = [
-                        "attributo" =>  $value->attributo,
-                        "valori"    =>  []
-                    ];
-                }
-
-                if( !in_array($value->valore , $attributi[$value->attributo->id]['valori']) ){
-                    $attributi[$value->attributo->id]['valori'][] = $value->valore;
-                }
-
-            }
         }
         */
-
         $variante = $prodotto[0]->varianti[0];
 
+
+        if(isset($params['slug-variante'])){
+            $v = Variante::query()->where('id_prodotto='.$prodotto[0]->id)->where('sku="'.$params['slug-variante'].'"')->getOne();
+
+            if( $v ){
+                $v->expand();
+                $variante = $v;
+            }
+        }
 
         return [
             "ecommerce/scheda-prodotto",[
@@ -228,9 +257,7 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
             RouterService::getRoute(self::ROUTE_SPEDIZIONE)->go();
         }
         return [
-            "ecommerce/checkout/index",[
-                "carrello"  =>  Carrello::get()
-            ]
+            "ecommerce/checkout/index",[]
         ];
     }
 
@@ -355,5 +382,25 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
 
         RouterService::getRoute(self::ROUTE_CHECKOUT)->go();
 
+    }
+
+
+
+    static function _ricerca( $params= [] ){
+        $data = Request::getParams();
+
+        $categoria = isset($data['tipologia']) ? $data['tipologia'] : [];
+        $attributi = isset($data['attributo']) ? $data['attributo'] : [];
+
+        $ricerca = isset($data['ricerca']) ? $data['ricerca'] : "";
+
+        $cerca = new CatalogoSearch();
+        $r = $cerca->setQuery($ricerca)->setAttributes($attributi)->setCategories($categoria)
+            ->search();
+
+
+        var_dump($r);
+
+        exit;
     }
 }

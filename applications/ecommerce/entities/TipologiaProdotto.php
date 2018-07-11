@@ -27,22 +27,21 @@ class TipologiaProdotto extends Model{
 
 
     public function getFields(){
+
+        $campi = [];
+        if( $this->id_tipologia_prodotto > 0 ){
+            $t = TipologiaProdotto::findById($this->id_tipologia_prodotto);
+            $campi = array_merge($campi,$t->getFields());
+        }
+
+
         $sql = "SELECT * FROM ecommerce_tipologia_prodotto_campi WHERE id_ecommerce_tipologia_prodotto=:id";
-        $campi = Db::$connection->fetchAll($sql,[
+        $cc = Db::$connection->fetchAll($sql,[
                 "id" => $this->id
             ]
         );
+        $campi = array_merge($campi,$cc);
 
-
-        if( $this->id_tipologia_prodotto > 0 ){
-            $sql = "SELECT * FROM ecommerce_tipologia_prodotto_campi WHERE id_ecommerce_tipologia_prodotto=:id";
-            $campip = Db::$connection->fetchAll($sql,[
-                    "id" => $this->id_tipologia_prodotto
-                ]
-            );
-
-            $campi = array_merge($campi,$campip);
-        }
 
         $this->campi = $campi;
 
@@ -53,16 +52,43 @@ class TipologiaProdotto extends Model{
 
     public function getAttributes(){
 
-        $getFrom = [];
+
+        $attributi = [];
+
         if( $this->id_tipologia_prodotto > 0 ){
-            $getFrom[] = $this->id_tipologia_prodotto;
+            $t = TipologiaProdotto::findById($this->id_tipologia_prodotto);
+            $a = $t->getAttributes();
+            $attributi = array_merge($attributi, $a );
         }
 
 
-        $getFrom[] = $this->id;
-        $attributi = [];
 
 
+        $sql = "SELECT * FROM ecommerce_attributo_entita as a
+                    JOIN ecommerce_attributo as b on a.id_attributo=b.id
+                    WHERE entita=:entita AND id_entita=:id_entita 
+            ";
+
+        $r = Db::$connection->fetchAll($sql,[
+            "entita"    => "ecommerce_tipologia_prodotto",
+            "id_entita" =>  $this->id
+        ]);
+
+        foreach ($r as $key=>$item) {
+            $sql = "SELECT * FROM ecommerce_attributo_valore WHERE id_ecommerce_attributo=:id";
+            $valori = Db::$connection->fetchAll($sql,[
+                "id" => $item['id_attributo']
+            ]);
+
+            $r[$key]["possibili_valori"] = $valori;
+        }
+
+        $attributi = array_merge($attributi,$r);
+
+
+
+
+        /*
             foreach ($getFrom as $value){
                 $sql = "SELECT * FROM ecommerce_attributo_entita as a
                     JOIN ecommerce_attributo as b on a.id_attributo=b.id
@@ -87,7 +113,7 @@ class TipologiaProdotto extends Model{
             $attributi = array_merge($attributi,$r);
 
 
-        }
+        }*/
 
 
 
