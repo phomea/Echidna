@@ -15,7 +15,6 @@ class __TwigTemplate_a61029e4f2fa706a9bbd1b7e9f9544c4c30c9ec1c6471390a51270571a9
         $this->parent = $this->loadTemplate("base/template.twig", "ecommerce/scheda-prodotto.twig", 1);
         $this->blocks = array(
             'content' => array($this, 'block_content'),
-            'javascript_footer' => array($this, 'block_javascript_footer'),
         );
     }
 
@@ -37,20 +36,135 @@ class __TwigTemplate_a61029e4f2fa706a9bbd1b7e9f9544c4c30c9ec1c6471390a51270571a9
     <figure class=\"product-top-bg\">
         <img src=\"";
         // line 6
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (($__internal_7cd7461123377b8c9c1b6a01f46c7bbd94bd12e59266005df5e93029ddbc0ec5 = twig_get_attribute($this->env, $this->source, ($context["prodotto"] ?? null), "images", array())) && is_array($__internal_7cd7461123377b8c9c1b6a01f46c7bbd94bd12e59266005df5e93029ddbc0ec5) || $__internal_7cd7461123377b8c9c1b6a01f46c7bbd94bd12e59266005df5e93029ddbc0ec5 instanceof ArrayAccess ? ($__internal_7cd7461123377b8c9c1b6a01f46c7bbd94bd12e59266005df5e93029ddbc0ec5[1] ?? null) : null), "permalink", array()), "html", null, true);
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (($__internal_7cd7461123377b8c9c1b6a01f46c7bbd94bd12e59266005df5e93029ddbc0ec5 = twig_get_attribute($this->env, $this->source, ($context["prodotto"] ?? null), "images", array())) && is_array($__internal_7cd7461123377b8c9c1b6a01f46c7bbd94bd12e59266005df5e93029ddbc0ec5) || $__internal_7cd7461123377b8c9c1b6a01f46c7bbd94bd12e59266005df5e93029ddbc0ec5 instanceof ArrayAccess ? ($__internal_7cd7461123377b8c9c1b6a01f46c7bbd94bd12e59266005df5e93029ddbc0ec5[0] ?? null) : null), "permalink", array()), "html", null, true);
         echo "\">
     </figure>
     <main id=\"scheda-prodotto\">
         <div class=\"container\">
+
+            <div>
+
+
+                <div class=\"row mt-5\">
+                    <div class=\"col-8\">
+                        <div class=\"owl-carousel owl-theme general-carousel mb-5\" data-nav>
+                            ";
+        // line 17
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, ($context["prodotto"] ?? null), "images", array()));
+        foreach ($context['_seq'] as $context["_key"] => $context["immagine"]) {
+            // line 18
+            echo "                                <img src=\"";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["immagine"], "permalink", array()), "html", null, true);
+            echo "\">
+                            ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['immagine'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 20
+        echo "                        </div>
+
+                        ";
+        // line 22
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, ($context["prodotto"] ?? null), "varianti", array()));
+        foreach ($context['_seq'] as $context["_key"] => $context["variante"]) {
+            // line 23
+            echo "                            <div class=\"card variante mb-5\">
+                                <div class=\"card-header\">
+                                    <h3>";
+            // line 25
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["variante"], "nome", array()), "html", null, true);
+            echo "</h3>
+                                </div>
+                                <div class=\"card-body\">
+                                    <form method=\"post\" action=\"/carrello/aggiungi\">
+                                        <input type=\"hidden\" name=\"id_variante\" value=\"";
+            // line 29
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["variante"], "id", array()), "html", null, true);
+            echo "\">
+                                        <input type=\"hidden\" name=\"quantita\" value=\"1\">
+
+                                        <div class=\"row\">
+                                            <div class=\"col-3\">
+                                                <img src=\"";
+            // line 34
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (($__internal_3e28b7f596c58d7729642bcf2acc6efc894803703bf5fa7e74cd8d2aa1f8c68a = twig_get_attribute($this->env, $this->source, $context["variante"], "images", array())) && is_array($__internal_3e28b7f596c58d7729642bcf2acc6efc894803703bf5fa7e74cd8d2aa1f8c68a) || $__internal_3e28b7f596c58d7729642bcf2acc6efc894803703bf5fa7e74cd8d2aa1f8c68a instanceof ArrayAccess ? ($__internal_3e28b7f596c58d7729642bcf2acc6efc894803703bf5fa7e74cd8d2aa1f8c68a[0] ?? null) : null), "permalink", array()), "html", null, true);
+            echo "\">
+                                            </div>
+
+
+                                            <div class=\"col-9\">
+
+
+                                                <div>
+                                                ";
+            // line 42
+            $context['_parent'] = $context;
+            $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, $context["variante"], "attributi", array()));
+            foreach ($context['_seq'] as $context["_key"] => $context["attributo"]) {
+                // line 43
+                echo "                                                    ";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["attributo"], "attributo", array()), "nome", array()), "html", null, true);
+                echo "
+                                                    ";
+                // line 44
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["attributo"], "valore", array()), "valore", array()), "html", null, true);
+                echo "
+                                                ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['attributo'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 46
+            echo "                                                </div>
+                                                <button type=\"submit\" class=\"btn btn-secondary\"><i class=\"fa fa-cart-plus\"></i> Aggiungi al carrello </button>
+                                            </div>
+
+                                        </div>
+
+
+                                    </form>
+                                </div>
+                            </div>
+                        ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['variante'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 57
+        echo "                    </div>
+                    <div class=\"col-4\">
+                        <h2 class=\"product-name\">";
+        // line 59
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["prodotto"] ?? null), "nome", array()), "html", null, true);
+        echo "</h2>
+                        <p>
+                            Codice prodotto :
+                        </p>
+                        <div>
+                            ";
+        // line 64
+        echo twig_get_attribute($this->env, $this->source, ($context["prodotto"] ?? null), "descrizione", array());
+        echo "
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
             <div class=\"row mt-5\">
                 <div class=\"col-8\">
                     <div class=\"owl-carousel owl-theme general-carousel\" data-nav>
                     ";
-        // line 13
+        // line 76
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, ($context["prodotto"] ?? null), "images", array()));
         foreach ($context['_seq'] as $context["_key"] => $context["immagine"]) {
-            // line 14
+            // line 77
             echo "                        <img src=\"";
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["immagine"], "permalink", array()), "html", null, true);
             echo "\">
@@ -59,25 +173,25 @@ class __TwigTemplate_a61029e4f2fa706a9bbd1b7e9f9544c4c30c9ec1c6471390a51270571a9
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['immagine'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 16
+        // line 79
         echo "                    </div>
                 </div>
                 <div class=\"col-4\">
                     <h2 class=\"product-name\">";
-        // line 19
+        // line 82
         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["prodotto"] ?? null), "nome", array()), "html", null, true);
         echo "</h2>
                     Codice prodotto : ";
-        // line 20
+        // line 83
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, ($context["prodotto"] ?? null), "varianti", array()));
         foreach ($context['_seq'] as $context["_key"] => $context["variante"]) {
-            // line 21
+            // line 84
             echo "                        <span class=\"product-sku\" style=\"display: none;\" ";
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, $context["variante"], "attributi", array()));
             foreach ($context['_seq'] as $context["_key"] => $context["attributo"]) {
-                // line 22
+                // line 85
                 echo "                            data-attribute";
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["attributo"], "attributo", array()), "id", array()), "html", null, true);
                 echo "=\"";
@@ -88,7 +202,7 @@ class __TwigTemplate_a61029e4f2fa706a9bbd1b7e9f9544c4c30c9ec1c6471390a51270571a9
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['attributo'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 23
+            // line 86
             echo ">";
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["variante"], "sku", array()), "html", null, true);
             echo "</span>
@@ -97,38 +211,38 @@ class __TwigTemplate_a61029e4f2fa706a9bbd1b7e9f9544c4c30c9ec1c6471390a51270571a9
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['variante'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 25
+        // line 88
         echo "
 
                     <p class=\"product-description\">";
-        // line 27
+        // line 90
         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["prodotto"] ?? null), "descrizione", array()), "html", null, true);
         echo "</p>
 
                     ";
-        // line 29
+        // line 92
         if ((twig_length_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["prodotto"] ?? null), "varianti", array())) > 1)) {
-            // line 30
+            // line 93
             echo "
                         <form id=\"form-add-variant\" class=\"variante\" method=\"post\" action=\"/carrello/aggiungi\">
                             ";
-            // line 32
+            // line 95
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, ($context["prodotto"] ?? null), "varianti", array()));
             foreach ($context['_seq'] as $context["_key"] => $context["variante"]) {
-                // line 33
+                // line 96
                 echo "
 
                                 <input type=\"radio\" name=\"id_variante\" value=\"";
-                // line 35
+                // line 98
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["variante"], "id", array()), "html", null, true);
                 echo "\"
                                 ";
-                // line 36
+                // line 99
                 $context['_parent'] = $context;
                 $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, $context["variante"], "attributi", array()));
                 foreach ($context['_seq'] as $context["_key"] => $context["attributo"]) {
-                    // line 37
+                    // line 100
                     echo "                                    data-attribute";
                     echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["attributo"], "attributo", array()), "id", array()), "html", null, true);
                     echo "=\"";
@@ -139,20 +253,20 @@ class __TwigTemplate_a61029e4f2fa706a9bbd1b7e9f9544c4c30c9ec1c6471390a51270571a9
                 $_parent = $context['_parent'];
                 unset($context['_seq'], $context['_iterated'], $context['_key'], $context['attributo'], $context['_parent'], $context['loop']);
                 $context = array_intersect_key($context, $_parent) + $_parent;
-                // line 38
+                // line 101
                 echo ">
                             ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['variante'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 40
+            // line 103
             echo "
 
 
 
                                     <span class=\"prezzo\">";
-            // line 44
+            // line 107
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["variante"] ?? null), "prezzo", array()), "html", null, true);
             echo "</span>
 
@@ -164,77 +278,77 @@ class __TwigTemplate_a61029e4f2fa706a9bbd1b7e9f9544c4c30c9ec1c6471390a51270571a9
 
                         <form class=\"scelta-attributi\">
                             ";
-            // line 69
+            // line 132
             echo "
 
                             ";
-            // line 71
+            // line 134
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable(($context["attributi"] ?? null));
             foreach ($context['_seq'] as $context["_key"] => $context["attributo"]) {
-                // line 72
+                // line 135
                 echo "
                                 ";
-                // line 73
+                // line 136
                 if ((twig_length_filter($this->env, twig_get_attribute($this->env, $this->source, $context["attributo"], "valori", array())) == 1)) {
-                    // line 74
+                    // line 137
                     echo "                                    <input type=\"hidden\" name=\"";
                     echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["attributo"], "attributo", array()), "id", array()), "html", null, true);
                     echo "\" value=\"";
-                    echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (($__internal_3e28b7f596c58d7729642bcf2acc6efc894803703bf5fa7e74cd8d2aa1f8c68a = twig_get_attribute($this->env, $this->source, $context["attributo"], "valori", array())) && is_array($__internal_3e28b7f596c58d7729642bcf2acc6efc894803703bf5fa7e74cd8d2aa1f8c68a) || $__internal_3e28b7f596c58d7729642bcf2acc6efc894803703bf5fa7e74cd8d2aa1f8c68a instanceof ArrayAccess ? ($__internal_3e28b7f596c58d7729642bcf2acc6efc894803703bf5fa7e74cd8d2aa1f8c68a[0] ?? null) : null), "valore", array()), "id", array()), "html", null, true);
+                    echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (($__internal_b0b3d6199cdf4d15a08b3fb98fe017ecb01164300193d18d78027218d843fc57 = twig_get_attribute($this->env, $this->source, $context["attributo"], "valori", array())) && is_array($__internal_b0b3d6199cdf4d15a08b3fb98fe017ecb01164300193d18d78027218d843fc57) || $__internal_b0b3d6199cdf4d15a08b3fb98fe017ecb01164300193d18d78027218d843fc57 instanceof ArrayAccess ? ($__internal_b0b3d6199cdf4d15a08b3fb98fe017ecb01164300193d18d78027218d843fc57[0] ?? null) : null), "valore", array()), "id", array()), "html", null, true);
                     echo "\">
 
 
                                 ";
                 } else {
-                    // line 78
+                    // line 141
                     echo "                                <label>";
                     echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["attributo"], "attributo", array()), "nome", array()), "html", null, true);
                     echo "</label>
                                 <select name=\"";
-                    // line 79
+                    // line 142
                     echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["attributo"], "attributo", array()), "id", array()), "html", null, true);
                     echo "\" class=\"form-control\">
 
                                     <option value=\"\">...scegli</option>
 
                                     ";
-                    // line 83
+                    // line 146
                     $context['_parent'] = $context;
                     $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, $context["attributo"], "valori", array()));
                     foreach ($context['_seq'] as $context["_key"] => $context["valore"]) {
-                        // line 84
+                        // line 147
                         echo "
                                         <option value=\"";
-                        // line 85
+                        // line 148
                         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["valore"], "valore", array()), "id", array()), "html", null, true);
                         echo "\"
                                                 ";
-                        // line 86
+                        // line 149
                         if (twig_get_attribute($this->env, $this->source, $context["valore"], "parents", array())) {
-                            // line 87
+                            // line 150
                             echo "                                                    ";
                             $context['_parent'] = $context;
                             $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, $context["valore"], "parents", array()));
                             foreach ($context['_seq'] as $context["_key"] => $context["p"]) {
-                                // line 88
+                                // line 151
                                 echo "                                                        data-attribute";
-                                echo twig_escape_filter($this->env, (($__internal_b0b3d6199cdf4d15a08b3fb98fe017ecb01164300193d18d78027218d843fc57 = $context["p"]) && is_array($__internal_b0b3d6199cdf4d15a08b3fb98fe017ecb01164300193d18d78027218d843fc57) || $__internal_b0b3d6199cdf4d15a08b3fb98fe017ecb01164300193d18d78027218d843fc57 instanceof ArrayAccess ? ($__internal_b0b3d6199cdf4d15a08b3fb98fe017ecb01164300193d18d78027218d843fc57[0] ?? null) : null), "html", null, true);
+                                echo twig_escape_filter($this->env, (($__internal_81ccf322d0988ca0aa9ae9943d772c435c5ff01fb50b956278e245e40ae66ab9 = $context["p"]) && is_array($__internal_81ccf322d0988ca0aa9ae9943d772c435c5ff01fb50b956278e245e40ae66ab9) || $__internal_81ccf322d0988ca0aa9ae9943d772c435c5ff01fb50b956278e245e40ae66ab9 instanceof ArrayAccess ? ($__internal_81ccf322d0988ca0aa9ae9943d772c435c5ff01fb50b956278e245e40ae66ab9[0] ?? null) : null), "html", null, true);
                                 echo "=\"";
-                                echo twig_escape_filter($this->env, (($__internal_81ccf322d0988ca0aa9ae9943d772c435c5ff01fb50b956278e245e40ae66ab9 = $context["p"]) && is_array($__internal_81ccf322d0988ca0aa9ae9943d772c435c5ff01fb50b956278e245e40ae66ab9) || $__internal_81ccf322d0988ca0aa9ae9943d772c435c5ff01fb50b956278e245e40ae66ab9 instanceof ArrayAccess ? ($__internal_81ccf322d0988ca0aa9ae9943d772c435c5ff01fb50b956278e245e40ae66ab9[1] ?? null) : null), "html", null, true);
+                                echo twig_escape_filter($this->env, (($__internal_add9db1f328aaed12ef1a33890510da978cc9cf3e50f6769d368473a9c90c217 = $context["p"]) && is_array($__internal_add9db1f328aaed12ef1a33890510da978cc9cf3e50f6769d368473a9c90c217) || $__internal_add9db1f328aaed12ef1a33890510da978cc9cf3e50f6769d368473a9c90c217 instanceof ArrayAccess ? ($__internal_add9db1f328aaed12ef1a33890510da978cc9cf3e50f6769d368473a9c90c217[1] ?? null) : null), "html", null, true);
                                 echo "\"
                                                     ";
                             }
                             $_parent = $context['_parent'];
                             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['p'], $context['_parent'], $context['loop']);
                             $context = array_intersect_key($context, $_parent) + $_parent;
-                            // line 90
+                            // line 153
                             echo "                                                ";
                         }
-                        // line 91
+                        // line 154
                         echo "                                                ";
                         if (twig_get_attribute($this->env, $this->source, $context["valore"], "attributoprecedentevalore", array())) {
-                            // line 92
+                            // line 155
                             echo "                                            data-idprec=\"";
                             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["valore"], "attributoprecedenteid", array()), "html", null, true);
                             echo "\" data-valueprec=\"";
@@ -242,17 +356,17 @@ class __TwigTemplate_a61029e4f2fa706a9bbd1b7e9f9544c4c30c9ec1c6471390a51270571a9
                             echo "\"
                                                 ";
                         }
-                        // line 94
+                        // line 157
                         echo "
 
                                                 ";
-                        // line 96
+                        // line 159
                         if (twig_get_attribute($this->env, $this->source, ($context["variante"] ?? null), "gotAttributeValue", array(0 => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["valore"], "valore", array()), "id", array())), "method")) {
-                            // line 97
+                            // line 160
                             echo "                                                    selected
                                                 ";
                         }
-                        // line 99
+                        // line 162
                         echo "                                        >";
                         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["valore"], "valore", array()), "valore", array()), "html", null, true);
                         echo "</option>
@@ -261,152 +375,46 @@ class __TwigTemplate_a61029e4f2fa706a9bbd1b7e9f9544c4c30c9ec1c6471390a51270571a9
                     $_parent = $context['_parent'];
                     unset($context['_seq'], $context['_iterated'], $context['_key'], $context['valore'], $context['_parent'], $context['loop']);
                     $context = array_intersect_key($context, $_parent) + $_parent;
-                    // line 101
+                    // line 164
                     echo "
                                 </select>
 
                                 ";
                 }
-                // line 105
+                // line 168
                 echo "
                             ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['attributo'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 107
+            // line 170
             echo "                        </form>
 
 
                     ";
         } else {
-            // line 111
+            // line 174
             echo "                        ";
-            $context["variante"] = (($__internal_add9db1f328aaed12ef1a33890510da978cc9cf3e50f6769d368473a9c90c217 = twig_get_attribute($this->env, $this->source, ($context["prodotto"] ?? null), "varianti", array())) && is_array($__internal_add9db1f328aaed12ef1a33890510da978cc9cf3e50f6769d368473a9c90c217) || $__internal_add9db1f328aaed12ef1a33890510da978cc9cf3e50f6769d368473a9c90c217 instanceof ArrayAccess ? ($__internal_add9db1f328aaed12ef1a33890510da978cc9cf3e50f6769d368473a9c90c217[0] ?? null) : null);
-            // line 112
+            $context["variante"] = (($__internal_128c19eb75d89ae9acc1294da2e091b433005202cb9b9351ea0c5dd5f69ee105 = twig_get_attribute($this->env, $this->source, ($context["prodotto"] ?? null), "varianti", array())) && is_array($__internal_128c19eb75d89ae9acc1294da2e091b433005202cb9b9351ea0c5dd5f69ee105) || $__internal_128c19eb75d89ae9acc1294da2e091b433005202cb9b9351ea0c5dd5f69ee105 instanceof ArrayAccess ? ($__internal_128c19eb75d89ae9acc1294da2e091b433005202cb9b9351ea0c5dd5f69ee105[0] ?? null) : null);
+            // line 175
             echo "                        <form class=\"variante\">
                             <div class=\"prezzo\">
                                 ";
-            // line 114
+            // line 177
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["variante"] ?? null), "prezzo", array()), "html", null, true);
             echo "
                             </div>
                         </form>
                     ";
         }
-        // line 118
+        // line 181
         echo "
                     <button type=\"submit\" class=\"btn btn-secondary\" form=\"form-add-variant\"><i class=\"fa fa-cart\"></i> Aggiungi al carrello</button>
                 </div>
             </div>
         </div>
     </main>
-";
-    }
-
-    // line 127
-    public function block_javascript_footer($context, array $blocks = array())
-    {
-        // line 128
-        echo "
-    ";
-        // line 129
-        $this->displayParentBlock("javascript_footer", $context, $blocks);
-        echo "
-    <script>
-    (function( \$ ){
-
-
-        \$('.scelta-attributi [data-idprec]').hide();
-
-
-        var parseForm = function(){
-            me = \$(\"form.scelta-attributi\");
-
-
-            selettore = [];
-            selettoreVariante = [];
-
-            selettoreAttributi = [];
-            selettoreNot =[];
-            variante = null;
-            \$('.scelta-attributi [data-idprec]').hide();
-
-
-            console.log(\$(me));
-
-            \$(me).serializeArray().forEach(function( o , index){
-
-
-                var s = '[data-attribute' + o.name +'=\"'+ o.value +'\"]';
-                selettoreVariante.push('[data-attribute' + o.name +'=\"'+ o.value +'\"]' );
-                if(o.value !=\"\") {
-                    selettoreAttributi.push('[data-attribute' + o.name +'=\"'+ o.value +'\"]' );
-                    selettoreNot.push('[data-attribute' + o.name+'][data-attribute' + o.name +'!=\"'+ o.value +'\"]' );
-                    selettore.push('[data-idprec=\"' + o.name + '\"][data-valueprec=\"' + o.value + '\"]');
-                }
-                \$(selettoreAttributi.join(\"\")).show();
-                \$(selettoreNot.join(\"\")).hide();
-                \$( '[data-attribute' + o.name+'][data-attribute' + o.name +'!=\"'+ o.value +'\"]' ).hide();
-
-                /*
-                selettoreVariante.push('[data-attribute' + o.name +'=\"'+ o.value +'\"]' );
-                if(o.value !=\"\") {
-                    selettoreAttributi.push('[data-attribute' + o.name +'=\"'+ o.value +'\"]' );
-                    selettore.push('[data-idprec=\"' + o.name + '\"][data-valueprec=\"' + o.value + '\"]');
-                }*/
-
-            });
-
-
-            console.log(selettoreAttributi);
-            \$(selettoreAttributi.join(\"\")).show();
-
-
-            \$(selettoreVariante.join(\"\")).prop(\"checked\",true);
-        }
-        \$(document).on(\"change\",\"form.scelta-attributi\",function () {
-
-            parseForm();
-           /* selettore = [];
-            selettoreVariante = [];
-
-            selettoreAttributi = [];
-            selettoreNot =[];
-            variante = null;
-            \$('.scelta-attributi [data-idprec]').hide();
-
-
-            \$(this).serializeArray().forEach(function( o , index){
-
-                var s = '[data-attribute' + o.name +'=\"'+ o.value +'\"]';
-
-                selettoreVariante.push('[data-attribute' + o.name +'=\"'+ o.value +'\"]' );
-
-                if(o.value !=\"\") {
-                    selettoreAttributi.push('[data-attribute' + o.name +'=\"'+ o.value +'\"]' );
-                    selettoreNot.push('[data-attribute' + o.name+'][data-attribute' + o.name +'!=\"'+ o.value +'\"]' );
-                    selettore.push('[data-idprec=\"' + o.name + '\"][data-valueprec=\"' + o.value + '\"]');
-                }
-                \$(selettoreAttributi.join(\"\")).show();
-                \$(selettoreNot.join(\"\")).hide();
-                \$( '[data-attribute' + o.name+'][data-attribute' + o.name +'!=\"'+ o.value +'\"]' ).hide();
-
-            });
-
-
-            \$(selettoreAttributi.join(\"\")).show();
-
-
-            \$(selettoreVariante.join(\"\")).prop(\"checked\",true);*/
-        })
-
-        \$(window).ready(function(){
-            parseForm();
-        })
-
-    })(jQuery);
-    </script>
 ";
     }
 
@@ -422,7 +430,7 @@ class __TwigTemplate_a61029e4f2fa706a9bbd1b7e9f9544c4c30c9ec1c6471390a51270571a9
 
     public function getDebugInfo()
     {
-        return array (  314 => 129,  311 => 128,  308 => 127,  298 => 118,  291 => 114,  287 => 112,  284 => 111,  278 => 107,  271 => 105,  265 => 101,  256 => 99,  252 => 97,  250 => 96,  246 => 94,  238 => 92,  235 => 91,  232 => 90,  221 => 88,  216 => 87,  214 => 86,  210 => 85,  207 => 84,  203 => 83,  196 => 79,  191 => 78,  181 => 74,  179 => 73,  176 => 72,  172 => 71,  168 => 69,  156 => 44,  150 => 40,  143 => 38,  132 => 37,  128 => 36,  124 => 35,  120 => 33,  116 => 32,  112 => 30,  110 => 29,  105 => 27,  101 => 25,  92 => 23,  81 => 22,  76 => 21,  72 => 20,  68 => 19,  63 => 16,  54 => 14,  50 => 13,  40 => 6,  36 => 4,  33 => 3,  15 => 1,);
+        return array (  412 => 181,  405 => 177,  401 => 175,  398 => 174,  392 => 170,  385 => 168,  379 => 164,  370 => 162,  366 => 160,  364 => 159,  360 => 157,  352 => 155,  349 => 154,  346 => 153,  335 => 151,  330 => 150,  328 => 149,  324 => 148,  321 => 147,  317 => 146,  310 => 142,  305 => 141,  295 => 137,  293 => 136,  290 => 135,  286 => 134,  282 => 132,  270 => 107,  264 => 103,  257 => 101,  246 => 100,  242 => 99,  238 => 98,  234 => 96,  230 => 95,  226 => 93,  224 => 92,  219 => 90,  215 => 88,  206 => 86,  195 => 85,  190 => 84,  186 => 83,  182 => 82,  177 => 79,  168 => 77,  164 => 76,  149 => 64,  141 => 59,  137 => 57,  121 => 46,  113 => 44,  108 => 43,  104 => 42,  93 => 34,  85 => 29,  78 => 25,  74 => 23,  70 => 22,  66 => 20,  57 => 18,  53 => 17,  39 => 6,  35 => 4,  32 => 3,  15 => 1,);
     }
 
     public function getSourceContext()
@@ -432,10 +440,73 @@ class __TwigTemplate_a61029e4f2fa706a9bbd1b7e9f9544c4c30c9ec1c6471390a51270571a9
 {% block content %}
 
     <figure class=\"product-top-bg\">
-        <img src=\"{{ prodotto.images[1].permalink }}\">
+        <img src=\"{{ prodotto.images[0].permalink }}\">
     </figure>
     <main id=\"scheda-prodotto\">
         <div class=\"container\">
+
+            <div>
+
+
+                <div class=\"row mt-5\">
+                    <div class=\"col-8\">
+                        <div class=\"owl-carousel owl-theme general-carousel mb-5\" data-nav>
+                            {% for immagine in prodotto.images %}
+                                <img src=\"{{ immagine.permalink }}\">
+                            {% endfor %}
+                        </div>
+
+                        {% for variante in prodotto.varianti %}
+                            <div class=\"card variante mb-5\">
+                                <div class=\"card-header\">
+                                    <h3>{{ variante.nome }}</h3>
+                                </div>
+                                <div class=\"card-body\">
+                                    <form method=\"post\" action=\"/carrello/aggiungi\">
+                                        <input type=\"hidden\" name=\"id_variante\" value=\"{{ variante.id }}\">
+                                        <input type=\"hidden\" name=\"quantita\" value=\"1\">
+
+                                        <div class=\"row\">
+                                            <div class=\"col-3\">
+                                                <img src=\"{{ variante.images[0].permalink }}\">
+                                            </div>
+
+
+                                            <div class=\"col-9\">
+
+
+                                                <div>
+                                                {% for attributo in variante.attributi %}
+                                                    {{ attributo.attributo.nome }}
+                                                    {{ attributo.valore.valore }}
+                                                {% endfor %}
+                                                </div>
+                                                <button type=\"submit\" class=\"btn btn-secondary\"><i class=\"fa fa-cart-plus\"></i> Aggiungi al carrello </button>
+                                            </div>
+
+                                        </div>
+
+
+                                    </form>
+                                </div>
+                            </div>
+                        {%  endfor %}
+                    </div>
+                    <div class=\"col-4\">
+                        <h2 class=\"product-name\">{{ prodotto.nome }}</h2>
+                        <p>
+                            Codice prodotto :
+                        </p>
+                        <div>
+                            {{ prodotto.descrizione|raw }}
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
             <div class=\"row mt-5\">
                 <div class=\"col-8\">
                     <div class=\"owl-carousel owl-theme general-carousel\" data-nav>
@@ -552,104 +623,6 @@ class __TwigTemplate_a61029e4f2fa706a9bbd1b7e9f9544c4c30c9ec1c6471390a51270571a9
     </main>
 {% endblock %}
 
-
-{% block javascript_footer %}
-
-    {{ parent() }}
-    <script>
-    (function( \$ ){
-
-
-        \$('.scelta-attributi [data-idprec]').hide();
-
-
-        var parseForm = function(){
-            me = \$(\"form.scelta-attributi\");
-
-
-            selettore = [];
-            selettoreVariante = [];
-
-            selettoreAttributi = [];
-            selettoreNot =[];
-            variante = null;
-            \$('.scelta-attributi [data-idprec]').hide();
-
-
-            console.log(\$(me));
-
-            \$(me).serializeArray().forEach(function( o , index){
-
-
-                var s = '[data-attribute' + o.name +'=\"'+ o.value +'\"]';
-                selettoreVariante.push('[data-attribute' + o.name +'=\"'+ o.value +'\"]' );
-                if(o.value !=\"\") {
-                    selettoreAttributi.push('[data-attribute' + o.name +'=\"'+ o.value +'\"]' );
-                    selettoreNot.push('[data-attribute' + o.name+'][data-attribute' + o.name +'!=\"'+ o.value +'\"]' );
-                    selettore.push('[data-idprec=\"' + o.name + '\"][data-valueprec=\"' + o.value + '\"]');
-                }
-                \$(selettoreAttributi.join(\"\")).show();
-                \$(selettoreNot.join(\"\")).hide();
-                \$( '[data-attribute' + o.name+'][data-attribute' + o.name +'!=\"'+ o.value +'\"]' ).hide();
-
-                /*
-                selettoreVariante.push('[data-attribute' + o.name +'=\"'+ o.value +'\"]' );
-                if(o.value !=\"\") {
-                    selettoreAttributi.push('[data-attribute' + o.name +'=\"'+ o.value +'\"]' );
-                    selettore.push('[data-idprec=\"' + o.name + '\"][data-valueprec=\"' + o.value + '\"]');
-                }*/
-
-            });
-
-
-            console.log(selettoreAttributi);
-            \$(selettoreAttributi.join(\"\")).show();
-
-
-            \$(selettoreVariante.join(\"\")).prop(\"checked\",true);
-        }
-        \$(document).on(\"change\",\"form.scelta-attributi\",function () {
-
-            parseForm();
-           /* selettore = [];
-            selettoreVariante = [];
-
-            selettoreAttributi = [];
-            selettoreNot =[];
-            variante = null;
-            \$('.scelta-attributi [data-idprec]').hide();
-
-
-            \$(this).serializeArray().forEach(function( o , index){
-
-                var s = '[data-attribute' + o.name +'=\"'+ o.value +'\"]';
-
-                selettoreVariante.push('[data-attribute' + o.name +'=\"'+ o.value +'\"]' );
-
-                if(o.value !=\"\") {
-                    selettoreAttributi.push('[data-attribute' + o.name +'=\"'+ o.value +'\"]' );
-                    selettoreNot.push('[data-attribute' + o.name+'][data-attribute' + o.name +'!=\"'+ o.value +'\"]' );
-                    selettore.push('[data-idprec=\"' + o.name + '\"][data-valueprec=\"' + o.value + '\"]');
-                }
-                \$(selettoreAttributi.join(\"\")).show();
-                \$(selettoreNot.join(\"\")).hide();
-                \$( '[data-attribute' + o.name+'][data-attribute' + o.name +'!=\"'+ o.value +'\"]' ).hide();
-
-            });
-
-
-            \$(selettoreAttributi.join(\"\")).show();
-
-
-            \$(selettoreVariante.join(\"\")).prop(\"checked\",true);*/
-        })
-
-        \$(window).ready(function(){
-            parseForm();
-        })
-
-    })(jQuery);
-    </script>
-{% endblock %}", "ecommerce/scheda-prodotto.twig", "/Users/phomea/Siti/Spagnesi/frontend/spagnesi/template/ecommerce/scheda-prodotto.twig");
+", "ecommerce/scheda-prodotto.twig", "/Users/phomea/Siti/Spagnesi/frontend/spagnesi/template/ecommerce/scheda-prodotto.twig");
     }
 }

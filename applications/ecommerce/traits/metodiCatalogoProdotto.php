@@ -259,7 +259,7 @@ trait metodiCatalogoProdotto{
 
 
 
-        $sql = "INSERT INTO ecommerce_prodotto_variante (id_prodotto,prezzo,sku) VALUES (:id,:prezzo,:sku)";
+        $sql = "INSERT INTO ecommerce_prodotto_variante (id_prodotto,prezzo,sku,nome) VALUES (:id,:prezzo,:sku,:nome)";
         Db::$connection->perform($sql,array_merge($params,$data));
 
         $idvariante = Db::$connection->lastInsertId();

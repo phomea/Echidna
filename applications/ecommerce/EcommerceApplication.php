@@ -92,6 +92,8 @@ class EcommerceApplication extends Application {
         RouterService::addRoutesPrefixed(\applications\ecommerce\Clienti::declareRoutes(),"/backend/ecommerce/clienti/");
         RouterService::addRoutesPrefixed(\applications\ecommerce\Ordini::declareRoutes(),"/backend/ecommerce/ordini/");
 
+        RouterService::addRoutesPrefixed(\applications\ecommerce\Varianti::declareRoutes(),"/backend/ecommerce/varianti/");
+
 
         return array_merge(
             [

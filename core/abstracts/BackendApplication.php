@@ -175,4 +175,36 @@ abstract class BackendApplication{
         RouterService::getRoute($entity::getEntity().".list")->go();
 
     }
+
+
+
+
+    static function getForSelect($label="",$id=""){
+
+
+
+        $entity = static::getEntityClass();
+
+
+
+        $tt = $entity::query()->getAll();
+
+        var_dump($tt);
+        exit;
+
+        $options = [];
+        $options[] = [
+            "label" =>  "---scegli---",
+            "value"=> 0
+        ];
+        foreach ($tt as $item) {
+            $options[] = [
+                "label" =>  $item->$label,
+                "value" =>  $item->$id
+            ];
+        }
+        return $options;
+    }
+
+
 }

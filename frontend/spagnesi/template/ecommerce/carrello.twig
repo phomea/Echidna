@@ -6,7 +6,11 @@
             {% for lineitem in carrello.lineitems %}
             <div class="row">
                 <div class="col">
-                    {{ lineitem.prodotto.nome }}
+
+
+                    <a href="{{ router_service.getRoute("frontend.ecommerce.schedaprodotto").build({slug:lineitem.prodotto.slug}) }}">
+                        {{ lineitem.prodotto.nome }} - {{ lineitem.variant.nome }}
+                    </a>
                 </div>
                 <div class="col">
                     {{ lineitem.quantity }}

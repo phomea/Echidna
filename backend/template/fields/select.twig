@@ -8,9 +8,10 @@
             <span class="input-group-text" id="basic-addon1"><i class="fa fa-font"></i></span>
         </div>
 
+
         <select name="{{ property }}" class="form-control" >
             {% for option in field.templateVar %}
-                <option value="{{ option.value }}">{{ option.label }}</option>
+                <option value="{{ option.value }}" {{ field.value == option.value ? "selected" :""}} >{{ option.label }}</option>
             {% endfor %}
         </select>
     </div>

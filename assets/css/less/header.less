@@ -9,6 +9,9 @@
   padding-bottom: 1em;
 
 
+  .logo-black{
+    display: none;
+  }
   transition: all @headerSpeedTransition ;
   
   &.fixed{
@@ -20,7 +23,12 @@
     }
     .navbar .logo{
       max-height: 4em;
+      display: none;
+      &.logo-black{
+        display: inline-block;
+      }
     }
+    
   }
 }
 

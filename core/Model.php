@@ -279,4 +279,29 @@ abstract class Model {
     static function deleteRoute($params){
 
     }
+
+
+    static function getForSelect($label="",$id=""){
+
+
+
+        $entity = static::class;
+
+
+        $tt = $entity::query()->getAll();
+
+        $options = [];
+        $options[] = [
+            "label" =>  "---scegli---",
+            "value"=> 0
+        ];
+        foreach ($tt as $item) {
+            $options[] = [
+                "label" =>  $item->$label,
+                "value" =>  $item->$id
+            ];
+        }
+        return $options;
+    }
+
 }

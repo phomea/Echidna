@@ -3,6 +3,7 @@
 namespace applications\ecommerce\entities;
 
 
+use applications\ecommerce\Prodotti;
 use core\db\Field;
 use core\Model;
 use core\services\Db;
@@ -18,8 +19,9 @@ class Variante extends Model{
         return [
             "id"    =>  Field::primaryIndex(),
             "id_prodotto"  =>  Field::int(),
-            "sku"  =>  Field::varchar(64)->editable()->setTemplate("slug")->setTemplateVar("nome"),
-            "prezzo"   =>  Field::text()->editable(),
+            "nome"  =>  Field::varchar(512)->editable(),
+            "sku"  =>  Field::varchar(64)->editable(),
+            "prezzo"   =>  Field::text()->editable()
 
         ];
     }
@@ -28,6 +30,7 @@ class Variante extends Model{
         $attributi = VarianteAttributo::findByVariante( $this->id );
 
         $this->attributi = $attributi;
+        $this->images = $this->getImages();
     }
 
 
@@ -45,4 +48,13 @@ class Variante extends Model{
 
         return $got;
     }
+
+    public function getImages(){
+        $sql =  "SELECT * FROM ecommerce_prodotto_variante_immagine WHERE id_variante=:id_variante";
+
+        return Db::$connection->fetchAll($sql,[
+            "id_variante"   =>  $this->id
+        ]);
+    }
+
 }

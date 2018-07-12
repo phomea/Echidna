@@ -19,7 +19,8 @@ class Attributo extends Model{
             "id"    =>  Field::primaryIndex(),
             "nome"   =>  Field::varchar(512)->editable(),
             "slug"  =>  Field::varchar(64)->editable()->setTemplate("slug")->setTemplateVar("nome"),
-            "descrizione"   =>  Field::text()->editable()->setTemplate("textarea")
+            "descrizione"   =>  Field::text()->editable()->setTemplate("textarea"),
+            "tipo"      =>  Field::int()->setTemplate("select")->editable()->setTemplateVar(AttributoTipo::getForSelect("tipo","id"))
         ];
     }
 

@@ -120,7 +120,7 @@ class TipologiaProdotto extends BackendApplication {
     }
 
 
-    static function getForSelect(){
+    static function getForSelect($label="",$id=""){
 
 
         $tipologie = \applications\ecommerce\entities\TipologiaProdotto::query()->getAll();

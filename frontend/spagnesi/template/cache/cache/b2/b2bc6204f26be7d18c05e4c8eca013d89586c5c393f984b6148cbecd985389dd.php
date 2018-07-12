@@ -42,27 +42,36 @@ class __TwigTemplate_d5526b95d8d4ec8124e923aa21361882bc4efeb82795c5ceb5094b8d9fd
             // line 7
             echo "            <div class=\"row\">
                 <div class=\"col\">
-                    ";
-            // line 9
+
+
+                    <a href=\"";
+            // line 11
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["router_service"] ?? null), "getRoute", array(0 => "frontend.ecommerce.schedaprodotto"), "method"), "build", array(0 => array("slug" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["lineitem"], "prodotto", array()), "slug", array()))), "method"), "html", null, true);
+            echo "\">
+                        ";
+            // line 12
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["lineitem"], "prodotto", array()), "nome", array()), "html", null, true);
+            echo " - ";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["lineitem"], "variant", array()), "nome", array()), "html", null, true);
             echo "
+                    </a>
                 </div>
                 <div class=\"col\">
                     ";
-            // line 12
+            // line 16
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["lineitem"], "quantity", array()), "html", null, true);
             echo "
                 </div>
                 <div class=\"col\">
                     ";
-            // line 15
+            // line 19
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["lineitem"], "single_price", array()), "html", null, true);
             echo "
                 </div>
 
                 <div class=\"col\">
                     ";
-            // line 19
+            // line 23
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["lineitem"], "price_total", array()), "html", null, true);
             echo "
                 </div>
@@ -72,7 +81,7 @@ class __TwigTemplate_d5526b95d8d4ec8124e923aa21361882bc4efeb82795c5ceb5094b8d9fd
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['lineitem'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 23
+        // line 27
         echo "        </div>
 
         <a href=\"/checkout\" class=\"btn btn-primary\">Checkout</a>
@@ -92,7 +101,7 @@ class __TwigTemplate_d5526b95d8d4ec8124e923aa21361882bc4efeb82795c5ceb5094b8d9fd
 
     public function getDebugInfo()
     {
-        return array (  76 => 23,  66 => 19,  59 => 15,  53 => 12,  47 => 9,  43 => 7,  39 => 6,  35 => 4,  32 => 3,  15 => 1,);
+        return array (  85 => 27,  75 => 23,  68 => 19,  62 => 16,  53 => 12,  49 => 11,  43 => 7,  39 => 6,  35 => 4,  32 => 3,  15 => 1,);
     }
 
     public function getSourceContext()
@@ -105,7 +114,11 @@ class __TwigTemplate_d5526b95d8d4ec8124e923aa21361882bc4efeb82795c5ceb5094b8d9fd
             {% for lineitem in carrello.lineitems %}
             <div class=\"row\">
                 <div class=\"col\">
-                    {{ lineitem.prodotto.nome }}
+
+
+                    <a href=\"{{ router_service.getRoute(\"frontend.ecommerce.schedaprodotto\").build({slug:lineitem.prodotto.slug}) }}\">
+                        {{ lineitem.prodotto.nome }} - {{ lineitem.variant.nome }}
+                    </a>
                 </div>
                 <div class=\"col\">
                     {{ lineitem.quantity }}
