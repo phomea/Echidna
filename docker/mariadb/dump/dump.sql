@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
--- https://www.phpmyadmin.net/
+-- version 4.5.0.2
+-- http://www.phpmyadmin.net
 --
--- Host: localhost:3306
--- Generation Time: Jul 17, 2018 at 02:36 PM
--- Server version: 5.6.38
--- PHP Version: 7.1.12
+-- Host: db
+-- Generation Time: Jul 17, 2018 at 10:08 PM
+-- Server version: 10.2.12-MariaDB-10.2.12+maria~jessie
+-- PHP Version: 5.6.9-1+deb.sury.org~trusty+2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -28,14 +28,14 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `api` (
   `id` int(11) NOT NULL,
-  `type` text,
-  `applicazione` text,
-  `metodo` text,
-  `url` text,
-  `mappa_parametri` text,
-  `associazione_parametri` text,
-  `colonne_risultato` text,
-  `public_token` text
+  `type` text DEFAULT NULL,
+  `applicazione` text DEFAULT NULL,
+  `metodo` text DEFAULT NULL,
+  `url` text DEFAULT NULL,
+  `mappa_parametri` text DEFAULT NULL,
+  `associazione_parametri` text DEFAULT NULL,
+  `colonne_risultato` text DEFAULT NULL,
+  `public_token` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -46,7 +46,7 @@ CREATE TABLE `api` (
 
 CREATE TABLE `applicazioni` (
   `id` int(11) NOT NULL,
-  `applicazione` text
+  `applicazione` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -58,29 +58,25 @@ CREATE TABLE `applicazioni` (
 CREATE TABLE `articolo` (
   `id` int(11) NOT NULL,
   `autore` int(11) DEFAULT NULL,
-  `titolo` text,
-  `slug` text,
-  `tipo` text,
-  `contenuto` longtext,
-  `riassunto` mediumtext,
+  `titolo` text DEFAULT NULL,
+  `slug` text DEFAULT NULL,
+  `tipo` text DEFAULT NULL,
+  `contenuto` longtext DEFAULT NULL,
+  `riassunto` mediumtext DEFAULT NULL,
   `ordine` int(11) DEFAULT NULL,
   `id_media` int(11) DEFAULT NULL,
-  `data_creazione` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `data_pubblicazione` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `stato` varchar(10) DEFAULT NULL,
-  `categoria_id` int(11) DEFAULT NULL,
-  `id_prodotti_correlati` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `data_creazione` timestamp NOT NULL DEFAULT current_timestamp
+) ;
 
 --
 -- Dumping data for table `articolo`
 --
 
 INSERT INTO `articolo` (`id`, `autore`, `titolo`, `slug`, `tipo`, `contenuto`, `riassunto`, `ordine`, `id_media`, `data_creazione`, `data_pubblicazione`, `stato`, `categoria_id`, `id_prodotti_correlati`) VALUES
-(1, 1, 'Sposarsi in Inverno: 5 idee per un matrimonio invernale', 'sposarsi-in-inverno-5-idee-per-un-matrimonio-invernale', 'one-column', '<p>Ditte di catering e wedding planner sanno bene che la <strong>stagione dei matrimoni &egrave; l&rsquo;estate</strong> con il suo clima secco, le belle giornate di sole e l&rsquo;opportunit&agrave; di sfoggiare abiti leggeri e scollati per gli sposi e gli invitati. In Italia, anche le location all&rsquo;aperto come prati a bordo piscina, spiaggie e assolati cortili di tenute di campagna sono di solito preferiti pi&ugrave; intime cerimonie al chiuso.</p>\r\n<p>C&rsquo;&egrave; chi per&ograve; non sopporta il caldo o chi semplicemente <em>ama la magia dei mesi pi&ugrave; freddi</em> e opta, sempre pi&ugrave; spesso, per una <strong>cerimonia invernale</strong>.</p>\r\n<p><img style=\"width: 100%;\" src=\"https://i.pinimg.com/564x/11/16/cf/1116cfb94249b52ab37586db47f0e2ae.jpg\" alt=\"Idee matrimonio invernale\" /></p>\r\n<h2><strong>I vantaggi di una cerimonia in inverno</strong></h2>\r\n<p>Anche per motivi economici, un <strong>matrimonio</strong> in &ldquo;bassa stagione&rdquo; pu&ograve; risultare una scelta intelligentissima perch&eacute; a volte garantisce liste di attesa dimezzate e prezzi pi&ugrave; abbordabili per le location e maggiore disponibilit&agrave; da parte degli organizzatori che avranno pi&ugrave; tempo ed energie per curare la tua cerimonia nei minimi dettagli.</p>\r\n<p>Sicuramente, <strong>una cerimonia invernale si dimostrer&agrave; vantaggiosa anche sul piano dell&rsquo;originalit&agrave;</strong>. Mentre i matrimoni estivi, da giugno ad agosto ripropongono spesso temi molto simili e poco creativi, i mesi invernali, grazie anche al periodo delle feste permettono di sfruttare decorazioni pi&ugrave; particolari che si ispirano alla calorosa atmosfera natalizia, allo splendore dei cristalli di ghiaccio,alle luci ed al divertimento delle feste di Capodanno.</p>\r\n<p>Ti piacerebbe <strong>organizzare una cerimonia invernale</strong>, ma non sai da che parte cominciare? Cerci <strong>idee matrimonio</strong>&nbsp;per i mesi invernali?&nbsp;Non trovi&nbsp;degli <strong>abiti da sposa invernali</strong> che ti soddisfino?</p>\r\n<p><strong>Cartiamo</strong> ti da qualche consiglio sui temi e le decorazioni pi&ugrave; originali ed eleganti per chi si sposa in inverno.</p>\r\n<p>&nbsp;</p>\r\n<h2>5 idee per un matrimonio invernale</h2>\r\n<h3><br />1. Cerimonia Natalizia</h3>\r\n<p>Calde coperte, cioccolata calda per gli invitati; luci e decorazione natalizie per la location. Per un <strong>matrimonio fuori dagli schemi</strong>, scegli il <strong>tema natalizio e tuffati nella calda atmosfera del Natale</strong> per un white Christmas con i fiocchi.</p>\r\n<p>Puoi optare per un\' atmosfera confortevole e familiare con i toni caldi del rosso e dell&rsquo;oro, per scaldare i cuori e gli occhi dei convitati!</p>\r\n<p>Altrimenti puoi giocare con i <a title=\"Partecipazioni per matrimonio invernale bianche chic\" href=\"https://cartiamo.it/shop/matrimoni/trendy/1?colore=bianco\"><strong>bianco e toni pi&ugrave; freddi tipici di un elegante White Christmas</strong></a> in montagna. Ecco qualche idea!</p>\r\n<p>&nbsp;</p>\r\n<div class=\"row\">\r\n<div class=\"col-md-6\">\r\n<div class=\"row\">\r\n<div class=\"col-md-6\"><img src=\"https://i.pinimg.com/564x/e2/42/35/e242357a01c7ed3b38e7c9f410484547.jpg\" alt=\"Cerimonia natalizia luci\" /></div>\r\n<div class=\"col-md-6\"><img src=\"https://i.pinimg.com/564x/56/8e/3c/568e3cea90acecd84f73631ec24e6a75.jpg\" alt=\"Matrimonio con candele\" /></div>\r\n</div>\r\n<div class=\"row\">\r\n<div class=\"col-md-12\"><img style=\"width: 100%;\" src=\"https://i.pinimg.com/564x/1e/bd/b9/1ebdb9821b2b3c3e3f3d038be0fb36db.jpg\" alt=\"idee originali matrimonio\" /> <img style=\"width: 100%;\" src=\"https://i.pinimg.com/564x/54/86/4c/54864c16c9b1558ecf208f149e7cdb01.jpg\" alt=\"abiti da sposa invernali\" /></div>\r\n</div>\r\n</div>\r\n<div class=\"col-md-6\"><img style=\"width: 100%;\" src=\"https://i.pinimg.com/564x/b3/ea/62/b3ea62d2570b0a76830462ee476e71ca.jpg\" alt=\"idee matrimonio\" /> <img style=\"width: 100%;\" src=\"https://i.pinimg.com/564x/d9/5b/91/d95b91c98853e6787b74c32d5cb7a643.jpg\" alt=\"idee per matrimonio\" /></div>\r\n</div>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<h3>&nbsp;</h3>\r\n<h3>2. Cerimonia per capodanno</h3>\r\n<p>Non sai mai cosa fare per l&rsquo;Ultimo dell&rsquo;Anno? Organizza il tuo <a title=\"Partecipazioni di matrimonio creative\" href=\"https://cartiamo.it/shop/matrimoni/creativa/1\"><strong>matrimonio creativo</strong></a> la sera del 31 Dicembre e prendi due piccioni con una fava!</p>\r\n<p>Le luci, i fuochi di artificio, il tema del tempo che passa ed i buoni propositi per un futuro di coppia&hellip; insomma <strong>sposini a Capodanno, sposini tutto l&rsquo;anno</strong>, o meglio, <strong>tutta la vita finch&eacute; morte non vi separi</strong>. Ecco qualche spunto per una <em>cerimonia a fine anno.</em></p>\r\n<p>&nbsp;</p>\r\n<div class=\"row\">\r\n<div class=\"col-md-6\"><img src=\"https://i.pinimg.com/564x/9a/5c/8a/9a5c8a4159de85d6c317232459e6d2b6.jpg\" alt=\"cerimonia di capodanno\" /> <img src=\"https://i.pinimg.com/564x/ae/cf/ea/aecfeaffe1b83092ff14fd36100a9548.jpg\" alt=\"matrimonio 2017 e matrimonio 2018\" /> <img src=\"https://i.pinimg.com/564x/ac/90/84/ac90849c2120f9e4bf0d4eb07f2bcb65.jpg\" alt=\"brindisi di matrimonio\" /></div>\r\n<div class=\"col-md-6\"><img src=\"https://i.pinimg.com/564x/d7/b7/a4/d7b7a4976c908bf6c640205c970a1b6d.jpg\" alt=\"matrimonio invernale idee\" /></div>\r\n</div>\r\n<p><br /><br /></p>\r\n<h3>3. Cerimonia country chic invernale</h3>\r\n<div class=\"row\">\r\n<div class=\"col-md-6\">\r\n<p>Il profumo del bosco, i colori della terra e delle bacche rosse, il legno e la morbidezza del tartan scozzese. Sono solo alcune idee per un <strong>matrimonio invernale</strong> in <strong>stile country chic</strong> che pu&ograve; essere una variante originalissima per un matrimonio che lasci gli invitati a bocca aperta. Per una <strong>sposa rock&rsquo;n&rsquo;roll</strong> la classica <em>camicia a quadri</em> pu&ograve; diventare anche un top da abbinare ad una <em>romantica gonna in tulle bianco</em>. Anche il tuo LUI si potr&agrave; sbizzarrire con il <strong>abito da sposo invernale</strong> in stile country chic!</p>\r\n<br />\r\n<div class=\"row\">\r\n<div class=\"col-md-6\"><img src=\"https://i.pinimg.com/564x/e6/b2/33/e6b233f14ea6c5d289d5aaac4956f708.jpg\" alt=\"bouquet per matrimonio country chic\" /></div>\r\n<div class=\"col-md-6\"><img src=\"https://i.pinimg.com/564x/de/9b/85/de9b855ea6f998cac2e2457d5a4eaeda.jpg\" alt=\"ricevimento country chic\" /></div>\r\n</div>\r\n<img style=\"width: 100%;\" src=\"https://i.pinimg.com/564x/77/d1/d8/77d1d8e56bf34dc29fa1e90ebc802d9d.jpg\" alt=\"location matrimonio country chic\" /></div>\r\n<div class=\"col-md-6\"><img src=\"https://i.pinimg.com/564x/cd/37/5f/cd375f0e37f57d6f4be4db9a7359ff9a.jpg\" alt=\"vestiti originali per matrimonio\" /></div>\r\n</div>\r\n<p>&nbsp;</p>\r\n<h3>4. Un trionfo di luci e candele</h3>\r\n<p>Se scegli di celebrare le <strong>nozze durante un mese invernale</strong>, dovrai fare i conti con giornate molto corte e quindi molte ore di oscurit&agrave;. Anche se apparentemente ci&ograve; pu&ograve; sembrare un problema in realt&agrave; pu&ograve; rivelarsi una risorsa preziosissima per allestire un <em>ricevimento di un\' eleganza mozzafiato</em>. Ma come &egrave; possibile? Il buio potr&agrave; essere illuminato da una cascata di lucine, torce, lanterne e candele di ogni forma e dimensione. Un trionfo di luci per una <strong><a title=\"Partecipazioni di matrimonio chic\" href=\"https://cartiamo.it/shop/matrimoni/chic\">cerimonia scintillante e super chic</a></strong>!</p>\r\n<p>&nbsp;</p>\r\n<div class=\"row\">\r\n<div class=\"col-md-6\"><img style=\"width: 100%;\" src=\"https://i.pinimg.com/564x/11/de/d9/11ded91e4c177ca52de4abaa17422b8c.jpg\" alt=\"decorazioni natalizie\" /> <img src=\"https://i.pinimg.com/564x/57/b3/38/57b33864e1830b4ef16595199ad9383d.jpg\" alt=\"sposa invernale\" /></div>\r\n<div class=\"col-md-6\"><img src=\"https://i.pinimg.com/564x/cf/1c/26/cf1c267fb814686d930182d3eea04f04.jpg\" alt=\"candele e idee per matrimonio di inverno\" /></div>\r\n</div>\r\n<p>&nbsp;</p>\r\n<h3>5. La Sposa Invernale: pelliccia, lana e dettagli preziosi</h3>\r\n<p>Per quanto riguarda l&rsquo;abito, la sposa che sceglie una <strong>cerimonia invernale</strong>, non deve scendere a compromessi, esistono abiti stupendi adatti all&rsquo;inverno ma senza mai rinunciare all&rsquo;eleganza. Considerando che il ricevimento, nei mesi invernali, si tiene spesso in luoghi chiusi e riscaldati, per l&rsquo;abito c&rsquo;&egrave; l&rsquo;imbarazzo della scelta ma andr&agrave; coordinato ad uno <em>scialle di cachemire, una pelliccia (anche eco) o una romantica mantella con strascico e cappuccio.</em></p>\r\n<p>Inoltre la parola chiave per la <em>sposa invernale</em> &egrave; &ldquo;dettagli preziosi&rdquo;: <strong>cristalli, strass, paillettes per illuminare le scarpe, l&rsquo;abito o l&rsquo;acconciatura</strong>.</p>\r\n<div class=\"row\">\r\n<div class=\"col-md-8\">\r\n<div class=\"row\">\r\n<div class=\"col-md-5\"><img src=\"https://i.pinimg.com/564x/08/ae/c5/08aec5133b8bb276dde57116cbf5bf26.jpg\" alt=\"abiti da sposa invernali\" /> <img src=\"https://i.pinimg.com/564x/7d/79/7a/7d797accaf32670066a5204603d2af01.jpg\" alt=\"abito da sposa invernale\" /></div>\r\n<div class=\"col-md-7\"><img style=\"width: 100%;\" src=\"https://i.pinimg.com/564x/97/84/5f/97845fbc718ef849dfeaf97f3816f3bf.jpg\" alt=\"scarpe con pelliccia\" /></div>\r\n</div>\r\n</div>\r\n<div class=\"col-md-4\"><img src=\"https://i.pinimg.com/564x/80/82/97/808297f41c552e30f41c05c9388c4c79.jpg\" alt=\"vestiti da sposa invernali\" /></div>\r\n</div>', '5 idee per un <b>matrimonio invernale</b>. Sposarsi in inverno puÃ² essere la scelta migliore per il tuo matrimonio perfetto!', NULL, 26, '2017-12-07 18:29:10', '0000-00-00 00:00:00', 'pubblicato', 1, 'rebecca;katherine;olivia;betulla;dark'),
-(2, 1, 'Scegliere il Bouquet: tutti gli stili per una sposa perfetta', 'scegliere-il-bouquet-tutti-gli-stili-per-una-sposa-perfetta', 'one-column', '<p>Chiesa fissata, location scelta, abito acquistato e partecipazioni inviate. Cosa manca?</p>\r\n<p>Sono tantissimi i dettagli da curare per un matrimonio perfetto, dalle bomboniere, al tema, al men&ugrave; da servire agli ospiti, ma <strong>un elemento a cui la sposa non pu&ograve; senz&rsquo;altro rinunciare &egrave; il bouquet!</strong></p>\r\n<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://cartiamo.it/media/static/blog-bouquet-preview.jpeg\" alt=\"\" /></p>\r\n<p>Buch&eacute;, buqu&eacute;, mazzolino&hellip; chiamatelo come volete, ma non sottovalutate la sua importanza. Quando risuoner&agrave; la marcia nuziale e la sposa apparir&agrave; in cima alla navata tutti gli occhi degli invitati, dopo aver attentamente analizzato l&rsquo;abito, cadranno immediatamente sulla composizione floreale stretta tra le mani della sposa&hellip; <strong>il bouquet!</strong></p>\r\n<p>&nbsp;</p>\r\n<h2 class=\"western\">Storia del bouquet: una tradizione antica che si rinnova</h2>\r\n<p>La futura sposa pi&ugrave; moderna e all&rsquo;avanguardia potrebbe obiettare che quella del bouquet sia una tradizione datata a cui la sposa del nuovo millennio potrebbe rinunciare, ma nonostante la sua storia secolare, il bouquet matrimoniale, col passare dei decenni si rinnova, cambia forma, dimensioni e colori ed &egrave; un elemento ancora di grande tendenza a cui pochissime rinunciano.</p>\r\n<div class=\"row\">\r\n<div class=\"col-md-6\"><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://cartiamo.it/media/static/SKyJ_0046.jpg\" alt=\"\" width=\"569\" height=\"380\" /></div>\r\n<div class=\"col-md-6\"><img src=\"https://cartiamo.it/media/static/daisy and green bouquet emma case venus flowers.jpg\" alt=\"\" /></div>\r\n</div>\r\n<p>&nbsp;</p>\r\n<p><strong>Ma dov&rsquo;&egrave; nata l&rsquo;usanza del bouquet della sposa?</strong></p>\r\n<p>Gi&agrave; in epoca precristiana, nei &ldquo;matrimoni&rdquo; pagani le giovani donne solevano portare<strong> in mano o tra i capelli rametti </strong><strong>di mirto e rosmarino c</strong><strong>he, al tempo, erano simbolo di abbondanza e fertilit&agrave;</strong> e quindi buon auspicio per il futuro della coppia.</p>\r\n<p>La tradizione era presente anche nel mondo arabo, in cui la sposa per tradizione, si adornava il capo con profumati <strong>fiori d&rsquo;arancio come simbolo di purezza</strong>. Dalla corona, con il tempo, si &egrave; passati al mazzetto di fiori legato con nastri di seta che possono considerarsi gli antesignani dei moderni bouquet.</p>\r\n<p>Nella tradizione italiana il bouquet &egrave; l&rsquo;<strong>ultimo dono del fidanzato alla sua futura moglie</strong> e dovrebbe essere proprio lui a sceglierlo e a portarlo alla promessa sposa poco prima della cerimonia. Oggi, per il bene del futuro marito che rischia il linciaggio in caso di errore, &egrave; proprio la sposa a scegliere il bouquet che deve essere abbinato al vestito e in tema della cerimonia.</p>\r\n<p><img src=\"https://cartiamo.it/media/static/Frontpage72pixel3-post.jpg\" alt=\"\" /></p>\r\n<p>&nbsp;</p>\r\n<p>Ancora oggi, a volte, si mantiene la tradizione, per cui lo sposo o il testimone dello sposo, debbano andare a recapitare la composizione floreale direttamente a casa della sposa, la mattina delle nozze. In alcune zone del sud d&rsquo;Italia sono addirittura <strong>i suoceri che hanno il compito di recapitare il bouquet</strong> alla sposa, con successiva foto di rito.</p>\r\n<p>&nbsp;&nbsp;</p>\r\n<h2 class=\"western\">SOS Bouquet: guida agli stili e agli abbinamenti</h2>\r\n<p>Come abbiamo detto &egrave; proprio la sposa che ha l&rsquo;onore e l&rsquo;onere di scegliere il proprio bouquet, ma la scelta di questo elemento non &egrave; facile come sembra, esistono <strong>tantissimi stili e forme diverse, per </strong><strong>non</strong><strong> parlare delle infinite variet&agrave; di fiori esistenti e </strong><strong>le mille</strong><strong> combinazioni di colori possibili</strong>.</p>\r\n<p>Sposa, non &egrave; il caso di andare nel panico!</p>\r\n<p><img src=\"https://cartiamo.it/media/static/white-wedding-flowers-names3.jpg\" alt=\"\" width=\"1352\" height=\"710\" /></p>\r\n<p><strong>Se non hai le idee chiare a riguardo, un </strong><em><strong>wedding planner</strong></em><strong> o un </strong><em><strong>floral designer</strong></em><strong> di grande professionalit&agrave; ed esperienza pu&ograve; guidarti in questa scelta cruciale</strong> mostrandoti tutti gli stili, le nuove tendenze e i migliori abbinamenti con l&rsquo;abito da sposa, il tema della cerimonia o l&rsquo;architettura della location in cui si svolger&agrave; la cerimonia.</p>\r\n<p>&nbsp;</p>\r\n<p>Intanto, per chiarirti le idee, Cartiamo ti propone una lista di tutti gli stili di bouquet pi&ugrave; popolari, dai pi&ugrave; tradizionali e romantici, alle creazioni floreali minimal e moderne.</p>\r\n<p>&nbsp;</p>\r\n<h2 class=\"western\">Classico tondo: compatto ed elegante</h2>\r\n<p>Il bouquet pi&ugrave; amato dalle spose. <strong>Il classico mazzo di forma tonda e compatta</strong> &egrave; versatile e pu&ograve; adattarsi ad ogni tipo di cerimonia. La sposa tradizionale lo sceglie spesso con un unico tipo di fiore, <strong>di solito </strong> <strong>sono </strong> <strong>rose ma di recente le peonie vanno per la maggiore</strong>, grazie alla loro eleganza e il forte impatto visivo. I bouquet di questo tipo si trovano anche con una maggiore variet&agrave; di fiori e di colori e possono essere impreziositi da cristalli e nastri di raso.</p>\r\n<div class=\"row\">\r\n<div class=\"col-md-6\"><img src=\"https://cartiamo.it/media/static/bouquet-da-sposa-2017-rotondo-1073763_w670.jpg\" alt=\"\" /> <img src=\"https://cartiamo.it/media/static/34b318588f068cf8b81213211b49e100.jpg\" alt=\"\" /></div>\r\n<div class=\"col-md-6\"><img src=\"https://cartiamo.it/media/static/2d3b88f9045a12a1b2510bcd8366a8b5.jpg\" alt=\"\" /></div>\r\n</div>\r\n<p>&nbsp;</p>\r\n<h2 class=\"western\">Romantico: una cascata di fiori</h2>\r\n<p>Il pi&ugrave; scenografico dei bouquet. Dalla <strong>forma slanciata e verticale</strong>, questo tipo di bouquet esalta i fisici slanciati e esili e gli abiti dalle linee semplici e non si adatta a sposine dalle forme morbide ed abiti troppo vaporosi. Il bouquet pu&ograve; essere creato con vari tipi di fiori ma <strong>i pi&ugrave; adatti a creare l&rsquo;effetto cascata, sono le calle, le orchidee e tralci di felci ed edera</strong>.</p>\r\n<div class=\"row\">\r\n<div class=\"col-md-6\"><img src=\"https://cartiamo.it/media/static/1fb649be0fbe665ae19a154ef7e0e262.jpg\" alt=\"\" /> <img src=\"https://cartiamo.it/media/static/a6f2becc8b8fe359a5c74f231ff6bb08.jpg\" alt=\"\" /></div>\r\n<div class=\"col-md-6\"><img src=\"https://cartiamo.it/media/static/7869a7c7dd6ff548b8307baf7db64c57.jpg\" alt=\"\" /></div>\r\n</div>\r\n<p>&nbsp;</p>\r\n<h2>Minimal: a fascio o fiore singolo</h2>\r\n<p>Minimale e chic, il bouquet a fascio &egrave; perfetto per la sposa che ama le linee pulite ed essenziali. E&rsquo; di solito composto da fiori a stelo lungo tutti uguali (rose, calle, tulipani) legati stretti da un nastro per un effetto semplice ma estremamente chic, ideale per abiti in seta e in stile vintage anni 20.<br /> Di recente, la sposa che opta per un bouquet minimal, sceglie sempre pi&ugrave; spesso il fiore singolo.</p>\r\n<div class=\"row\">\r\n<div class=\"col-md-6\"><img src=\"https://cartiamo.it/media/static/1275aa39ed28cee22a28d675e467233b.jpg\" alt=\"\" /></div>\r\n<div class=\"col-md-6\"><img src=\"https://cartiamo.it/media/static/f6bbf6b2-bc4b-474a-87b4-1772b9d292c9.jpg\" alt=\"\" /> <img src=\"https://cartiamo.it/media/static/86504831.jpg\" alt=\"\" /></div>\r\n</div>\r\n<div class=\"row\">\r\n<div class=\"col-md-4\"><img src=\"https://cartiamo.it/media/static/a72d0cbb461fda0eeb6ba58abbbd7f75--single-flower-bouquet-single-flowers.jpg\" alt=\"\" /></div>\r\n<div class=\"col-md-4\"><img src=\"https://cartiamo.it/media/static/single-bloom-bouquet-2.jpg\" alt=\"\" /></div>\r\n<div class=\"col-md-4\"><img src=\"https://cartiamo.it/media/static/c214d25c56dc3e050f9c455937517112--single-flower-bouquet-single-flowers.jpg\" alt=\"\" /></div>\r\n<div class=\"col-md-4\">&nbsp;</div>\r\n</div>\r\n<p>&nbsp;</p>\r\n<h2 class=\"western\">Colorato: fiori di campo in stile country chic</h2>\r\n<p>Particolarmente di moda oggi&nbsp;&egrave; il tema country-chic. Pi&ugrave; piccolo e variopinto dei bouquet classici,&nbsp;con fiori semplici e dalle tonalit&agrave; pastello, tenuti insieme, in modo naturale da spago, fili di paglia o merletti per un tocco vintage. Questo tipo di bouquet dall&rsquo;aspetto allegro e spensierato, si pu&ograve; arricchire di elementi originali, come le piante succulente e le erbe aromatiche come la lavanda e il rosmarino. Che profumo!</p>\r\n<p>&nbsp;</p>\r\n<div class=\"row\">\r\n<div class=\"col-md-6\"><img src=\"https://cartiamo.it/media/static/cf8242f81ec18b3f6ec13d91221e7443.jpg\" alt=\"\" />\r\n<div class=\"row\">\r\n<div class=\"col-md-6\"><img src=\"https://cartiamo.it/media/static/f28bbf4f17e96455dcbb9014ad2412c0.jpg\" alt=\"\" /></div>\r\n<div class=\"col-md-6\"><img src=\"https://cartiamo.it/media/static/e95fd674261282758ac161b516cf512b.jpg\" alt=\"\" /></div>\r\n</div>\r\n</div>\r\n<div class=\"col-md-6\"><img src=\"https://cartiamo.it/media/static/a12a2afe9586cbf14fd1915212924d5f.jpg\" alt=\"\" /></div>\r\n</div>\r\n<p>&nbsp;</p>\r\n<h2 class=\"western\">Originale: forme e fiori inusuali</h2>\r\n<p>Infine, in bouquet pu&ograve; assumere forme originali e fuori dal comune e pu&ograve; diventare un vero e proprio accessorio per la sposa pi&ugrave; creativa e dinamica. <strong>Il </strong><strong>b</strong><strong>ouquet pu&ograve; diventare borsa, bracciale o ventaglio oppure assumere forme strane</strong> come la sfera, l&rsquo;anello e il cilindro. Un ulteriore tocco di originalit&agrave; per un bouquet creativo, pu&ograve; essere dato da <strong>fiori in tessuto o in carta</strong>. E che ve ne pare di un preziosissimo bouquet composto soltanto da perle?</p>\r\n<div class=\"row\">\r\n<div class=\"col-md-7\"><img src=\"https://cartiamo.it/media/static/ade343fbbf33ae7b6c0f568c0ecab08d.jpg\" alt=\"\" width=\"767\" height=\"1149\" /> <img src=\"https://cartiamo.it/media/static/bouquet-originali-mix.jpg\" alt=\"\" /></div>\r\n<div class=\"col-md-5\"><img src=\"https://cartiamo.it/media/static/87a02964e2627165c31dced0086c733e.jpg\" alt=\"\" /> <img src=\"https://cartiamo.it/media/static/9392a905242418c1bf37d839ffc46b68.jpg\" alt=\"\" width=\"523\" height=\"551\" /> <img src=\"https://cartiamo.it/media/static/1516b8e289c8eabcf932ed34b643a0c6.jpg\" alt=\"\" width=\"432\" height=\"432\" /></div>\r\n</div>', 'BuchÃ©, buquÃ©, mazzolinoâ€¦ chiamatelo come volete, ma non sottovalutate la sua importanza. Quando risuonerÃ  la marcia nuziale e la sposa apparirÃ  in cima alla navata tutti gli occhi degli invitati, dopo aver attentamente analizzato lâ€™abito, cadranno immediatamente sulla composizione floreale stretta tra le mani della sposaâ€¦ il bouquet!', NULL, 28, '2018-01-03 13:48:39', '2018-01-02 23:00:00', 'pubblicato', 1, 'primavera;betulla;sequoia;alloro'),
-(3, 1, 'Il matrimonio country chic: consigli, idee e dettagli', 'il-matrimonio-country-chic-consigli-idee-e-dettagli', 'one-column', '<h1>Il matrimonio country chic: consigli, idee e dettagli</h1>\r\n<p>Anche se ci sono ancora coppie che prediligono un ricevimento sontuoso o dettagli raffinati e glamour, il matrimonio in stile country chic si conferma uno dei preferiti dagli sposi italiani.</p>\r\n<p>Questo stile &egrave; particolarmente di tendenza e viene spesso scelto dalle giovani coppie amanti della semplicit&agrave; e del verde.</p>\r\n<p>Il matrimonio country chic deve sempre mantenere il giusto equilibrio tra rustico ed elegante, per questo &egrave; necessario esaltare la componente country (campagna in inglese) che richiama i colori e le texture della terra e della natura, senza rinunciare allo stile e all&rsquo;armonia di ogni minimo dettaglio.</p>\r\n<h2>Natura e Semplicit&agrave;</h2>\r\n<p>Anche se declinati in molteplici sfumature e forme, i due elementi che non devono mancare mai nel matrimonio country chic sono: <strong>la natura e la semplicit&agrave;</strong>.Per quanto riguarda la natura, i frutti della terra, le erbe aromatiche, le spezie possono essere elementi che richiamano ai profumi ed ai colori della campagna.Mentre la semplicit&agrave; &egrave; incarnata da tessuti grezzi e materiali basic come la terracotta, il legno, il lino, la juta. Insomma niente lustrini, cristalli e sfarzo principesco, perch&eacute; si sa che spesso la semplicit&agrave; &egrave; sinonimo di eleganza.</p>\r\n<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://cartiamo.it/media//blog-matrimonio-country-chic-m.jpg\" alt=\"\" /></p>\r\n<p>&nbsp;</p>\r\n<h2>La Location Country Chic</h2>\r\n<p>Country vuol dire campagna quindi ogni luogo immerso nel verde e nella natura &egrave; perfetto per questo tipo di matrimonio.</p>\r\n<p><strong>Dall&rsquo;antico casale nella campagna toscana, al cortile assolato di una masseria pugliese</strong>, ma anche un semplice <strong>giardino fiorito</strong> o un uliveto illuminato da mille lucine, sono tutte location perfette per un matrimonio in stile country.Se hai scelto i mesi freddi per il tuo matrimonio non devi rinunciare al setting rustico, una <strong>baita montana ricoperta di legno o il fienile ristrutturato di una fattoria</strong>, e perch&eacute; no una <strong>candida tenda in mezzo a un prato</strong> decorata con piante e luci.</p>\r\n<p><img src=\"https://cartiamo.it/media//blog-matrimonio-country-chic1.jpg\" alt=\"\" /></p>\r\n<p>&nbsp;</p>\r\n<p style=\"text-align: center;\"><strong>Se hai deciso di sposarti in inverno leggi i nostri consiglio per il perfetto matrimonio invernale nell&rsquo;articolo </strong><br /><strong><a title=\"Matrimonio in inverno, 5 idee\" href=\"https://cartiamo.it/blog/asdasd/sposarsi-in-inverno-5-idee-per-un-matrimonio-invernale\">SPOSARSI IN INVERNO: 5 IDEE PER UN MATRIMONIO INVERNALE</a></strong></p>\r\n<p>&nbsp;</p>\r\n<h2>Decorazioni Country Chic</h2>\r\n<p>S&igrave; va bene la semplicit&agrave; ma &egrave; sempre un matrimonio!</p>\r\n<p>La bellezza disarmante della natura che vi circonder&agrave; non sar&agrave; abbastanza per rendere perfetto il vostro giorno speciale, ed &egrave; qui che entrano in scena i fiori e le decorazioni.<br />Anche i dettagli devono per&ograve; essere il linea con il tema country e la natura ed &egrave; qui che entrano in scena i <strong>barili, tronchi di legno, la paglia e la juta, i barattoli di vetro e i tessuti grezzi</strong>.</p>\r\n<p>Il tableau ad esempio pu&ograve; essere una <strong>vecchia porta o una finestra</strong>, su cui scrivere i nomi degli invitati oppure <strong>una scala su cui appoggiare piantine profumate,</strong> una per ogni tavolo.</p>\r\n<p>Per quanto riguarda i centrotavola e le decorazioni floreali, il top sono le <strong>erbe aromatiche</strong> come lavanda, rosmarino o le tonalit&agrave; argentate di salvia, ulivo ed eucalipto. In alternativa <strong>fiori di campo</strong> e&nbsp;<strong>piante grasse</strong>, oppure <strong>frutta fresca</strong>, come ciliege, mele selvatiche ed agrumi per richiamare i doni della terra. Un&rsquo;altra idea sono <strong>contorti rami da poggiare direttamente sui tavoli</strong> ed in cui incastonare fiori recisi.</p>\r\n<p><strong>Le candele magari racchiuse in rustici bicchieri o vasetti da cucina di forme e colori diversi</strong>, insieme allo splendore delle lucine non possono mancare ad impreziosire il tutto.</p>\r\n<p><img src=\"https://cartiamo.it/media//blog-matrimonio-country-chic2.jpg\" alt=\"\" /></p>\r\n<p>&nbsp;</p>\r\n<p style=\"text-align: center;\"><strong>Per scegliere il bouquet pi&ugrave; adatto per la tua cerimonia coutry chic leggi l&rsquo;articolo di </strong><br /><strong><a title=\"SCEGLIERE IL BOUQUET: TUTTI GLI STILI PER UNA SPOSA PERFETTA\" href=\"https://cartiamo.it/blog/il-matrimonio-perfetto/scegliere-il-bouquet-tutti-gli-stili-per-una-sposa-perfetta\">SCEGLIERE IL BOUQUET: TUTTI GLI STILI PER UNA SPOSA PERFETTA</a></strong></p>\r\n<p>&nbsp;</p>\r\n<h2>Bomboniere Country Chic</h2>\r\n<p>Uno dei trend pi&ugrave; in voga per la bomboniera in stile country &egrave; quello dei deliziosi vasetti mignon con<strong> piantine grasse o aromatiche</strong>.<br />Per richiamare i profumi della campagna un&rsquo;altra opzione &egrave; il <strong>sacchettino profuma biancheria </strong>pieno di lavanda, in tessuto grezzo come il lino o la juta su cui ricamare le iniziali degli sposi.</p>\r\n<p>Il tema gastronomico va forte: i <strong>barattolini di spezie</strong> o di sale aromatizzato, i mini vasetti di<strong> marmellata e miele, la bottiglietta di olio d&rsquo;oliva </strong>o il sacchettino con preziose<strong> miscele di te e infusi</strong>.</p>\r\n<p>Un&rsquo;idea originale per la bomboniera country chic pu&ograve; essere una <strong>profumatissima saponetta artigianale </strong>arricchita con boccioli di rosa, lavanda ed aghi di rosmarino.</p>\r\n<p><img src=\"https://cartiamo.it/media//blog-matrimonio-country-chic3.jpg\" alt=\"\" /></p>\r\n<p>&nbsp;</p>\r\n<h2>Torta Nuziale Country Chic</h2>\r\n<p>E&rsquo; la <strong>naked cake</strong> la regina delle torte nuziali in stile country. <br />La moda della &ldquo;torta nuda&rdquo; &egrave; abbastanza recente e consiste in una torta solitamente su tre piani, che viene coperta da un sottile strato di glassa in modo da lasciare intravedere lo sponge cake e il ripieno a scelta degli sposi&hellip; dimenticatevi quindi lo spesso e stucchevole strato di pasta da zucchero!</p>\r\n<p>La <strong>naked cake</strong> pu&ograve; essere <strong>decorata a piacere con frutta e fiori freschi in perfetto stile country chic</strong>!</p>\r\n<p><img src=\"https://cartiamo.it/media//blog-matrimonio-country-chic4.jpg\" alt=\"\" /></p>', 'Matrimonio country chic, scopri le location per un matrimonio semplice, idee per decorazioni country chic, bomboniere e le naked cake', NULL, 29, '2018-01-18 16:33:34', '2018-01-17 23:00:00', 'pubblicato', 1, 'nocciola;silvia'),
-(4, 1, 'Matrimonio a tema viaggio: mappe, valigie, aeroplanini e tante idee per un matrimonio originale', 'idee-per-matrimonio-tema-viaggio', 'one-column', '<p>Tu e la tua dolce met&agrave; siete dei cuori vagabondi? Amate viaggiare? Condividete la vostra passione con i vostri invitati e scegliete il tema del viaggio per il vostro matrimonio!<br /> <br /> Il tema del viaggio si presta per un matrimonio originale e sempre pi&ugrave; spesso &egrave; scelto da <strong>giovani coppie che amano viaggiare insieme</strong> e si augurano un futuro pieno di avventure.<br /> Questo tema si presta a tante personalizzazioni e pu&ograve; rispecchiare l\'esperienze degli sposi, ispirandosi a viaggi da loro fatti, citt&agrave; da loro visitate insieme o luoghi che desiderano visitare o che magari fanno parte dell\'itinerario del loro viaggio di nozze.</p>\r\n<p><img src=\"https://cartiamo.it/media//matrimonio-a-tema-viaggio.jpg\" alt=\"\" /></p>\r\n<p>Le foto fatte durante le vacanze in giro per il mondo nel tableau, le partecipazioni che sembrano biglietti dell&rsquo;aereo, una valigia per contenere le bomboniere o la cartina geografica arrotolata che racchiude il riso da lanciare agli sposi: sono solo alcuni degli elementi che possono rendere speciale un matrimonio a tema viaggio.&nbsp;</p>\r\n<p>Vediamo qualche idea originale per rendere perfetto il matrimonio di due viaggiatori incalliti!</p>\r\n<h2>Il Viaggio Vintage</h2>\r\n<p>Negli ultimi tempi, sempre pi&ugrave; sposi scelgono per il loro matrimonio la variate del &ldquo;viaggio vintage&rdquo;, che permette un approccio molto chic al tema.<br /> Tanti piccoli preziosi dettagli devono creare un&rsquo;atmosfera nostalgica e affascinante, ricordando i tempi in cui viaggio era sinonimo di avventura!<br /> Elementi centrali del ricevimento a tema viaggio sono sicuramente le <strong>vecchie valigie di pelle, legno o cartone</strong>, in forme, colori e dimensioni diverse, con cui creare livelli sui tavoli o in cui presentare le bomboniere. <br /> Altre decorazioni che ricordino il viaggio d&rsquo;altri tempi possono essere vecchi libri a tema come <strong>guide turistiche o antichi giornali di viaggio</strong>. <br /> <strong>Vecchie foto in bianco e nero o cartoline di citt&agrave; europee</strong> ma anche <strong>cartine geografiche</strong> dall&rsquo;aspetto vissuto, possono dare un effetto d&rsquo;antan al tableau o ai centrotavola. <br /> Inoltre, delle <strong>vecchie macchine fotografiche reflex</strong> o dei <strong>piccoli mappamondi</strong> sono altri elementi di grande impatto, perfetti protagonisti di un allestimento ispirato a al viaggio in stile vintage.<br /> <br /> Idee originali per le bombonire: <strong>mini valigette di carta</strong> ripiene di confetti o piccole bussole d&rsquo;orate impreziosite da un bel fiocco di organza.</p>\r\n<p><img src=\"https://cartiamo.it/media//matrimonio-a-tema-viaggio-aereoplano.jpg\" alt=\"\" />&nbsp;</p>\r\n<h2>Aeroplani, aerei e ancora aeroplanini!</h2>\r\n<p><strong>Qual&rsquo;&egrave; l&rsquo;elemento sinonimo di viaggio, avventura e libert&agrave;?!</strong><br /> La risposta &egrave; <strong>l&rsquo;aeroplano</strong>!<br /> Sinonimo di avventura verso mete lontane, l\'aereo difficilmente manca nell&rsquo;allestimento di un matrimonio dedicato al viaggio. Questo elemento pu&ograve; essere declinato in molteplici chiavi, dalla torta nuziale, al tableau, fino alle bomboniere.Le dimensioni e i materiali possono variare, oltre al legno e al metallo, spesso la scelta ricade sulla carta, econimica e di grande effetto!<br /> <strong>L&rsquo;areoplanino di carta</strong> &egrave; molto versatile e si presta a vari stili: in tonalit&agrave; pastello pu&ograve; essere adatto a un centrotavola minimal; ottenuto da cartine stradali e mappe si addice a ricevimenti in stile vintage; il semplice aeroplanino bianco &egrave; perfetto per creare un effetto elegante ed allo stesso tempo leggero e giocoso.</p>\r\n<p><img src=\"https://cartiamo.it/media//matrimonio-con-aeroplani.jpg\" alt=\"\" />&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<h2><strong>Tutti i mezzi di trasporto per una fuga d&rsquo;amore!</strong></h2>\r\n<p><br /> Non solo areoplani ma anche <strong>treni, auto, moto, barchette</strong> i mezzi di trasporto sono elementi che potrebbero essere presenti nel giorno speciale di una coppia che ama le avventure on the road.<br /> Il mezzo con cui gli sposi lasciano la chiesa o arrivano al luogo del ricevimento &egrave; un dettaglio molto importante e nel matrimonio a tema viaggio lo &egrave; anche di pi&ugrave;!<br /> Per chi ama lo stile vintage, niente di meglio di una <strong>macchina d&rsquo;epoca con valigie di pelle sul tettuccio</strong> (magari un grazioso maggiolino o una 500) oppure per gli sposi centauri una <strong>motocicletta old style</strong> o meglio ancora una <strong>simpatica vespa</strong>&hellip; abito della sposa permettendo!<br /> Il treno e la stazione, sono simboli anch&rsquo;essi del viaggio e una vecchia locomotiva o dei binari in stile liberty potrebbero fare al caso vostro come <strong>romantico setting del servizio fotografico</strong> a tema. <br /> Infine, un altro mezzo di trasporto un po&rsquo; inusuale ma molto divertente e originale per organizzare un ricevemento a tema viaggio &egrave; <strong>la mongolfiera</strong>! Protagonista di molte avventure nell&rsquo;immaginario dei primi del 900, pu&ograve; essere un&rsquo;alternativa colorata e giocosa per il tema del viaggio. <br /> Non importa affittare un pallone aerostatico vero e proprio, basta integrare la mongolfiera nelle decorazioni magari sotto forma di palloncini fluttuanti sui tavoli o un foto booth che ne riproduca il cesto. <strong>Originalissimo</strong>!</p>\r\n<p><img src=\"https://cartiamo.it/media//matrimonio-viaggio-mezzi-di-trasporto.jpg\" alt=\"\" /></p>\r\n<h2>Altre idee e dettagli originali per il perfetto matrimonio a tema viaggio</h2>\r\n<p>Oltre alla bussola, per altre <strong>bomboniere originali a tema viaggio</strong> potete optare per <strong>spezie provenienti da tutto il Mondo</strong>, in boccettine di vetro che riportino il paese di provenienza.</p>\r\n<p>Idea carina per degli invitati giramondo &egrave; un <strong>porta etichetta per la valigia</strong>, magari a forma di aeroplanino oppure una simpatica <strong>scatolina a forma di valigia</strong> per i <strong>confetti</strong>.</p>\r\n<p>Tanti sono i dettagli che possono rendere speciale le tue nozze a tema viaggio: la <strong>torta nuziale si pu&ograve; vestirsi di carte geografiche</strong>, aeroplanini e valigie e i centrotavola possono essere arricchiti da foto o miniature di monumenti famosi (ad esempio la Tour Eiffel o il Big Ben) che ricordino i tour nelle pi&ugrave; belle localit&agrave; del mondo.<br /> Anche l&rsquo;outfit degli sposi si pu&ograve; arricchire con preziosi dettagli che ricordino il tema del viaggio come i <strong>fiori del bouquet ricavati da mappe e pagine di guide turistiche</strong>.<br /> Infine un <strong>guest book in 3D a forma di mappamondo</strong> in cui gli invitati possono lasciare un pensiero o una firma ai neo sposini!</p>\r\n<p><img src=\"https://cartiamo.it/media//matrimonio-viaggio-torta-valigia-bussola.jpg\" alt=\"\" /></p>', 'Partecipazioni matrimonio a tema viaggio, aeroplani, aereo, vespa o mongolfiera? Idee originali per un matrimonio a tema viaggio', NULL, 44, '2018-02-12 17:06:14', '2018-02-05 23:00:00', 'pubblicato', 1, 'honeymoon;nemo;istanbul;evoluzione');
+(1, 1, 'Sposarsi in Inverno: 5 idee per un matrimonio invernale', 'sposarsi-in-inverno-5-idee-per-un-matrimonio-invernale', 'one-column', '<p>Ditte di catering e wedding planner sanno bene che la <strong>stagione dei matrimoni &egrave; l&rsquo;estate</strong> con il suo clima secco, le belle giornate di sole e l&rsquo;opportunit&agrave; di sfoggiare abiti leggeri e scollati per gli sposi e gli invitati. In Italia, anche le location all&rsquo;aperto come prati a bordo piscina, spiaggie e assolati cortili di tenute di campagna sono di solito preferiti pi&ugrave; intime cerimonie al chiuso.</p>\r\n<p>C&rsquo;&egrave; chi per&ograve; non sopporta il caldo o chi semplicemente <em>ama la magia dei mesi pi&ugrave; freddi</em> e opta, sempre pi&ugrave; spesso, per una <strong>cerimonia invernale</strong>.</p>\r\n<p><img style="width: 100%;" src="https://i.pinimg.com/564x/11/16/cf/1116cfb94249b52ab37586db47f0e2ae.jpg" alt="Idee matrimonio invernale" /></p>\r\n<h2><strong>I vantaggi di una cerimonia in inverno</strong></h2>\r\n<p>Anche per motivi economici, un <strong>matrimonio</strong> in &ldquo;bassa stagione&rdquo; pu&ograve; risultare una scelta intelligentissima perch&eacute; a volte garantisce liste di attesa dimezzate e prezzi pi&ugrave; abbordabili per le location e maggiore disponibilit&agrave; da parte degli organizzatori che avranno pi&ugrave; tempo ed energie per curare la tua cerimonia nei minimi dettagli.</p>\r\n<p>Sicuramente, <strong>una cerimonia invernale si dimostrer&agrave; vantaggiosa anche sul piano dell&rsquo;originalit&agrave;</strong>. Mentre i matrimoni estivi, da giugno ad agosto ripropongono spesso temi molto simili e poco creativi, i mesi invernali, grazie anche al periodo delle feste permettono di sfruttare decorazioni pi&ugrave; particolari che si ispirano alla calorosa atmosfera natalizia, allo splendore dei cristalli di ghiaccio,alle luci ed al divertimento delle feste di Capodanno.</p>\r\n<p>Ti piacerebbe <strong>organizzare una cerimonia invernale</strong>, ma non sai da che parte cominciare? Cerci <strong>idee matrimonio</strong>&nbsp;per i mesi invernali?&nbsp;Non trovi&nbsp;degli <strong>abiti da sposa invernali</strong> che ti soddisfino?</p>\r\n<p><strong>Cartiamo</strong> ti da qualche consiglio sui temi e le decorazioni pi&ugrave; originali ed eleganti per chi si sposa in inverno.</p>\r\n<p>&nbsp;</p>\r\n<h2>5 idee per un matrimonio invernale</h2>\r\n<h3><br />1. Cerimonia Natalizia</h3>\r\n<p>Calde coperte, cioccolata calda per gli invitati; luci e decorazione natalizie per la location. Per un <strong>matrimonio fuori dagli schemi</strong>, scegli il <strong>tema natalizio e tuffati nella calda atmosfera del Natale</strong> per un white Christmas con i fiocchi.</p>\r\n<p>Puoi optare per un'' atmosfera confortevole e familiare con i toni caldi del rosso e dell&rsquo;oro, per scaldare i cuori e gli occhi dei convitati!</p>\r\n<p>Altrimenti puoi giocare con i <a title="Partecipazioni per matrimonio invernale bianche chic" href="https://cartiamo.it/shop/matrimoni/trendy/1?colore=bianco"><strong>bianco e toni pi&ugrave; freddi tipici di un elegante White Christmas</strong></a> in montagna. Ecco qualche idea!</p>\r\n<p>&nbsp;</p>\r\n<div class="row">\r\n<div class="col-md-6">\r\n<div class="row">\r\n<div class="col-md-6"><img src="https://i.pinimg.com/564x/e2/42/35/e242357a01c7ed3b38e7c9f410484547.jpg" alt="Cerimonia natalizia luci" /></div>\r\n<div class="col-md-6"><img src="https://i.pinimg.com/564x/56/8e/3c/568e3cea90acecd84f73631ec24e6a75.jpg" alt="Matrimonio con candele" /></div>\r\n</div>\r\n<div class="row">\r\n<div class="col-md-12"><img style="width: 100%;" src="https://i.pinimg.com/564x/1e/bd/b9/1ebdb9821b2b3c3e3f3d038be0fb36db.jpg" alt="idee originali matrimonio" /> <img style="width: 100%;" src="https://i.pinimg.com/564x/54/86/4c/54864c16c9b1558ecf208f149e7cdb01.jpg" alt="abiti da sposa invernali" /></div>\r\n</div>\r\n</div>\r\n<div class="col-md-6"><img style="width: 100%;" src="https://i.pinimg.com/564x/b3/ea/62/b3ea62d2570b0a76830462ee476e71ca.jpg" alt="idee matrimonio" /> <img style="width: 100%;" src="https://i.pinimg.com/564x/d9/5b/91/d95b91c98853e6787b74c32d5cb7a643.jpg" alt="idee per matrimonio" /></div>\r\n</div>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<h3>&nbsp;</h3>\r\n<h3>2. Cerimonia per capodanno</h3>\r\n<p>Non sai mai cosa fare per l&rsquo;Ultimo dell&rsquo;Anno? Organizza il tuo <a title="Partecipazioni di matrimonio creative" href="https://cartiamo.it/shop/matrimoni/creativa/1"><strong>matrimonio creativo</strong></a> la sera del 31 Dicembre e prendi due piccioni con una fava!</p>\r\n<p>Le luci, i fuochi di artificio, il tema del tempo che passa ed i buoni propositi per un futuro di coppia&hellip; insomma <strong>sposini a Capodanno, sposini tutto l&rsquo;anno</strong>, o meglio, <strong>tutta la vita finch&eacute; morte non vi separi</strong>. Ecco qualche spunto per una <em>cerimonia a fine anno.</em></p>\r\n<p>&nbsp;</p>\r\n<div class="row">\r\n<div class="col-md-6"><img src="https://i.pinimg.com/564x/9a/5c/8a/9a5c8a4159de85d6c317232459e6d2b6.jpg" alt="cerimonia di capodanno" /> <img src="https://i.pinimg.com/564x/ae/cf/ea/aecfeaffe1b83092ff14fd36100a9548.jpg" alt="matrimonio 2017 e matrimonio 2018" /> <img src="https://i.pinimg.com/564x/ac/90/84/ac90849c2120f9e4bf0d4eb07f2bcb65.jpg" alt="brindisi di matrimonio" /></div>\r\n<div class="col-md-6"><img src="https://i.pinimg.com/564x/d7/b7/a4/d7b7a4976c908bf6c640205c970a1b6d.jpg" alt="matrimonio invernale idee" /></div>\r\n</div>\r\n<p><br /><br /></p>\r\n<h3>3. Cerimonia country chic invernale</h3>\r\n<div class="row">\r\n<div class="col-md-6">\r\n<p>Il profumo del bosco, i colori della terra e delle bacche rosse, il legno e la morbidezza del tartan scozzese. Sono solo alcune idee per un <strong>matrimonio invernale</strong> in <strong>stile country chic</strong> che pu&ograve; essere una variante originalissima per un matrimonio che lasci gli invitati a bocca aperta. Per una <strong>sposa rock&rsquo;n&rsquo;roll</strong> la classica <em>camicia a quadri</em> pu&ograve; diventare anche un top da abbinare ad una <em>romantica gonna in tulle bianco</em>. Anche il tuo LUI si potr&agrave; sbizzarrire con il <strong>abito da sposo invernale</strong> in stile country chic!</p>\r\n<br />\r\n<div class="row">\r\n<div class="col-md-6"><img src="https://i.pinimg.com/564x/e6/b2/33/e6b233f14ea6c5d289d5aaac4956f708.jpg" alt="bouquet per matrimonio country chic" /></div>\r\n<div class="col-md-6"><img src="https://i.pinimg.com/564x/de/9b/85/de9b855ea6f998cac2e2457d5a4eaeda.jpg" alt="ricevimento country chic" /></div>\r\n</div>\r\n<img style="width: 100%;" src="https://i.pinimg.com/564x/77/d1/d8/77d1d8e56bf34dc29fa1e90ebc802d9d.jpg" alt="location matrimonio country chic" /></div>\r\n<div class="col-md-6"><img src="https://i.pinimg.com/564x/cd/37/5f/cd375f0e37f57d6f4be4db9a7359ff9a.jpg" alt="vestiti originali per matrimonio" /></div>\r\n</div>\r\n<p>&nbsp;</p>\r\n<h3>4. Un trionfo di luci e candele</h3>\r\n<p>Se scegli di celebrare le <strong>nozze durante un mese invernale</strong>, dovrai fare i conti con giornate molto corte e quindi molte ore di oscurit&agrave;. Anche se apparentemente ci&ograve; pu&ograve; sembrare un problema in realt&agrave; pu&ograve; rivelarsi una risorsa preziosissima per allestire un <em>ricevimento di un'' eleganza mozzafiato</em>. Ma come &egrave; possibile? Il buio potr&agrave; essere illuminato da una cascata di lucine, torce, lanterne e candele di ogni forma e dimensione. Un trionfo di luci per una <strong><a title="Partecipazioni di matrimonio chic" href="https://cartiamo.it/shop/matrimoni/chic">cerimonia scintillante e super chic</a></strong>!</p>\r\n<p>&nbsp;</p>\r\n<div class="row">\r\n<div class="col-md-6"><img style="width: 100%;" src="https://i.pinimg.com/564x/11/de/d9/11ded91e4c177ca52de4abaa17422b8c.jpg" alt="decorazioni natalizie" /> <img src="https://i.pinimg.com/564x/57/b3/38/57b33864e1830b4ef16595199ad9383d.jpg" alt="sposa invernale" /></div>\r\n<div class="col-md-6"><img src="https://i.pinimg.com/564x/cf/1c/26/cf1c267fb814686d930182d3eea04f04.jpg" alt="candele e idee per matrimonio di inverno" /></div>\r\n</div>\r\n<p>&nbsp;</p>\r\n<h3>5. La Sposa Invernale: pelliccia, lana e dettagli preziosi</h3>\r\n<p>Per quanto riguarda l&rsquo;abito, la sposa che sceglie una <strong>cerimonia invernale</strong>, non deve scendere a compromessi, esistono abiti stupendi adatti all&rsquo;inverno ma senza mai rinunciare all&rsquo;eleganza. Considerando che il ricevimento, nei mesi invernali, si tiene spesso in luoghi chiusi e riscaldati, per l&rsquo;abito c&rsquo;&egrave; l&rsquo;imbarazzo della scelta ma andr&agrave; coordinato ad uno <em>scialle di cachemire, una pelliccia (anche eco) o una romantica mantella con strascico e cappuccio.</em></p>\r\n<p>Inoltre la parola chiave per la <em>sposa invernale</em> &egrave; &ldquo;dettagli preziosi&rdquo;: <strong>cristalli, strass, paillettes per illuminare le scarpe, l&rsquo;abito o l&rsquo;acconciatura</strong>.</p>\r\n<div class="row">\r\n<div class="col-md-8">\r\n<div class="row">\r\n<div class="col-md-5"><img src="https://i.pinimg.com/564x/08/ae/c5/08aec5133b8bb276dde57116cbf5bf26.jpg" alt="abiti da sposa invernali" /> <img src="https://i.pinimg.com/564x/7d/79/7a/7d797accaf32670066a5204603d2af01.jpg" alt="abito da sposa invernale" /></div>\r\n<div class="col-md-7"><img style="width: 100%;" src="https://i.pinimg.com/564x/97/84/5f/97845fbc718ef849dfeaf97f3816f3bf.jpg" alt="scarpe con pelliccia" /></div>\r\n</div>\r\n</div>\r\n<div class="col-md-4"><img src="https://i.pinimg.com/564x/80/82/97/808297f41c552e30f41c05c9388c4c79.jpg" alt="vestiti da sposa invernali" /></div>\r\n</div>', '5 idee per un <b>matrimonio invernale</b>. Sposarsi in inverno puÃ² essere la scelta migliore per il tuo matrimonio perfetto!', NULL, 26, '2017-12-07 18:29:10', '0000-00-00 00:00:00', 'pubblicato', 1, 'rebecca;katherine;olivia;betulla;dark'),
+(2, 1, 'Scegliere il Bouquet: tutti gli stili per una sposa perfetta', 'scegliere-il-bouquet-tutti-gli-stili-per-una-sposa-perfetta', 'one-column', '<p>Chiesa fissata, location scelta, abito acquistato e partecipazioni inviate. Cosa manca?</p>\r\n<p>Sono tantissimi i dettagli da curare per un matrimonio perfetto, dalle bomboniere, al tema, al men&ugrave; da servire agli ospiti, ma <strong>un elemento a cui la sposa non pu&ograve; senz&rsquo;altro rinunciare &egrave; il bouquet!</strong></p>\r\n<p><img style="display: block; margin-left: auto; margin-right: auto;" src="https://cartiamo.it/media/static/blog-bouquet-preview.jpeg" alt="" /></p>\r\n<p>Buch&eacute;, buqu&eacute;, mazzolino&hellip; chiamatelo come volete, ma non sottovalutate la sua importanza. Quando risuoner&agrave; la marcia nuziale e la sposa apparir&agrave; in cima alla navata tutti gli occhi degli invitati, dopo aver attentamente analizzato l&rsquo;abito, cadranno immediatamente sulla composizione floreale stretta tra le mani della sposa&hellip; <strong>il bouquet!</strong></p>\r\n<p>&nbsp;</p>\r\n<h2 class="western">Storia del bouquet: una tradizione antica che si rinnova</h2>\r\n<p>La futura sposa pi&ugrave; moderna e all&rsquo;avanguardia potrebbe obiettare che quella del bouquet sia una tradizione datata a cui la sposa del nuovo millennio potrebbe rinunciare, ma nonostante la sua storia secolare, il bouquet matrimoniale, col passare dei decenni si rinnova, cambia forma, dimensioni e colori ed &egrave; un elemento ancora di grande tendenza a cui pochissime rinunciano.</p>\r\n<div class="row">\r\n<div class="col-md-6"><img style="display: block; margin-left: auto; margin-right: auto;" src="https://cartiamo.it/media/static/SKyJ_0046.jpg" alt="" width="569" height="380" /></div>\r\n<div class="col-md-6"><img src="https://cartiamo.it/media/static/daisy and green bouquet emma case venus flowers.jpg" alt="" /></div>\r\n</div>\r\n<p>&nbsp;</p>\r\n<p><strong>Ma dov&rsquo;&egrave; nata l&rsquo;usanza del bouquet della sposa?</strong></p>\r\n<p>Gi&agrave; in epoca precristiana, nei &ldquo;matrimoni&rdquo; pagani le giovani donne solevano portare<strong> in mano o tra i capelli rametti </strong><strong>di mirto e rosmarino c</strong><strong>he, al tempo, erano simbolo di abbondanza e fertilit&agrave;</strong> e quindi buon auspicio per il futuro della coppia.</p>\r\n<p>La tradizione era presente anche nel mondo arabo, in cui la sposa per tradizione, si adornava il capo con profumati <strong>fiori d&rsquo;arancio come simbolo di purezza</strong>. Dalla corona, con il tempo, si &egrave; passati al mazzetto di fiori legato con nastri di seta che possono considerarsi gli antesignani dei moderni bouquet.</p>\r\n<p>Nella tradizione italiana il bouquet &egrave; l&rsquo;<strong>ultimo dono del fidanzato alla sua futura moglie</strong> e dovrebbe essere proprio lui a sceglierlo e a portarlo alla promessa sposa poco prima della cerimonia. Oggi, per il bene del futuro marito che rischia il linciaggio in caso di errore, &egrave; proprio la sposa a scegliere il bouquet che deve essere abbinato al vestito e in tema della cerimonia.</p>\r\n<p><img src="https://cartiamo.it/media/static/Frontpage72pixel3-post.jpg" alt="" /></p>\r\n<p>&nbsp;</p>\r\n<p>Ancora oggi, a volte, si mantiene la tradizione, per cui lo sposo o il testimone dello sposo, debbano andare a recapitare la composizione floreale direttamente a casa della sposa, la mattina delle nozze. In alcune zone del sud d&rsquo;Italia sono addirittura <strong>i suoceri che hanno il compito di recapitare il bouquet</strong> alla sposa, con successiva foto di rito.</p>\r\n<p>&nbsp;&nbsp;</p>\r\n<h2 class="western">SOS Bouquet: guida agli stili e agli abbinamenti</h2>\r\n<p>Come abbiamo detto &egrave; proprio la sposa che ha l&rsquo;onore e l&rsquo;onere di scegliere il proprio bouquet, ma la scelta di questo elemento non &egrave; facile come sembra, esistono <strong>tantissimi stili e forme diverse, per </strong><strong>non</strong><strong> parlare delle infinite variet&agrave; di fiori esistenti e </strong><strong>le mille</strong><strong> combinazioni di colori possibili</strong>.</p>\r\n<p>Sposa, non &egrave; il caso di andare nel panico!</p>\r\n<p><img src="https://cartiamo.it/media/static/white-wedding-flowers-names3.jpg" alt="" width="1352" height="710" /></p>\r\n<p><strong>Se non hai le idee chiare a riguardo, un </strong><em><strong>wedding planner</strong></em><strong> o un </strong><em><strong>floral designer</strong></em><strong> di grande professionalit&agrave; ed esperienza pu&ograve; guidarti in questa scelta cruciale</strong> mostrandoti tutti gli stili, le nuove tendenze e i migliori abbinamenti con l&rsquo;abito da sposa, il tema della cerimonia o l&rsquo;architettura della location in cui si svolger&agrave; la cerimonia.</p>\r\n<p>&nbsp;</p>\r\n<p>Intanto, per chiarirti le idee, Cartiamo ti propone una lista di tutti gli stili di bouquet pi&ugrave; popolari, dai pi&ugrave; tradizionali e romantici, alle creazioni floreali minimal e moderne.</p>\r\n<p>&nbsp;</p>\r\n<h2 class="western">Classico tondo: compatto ed elegante</h2>\r\n<p>Il bouquet pi&ugrave; amato dalle spose. <strong>Il classico mazzo di forma tonda e compatta</strong> &egrave; versatile e pu&ograve; adattarsi ad ogni tipo di cerimonia. La sposa tradizionale lo sceglie spesso con un unico tipo di fiore, <strong>di solito </strong> <strong>sono </strong> <strong>rose ma di recente le peonie vanno per la maggiore</strong>, grazie alla loro eleganza e il forte impatto visivo. I bouquet di questo tipo si trovano anche con una maggiore variet&agrave; di fiori e di colori e possono essere impreziositi da cristalli e nastri di raso.</p>\r\n<div class="row">\r\n<div class="col-md-6"><img src="https://cartiamo.it/media/static/bouquet-da-sposa-2017-rotondo-1073763_w670.jpg" alt="" /> <img src="https://cartiamo.it/media/static/34b318588f068cf8b81213211b49e100.jpg" alt="" /></div>\r\n<div class="col-md-6"><img src="https://cartiamo.it/media/static/2d3b88f9045a12a1b2510bcd8366a8b5.jpg" alt="" /></div>\r\n</div>\r\n<p>&nbsp;</p>\r\n<h2 class="western">Romantico: una cascata di fiori</h2>\r\n<p>Il pi&ugrave; scenografico dei bouquet. Dalla <strong>forma slanciata e verticale</strong>, questo tipo di bouquet esalta i fisici slanciati e esili e gli abiti dalle linee semplici e non si adatta a sposine dalle forme morbide ed abiti troppo vaporosi. Il bouquet pu&ograve; essere creato con vari tipi di fiori ma <strong>i pi&ugrave; adatti a creare l&rsquo;effetto cascata, sono le calle, le orchidee e tralci di felci ed edera</strong>.</p>\r\n<div class="row">\r\n<div class="col-md-6"><img src="https://cartiamo.it/media/static/1fb649be0fbe665ae19a154ef7e0e262.jpg" alt="" /> <img src="https://cartiamo.it/media/static/a6f2becc8b8fe359a5c74f231ff6bb08.jpg" alt="" /></div>\r\n<div class="col-md-6"><img src="https://cartiamo.it/media/static/7869a7c7dd6ff548b8307baf7db64c57.jpg" alt="" /></div>\r\n</div>\r\n<p>&nbsp;</p>\r\n<h2>Minimal: a fascio o fiore singolo</h2>\r\n<p>Minimale e chic, il bouquet a fascio &egrave; perfetto per la sposa che ama le linee pulite ed essenziali. E&rsquo; di solito composto da fiori a stelo lungo tutti uguali (rose, calle, tulipani) legati stretti da un nastro per un effetto semplice ma estremamente chic, ideale per abiti in seta e in stile vintage anni 20.<br /> Di recente, la sposa che opta per un bouquet minimal, sceglie sempre pi&ugrave; spesso il fiore singolo.</p>\r\n<div class="row">\r\n<div class="col-md-6"><img src="https://cartiamo.it/media/static/1275aa39ed28cee22a28d675e467233b.jpg" alt="" /></div>\r\n<div class="col-md-6"><img src="https://cartiamo.it/media/static/f6bbf6b2-bc4b-474a-87b4-1772b9d292c9.jpg" alt="" /> <img src="https://cartiamo.it/media/static/86504831.jpg" alt="" /></div>\r\n</div>\r\n<div class="row">\r\n<div class="col-md-4"><img src="https://cartiamo.it/media/static/a72d0cbb461fda0eeb6ba58abbbd7f75--single-flower-bouquet-single-flowers.jpg" alt="" /></div>\r\n<div class="col-md-4"><img src="https://cartiamo.it/media/static/single-bloom-bouquet-2.jpg" alt="" /></div>\r\n<div class="col-md-4"><img src="https://cartiamo.it/media/static/c214d25c56dc3e050f9c455937517112--single-flower-bouquet-single-flowers.jpg" alt="" /></div>\r\n<div class="col-md-4">&nbsp;</div>\r\n</div>\r\n<p>&nbsp;</p>\r\n<h2 class="western">Colorato: fiori di campo in stile country chic</h2>\r\n<p>Particolarmente di moda oggi&nbsp;&egrave; il tema country-chic. Pi&ugrave; piccolo e variopinto dei bouquet classici,&nbsp;con fiori semplici e dalle tonalit&agrave; pastello, tenuti insieme, in modo naturale da spago, fili di paglia o merletti per un tocco vintage. Questo tipo di bouquet dall&rsquo;aspetto allegro e spensierato, si pu&ograve; arricchire di elementi originali, come le piante succulente e le erbe aromatiche come la lavanda e il rosmarino. Che profumo!</p>\r\n<p>&nbsp;</p>\r\n<div class="row">\r\n<div class="col-md-6"><img src="https://cartiamo.it/media/static/cf8242f81ec18b3f6ec13d91221e7443.jpg" alt="" />\r\n<div class="row">\r\n<div class="col-md-6"><img src="https://cartiamo.it/media/static/f28bbf4f17e96455dcbb9014ad2412c0.jpg" alt="" /></div>\r\n<div class="col-md-6"><img src="https://cartiamo.it/media/static/e95fd674261282758ac161b516cf512b.jpg" alt="" /></div>\r\n</div>\r\n</div>\r\n<div class="col-md-6"><img src="https://cartiamo.it/media/static/a12a2afe9586cbf14fd1915212924d5f.jpg" alt="" /></div>\r\n</div>\r\n<p>&nbsp;</p>\r\n<h2 class="western">Originale: forme e fiori inusuali</h2>\r\n<p>Infine, in bouquet pu&ograve; assumere forme originali e fuori dal comune e pu&ograve; diventare un vero e proprio accessorio per la sposa pi&ugrave; creativa e dinamica. <strong>Il </strong><strong>b</strong><strong>ouquet pu&ograve; diventare borsa, bracciale o ventaglio oppure assumere forme strane</strong> come la sfera, l&rsquo;anello e il cilindro. Un ulteriore tocco di originalit&agrave; per un bouquet creativo, pu&ograve; essere dato da <strong>fiori in tessuto o in carta</strong>. E che ve ne pare di un preziosissimo bouquet composto soltanto da perle?</p>\r\n<div class="row">\r\n<div class="col-md-7"><img src="https://cartiamo.it/media/static/ade343fbbf33ae7b6c0f568c0ecab08d.jpg" alt="" width="767" height="1149" /> <img src="https://cartiamo.it/media/static/bouquet-originali-mix.jpg" alt="" /></div>\r\n<div class="col-md-5"><img src="https://cartiamo.it/media/static/87a02964e2627165c31dced0086c733e.jpg" alt="" /> <img src="https://cartiamo.it/media/static/9392a905242418c1bf37d839ffc46b68.jpg" alt="" width="523" height="551" /> <img src="https://cartiamo.it/media/static/1516b8e289c8eabcf932ed34b643a0c6.jpg" alt="" width="432" height="432" /></div>\r\n</div>', 'BuchÃ©, buquÃ©, mazzolinoâ€¦ chiamatelo come volete, ma non sottovalutate la sua importanza. Quando risuonerÃ  la marcia nuziale e la sposa apparirÃ  in cima alla navata tutti gli occhi degli invitati, dopo aver attentamente analizzato lâ€™abito, cadranno immediatamente sulla composizione floreale stretta tra le mani della sposaâ€¦ il bouquet!', NULL, 28, '2018-01-03 13:48:39', '2018-01-02 23:00:00', 'pubblicato', 1, 'primavera;betulla;sequoia;alloro'),
+(3, 1, 'Il matrimonio country chic: consigli, idee e dettagli', 'il-matrimonio-country-chic-consigli-idee-e-dettagli', 'one-column', '<h1>Il matrimonio country chic: consigli, idee e dettagli</h1>\r\n<p>Anche se ci sono ancora coppie che prediligono un ricevimento sontuoso o dettagli raffinati e glamour, il matrimonio in stile country chic si conferma uno dei preferiti dagli sposi italiani.</p>\r\n<p>Questo stile &egrave; particolarmente di tendenza e viene spesso scelto dalle giovani coppie amanti della semplicit&agrave; e del verde.</p>\r\n<p>Il matrimonio country chic deve sempre mantenere il giusto equilibrio tra rustico ed elegante, per questo &egrave; necessario esaltare la componente country (campagna in inglese) che richiama i colori e le texture della terra e della natura, senza rinunciare allo stile e all&rsquo;armonia di ogni minimo dettaglio.</p>\r\n<h2>Natura e Semplicit&agrave;</h2>\r\n<p>Anche se declinati in molteplici sfumature e forme, i due elementi che non devono mancare mai nel matrimonio country chic sono: <strong>la natura e la semplicit&agrave;</strong>.Per quanto riguarda la natura, i frutti della terra, le erbe aromatiche, le spezie possono essere elementi che richiamano ai profumi ed ai colori della campagna.Mentre la semplicit&agrave; &egrave; incarnata da tessuti grezzi e materiali basic come la terracotta, il legno, il lino, la juta. Insomma niente lustrini, cristalli e sfarzo principesco, perch&eacute; si sa che spesso la semplicit&agrave; &egrave; sinonimo di eleganza.</p>\r\n<p><img style="display: block; margin-left: auto; margin-right: auto;" src="https://cartiamo.it/media//blog-matrimonio-country-chic-m.jpg" alt="" /></p>\r\n<p>&nbsp;</p>\r\n<h2>La Location Country Chic</h2>\r\n<p>Country vuol dire campagna quindi ogni luogo immerso nel verde e nella natura &egrave; perfetto per questo tipo di matrimonio.</p>\r\n<p><strong>Dall&rsquo;antico casale nella campagna toscana, al cortile assolato di una masseria pugliese</strong>, ma anche un semplice <strong>giardino fiorito</strong> o un uliveto illuminato da mille lucine, sono tutte location perfette per un matrimonio in stile country.Se hai scelto i mesi freddi per il tuo matrimonio non devi rinunciare al setting rustico, una <strong>baita montana ricoperta di legno o il fienile ristrutturato di una fattoria</strong>, e perch&eacute; no una <strong>candida tenda in mezzo a un prato</strong> decorata con piante e luci.</p>\r\n<p><img src="https://cartiamo.it/media//blog-matrimonio-country-chic1.jpg" alt="" /></p>\r\n<p>&nbsp;</p>\r\n<p style="text-align: center;"><strong>Se hai deciso di sposarti in inverno leggi i nostri consiglio per il perfetto matrimonio invernale nell&rsquo;articolo </strong><br /><strong><a title="Matrimonio in inverno, 5 idee" href="https://cartiamo.it/blog/asdasd/sposarsi-in-inverno-5-idee-per-un-matrimonio-invernale">SPOSARSI IN INVERNO: 5 IDEE PER UN MATRIMONIO INVERNALE</a></strong></p>\r\n<p>&nbsp;</p>\r\n<h2>Decorazioni Country Chic</h2>\r\n<p>S&igrave; va bene la semplicit&agrave; ma &egrave; sempre un matrimonio!</p>\r\n<p>La bellezza disarmante della natura che vi circonder&agrave; non sar&agrave; abbastanza per rendere perfetto il vostro giorno speciale, ed &egrave; qui che entrano in scena i fiori e le decorazioni.<br />Anche i dettagli devono per&ograve; essere il linea con il tema country e la natura ed &egrave; qui che entrano in scena i <strong>barili, tronchi di legno, la paglia e la juta, i barattoli di vetro e i tessuti grezzi</strong>.</p>\r\n<p>Il tableau ad esempio pu&ograve; essere una <strong>vecchia porta o una finestra</strong>, su cui scrivere i nomi degli invitati oppure <strong>una scala su cui appoggiare piantine profumate,</strong> una per ogni tavolo.</p>\r\n<p>Per quanto riguarda i centrotavola e le decorazioni floreali, il top sono le <strong>erbe aromatiche</strong> come lavanda, rosmarino o le tonalit&agrave; argentate di salvia, ulivo ed eucalipto. In alternativa <strong>fiori di campo</strong> e&nbsp;<strong>piante grasse</strong>, oppure <strong>frutta fresca</strong>, come ciliege, mele selvatiche ed agrumi per richiamare i doni della terra. Un&rsquo;altra idea sono <strong>contorti rami da poggiare direttamente sui tavoli</strong> ed in cui incastonare fiori recisi.</p>\r\n<p><strong>Le candele magari racchiuse in rustici bicchieri o vasetti da cucina di forme e colori diversi</strong>, insieme allo splendore delle lucine non possono mancare ad impreziosire il tutto.</p>\r\n<p><img src="https://cartiamo.it/media//blog-matrimonio-country-chic2.jpg" alt="" /></p>\r\n<p>&nbsp;</p>\r\n<p style="text-align: center;"><strong>Per scegliere il bouquet pi&ugrave; adatto per la tua cerimonia coutry chic leggi l&rsquo;articolo di </strong><br /><strong><a title="SCEGLIERE IL BOUQUET: TUTTI GLI STILI PER UNA SPOSA PERFETTA" href="https://cartiamo.it/blog/il-matrimonio-perfetto/scegliere-il-bouquet-tutti-gli-stili-per-una-sposa-perfetta">SCEGLIERE IL BOUQUET: TUTTI GLI STILI PER UNA SPOSA PERFETTA</a></strong></p>\r\n<p>&nbsp;</p>\r\n<h2>Bomboniere Country Chic</h2>\r\n<p>Uno dei trend pi&ugrave; in voga per la bomboniera in stile country &egrave; quello dei deliziosi vasetti mignon con<strong> piantine grasse o aromatiche</strong>.<br />Per richiamare i profumi della campagna un&rsquo;altra opzione &egrave; il <strong>sacchettino profuma biancheria </strong>pieno di lavanda, in tessuto grezzo come il lino o la juta su cui ricamare le iniziali degli sposi.</p>\r\n<p>Il tema gastronomico va forte: i <strong>barattolini di spezie</strong> o di sale aromatizzato, i mini vasetti di<strong> marmellata e miele, la bottiglietta di olio d&rsquo;oliva </strong>o il sacchettino con preziose<strong> miscele di te e infusi</strong>.</p>\r\n<p>Un&rsquo;idea originale per la bomboniera country chic pu&ograve; essere una <strong>profumatissima saponetta artigianale </strong>arricchita con boccioli di rosa, lavanda ed aghi di rosmarino.</p>\r\n<p><img src="https://cartiamo.it/media//blog-matrimonio-country-chic3.jpg" alt="" /></p>\r\n<p>&nbsp;</p>\r\n<h2>Torta Nuziale Country Chic</h2>\r\n<p>E&rsquo; la <strong>naked cake</strong> la regina delle torte nuziali in stile country. <br />La moda della &ldquo;torta nuda&rdquo; &egrave; abbastanza recente e consiste in una torta solitamente su tre piani, che viene coperta da un sottile strato di glassa in modo da lasciare intravedere lo sponge cake e il ripieno a scelta degli sposi&hellip; dimenticatevi quindi lo spesso e stucchevole strato di pasta da zucchero!</p>\r\n<p>La <strong>naked cake</strong> pu&ograve; essere <strong>decorata a piacere con frutta e fiori freschi in perfetto stile country chic</strong>!</p>\r\n<p><img src="https://cartiamo.it/media//blog-matrimonio-country-chic4.jpg" alt="" /></p>', 'Matrimonio country chic, scopri le location per un matrimonio semplice, idee per decorazioni country chic, bomboniere e le naked cake', NULL, 29, '2018-01-18 16:33:34', '2018-01-17 23:00:00', 'pubblicato', 1, 'nocciola;silvia'),
+(4, 1, 'Matrimonio a tema viaggio: mappe, valigie, aeroplanini e tante idee per un matrimonio originale', 'idee-per-matrimonio-tema-viaggio', 'one-column', '<p>Tu e la tua dolce met&agrave; siete dei cuori vagabondi? Amate viaggiare? Condividete la vostra passione con i vostri invitati e scegliete il tema del viaggio per il vostro matrimonio!<br /> <br /> Il tema del viaggio si presta per un matrimonio originale e sempre pi&ugrave; spesso &egrave; scelto da <strong>giovani coppie che amano viaggiare insieme</strong> e si augurano un futuro pieno di avventure.<br /> Questo tema si presta a tante personalizzazioni e pu&ograve; rispecchiare l''esperienze degli sposi, ispirandosi a viaggi da loro fatti, citt&agrave; da loro visitate insieme o luoghi che desiderano visitare o che magari fanno parte dell''itinerario del loro viaggio di nozze.</p>\r\n<p><img src="https://cartiamo.it/media//matrimonio-a-tema-viaggio.jpg" alt="" /></p>\r\n<p>Le foto fatte durante le vacanze in giro per il mondo nel tableau, le partecipazioni che sembrano biglietti dell&rsquo;aereo, una valigia per contenere le bomboniere o la cartina geografica arrotolata che racchiude il riso da lanciare agli sposi: sono solo alcuni degli elementi che possono rendere speciale un matrimonio a tema viaggio.&nbsp;</p>\r\n<p>Vediamo qualche idea originale per rendere perfetto il matrimonio di due viaggiatori incalliti!</p>\r\n<h2>Il Viaggio Vintage</h2>\r\n<p>Negli ultimi tempi, sempre pi&ugrave; sposi scelgono per il loro matrimonio la variate del &ldquo;viaggio vintage&rdquo;, che permette un approccio molto chic al tema.<br /> Tanti piccoli preziosi dettagli devono creare un&rsquo;atmosfera nostalgica e affascinante, ricordando i tempi in cui viaggio era sinonimo di avventura!<br /> Elementi centrali del ricevimento a tema viaggio sono sicuramente le <strong>vecchie valigie di pelle, legno o cartone</strong>, in forme, colori e dimensioni diverse, con cui creare livelli sui tavoli o in cui presentare le bomboniere. <br /> Altre decorazioni che ricordino il viaggio d&rsquo;altri tempi possono essere vecchi libri a tema come <strong>guide turistiche o antichi giornali di viaggio</strong>. <br /> <strong>Vecchie foto in bianco e nero o cartoline di citt&agrave; europee</strong> ma anche <strong>cartine geografiche</strong> dall&rsquo;aspetto vissuto, possono dare un effetto d&rsquo;antan al tableau o ai centrotavola. <br /> Inoltre, delle <strong>vecchie macchine fotografiche reflex</strong> o dei <strong>piccoli mappamondi</strong> sono altri elementi di grande impatto, perfetti protagonisti di un allestimento ispirato a al viaggio in stile vintage.<br /> <br /> Idee originali per le bombonire: <strong>mini valigette di carta</strong> ripiene di confetti o piccole bussole d&rsquo;orate impreziosite da un bel fiocco di organza.</p>\r\n<p><img src="https://cartiamo.it/media//matrimonio-a-tema-viaggio-aereoplano.jpg" alt="" />&nbsp;</p>\r\n<h2>Aeroplani, aerei e ancora aeroplanini!</h2>\r\n<p><strong>Qual&rsquo;&egrave; l&rsquo;elemento sinonimo di viaggio, avventura e libert&agrave;?!</strong><br /> La risposta &egrave; <strong>l&rsquo;aeroplano</strong>!<br /> Sinonimo di avventura verso mete lontane, l''aereo difficilmente manca nell&rsquo;allestimento di un matrimonio dedicato al viaggio. Questo elemento pu&ograve; essere declinato in molteplici chiavi, dalla torta nuziale, al tableau, fino alle bomboniere.Le dimensioni e i materiali possono variare, oltre al legno e al metallo, spesso la scelta ricade sulla carta, econimica e di grande effetto!<br /> <strong>L&rsquo;areoplanino di carta</strong> &egrave; molto versatile e si presta a vari stili: in tonalit&agrave; pastello pu&ograve; essere adatto a un centrotavola minimal; ottenuto da cartine stradali e mappe si addice a ricevimenti in stile vintage; il semplice aeroplanino bianco &egrave; perfetto per creare un effetto elegante ed allo stesso tempo leggero e giocoso.</p>\r\n<p><img src="https://cartiamo.it/media//matrimonio-con-aeroplani.jpg" alt="" />&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<h2><strong>Tutti i mezzi di trasporto per una fuga d&rsquo;amore!</strong></h2>\r\n<p><br /> Non solo areoplani ma anche <strong>treni, auto, moto, barchette</strong> i mezzi di trasporto sono elementi che potrebbero essere presenti nel giorno speciale di una coppia che ama le avventure on the road.<br /> Il mezzo con cui gli sposi lasciano la chiesa o arrivano al luogo del ricevimento &egrave; un dettaglio molto importante e nel matrimonio a tema viaggio lo &egrave; anche di pi&ugrave;!<br /> Per chi ama lo stile vintage, niente di meglio di una <strong>macchina d&rsquo;epoca con valigie di pelle sul tettuccio</strong> (magari un grazioso maggiolino o una 500) oppure per gli sposi centauri una <strong>motocicletta old style</strong> o meglio ancora una <strong>simpatica vespa</strong>&hellip; abito della sposa permettendo!<br /> Il treno e la stazione, sono simboli anch&rsquo;essi del viaggio e una vecchia locomotiva o dei binari in stile liberty potrebbero fare al caso vostro come <strong>romantico setting del servizio fotografico</strong> a tema. <br /> Infine, un altro mezzo di trasporto un po&rsquo; inusuale ma molto divertente e originale per organizzare un ricevemento a tema viaggio &egrave; <strong>la mongolfiera</strong>! Protagonista di molte avventure nell&rsquo;immaginario dei primi del 900, pu&ograve; essere un&rsquo;alternativa colorata e giocosa per il tema del viaggio. <br /> Non importa affittare un pallone aerostatico vero e proprio, basta integrare la mongolfiera nelle decorazioni magari sotto forma di palloncini fluttuanti sui tavoli o un foto booth che ne riproduca il cesto. <strong>Originalissimo</strong>!</p>\r\n<p><img src="https://cartiamo.it/media//matrimonio-viaggio-mezzi-di-trasporto.jpg" alt="" /></p>\r\n<h2>Altre idee e dettagli originali per il perfetto matrimonio a tema viaggio</h2>\r\n<p>Oltre alla bussola, per altre <strong>bomboniere originali a tema viaggio</strong> potete optare per <strong>spezie provenienti da tutto il Mondo</strong>, in boccettine di vetro che riportino il paese di provenienza.</p>\r\n<p>Idea carina per degli invitati giramondo &egrave; un <strong>porta etichetta per la valigia</strong>, magari a forma di aeroplanino oppure una simpatica <strong>scatolina a forma di valigia</strong> per i <strong>confetti</strong>.</p>\r\n<p>Tanti sono i dettagli che possono rendere speciale le tue nozze a tema viaggio: la <strong>torta nuziale si pu&ograve; vestirsi di carte geografiche</strong>, aeroplanini e valigie e i centrotavola possono essere arricchiti da foto o miniature di monumenti famosi (ad esempio la Tour Eiffel o il Big Ben) che ricordino i tour nelle pi&ugrave; belle localit&agrave; del mondo.<br /> Anche l&rsquo;outfit degli sposi si pu&ograve; arricchire con preziosi dettagli che ricordino il tema del viaggio come i <strong>fiori del bouquet ricavati da mappe e pagine di guide turistiche</strong>.<br /> Infine un <strong>guest book in 3D a forma di mappamondo</strong> in cui gli invitati possono lasciare un pensiero o una firma ai neo sposini!</p>\r\n<p><img src="https://cartiamo.it/media//matrimonio-viaggio-torta-valigia-bussola.jpg" alt="" /></p>', 'Partecipazioni matrimonio a tema viaggio, aeroplani, aereo, vespa o mongolfiera? Idee originali per un matrimonio a tema viaggio', NULL, 44, '2018-02-12 17:06:14', '2018-02-05 23:00:00', 'pubblicato', 1, 'honeymoon;nemo;istanbul;evoluzione');
 
 -- --------------------------------------------------------
 
@@ -90,13 +86,13 @@ INSERT INTO `articolo` (`id`, `autore`, `titolo`, `slug`, `tipo`, `contenuto`, `
 
 CREATE TABLE `banner` (
   `id` int(11) NOT NULL,
-  `titolo` text,
-  `tipo` text,
-  `link` text,
-  `contenuto` longtext,
+  `titolo` text DEFAULT NULL,
+  `tipo` text DEFAULT NULL,
+  `link` text DEFAULT NULL,
+  `contenuto` longtext DEFAULT NULL,
   `id_media` int(11) DEFAULT NULL,
-  `hook` text,
-  `alt` text
+  `hook` text DEFAULT NULL,
+  `alt` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -129,11 +125,11 @@ INSERT INTO `banner` (`id`, `titolo`, `tipo`, `link`, `contenuto`, `id_media`, `
 
 CREATE TABLE `categoria` (
   `id` int(11) NOT NULL,
-  `nome` text,
-  `slug` text,
-  `entity` text,
-  `entity_id` text,
-  `descrizione` longtext,
+  `nome` text DEFAULT NULL,
+  `slug` text DEFAULT NULL,
+  `entity` text DEFAULT NULL,
+  `entity_id` text DEFAULT NULL,
+  `descrizione` longtext DEFAULT NULL,
   `id_media` int(11) DEFAULT NULL,
   `ordine` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -154,7 +150,7 @@ INSERT INTO `categoria` (`id`, `nome`, `slug`, `entity`, `entity_id`, `descrizio
 CREATE TABLE `clprodotto` (
   `id` int(11) NOT NULL,
   `id_cl` int(11) NOT NULL,
-  `slug` text,
+  `slug` text DEFAULT NULL,
   `id_cl_strutturadati` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -602,7 +598,7 @@ INSERT INTO `clprodotto` (`id`, `id_cl`, `slug`, `id_cl_strutturadati`) VALUES
 CREATE TABLE `cl_articolo` (
   `id` int(11) NOT NULL,
   `prezzo` double DEFAULT NULL,
-  `articolo_padre` int(11) DEFAULT '-1',
+  `articolo_padre` int(11) DEFAULT -1,
   `tipo_prezzo` varchar(10) DEFAULT NULL,
   `id_composizione` int(11) DEFAULT NULL,
   `id_tipokit` int(11) DEFAULT NULL
@@ -616,19 +612,17 @@ CREATE TABLE `cl_articolo` (
 
 CREATE TABLE `cl_campioneomaggio` (
   `id` int(11) NOT NULL,
-  `nome` text,
-  `cognome` text,
-  `email` text,
-  `indirizzo` text,
-  `numero` text,
-  `cap` text,
+  `nome` text DEFAULT NULL,
+  `cognome` text DEFAULT NULL,
+  `email` text DEFAULT NULL,
+  `indirizzo` text DEFAULT NULL,
+  `numero` text DEFAULT NULL,
+  `cap` text DEFAULT NULL,
   `spedito` int(2) DEFAULT NULL,
-  `value` text,
-  `citta` text,
-  `data_richiesta` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `provincia` text,
-  `telefono` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `value` text DEFAULT NULL,
+  `citta` text DEFAULT NULL,
+  `data_richiesta` timestamp NULL DEFAULT current_timestamp
+) ;
 
 --
 -- Dumping data for table `cl_campioneomaggio`
@@ -640,7 +634,7 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (9, 'rocco', 'porpiglia', 'ilrocco83@gmail.com', 'via arquata est 51/a', '51/A', '56021', NULL, NULL, 'cascina', NULL, NULL, NULL),
 (10, 'Claudia', 'Trapasso', 'Claudia_trapasso@hotmail.it', 'Via innocenzo Xii', '100', '72', NULL, NULL, 'Ariccia', NULL, NULL, NULL),
 (11, 'Marta', 'Giraffa', 'giraffinamarta@hotmail.it ', 'Via Marconi ', '1c', '24020', NULL, NULL, 'Gorle', NULL, NULL, NULL),
-(12, 'mariarosaria', 'esposito', 'mariarosaria.esposito@email.it', 'via masseria visone', '23', '80038', 1, '503', 'pomigliano d\'arco', '0000-00-00 00:00:00', '', ''),
+(12, 'mariarosaria', 'esposito', 'mariarosaria.esposito@email.it', 'via masseria visone', '23', '80038', 1, '503', 'pomigliano d''arco', '0000-00-00 00:00:00', '', ''),
 (13, 'Paolo', 'biancalana', 'biancalana@ijamix.com', 'via del capannone ', '61', '51015', 1, '499', 'monsummano terme', '2017-08-01 08:55:44', '', ''),
 (14, 'Manuel', 'oltolina', 'denisemignemi@gmail.com', 'VIA CASCINA SAN GIUSEPPE ', '6', '20030', 1, '572', 'SENAGO', '2017-08-02 07:34:33', '', ''),
 (15, 'MANUEL', 'OLTOLINA', 'denisemignemi@gmail.com', 'VIA CASCINA SAN GIUSEPPE', '6', '20030', 1, '550', 'SENAGO', '2017-08-02 07:36:55', '', ''),
@@ -650,7 +644,7 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (25, 'Tina', 'cossu', 'tinacossu84@gmail.com', 'Via manzoni ', '48', '7030', 1, '523', 'Santa Maria Coghinas', '2017-08-05 06:49:08', 'Ss', '3493521786'),
 (26, 'Tina', 'Cossu', 'tinacossu84@gmail.com', 'Via manzoni', '48', '7030', 1, '575', 'Santa Maria Coghinas', '2017-08-05 06:58:43', 'Ss', '3493521786'),
 (27, 'Tina', 'Cossu', 'tinacossu84@gmail.com', 'Via manzoni', '48', '7030', 1, '590', 'Santa Maria Coghinas', '2017-08-05 07:12:23', 'Ss', '3493521786'),
-(28, 'jessica', 'd\'addario', 'jessicadaddario@hotmail.com', 'via comasina  ', '57 scala s', '20161', 1, '501', 'milano', '2017-08-06 12:22:09', 'mi', '3497321284'),
+(28, 'jessica', 'd''addario', 'jessicadaddario@hotmail.com', 'via comasina  ', '57 scala s', '20161', 1, '501', 'milano', '2017-08-06 12:22:09', 'mi', '3497321284'),
 (29, 'Nicole', 'crescini', 'niky.cesaretti@gmail.com', 'VIA FALCONARA', '19 d', '60100', 1, '499', 'ANCONA', '2017-08-07 10:16:31', 'AN', ''),
 (30, 'Nicole', 'crescini', 'niky.cesaretti@gmail.com', 'VIA FALCONARA', '19 d', '60100', 1, '557', 'ANCONA', '2017-08-07 10:22:20', 'AN', ''),
 (31, 'Nicole', 'crescini', 'niky.cesaretti@gmail.com', 'VIA FALCONARA', '19 d', '60100', 1, '566', 'ANCONA', '2017-08-07 10:25:11', 'AN', ''),
@@ -713,9 +707,9 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (88, 'AdrianA', 'Adolfi', 'adriana12adolfi@msn.com', 'Via piemonte', '31', '95037', NULL, '501', 'San giovanni la punta', '2017-08-28 12:43:21', 'Ct', '3492390553'),
 (89, 'Giada', 'Teclani', 'giadateclani@tiscali.it', 'Via Chiesanuova ', '112a', '2100', NULL, '531', 'Rieti ', '2017-08-28 12:52:30', 'RI', '3202234133'),
 (90, '', '', '', '', '', '', NULL, '591', '', '2017-08-30 11:26:09', '', ''),
-(91, 'Valentina ', 'Dell\' olio', 'delly_vale@hotmail.com', 'Via Roma ', '117 ', '21038', NULL, '512', 'Leggiuno', '2017-08-30 22:34:15', 'Va', '3465122052'),
-(92, 'Valentina ', 'Dell\' olio', 'delly_vale@hotmail.com', 'Via Roma ', '117 ', '21038', NULL, '511', 'Leggiuno', '2017-08-30 22:38:47', 'Va', '3465122052'),
-(93, 'Valentina ', 'Dell\' olio', 'delly_vale@hotmail.com', 'Via Roma ', '117 ', '21038', NULL, '508', 'Leggiuno', '2017-08-30 22:46:55', 'Va', '3465122052'),
+(91, 'Valentina ', 'Dell'' olio', 'delly_vale@hotmail.com', 'Via Roma ', '117 ', '21038', NULL, '512', 'Leggiuno', '2017-08-30 22:34:15', 'Va', '3465122052'),
+(92, 'Valentina ', 'Dell'' olio', 'delly_vale@hotmail.com', 'Via Roma ', '117 ', '21038', NULL, '511', 'Leggiuno', '2017-08-30 22:38:47', 'Va', '3465122052'),
+(93, 'Valentina ', 'Dell'' olio', 'delly_vale@hotmail.com', 'Via Roma ', '117 ', '21038', NULL, '508', 'Leggiuno', '2017-08-30 22:46:55', 'Va', '3465122052'),
 (94, 'chiara', 'cucchi', 'CHIARACUCCHI@GMAIL.COM', 'VIA PONTE DI TOLLE', '7', '3046', NULL, '581', 'SAN DONATO VAL DI COMINO', '2017-08-31 14:43:34', 'FR', '3465728168'),
 (95, 'Chiara', 'cucchi', 'chiaracucchi@gmail.com', 'via ponte di tolle', '7', '3046', NULL, '523', 'san donato val di comino', '2017-08-31 14:43:57', 'fr', '3465728168'),
 (96, 'Chiara', 'CUCCHI', 'CHIARACUCCHI@GMAIL.COM', 'VIA PONTE DI TOLLE', '7', '3046', NULL, '548', 'SAN DONATO VAL DI COMINO', '2017-08-31 14:52:35', 'FR', '3465728168'),
@@ -723,19 +717,19 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (98, 'CHIARA', 'ARDELEANI', 'chiara.ardeleani@gmail.com', 'VIA mons. e.  BIGNAMINI ', '25', '24047', NULL, '505', 'TREVIGLIO', '2017-08-31 16:29:35', 'BG', '3492915101'),
 (99, 'CHIARA', 'ARDELEANI', 'chiara.ardeleani@gmail.com', 'VIA mons. e.  BIGNAMINI ', '25', '24047', NULL, '515', 'TREVIGLIO', '2017-08-31 16:31:28', 'BG', '3492915101'),
 (100, 'CHIARA', 'ARDELEANI', 'chiara.ardeleani@gmail.com', 'VIA mons. e.  BIGNAMINI ', '25', '24047', NULL, '500', 'TREVIGLIO', '2017-08-31 16:32:23', 'BG', '3492915101'),
-(101, 'Daniele', 'Stefania', 'Stefania.daniela@hotmail.com', 'Via Madre Laura baraggia', '305', '20069', NULL, '536', 'Vaprio d\'adda', '2017-09-02 18:43:08', 'Mi', '3472112484'),
-(102, 'Daniele', 'Cuocci', 'Stefania.daniela@hotmail.com', 'Via Madre Laura baraggia', '305', '20069', NULL, '539', 'Vaprio d\'adda', '2017-09-02 18:43:50', 'Mi', '3472112484'),
+(101, 'Daniele', 'Stefania', 'Stefania.daniela@hotmail.com', 'Via Madre Laura baraggia', '305', '20069', NULL, '536', 'Vaprio d''adda', '2017-09-02 18:43:08', 'Mi', '3472112484'),
+(102, 'Daniele', 'Cuocci', 'Stefania.daniela@hotmail.com', 'Via Madre Laura baraggia', '305', '20069', NULL, '539', 'Vaprio d''adda', '2017-09-02 18:43:50', 'Mi', '3472112484'),
 (103, 'Rossella ', 'Di Frisco ', 'ROSSELLÄ', '', '', '', NULL, '523', '', '2017-09-02 20:44:48', '', ''),
-(104, 'ilenia', 'incitti', 'ileniaincitti@yahoo.it', 'VIA DE GASPERI', '2', '64020', NULL, '578', 'PAGLIARE DI MORRO D\'ORO', '2017-09-02 21:45:08', 'te', '+39 329 4523 666'),
-(105, 'ILENIA', 'INCITTI', 'ileniaincitti@yahoo.it', 'VIA DE GASPERI', '2', '64020', NULL, '551', 'PAGLIARE DI MORRO D\'ORO', '2017-09-02 21:48:03', 'te', '329 4523 666'),
-(106, 'ILENIA', 'INCITTI', 'ileniaincitti@yahoo.it', 'VIA DE GASPERI', '2', '64020', NULL, '566', 'PAGLIARE DI MORRO D\'ORO', '2017-09-02 21:50:33', 'te', '329 45 23 666'),
+(104, 'ilenia', 'incitti', 'ileniaincitti@yahoo.it', 'VIA DE GASPERI', '2', '64020', NULL, '578', 'PAGLIARE DI MORRO D''ORO', '2017-09-02 21:45:08', 'te', '+39 329 4523 666'),
+(105, 'ILENIA', 'INCITTI', 'ileniaincitti@yahoo.it', 'VIA DE GASPERI', '2', '64020', NULL, '551', 'PAGLIARE DI MORRO D''ORO', '2017-09-02 21:48:03', 'te', '329 4523 666'),
+(106, 'ILENIA', 'INCITTI', 'ileniaincitti@yahoo.it', 'VIA DE GASPERI', '2', '64020', NULL, '566', 'PAGLIARE DI MORRO D''ORO', '2017-09-02 21:50:33', 'te', '329 45 23 666'),
 (107, '', '', '', '', '', '', NULL, '528', '', '2017-09-04 09:20:33', '', ''),
 (108, '', '', '', '', '', '', NULL, '523', '', '2017-09-04 09:21:13', '', ''),
 (109, 'Valentina', 'MERICO', 'VALENTINA_MERICO@HOTMAIL.IT', 'Via Catania ', '37', '73020', NULL, '574', 'Cutrofiano', '2017-09-04 12:33:19', 'LE', '3336119661'),
 (110, '', '', '', '', '', '', NULL, '576', '', '2017-09-04 19:19:08', '', ''),
 (111, 'Paolo', 'Tonetto', 'ptonetto@libero.it', 'Via bornia', '81A', '31043', NULL, '538', 'Fontanelle', '2017-09-04 20:16:16', 'TV', '3404050598'),
-(112, 'CARLOTTA', 'BONFÃ€', 'CARLOTTA.DR.BONFA@GMAIL.COM', 'VIA SANT\'ANTONIO ', '53', '35010', NULL, '591', 'vigonza', '2017-09-04 21:08:07', 'pd', '3402272115'),
-(113, 'Carlotta', 'BonfÃ ', 'carlotta.dr.bonfa@gmail.com', 'via sant\'antonio ', '53', '35010', NULL, '549', 'Vigonza', '2017-09-04 21:08:13', 'pd', '3402272115'),
+(112, 'CARLOTTA', 'BONFÃ€', 'CARLOTTA.DR.BONFA@GMAIL.COM', 'VIA SANT''ANTONIO ', '53', '35010', NULL, '591', 'vigonza', '2017-09-04 21:08:07', 'pd', '3402272115'),
+(113, 'Carlotta', 'BonfÃ ', 'carlotta.dr.bonfa@gmail.com', 'via sant''antonio ', '53', '35010', NULL, '549', 'Vigonza', '2017-09-04 21:08:13', 'pd', '3402272115'),
 (114, 'chiara', 'Orlando', 'infocalien@gmail.com', 'via giovanni de fraia ', '29', '80078', NULL, '535', 'pozzuoli', '2017-09-05 09:43:35', 'na', '3277133067'),
 (115, 'chiara', 'Orlando', 'infocalien@gmail.com', 'via giovanni de fraia ', '29', '80078', NULL, '566', 'pozzuoli', '2017-09-05 09:54:33', 'NA', '3277133067'),
 (116, 'luigi', 'spinelli', 'ida.petrillo@live.it', 'VIA GIUSEPPE PAVONCELLI', '164', '70125', NULL, '571', 'BARI', '2017-09-05 11:27:04', 'BA', '3209562760'),
@@ -779,9 +773,9 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (154, 'Gina', 'Bonfiglio', 'Grazy_liberarivolare@hotmail.it', 'Domenxi bartoli', '2', '92100', NULL, '540', 'Agrigento', '2017-09-13 10:34:33', 'Ag', '3313610637'),
 (155, 'gina', 'bonfiglio', 'grazy_liberadivolare@hotmail.it', 'Domenico Bartoli ', '2', '92100', NULL, '594', 'agrigento', '2017-09-13 10:50:26', 'ag', '3313610637'),
 (156, 'gina', 'bonfiglio', 'grazy_liberadivolare@hotmail.it', 'Domenico Bartoli ', '2', '92100', NULL, '528', 'agrigento', '2017-09-13 10:52:42', 'ag', '3313610637'),
-(157, 'grazia', 'd\'ostilio', 'grazia91@hotmail.com', 'VIA VENETO', '24', '64020', NULL, '577', 'CASTELLLALTO', '2017-09-13 10:56:01', 'TE', '3203117775'),
-(158, 'grazia', 'd\'ostilio', 'grazia91@hotmail.com', 'VIA VENETO', '24', '64020', NULL, '585', 'CASTELLLALTO', '2017-09-13 10:56:36', 'TE', '3203117775'),
-(159, 'grazia', 'd\'ostilio', 'grazia91@hotmail.com', 'VIA VENETO', '24', '64020', NULL, '522', 'CASTELLLALTO', '2017-09-13 10:57:06', 'TE', '3203117775'),
+(157, 'grazia', 'd''ostilio', 'grazia91@hotmail.com', 'VIA VENETO', '24', '64020', NULL, '577', 'CASTELLLALTO', '2017-09-13 10:56:01', 'TE', '3203117775'),
+(158, 'grazia', 'd''ostilio', 'grazia91@hotmail.com', 'VIA VENETO', '24', '64020', NULL, '585', 'CASTELLLALTO', '2017-09-13 10:56:36', 'TE', '3203117775'),
+(159, 'grazia', 'd''ostilio', 'grazia91@hotmail.com', 'VIA VENETO', '24', '64020', NULL, '522', 'CASTELLLALTO', '2017-09-13 10:57:06', 'TE', '3203117775'),
 (160, 'Chiara ', 'Margheri', 'cmargheri88@gmail.com', 'Viuzzo dei sarti', '3', '50142', NULL, '538', 'Firenze', '2017-09-14 18:50:55', 'fi', '3348981927'),
 (161, 'Samantha', 'Spadaro', 'samantha.sterzynski@gmail.com', 'C.so milano', '117', '28100', NULL, '523', 'Novara', '2017-09-15 19:47:22', 'No', '3479356916'),
 (162, 'alberto carmelo', 'mascali', 'albertomascali86@tuscali.it', 'viale moncada', '1', '95121', NULL, '556', 'Catania ', '2017-09-16 10:22:51', 'ct', '3288640140'),
@@ -934,17 +928,17 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (309, 'Simona ', 'Scolletta ', 'Simonascolletta@gmail.com', 'Viale alcide de gasperi ', '109', '59100', NULL, '594', 'Prato', '2017-10-08 17:36:40', 'Po', '3207593393'),
 (310, 'francesca', 'di matteo', 'Francesca. eros1988@gmail.com', '50,Am Bongert', '50', 'L-1270', NULL, '552', 'luxembourg-merl', '2017-10-09 15:25:34', 'lu', '352691697441'),
 (311, '', '', '', '', '', '', NULL, '559', '', '2017-10-09 16:27:23', '', ''),
-(312, 'Tania', 'D\'Angelo', 'fortusananke@libero.it', 'Via Lamaccio', '6/b', '67039', NULL, '559', 'Sulmona', '2017-10-09 16:28:01', 'AQ', '3495706398'),
-(313, 'Tania', 'D\'Angelo', 'fortusananke@libero.it', 'Via Lamaccio', '6/b', '67039', NULL, '554', 'Sulmona', '2017-10-09 16:29:01', 'AQ', '3495706398'),
-(314, 'Tania', 'D\'Angelo', 'fortusananke@libero.it', 'Via Lamaccio', '6/b', '67039', NULL, '550', 'Sulmona', '2017-10-09 16:30:42', 'AQ', '3495706398'),
-(315, 'Tania', 'D\'Angelo', 'fortusananke@libero.it', 'Via Lamaccio', '6/b', '67039', NULL, '522', 'Sulmona', '2017-10-09 16:31:55', 'AQ', '3495706398'),
-(316, 'Tania', 'D\'Angelo', 'fortusananke@libero.it', 'Via Lamaccio, 6/b', '6/b', '67039', NULL, '522', 'Sulmona', '2017-10-09 16:32:12', 'AQ', '3495706398'),
+(312, 'Tania', 'D''Angelo', 'fortusananke@libero.it', 'Via Lamaccio', '6/b', '67039', NULL, '559', 'Sulmona', '2017-10-09 16:28:01', 'AQ', '3495706398'),
+(313, 'Tania', 'D''Angelo', 'fortusananke@libero.it', 'Via Lamaccio', '6/b', '67039', NULL, '554', 'Sulmona', '2017-10-09 16:29:01', 'AQ', '3495706398'),
+(314, 'Tania', 'D''Angelo', 'fortusananke@libero.it', 'Via Lamaccio', '6/b', '67039', NULL, '550', 'Sulmona', '2017-10-09 16:30:42', 'AQ', '3495706398'),
+(315, 'Tania', 'D''Angelo', 'fortusananke@libero.it', 'Via Lamaccio', '6/b', '67039', NULL, '522', 'Sulmona', '2017-10-09 16:31:55', 'AQ', '3495706398'),
+(316, 'Tania', 'D''Angelo', 'fortusananke@libero.it', 'Via Lamaccio, 6/b', '6/b', '67039', NULL, '522', 'Sulmona', '2017-10-09 16:32:12', 'AQ', '3495706398'),
 (317, 'Annalisa', 'MosChetti', 'roberta.moschetti@gmail.com', 'Via vespucci', '4', '70019', NULL, '604', 'Triggiano', '2017-10-09 18:21:00', 'Ba', '3201419384'),
 (318, 'Eleonora', 'Motta', 'eleonora.motta88@libero.it', 'via Giovanni Falcone ', '11', '20080', NULL, '607', 'Besate', '2017-10-09 20:51:32', 'mi', '3458828227'),
 (319, 'Eleonora', 'Motta', 'eleonora.motta88@libero.it', 'via Giovanni Falcone ', '11', '20080', NULL, '549', 'bESATE', '2017-10-09 20:53:23', 'MI', '3458828227'),
 (320, 'Eleonora', 'Motta', 'eleonora.motta88@libero.it', 'via Giovanni Falcone ', '11', '20080', NULL, '604', 'Besate', '2017-10-09 20:54:28', 'MI', '3458828227'),
 (321, 'Nadia', 'Chraief', '2dr.daniela@gmail.com', 'Via Antonino di san giuliano ', '329', '95124', NULL, '530', 'Catania', '2017-10-09 21:37:50', 'CT', '3425516157'),
-(322, 'Rosanna', 'Cuomo', 'sundancekynky@gmail.com', 'via Bruno Falcomata\'', '28', '80128', NULL, '539', 'Napoli', '2017-10-10 10:24:08', 'Na', '3392607283'),
+(322, 'Rosanna', 'Cuomo', 'sundancekynky@gmail.com', 'via Bruno Falcomata''', '28', '80128', NULL, '539', 'Napoli', '2017-10-10 10:24:08', 'Na', '3392607283'),
 (323, 'Paola', 'mandolini', 'paolamandolini@libero.it', 'via antonio canova ', '33a', '50053', NULL, '549', 'empoli', '2017-10-10 10:43:16', 'fi', '3494719239'),
 (324, 'paola', 'mandolini', 'paolamandolini@libero.it', 'via canova ', '33a', '50053', NULL, '606', 'empoli', '2017-10-10 13:32:28', 'fi', '3494719239'),
 (325, 'paola', 'mandolini', 'paolamandolini@libero.it', 'via canova', '33a', '50053', NULL, '599', 'empoli', '2017-10-10 13:35:20', 'fi', '3494719239'),
@@ -1054,7 +1048,7 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (428, 'Eleonora', 'Motta', 'eleonora.motta88@libero.it', 'Via Giovanni Falcone, 11', '11', '20080', NULL, '603', 'Besate', '2017-10-22 15:21:16', '', '3458828227'),
 (429, 'Eleonora', 'Motta', 'eleonora.motta88@libero.it', 'Via Giovanni Falcone, 11', '11', '20080', NULL, '539', 'Besate', '2017-10-22 15:30:15', '', '3458828227'),
 (430, 'Stefano', 'Marullo', 'Citr1986@hotmail.it', 'Via. Xx settembre', '80', '72018', NULL, '578', 'San Michele salentino', '2017-10-22 18:59:49', 'Br', '3463647901'),
-(431, 'Luca ', 'Cappellini', 'luca.cAppellini@saint-gobAin.com', 'Via stelvio ', '11', '22063', NULL, '549', 'Cantu\'', '2017-10-22 22:07:37', 'Co', '3357845782'),
+(431, 'Luca ', 'Cappellini', 'luca.cAppellini@saint-gobAin.com', 'Via stelvio ', '11', '22063', NULL, '549', 'Cantu''', '2017-10-22 22:07:37', 'Co', '3357845782'),
 (432, 'Alessia', 'gallo', 'ALEX.G_92@HOTMAIL.IT', 'vIA IPPOLITO NIEVO', '17', '46047', NULL, '573', 'PORTO MANTOVANO', '2017-10-23 07:26:49', 'MN', '3455020807'),
 (433, 'ALESSIA', 'GALLO', 'ALEX.G_92@HOTMAIL.IT', 'VIA IPPOLITO NIEVO ', '17', '46047', NULL, '586', 'PORTO MANTOVANO', '2017-10-23 07:28:57', 'MN', '3455020807'),
 (434, 'ALESSIA', 'GALLO', 'ALEX.G_92@HOTMAIL.IT', 'VIA IPPOLITO NIEVO ', '17', '46047', NULL, '581', 'PORTO MANTOVANO', '2017-10-23 07:30:24', 'MN', '3455020807'),
@@ -1116,9 +1110,9 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (490, 'veronica', 'buccheri', 'veronica.buccheri87@gmail.com', 'via aldo rossi ', '4', '20149', NULL, '501', 'milano', '2017-10-30 19:12:37', 'mi', '3400816219'),
 (491, 'veronica', 'buccheri', 'veronica.buccheri87@gmail.com', 'via aldo rossi', '4', '20149', NULL, '533', 'milano', '2017-10-31 10:27:04', 'mi', '3400816219'),
 (492, 'veronica', 'buccheri', 'veronica.buccheri87@gmail.com', 'via aldo rossi', '4', '20149', NULL, '599', 'milano', '2017-10-31 10:32:24', 'mi', '3400816219'),
-(493, 'irene', 'benedusi', 'irenebenedusi@libero.it', 'via gran bretagna ', '1', '26016', NULL, '543', 'Spino D\'Adda', '2017-10-31 11:15:04', 'cr', '3486064436'),
-(494, 'irene', 'benedusi', 'irenebenedusi@libero.it', 'via gran bretagna ', '1', '26016', NULL, '593', 'Spino D\'Adda', '2017-10-31 11:19:11', 'Cr', '3486064436'),
-(495, 'irene', 'benedusi', 'irenebenedusi@libero.it', 'via gran bretagna ', '1', '26016', NULL, '594', 'Spino D\'Adda', '2017-10-31 11:23:26', 'Cr', '3486064436'),
+(493, 'irene', 'benedusi', 'irenebenedusi@libero.it', 'via gran bretagna ', '1', '26016', NULL, '543', 'Spino D''Adda', '2017-10-31 11:15:04', 'cr', '3486064436'),
+(494, 'irene', 'benedusi', 'irenebenedusi@libero.it', 'via gran bretagna ', '1', '26016', NULL, '593', 'Spino D''Adda', '2017-10-31 11:19:11', 'Cr', '3486064436'),
+(495, 'irene', 'benedusi', 'irenebenedusi@libero.it', 'via gran bretagna ', '1', '26016', NULL, '594', 'Spino D''Adda', '2017-10-31 11:23:26', 'Cr', '3486064436'),
 (496, 'Marie ', 'ermolenko', 'mariikasol@gmail.com', 'Wolkowa kosmonavta 02166 kyiv ukraine', '24-32', '20126', NULL, '536', 'Milano', '2017-10-31 15:08:15', 'Mi', '-'),
 (497, 'Marie', 'ermolenko', 'mariikasol@gmail.com', 'Wolkowa kosmonavta 02166 kyiv ukraine', '24-32', '20126', NULL, '596', 'Milano', '2017-10-31 15:08:59', 'Mi', '-'),
 (498, 'Marie', 'ermolenko', 'mariikasol@gmail.com', 'Wolkowa kosmonavta 02166 kyiv ukraine', '24-32', '20126', NULL, '595', 'Milano', '2017-10-31 15:09:56', 'Mi', '-'),
@@ -1134,7 +1128,7 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (508, 'ClauDia', 'Bertelli', 'Claudia.be86@gmail.com', 'Via gian domenico romagnosi', '27', '50019', NULL, '567', 'Sesto fiorentino', '2017-11-01 08:13:08', 'Fi', '3498651451'),
 (509, 'Claudia', 'Bertelli', 'Claudia.be86@gMail.com', 'Via gian Domenico romagnosi ', '27', '50019', NULL, '548', 'Sesto fiorentino', '2017-11-01 08:57:57', 'Fi', '3498651451'),
 (510, 'Sabrina', 'Terazzi', 'Sabrinaterazzi79@gmail.coM', 'Via a. Manzoni ', '32/a', '21018', NULL, '538', 'Sesto calende', '2017-11-01 14:26:22', 'Va', '3474458533'),
-(511, 'Anna', 'Bianchi', 'bianchianna88@gmail.com', 'piazza sant\'anna ', '22', '22070', NULL, '564', 'locate varesino', '2017-11-01 16:04:24', 'co', '3495187235'),
+(511, 'Anna', 'Bianchi', 'bianchianna88@gmail.com', 'piazza sant''anna ', '22', '22070', NULL, '564', 'locate varesino', '2017-11-01 16:04:24', 'co', '3495187235'),
 (512, 'Alberto', 'rizzi', 'a.rizzi89@gmail.com', 'via frittaia', '5', '37052', NULL, '556', 'casaleone', '2017-11-01 16:15:08', 'vr', ''),
 (513, 'alberto', 'rizzi', 'a.rizzi89@gmail.com', 'via frittaia ', '5', '37052', NULL, '502', 'casaleone', '2017-11-01 16:17:15', 'vr', ''),
 (514, 'alberto', 'rizzi', 'a.rizzi89@gmail.com', 'via frittaia', '5', '37052', NULL, '500', 'casaleone ', '2017-11-01 16:19:12', 'vr', ''),
@@ -1161,7 +1155,7 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (535, 'lidia', 'fernandes', 'winnyf@hotmail.it', 'via PASQUALI di mendicino  ', '155', '87040', NULL, '528', 'mendicino', '2017-11-05 13:23:53', 'cs', '3482600014'),
 (536, 'Maura', 'Tocco', 'toccomaura@tiscali.it', 'Via romagna', '10', '9027', NULL, '549', 'Serrenti ', '2017-11-05 15:11:31', 'Vs', '3460152863'),
 (537, 'Davide', 'Quadrano', 'quadrano.davide@libero.it', 'Via Romagna ', '12', '9027', NULL, '502', 'Serrenti', '2017-11-05 15:13:33', 'Su', '3925949248'),
-(538, 'Valeria', 'Milani', 'v.milani1989@gmail.com', 'Via Gasparotto', '15', '23877', NULL, '604', 'Paderno d\'Adda', '2017-11-05 16:48:16', 'LE', '3383476462'),
+(538, 'Valeria', 'Milani', 'v.milani1989@gmail.com', 'Via Gasparotto', '15', '23877', NULL, '604', 'Paderno d''Adda', '2017-11-05 16:48:16', 'LE', '3383476462'),
 (539, 'valentino', 'galgani', 'goga-89@hotmail.it', 'le case di sciano', '230', '50052', NULL, '538', 'CERTALDO', '2017-11-05 16:59:24', 'fi', '3892701811'),
 (540, 'valentino', 'galgani', 'goga-89@hotmail.it', 'le case di sciano', '230', '50052', NULL, '503', 'CERTALDO', '2017-11-05 17:00:24', 'fi', '3892701811'),
 (541, 'valentino', 'galgani', 'goga-89@hotmail.it', 'le case di sciano', '230', '50052', NULL, '527', 'CERTALDO', '2017-11-05 17:02:03', 'f', '3892701811'),
@@ -1374,7 +1368,7 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (747, 'Fabrizio', 'Arnaudo', 'fabrizio.arnaudo@live.it', 'Via dei camini', '5/b', '12037', NULL, '541', 'Saluzzo', '2017-11-20 20:36:29', 'Cn', '3358179215'),
 (748, 'Alice', 'Bugi', 'Ali.b87@tiscali.it', 'Via raffaello Sanzio', '35', '50065', NULL, '510', 'Pontassieve', '2017-11-20 20:53:07', 'FI', '3384747055'),
 (749, 'Alice', 'Bugi', 'Ali.b87@tiscali.it', 'Via raffaello sanzio', '35', '50065', NULL, '604', 'Pontassieve', '2017-11-20 20:57:12', 'Fi', '3384747055'),
-(750, 'Chiara', 'Librizzi', 'chiara.librizzi91@gmail.com', 'via mameli', '17', '42123', NULL, '500', 'Reggio nell\'Emilia', '2017-11-21 10:46:37', 're', '3275520652'),
+(750, 'Chiara', 'Librizzi', 'chiara.librizzi91@gmail.com', 'via mameli', '17', '42123', NULL, '500', 'Reggio nell''Emilia', '2017-11-21 10:46:37', 're', '3275520652'),
 (751, 'Giada', 'Varalta', 'giada.varAlta@braiesnet.it', 'Via purga', '6', '', NULL, '531', 'VeLo veronese ', '2017-11-21 15:36:13', 'VR', '3401810499'),
 (752, 'Lucia', 'Fabbri', 'lucyfabbri86@hotmail.it', 'Via dei VElKa', '6', '1016', NULL, '513', 'Tarquinia', '2017-11-21 15:37:34', 'VT', '320/2790138'),
 (753, 'denise', 'lattucca', 'denydeny_91@hotmail.it', 'via moretta', '21', '10022', NULL, '520', 'carmagnola', '2017-11-21 16:09:42', 'to', ''),
@@ -1393,9 +1387,9 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (766, 'Simona', 'Stabile', 'stabilesimona613@gmail.com', 'Via Dante Alighieri', '25', '91011', NULL, '523', '', '2017-11-22 09:22:35', 'TP', '3896492085'),
 (767, 'Simona', 'Stabile', 'stabilesimona613@gmail.com', 'Via Dante Alighieri', '25', '91011', NULL, '578', 'ALCAMo', '2017-11-22 09:25:35', 'TP', '3896492085'),
 (768, 'Fabio', 'Guazzolini', 'giadacoccia@gmail.com', 'Via Borgo S. Martino ', '75', '39', NULL, '604', 'Zagarolo', '2017-11-22 09:49:58', 'RM', '3389113994'),
-(769, 'cristiano', 'odoni', 'ib0811@libero.it', 'via Gran Bretagna', '1', '26016', NULL, '595', 'SPINO D\'ADDA', '2017-11-22 09:57:32', 'Cr', '3389440966'),
-(770, 'cristiano', 'odoni', 'ib0811@libero.it', 'via Gran Bretagna', '1', '26016', NULL, '600', 'SPINO D\'ADDA', '2017-11-22 09:59:04', 'CR', '3389440966'),
-(771, 'cristiano', 'odoni', 'ib0811@libero.it', 'via Gran Bretagna', '1', '26016', NULL, '549', 'SPINO D\'ADDA', '2017-11-22 10:02:26', 'CR', '3389440966'),
+(769, 'cristiano', 'odoni', 'ib0811@libero.it', 'via Gran Bretagna', '1', '26016', NULL, '595', 'SPINO D''ADDA', '2017-11-22 09:57:32', 'Cr', '3389440966'),
+(770, 'cristiano', 'odoni', 'ib0811@libero.it', 'via Gran Bretagna', '1', '26016', NULL, '600', 'SPINO D''ADDA', '2017-11-22 09:59:04', 'CR', '3389440966'),
+(771, 'cristiano', 'odoni', 'ib0811@libero.it', 'via Gran Bretagna', '1', '26016', NULL, '549', 'SPINO D''ADDA', '2017-11-22 10:02:26', 'CR', '3389440966'),
 (772, 'michela', 'renna', 'miky_pippo89@hotmail.it', 'via rampa i parati', '2', '76013', NULL, '571', 'MINERVINO MURGE', '2017-11-22 11:37:45', 'bt', '3275699136'),
 (773, 'michela', 'renna', 'miky_pippo89@hotmail.it', 'via rampa i parati', '2', '76013', NULL, '577', 'MINERVINO MURGE', '2017-11-22 11:39:31', 'bt', '3275699136'),
 (774, 'michela', 'renna', 'miky_pippo89@hotmail.it', 'Via rampa I PARATI', '2', '76013', NULL, '572', 'MINERVINO MURGE', '2017-11-22 11:45:05', 'bt', '3275699136'),
@@ -1417,7 +1411,7 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (790, 'marcella', 'pellegrini', 'marcella.pellegrini@hotmail.it', 'via roberto ridolfi', '3', '44123', NULL, '521', 'ferrara', '2017-11-23 08:22:50', 'fe', '3401553587'),
 (791, 'Dalila', '', '', '', '', '', NULL, '538', '', '2017-11-23 08:57:57', '', ''),
 (792, 'DaliLa', 'Dossena', 'Daliladossena90@gmail.cOm', 'Via trieste ', '44', '26841', NULL, '538', 'Casalpusterlengo', '2017-11-23 09:02:39', 'Lo', '3342960725'),
-(793, 'thomas', 'fusetto', 'thomasfusetto@libero.it', 'via francesco tommaso marinetti ', '11/a', '35020', NULL, '510', 'masera\' di padova', '2017-11-23 09:32:17', 'pd', '3482248958'),
+(793, 'thomas', 'fusetto', 'thomasfusetto@libero.it', 'via francesco tommaso marinetti ', '11/a', '35020', NULL, '510', 'masera'' di padova', '2017-11-23 09:32:17', 'pd', '3482248958'),
 (794, 'elisa', 'di bin', 'perdibinelisa@gmail.com', 'via DE capelute', '29/6', '33034', NULL, '566', 'fagagna', '2017-11-23 10:56:05', 'ud', '3470687387'),
 (795, 'Sara', 'Odoardi', 'saraodoardi86@gmail.com', 'via bolgheri', '51', '148', NULL, '593', 'roma', '2017-11-23 14:45:37', 'rm', ''),
 (796, 'Sara', 'Odoardi', 'saraodoardi86@gmail.com', 'via bolgheri', '51', '148', NULL, '514', 'Roma', '2017-11-23 14:47:17', 'rm', ''),
@@ -1434,7 +1428,7 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (807, 'katia', 'teresi', 'katiepallavvolo91@hotmail..it', 'via cortile de caro', '4', '90124', NULL, '526', 'palermo', '2017-11-23 21:44:33', 'PA', '3289198512'),
 (808, 'katia', 'teresi', 'katiepallavvolo91@hotmail..it', 'via cortile de caro', '4', '90124', NULL, '578', 'palermo', '2017-11-23 21:45:55', 'PA', '3289198512'),
 (809, 'katia', 'teresi', 'katiepallavvolo91@hotmail.it', 'via cortile de caro', '4', '90124', NULL, '562', 'palermo', '2017-11-23 21:47:03', 'PA', '3289198512'),
-(810, 'Maristella', 'De Michele', 'Mardemich@gmail.com', 'Via san francesco d\'assisi', '13', '10036', NULL, '595', 'Settimo torinese', '2017-11-24 00:43:32', 'To', '3460185597'),
+(810, 'Maristella', 'De Michele', 'Mardemich@gmail.com', 'Via san francesco d''assisi', '13', '10036', NULL, '595', 'Settimo torinese', '2017-11-24 00:43:32', 'To', '3460185597'),
 (811, 'Federica', 'De gobbi', 'Federica.degobbi@gmail.com', 'Via cavour 81', '81', '37062', NULL, '602', 'Dossobuono', '2017-11-24 06:54:23', 'Vr', ''),
 (812, 'test', '', '', '', '', '', NULL, '501', '', '2017-11-24 09:13:25', '', ''),
 (813, 'Il Bicchiere della', 'Staffa', 'a.melappioni@gmail.com', 'Contrada Piane Chienti', '59', '62012', NULL, '501', 'Civitanova Marche', '2017-11-24 15:16:17', 'MC', '3208519831'),
@@ -1488,7 +1482,7 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (861, 'marta', 'compagnoni', 'marta.compagnoni@gmail.com', 'via santa maria', '7', '2034', NULL, '598', 'montopoli di sabina', '2017-11-28 11:23:29', 'ri', '3806879886'),
 (862, 'Francesca', 'Balla', 'francesca.balla@yahoo.it', 'Regione palazzasso', '20', '14010', NULL, '509', 'Cantarana', '2017-11-28 13:56:12', 'AT', '3386821553'),
 (863, 'Francesca', 'Balla', 'FrancesCa.balla@yahoo.it', 'Regione palazzasso', '20', '14010', NULL, '513', 'Cantarana', '2017-11-28 13:59:38', 'At', '3386821553'),
-(864, 'Donatella', 'D\'ONOFRIO', 'dona_mont@libero.it', 'via veturia', '70', '181', NULL, '501', 'roma', '2017-11-28 17:50:21', 'rm', ''),
+(864, 'Donatella', 'D''ONOFRIO', 'dona_mont@libero.it', 'via veturia', '70', '181', NULL, '501', 'roma', '2017-11-28 17:50:21', 'rm', ''),
 (865, 'FrAncesca', 'Balla', 'FraNcesca.balla@yahoo.it', 'Regione palazzassO', '20', '14010', NULL, '512', 'Cantarana', '2017-11-28 19:10:54', 'At', '3386821553'),
 (866, 'Nunzia', 'Alvino', 'nunzia.alvino93@gmail.com', 'Via fornarina ', '10', '48018', NULL, '536', 'Faenza', '2017-11-28 19:20:17', 'Ra', '3334719053'),
 (867, 'vito', 'previti', 'francesca0590@live.it', 'strada nino bixio ', '151', '43125', NULL, '594', 'Parma', '2017-11-28 20:02:00', 'pr', '3924779889'),
@@ -1509,7 +1503,7 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (882, 'mariantonia', 'lamberti', 'tonia_5@libero.it', 'g.castaldi', '4', '81030', NULL, '576', 'orta di atella', '2017-11-30 14:29:38', 'ce', '3927898421'),
 (883, 'ELisa', 'Lusiani', 'elisa.lusiani@gmail.com', 'piazza g. puchetti ', '5', '35030', NULL, '594', 'selvazzano dentro', '2017-11-30 16:31:22', 'pd', ''),
 (884, 'ELisa', 'Lusiani', 'elisa.lusiani@gmail.com', 'piazza g. puchetti', '5', '35030', NULL, '548', 'selvazzano dentro', '2017-11-30 16:33:50', 'pd', ''),
-(885, 'MARINELLA', 'D\'AMICO', 'damicosrl@alice.it', 'VIA PRIMO MAGGIO 5', '', '72014', NULL, '508', 'CISTERNINO (BR)', '2017-11-30 16:34:53', 'BR', '804448256'),
+(885, 'MARINELLA', 'D''AMICO', 'damicosrl@alice.it', 'VIA PRIMO MAGGIO 5', '', '72014', NULL, '508', 'CISTERNINO (BR)', '2017-11-30 16:34:53', 'BR', '804448256'),
 (886, 'giulia', 'siciliano', 'sgiulia987@gmail.com', 'cda stomazzelli 81u', '81u', '70043', NULL, '526', 'monopoli', '2017-11-30 20:36:39', 'ba', '3298418026'),
 (887, 'giulia', 'siciliano', 'sgiulia987@gmail.com', 'cda stomazzelli 81u', '81u', '70043', NULL, '533', 'monopoli', '2017-11-30 20:39:05', 'ba', ''),
 (888, 'giulia', 'siciliano', 'sgiulia987@gmail.com', 'cda stomazzelli 81u', '81u', '70043', NULL, '531', 'monopoli', '2017-11-30 20:39:23', 'ba', ''),
@@ -1566,7 +1560,7 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (939, 'Claudio', 'Neri', '', 'Via acqua salsa ', '19 a', '15', NULL, '584', 'Monterotondo', '2017-12-04 22:11:07', 'Rm', ''),
 (940, 'Giorgia', 'Rognin', 'ulissegio83@yahoo.it', 'Via Don Lorenzo Milani ', '8/a', '30030', NULL, '545', 'PIANIGA', '2017-12-05 00:02:13', 'Ve', '3404172175'),
 (941, 'Giorgia', 'Rognin', 'ulissegio83@yahoo.it', 'Via Don Lorenzo Milani', '8/a', '30030', NULL, '538', 'PIANIGA', '2017-12-05 00:03:14', 'VE', '3404172175'),
-(942, 'lucia', 'emanuele', 'luemanu89@gmail.com', 'via marco biagi ', '92/b', '53014', NULL, '598', 'monteroni d\'arbia', '2017-12-05 15:58:01', 'si', ''),
+(942, 'lucia', 'emanuele', 'luemanu89@gmail.com', 'via marco biagi ', '92/b', '53014', NULL, '598', 'monteroni d''arbia', '2017-12-05 15:58:01', 'si', ''),
 (943, 'MANUELA', 'Restuccia', 'manuela.restuccia@hotmail.com', 'Via martiri della libertÃ ', '24', '26030', NULL, '527', 'malagnino', '2017-12-05 16:38:29', 'cr', '3888568039'),
 (944, 'Monica', 'Rossi', 'monicarossi71@gmail.com', 'via braida prima', '25A', '30020', NULL, '538', 'stretti eraclea', '2017-12-05 17:03:32', 've', '3404714465'),
 (945, 'Arianna', 'Francesconi', 'aryfrancy93@hotmail.it', 'Via brigata Mazzini', '50', '31010', NULL, '591', 'Col San Martino', '2017-12-06 09:32:42', 'Tv', '3400721869'),
@@ -1586,8 +1580,8 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (959, 'Elena', 'Signoriello', 'ELENA.SIGNORIELLO@GMAIL.Com', 'Via Francesco Petrarca', '13', '35027', NULL, '600', 'Noventa padovana', '2017-12-07 20:23:30', 'Pd', '3405778460'),
 (960, 'Elena', 'Signoriello', 'ELENA.SIGNORIELLO@GMAIL.Com', 'Via Francesco Petrarca', '13', '35027', NULL, '530', 'Noventa padovana', '2017-12-07 20:33:26', 'Pd', '3405778460'),
 (961, 'Elena', 'Signoriello', 'ELENA.SIGNORIELLO@GMAIL.Com', 'Via Francesco Petrarca', '13', '35027', NULL, '527', 'Noventa padovana', '2017-12-07 20:43:29', 'Pd', '3405778460'),
-(962, 'Mariachiara', 'mazzu\'', 'mariachiara.mazzu@yahoo.com', 'Via degli alleati', '24', '10042', NULL, '546', 'nichelino', '2017-12-08 10:31:03', 'to', '3496530953'),
-(963, 'Mariachiara', 'mazzu\'', 'mariachiara.mazzu@yahoo.com', 'Via degli alleati', '24', '10042', NULL, '510', 'nichelino', '2017-12-08 10:33:31', 'to', '3496530953'),
+(962, 'Mariachiara', 'mazzu''', 'mariachiara.mazzu@yahoo.com', 'Via degli alleati', '24', '10042', NULL, '546', 'nichelino', '2017-12-08 10:31:03', 'to', '3496530953'),
+(963, 'Mariachiara', 'mazzu''', 'mariachiara.mazzu@yahoo.com', 'Via degli alleati', '24', '10042', NULL, '510', 'nichelino', '2017-12-08 10:33:31', 'to', '3496530953'),
 (964, 'Ilaria', 'Molteni', 'ilaria.molteni@gmail.com', 'Papa Giovanni XXIII, 10', '10', '20032', NULL, '503', 'Cormano', '2017-12-09 13:34:53', 'MI', ''),
 (965, 'Ilaria', 'Molteni', 'ilaria.molteni@gmail.com', 'Papa Giovanni XXIII, 10', '10', '20032', NULL, '541', 'Cormano', '2017-12-09 13:35:15', 'mi', ''),
 (966, 'Ilaria', 'Molteni', 'ilaria.molteni@gmail.com', 'Papa Giovanni XXIII, 10', '10', '20032', NULL, '538', 'Cormano', '2017-12-09 13:35:34', 'mi', ''),
@@ -1622,9 +1616,9 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (994, 'paola', 'botticchio', 'poloa88@hotmail.it', 'via barzoni ', '3', '25017', NULL, '508', 'lonato del garda', '2017-12-10 17:46:17', 'bs', '3280970403'),
 (995, 'paola', 'botticchio', 'poloa88@hotmail.it', 'via barzoni ', '3', '25017', NULL, '538', 'lonato del garda', '2017-12-10 17:50:40', 'bs', '3280970403'),
 (996, 'DavIde', '', '', '', '', '', NULL, '598', '', '2017-12-10 18:28:10', '', ''),
-(997, 'Carlotta', 'BonfÃ ', 'carlotta.dr.bonfa@gmail.com', 'Sant\'Antonio', '53', '35010', NULL, '593', 'Vigonza', '2017-12-10 21:35:13', 'PD', '3402272115'),
-(998, 'Carlotta', 'BonfÃ ', 'carlotta.dr.bonfa@gmail.com', 'Sant\'Antonio', '53', '35010', NULL, '538', 'Vigonza', '2017-12-10 21:36:54', 'PD', '3402272115'),
-(999, 'Carlotta', 'BonfÃ ', 'carlotta.dr.bonfa@gmail.com', 'Sant\'Antonio', '53', '35010', NULL, '608', 'Vigonza', '2017-12-10 21:43:26', 'PD', '3402272115'),
+(997, 'Carlotta', 'BonfÃ ', 'carlotta.dr.bonfa@gmail.com', 'Sant''Antonio', '53', '35010', NULL, '593', 'Vigonza', '2017-12-10 21:35:13', 'PD', '3402272115'),
+(998, 'Carlotta', 'BonfÃ ', 'carlotta.dr.bonfa@gmail.com', 'Sant''Antonio', '53', '35010', NULL, '538', 'Vigonza', '2017-12-10 21:36:54', 'PD', '3402272115'),
+(999, 'Carlotta', 'BonfÃ ', 'carlotta.dr.bonfa@gmail.com', 'Sant''Antonio', '53', '35010', NULL, '608', 'Vigonza', '2017-12-10 21:43:26', 'PD', '3402272115'),
 (1000, 'Giovanna', 'Sorriento', 'giovanna.sorriento@gmail.com', 'Cia treves', '1', '83022', NULL, '602', 'Baiano', '2017-12-11 15:31:09', 'Av', '3288356591'),
 (1001, 'Giovanna', 'Sorriento', 'Giovanna.sorriento@gmail.com', 'Via Treves ', '1', '83022', NULL, '598', 'Baiano', '2017-12-11 15:32:20', 'Av', '3288356591'),
 (1002, 'Elena', 'Fulciniti', 'Elena90_736@hotmail.com', 'Via alfieri', '8', '20020', NULL, '511', 'VILLA CORTESE', '2017-12-11 15:58:50', 'Mi', '3478146421'),
@@ -1695,13 +1689,13 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (1067, 'Simona', 'maccarini', 'simona.maccarini@alice.it', 'via erbosa', '62', '50013', NULL, '604', 'campi bisenzio', '2017-12-17 20:50:46', 'fi', '3332538189'),
 (1068, 'simona', 'maccarini', 'simona.maccarini@alice.it', 'via erbosa', '62', '50013', NULL, '533', 'campi bisenzio', '2017-12-17 20:54:36', 'fi', '3332538189'),
 (1069, 'Simona', 'maccarini', 'simona.maccarini@alice.it', 'via erbosa', '62', '50013', NULL, '548', 'campi bisenzio', '2017-12-17 20:59:19', 'fi', '3332538189'),
-(1070, 'Carlo', 'casagrande', 'frattale@libero.it', 'via palazzo bianchetti ', '27B', '40064', NULL, '503', 'ozzano dell\'emilia', '2017-12-17 21:18:19', 'bo', '3470533107'),
+(1070, 'Carlo', 'casagrande', 'frattale@libero.it', 'via palazzo bianchetti ', '27B', '40064', NULL, '503', 'ozzano dell''emilia', '2017-12-17 21:18:19', 'bo', '3470533107'),
 (1071, 'Francesca', 'Gualandris', 'francy.guala@gmail.com', 'via silvio pellico', '7', '24040', NULL, '576', 'ciserano', '2017-12-17 21:32:40', 'bg', '3405542169'),
 (1072, 'Francesca', 'Gualandris', 'francy.guala@gmail.com', 'via silvio pellico', '7', '24040', NULL, '577', 'ciserano', '2017-12-17 21:33:26', 'bg', '3405542169'),
 (1073, 'Francesca', 'Gualandris', 'francy.guala@gmail.com', 'via silvio pellico', '7', '24040', NULL, '523', 'ciserano', '2017-12-17 21:34:20', 'bg', '3405542169'),
 (1074, 'Davide leonardo', 'Puricella', 'Davide.puricella@libero.it', 'Via san francesco dâ€™assisi', '13', '10036', NULL, '543', 'Settimo torinEse', '2017-12-17 22:19:19', 'To', '3275696770'),
-(1075, 'Federico', 'malaguti', 'malagutifederico0@gmail.com', 'via schiavina ', '14', '40011', NULL, '577', 'anzola dell\'emilia', '2017-12-18 12:13:28', 'bo', '3393260208'),
-(1076, 'Federico', 'malaguti', 'malagutifederico0@gmail.com', 'via schiavina ', '14', '40011', NULL, '572', 'anzola dell\'emilia', '2017-12-18 12:15:55', 'bo', '3393260208'),
+(1075, 'Federico', 'malaguti', 'malagutifederico0@gmail.com', 'via schiavina ', '14', '40011', NULL, '577', 'anzola dell''emilia', '2017-12-18 12:13:28', 'bo', '3393260208'),
+(1076, 'Federico', 'malaguti', 'malagutifederico0@gmail.com', 'via schiavina ', '14', '40011', NULL, '572', 'anzola dell''emilia', '2017-12-18 12:15:55', 'bo', '3393260208'),
 (1077, 'Daniela', 'Montaquila', '', 'via giuseppe Garibaldi, 20', '20', '21050', NULL, '573', 'Porto ceresio', '2017-12-18 13:13:13', 'Va', '3287242554'),
 (1078, 'Giuseppina', 'Errico', 'giusi.errico87@gmail.com', 'Via XXSettembre', '2/a', '15121', NULL, '573', 'Alessandria', '2017-12-18 13:52:34', 'Al', ''),
 (1079, 'Giuseppina', 'Errico', 'giusi.errico87@gmail.comv', 'Via xx settembre', '2/a', '', NULL, '527', '', '2017-12-18 13:57:28', '', ''),
@@ -1712,8 +1706,8 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (1084, 'PAOLA ', 'Ottaviano ', 'paola-22@alice.it ', 'Via v. Siciliani', '', '93019', NULL, '543', 'Sommatino ', '2017-12-18 23:03:06', 'Cl', '3271559877'),
 (1085, 'Paola ', 'Ottaviano ', 'Paola-22@alice.it ', 'Via VESPRI siciliani ', '', '93019', NULL, '564', 'Sommatino ', '2017-12-18 23:06:49', 'Cl', '3271559877'),
 (1086, 'Maria', 'Angrisano', 'maria.angrisano.uni@gmail.com', 'via dei ronchi', '45', '21058', NULL, '546', 'solbiate olona', '2017-12-19 09:43:15', 'va', '3470329056'),
-(1087, 'Camilla', 'D\'UBALDI', 'milla.dubaldi@gmail.com', 'VIA BUONARROTI', '19', '20063', NULL, '574', 'CERNUSCO SUL NAVIGLIO', '2017-12-19 09:57:51', 'mi', '3381323990'),
-(1088, 'Camilla', 'D\'ubaldi', 'milla.dubaldi@gmail.com', 'VIA BUONARROTI', '1', '20063', NULL, '538', 'CERNUSCO SUL NAVIGLIO', '2017-12-19 09:58:47', 'MI', '3381323990'),
+(1087, 'Camilla', 'D''UBALDI', 'milla.dubaldi@gmail.com', 'VIA BUONARROTI', '19', '20063', NULL, '574', 'CERNUSCO SUL NAVIGLIO', '2017-12-19 09:57:51', 'mi', '3381323990'),
+(1088, 'Camilla', 'D''ubaldi', 'milla.dubaldi@gmail.com', 'VIA BUONARROTI', '1', '20063', NULL, '538', 'CERNUSCO SUL NAVIGLIO', '2017-12-19 09:58:47', 'MI', '3381323990'),
 (1089, 'Gianmarco', 'Leone', 'ily.falaz@hotmail.it', 'Via g. Di vittorio ', '30', '20090', NULL, '533', 'Buccinasco', '2017-12-19 20:52:33', 'Mi', '3335294726'),
 (1090, 'Gianmarco', 'Leone', 'ily.falaz@hotmail.it', 'Via g. Di vittorio ', '30', '20090', NULL, '500', 'Buccinasco', '2017-12-19 20:54:19', 'Mi', '3335294726'),
 (1091, 'Gianmarco', 'Leone', 'ily.falaz@hotamil.it', 'Via g. Di vittorio ', '30', '20090', NULL, '604', 'Buccinasco', '2017-12-19 20:56:01', 'Mi', '3335294726'),
@@ -1744,22 +1738,22 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (1116, 'GIADA NICOLETTA', 'VILLA', 'giada.nicoletta.villa@virgilio.it', 'VIA MEREDO, 22', '22', '20831', NULL, '499', 'SEREGNO', '2017-12-24 12:29:57', 'MB', '3421028700'),
 (1117, 'GIADA NICOLETTA', 'VILLA', 'giada.nicoletta.villa@virgilio.it', 'VIA MEREDO, 22', '22', '20831', NULL, '539', 'SEREGNO', '2017-12-24 12:31:48', 'MB', '3421028700'),
 (1118, 'GIADA NICOLETTA', 'VILLA', 'giada.nicoletta.villa@virgilio.it', 'VIA MEREDO, 22', '22', '20831', NULL, '555', 'SEREGNO', '2017-12-24 12:32:54', 'MB', '3421028700'),
-(1119, 'Verdiana', 'Lattanzio', 'verdianalattanzio@gmail.com', 'Strada sant\'anna', '83', '10131', NULL, '589', 'torino', '2017-12-24 13:30:37', 'to', ''),
-(1120, 'verdiana', 'lattanzio', 'verdianalattanzio@gmail.com', 'strada sant\'anna', '83', '10131', NULL, '536', 'torino', '2017-12-24 13:36:18', 'to', ''),
-(1121, 'verdiana', 'lattanzio', 'verdianalattanzio@gmail.com', 'strada sant\'anna', '83', '10131', NULL, '505', 'torino', '2017-12-24 13:40:27', 'to', ''),
-(1122, 'Maurizio', 'Guglielmi', 'mauri061981@gmail.com', 'Str. Sant \' Annna', '83', '10131', NULL, '504', 'Torino', '2017-12-24 13:43:51', 'To', '3939683853'),
-(1123, 'Maurizio', 'Guglielmi', 'mauri061981@gmail.com', 'Str. Sant \' Anna', '83', '10131', NULL, '500', 'Torino', '2017-12-24 13:45:02', 'To', '3939683853'),
-(1124, 'Maurizio', 'Guglielmi', 'mauri061981@gmail.com', 'Str. Sant \' Anna', '83', '10131', NULL, '574', 'Torino', '2017-12-24 13:48:58', 'To', '3939683853'),
+(1119, 'Verdiana', 'Lattanzio', 'verdianalattanzio@gmail.com', 'Strada sant''anna', '83', '10131', NULL, '589', 'torino', '2017-12-24 13:30:37', 'to', ''),
+(1120, 'verdiana', 'lattanzio', 'verdianalattanzio@gmail.com', 'strada sant''anna', '83', '10131', NULL, '536', 'torino', '2017-12-24 13:36:18', 'to', ''),
+(1121, 'verdiana', 'lattanzio', 'verdianalattanzio@gmail.com', 'strada sant''anna', '83', '10131', NULL, '505', 'torino', '2017-12-24 13:40:27', 'to', ''),
+(1122, 'Maurizio', 'Guglielmi', 'mauri061981@gmail.com', 'Str. Sant '' Annna', '83', '10131', NULL, '504', 'Torino', '2017-12-24 13:43:51', 'To', '3939683853'),
+(1123, 'Maurizio', 'Guglielmi', 'mauri061981@gmail.com', 'Str. Sant '' Anna', '83', '10131', NULL, '500', 'Torino', '2017-12-24 13:45:02', 'To', '3939683853'),
+(1124, 'Maurizio', 'Guglielmi', 'mauri061981@gmail.com', 'Str. Sant '' Anna', '83', '10131', NULL, '574', 'Torino', '2017-12-24 13:48:58', 'To', '3939683853'),
 (1125, 'Tiziano', 'Padovan', 'Tiziano.padovan@libero.it', 'Via mier ', '111', '32100', NULL, '510', 'Belluno', '2017-12-24 15:27:22', 'be', '3409824957'),
 (1126, 'chiara', 'di antonio', 'chiaradiantonio1@virgilio.it', 'via nazionale, piano della lenta', '10/b', '64100', NULL, '502', 'teramo', '2017-12-24 21:37:00', 'te', '3403494379'),
 (1127, 'chiara', 'di antonio', 'chiaradiantonio1@virgilio.it', 'via nazionale, piano della lenta', '10/b', '64100', NULL, '501', 'teramo', '2017-12-24 21:39:38', 'te', '3403494379'),
 (1128, 'chiara', 'di antonio', 'chiaradiantonio1@virgilio.it', 'via nazionale, piano della lenta', '10/b', '64100', NULL, '524', 'teramo', '2017-12-24 21:42:35', 'te', '3403494379'),
-(1129, 'Salvatore', 'Cassiano', 'Utamen@hotmail.it', 'Via berardo d\'antonio', 'S.n.c.', '', NULL, '511', 'Teramo', '2017-12-24 22:02:12', '', '3289790511'),
-(1130, 'Salvatore', 'Cassiano', 'Utamen@hotmail.it', 'Via berardo d\'antonio', 'S.n.c.', '64100', NULL, '510', 'Teramo', '2017-12-24 22:05:35', 'Te', '3289790511'),
+(1129, 'Salvatore', 'Cassiano', 'Utamen@hotmail.it', 'Via berardo d''antonio', 'S.n.c.', '', NULL, '511', 'Teramo', '2017-12-24 22:02:12', '', '3289790511'),
+(1130, 'Salvatore', 'Cassiano', 'Utamen@hotmail.it', 'Via berardo d''antonio', 'S.n.c.', '64100', NULL, '510', 'Teramo', '2017-12-24 22:05:35', 'Te', '3289790511'),
 (1131, 'INDIA', 'PEZZOTTA', 'ingiola@hotmail.it', 'VIA GRITTI, 9', '9', '24020', NULL, '538', 'PRADALUNGA', '2017-12-24 22:20:44', '', '3409173134'),
-(1132, 'michela ', 'palumbo', 'a.rizzi89@gmail.com', 'via olmo ', '31', '37040', NULL, '566', 'boschi sant\'anna', '2017-12-25 09:28:09', 'vr', ''),
-(1133, 'michela', 'palumbo', 'a.rizzi89@gmail.com', 'via olmo', '31', '37040', NULL, '604', 'boschi sant\'anna', '2017-12-25 09:30:22', 'vr', ''),
-(1134, 'michela', 'palumbo', 'a.rizzi89@gmail.com', 'via olmo', '31', '37040', NULL, '2770', 'boschi sant\'anna', '2017-12-25 09:39:26', 'vr', ''),
+(1132, 'michela ', 'palumbo', 'a.rizzi89@gmail.com', 'via olmo ', '31', '37040', NULL, '566', 'boschi sant''anna', '2017-12-25 09:28:09', 'vr', ''),
+(1133, 'michela', 'palumbo', 'a.rizzi89@gmail.com', 'via olmo', '31', '37040', NULL, '604', 'boschi sant''anna', '2017-12-25 09:30:22', 'vr', ''),
+(1134, 'michela', 'palumbo', 'a.rizzi89@gmail.com', 'via olmo', '31', '37040', NULL, '2770', 'boschi sant''anna', '2017-12-25 09:39:26', 'vr', ''),
 (1135, 'Elisa', 'lusiani', 'elisa.lusiani@gmail.com', 'p.zza g.puchetti', '5', '35030', NULL, '2770', 'selvazzano dentro', '2017-12-26 09:54:20', 'pd', ''),
 (1136, 'Eleonora', 'Luscardo', 'Eleonora.luscardo@gmail.com', '', '', '', NULL, '510', '', '2017-12-26 20:30:58', '', '3248763036'),
 (1137, 'Eleonora', 'Luscardo', 'Eleonora.luscardo@gmail.com', '', '', '', NULL, '510', '', '2017-12-26 20:30:59', '', '3248763036'),
@@ -1838,9 +1832,9 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (1210, 'giulia', 'siciliano', 'sgiulia987@gmail.com', 'cda stomazzelli 81u', '81u', '70043', NULL, '536', 'monopoli', '2018-01-02 21:12:23', 'ba', '3298418026'),
 (1211, 'giulia', 'siciliano', 'sgiulia987@gmail.com', 'cda stomazzelli 81u', '81u', '70043', NULL, '553', 'monopoli', '2018-01-02 21:13:50', 'ba', '3298418026'),
 (1212, 'antonia', 'recchia', 'max1987m@libero.it', 'via g verdi ', '11', '70043', NULL, '600', 'monopoli', '2018-01-02 21:16:07', 'ba', '3400545457'),
-(1213, 'Rossella', 'Tallerico', 'ROSSELLATALLerico@Libero.it', 'Via 4 novembre', '22', '88050', NULL, '499', 'Sant\' elia di PEntone', '2018-01-02 21:39:58', 'Ca', '333953371'),
-(1214, 'Rossella', 'Tallerico', 'Rossellatallerico@libero.it', 'Via 4 novembre', '22', '88050', NULL, '500', 'Sant\' elia di PEntone', '2018-01-02 21:43:53', 'Ca', '3339535371'),
-(1215, 'Rossella', 'Tallerico', 'Rossellatallerico@libero.it', 'Via 4 novembre', '22', '88050', NULL, '504', 'Sant\' elia di PEntone', '2018-01-02 21:47:33', 'Ca', '3339535371'),
+(1213, 'Rossella', 'Tallerico', 'ROSSELLATALLerico@Libero.it', 'Via 4 novembre', '22', '88050', NULL, '499', 'Sant'' elia di PEntone', '2018-01-02 21:39:58', 'Ca', '333953371'),
+(1214, 'Rossella', 'Tallerico', 'Rossellatallerico@libero.it', 'Via 4 novembre', '22', '88050', NULL, '500', 'Sant'' elia di PEntone', '2018-01-02 21:43:53', 'Ca', '3339535371'),
+(1215, 'Rossella', 'Tallerico', 'Rossellatallerico@libero.it', 'Via 4 novembre', '22', '88050', NULL, '504', 'Sant'' elia di PEntone', '2018-01-02 21:47:33', 'Ca', '3339535371'),
 (1216, 'Oana Emilia', 'Bordiciuc', 'bordiciucoanaemilia@yahoo.it', 'Via repubblica', '4', '1034', NULL, '594', 'Civita castellana', '2018-01-02 22:44:09', 'Vi', '3880567414'),
 (1217, 'Lisa', 'Morgione', 'lisa.morgione@gmail.com', 'Via statale 133', '133', '42013', NULL, '602', 'Casalgrande', '2018-01-03 07:34:08', 'RE', '3401645720'),
 (1218, 'Lisa', 'Morgione', 'lisa.morgione@gmail.com', 'Via statale 133', '133', '42013', NULL, '601', 'Casalgrande', '2018-01-03 07:35:20', 'RE', '3401645720'),
@@ -1862,8 +1856,8 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (1234, 'Alberto', 'Lazzarin', 'albertovolpe87@gmail.com', 'Via Giotto ', '5', '35020', NULL, '501', 'Pernumia', '2018-01-03 15:37:28', 'PD', '3403029597'),
 (1235, 'Alberto', 'Lazzarin', 'albertovolpe87@gmail.com', 'Via Giotto ', '5', '35020', NULL, '543', 'Pernumia', '2018-01-03 15:42:47', 'PD', '3403029597'),
 (1236, 'Alberto', 'Lazzarin', 'albertovolpe87@gmail.com', 'Via Giotto ', '5', '35020', NULL, '503', 'Pernumia', '2018-01-03 15:47:29', 'PD', '3403029597'),
-(1237, 'Elena', 'bau\'', 'elenab86@hotmail.it', 'VIA SALVEGA ', '22', '31033', NULL, '602', 'CASTELFRANCO VENETO', '2018-01-03 15:52:03', 'TV', '3496697860'),
-(1238, 'Elena', 'bau\'', 'elenab86@hotmail.it', 'VIA SALVEGA ', '22', '31033', NULL, '545', 'CASTELFRANCO VENETO', '2018-01-03 15:55:26', 'TV', '3496697860'),
+(1237, 'Elena', 'bau''', 'elenab86@hotmail.it', 'VIA SALVEGA ', '22', '31033', NULL, '602', 'CASTELFRANCO VENETO', '2018-01-03 15:52:03', 'TV', '3496697860'),
+(1238, 'Elena', 'bau''', 'elenab86@hotmail.it', 'VIA SALVEGA ', '22', '31033', NULL, '545', 'CASTELFRANCO VENETO', '2018-01-03 15:55:26', 'TV', '3496697860'),
 (1239, 'Elisa ', 'Offer', 'ELISA. OFFER@GMAIL.com', 'Via montesei', '68', '38057', NULL, '576', 'Pergine Valsugana ', '2018-01-03 17:19:00', 'Tn', '461513491'),
 (1240, 'Elisa ', 'Offer', 'ELISA. OFFER@GMAIL.com', 'Via montesei', '68', '38057', NULL, '578', 'Pergine Valsugana ', '2018-01-03 17:20:58', 'Tn', '461513491'),
 (1241, 'Elisa ', 'Offer', 'ELISA. OFFER@GMAIL.com', 'Via montesei', '68', '38057', NULL, '555', 'Pergine Valsugana ', '2018-01-03 17:25:07', 'Tn', '461513491'),
@@ -1911,9 +1905,9 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (1283, 'Mariarosaria', 'Prisciandaro', 'mariarosaria87p@gmail.com', 'contrada marinella pod. 220, Marina di ginosa', 'snc', '74025', NULL, '566', 'ginosa', '2018-01-05 21:16:30', 'ta', '3317567652'),
 (1284, 'Mariarosaria', 'prisciandaro', 'mariarosaria87p@gmail.com', 'contrada marinella pod. 220, Marina di Ginosa', 'snc', '74025', NULL, '565', 'Marina di ginosa', '2018-01-05 21:17:42', 'ta', '3317567652'),
 (1285, 'Mariarosaria', 'Prisciandaro', 'mariarosaria87p@gmail.com', 'contrada marinella pod. 220, marina di ginosa', 'snc', '74025', NULL, '505', 'ginosa', '2018-01-05 21:20:15', 'ta', '3317567652'),
-(1286, 'ROSELLA', 'GERMANO\'', 'rosella.germano@libero.it', 'VIA CADUTI IN MISSIONE DI PACE', '11', '20134', NULL, '504', 'MILANO', '2018-01-06 09:28:42', 'MI', '3484965906'),
-(1287, 'ROSELLA', 'GERMANO\'', 'rosella.germano@libero.it', 'VIA CADUTI IN MISSIONE DI PACE', '11', '20134', NULL, '505', 'MILANO', '2018-01-06 09:31:24', 'MI', '3484965906'),
-(1288, 'ROSELLA', 'GERMANO\'', 'rosella.germano@libero.it', 'VIA CADUTI IN MISSIONE DI PACE', '11', '20134', NULL, '506', 'MILANO', '2018-01-06 09:32:13', 'MI', '3484965906'),
+(1286, 'ROSELLA', 'GERMANO''', 'rosella.germano@libero.it', 'VIA CADUTI IN MISSIONE DI PACE', '11', '20134', NULL, '504', 'MILANO', '2018-01-06 09:28:42', 'MI', '3484965906'),
+(1287, 'ROSELLA', 'GERMANO''', 'rosella.germano@libero.it', 'VIA CADUTI IN MISSIONE DI PACE', '11', '20134', NULL, '505', 'MILANO', '2018-01-06 09:31:24', 'MI', '3484965906'),
+(1288, 'ROSELLA', 'GERMANO''', 'rosella.germano@libero.it', 'VIA CADUTI IN MISSIONE DI PACE', '11', '20134', NULL, '506', 'MILANO', '2018-01-06 09:32:13', 'MI', '3484965906'),
 (1289, 'Rita', 'Mocerino', 'ritamocerino@gmail.com', 'V.le Kennedy 49, 49', '49', '71122', NULL, '584', 'FOGGIA', '2018-01-06 10:52:02', 'FG', '881312210'),
 (1290, 'Rita', 'Mocerino', 'ritamocerino@gmail.com', 'V.le Kennedy 49, 49', '49', '71122', NULL, '608', 'FOGGIA', '2018-01-06 10:58:30', 'FG', '881312210'),
 (1291, 'Rita', 'Mocerino', 'ritamocerino@gmail.com', 'V.le Kennedy 49, 49', '49', '71122', NULL, '539', 'FOGGIA', '2018-01-06 11:00:47', 'FG', '881312210'),
@@ -1927,7 +1921,7 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`, `numero`, `cap`, `spedito`, `value`, `citta`, `data_richiesta`, `provincia`, `telefono`) VALUES
 (1299, 'Giulia', 'Tralli', 'giuliakimi@libero.it', ' Via Meucci', '7', '46028', NULL, '608', 'Sermide', '2018-01-06 23:15:53', 'mn', '3482621422'),
 (1300, 'Giulia', 'Tralli', 'giuliakimi@libero.it', ' Via Meucci', '7', '46028', NULL, '548', 'Sermide', '2018-01-06 23:16:37', 'mn', '3482621422'),
-(1301, 'Chiara', 'Di nino', 'chiaramarti84@gmail.com', 'Via schiavina ', '14', '40069', NULL, '601', 'Anzola DELL\'emilia', '2018-01-07 09:43:36', 'Bo', '392.9294323 '),
+(1301, 'Chiara', 'Di nino', 'chiaramarti84@gmail.com', 'Via schiavina ', '14', '40069', NULL, '601', 'Anzola DELL''emilia', '2018-01-07 09:43:36', 'Bo', '392.9294323 '),
 (1302, 'oriana', 'falletta', 'oriana.88@hotmail.it', 'Via cavriana ', '20', '20134', NULL, '587', 'milano', '2018-01-07 10:24:06', 'mi', '3897890247'),
 (1303, 'Sara', 'Mariani', 'sara.mariani987@gmail.com', 'Via della Pace', '2', '40017', NULL, '538', 'San Giovanni in Persiceto', '2018-01-07 12:55:45', '', ''),
 (1304, 'gaia', 'Chiarello', 'chiarellogaia@gmail.com', 'via catania ', '42C', '90141', NULL, '602', 'palermo', '2018-01-07 14:27:04', 'pa', '3388355334'),
@@ -1997,8 +1991,8 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (1368, 'Francesco', 'Cosentino', 'cosentino.francesco1@virgilio.it', 'Via casella', '11', '20159', NULL, '608', 'Milano', '2018-01-10 06:14:26', 'Mi', ''),
 (1369, 'Francesco', 'Cosentino', 'cosentino.francesco1@virgilio.it', 'Via casella', '11', '20156', NULL, '576', 'Milano', '2018-01-10 06:18:27', 'Mi', ''),
 (1370, 'Francesco', 'Cosentino', 'cosentino.francesco1@virgilio.it', 'Via casella', '11', '20156', NULL, '573', 'Milano', '2018-01-10 06:38:48', 'Mi', ''),
-(1371, 'stefania', 'venditti', 'venditti-stefania@libero.it', 'via della mainetta ', '5/a', '67100', NULL, '604', 'coppito (l\'aquila)', '2018-01-10 09:17:30', 'aq', '3409207270'),
-(1372, 'Stefania', 'Venditti', 'venditti-stefania@libero.it', 'via della mainetta ', '5/a', '67100', NULL, '608', 'coppito (l\'aquila)', '2018-01-10 09:18:25', 'aq', '3409207270'),
+(1371, 'stefania', 'venditti', 'venditti-stefania@libero.it', 'via della mainetta ', '5/a', '67100', NULL, '604', 'coppito (l''aquila)', '2018-01-10 09:17:30', 'aq', '3409207270'),
+(1372, 'Stefania', 'Venditti', 'venditti-stefania@libero.it', 'via della mainetta ', '5/a', '67100', NULL, '608', 'coppito (l''aquila)', '2018-01-10 09:18:25', 'aq', '3409207270'),
 (1373, 'giuseppe', 'maggio', 'giuseppemaggio1985@libero.it', '', '', '', NULL, '2752', '', '2018-01-10 10:36:08', '', ''),
 (1374, 'giuseppe', 'maggio', 'giuseppemaggio1985@libero.it', 'via barzoni, 3', '3', '25017', NULL, '2752', 'LONATO', '2018-01-10 10:37:14', 'bs', '3288729162'),
 (1375, 'giuseppe', 'maggio', 'giuseppemaggio1985@libero.it', 'via barzoni, 3', '', '25017', NULL, '604', 'LONATO', '2018-01-10 10:41:23', 'bs', '3288729162'),
@@ -2053,7 +2047,7 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (1424, 'Martina ', 'Rossi', 'marty92.rossi@hotmail.it', 'Viale Giulio Cesare ', '54/P', '192', NULL, '2753', 'Roma', '2018-01-14 17:31:06', 'Rm', '3669235527'),
 (1425, 'Martina', 'Rossi', 'marty92.rossi@hotmail.it', 'Viale Giulio Cesare ', '54/P', '00192 ', NULL, '552', 'Roma', '2018-01-14 17:33:15', 'Rm', '3669235527'),
 (1426, 'Martina', 'Rossi', 'marty92.rossi@hotmail.it', 'Viale Giulio Cesare ', '54/P', '00192 ', NULL, '600', 'Roma', '2018-01-14 17:35:27', 'Rm', '3669235527'),
-(1427, 'Arianna ', 'Lodovici', 'arianna.lodovici8@gmail.com', 'Via Luigi longo ', '79', '53014', NULL, '501', 'Monteroni D\'Arbia', '2018-01-14 19:26:11', 'Si', '3452355896'),
+(1427, 'Arianna ', 'Lodovici', 'arianna.lodovici8@gmail.com', 'Via Luigi longo ', '79', '53014', NULL, '501', 'Monteroni D''Arbia', '2018-01-14 19:26:11', 'Si', '3452355896'),
 (1428, 'Marinella', 'Marescalco', 'marinella.marescalco@gmail.com', 'Via Marchese', '167', '95045', NULL, '545', 'Misterbianco', '2018-01-14 19:44:54', 'CT', '3402551480'),
 (1429, 'LILIANA ', 'Sinesi', 'lilian80@virgilio. It', 'Via della libertÃ  ', '5b', '53040', NULL, '528', 'Rapolano Terme ', '2018-01-14 20:14:46', 'Si', '3479526716'),
 (1430, 'Liliana ', 'Sinesi', 'lilian80@virgilio. It', 'Via della libertÃ  ', '5b', '53040', NULL, '510', 'Rapolano Terme ', '2018-01-14 20:16:40', 'Si', '3479526716'),
@@ -2067,9 +2061,9 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (1438, 'Maria elena', 'Sorrentino', 'mariaelena.sorrentino@gmail.com', 'Via san Sisto', '76a', '56021', NULL, '505', 'Cascina', '2018-01-15 07:47:35', 'Pi', '3497050913'),
 (1439, 'Denise', 'Fontana', 'denny.24Ã²hotmail.it', 'via mazzini ', '11', '28851', NULL, '504', 'beura-caredezza', '2018-01-15 09:30:59', 'vb', ''),
 (1440, 'Annalisa', 'Lo gioco', 'Lisettagame@gmail.com', 'Corso francia ', '26', '10098', NULL, '538', 'Rivoli', '2018-01-15 10:54:31', 'To', '3492562415'),
-(1441, 'maria grazia', 'd\'aquila', 'm.daquila@icloud.com', 'Via Vincenzo Ussani ', '78/b3', '151', NULL, '2120', 'roma', '2018-01-15 11:35:32', 'RM', '3336893367'),
-(1442, 'maria grazia', 'd\'aquila', 'm.daquila@icloud.com', 'Via Vincenzo Ussani ', '78/b3', '151', NULL, '2115', 'roma', '2018-01-15 11:38:03', 'RM', '3336893367'),
-(1443, 'maria grazia', 'd\'aquila', 'm.daquila@icloud.com', 'Via Vincenzo Ussani ', '78/b3', '151', NULL, '2127', 'roma', '2018-01-15 11:39:19', 'RM', '3336893367'),
+(1441, 'maria grazia', 'd''aquila', 'm.daquila@icloud.com', 'Via Vincenzo Ussani ', '78/b3', '151', NULL, '2120', 'roma', '2018-01-15 11:35:32', 'RM', '3336893367'),
+(1442, 'maria grazia', 'd''aquila', 'm.daquila@icloud.com', 'Via Vincenzo Ussani ', '78/b3', '151', NULL, '2115', 'roma', '2018-01-15 11:38:03', 'RM', '3336893367'),
+(1443, 'maria grazia', 'd''aquila', 'm.daquila@icloud.com', 'Via Vincenzo Ussani ', '78/b3', '151', NULL, '2127', 'roma', '2018-01-15 11:39:19', 'RM', '3336893367'),
 (1444, 'Daniele', 'Stregapede', 'Steki@hotmail.it ', 'Via leone IX', '21', '165', NULL, '566', 'Roma', '2018-01-15 14:37:10', 'Rm', '3318490859'),
 (1445, 'tania', 'turato', 'tania_my@libero.it', 'via condotta', '5/b', '35010', NULL, '604', 'trebaseleghe', '2018-01-15 15:17:15', 'pd', '3492884827'),
 (1446, 'valentina', 'caldara', 'valentinacaldara@hotmail.com', 'via ai pini', '12', '23900', NULL, '501', 'lecco', '2018-01-15 15:50:23', 'lc', ''),
@@ -2083,16 +2077,16 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (1454, 'Marco', 'baffa', 'marco.baffa87@libero.it', 'via damiano chiesa', '12', '38060', NULL, '501', 'Villa Lagarina', '2018-01-15 21:22:20', 'tn', '3270637857'),
 (1455, 'Fabiana ', 'alese', 'Fabiana77@me.com', 'via pietro sensini', '36', '176', NULL, '504', 'roma', '2018-01-15 21:24:29', 'rm', '34800743'),
 (1456, 'Marco', 'baffa', 'marco.baffa87@libero.it', 'via damiano chiesa', '12', '38060', NULL, '533', 'Villa Lagarina', '2018-01-15 21:26:04', 'tn', '3270637857'),
-(1457, 'Claudia ', 'D\'ALISE', 'Claudia.dalise@tiscali.it', 'via Toledo', '106', '80134', NULL, '502', 'Napoli', '2018-01-15 21:38:50', 'NA', '3343711623'),
-(1458, 'Claudia ', 'D\'ALISE', 'Claudia.dalise@tiscali.it', 'via Toledo', '106', '80134', NULL, '564', 'Napoli', '2018-01-15 21:45:49', 'NA', '3343711623'),
-(1459, 'Claudia ', 'D\'ALISE', 'Claudia.dalise@tiscali.it', 'via Toledo', '106', '80134', NULL, '556', 'Napoli', '2018-01-15 21:47:42', 'NA', '3343711623'),
+(1457, 'Claudia ', 'D''ALISE', 'Claudia.dalise@tiscali.it', 'via Toledo', '106', '80134', NULL, '502', 'Napoli', '2018-01-15 21:38:50', 'NA', '3343711623'),
+(1458, 'Claudia ', 'D''ALISE', 'Claudia.dalise@tiscali.it', 'via Toledo', '106', '80134', NULL, '564', 'Napoli', '2018-01-15 21:45:49', 'NA', '3343711623'),
+(1459, 'Claudia ', 'D''ALISE', 'Claudia.dalise@tiscali.it', 'via Toledo', '106', '80134', NULL, '556', 'Napoli', '2018-01-15 21:47:42', 'NA', '3343711623'),
 (1460, 'Andrea', 'Bonelli', 'Andrea.bonelli@hotmail.it', 'Via DiAz', '2', '12031', NULL, '567', 'Bagnolo piemonte', '2018-01-15 21:51:05', 'CN', '3286614552'),
 (1461, 'Maria', 'Grisorio', 'margris@hotmail.it', 'C.so G. Matteotti', '207', '76013', NULL, '581', 'Minervino Murge', '2018-01-15 22:53:34', 'Bt', '3490695419'),
 (1462, 'SILVIA', 'LAMBARDI', 'lambina82@yahoo.it', 'via caduti della folgore ', '168', '53035', NULL, '584', 'monteriggioni - loc uopini', '2018-01-16 14:59:00', 'si', '3483718607'),
 (1463, 'SILVIA', 'LAMBARDI', 'lambina82@yahoo.it', 'VIA CADUTI DELLA FOLGORE', '168', '53035', NULL, '573', 'MONTERIGGIONI - LOC UOPINI', '2018-01-16 15:00:15', 'SI', '3483718607'),
 (1464, 'SILVIA', 'LAMBARDI', 'LAMBINA82@YAHOO.IT', 'VIA CADUTI DELLA FOLGORE', '168', '53035', NULL, '578', 'MONTERIGGIONI LOC. UOPINI', '2018-01-16 15:01:23', 'SI', '3483718607'),
-(1465, 'riccardo ', 'petrongolo', 'mariapasquariello88@gmail.com', 'via l\'aquila ', '10', '66010', NULL, '572', 'torrevecchia teatina', '2018-01-16 16:46:08', 'ch', '3273811312'),
-(1466, 'riccardo', 'petrongolo', 'mariapasquariello88@gmail.com', 'via l\'aquila ', '10', '66010', NULL, '571', 'torrevecchia teatina', '2018-01-16 16:47:13', 'ch', '3273811312'),
+(1465, 'riccardo ', 'petrongolo', 'mariapasquariello88@gmail.com', 'via l''aquila ', '10', '66010', NULL, '572', 'torrevecchia teatina', '2018-01-16 16:46:08', 'ch', '3273811312'),
+(1466, 'riccardo', 'petrongolo', 'mariapasquariello88@gmail.com', 'via l''aquila ', '10', '66010', NULL, '571', 'torrevecchia teatina', '2018-01-16 16:47:13', 'ch', '3273811312'),
 (1467, 'Ginevra', 'Gherardini', 'ginevra.gh@gmail.com', 'Via EUROPA', '71', '50056', NULL, '538', 'Montelupo Fiorentino', '2018-01-16 17:12:31', 'fi', '3385851666'),
 (1468, 'Ginevra', 'Gherardini', 'ginevra.gh@gmail.com', 'Via EUROPA', '71', '50056', NULL, '584', 'Montelupo Fiorentino', '2018-01-16 17:15:05', 'FI', '3385851666'),
 (1469, 'Ginevra', 'Gherardini', 'ginevra.gh@gmail.com', 'Via EUROPA', '71', '50056', NULL, '2770', 'Montelupo Fiorentino', '2018-01-16 17:17:37', 'FI', '3385851666'),
@@ -2111,11 +2105,11 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (1482, 'ClaudIa', 'Romiti', 'michele.antonellii@gmail.com', 'Piazza dante', '2', '3012', NULL, '538', 'Anagni', '2018-01-16 21:28:57', 'Fr', '3933908352'),
 (1483, 'EGle', 'distefano', 'Egledistefano@gmail.com', 'Via panarea', '2 a', '92014', NULL, '604', 'Porto empedocle', '2018-01-17 12:37:56', 'ag', '3208363672'),
 (1484, 'Veronica', 'Rielli', 'VERONICARIELLI@LIBERO.It', 'Olmo', 'Sn', '73012', NULL, '602', 'Campi Salentina', '2018-01-17 17:06:59', 'LE', '3896875455'),
-(1485, 'Angelo', 'VALENTI', 'migliore.alessandra@yahoo.it', 'VIA RAGAZZI DEL\'99', '30', '31020', NULL, '566', 'villorba', '2018-01-17 17:24:01', 'tv', '3485911014'),
+(1485, 'Angelo', 'VALENTI', 'migliore.alessandra@yahoo.it', 'VIA RAGAZZI DEL''99', '30', '31020', NULL, '566', 'villorba', '2018-01-17 17:24:01', 'tv', '3485911014'),
 (1486, 'CELESTINO', 'CONVERSANO', 'celestino.conversano@alice.it', 'VIA PORTANOVA', '36', '71024', NULL, '2682', 'CANDELA', '2018-01-17 17:32:48', 'FG', '335362368'),
 (1487, 'CELESTINO', 'CONVERSANO', 'celestino.conversano@alice.it', 'VIA PORTANOVA, 36', '', '71024', NULL, '513', 'CANDELA', '2018-01-17 17:37:29', 'FG', '3382123570'),
 (1488, 'CELESTINO', 'CONVERSANO', 'celestino.conversano@alice.it', 'VIA PORTANOVA, 36', '', '71024', NULL, '2796', 'CANDELA', '2018-01-17 17:44:57', 'FG', '3382123570'),
-(1489, 'Mara ', 'Fantini', 'chiaramarti84@gmail.com', 'Via risorgimento ', '47', '40011', NULL, '571', 'Anzola DELL\'emilia', '2018-01-17 17:58:03', 'Bo', '392.9294323 '),
+(1489, 'Mara ', 'Fantini', 'chiaramarti84@gmail.com', 'Via risorgimento ', '47', '40011', NULL, '571', 'Anzola DELL''emilia', '2018-01-17 17:58:03', 'Bo', '392.9294323 '),
 (1490, 'Giulia', 'Di nino', 'chiaramarti84@gmail.com', 'Via Guicciardini ', '2', '40069', NULL, '604', 'Zola predosa', '2018-01-17 18:02:40', 'Bo', '392.9294323 '),
 (1491, 'Monica', 'Picarazzi', 'mnc-88@hotmail.it', 'Via fosso di colandrea', '', '4015', NULL, '545', 'Priverno', '2018-01-17 18:39:54', 'La', ''),
 (1492, 'Chiara', 'Bersotti', 'Kia_17@hotmail.it', 'Via firenze ', '21/2', '53034', NULL, '564', 'Colle val dâ€™elsa', '2018-01-17 19:43:18', 'Si', '3358026372'),
@@ -2155,7 +2149,7 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (1526, 'Alessandra', 'Gamba', 'mariaalessandra2004@yahoo.it', 'Corso Sebastopoli ', '287', '10136', NULL, '536', 'TORINO', '2018-01-20 10:07:16', 'to', '3299844347'),
 (1527, 'Alessandra', 'Gamba', 'mariaalessandra2004@yahoo.it', 'Corso Sebastopoli 287', '287', '10136', NULL, '557', 'TORINO', '2018-01-20 10:10:46', 'to', '3299844347'),
 (1528, 'angela', 'daprÃ ', 'angela.dapra@gmail.com', 'VIA RENGUM', '1', '38027', NULL, '523', 'TERZOLAS', '2018-01-20 14:13:07', 'TN', '3473465841'),
-(1529, 'angela', 'dapra\'', 'angela.dapra@gmail.com', 'VIA RENGUM ', '1', '38027', NULL, '522', 'TERZOLAS', '2018-01-20 14:14:22', 'TN', '3473465841'),
+(1529, 'angela', 'dapra''', 'angela.dapra@gmail.com', 'VIA RENGUM ', '1', '38027', NULL, '522', 'TERZOLAS', '2018-01-20 14:14:22', 'TN', '3473465841'),
 (1530, 'angela', 'daprÃ ', 'angela.dapra@gmail.com', 'VIA RENGUM ', '1', '38027', NULL, '527', 'TERZOLAS', '2018-01-20 14:21:00', 'TN', '3473465841'),
 (1531, 'Maria CHIARA ', 'Depalmas', 'mc.depalmas@hotmail.it', 'Via genzano', '92', '179', NULL, '541', 'Roma', '2018-01-20 14:24:57', 'Ro', '3492439084'),
 (1532, 'Maria Chiara ', 'Depalmas ', 'mc.depalmas@hotmail.it', 'Via genzano', '92', '179', NULL, '2752', 'Roma', '2018-01-20 14:43:21', 'RO', '3492439084'),
@@ -2255,14 +2249,14 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (1625, 'Ida', 'Luidelli', 'ida.luidelli@hotmail.it', 'VIa Provinciale per latina', '112', '4012', NULL, '528', 'Cisterna di Latina', '2018-01-24 15:40:23', 'LT', ''),
 (1626, 'Ida', 'Luidelli', 'ida.luidelli@hotmail.it', 'VIa Provinciale per latina', '112', '4012', NULL, '536', 'Cisterna di Latina', '2018-01-24 15:41:21', 'LT', ''),
 (1627, 'Ida', 'Luidelli', 'ida.luidelli@hotmail.it', 'VIa Provinciale per latina', '112', '4012', NULL, '555', 'Cisterna di Latina', '2018-01-24 15:42:38', 'LT', ''),
-(1628, 'Deborah', 'Lo Monaco', 'deborah.lomonaco@hotmail.it', 'Via Mazzini', '11', '28010', NULL, '501', 'Cavaglio d\'agogna', '2018-01-24 17:28:28', 'No', '3897640011'),
-(1629, 'Deborah', 'Lo Monaco', 'deborah.lomonaco@hotmail.it', 'Via Mazzini ', '11', '28010', NULL, '555', 'Cavaglio d\'agogna', '2018-01-24 17:30:40', 'No', '3897640011'),
+(1628, 'Deborah', 'Lo Monaco', 'deborah.lomonaco@hotmail.it', 'Via Mazzini', '11', '28010', NULL, '501', 'Cavaglio d''agogna', '2018-01-24 17:28:28', 'No', '3897640011'),
+(1629, 'Deborah', 'Lo Monaco', 'deborah.lomonaco@hotmail.it', 'Via Mazzini ', '11', '28010', NULL, '555', 'Cavaglio d''agogna', '2018-01-24 17:30:40', 'No', '3897640011'),
 (1630, 'Denise', 'Fontana', 'Denny.24@hotmail.it', 'Via mazzini ', '11', '28851', NULL, '514', 'Beura-cardezza', '2018-01-24 17:31:20', 'Vb', '3406648525'),
-(1631, 'Deborah', 'Lo Monaco', 'deborah.lomonaco@hotmail.it', 'Via Mazzini ', '11', '28010', NULL, '2659', 'Cavaglio d\'agogna', '2018-01-24 17:32:05', 'No', '3897640011'),
-(1632, 'Filippo', 'Barbato', 'Panterina1988@hotmail.it', 'Via Mazzini ', '11', '28010', NULL, '2664', 'Cavaglio d\'agogna', '2018-01-24 17:34:41', 'No', '3897640011'),
-(1633, 'Filippo', 'Barbato', 'Panterina1988@hotmail.it', 'Via Mazzini ', '11', '28010', NULL, '514', 'Cavaglio d\'agogna', '2018-01-24 17:36:25', 'No', '3897640011'),
+(1631, 'Deborah', 'Lo Monaco', 'deborah.lomonaco@hotmail.it', 'Via Mazzini ', '11', '28010', NULL, '2659', 'Cavaglio d''agogna', '2018-01-24 17:32:05', 'No', '3897640011'),
+(1632, 'Filippo', 'Barbato', 'Panterina1988@hotmail.it', 'Via Mazzini ', '11', '28010', NULL, '2664', 'Cavaglio d''agogna', '2018-01-24 17:34:41', 'No', '3897640011'),
+(1633, 'Filippo', 'Barbato', 'Panterina1988@hotmail.it', 'Via Mazzini ', '11', '28010', NULL, '514', 'Cavaglio d''agogna', '2018-01-24 17:36:25', 'No', '3897640011'),
 (1634, 'Veronica', 'Rielli', 'VERONICARIELLI@LIBERO.IT ', 'Olmo', 'Sn', '73012', NULL, '2779', 'Campi Salentina', '2018-01-24 17:37:50', 'LE', '3896875455'),
-(1635, 'Filippo', 'Barbato', 'Panterina1988@hotmail.it', 'Via Mazzini ', '11', '28010', NULL, '504', 'Cavaglio d\'agogna', '2018-01-24 17:44:06', 'No', '3897640011'),
+(1635, 'Filippo', 'Barbato', 'Panterina1988@hotmail.it', 'Via Mazzini ', '11', '28010', NULL, '504', 'Cavaglio d''agogna', '2018-01-24 17:44:06', 'No', '3897640011'),
 (1636, 'alice', 'foglia', 'alicefog@alice.it', 'via passionisti 23', '23', '62019', NULL, '534', 'recanati', '2018-01-24 18:05:54', 'mc', '3202634285'),
 (1637, 'Melissa', 'Gorra', 'melissa.gorra@icloud.com', 'Piazza ier', '1', '24020', NULL, '598', 'Oneta', '2018-01-24 19:26:28', 'BG', '3483684317'),
 (1638, 'Raffaele', 'Romano', 'raffaeleromano83@gmail.com', 'VIA VAL BAVONA, 3', '3', '20147', NULL, '2676', 'MILANO', '2018-01-24 19:43:03', 'MI', '+32478630595'),
@@ -2282,7 +2276,7 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (1652, 'Roberta', 'Schimera', 'robertaschimera@libero.it', 'Via stazione', '52/a', '12030', NULL, '604', 'Manta', '2018-01-25 14:19:18', 'Cn', '3881677299'),
 (1653, 'Claudio', 'Cinquina', 'bomboclaus@gmail.com', 'Via Incoronata ', '38/c', '66054', NULL, '541', 'Vasto', '2018-01-25 17:15:31', 'ch', '3336159804'),
 (1654, 'Claudio', 'Cinquina', 'bomboclaus@gmail.com', 'Via Incoronata', '38/c', '66054', NULL, '510', 'Vasto', '2018-01-25 17:16:10', 'ch', '3336159804'),
-(1655, 'franca', 'crignola', 'anidacorhusic@yahoo.it', 'via martiri della liberta\' ', '1', '22077', NULL, '2660', 'olgiate comasco', '2018-01-25 18:45:05', 'co', '3405031580'),
+(1655, 'franca', 'crignola', 'anidacorhusic@yahoo.it', 'via martiri della liberta'' ', '1', '22077', NULL, '2660', 'olgiate comasco', '2018-01-25 18:45:05', 'co', '3405031580'),
 (1656, 'roberta', 'orlando', 'roboorlando@yahoo.it', 'via achillini ', '5', '40137', NULL, '2770', 'bologna', '2018-01-25 20:52:20', 'bo', ''),
 (1657, 'roberta', 'ORLANDO', 'roboorlando@yahoo.it', 'via achillini', '5', '40137', NULL, '2751', 'bologna', '2018-01-25 20:57:12', 'bo', ''),
 (1658, 'Cristian', 'Bruni', 'cristian.bruni@gmail.com', 'Via Genova ', '5', '36077', NULL, '2770', 'Altavilla Vicentina', '2018-01-25 23:42:34', 'VI', '3288654782'),
@@ -2291,8 +2285,8 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (1661, 'Giuseppina', 'Spoto', 'gius.spoto@gmail.com', 'via Pietro Albertoni', '23', '40138', NULL, '2682', 'Bologna', '2018-01-26 09:31:43', 'BO', '3407037716'),
 (1662, 'Chiara', 'ViganÃ²', 'chiaravgn@gmail.com', 'Via giovanni Bovio', '8/13A', '16145', NULL, '574', 'Genova', '2018-01-26 09:35:08', 'GE', '3471282818'),
 (1663, 'Giuseppina', 'Spoto', 'gius.spoto@gmail.com', 'via Pietro Albertoni', '23', '40138', NULL, '2666', 'Bologna', '2018-01-26 09:35:16', 'BO', '3407037716'),
-(1664, 'CHIARA', 'VIGANO\'', 'chiaravgn@gmail.com', 'VIA GIOVANNI BOVIO 8 / 13 A', '8 / 13 A', '16145', NULL, '2751', 'GENOVA', '2018-01-26 09:35:52', 'GE', '3471282818'),
-(1665, 'CHIARA', 'VIGANO\'', 'chiaravgn@gmail.com', 'VIA GIOVANNI BOVIO 8 / 13 A', '8 / 13 A', '16145', NULL, '541', 'GENOVA', '2018-01-26 09:36:46', 'ge', '3471282818'),
+(1664, 'CHIARA', 'VIGANO''', 'chiaravgn@gmail.com', 'VIA GIOVANNI BOVIO 8 / 13 A', '8 / 13 A', '16145', NULL, '2751', 'GENOVA', '2018-01-26 09:35:52', 'GE', '3471282818'),
+(1665, 'CHIARA', 'VIGANO''', 'chiaravgn@gmail.com', 'VIA GIOVANNI BOVIO 8 / 13 A', '8 / 13 A', '16145', NULL, '541', 'GENOVA', '2018-01-26 09:36:46', 'ge', '3471282818'),
 (1666, 'cristina', 'morciano', 'morcianocristina@hotmail.it', 'VIA MONTEVERDI, 5', '', '74019', NULL, '577', 'PALAGIANO', '2018-01-26 09:49:20', 'ta', '3286810187'),
 (1667, 'barbara', 'corghi', 'barbara.corghi@alice.it', 'via g. romita', '11', '41012', NULL, '545', 'carpi', '2018-01-26 13:06:03', 'mo', '3474014100'),
 (1668, 'barbara', 'corghi', 'barbara.corghi@alice.it', 'via g. romita', '11', '41012', NULL, '538', 'carpi', '2018-01-26 13:07:37', 'mo', '3474014100'),
@@ -2407,9 +2401,9 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (1777, 'daniela', 'vita', 'daniela_07@libero.it', 'via degli aceri', '37', '4012', NULL, '2727', 'cisterna di latina', '2018-01-31 15:20:19', 'lt', '3460358837'),
 (1778, 'daniela', 'vita', 'daniela_07@libero.it', 'via degli aceri', '37', '4012', NULL, '598', 'cisterna di latina', '2018-01-31 15:24:18', 'lt', '3460358837'),
 (1779, 'daniela', 'vita', 'daniela_07@libero.it', 'via degli aceri', '37', '4012', NULL, '2688', 'cisterna di latina', '2018-01-31 15:27:12', 'lt', '3460358837'),
-(1780, 'Elena', 'BAU\'', 'elenab86@hotmail.it', 'VIA SALVEGA ', '22', '31033', NULL, '2756', 'CASTELFRANCO VENETO', '2018-01-31 18:32:32', 'TV', '3496697860'),
-(1781, 'Elena', 'BAU\'', 'elenab86@hotmail.it', 'VIA SALVEGA ', '22', '31033', NULL, '538', 'CASTELFRANCO VENETO', '2018-01-31 18:35:56', 'TV', '3496697860'),
-(1782, 'Andrea', 'Monti', 'And90@hotmail.it', 'Via Puglia ', '30', '53034', NULL, '561', 'Colle Di Val D\'elsa', '2018-01-31 20:20:22', 'SI', ''),
+(1780, 'Elena', 'BAU''', 'elenab86@hotmail.it', 'VIA SALVEGA ', '22', '31033', NULL, '2756', 'CASTELFRANCO VENETO', '2018-01-31 18:32:32', 'TV', '3496697860'),
+(1781, 'Elena', 'BAU''', 'elenab86@hotmail.it', 'VIA SALVEGA ', '22', '31033', NULL, '538', 'CASTELFRANCO VENETO', '2018-01-31 18:35:56', 'TV', '3496697860'),
+(1782, 'Andrea', 'Monti', 'And90@hotmail.it', 'Via Puglia ', '30', '53034', NULL, '561', 'Colle Di Val D''elsa', '2018-01-31 20:20:22', 'SI', ''),
 (1783, 'Melissa', 'Agostini', 'm.agostini89@tiscali.it', 'Via dei forni', '6', '58051', NULL, '589', 'Montiano', '2018-01-31 20:27:21', 'Gr', '3489540305'),
 (1784, 'Melissa', 'Agostini', 'm.agostini89@tiscali.it', 'Via dei forni', '6', '58051', NULL, '505', 'Montiano', '2018-01-31 20:34:21', 'Gr', '3489540305'),
 (1785, 'Carmine', 'De Ieso', 'cadeieso@gmail.com', 'via san salvatore ', '62/100', '82020', NULL, '577', 'Pago veiano', '2018-01-31 21:33:52', 'BN', '3349618122'),
@@ -2430,9 +2424,9 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (1800, 'Viviana', 'Canzoneri', 'VIVIANAc83@libero.it', 'via Cardinale Lualdi 25', '25', '90142', NULL, '604', 'Palermo', '2018-02-02 13:04:55', 'Pa', '3294296912'),
 (1801, 'Teresa', 'Ballaera', 'ballaerat@gMail.com', 'viale jonio,', '124', '95129', NULL, '604', 'catania', '2018-02-02 13:46:32', 'CT', '3201151209'),
 (1802, 'Elisa', 'Montaldi', 'elisa.montaldi@hotmail.it', 'Via del portone', '37', '40050', NULL, '2779', 'Monte San Pietro', '2018-02-02 16:01:46', 'BO', '3487635189'),
-(1803, 'GIORGIA', 'TALLIA', 'giorgia.tallia@tiscali.it', 'TORINO ', '2', '13040', NULL, '572', 'BORGO D\'ALE', '2018-02-02 17:01:09', 'VC', '3470141377'),
-(1804, 'GIORGIA', 'TALLIA', 'giorgia.tallia@tiscali.it', 'VIA TORINO', '2', '13040', NULL, '557', 'BORGO D\'ALE', '2018-02-02 17:01:57', 'VC', '3470141377'),
-(1805, 'GIORGIA', 'TALLIA', 'giorgia.tallia@tiscali.it', 'VIA TORINO ', '2', '13040', NULL, '2666', 'BORGO D\'ALE', '2018-02-02 17:03:04', 'VC', '3470141377'),
+(1803, 'GIORGIA', 'TALLIA', 'giorgia.tallia@tiscali.it', 'TORINO ', '2', '13040', NULL, '572', 'BORGO D''ALE', '2018-02-02 17:01:09', 'VC', '3470141377'),
+(1804, 'GIORGIA', 'TALLIA', 'giorgia.tallia@tiscali.it', 'VIA TORINO', '2', '13040', NULL, '557', 'BORGO D''ALE', '2018-02-02 17:01:57', 'VC', '3470141377'),
+(1805, 'GIORGIA', 'TALLIA', 'giorgia.tallia@tiscali.it', 'VIA TORINO ', '2', '13040', NULL, '2666', 'BORGO D''ALE', '2018-02-02 17:03:04', 'VC', '3470141377'),
 (1806, 'Giuseppe', 'valenti', 'giu.vale91@gmail.com', 'v.le alcide de gasperi ', '165/A', '95127', NULL, '2718', 'Catania', '2018-02-02 17:28:14', 'CT', ''),
 (1807, 'giuseppe', 'valenti', 'giu.vale91@gmail.com', 'v.le alcide de gasperi ', '165/A', '95127', NULL, '545', 'Catania', '2018-02-02 17:53:34', 'CT', ''),
 (1808, 'Camilla', 'Di Bari ', 'dibari.camilla@virgilio.it', 'via Colli 10', '10', '43042', NULL, '2116', 'Berceto', '2018-02-02 18:06:02', 'pr', '3471423340'),
@@ -2466,7 +2460,7 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (1836, 'Chiara', 'Gallini', 'chiara.gallini86@gmail.com', 'Via cibrario', '25', '10143', NULL, '538', 'Torino', '2018-02-04 19:44:57', 'To', ''),
 (1837, 'giovanna ', 'lizzio', 'giovannina95@icloud.com', 'via dante alighieri', '14', '24020', NULL, '504', 'SCANZOROSCIATE', '2018-02-04 20:42:20', 'BG', '3924674504'),
 (1838, 'Giorgia', 'Solidoro', 'giorgia.solidoro@gmail.com', 'Via Rombon', '33', '20134', NULL, '2770', 'Milano', '2018-02-04 21:40:57', 'Mi', '3202288562'),
-(1839, 'Ilaria', 'D\'Aloia', 'ilaria.DALOIA@GMAIL.COM', 'C/da San Giovanni', '13', '82100', NULL, '2726', 'Benevento', '2018-02-05 08:09:45', 'bn', '3466926164'),
+(1839, 'Ilaria', 'D''Aloia', 'ilaria.DALOIA@GMAIL.COM', 'C/da San Giovanni', '13', '82100', NULL, '2726', 'Benevento', '2018-02-05 08:09:45', 'bn', '3466926164'),
 (1840, 'Rossella', 'Valerio', 'valeriodoctor@gmail.com', 'Via Po 47 a', '47 a', '60019', NULL, '2132', 'Senigallia', '2018-02-05 10:00:30', 'An', '3206875213'),
 (1841, 'Rossella', 'Valerio', 'valeriodoctor@gmail.com', 'Via Po 47 a', '47a', '60019', NULL, '2130', 'Senigallia', '2018-02-05 10:01:01', 'An', '3206875213'),
 (1842, 'Rossella', 'Valerio', 'valeriodoctor@gmail.com', 'Via Po 47 a', '47a', '60019', NULL, '2116', 'Senigallia', '2018-02-05 10:04:54', 'An', '3206875213'),
@@ -2511,24 +2505,24 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (1881, 'VALERIA', 'FABIO', 'VALERIA_FABIO73@YAHOO.IT', 'VIA RIONERO', '7', '141', NULL, '2750', 'ROMA', '2018-02-07 10:28:03', 'RM', '3393084415'),
 (1882, 'marika', 'fumarola', '', '', '', '', NULL, '2710', '', '2018-02-07 11:54:47', '', ''),
 (1883, 'marika', 'fumarola', 'stefania.monaco1991@gmail.com', 'via aLDO MORO', '13', '72029', NULL, '2710', 'VILLA CASTELLI', '2018-02-07 11:56:12', 'BR', '3801745006'),
-(1884, 'monica', 'd\'inverno', 'mondiv77@gmail.com', 'via fontanella', '5/a', '25017', NULL, '2659', 'lonato del garda', '2018-02-07 13:37:14', 'bs', '3282376030'),
-(1885, 'monica', 'd\'inverno', 'mondiv77@gmail.com', 'via fontanella', '5/a', '25017', NULL, '2660', 'lonato del garda', '2018-02-07 13:38:22', 'bs', ''),
-(1886, 'monica', 'd\'inverno', 'mondiv77@gmail.com', 'via fontanella', '5/a', '25017', NULL, '508', 'lonato del garda', '2018-02-07 13:39:50', 'bs', ''),
+(1884, 'monica', 'd''inverno', 'mondiv77@gmail.com', 'via fontanella', '5/a', '25017', NULL, '2659', 'lonato del garda', '2018-02-07 13:37:14', 'bs', '3282376030'),
+(1885, 'monica', 'd''inverno', 'mondiv77@gmail.com', 'via fontanella', '5/a', '25017', NULL, '2660', 'lonato del garda', '2018-02-07 13:38:22', 'bs', ''),
+(1886, 'monica', 'd''inverno', 'mondiv77@gmail.com', 'via fontanella', '5/a', '25017', NULL, '508', 'lonato del garda', '2018-02-07 13:39:50', 'bs', ''),
 (1887, 'Luciano', 'Brescia', 'bresciateresa@gmail.com', 'via luino ', '65', '21037', NULL, '501', 'Lavena Ponte tresa', '2018-02-07 15:02:29', 'va', '+41765370485'),
 (1888, 'chiara', 'Orlando', 'chiaraorlandomail@gmail.com', 'via giovanni de fraia 29', '29', '80078', NULL, '533', 'pozzuoli', '2018-02-07 16:05:09', 'na', '3277133067'),
 (1889, 'Fracesca', 'GIRARDI', 'girardi.francesca@yahoo.it', 'via Bellini', '1', '83017', NULL, '584', 'rotodi', '2018-02-07 16:12:34', 'Av', '3805442209'),
 (1890, 'fracesca', 'GIRARDI', 'girardi.francesca@yahoo.it', 'via Bellini', '1', '83017', NULL, '2779', 'Rotondi', '2018-02-07 16:14:55', 'Av', '3805442209'),
 (1891, 'Tiziana ', 're', 'tiziana700.r@libero.it', 'via fabbrichetta ', '24', '10093', NULL, '2676', 'collegno', '2018-02-07 18:08:11', 'to', '3939909427'),
-(1892, 'Laura', 'Cannistra\'', 'lauracannistra@libero.it', 'C/da petrosa ', '8', '88100', NULL, '2753', 'Catanzaro', '2018-02-07 18:43:30', 'CZ', '3917517462'),
+(1892, 'Laura', 'Cannistra''', 'lauracannistra@libero.it', 'C/da petrosa ', '8', '88100', NULL, '2753', 'Catanzaro', '2018-02-07 18:43:30', 'CZ', '3917517462'),
 (1893, 'Marco', 'Filipuzzi', 'filipuzzi@yahoo.it', 'Via gallura', '15', '20141', NULL, '2663', 'milano', '2018-02-07 20:12:26', 'mi', ''),
 (1894, 'Verdiana ', 'Cianfarani', 'verdycianfy@gmail.com', 'Via giuseppe micali', '28', '124', NULL, '557', 'Roma', '2018-02-07 20:44:55', 'Rm', '3441788705'),
 (1895, 'Verdiana ', 'Cianfarani', 'verdycianfy@gmail.com', 'Via giuseppe micali ', '28', '124', NULL, '567', 'Roma', '2018-02-07 20:48:07', 'Rm', '3441788705'),
-(1896, 'carmine alfonso ', 'D\'Antuono', 'ca.dantuono@gmail.com', 'Viale Europa', '3', '84012', NULL, '2751', 'Angri', '2018-02-07 21:27:33', 'SA', '3403246560'),
+(1896, 'carmine alfonso ', 'D''Antuono', 'ca.dantuono@gmail.com', 'Viale Europa', '3', '84012', NULL, '2751', 'Angri', '2018-02-07 21:27:33', 'SA', '3403246560'),
 (1897, 'Emanuela', '', '', '', '', '', NULL, '505', '', '2018-02-08 07:42:03', '', ''),
 (1898, 'Emanuela', 'Cappello', 'EMANUELA.CAPPELLO@ITALIAONLINE.It', 'Via tiepolo', '16', '58100', NULL, '505', 'Grosseto', '2018-02-08 07:44:44', 'Gr', '3355343514'),
-(1899, 'Jessica', 'Cuda', 'jessica.cuda01@gmail.com', 'Via Sant\'Eusebio', '5F', '28047', NULL, '2677', 'Oleggio', '2018-02-08 08:22:56', 'No', '3480633841'),
-(1900, 'Jessica', 'Cuda', 'jessica.cuda01@gmail.com', 'Via Sant\'Eusebio', '5F', '28047', NULL, '2676', 'Oleggio', '2018-02-08 08:23:22', 'no', '3480633841'),
-(1901, 'Jessica', 'Cuda', 'jessica.cuda01@gmail.com', 'Via Sant\'Eusebio', '5F', '28047', NULL, '2682', 'Oleggio', '2018-02-08 08:28:12', 'no', '3480633841'),
+(1899, 'Jessica', 'Cuda', 'jessica.cuda01@gmail.com', 'Via Sant''Eusebio', '5F', '28047', NULL, '2677', 'Oleggio', '2018-02-08 08:22:56', 'No', '3480633841'),
+(1900, 'Jessica', 'Cuda', 'jessica.cuda01@gmail.com', 'Via Sant''Eusebio', '5F', '28047', NULL, '2676', 'Oleggio', '2018-02-08 08:23:22', 'no', '3480633841'),
+(1901, 'Jessica', 'Cuda', 'jessica.cuda01@gmail.com', 'Via Sant''Eusebio', '5F', '28047', NULL, '2682', 'Oleggio', '2018-02-08 08:28:12', 'no', '3480633841'),
 (1902, 'Laura', 'Battiston', 'Lauroras@gmail.com', 'Via Santa chiara ', '2', '30020', NULL, '599', 'Marcon', '2018-02-08 10:18:27', 'Ve', '3470782541'),
 (1903, 'Francesca', 'Sanzo', 'Francescasanzo@hotmail.it', 'Via macerine 40', '40', '3044', NULL, '571', 'Cervaro', '2018-02-08 12:20:08', 'Fr', '3401673244'),
 (1904, 'SILVIA', 'DOGNINI', 'SILVIA.DOGNINI1@GMAIL.COM', 'PIAZZA CASTELLO ', '26', '20121', NULL, '580', 'MILANO', '2018-02-08 14:18:28', 'MI', '3470303131'),
@@ -2583,8 +2577,8 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (1952, 'massimo', 'fedele', 'cholitial@gmail.com', 'corso italia ', '121/d', '21047', NULL, '2715', 'saronno', '2018-02-10 21:27:14', 'va', '3314694696'),
 (1953, 'Concetta', 'Pepe', 'CONCETTAPEPE88@GMAIL.Com', 'Via guido moccia ', '21', '54', NULL, '604', 'Fiumicino', '2018-02-10 21:27:21', 'RM', '3394376172'),
 (1954, 'massimo', 'fedele', 'cholitial@gmail.com', 'corso italia ', '121/d', '21047', NULL, '548', 'saronno', '2018-02-10 21:28:43', 'va', '3314694696'),
-(1955, 'giorgia', 'd\'urbano', 'giorgiadurbano@hotmail.it', 'corso umberto i  ', '1/a', '65020', NULL, '578', 'roccamorice', '2018-02-10 22:28:26', 'pe', '3208849421'),
-(1956, 'giorgia', 'd\'urbano', 'giorgiadurbano@hotmail.it', 'corso umberto i  ', '1/a', '65020', NULL, '577', 'roccamorice', '2018-02-10 22:31:38', 'pe', '3208849421'),
+(1955, 'giorgia', 'd''urbano', 'giorgiadurbano@hotmail.it', 'corso umberto i  ', '1/a', '65020', NULL, '578', 'roccamorice', '2018-02-10 22:28:26', 'pe', '3208849421'),
+(1956, 'giorgia', 'd''urbano', 'giorgiadurbano@hotmail.it', 'corso umberto i  ', '1/a', '65020', NULL, '577', 'roccamorice', '2018-02-10 22:31:38', 'pe', '3208849421'),
 (1957, 'Mauro', 'Giannetti', 'm.giannetti@outlook.it', 'Via Friuli', '48', '41', NULL, '2769', 'albano laziale', '2018-02-11 06:42:30', 'rm', '3285682056'),
 (1958, 'mario', 'zevini', 'm.giannetti@outlook.it', 'via friuli', '48', '41', NULL, '2767', 'albano laziale', '2018-02-11 06:45:16', 'rm', '3285682056'),
 (1959, 'mario', 'zevini', 'm.giannetti@outlook.it', 'via friui', '48', '41', NULL, '2705', 'albano laziale', '2018-02-11 06:48:18', 'rm', '3285682056'),
@@ -2613,11 +2607,11 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (1982, 'maura', 'rossetti', 'mau__ross@hotmail.com', 'via crispi ', '7', '20900', NULL, '528', 'monza', '2018-02-12 13:59:49', 'mb', ''),
 (1983, 'test', 'test', 'phomea@gmail.com', 'test', '2', '51100', NULL, '604', 'test', '2018-02-12 14:16:30', 'pt', '3'),
 (1984, 'Arianna', 'Zatini', 'kukumalu@hotmail.it', 'Via roma 400', '400', '64028', NULL, '567', 'Silvi marina', '2018-02-12 14:41:10', 'Te', '3429383941'),
-(1985, 'Sonya ', 'Cacace', 'sonya.cacace@libero.it', 'Via Alessandro Manzoni ', '17', '80029', NULL, '566', 'Sant\'antimo ', '2018-02-12 16:56:42', 'Na', '3884966449'),
-(1986, 'Sonya ', 'Cacace', 'sonya.cacace@libero.it', 'Via Alessandro Manzoni ', '17', '80029', NULL, '531', 'Sant\'antimo ', '2018-02-12 16:59:04', 'Na', '3884966449'),
-(1987, 'Erika', 'Angelini', 'erika_angelini@hotmail.it', 'Via sant\'Antonio ', '14/a', '6034', NULL, '2717', 'Foligno', '2018-02-12 18:41:49', 'PG', '3487012911'),
-(1988, 'Erika', 'Angelini', 'erika_angelini@hotmail.it', 'Via sant\'Antonio ', '14/a', '6034', NULL, '2727', 'Foligno', '2018-02-12 18:42:23', 'pg', '3487012911'),
-(1989, 'Erika', 'Angelini', 'erika_angelini@hotmail.it', 'Via sant\'Antonio ', '14/a', '6034', NULL, '2715', 'Foligno', '2018-02-12 18:42:52', 'PG', '3487012911'),
+(1985, 'Sonya ', 'Cacace', 'sonya.cacace@libero.it', 'Via Alessandro Manzoni ', '17', '80029', NULL, '566', 'Sant''antimo ', '2018-02-12 16:56:42', 'Na', '3884966449'),
+(1986, 'Sonya ', 'Cacace', 'sonya.cacace@libero.it', 'Via Alessandro Manzoni ', '17', '80029', NULL, '531', 'Sant''antimo ', '2018-02-12 16:59:04', 'Na', '3884966449'),
+(1987, 'Erika', 'Angelini', 'erika_angelini@hotmail.it', 'Via sant''Antonio ', '14/a', '6034', NULL, '2717', 'Foligno', '2018-02-12 18:41:49', 'PG', '3487012911'),
+(1988, 'Erika', 'Angelini', 'erika_angelini@hotmail.it', 'Via sant''Antonio ', '14/a', '6034', NULL, '2727', 'Foligno', '2018-02-12 18:42:23', 'pg', '3487012911'),
+(1989, 'Erika', 'Angelini', 'erika_angelini@hotmail.it', 'Via sant''Antonio ', '14/a', '6034', NULL, '2715', 'Foligno', '2018-02-12 18:42:52', 'PG', '3487012911'),
 (1990, 'Erica', 'Fontanari', 'ericafontanari@gmail.com', 'Via alle rive ', '44', '38057', NULL, '2117', 'Pergine Valsugana ', '2018-02-12 20:22:19', 'Tn', '3470496978'),
 (1991, 'Erica', 'Fontanari', 'ericafontanari@gmail.com', 'Via alle rive ', '44', '38057', NULL, '2121', 'Pergine Valsugana ', '2018-02-12 20:26:24', 'Tn', '3470496978'),
 (1992, 'Erica', 'Fontanari', 'ericafontanari@gmail.com', 'Via alle rive ', '44', '38057', NULL, '2123', 'Pergine Valsugana ', '2018-02-12 20:38:56', 'Tn', '3470496978'),
@@ -2658,7 +2652,7 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (2027, 'Marzia', 'Gulino', 'g_marzia@hotmail.com', 'Caterina da ForlÃ¬', '50', '20146', NULL, '2702', 'Milano', '2018-02-13 21:56:25', 'mi', '3288225218'),
 (2028, 'Marzia', 'Gulino', 'g_marzia@hotmail.com', 'Caterina da ForlÃ¬ ', '50', '20146', NULL, '601', 'Milano', '2018-02-13 21:56:44', 'mi', '3288225218'),
 (2029, 'Silvia', 'la rosa', 'silvia.larosa3@gmail.com', 'viale xviii dicembre', '64', '4100', NULL, '589', 'latina', '2018-02-13 22:12:10', 'lt', '3291554575'),
-(2030, 'valeria', 'rinaldi', 'valeriarinaldi@asdattitude.it', 'VIA DELL\'AQUILA REALE', '45', '169', NULL, '2661', 'ROMA', '2018-02-13 22:35:34', 'RM', '3332729067'),
+(2030, 'valeria', 'rinaldi', 'valeriarinaldi@asdattitude.it', 'VIA DELL''AQUILA REALE', '45', '169', NULL, '2661', 'ROMA', '2018-02-13 22:35:34', 'RM', '3332729067'),
 (2031, 'valeria', 'rinaldi', 'valeriarinaldi@asdattitude.it', 'VIA DELL AQUILA REALE ', '45', '169', NULL, '514', 'ROMA', '2018-02-13 22:51:19', 'RM', '3332729067'),
 (2032, 'Lisa', 'TrerÃ¨', 'lisa86@libero.it', 'Via colombarotto, 3', '3', '40060', NULL, '522', 'Toscanella di dozza', '2018-02-14 05:43:44', 'BO', '3335762492'),
 (2033, 'Lisa', 'TrerÃ¨', 'lisa86@libero.it', 'Via colombarotto, 3', '3', '40060', NULL, '2710', 'Toscanella di dozza', '2018-02-14 05:47:59', 'BO', '3335762492'),
@@ -2713,15 +2707,15 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (2082, 'carla', 'piardi', 'carla352@libero.it', 'frera', '7', '25060', NULL, '589', 'pezzaze', '2018-02-16 21:24:31', 'bs', '3392227087'),
 (2083, 'Ilaria', 'Zuccon', 'ilaria.zuccon@gmail.com', 'Via Sanmicheli', '22/A', '35123', NULL, '602', 'padova', '2018-02-16 22:26:31', 'pd', ''),
 (2084, 'Ilaria', 'Zuccon', 'ilaria.zuccon@gmail.com', 'Via Sanmicheli', '22/a', '35123', NULL, '594', 'Padova', '2018-02-16 22:28:02', 'pD', ''),
-(2085, 'Veronica', 'faggioni', 'gretel.a88@gmail.com', 'via pantano  d\'inferno, 50', '50', '4013', NULL, '602', 'Latina', '2018-02-17 08:01:05', 'LT', '3341013520'),
-(2086, 'veronica', 'faggioni', 'gretel.a88@gmail.com', 'via pantano  d\'inferno, 50', '50', '4013', NULL, '541', 'Latina', '2018-02-17 08:03:51', 'LT', '3341013520'),
+(2085, 'Veronica', 'faggioni', 'gretel.a88@gmail.com', 'via pantano  d''inferno, 50', '50', '4013', NULL, '602', 'Latina', '2018-02-17 08:01:05', 'LT', '3341013520'),
+(2086, 'veronica', 'faggioni', 'gretel.a88@gmail.com', 'via pantano  d''inferno, 50', '50', '4013', NULL, '541', 'Latina', '2018-02-17 08:03:51', 'LT', '3341013520'),
 (2087, 'FRANCESCA', 'ROMANI', 'frenci85@yahoo.it', 'via della zoia ', '47', '40017', NULL, '2779', 'san giovanni in persiceto', '2018-02-17 16:37:43', 'bo', '3935364551'),
 (2088, 'francesca', 'romani', 'frenci85@yahoo.it', 'via della zoia', '47', '40017', NULL, '2728', 'san giovanni in persiceto', '2018-02-17 16:46:18', 'bo', '3935364551'),
 (2089, 'Martina ', 'Rossi', 'marty92.rossi@hotmail.it', 'Viale Giulio Cesare ', '54/P', '192', NULL, '604', 'Roma', '2018-02-17 20:49:32', 'Rm', '3669235537'),
 (2090, 'federica', 'rocchi', 'fede300389@gmail.com', 'via teano', '2', '20161', NULL, '510', 'milano', '2018-02-17 20:51:54', 'mi', '3339695660'),
 (2091, 'federica', 'rocchi', 'fede300389@gmail.com', 'via teano', '2', '20161', NULL, '2753', 'milano', '2018-02-17 21:12:35', 'mi', '3339695660'),
 (2092, 'federica', 'rocchi', 'fede300389@gmail.com', 'via teano', '2', '20161', NULL, '557', 'milano', '2018-02-17 21:13:49', 'Mi', '3339695660'),
-(2093, 'Walter', 'Lapenna', 'walter.lapenna@gmail.com', 'Monte orsello ', '8', '67100', NULL, '2770', 'L\'Aquila', '2018-02-17 22:05:33', 'AQ', '3493822604'),
+(2093, 'Walter', 'Lapenna', 'walter.lapenna@gmail.com', 'Monte orsello ', '8', '67100', NULL, '2770', 'L''Aquila', '2018-02-17 22:05:33', 'AQ', '3493822604'),
 (2094, 'Mariangela', 'Saltarelli', 'mariangelasaltarelli@gmail.com', 'via Sestriere', '28/1', '10024', NULL, '2728', 'moncalieri', '2018-02-17 23:10:19', 'TO', '3495371410'),
 (2095, 'Mariangela', 'Saltarelli', 'mariangelasaltarelli@gmail.com', 'via Sestriere', '28/1', '10024', NULL, '501', 'moncalieri', '2018-02-17 23:11:26', 'TO', '3495371410'),
 (2096, 'Mariangela', 'Saltarelli', 'mariangelasaltarelli@gmail.com', 'via Sestriere', '28/1', '10024', NULL, '505', 'moncalieri', '2018-02-17 23:12:32', 'TO', '3495371410'),
@@ -2736,9 +2730,9 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (2105, 'luca', 'POLZONETTI', 'polzo88@hotmail.it', 'via giolitti ', '2/4', '60027', NULL, '538', 'osimo', '2018-02-18 09:00:11', 'an', '3406112245'),
 (2106, 'luca', 'POLZONETTI', 'polzo88@hotmail.it', 'via giolitti ', '2/4', '60027', NULL, '584', 'osimo', '2018-02-18 09:16:48', 'an', '3406112245'),
 (2107, 'Lerry', 'Roncari', 'marianadavino@hotmail.it', 'Via indipendenza', '53', '46100', NULL, '538', 'Mantova', '2018-02-18 10:31:15', 'Mn', '3272032021'),
-(2108, 'Ilaria', 'd\'aloia', 'ilaria.da@hotmail.it', 'c/da san giovanni', '13', '82100', NULL, '578', 'benevento', '2018-02-18 10:52:08', 'bn', '3466926164'),
+(2108, 'Ilaria', 'd''aloia', 'ilaria.da@hotmail.it', 'c/da san giovanni', '13', '82100', NULL, '578', 'benevento', '2018-02-18 10:52:08', 'bn', '3466926164'),
 (2109, 'Claudia', 'Bertesi', 'cbertesi@gmail.com', 'Via cadiane', '230/a', '41100', NULL, '538', 'Modena', '2018-02-18 10:52:34', 'Mo', ''),
-(2110, 'ilaria', 'd\'aloia', 'ilaria.da@hotmail.it', 'c/da san giovanni', '13', '82100', NULL, '573', 'benevento', '2018-02-18 10:53:03', 'bn', '3466926164'),
+(2110, 'ilaria', 'd''aloia', 'ilaria.da@hotmail.it', 'c/da san giovanni', '13', '82100', NULL, '573', 'benevento', '2018-02-18 10:53:03', 'bn', '3466926164'),
 (2111, 'Valentina', 'dâ€™andrea', 'vale.v.83@hotmail.it', 'via crocillo ', '103', '80010', NULL, '534', 'quarto', '2018-02-18 11:04:16', 'na', '3313875607'),
 (2112, 'valentina', 'dâ€™andrea', 'vale.v.83@hotmail.it', 'via crocillo', '103', '80010', NULL, '541', 'quarto', '2018-02-18 11:48:13', 'na', '3313875607'),
 (2113, 'valentina', 'dâ€™andrea', 'vale.v.83@hotmail.it', 'via crocillo', '103', '80010', NULL, '2770', 'quarto', '2018-02-18 11:55:00', 'na', '3313875607'),
@@ -2771,10 +2765,10 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (2140, 'Marta', 'Caffo', 'caffomarta7@gmail.com ', 'Via timone zaccanazzo 4', '4/b', '95024', NULL, '510', 'Acireale', '2018-02-18 22:54:12', 'Ct', '3493346538'),
 (2141, 'Giulia', 'Boglione', 'giuliab.lazio@hotmail.it', 'Am alpengarten 2 ', '2', '88131', NULL, '538', 'LIndau', '2018-02-19 08:37:52', 'Ba', ''),
 (2142, 'Martina', 'Gerion', 'Pina1587@hotMail.it', 'Via del fium VECCHIO ', '8/4', '33052', NULL, '508', 'CeRvignano del friuli', '2018-02-19 09:31:11', 'Ud', '3400633817'),
-(2143, 'valentina', 'casola', 'valentina.casola@hotmail.com', 'VIA LIBERTA\' ', '22', '20874', NULL, '504', 'BUSNAGO', '2018-02-19 10:54:32', 'MB', '3494415419'),
+(2143, 'valentina', 'casola', 'valentina.casola@hotmail.com', 'VIA LIBERTA'' ', '22', '20874', NULL, '504', 'BUSNAGO', '2018-02-19 10:54:32', 'MB', '3494415419'),
 (2144, 'MARCO', 'PASCUCCI', 'susanna.lovecchio@gmail.com', 'SABA ITALIA S.P.A. - Via Abruzzi C/O SABA ITALIA', '25', '187', NULL, '538', 'rOMA', '2018-02-19 10:57:17', 'rm', '3921591821'),
-(2145, 'valentina', 'CASOLA', 'valentina.casola@hotmail.com', 'VIA LIBERTA\' ', '22/e', '20874', NULL, '570', 'busnago', '2018-02-19 11:01:49', 'mb', '39671429'),
-(2146, 'valentina', 'casola', 'valentina.casola@hotmail.com', 'VIA LIBERTA\' ', '22/e', '20874', NULL, '2779', 'BUSNAGO', '2018-02-19 11:09:53', 'MB', '3494415419'),
+(2145, 'valentina', 'CASOLA', 'valentina.casola@hotmail.com', 'VIA LIBERTA'' ', '22/e', '20874', NULL, '570', 'busnago', '2018-02-19 11:01:49', 'mb', '39671429'),
+(2146, 'valentina', 'casola', 'valentina.casola@hotmail.com', 'VIA LIBERTA'' ', '22/e', '20874', NULL, '2779', 'BUSNAGO', '2018-02-19 11:09:53', 'MB', '3494415419'),
 (2147, 'Giulia', 'Pedrali ', 'giulia.pedrali@libero.it', 'Via rossini ', '2', '25068', NULL, '501', 'Sarezzo', '2018-02-19 12:15:46', 'Bs', ''),
 (2148, 'Giulia', 'Pedrali ', 'giulia.pedrali@libero.it', 'Via rossini ', '2', '25068', NULL, '2666', 'Sarezzo', '2018-02-19 12:17:08', 'Bs', ''),
 (2149, 'Giulia', 'Pedrali ', 'giulia.pedrali@libero.it', 'Via rossini ', '2', '25068', NULL, '535', 'Sarezzo', '2018-02-19 12:19:46', 'Bs', ''),
@@ -2796,10 +2790,10 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (2165, 'ALESSIA', 'GRIECO', 'iwind@hotmail.it', 'LOC. CANGITO PRESSO SA.GEST, SNC', 'snc', '84030', NULL, '530', 'CAGGIANO', '2018-02-19 18:12:48', 'SA', '3888719553'),
 (2166, 'Giorgia', 'Zambelli', 'z-giorgia@libero.it', 'Via Dolomiti', '56', '37060', NULL, '2752', 'Buttapietra', '2018-02-19 18:17:14', 'VR', ''),
 (2167, 'Giorgia', 'Zambelli', 'z-giorgia@libero.it', 'Via Dolomiti', '56', '37060', NULL, '538', 'Buttapietra', '2018-02-19 18:26:21', 'VR', ''),
-(2168, 'Virginia', 'Dal lago', 'dal_lago_virginia@virgilio.it', 'Via Ca\' Lasagna, 11', '11', '36045', NULL, '545', 'Lonigo', '2018-02-19 18:43:15', 'Vi', ''),
-(2169, 'Filippo', 'desolei', 'filippo.d2004@libero.it', 'via tito livio ', '6/1', '35020', NULL, '578', 'masera\' di padova', '2018-02-19 20:16:22', 'pd', '34747231731'),
-(2170, 'filippo', 'desolei', 'filippo.d2004@libero.it', 'via tito livio', '6/1', '35020', NULL, '2753', 'masera\' di padova', '2018-02-19 20:21:27', 'pd', '3474723731'),
-(2171, 'Filippo', 'desolei', 'filippo.d2004@libero.it', 'via tito livio', '6/1', '35020', NULL, '572', 'masera\' di padova', '2018-02-19 21:02:54', 'pd', '3474723731'),
+(2168, 'Virginia', 'Dal lago', 'dal_lago_virginia@virgilio.it', 'Via Ca'' Lasagna, 11', '11', '36045', NULL, '545', 'Lonigo', '2018-02-19 18:43:15', 'Vi', ''),
+(2169, 'Filippo', 'desolei', 'filippo.d2004@libero.it', 'via tito livio ', '6/1', '35020', NULL, '578', 'masera'' di padova', '2018-02-19 20:16:22', 'pd', '34747231731'),
+(2170, 'filippo', 'desolei', 'filippo.d2004@libero.it', 'via tito livio', '6/1', '35020', NULL, '2753', 'masera'' di padova', '2018-02-19 20:21:27', 'pd', '3474723731'),
+(2171, 'Filippo', 'desolei', 'filippo.d2004@libero.it', 'via tito livio', '6/1', '35020', NULL, '572', 'masera'' di padova', '2018-02-19 21:02:54', 'pd', '3474723731'),
 (2172, 'alessandra', 'turco', 'alessandra-sn@hotmail.it', 'corso vittorio emanuele', '71', '37', NULL, '555', 'SEGNI', '2018-02-19 21:03:32', 'RM', '3246054190'),
 (2173, 'alessandra', 'turco', 'alessandra-sn@hotmail.it', 'corso vittorio emanuele', '71', '37', NULL, '559', 'SEGNI', '2018-02-19 21:04:28', 'RM', '3246054190'),
 (2174, 'alessandra', 'turco', 'alessandra-sn@hotmail.it', 'corso vittorio emanuele', '71', '37', NULL, '564', 'SEGNI', '2018-02-19 21:05:39', 'RM', '3246054190'),
@@ -2822,14 +2816,14 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (2191, 'Salvatore ', 'Martiniello', 'salvatore.martiniello@gmail.com', 'Via Argonne 3/C', '3/c', '21013', NULL, '573', 'Gallarate', '2018-02-20 17:04:22', 'Va', '3460467802'),
 (2192, 'ALESSANDRA', 'TEMPERA', 'ale_temp@hotmail.it', 'VIA SALARIA', '18', '63082', NULL, '573', 'castel di lama', '2018-02-20 17:31:36', 'ap', '3403658819'),
 (2193, 'alessandra', 'tempera', 'ale_temp@hotmail.it', 'VIA SALARIA', '18', '', NULL, '2769', '', '2018-02-20 17:37:04', '', '3403658819'),
-(2194, 'leo', 'seghini', 'leoseghini@hotmail.it', 'via pietro nenni, numero 17', 'numero 17', '64016', NULL, '2770', 'sant\'egidio alla vibrata', '2018-02-20 17:38:14', 'TE', '3288146102'),
-(2195, 'leo', 'seghini', 'leoseghini@hotmail.it', 'via pietro nenni, numero 17', 'numero 17', '64016', NULL, '2769', 'sant\'egidio alla vibrata', '2018-02-20 17:42:40', 'TE', '3288146102'),
-(2196, 'leo', 'seghini', 'leoseghini@hotmail.it', 'via pietro nenni, numero 17', 'numero 17', '64016', NULL, '578', 'sant\'egidio alla vibrata', '2018-02-20 17:48:22', 'TE', '3288146102'),
+(2194, 'leo', 'seghini', 'leoseghini@hotmail.it', 'via pietro nenni, numero 17', 'numero 17', '64016', NULL, '2770', 'sant''egidio alla vibrata', '2018-02-20 17:38:14', 'TE', '3288146102'),
+(2195, 'leo', 'seghini', 'leoseghini@hotmail.it', 'via pietro nenni, numero 17', 'numero 17', '64016', NULL, '2769', 'sant''egidio alla vibrata', '2018-02-20 17:42:40', 'TE', '3288146102'),
+(2196, 'leo', 'seghini', 'leoseghini@hotmail.it', 'via pietro nenni, numero 17', 'numero 17', '64016', NULL, '578', 'sant''egidio alla vibrata', '2018-02-20 17:48:22', 'TE', '3288146102'),
 (2197, 'Lisa', 'Morgione', 'lisa.morgione@gmail.com', 'Via statale ', '133', '42013', NULL, '581', 'Casalgrande', '2018-02-20 20:18:00', 'RE', '3401645720'),
 (2198, 'elena', 'Berardi c/o E.Service srl', 'elena@eservicesrl.net', 'Via Primo Maggio', '27', '20060', NULL, '2717', 'Trezzano Rosa', '2018-02-20 20:48:57', 'mi', '3333079577'),
-(2199, 'marcella', 'maresca', 'SMIGOL1979@gmail.com', 'via dell\'epomeo', '496', '80126', NULL, '510', 'napoli', '2018-02-20 20:55:41', 'na', '3494621585'),
-(2200, 'marcella', 'marescaq', 'SMIGOL1979@gmail.com', 'via dell\'epomeo', '496', '80126', NULL, '501', 'napoli', '2018-02-20 20:56:20', 'na', '3494621585'),
-(2201, 'marcella', 'maresca', 'SMIGOL1979@gmail.com', 'via dell\'epomeo', '496', '80126', NULL, '515', 'napoli', '2018-02-20 20:58:04', 'na', '3494621585'),
+(2199, 'marcella', 'maresca', 'SMIGOL1979@gmail.com', 'via dell''epomeo', '496', '80126', NULL, '510', 'napoli', '2018-02-20 20:55:41', 'na', '3494621585'),
+(2200, 'marcella', 'marescaq', 'SMIGOL1979@gmail.com', 'via dell''epomeo', '496', '80126', NULL, '501', 'napoli', '2018-02-20 20:56:20', 'na', '3494621585'),
+(2201, 'marcella', 'maresca', 'SMIGOL1979@gmail.com', 'via dell''epomeo', '496', '80126', NULL, '515', 'napoli', '2018-02-20 20:58:04', 'na', '3494621585'),
 (2202, 'Stefania', 'Pinciroli', 'Stepinci0509@gmail.com', 'Via vespri siciliani ', '23', '21052', NULL, '576', 'Busto arsizio', '2018-02-20 21:09:01', 'Va', ''),
 (2203, 'Francesca', '3889352626Vinci', 'francescavinci91@virgilio.it', 'Via colLe capitolIno ', '12', '42', NULL, '576', 'Anzio', '2018-02-20 21:11:55', 'RM', '3889352626'),
 (2204, 'Francesca', 'Vinci', 'FrancEscavinci91@viRgilio.it', 'Via colle capitolino', '12', '42', NULL, '2672', 'Anzio', '2018-02-20 21:48:30', 'Rm', '3889352626'),
@@ -2911,7 +2905,7 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (2279, 'Marilisa', 'PLESCIA', 'marilisa.plescia@gmail.com', 'via cialdini ', '16', '20161', NULL, '2770', 'MILANO', '2018-02-24 12:29:50', 'mi', '3281385584'),
 (2280, 'Chiara', 'Gallini', 'chiara.gallini86@gmail.com', 'Via cibrario', '25', '10143', NULL, '503', 'Torino', '2018-02-24 13:05:24', 'To', ''),
 (2281, 'sabrina', 'beltrame', 'beltrame.sabrina@gmail.com', 'VIA MAZZINI', '24', '37050', NULL, '508', 'OPPEANO', '2018-02-24 14:33:23', 'VR', '3477783201'),
-(2282, 'ROBERTO', 'VITALONI', 'sabrina.apostolico@gmail.com', 'VIA DELL\'INDUSTRIA', '8', '6038', NULL, '531', 'SPELLO', '2018-02-24 17:30:07', 'PG', '3407109515'),
+(2282, 'ROBERTO', 'VITALONI', 'sabrina.apostolico@gmail.com', 'VIA DELL''INDUSTRIA', '8', '6038', NULL, '531', 'SPELLO', '2018-02-24 17:30:07', 'PG', '3407109515'),
 (2283, 'Claudio ', 'Negri', 'DORO2014@LIBERO.It', 'Via G.Verga 22', '22', '73043', NULL, '2753', 'Copertino ', '2018-02-24 18:20:34', 'Le', '3333055929'),
 (2284, 'Valentina', 'Angius', 'valentinaangius@yahoo.it', 'Via Luna e Sole', '42/C', '7100', NULL, '2770', 'Sassari', '2018-02-24 18:28:28', 'SS', '3402685099'),
 (2285, 'Loretta', 'VeritÃ ', 'lory_ver@yahoo.it', 'via Leoncavallo, 36 D', '36 D', '46043', NULL, '587', 'Castiglione delle Stiviere', '2018-02-24 21:28:02', 'mn', '3355397689'),
@@ -3040,8 +3034,8 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (2408, 'claudia', 'marras', 'info@passioneventi.net', 'Via Caprera', '8 b', '8048', NULL, '533', 'TortolÃ¬', '2018-03-01 15:17:50', 'OG', ''),
 (2409, 'claudia', 'marras', 'info@passioneventi.net', 'via caprera ', '8  b', '8048', NULL, '2688', 'tortolÃ¬', '2018-03-01 15:22:53', 'og', ''),
 (2410, 'claudia', 'marras', 'info@passioneventi.net', 'caprera ', '8  b', '8048', NULL, '596', 'tortoli', '2018-03-01 15:27:49', 'og', ''),
-(2411, 'antonella', 'micieli', 'antonella.-91@hotmail.it', 'via cuneo, 15', '15', '12084', NULL, '573', 'MONDOVI\'', '2018-03-01 15:35:23', 'CN', '174490330'),
-(2412, 'antonella', 'micieli', 'antonella.-91@hotmail.it', 'via cuneo, 15', '15', '12084', NULL, '590', 'MONDOVI\'', '2018-03-01 15:36:03', 'CN', '174490330'),
+(2411, 'antonella', 'micieli', 'antonella.-91@hotmail.it', 'via cuneo, 15', '15', '12084', NULL, '573', 'MONDOVI''', '2018-03-01 15:35:23', 'CN', '174490330'),
+(2412, 'antonella', 'micieli', 'antonella.-91@hotmail.it', 'via cuneo, 15', '15', '12084', NULL, '590', 'MONDOVI''', '2018-03-01 15:36:03', 'CN', '174490330'),
 (2413, 'Debora', 'Delle fave', 'dellefavedebora@gmail.com', 'Via masaccio ', '3a', '20092', NULL, '523', 'Cinisello Balsamo', '2018-03-01 17:41:23', 'Mi', ''),
 (2414, 'Carmen ', 'Zucco ', 'carmenzuccochianese@gmail.com', 'Via Garibaldi  ', '270', '89044', NULL, '501', 'Locri ', '2018-03-01 19:54:21', 'Rc', '3200949259'),
 (2415, 'Carmen ', 'Zucco ', 'carmenzuccochianese@gmail.com', 'Via Garibaldi  ', '270', '89044', NULL, '2663', 'Locri ', '2018-03-01 19:55:13', 'Rc', '3200949259'),
@@ -3209,9 +3203,9 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (2576, 'Jessica', 'Cantarella', 'jessica93.c@hotmail.it', 'Via Colombo Cristoforo, 435', '435', '95033', NULL, '2779', 'Biancavilla', '2018-03-02 12:26:52', 'CT', '3273843033'),
 (2577, 'Jessica', 'Cantarella', 'jessica93.c@hotmail.it', 'Via Colombo Cristoforo, 435', '435', '95033', NULL, '2793', 'Biancavilla', '2018-03-02 12:27:25', 'CT', '3273843033'),
 (2578, 'lucia', 'sportelli', 'lucia.sportelli@gmail.com', 'via risorgimento', '44', '25050', NULL, '501', 'rodengo-saiano', '2018-03-02 19:05:29', 'bs', ''),
-(2579, 'Ilaria', 'Angeloni c/o key to business s.r.l.', 'i.angeloni@libero.it', 'viale dell\'esperanto', '71', '144', NULL, '531', 'roma', '2018-03-02 19:20:28', 'rm', '3935134445'),
-(2580, 'ilaria', 'Angeloni c/o key to business s.r.l.', 'i.angeloni@libero.it', 'Viale dell\'Esperanto', '71', '144', NULL, '2710', 'Roma', '2018-03-02 19:23:53', 'RM', '3935134445'),
-(2581, 'Ilaria ', 'Angeloni c/o key to business s.r.l.', 'i.angeloni@libero.it', 'Viale dell\'Esperanto', '71', '144', NULL, '557', 'Roma', '2018-03-02 19:25:16', 'rm', '3935134445'),
+(2579, 'Ilaria', 'Angeloni c/o key to business s.r.l.', 'i.angeloni@libero.it', 'viale dell''esperanto', '71', '144', NULL, '531', 'roma', '2018-03-02 19:20:28', 'rm', '3935134445'),
+(2580, 'ilaria', 'Angeloni c/o key to business s.r.l.', 'i.angeloni@libero.it', 'Viale dell''Esperanto', '71', '144', NULL, '2710', 'Roma', '2018-03-02 19:23:53', 'RM', '3935134445'),
+(2581, 'Ilaria ', 'Angeloni c/o key to business s.r.l.', 'i.angeloni@libero.it', 'Viale dell''Esperanto', '71', '144', NULL, '557', 'Roma', '2018-03-02 19:25:16', 'rm', '3935134445'),
 (2582, 'Barbara', 'Borgiotti', 'avv.barbaraborgiotti@gmail.com', 'Via Benozzo gozzoli', '30', '50051', NULL, '604', 'Castelfiorentino', '2018-03-02 20:19:10', 'Fi', '3494113586'),
 (2583, 'Barbara', 'Borgiotti', 'avv.barbaraborgiotti@gmail.com', 'Via Benozzo gozzoli', '30', '50051', NULL, '2677', 'Castelfiorentino', '2018-03-02 20:23:30', 'Fi', '3494113586'),
 (2584, 'Laura', 'palugan', 'laurapalugan@gmail.com', 'via trieste ', '93/1', '45024', NULL, '2712', 'fiesso umbertuiano ', '2018-03-03 09:23:25', 'ro', '3494249800'),
@@ -3223,9 +3217,9 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (2590, 'lorenzo', 're', 'lorenzo.re1990@gmail.com', 'via carso', '4', '20010', NULL, '2766', 'canegrate', '2018-03-03 18:11:42', 'mi', '3490740054'),
 (2591, 'lorenzo', 're', 'lorenzo.re1990@gmail.com', 'via carso', '4', '20010', NULL, '604', 'canegrate', '2018-03-03 18:12:34', 'mi', '3490740054'),
 (2592, 'lorenzo', 're', 'lorenzo.re1990@gmail.com', 'via carso', '4', '20010', NULL, '538', 'canegrate', '2018-03-03 18:13:08', 'mi', '3490740054'),
-(2593, 'Daniela ', 'Vaccaro', 'daniela vaccaro61@gmail.com', 'via sant\'andrea ', '9', '46', NULL, '2676', 'grottaferrata', '2018-03-03 22:57:47', 'rm', '3478415210'),
-(2594, 'daniela ', 'Vaccaro', 'danielavaccaro61@gmail.com', 'via sant\'andrea ', '9', '46', NULL, '2779', 'grottaferrata', '2018-03-03 23:01:26', 'rm', '3478415210'),
-(2595, 'daniela', 'vaccaro', 'danielavaccaro61@gmail.com', 'via sant\'andrea ', '9', '46', NULL, '604', 'grottaferrata', '2018-03-03 23:05:28', 'rm', '3478415210'),
+(2593, 'Daniela ', 'Vaccaro', 'daniela vaccaro61@gmail.com', 'via sant''andrea ', '9', '46', NULL, '2676', 'grottaferrata', '2018-03-03 22:57:47', 'rm', '3478415210'),
+(2594, 'daniela ', 'Vaccaro', 'danielavaccaro61@gmail.com', 'via sant''andrea ', '9', '46', NULL, '2779', 'grottaferrata', '2018-03-03 23:01:26', 'rm', '3478415210'),
+(2595, 'daniela', 'vaccaro', 'danielavaccaro61@gmail.com', 'via sant''andrea ', '9', '46', NULL, '604', 'grottaferrata', '2018-03-03 23:05:28', 'rm', '3478415210'),
 (2596, 'Benedetta', 'Sironi', 'Benedetta.sironi@gmail.com', 'Via Caravaggio', '25', '59013', NULL, '566', 'Montemurlo', '2018-03-03 23:14:15', 'Po', ''),
 (2597, 'Benedetta', 'Sironi', 'Benedetta.sironi@gmail.com', 'Via Caravaggio', '25', '59013', NULL, '582', 'Montemurlo', '2018-03-03 23:19:06', 'Po', ''),
 (2598, 'Benedetta', 'Sironi', 'BENEDETTA.SIRONI@GMAIL.com', 'Via Caravaggio', '25', '59013', NULL, '2712', 'Montemurlo', '2018-03-03 23:31:58', 'Po', ''),
@@ -3273,14 +3267,14 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (2640, 'Paolo ', 'Genta', 'Paologenta87@gmail.com', 'Via 4 novembre ', '72', '38017', NULL, '595', 'Mezzolombardo', '2018-03-05 21:35:32', 'TN', '3404254256'),
 (2641, 'Paolo', 'Genta', 'Paologenta87@gmail.com', 'Via 4 novembre ', '72', '38017', NULL, '2779', 'Mezzolombardo', '2018-03-05 21:37:34', 'Tn', '3404154256'),
 (2642, 'ROXANA', 'DRAGAN', 'ROXANA-93@HOTMAIL.IT', 'VIA MONTELLO 50', '50', '25128', NULL, '533', 'BRESCIA', '2018-03-05 22:34:50', 'BS', '3408405136'),
-(2643, 'Ilenia', 'Darino', 'ileniadarino@hotmail.it', 'Viale Italia', '22', '85037', NULL, '573', 'SAnt\'arcangelo', '2018-03-06 00:50:46', 'Pz', '3772284678'),
+(2643, 'Ilenia', 'Darino', 'ileniadarino@hotmail.it', 'Viale Italia', '22', '85037', NULL, '573', 'SAnt''arcangelo', '2018-03-06 00:50:46', 'Pz', '3772284678'),
 (2644, 'Michela', 'Siddi', 'fantasiediconfetti@libero.it', 'Vico Santa barbara', '15', '9016', NULL, '555', 'Iglesias', '2018-03-06 08:50:17', 'su', '3313441640'),
 (2645, 'Michela', 'Siddi', 'fantasiediconfetti@libero.it', 'Vico Santa barbara', '15', '9016', NULL, '2749', 'Iglesias', '2018-03-06 08:53:10', 'su', '3313441640'),
 (2646, 'Michela', 'Siddi', 'fantasiediconfetti@libero.it', 'Vico Santa barbara', '15', '9016', NULL, '571', 'Iglesias', '2018-03-06 08:55:28', 'su', '3313441640'),
 (2647, 'Michela', 'Siddi', 'fantasiediconfetti@libero.it', 'Vico Santa barbara', '15', '9016', NULL, '2115', 'Iglesias', '2018-03-06 08:58:44', 'su', '3313441640'),
 (2648, 'Michela', 'Siddi', 'fantasiediconfetti@libero.it', 'Vico Santa barbara', '15', '9016', NULL, '2126', 'Iglesias', '2018-03-06 09:00:29', 'su', '3313441640'),
 (2649, 'Michela', 'Siddi', 'fantasiediconfetti@libero.it', 'Vico Santa barbara', '15', '9016', NULL, '2127', 'Iglesias', '2018-03-06 09:02:45', 'su', '3313441640'),
-(2650, 'Ilenia', 'Darino', 'ileniadarino@hotmail.it', 'Viale Italia', '22', '85037', NULL, '2777', 'SAnt\'arcangelo', '2018-03-06 09:30:40', 'Pz', '3772284678'),
+(2650, 'Ilenia', 'Darino', 'ileniadarino@hotmail.it', 'Viale Italia', '22', '85037', NULL, '2777', 'SAnt''arcangelo', '2018-03-06 09:30:40', 'Pz', '3772284678'),
 (2651, 'Irene', 'Giostra', 'giostrina@gmail.com', 'via colapesce ', '13', '98121', NULL, '2779', 'messina', '2018-03-06 13:12:58', 'ME', '3490077594'),
 (2652, 'SARA', 'BERNARDO', 'sarabernardo.sb@gmail.com', 'via santa rita ', '45/E', '20090', NULL, '2770', 'VIMODRONE', '2018-03-06 14:20:23', 'MI', '3395400121'),
 (2653, 'Valentina', 'Ricci', 'ricci.valentina12@gmail.com', 'Via Goffredo Mameli', '111', '6034', NULL, '570', 'Foligno', '2018-03-06 16:34:51', 'PG', '3318084093'),
@@ -3313,17 +3307,17 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (2680, 'Michele', 'CASULLO', 'AmoreMichi@libero.it', 'Via MAZZINI ', '2a', '9823', NULL, '552', 'MONASTIR', '2018-03-08 00:20:07', 'Ca', '3477419978'),
 (2681, 'MICHELE', 'CASULLO', 'AmoreMichi@libero.IT', 'Via MAZZINI', '2a', '9023', NULL, '2779', 'MONASTIR', '2018-03-08 00:22:06', 'Ca', '3477419978'),
 (2682, 'Manuel', 'Gavini', 'ertatanka@libero.it ', 'Via prenestina', '42', '176', NULL, '541', 'Roma', '2018-03-08 00:41:16', 'Rm', ''),
-(2683, 'maria maddalena ', 'D\'ANGIO\'', 'maddalena.dangio@alice.it', 'via iv novembre', '10', '81052', NULL, '2796', 'Pignataro Maggiore', '2018-03-08 08:31:01', 'ce', ''),
-(2684, 'MARIA MADDALENA', 'D\'ANGIO\'', 'maddalena.dangio@alice.it', 'via iv novembre ', '10', '81052', NULL, '554', 'pignataro maggiore', '2018-03-08 08:36:35', 'ce', ''),
-(2685, 'maria maddalena', 'd\'angio\'', 'maddalena.dangio@alice.it', 'via iv novembre ', '10', '81052', NULL, '551', 'pignataro maggiore', '2018-03-08 08:41:21', 'ce', ''),
+(2683, 'maria maddalena ', 'D''ANGIO''', 'maddalena.dangio@alice.it', 'via iv novembre', '10', '81052', NULL, '2796', 'Pignataro Maggiore', '2018-03-08 08:31:01', 'ce', ''),
+(2684, 'MARIA MADDALENA', 'D''ANGIO''', 'maddalena.dangio@alice.it', 'via iv novembre ', '10', '81052', NULL, '554', 'pignataro maggiore', '2018-03-08 08:36:35', 'ce', ''),
+(2685, 'maria maddalena', 'd''angio''', 'maddalena.dangio@alice.it', 'via iv novembre ', '10', '81052', NULL, '551', 'pignataro maggiore', '2018-03-08 08:41:21', 'ce', ''),
 (2686, 'Martina', 'Gerion', 'pina1587@hotMail.it', 'Via del fiume vecchio', '8/4', '33052', NULL, '2665', 'Cervignano del friuli', '2018-03-08 09:44:21', 'Ud', ''),
 (2687, 'Martina', 'Gerion', 'Pina1587@hotmail.it', 'Via del fiume vecchio', '8/4', '33052', NULL, '509', 'CervignaNo del friuli', '2018-03-08 09:49:46', 'Ud', ''),
 (2688, 'ELISABETTA ', 'GARAGIOLA', 'elisabetta.garagiola@libero.it', 'via magenta', '10', '20010', NULL, '602', 'inveruno', '2018-03-08 11:52:29', 'mi', ''),
 (2689, 'ELISABETTA', 'GARAGIOLA', 'elisabetta.garagiola@libero.it', 'via magenta', '10', '20010', NULL, '2760', 'inveruno', '2018-03-08 11:53:41', 'mi', ''),
 (2690, 'ELISABETTA', 'GARAGIOLA', 'elisabetta.garagiola@libero.it', 'via magenta', '10', '20010', NULL, '2766', 'inveruno', '2018-03-08 11:54:35', 'mi', ''),
-(2691, 'valentina', 'boroni', 'vabo82@yahoo.it', 'frazione stumiaga 6', '6', '38075', NULL, '2136', 'fiave\'', '2018-03-08 17:41:40', 't', '3208181732'),
-(2692, 'valentina', 'boroni', 'vabo82@yahoo.it', 'frazione stumiaga 6', '', '38075', NULL, '2135', 'fiave\'', '2018-03-08 17:42:39', 't', '3208181732'),
-(2693, 'valentina', 'boroni', 'vabo82@yahoo.it', 'frazione stumiaga 6', '', '38075', NULL, '2122', 'fiave\'', '2018-03-08 17:44:28', 'tn', '3208181732'),
+(2691, 'valentina', 'boroni', 'vabo82@yahoo.it', 'frazione stumiaga 6', '6', '38075', NULL, '2136', 'fiave''', '2018-03-08 17:41:40', 't', '3208181732'),
+(2692, 'valentina', 'boroni', 'vabo82@yahoo.it', 'frazione stumiaga 6', '', '38075', NULL, '2135', 'fiave''', '2018-03-08 17:42:39', 't', '3208181732'),
+(2693, 'valentina', 'boroni', 'vabo82@yahoo.it', 'frazione stumiaga 6', '', '38075', NULL, '2122', 'fiave''', '2018-03-08 17:44:28', 'tn', '3208181732'),
 (2694, 'Francesca', 'Cattaneo', 'maryfrancis85@hotmail.com', 'Via Chiatamone ', '63', '80121', NULL, '2751', 'Napoli', '2018-03-08 20:33:44', '', '3381527377'),
 (2695, 'Martina', 'Malvone', 'martina.malvone@hotmail.it', 'via Fuorimura', '20', '80067', NULL, '2704', 'sorrento', '2018-03-08 21:16:39', 'na', '3335895577'),
 (2696, 'Laura', 'Oldani', 'oldanilau@gmail.com', 'Via Mecenate', '87', '20138', NULL, '527', 'Milano', '2018-03-08 21:39:10', 'MI', '3491694648'),
@@ -3368,7 +3362,7 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (2735, 'Arianna', 'Pellicani', 'ARIANNA.86@hotmail.iT', 'Via franCesco crIspi', '129', '70123', NULL, '598', 'Bari', '2018-03-11 09:39:53', 'Ba', '3894767631'),
 (2736, 'MarIa ', 'BarbAro', 'Marybarbaro10@gamil.com', 'Vico tiratoio', '1', '80132 ', NULL, '501', 'Napoli ', '2018-03-11 13:20:12', 'Na', '3881882619'),
 (2737, 'Marina', 'Pezzoni', 'mpezzoni1991@gmail.com', 'Via Realetta', '14', '27026', NULL, '537', 'Garlasco', '2018-03-11 14:03:08', 'PV', '3463553496'),
-(2738, 'Barbara', 'Do\'', 'babid_75@yahoo.it', 'Via Alla Piana ', '2', '22040', NULL, '566', 'Lurago d\'Erba', '2018-03-11 14:30:08', 'Como', '3393235540'),
+(2738, 'Barbara', 'Do''', 'babid_75@yahoo.it', 'Via Alla Piana ', '2', '22040', NULL, '566', 'Lurago d''Erba', '2018-03-11 14:30:08', 'Como', '3393235540'),
 (2739, 'Marco ', 'Brunetti c/o nissan italia', 'M.brunetti@hotmail.it', 'Via tiberina km15.740', 'Snc', '60', NULL, '2779', 'Capena', '2018-03-11 15:13:27', 'RM', '3293843755'),
 (2740, 'Eleonora', 'Coletta', 'Eleonoracoletta84@gmail.com', 'Viale castracani', '326', '55013', NULL, '524', 'Lucca', '2018-03-11 15:59:27', 'Lu', '3475756916'),
 (2741, 'Martina', 'Gerion', 'Pina1587@hotmail.it', 'Via del fiume vecchio', '8/4', '33052', NULL, '554', 'Cervignano del friuli', '2018-03-11 16:24:00', 'Ud', ''),
@@ -3385,9 +3379,9 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (2752, 'Enrico', 'Stafuzza', 'Enricostaf@gmail.com', 'Via del fiume vecchio', '8', '33052', NULL, '2779', 'Cervignano del friuli', '2018-03-11 21:49:45', 'Ud', ''),
 (2753, 'sonia', 'federici', 'sonia.fed@live.it', 'via valcastagno', '17', '60026', NULL, '545', 'numana', '2018-03-11 21:56:15', 'an', '3472985621'),
 (2754, 'sonia', 'federici', 'sonia.fed@live.it', 'via valcastagno', '17', '60026', NULL, '533', 'numana', '2018-03-11 22:01:39', 'AN', '3472985621'),
-(2755, 'Evelin', 'Guana\'', 'evelinfiori@gmail.com', 'via carlo fontana 6', '6', '53', NULL, '2749', 'civitavecchia', '2018-03-11 22:25:56', 'Rm', '3884011749'),
-(2756, 'Evelin', 'Guana\'', 'evelinfiori@gmail.com', 'via carlo fontana 6', '6', '53', NULL, '550', 'civitavecchia', '2018-03-11 22:30:20', 'Rm', '3884011749'),
-(2757, 'Evelin', 'Guana\'', 'evelinfiori@gmail.com', 'via carlo fontana 6', '6', '53', NULL, '2664', 'civitavecchia', '2018-03-11 22:38:19', 'Rm', '3884011749'),
+(2755, 'Evelin', 'Guana''', 'evelinfiori@gmail.com', 'via carlo fontana 6', '6', '53', NULL, '2749', 'civitavecchia', '2018-03-11 22:25:56', 'Rm', '3884011749'),
+(2756, 'Evelin', 'Guana''', 'evelinfiori@gmail.com', 'via carlo fontana 6', '6', '53', NULL, '550', 'civitavecchia', '2018-03-11 22:30:20', 'Rm', '3884011749'),
+(2757, 'Evelin', 'Guana''', 'evelinfiori@gmail.com', 'via carlo fontana 6', '6', '53', NULL, '2664', 'civitavecchia', '2018-03-11 22:38:19', 'Rm', '3884011749'),
 (2758, 'Annachiara', 'Maci', 'annina9181@gmail.com', 'Via Maniago ', '2', '20134', NULL, '541', 'Milano', '2018-03-11 23:37:28', 'MI', ''),
 (2759, 'Elisa ', 'Bergamasco', 'elisabethbergamasco@gmail.com', 'Via Del parco ', '13', '31056', NULL, '566', 'Roncade', '2018-03-12 08:31:10', 'Tv', '3465794753'),
 (2760, 'Elisa ', 'Bergamasco', 'elisabethbergamasco@gmail.com', 'Via Del parco ', '13', '31056', NULL, '2753', 'Roncade', '2018-03-12 08:34:58', 'Tv', '3465794753'),
@@ -3500,9 +3494,9 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (2867, 'Valeria', 'Petrone', 'valeriagianni2013@gmail.com', 'Via Figurelle Parco Girasole, 18, 18, 18, 18, 18, 18, 18, 18, 18', '18', '80147', NULL, '578', 'Napoli', '2018-03-16 10:05:13', 'NA', '3663820017'),
 (2868, 'Gianmarco', 'Tortora', 'gmarco8431@libero.it', 'Via Figurelle Parco Girasole, 18, 18, 18, 18, 18', '18', '80147', NULL, '579', 'Napoli', '2018-03-16 10:06:48', 'NA', '3348790110'),
 (2869, 'Nunzio', 'Montanaro', 'veve88gp@msn.com', 'Via lovera', '3', '12011', NULL, '607', 'Borgo San dalmazzo', '2018-03-16 11:58:33', 'Cn', '3483261333'),
-(2870, 'Ilaria', 'Peccenati', 'i-peccenati@libero.it', 'via Adda 13', '', '26841', NULL, '528', 'CASTIGLIONE D\'ADDA', '2018-03-16 15:31:47', 'lo', '3383561267'),
-(2871, 'Ilaria', 'Peccenati', 'i-peccenati@libero.it', 'via Adda 13', '', '26823', NULL, '523', 'CASTIGLIONE D\'ADDA', '2018-03-16 15:33:25', 'lo', '3383561267'),
-(2872, 'Ilaria', 'Peccenati', 'i-peccenati@libero.it', 'via Adda 13', '', '26823', NULL, '2710', 'CASTIGLIONE D\'ADDA', '2018-03-16 15:34:51', 'LO', '3383561267'),
+(2870, 'Ilaria', 'Peccenati', 'i-peccenati@libero.it', 'via Adda 13', '', '26841', NULL, '528', 'CASTIGLIONE D''ADDA', '2018-03-16 15:31:47', 'lo', '3383561267'),
+(2871, 'Ilaria', 'Peccenati', 'i-peccenati@libero.it', 'via Adda 13', '', '26823', NULL, '523', 'CASTIGLIONE D''ADDA', '2018-03-16 15:33:25', 'lo', '3383561267'),
+(2872, 'Ilaria', 'Peccenati', 'i-peccenati@libero.it', 'via Adda 13', '', '26823', NULL, '2710', 'CASTIGLIONE D''ADDA', '2018-03-16 15:34:51', 'LO', '3383561267'),
 (2873, 'Valeria', 'Epifani', 'Vfepifani@gmail.com', 'Via manzoni ', '8', '', NULL, '545', 'Bornasco', '2018-03-16 20:34:05', 'Pa', '3382965965'),
 (2874, 'Alessandra', 'Alboni', 'alessandraalboni@alice.it', 'Via', 'aniene 37', 'Via, aniene 37', NULL, '2770', 'Ravenna', '2018-03-16 20:40:38', 'ITALY', ''),
 (2875, 'Valeria', 'Epifani', 'Vfepifani@gmail.com', 'Via manzoni', '8', '27010', NULL, '595', 'Bornasco', '2018-03-16 20:50:00', 'PV', '3382965965'),
@@ -3532,7 +3526,7 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (2898, 'Andrea', 'Ferrari', 'Andreadottferrari@gmail.com', 'ViaLe marconi', '40', '25015', NULL, '2682', 'Desenzano del garda', '2018-03-17 19:38:03', 'Bs', '3343395647'),
 (2899, 'jolanda', 'geusa', 'jolanda.geusa@libero.it', 'Via colonnello romey ', '77', '91100', NULL, '513', 'trapani', '2018-03-17 19:53:13', 'tp', '3802011556'),
 (2900, 'jolanda ', 'geusa', 'jolanda.geusa@libero.it ', 'Via colonnello romey', '77', '91100', NULL, '509', 'trapani', '2018-03-17 19:58:05', 'tr', ''),
-(2901, 'Annalisa', 'Iafisco', 'annalisaiafisco4@gmail.com', 'Via nizza', '373 presso l\'orto di marco', '10100', NULL, '2753', 'Torino', '2018-03-17 20:33:58', 'TO', '3481116107'),
+(2901, 'Annalisa', 'Iafisco', 'annalisaiafisco4@gmail.com', 'Via nizza', '373 presso l''orto di marco', '10100', NULL, '2753', 'Torino', '2018-03-17 20:33:58', 'TO', '3481116107'),
 (2902, 'PAMELA', 'Roma', 'pam.rm82@yahoo.it', 'Via alba nuova ', '2', '44011', NULL, '2790', 'Argenta', '2018-03-17 22:59:41', 'Fe', ''),
 (2903, 'Pamela', 'Roma', 'pam.rm82@yahoo.it', 'Via alba nuova, 2', '2', '44011', NULL, '595', 'Argenta', '2018-03-17 23:00:42', 'Fe', ''),
 (2904, 'jolanda ', 'geusa ', 'jolanda.geusa@libero.it ', 'Via colonnello romey', '77', '91100', NULL, '577', 'trapani ', '2018-03-17 23:16:26', 'tr', '3802011556'),
@@ -3596,10 +3590,10 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (2962, 'ZOe', 'caltagirone', 'nevro@live.it', 'Via lupori', '22', '55011', NULL, '2752', 'Altopascio', '2018-03-20 20:34:20', 'lu', '3466603714'),
 (2963, 'Erika', 'Finazzi', 'erikafinazzi@outlook.it', 'via torino, 20', '20', '24064', NULL, '538', 'Grumello del Monte', '2018-03-20 21:31:49', 'bg', '3465774823'),
 (2964, 'Erika', 'Finazzi', 'erikafinazzi@outlook.it', 'via torino,20', '', '24064', NULL, '2776', 'Grumello del Monte', '2018-03-20 21:36:46', 'bg', '3465774823'),
-(2965, 'dario', 'giordani', 'vabo82@yahoo.it', 'frazione stumiaga 6', '', '38075', NULL, '2117', 'fiave\'', '2018-03-21 12:03:27', '', '3208181732'),
-(2966, 'valentina', 'boroni', 'vabo82@yahoo.it', 'frazione stumiaga 6', '', '38075', NULL, '2121', 'fiave\'', '2018-03-21 12:32:11', '', '3208181732'),
-(2967, 'valentina', 'boroni', 'vabo82@yahoo.it', 'frazione stumiaga 6', '', '38075', NULL, '2119', 'fiave\'', '2018-03-21 12:32:39', '', '3208181732'),
-(2968, 'Valentina', 'Boroni', 'vabo82@yahoo.it', 'Frazione Stumiaga 6, 6', '6', '38075', NULL, '2139', 'FIAVE\'', '2018-03-21 17:09:25', 'Tn', '3208181732'),
+(2965, 'dario', 'giordani', 'vabo82@yahoo.it', 'frazione stumiaga 6', '', '38075', NULL, '2117', 'fiave''', '2018-03-21 12:03:27', '', '3208181732'),
+(2966, 'valentina', 'boroni', 'vabo82@yahoo.it', 'frazione stumiaga 6', '', '38075', NULL, '2121', 'fiave''', '2018-03-21 12:32:11', '', '3208181732'),
+(2967, 'valentina', 'boroni', 'vabo82@yahoo.it', 'frazione stumiaga 6', '', '38075', NULL, '2119', 'fiave''', '2018-03-21 12:32:39', '', '3208181732'),
+(2968, 'Valentina', 'Boroni', 'vabo82@yahoo.it', 'Frazione Stumiaga 6, 6', '6', '38075', NULL, '2139', 'FIAVE''', '2018-03-21 17:09:25', 'Tn', '3208181732'),
 (2969, 'Daniele ', 'PIERAGOSTINI', 'DAILAND22@GMAIL.COM', 'CORSO DON G. MINZONI ', '6', '45', NULL, '527', 'GENZANO DI ROMA ', '2018-03-22 10:25:26', 'RM', '3343715430'),
 (2970, 'sara', 'giammatteo', 'sara300594@yahoo.it', 'via colle perino vecchio', '50', '49', NULL, '585', 'velletri', '2018-03-22 10:32:05', 'rm', '3392960124'),
 (2971, 'Ljiljana', 'Jankovic', 'ljiljanalaky@outlook.it', 'Piazza del popolo 134', '134', '45030', NULL, '585', 'Frassinelle polesine ', '2018-03-22 12:23:12', 'RO', '3478216430'),
@@ -3634,9 +3628,9 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (3000, 'chiara', 'sellitto', 'chiara.sellitto@alice.it', 'via iv novembre', '10', '81052', NULL, '2751', 'pignataro maggiore', '2018-03-23 10:11:07', 'ce', '3510418161'),
 (3001, 'arnaldo', 'baldoni', 'omnia.2802@libero.it', 'via marconi', '101', '63066', NULL, '2701', 'grottammare', '2018-03-23 10:47:21', 'ap', '3288024515'),
 (3002, 'Simona', 'De Marchis', 'radiomobilepisola@hotmail.com', 'Via dei Monaldeschi', '38', '148', NULL, '531', 'Roma', '2018-03-23 12:36:05', 'RM', '3892017287'),
-(3003, 'alessio', 'D\'Angelo', 'alessio.dangelo1987@gmail.com', 'via p.na santa margherita', '19a', '66036', NULL, '2778', 'orsogna', '2018-03-23 14:30:48', 'ch', '3281041705'),
-(3004, 'alessio', 'D\'Angelo', 'alessio.dangelo1987@gmail.com', 'via p.na santa margherita', '19a', '66036', NULL, '2779', 'orsogna', '2018-03-23 14:31:25', 'ch', '3281041705'),
-(3005, 'alessio', 'D\'Angelo', 'alessio.dangelo1987@gmail.com', 'via p.na santa margherita', '19a', '66036', NULL, '2793', 'orsogna', '2018-03-23 14:31:53', 'ch', '3281041705'),
+(3003, 'alessio', 'D''Angelo', 'alessio.dangelo1987@gmail.com', 'via p.na santa margherita', '19a', '66036', NULL, '2778', 'orsogna', '2018-03-23 14:30:48', 'ch', '3281041705'),
+(3004, 'alessio', 'D''Angelo', 'alessio.dangelo1987@gmail.com', 'via p.na santa margherita', '19a', '66036', NULL, '2779', 'orsogna', '2018-03-23 14:31:25', 'ch', '3281041705'),
+(3005, 'alessio', 'D''Angelo', 'alessio.dangelo1987@gmail.com', 'via p.na santa margherita', '19a', '66036', NULL, '2793', 'orsogna', '2018-03-23 14:31:53', 'ch', '3281041705'),
 (3006, 'antonio', 'lattarulo', 'tammy.tommy14@gmail.com', 'via sandro pertini', '19', '20019', NULL, '2679', 'settimo milanese-3', '2018-03-23 16:10:26', 'mi', '3939258062'),
 (3007, 'antonio', 'lattarulo', 'tammy.tommy14@gmail.com', 'via sandro pertini', '19', '20019', NULL, '500', 'settimo milanese', '2018-03-23 16:12:40', 'mi', '3939258062'),
 (3008, 'Sara', 'Del Vecchio', 'sdv_90@hotmail.it', 'VIA DELLE LAME', '61', '40122', NULL, '2770', 'BOLOGNA', '2018-03-23 19:05:30', 'BO', '3331942297'),
@@ -3648,7 +3642,7 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (3014, 'Emanuele ', 'Di Mauro ', 'manuele.dimauro@gmail.com', 'Via BRUNO buozzi', '11', '10024', NULL, '2672', 'Moncalieri', '2018-03-24 14:05:13', 'To', '3207539772'),
 (3015, 'giulia', 'Berto ', 'giuliaberto@libero.it ', 'Via pertile', '124', '30039', NULL, '2682', 'San Pietro di stra', '2018-03-24 14:19:59', 'Ve', ''),
 (3016, 'GennY', 'Raffaeli', 'GENNY.RAFFAELI@GMAIL.COM', 'VIA SEBASTIANO VENIERO', '30', '20148', NULL, '2770', 'Milano ', '2018-03-24 15:26:21', 'MI', '3335941145'),
-(3017, 'roberta', 'D\'AMICO', 'damico.roberta82@gmail.com', 'via F. Latilla', '16', '72017', NULL, '590', 'OSTUNI', '2018-03-24 20:12:16', '', '3286228265'),
+(3017, 'roberta', 'D''AMICO', 'damico.roberta82@gmail.com', 'via F. Latilla', '16', '72017', NULL, '590', 'OSTUNI', '2018-03-24 20:12:16', '', '3286228265'),
 (3018, 'Michela', 'Siddi', 'fantasiediconfetti@libero.it', 'Vico Santa barbara', '15', '9016', NULL, '562', 'Iglesias', '2018-03-25 12:38:00', 'su', '3313441640'),
 (3019, 'Michela', 'Siddi', 'fantasiediconfetti@libero.it', 'Vico Santa barbara', '15', '9016', NULL, '2765', 'Iglesias', '2018-03-25 12:39:53', 'su', '3313441640'),
 (3020, 'Michela', 'Siddi', 'fantasiediconfetti@libero.it', 'Vico Santa barbara', '15', '9016', NULL, '2768', 'Iglesias', '2018-03-25 12:41:38', 'su', '3313441640'),
@@ -3662,7 +3656,7 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (3028, 'stefano', 'luciano', 'odisseo183@gmail.com', 'viale comasco comaschi', '182', '56121', NULL, '501', 'cascina', '2018-03-25 14:53:58', 'pi', '3351662002'),
 (3029, 'stefano', 'luciano', 'odisseo183@gmail.com', 'viale comasco comaschi', '182', '56121', NULL, '2752', 'cascina', '2018-03-25 16:08:57', 'pi', '3387351651'),
 (3030, 'stefano', 'luciano', 'odisseo183@gmail.com', 'viale comasco comaschi', '182', '56121', NULL, '526', 'cascina', '2018-03-25 16:14:37', 'pi', '3351662002'),
-(3031, 'Valentina', 'Tulli', 'tulli.valentina@hotmail.it', 'Via Manzoni, zona industriale artigianale ripoli', '', '64023', NULL, '510', 'Mosciano sant\'angelo ', '2018-03-25 16:26:28', 'Te', '3891036637'),
+(3031, 'Valentina', 'Tulli', 'tulli.valentina@hotmail.it', 'Via Manzoni, zona industriale artigianale ripoli', '', '64023', NULL, '510', 'Mosciano sant''angelo ', '2018-03-25 16:26:28', 'Te', '3891036637'),
 (3032, 'carla', 'valeri', 'stel1@libero.it', 'via francesco caracciolo', '25', '192', NULL, '510', 'roma', '2018-03-25 16:26:49', 'rm', ''),
 (3033, 'Mariana ', 'Bettini', 'Marina_bettini@yahoo.com ', 'Piazza della Repubblica ', '31D ', '37059', NULL, '2753', 'Zevio', '2018-03-25 16:32:20', 'VR', '3426971211'),
 (3034, 'carla', 'valeri', 'stel1@libero.it', 'via francesco caracciolo', '25', '192', NULL, '2728', 'roma', '2018-03-25 16:37:42', 'rm', ''),
@@ -3681,7 +3675,7 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (3047, 'lucia', 'bandettini', 'lucia.bandettini@gmail.com', 'via romana ovest', '254', '55016', NULL, '2770', 'porcari', '2018-03-26 09:34:58', 'lu', '3338486954'),
 (3048, 'Sara', 'Russo', 'sararussosr@gmail.com', 'Via Nuova Poggioreale, 21d', '21d', '80143', NULL, '2662', 'NAPOLI', '2018-03-26 10:06:15', 'NA', '3498477154'),
 (3049, 'Sara', 'Russo', 'sararussosr@gmail.com', 'Via Nuova Poggioreale, 21d', '21d', '80143', NULL, '2682', 'NAPOLI', '2018-03-26 10:08:59', 'NA', '3498477154'),
-(3050, 'Giampiero', 'Dell\'Uomo', 'dellgip@hotmail.it', 'Via Leone xiii', '95', '165', NULL, '500', 'Roma', '2018-03-26 11:49:45', 'Rm', '3391037376'),
+(3050, 'Giampiero', 'Dell''Uomo', 'dellgip@hotmail.it', 'Via Leone xiii', '95', '165', NULL, '500', 'Roma', '2018-03-26 11:49:45', 'Rm', '3391037376'),
 (3051, 'debora', 'delle fave', 'dellefavedebora@gmail.com', 'via masaccio, 3a', '3a', '20092', NULL, '2663', 'cinisello balsamo', '2018-03-26 14:19:37', 'MI', '26122151'),
 (3052, 'Stefania', 'De luca', 'Stefid20001981@gmail.com', 'Via borgaccio ', '98', '53036', NULL, '2662', 'Poggibonsi', '2018-03-26 15:08:09', 'Si', '3479821557'),
 (3053, '', '', '', '', '', '', NULL, '2746', '', '2018-03-26 16:02:47', '', ''),
@@ -3771,9 +3765,9 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (3137, 'Daniela', 'Castelli', 'Dacastelli@gmail.com', 'Via torinO', '26', '20017', NULL, '2753', 'Rho', '2018-04-02 19:42:47', 'Mi', '3395424406'),
 (3138, 'Daniela', 'Castelli', 'Dacastelli@gmail.com', 'Via torino', '26', '20017', NULL, '2666', 'Rho', '2018-04-02 19:44:54', 'Mi', '3395424406'),
 (3139, 'Loredana', 'Pletto', 'loredanapletto@gmail.com', 'VIA TEMPIO DI ERCOLE SN', '', '92026', NULL, '2779', 'Favara', '2018-04-02 22:58:03', 'Ag', '3287639662'),
-(3140, 'roberto', 'maione', 'capicchiano.simona@gmail.com', 'via felice terracciano', '243', '80038', NULL, '513', 'pomigliano d\'arco', '2018-04-03 10:07:21', 'na', '3337427837'),
-(3141, 'roberto', 'maione', 'capicchiano.simona@gmail.com', 'via felice terracciano', '243', '80038', NULL, '2665', 'pomigliano d\'arco', '2018-04-03 10:14:36', 'na', '3337427837'),
-(3142, 'roberto', 'maione', 'capicchiano.simona@gmail.com', 'via felice terracciano', '243', '80038', NULL, '507', 'pomigliano d\'arco', '2018-04-03 10:25:17', 'na', '3337427837'),
+(3140, 'roberto', 'maione', 'capicchiano.simona@gmail.com', 'via felice terracciano', '243', '80038', NULL, '513', 'pomigliano d''arco', '2018-04-03 10:07:21', 'na', '3337427837'),
+(3141, 'roberto', 'maione', 'capicchiano.simona@gmail.com', 'via felice terracciano', '243', '80038', NULL, '2665', 'pomigliano d''arco', '2018-04-03 10:14:36', 'na', '3337427837'),
+(3142, 'roberto', 'maione', 'capicchiano.simona@gmail.com', 'via felice terracciano', '243', '80038', NULL, '507', 'pomigliano d''arco', '2018-04-03 10:25:17', 'na', '3337427837'),
 (3143, 'Elisa', 'Provenzano', 'provenzanoelisa@gmail.com', 'Via L.Settembrini', '19', '73100', NULL, '507', 'Lecce', '2018-04-03 17:06:24', 'Le', '320/1454311'),
 (3144, 'Elisa', 'Provenzano', 'provenzanoelisa@gmail.com', 'Via L.Settembrini', '19', '73100', NULL, '591', 'Lecce', '2018-04-03 17:08:02', 'Le', '320/1454311'),
 (3145, 'Elisa', 'Provenzano', 'provenzanoelisa@gmail.com', 'Via L.Settembrini', '19', '73100', NULL, '604', 'Lecce', '2018-04-03 17:14:34', 'Le', '320/1454311'),
@@ -3783,11 +3777,11 @@ INSERT INTO `cl_campioneomaggio` (`id`, `nome`, `cognome`, `email`, `indirizzo`,
 (3149, 'MaRia Teresa', 'Lepre', 'Mtlepre@hotmail.com', 'Via mariano dâ€™ameliO', '42', '80127', NULL, '2751', 'Napoli', '2018-04-03 21:11:28', 'Na', '3386775228'),
 (3150, 'Maria teresa', '', '', '', '', '', NULL, '2754', '', '2018-04-03 21:13:40', '', ''),
 (3151, 'Maria teresa', 'Lepre', 'Mtlepre@hotmail.com', 'Via mariano dâ€™amelio', '42', '80128', NULL, '2754', 'Napoli', '2018-04-03 21:15:26', 'Na', '3386775227'),
-(3152, 'Cristina', 'Tagliabue', 'Cristina.t73@hotmail.it', 'Via sondrio', '5', '20835', NULL, '3051', 'Muggio\'', '2018-04-04 01:10:20', 'Mb', '3393753339'),
+(3152, 'Cristina', 'Tagliabue', 'Cristina.t73@hotmail.it', 'Via sondrio', '5', '20835', NULL, '3051', 'Muggio''', '2018-04-04 01:10:20', 'Mb', '3393753339'),
 (3153, 'Andrea', 'Bruno', 'brunoandrea28@gmail.com', 'VIA ETNEA', '602', '95128', NULL, '578', 'Catania', '2018-04-04 10:49:14', 'CT', '3319039613'),
 (3154, 'Andrea', 'Bruno', 'brunoandrea28@gmail.com', 'VIA ETNEA, 602', '602', '95128', NULL, '501', 'Catania', '2018-04-04 10:51:46', 'CT', '3319039613'),
 (3155, 'Andrea', 'Bruno', 'brunoandrea28@gmail.com', 'VIA ETNEA, 602, 602', '602', '95128', NULL, '2718', 'Catania', '2018-04-04 10:59:52', 'CT', '3319039613'),
-(3156, 'Maria', 'D\'Elia', 'Marygiuseppe22222@gmail.com', 'Via montanara, 5/a', '5/a', '74020', NULL, '2125', 'Lizzano', '2018-04-04 14:09:00', '', '3883630427'),
+(3156, 'Maria', 'D''Elia', 'Marygiuseppe22222@gmail.com', 'Via montanara, 5/a', '5/a', '74020', NULL, '2125', 'Lizzano', '2018-04-04 14:09:00', '', '3883630427'),
 (3157, 'Beatrice', 'marino', 'bea2491@hotmail.it', 'Via tor de schiavi ', '380', '171', NULL, '2666', 'Roma', '2018-04-04 14:48:07', 'rm', '3343143510'),
 (3158, 'beatrice', 'marino', 'bea2491@hotmail.it', 'Via tor de schiavi', '380', '171', NULL, '543', 'Roma', '2018-04-04 14:51:08', 'rm', '3343143510'),
 (3159, 'beatrice', 'marino', 'bea2491@hotmail.it', 'Via tor de schiavi', '380', '171', NULL, '545', 'Roma', '2018-04-04 15:19:58', 'rm', '3343143510'),
@@ -3809,9 +3803,9 @@ CREATE TABLE `cl_categoria` (
   `id` int(11) NOT NULL,
   `immagine1` int(11) DEFAULT NULL,
   `immagine2` int(11) DEFAULT NULL,
-  `nomemacchina` text,
-  `descrizione_breve` text,
-  `descrizione` longtext,
+  `nomemacchina` text DEFAULT NULL,
+  `descrizione_breve` text DEFAULT NULL,
+  `descrizione` longtext DEFAULT NULL,
   `visualizzazione` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -3825,8 +3819,8 @@ INSERT INTO `cl_categoria` (`id`, `immagine1`, `immagine2`, `nomemacchina`, `des
 (3, 2, 3, 'vintage', 'Partecipazioni di matrimonio vintage', '<p>Cio&rsquo; che e&rsquo; di moda .. ma non segue la moda .. vintage non &egrave; solo sinonimo di passato , ma anche un nuovo modo di guardare al futuro acquistando un valore di rarit&agrave; e irrepetibilit&agrave; .<br />Eravamo insieme , tutto il resto del tempo l&rsquo;ho scordato ( walt whitman )<br />Costruisci il tuo matrimonio con le nostre <strong>partecipazioni vintage!</strong></p>', NULL),
 (4, 2, 3, 'chic', 'Partecipazioni di matrimonio chic', '<p>Quando l&rsquo;eleganza , la raffinatezza e il buon gusto si amalgano fino a diventare un tutt&rsquo;uno con la modernit&agrave; , l&rsquo;innovazione , l&rsquo;immaginazione e l&rsquo;audacia .<br />Quando vuoi davvero l&rsquo;amore , lo troverai che ti aspetta ( oscar wilde )<br /><strong>Organizzare il matrimonio perfetto</strong>? Adesso puoi, con le nostre partecipazioni di matrimonio chic!</p>', NULL),
 (5, 2, 3, 'glamour', 'Partecipazioni di matrimoni glamour', '<p>Il fascino e l&rsquo;eleganza senza rinunciare alla sensualit&agrave; ed alla seduzione , l&rsquo;innovazione intesa soprattutto come ricerca di nuovi prodotti mediante il riutilizzo creativo dell&rsquo;esistente Il nostro amore &egrave; come pioggerella d&rsquo;autunno , che cade piano ma fa straripare i fiumi (proverbio africano )</p>', NULL),
-(6, 2, 3, 'comunioniold', 'Partecipazioni per comunioni', '<p>Grazie alla creativit&agrave; che porta alla nascita di nuove idee, all\'intuizione che da origine a design e contenuti originali ed &nbsp;efficaci, da oggi sar&agrave; possibile comunicare con classe ed eleganza, un momento importante della vita familiare, come quello della prima comunione, contribuendo a renderlo unico ed indelebile nella memoria dei vostri cari.</p>', NULL),
-(7, 18, 19, 'comunioni', 'Partecipazioni per comunioni', '<p>Grazie alla creativit&agrave; che porta alla nascita di nuove idee, all\'intuizione che da origine a design e contenuti originali ed &nbsp;efficaci, da oggi sar&agrave; possibile comunicare con classe ed eleganza, un momento importante della vita familiare, come quello della prima comunione, contribuendo a renderlo unico ed indelebile nella memoria dei vostri cari.<br />Rendi la comunione di tuo figlio un giorno speciale!</p>', NULL),
+(6, 2, 3, 'comunioniold', 'Partecipazioni per comunioni', '<p>Grazie alla creativit&agrave; che porta alla nascita di nuove idee, all''intuizione che da origine a design e contenuti originali ed &nbsp;efficaci, da oggi sar&agrave; possibile comunicare con classe ed eleganza, un momento importante della vita familiare, come quello della prima comunione, contribuendo a renderlo unico ed indelebile nella memoria dei vostri cari.</p>', NULL),
+(7, 18, 19, 'comunioni', 'Partecipazioni per comunioni', '<p>Grazie alla creativit&agrave; che porta alla nascita di nuove idee, all''intuizione che da origine a design e contenuti originali ed &nbsp;efficaci, da oggi sar&agrave; possibile comunicare con classe ed eleganza, un momento importante della vita familiare, come quello della prima comunione, contribuendo a renderlo unico ed indelebile nella memoria dei vostri cari.<br />Rendi la comunione di tuo figlio un giorno speciale!</p>', NULL),
 (8, 25, 0, 'natale', 'Biglietti di auguri Natale 2017', '<p>Su Cartiamo trovi i migliori biglietti di auguri per il Natale 2017.</p>', 'unacolonna');
 
 -- --------------------------------------------------------
@@ -3838,8 +3832,8 @@ INSERT INTO `cl_categoria` (`id`, `immagine1`, `immagine2`, `nomemacchina`, `des
 CREATE TABLE `cl_meta_fields` (
   `id` int(11) NOT NULL,
   `id_cl_strutturadati` int(11) NOT NULL,
-  `name` text,
-  `value` text,
+  `name` text DEFAULT NULL,
+  `value` text DEFAULT NULL,
   `label` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -3898,8 +3892,8 @@ INSERT INTO `cl_meta_fields` (`id`, `id_cl_strutturadati`, `name`, `value`, `lab
 
 CREATE TABLE `cl_strutturadati` (
   `id` int(11) NOT NULL,
-  `name` text,
-  `value` text,
+  `name` text DEFAULT NULL,
+  `value` text DEFAULT NULL,
   `slug` varchar(20) NOT NULL,
   `nome` text NOT NULL,
   `cognome` text NOT NULL,
@@ -3932,12 +3926,12 @@ INSERT INTO `cl_strutturadati` (`id`, `name`, `value`, `slug`, `nome`, `cognome`
 
 CREATE TABLE `cl_template` (
   `id` int(11) NOT NULL,
-  `nome` text,
-  `nomemacchina` text,
-  `descrizione` text,
+  `nome` text DEFAULT NULL,
+  `nomemacchina` text DEFAULT NULL,
+  `descrizione` text DEFAULT NULL,
   `altezza` int(11) DEFAULT NULL,
   `larghezza` int(11) DEFAULT NULL,
-  `contenuto` longtext
+  `contenuto` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3948,10 +3942,10 @@ CREATE TABLE `cl_template` (
 
 CREATE TABLE `contenuto` (
   `id` int(11) NOT NULL,
-  `titolo` text,
-  `tipo` text,
-  `contenuto` longtext,
-  `hook` text,
+  `titolo` text DEFAULT NULL,
+  `tipo` text DEFAULT NULL,
+  `contenuto` longtext DEFAULT NULL,
+  `hook` text DEFAULT NULL,
   `ordine` int(11) DEFAULT NULL,
   `pagine_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -3965,39 +3959,39 @@ INSERT INTO `contenuto` (`id`, `titolo`, `tipo`, `contenuto`, `hook`, `ordine`, 
 (2, NULL, NULL, NULL, NULL, NULL, NULL),
 (3, NULL, NULL, NULL, NULL, NULL, NULL),
 (4, NULL, NULL, NULL, NULL, NULL, NULL),
-(5, 'Banner top personalizzazione', 'banner', '{\"id\":\"1\"}', 'banner', 0, 15),
-(6, 'Banner top chi siamo', 'banner', '{\"id\":\"2\"}', 'banner', 0, 3),
-(7, 'Banner cima contatti', 'banner', '{\"id\":\"3\"}', 'banner', 0, 7),
-(8, 'BANNER-LIVE-PREVIEW', 'banner', '{\"id\":\"4\"}', 'banner', 0, 11),
-(9, 'Carousel Comunioni', 'carousel-descrizione-prodotti', '{\"titolo\":\"Prima comunione\",\"descrizione\":\"Grazie alla <b>creativitÃ  che porta alla nascita di nuove idee</b>, all\'intuizione che da origine a design e contenuti originali ed  efficaci, da oggi sarÃ  possibile comunicare con classe ed eleganza, un <em>momento importante della vita familiare</em>, come quello della <strong>prima comunione</strong>, contribuendo a renderlo unico ed indelebile nella memoria dei vostri cari.\",\"id\":\"2115,2116,2117,2118\",\"right\":\"true\",\"testolink\":\"Vedi tutti\",\"link\":\"/shop/comunioni\"}', 'spazioCarousel', 2, 1),
-(10, 'BANNER-TOP-FAQ', 'banner', '{\"id\":\"5\"}', 'banner', 0, 4),
-(11, 'Carousel Matrimonio', 'carousel-descrizione-prodotti', '{\"titolo\":\"Matrimonio\",\"descrizione\":\"<b>Finalmente lui ti ha chiesto di sposarlo</b> e tu sei al settimo cielo , adesso perÃ² Ã¨ arrivato il momento di <strong>organizzare il matrimonio</strong> . stabilita la data matrimoniale , la chiesa per la cerimonia , il ristorante e la lista degli invitati â€¦ non rimane altro che passare alla scelta della <em>partecipazione di nozze</em>, <strong>inviti matrimonio</strong> e <em>biglietti matrimonio</em> piÃ¹ adatti al tuo stile ed al tipo di cerimonia che hai intenzione di organizzare .  tradizione vuole che tale compito spetti alla <strong>sposa</strong> , solitamente piÃ¹ predisposta dello <strong>sposo</strong> nella scelta di questo indispensabile accessorio nuziale .\",\"id\":\"499,536,538,539\",\"right\":\"\",\"testolink\":\"Vedi tutti\",\"link\":\"/shop/matrimoni/trendy\"}', 'spazioCarousel', 8, 1),
-(12, 'BANNER-TOP-COME-FUNZIONA', 'banner', '{\"id\":\"6\"}', 'banner', 0, 8),
-(14, 'BANNER-TOP-METODI-DI-PAGAMENTO', 'banner', '{\"id\":\"7\"}', 'banner', 0, 9),
-(15, 'BANNER-TOP-RESI-RECESSI', 'banner', '{\"id\":\"8\"}', 'banner', 0, 10),
-(16, 'BANNER-TOP-RICHIEDI-ASSISTENZA', 'banner', '{\"id\":\"9\"}', 'banner', 0, 12),
-(17, 'BANNER-TOP-CAMPIONE-GRATUITO', 'banner', '{\"id\":\"10\"}', 'banner', 0, 13),
-(18, 'BANNER-TOP-COLLABORA-CON', 'banner', '{\"id\":\"11\"}', 'banner', 0, 14),
-(19, 'Testo centrale', 'titolo-testo', '{\"titolo\":\"\",\"testo\":\"<div class=\\\"container\\\">\\r\\n<h2 style=\\\"text-align: center;\\\">Partecipazioni e matrimonio, inviti e bomboniere per le tue nozze, in collaborazione con Save the Chidren.</h2>\\r\\n</div>\\r\\n<div class=\\\"banner top-page\\\" style=\\\"text-align: center;\\\">\\r\\n<p style=\\\"text-align: center;\\\">Â Arte Sposa, azienda leader nella creazione di <strong>partecipazioni di matrimonio</strong>, si trasforma in Cartiamo, realtÃ Â  piÃ¹ completa che tratta ogni aspetto della vita familiare.<br />Cartiamo da il via al progetto basandosi sul principale punto di forza che, per anni, ha distinto Arte Sposa: le <em>partecipazioni di matrimonio</em>.<br />La scelta delle <strong>partecipazioni nuziali</strong> sarÃ Â  molto piÃ¹ ampia e in continuo aggiornamento, sarÃ Â  possibile selezionare in base al colore preferito e alla qualitÃ Â  della carta. Puoi trovare <em>inviti per matrimonio</em> ma anche una vasta gamma di <strong>inviti per le comunioni</strong>, ed a breve, saranno disponibili anche <em>inviti per battesimi, nascite, diplomi e tutto ciÃ² che racchiude il quadro familiare</em>.</p>\\r\\n<p style=\\\"text-align: center;\\\">Il tuo matrimonio, la nascita del tuo bambino, il suo battesimo, il primo natale, sono solo alcune delle occasioni speciali della tua vita, momenti unici da ricordare con gioia e amore per sempre. <strong>CARTIAMO Ã¨ qui per questo, per rendere speciale ogni tuo momento e per comunicarlo con felicitÃ Â  e armonia.</strong></p>\\r\\n<p style=\\\"text-align: center;\\\"><br />Cartiamo ha scelto di sostenere <strong>Save the Children</strong>, la piÃ¹ grande organizzazione internazionale indipendente che lavora per migliorare concretamente la vita dei bambini in Italia e nel mondo.</p>\\r\\n<br /><br /><a class=\\\"btn btn-cool btn-red\\\" href=\\\"/chi-siamo\\\">Esperti nel matrimonio</a></div>\\r\\n</div>\"}', 'contenutoCentrale', 6, 1),
-(20, 'Lasciati ispirare', 'gallery-5-img', '{\"img1\":\"https://cartiamo.it/media//350x400-true-partecipazione_di_matrimonio_rosa.jpg\",\"img2\":\"https://cartiamo.it/media//350x400-true-partecipazione_matrimonio_rossa.jpg\",\"img3\":\"https://cartiamo.it/media//350x400-true-partecipazione_matrimonio_tiffany.jpg\",\"img4\":\"https://cartiamo.it/media//350x400-true-partecipazione_shabby_chic.jpg\",\"img5\":\"https://cartiamo.it/media//350x400-true-partecipazione_di_matrimonio.jpg\"}', 'prefooter', 11, 1),
-(22, 'Lasciati ispirare testo', 'titolo-testo', '{\"titolo\":\"LASCIATI ISPIRARE\",\"testo\":\"Laciati ispirare per il tuo matrimonio! Scopri tutte le nuove tendenze in coordinato con le tu partecipazioni di matrimonio.\"}', 'prefooter', 10, 1),
-(25, 'Banner', 'banner', '{\"id\":\"9\"}', 'banner', NULL, 18),
-(26, 'Ultimi articoli blog', 'ultimi-articoli-blog', '{\"numero\":\"2\"}', 'prefooter', 0, 1),
-(27, 'Banner top', 'banner', '{\"id\":\"14\"}', 'banner', NULL, 22),
-(28, 'Lista slug', 'griglia-slug-prodotti', '{\"slugs\":\"ginepro;dafne;petunia;girasole;togheter;margherita;erica;easy\",\"colonne\":\"\"}', 'ciao', NULL, 22),
-(29, 'Pulsante vedi tutti', 'titolo-testo', '{\"titolo\":\"\",\"testo\":\"<span class=\\\"text-center\\\"><a href=\\\"/shop/matrimoni/classica\\\" title=\\\"matrimonio al sud\\\" class=\\\"btn btn-cool btn-red btn\\\">Vedi tutte le partecipazioni classiche</a></span>\"}', 'ciao', NULL, 22),
-(31, 'Bannerini matrimoni', 'immagini-link-affiancate', '{\"immagini\":\"/media/bannerino-matrimonio-trendy.jpg;/media/bannerino-matrimonio-classico.jpg;/media/bannerino-matrimonio-chic.jpg;/media/bannerino-matrimonio-glamour.jpg;/media/bannerino-matrimonio-creativo.jpg;/media/bannerino-matrimonio-vintage.jpg\",\"alt\":\"Partecipazioni di nozze trendy;Partecipazioni matrimonio classiche;Partecipazioni di nozze chic;Partecipazioni per nozze glamour;Partecipazioni matrimonio creativo;Partecipazioni matrimonio vintage\",\"link\":\"/shop/matrimoni/trendy;/shop/matrimoni/classica;/shop/matrimoni/chic;/shop/matrimoni/glamour;/shop/matrimoni/creativa;shop/matrimoni/vintage\",\"colonne\":\"3\",\"full\":\"0\"}', 'contenutoCentrale', 9, 1),
-(32, 'Separatore', 'separatore', '{\"tipo\":\"0\"}', 'contenutoCentrale', 5, 1),
-(33, 'Le piu vendute titolo', 'titolo-testo', '{\"titolo\":\"Le piÃ¹ vendute\",\"testo\":\"Le nostre partecipazioni matrimonio piÃ¹ vendute, per delle nozze di qualitÃ !\"}', 'contenutoCentrale', 3, 1),
-(34, 'Le piu vendut', 'griglia-slug-prodotti', '{\"slugs\":\"elisa;salice;cioccolato;amsterdam;togheter;ornella;tortora;miami\",\"colonne\":\"4\"}', 'contenutoCentrale', 4, 1),
-(35, 'Partecipazioni comunioni', 'griglia-slug-prodotti', '{\"slugs\":\"giuseppina;emanuele;angelina;abramo;davide;ezechiele;isacco;noemi\",\"colonne\":\"4\"}', 'ciao', NULL, 23),
-(36, 'Pulsante vedi tutti', 'titolo-testo', '{\"titolo\":\"\",\"testo\":\"<span class=\\\"text-center\\\"><a href=\\\"/shop/comunioni\\\" title=\\\"Partecipazioni prima comunione\\\" class=\\\"btn btn-cool btn-red btn\\\">Vedi tutte le partecipazioni per auguri prima comunione</a></span>\"}', 'ciao', NULL, 23),
-(37, 'Banner', 'banner', '{\"id\":\"15\"}', 'banner', NULL, 23),
-(38, 'Banner prima comunione', 'banner', '{\"id\":\"15\"}', 'contenutoCentrale', 7, 1),
-(39, 'Testo prima comunione', 'titolo-testo', '{\"titolo\":\"La prima comunione\",\"testo\":\"Scopri anche le nostre partecipazioni per la <strong>prima comunione</strong> di tuo figlio! Trova <em>idee per frasi</em> di <a href=\\\"https://cartiamo.it/auguri-prima-comunione\\\">auguri prima comunione</a> e partecipazioni da personalizzare!\"}', 'contenutoCentrale', 1, 1),
-(40, 'Banner top', 'banner', '{\"id\":\"16\"}', 'banner', NULL, 24),
-(41, 'Prima riha', 'riga-2-colonne', '{\"dimsinistra\":\"\",\"sinistra\":\"<h3 style=\\\"text-align: center;\\\" data-mce-style=\\\"text-align: center;\\\">Partecipazioni senza Montaggio</h3><p style=\\\"text-align: center;\\\" data-mce-style=\\\"text-align: center;\\\"><img src=\\\"https://cartiamo.it/media//SCATOLA 1.jpg\\\" alt=\\\"Scatola senza montaggio\\\" data-mce-src=\\\"https://cartiamo.it/media//SCATOLA 1.jpg\\\"></p>\",\"dimdestra\":\"\",\"destra\":\"<h2 style=\\\"text-align: center;\\\" data-mce-style=\\\"text-align: center;\\\">Procedura di Montaggio</h2><p style=\\\"text-align: center;\\\" data-mce-style=\\\"text-align: center;\\\">Tutte le partecipazioni vengono montate rigorosamente a mano per garantire una qualità eccellente</p><h4 style=\\\"text-align: center;\\\" data-mce-style=\\\"text-align: center;\\\"><img src=\\\"https://cartiamo.it/media//SFUSTELLAMENTO.jpg\\\" alt=\\\"Sfustellamento partecipazione\\\" data-mce-src=\\\"https://cartiamo.it/media//SFUSTELLAMENTO.jpg\\\"><br></h4><h4 style=\\\"text-align: center;\\\" data-mce-style=\\\"text-align: center;\\\"><em>Montaggio</em></h4><p style=\\\"text-align: center;\\\" data-mce-style=\\\"text-align: center;\\\"><img src=\\\"https://cartiamo.it/media//MONTAGGIO.jpg\\\" alt=\\\"Montaggio Partecipazione\\\" data-mce-src=\\\"https://cartiamo.it/media//MONTAGGIO.jpg\\\"></p>\"}', 'ciao', 0, 21),
-(42, 'seconda riga', 'html', '{\"html\":\"<div class=\\\"container\\\" style=\\\"max-width: 900px\\\">\\r\\n<h3 style=\\\"text-align: center;\\\">Partecipazioni Montate</h3>\\r\\n\\r\\n<p>\\r\\nL\' attenzione che mettiamo nel montaggio della vostra partecipazione di matrimonio vi garantirà un risultato eccezionale, elegante e curato nei minimi dettagli. Con un piccolo costo aggiuntivo ci occuperemo noi di farvi arrivare le partecipazioni già pronte, pronte per essere inviate... non dovrete fare altro! Solo godervi il vostro meraviglioso matrimonio!\\r\\n</p>\\r\\n\\r\\n<p style=\\\"text-align: center;\\\"><img src=\\\"https://cartiamo.it/media//SCATOLA 2.jpg\\\" alt=\\\"Scatola con partecipazione montata\\\" /></p>\\r\\n</div>\"}', 'ciao', 1, 21);
+(5, 'Banner top personalizzazione', 'banner', '{"id":"1"}', 'banner', 0, 15),
+(6, 'Banner top chi siamo', 'banner', '{"id":"2"}', 'banner', 0, 3),
+(7, 'Banner cima contatti', 'banner', '{"id":"3"}', 'banner', 0, 7),
+(8, 'BANNER-LIVE-PREVIEW', 'banner', '{"id":"4"}', 'banner', 0, 11),
+(9, 'Carousel Comunioni', 'carousel-descrizione-prodotti', '{"titolo":"Prima comunione","descrizione":"Grazie alla <b>creativitÃ  che porta alla nascita di nuove idee</b>, all''intuizione che da origine a design e contenuti originali ed  efficaci, da oggi sarÃ  possibile comunicare con classe ed eleganza, un <em>momento importante della vita familiare</em>, come quello della <strong>prima comunione</strong>, contribuendo a renderlo unico ed indelebile nella memoria dei vostri cari.","id":"2115,2116,2117,2118","right":"true","testolink":"Vedi tutti","link":"/shop/comunioni"}', 'spazioCarousel', 2, 1),
+(10, 'BANNER-TOP-FAQ', 'banner', '{"id":"5"}', 'banner', 0, 4),
+(11, 'Carousel Matrimonio', 'carousel-descrizione-prodotti', '{"titolo":"Matrimonio","descrizione":"<b>Finalmente lui ti ha chiesto di sposarlo</b> e tu sei al settimo cielo , adesso perÃ² Ã¨ arrivato il momento di <strong>organizzare il matrimonio</strong> . stabilita la data matrimoniale , la chiesa per la cerimonia , il ristorante e la lista degli invitati â€¦ non rimane altro che passare alla scelta della <em>partecipazione di nozze</em>, <strong>inviti matrimonio</strong> e <em>biglietti matrimonio</em> piÃ¹ adatti al tuo stile ed al tipo di cerimonia che hai intenzione di organizzare .  tradizione vuole che tale compito spetti alla <strong>sposa</strong> , solitamente piÃ¹ predisposta dello <strong>sposo</strong> nella scelta di questo indispensabile accessorio nuziale .","id":"499,536,538,539","right":"","testolink":"Vedi tutti","link":"/shop/matrimoni/trendy"}', 'spazioCarousel', 8, 1),
+(12, 'BANNER-TOP-COME-FUNZIONA', 'banner', '{"id":"6"}', 'banner', 0, 8),
+(14, 'BANNER-TOP-METODI-DI-PAGAMENTO', 'banner', '{"id":"7"}', 'banner', 0, 9),
+(15, 'BANNER-TOP-RESI-RECESSI', 'banner', '{"id":"8"}', 'banner', 0, 10),
+(16, 'BANNER-TOP-RICHIEDI-ASSISTENZA', 'banner', '{"id":"9"}', 'banner', 0, 12),
+(17, 'BANNER-TOP-CAMPIONE-GRATUITO', 'banner', '{"id":"10"}', 'banner', 0, 13),
+(18, 'BANNER-TOP-COLLABORA-CON', 'banner', '{"id":"11"}', 'banner', 0, 14),
+(19, 'Testo centrale', 'titolo-testo', '{"titolo":"","testo":"<div class=\\"container\\">\\r\\n<h2 style=\\"text-align: center;\\">Partecipazioni e matrimonio, inviti e bomboniere per le tue nozze, in collaborazione con Save the Chidren.</h2>\\r\\n</div>\\r\\n<div class=\\"banner top-page\\" style=\\"text-align: center;\\">\\r\\n<p style=\\"text-align: center;\\">Â Arte Sposa, azienda leader nella creazione di <strong>partecipazioni di matrimonio</strong>, si trasforma in Cartiamo, realtÃ Â  piÃ¹ completa che tratta ogni aspetto della vita familiare.<br />Cartiamo da il via al progetto basandosi sul principale punto di forza che, per anni, ha distinto Arte Sposa: le <em>partecipazioni di matrimonio</em>.<br />La scelta delle <strong>partecipazioni nuziali</strong> sarÃ Â  molto piÃ¹ ampia e in continuo aggiornamento, sarÃ Â  possibile selezionare in base al colore preferito e alla qualitÃ Â  della carta. Puoi trovare <em>inviti per matrimonio</em> ma anche una vasta gamma di <strong>inviti per le comunioni</strong>, ed a breve, saranno disponibili anche <em>inviti per battesimi, nascite, diplomi e tutto ciÃ² che racchiude il quadro familiare</em>.</p>\\r\\n<p style=\\"text-align: center;\\">Il tuo matrimonio, la nascita del tuo bambino, il suo battesimo, il primo natale, sono solo alcune delle occasioni speciali della tua vita, momenti unici da ricordare con gioia e amore per sempre. <strong>CARTIAMO Ã¨ qui per questo, per rendere speciale ogni tuo momento e per comunicarlo con felicitÃ Â  e armonia.</strong></p>\\r\\n<p style=\\"text-align: center;\\"><br />Cartiamo ha scelto di sostenere <strong>Save the Children</strong>, la piÃ¹ grande organizzazione internazionale indipendente che lavora per migliorare concretamente la vita dei bambini in Italia e nel mondo.</p>\\r\\n<br /><br /><a class=\\"btn btn-cool btn-red\\" href=\\"/chi-siamo\\">Esperti nel matrimonio</a></div>\\r\\n</div>"}', 'contenutoCentrale', 6, 1),
+(20, 'Lasciati ispirare', 'gallery-5-img', '{"img1":"https://cartiamo.it/media//350x400-true-partecipazione_di_matrimonio_rosa.jpg","img2":"https://cartiamo.it/media//350x400-true-partecipazione_matrimonio_rossa.jpg","img3":"https://cartiamo.it/media//350x400-true-partecipazione_matrimonio_tiffany.jpg","img4":"https://cartiamo.it/media//350x400-true-partecipazione_shabby_chic.jpg","img5":"https://cartiamo.it/media//350x400-true-partecipazione_di_matrimonio.jpg"}', 'prefooter', 11, 1),
+(22, 'Lasciati ispirare testo', 'titolo-testo', '{"titolo":"LASCIATI ISPIRARE","testo":"Laciati ispirare per il tuo matrimonio! Scopri tutte le nuove tendenze in coordinato con le tu partecipazioni di matrimonio."}', 'prefooter', 10, 1),
+(25, 'Banner', 'banner', '{"id":"9"}', 'banner', NULL, 18),
+(26, 'Ultimi articoli blog', 'ultimi-articoli-blog', '{"numero":"2"}', 'prefooter', 0, 1),
+(27, 'Banner top', 'banner', '{"id":"14"}', 'banner', NULL, 22),
+(28, 'Lista slug', 'griglia-slug-prodotti', '{"slugs":"ginepro;dafne;petunia;girasole;togheter;margherita;erica;easy","colonne":""}', 'ciao', NULL, 22),
+(29, 'Pulsante vedi tutti', 'titolo-testo', '{"titolo":"","testo":"<span class=\\"text-center\\"><a href=\\"/shop/matrimoni/classica\\" title=\\"matrimonio al sud\\" class=\\"btn btn-cool btn-red btn\\">Vedi tutte le partecipazioni classiche</a></span>"}', 'ciao', NULL, 22),
+(31, 'Bannerini matrimoni', 'immagini-link-affiancate', '{"immagini":"/media/bannerino-matrimonio-trendy.jpg;/media/bannerino-matrimonio-classico.jpg;/media/bannerino-matrimonio-chic.jpg;/media/bannerino-matrimonio-glamour.jpg;/media/bannerino-matrimonio-creativo.jpg;/media/bannerino-matrimonio-vintage.jpg","alt":"Partecipazioni di nozze trendy;Partecipazioni matrimonio classiche;Partecipazioni di nozze chic;Partecipazioni per nozze glamour;Partecipazioni matrimonio creativo;Partecipazioni matrimonio vintage","link":"/shop/matrimoni/trendy;/shop/matrimoni/classica;/shop/matrimoni/chic;/shop/matrimoni/glamour;/shop/matrimoni/creativa;shop/matrimoni/vintage","colonne":"3","full":"0"}', 'contenutoCentrale', 9, 1),
+(32, 'Separatore', 'separatore', '{"tipo":"0"}', 'contenutoCentrale', 5, 1),
+(33, 'Le piu vendute titolo', 'titolo-testo', '{"titolo":"Le piÃ¹ vendute","testo":"Le nostre partecipazioni matrimonio piÃ¹ vendute, per delle nozze di qualitÃ !"}', 'contenutoCentrale', 3, 1),
+(34, 'Le piu vendut', 'griglia-slug-prodotti', '{"slugs":"elisa;salice;cioccolato;amsterdam;togheter;ornella;tortora;miami","colonne":"4"}', 'contenutoCentrale', 4, 1),
+(35, 'Partecipazioni comunioni', 'griglia-slug-prodotti', '{"slugs":"giuseppina;emanuele;angelina;abramo;davide;ezechiele;isacco;noemi","colonne":"4"}', 'ciao', NULL, 23),
+(36, 'Pulsante vedi tutti', 'titolo-testo', '{"titolo":"","testo":"<span class=\\"text-center\\"><a href=\\"/shop/comunioni\\" title=\\"Partecipazioni prima comunione\\" class=\\"btn btn-cool btn-red btn\\">Vedi tutte le partecipazioni per auguri prima comunione</a></span>"}', 'ciao', NULL, 23),
+(37, 'Banner', 'banner', '{"id":"15"}', 'banner', NULL, 23),
+(38, 'Banner prima comunione', 'banner', '{"id":"15"}', 'contenutoCentrale', 7, 1),
+(39, 'Testo prima comunione', 'titolo-testo', '{"titolo":"La prima comunione","testo":"Scopri anche le nostre partecipazioni per la <strong>prima comunione</strong> di tuo figlio! Trova <em>idee per frasi</em> di <a href=\\"https://cartiamo.it/auguri-prima-comunione\\">auguri prima comunione</a> e partecipazioni da personalizzare!"}', 'contenutoCentrale', 1, 1),
+(40, 'Banner top', 'banner', '{"id":"16"}', 'banner', NULL, 24),
+(41, 'Prima riha', 'riga-2-colonne', '{"dimsinistra":"","sinistra":"<h3 style=\\"text-align: center;\\" data-mce-style=\\"text-align: center;\\">Partecipazioni senza Montaggio</h3><p style=\\"text-align: center;\\" data-mce-style=\\"text-align: center;\\"><img src=\\"https://cartiamo.it/media//SCATOLA 1.jpg\\" alt=\\"Scatola senza montaggio\\" data-mce-src=\\"https://cartiamo.it/media//SCATOLA 1.jpg\\"></p>","dimdestra":"","destra":"<h2 style=\\"text-align: center;\\" data-mce-style=\\"text-align: center;\\">Procedura di Montaggio</h2><p style=\\"text-align: center;\\" data-mce-style=\\"text-align: center;\\">Tutte le partecipazioni vengono montate rigorosamente a mano per garantire una qualità eccellente</p><h4 style=\\"text-align: center;\\" data-mce-style=\\"text-align: center;\\"><img src=\\"https://cartiamo.it/media//SFUSTELLAMENTO.jpg\\" alt=\\"Sfustellamento partecipazione\\" data-mce-src=\\"https://cartiamo.it/media//SFUSTELLAMENTO.jpg\\"><br></h4><h4 style=\\"text-align: center;\\" data-mce-style=\\"text-align: center;\\"><em>Montaggio</em></h4><p style=\\"text-align: center;\\" data-mce-style=\\"text-align: center;\\"><img src=\\"https://cartiamo.it/media//MONTAGGIO.jpg\\" alt=\\"Montaggio Partecipazione\\" data-mce-src=\\"https://cartiamo.it/media//MONTAGGIO.jpg\\"></p>"}', 'ciao', 0, 21),
+(42, 'seconda riga', 'html', '{"html":"<div class=\\"container\\" style=\\"max-width: 900px\\">\\r\\n<h3 style=\\"text-align: center;\\">Partecipazioni Montate</h3>\\r\\n\\r\\n<p>\\r\\nL'' attenzione che mettiamo nel montaggio della vostra partecipazione di matrimonio vi garantirà un risultato eccezionale, elegante e curato nei minimi dettagli. Con un piccolo costo aggiuntivo ci occuperemo noi di farvi arrivare le partecipazioni già pronte, pronte per essere inviate... non dovrete fare altro! Solo godervi il vostro meraviglioso matrimonio!\\r\\n</p>\\r\\n\\r\\n<p style=\\"text-align: center;\\"><img src=\\"https://cartiamo.it/media//SCATOLA 2.jpg\\" alt=\\"Scatola con partecipazione montata\\" /></p>\\r\\n</div>"}', 'ciao', 1, 21);
 
 -- --------------------------------------------------------
 
@@ -4009,11 +4003,11 @@ CREATE TABLE `ecommerce_attributo` (
   `id` int(11) UNSIGNED NOT NULL,
   `slug` varchar(64) COLLATE utf8_bin DEFAULT NULL,
   `nome` varchar(512) COLLATE utf8_bin DEFAULT NULL,
-  `descrizione` text COLLATE utf8_bin,
+  `descrizione` text COLLATE utf8_bin DEFAULT NULL,
   `tipo` int(11) DEFAULT NULL,
-  `variante` int(11) DEFAULT '1',
+  `variante` int(11) DEFAULT 1,
   `parent` int(11) DEFAULT NULL,
-  `parent_value` text COLLATE utf8_bin
+  `parent_value` text COLLATE utf8_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -4034,7 +4028,7 @@ INSERT INTO `ecommerce_attributo` (`id`, `slug`, `nome`, `descrizione`, `tipo`, 
 
 CREATE TABLE `ecommerce_attributo_entita` (
   `id` int(11) UNSIGNED NOT NULL,
-  `entita` text COLLATE utf8_bin,
+  `entita` text COLLATE utf8_bin DEFAULT NULL,
   `id_attributo` int(11) DEFAULT NULL,
   `id_entita` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -4065,7 +4059,7 @@ INSERT INTO `ecommerce_attributo_entita` (`id`, `entita`, `id_attributo`, `id_en
 
 CREATE TABLE `ecommerce_attributo_tipo` (
   `id` int(11) UNSIGNED NOT NULL,
-  `tipo` text COLLATE utf8_bin
+  `tipo` text COLLATE utf8_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -4086,7 +4080,7 @@ INSERT INTO `ecommerce_attributo_tipo` (`id`, `tipo`) VALUES
 CREATE TABLE `ecommerce_attributo_valore` (
   `id` int(11) UNSIGNED NOT NULL,
   `id_ecommerce_attributo` int(11) DEFAULT NULL,
-  `valore` text COLLATE utf8_bin
+  `valore` text COLLATE utf8_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -4148,7 +4142,7 @@ CREATE TABLE `ecommerce_categoria` (
   `id` int(11) UNSIGNED NOT NULL,
   `slug` varchar(64) COLLATE utf8_bin DEFAULT NULL,
   `nome` varchar(256) COLLATE utf8_bin DEFAULT NULL,
-  `descrizione` text COLLATE utf8_bin
+  `descrizione` text COLLATE utf8_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -4269,13 +4263,13 @@ INSERT INTO `ecommerce_cliente_spedizione` (`id`, `nome`, `cognome`, `via`, `num
 CREATE TABLE `ecommerce_country` (
   `id` int(10) UNSIGNED NOT NULL,
   `id_zone` int(10) UNSIGNED NOT NULL,
-  `id_currency` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `id_currency` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `iso_code` varchar(3) NOT NULL,
-  `call_prefix` int(10) NOT NULL DEFAULT '0',
-  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `contains_states` tinyint(1) NOT NULL DEFAULT '0',
-  `need_identification_number` tinyint(1) NOT NULL DEFAULT '0',
-  `need_zip_code` tinyint(1) NOT NULL DEFAULT '1',
+  `call_prefix` int(10) NOT NULL DEFAULT 0,
+  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `contains_states` tinyint(1) NOT NULL DEFAULT 0,
+  `need_identification_number` tinyint(1) NOT NULL DEFAULT 0,
+  `need_zip_code` tinyint(1) NOT NULL DEFAULT 1,
   `zip_code_format` varchar(12) NOT NULL DEFAULT '',
   `display_tax_label` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -4541,9 +4535,8 @@ CREATE TABLE `ecommerce_ordine` (
   `id_cliente` int(11) DEFAULT NULL,
   `gateway` varchar(512) COLLATE utf8_bin DEFAULT NULL,
   `id_transaction` varchar(512) COLLATE utf8_bin DEFAULT NULL,
-  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  `update_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `created_at` datetime DEFAULT current_timestamp
+) ;
 
 --
 -- Dumping data for table `ecommerce_ordine`
@@ -4564,7 +4557,7 @@ CREATE TABLE `ecommerce_prodotto` (
   `id` int(11) UNSIGNED NOT NULL,
   `nome` varchar(256) COLLATE utf8_bin DEFAULT NULL,
   `slug` varchar(64) COLLATE utf8_bin DEFAULT NULL,
-  `descrizione` text COLLATE utf8_bin,
+  `descrizione` text COLLATE utf8_bin DEFAULT NULL,
   `id_ecommerce_tipologia_prodotto` int(11) DEFAULT NULL,
   `sku` varchar(512) COLLATE utf8_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -4574,7 +4567,7 @@ CREATE TABLE `ecommerce_prodotto` (
 --
 
 INSERT INTO `ecommerce_prodotto` (`id`, `nome`, `slug`, `descrizione`, `id_ecommerce_tipologia_prodotto`, `sku`) VALUES
-(9, 'Firenze', 'firenze', '<p>\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur placerat malesuada sagittis. Fusce iaculis ullamcorper tristique. Cras eget eros orci. Nullam purus orci, semper vel ex gravida, scelerisque consequat leo. Donec vehicula consequat eleifend. Pellentesque finibus, urna non auctor scelerisque, nibh quam gravida purus, eu ornare dolor dolor in nibh. Nam diam justo, condimentum vitae ante vitae, fringilla venenatis dolor. Phasellus porta turpis nisl, in blandit mauris lobortis sed. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin quis scelerisque ligula.\r\n\r\n\r\n</p>\r\n \r\n<p>\r\n<img src=\"https://www.syncronia.com/sites/default/files/old/youarch/uploads/files/p137/big/1-m-ti-riva1920_patmos_divano_disegni_tecnici_pdf.jpg\">\r\n</p>\r\n\r\n\r\n\r\n<p>\r\n<strong>Nome modello : </strong> Firenze\r\n</p>\r\n\r\n<p>\r\n<strong>Struttura : </strong> legno massello rinforzato da pannelli di multistrato.\r\n</p>\r\n\r\n<p>\r\n<strong>Molleggio : </strong> Cinghie elastiche incrociate\r\n</p>\r\n\r\n<p>\r\n<strong>Poggiatesta : </strong> Poliuretano densita 21 KG. + Piume\r\n</p>\r\n\r\n<p>\r\n<strong>Spalliera : </strong> Poliuretano densità 23 KG.+ Piuma\r\n</p>\r\n\r\n<p>\r\n<strong>Seduta : </strong> Poliuretano HR densità 30 KG.\r\n</p>\r\n\r\n\r\n<p>\r\n<strong>Braccioli : </strong> Poliuretano densità 21 KG.\r\n</p>\r\n\r\n<p>\r\n<strong>Piedi : </strong> Piede in metallo cromato\r\n</p>\r\n\r\n<p>\r\n<strong>Meccanismo : </strong> Poggiatesta meccanico manuale con cricchetto.\r\n</p>\r\n\r\n<p>\r\n<strong>Altezza Piedi : </strong>   11,0 CM.\r\n</p>\r\n', 3, 'ITC-2019');
+(9, 'Firenze', 'firenze', '<p>\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur placerat malesuada sagittis. Fusce iaculis ullamcorper tristique. Cras eget eros orci. Nullam purus orci, semper vel ex gravida, scelerisque consequat leo. Donec vehicula consequat eleifend. Pellentesque finibus, urna non auctor scelerisque, nibh quam gravida purus, eu ornare dolor dolor in nibh. Nam diam justo, condimentum vitae ante vitae, fringilla venenatis dolor. Phasellus porta turpis nisl, in blandit mauris lobortis sed. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin quis scelerisque ligula.\r\n\r\n\r\n</p>\r\n \r\n<p>\r\n<img src="https://www.syncronia.com/sites/default/files/old/youarch/uploads/files/p137/big/1-m-ti-riva1920_patmos_divano_disegni_tecnici_pdf.jpg">\r\n</p>\r\n\r\n\r\n\r\n<p>\r\n<strong>Nome modello : </strong> Firenze\r\n</p>\r\n\r\n<p>\r\n<strong>Struttura : </strong> legno massello rinforzato da pannelli di multistrato.\r\n</p>\r\n\r\n<p>\r\n<strong>Molleggio : </strong> Cinghie elastiche incrociate\r\n</p>\r\n\r\n<p>\r\n<strong>Poggiatesta : </strong> Poliuretano densita 21 KG. + Piume\r\n</p>\r\n\r\n<p>\r\n<strong>Spalliera : </strong> Poliuretano densità 23 KG.+ Piuma\r\n</p>\r\n\r\n<p>\r\n<strong>Seduta : </strong> Poliuretano HR densità 30 KG.\r\n</p>\r\n\r\n\r\n<p>\r\n<strong>Braccioli : </strong> Poliuretano densità 21 KG.\r\n</p>\r\n\r\n<p>\r\n<strong>Piedi : </strong> Piede in metallo cromato\r\n</p>\r\n\r\n<p>\r\n<strong>Meccanismo : </strong> Poggiatesta meccanico manuale con cricchetto.\r\n</p>\r\n\r\n<p>\r\n<strong>Altezza Piedi : </strong>   11,0 CM.\r\n</p>\r\n', 3, 'ITC-2019');
 
 -- --------------------------------------------------------
 
@@ -4657,7 +4650,7 @@ CREATE TABLE `ecommerce_prodotto_variante` (
   `sku` varchar(512) COLLATE utf8_bin NOT NULL,
   `prezzo` int(11) NOT NULL,
   `nome` varchar(512) COLLATE utf8_bin DEFAULT NULL,
-  `descrizione` text COLLATE utf8_bin
+  `descrizione` text COLLATE utf8_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -4781,7 +4774,7 @@ CREATE TABLE `ecommerce_prodotto_variante_campi` (
   `id` int(11) UNSIGNED NOT NULL,
   `slug` varchar(512) COLLATE utf8_bin DEFAULT NULL,
   `id_ecommerce_prodotto_variante` int(11) DEFAULT NULL,
-  `valore` text COLLATE utf8_bin
+  `valore` text COLLATE utf8_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -4925,8 +4918,8 @@ CREATE TABLE `ecommerce_provincia` (
   `id_zone` int(11) UNSIGNED NOT NULL,
   `name` varchar(64) NOT NULL,
   `iso_code` varchar(7) NOT NULL,
-  `tax_behavior` smallint(1) NOT NULL DEFAULT '0',
-  `active` tinyint(1) NOT NULL DEFAULT '0'
+  `tax_behavior` smallint(1) NOT NULL DEFAULT 0,
+  `active` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -5099,7 +5092,7 @@ INSERT INTO `ecommerce_provincia` (`id`, `id_country`, `id_zone`, `name`, `iso_c
 (163, 10, 1, 'Grosseto', 'GR', 0, 1),
 (164, 10, 1, 'Imperia', 'IM', 0, 1),
 (165, 10, 1, 'Isernia', 'IS', 0, 1),
-(166, 10, 1, 'L\'Aquila', 'AQ', 0, 1),
+(166, 10, 1, 'L''Aquila', 'AQ', 0, 1),
 (167, 10, 1, 'La Spezia', 'SP', 0, 1),
 (168, 10, 1, 'Latina', 'LT', 0, 1),
 (169, 10, 1, 'Lecce', 'LE', 0, 1),
@@ -5292,9 +5285,9 @@ CREATE TABLE `ecommerce_tipologia_prodotto` (
   `id` int(11) UNSIGNED NOT NULL,
   `nome` varchar(256) COLLATE utf8_bin DEFAULT NULL,
   `slug` varchar(64) COLLATE utf8_bin DEFAULT '',
-  `descrizione` text COLLATE utf8_bin,
+  `descrizione` text COLLATE utf8_bin DEFAULT NULL,
   `prezzo` int(11) DEFAULT NULL,
-  `id_tipologia_prodotto` int(11) DEFAULT '0'
+  `id_tipologia_prodotto` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -5352,7 +5345,7 @@ INSERT INTO `ecommerce_tipologia_prodotto_campi` (`id`, `nome`, `slug`, `valore`
 CREATE TABLE `ecommerce_zona` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(64) NOT NULL,
-  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT '0'
+  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -5380,13 +5373,13 @@ INSERT INTO `ecommerce_zona` (`id`, `name`, `active`) VALUES
 CREATE TABLE `gp_attivita` (
   `id` int(11) NOT NULL,
   `id_progetto` int(11) DEFAULT NULL,
-  `nome` text,
-  `descrizione` text,
+  `nome` text DEFAULT NULL,
+  `descrizione` text DEFAULT NULL,
   `tipo` int(11) DEFAULT NULL,
-  `inizio` text,
-  `fine` text,
+  `inizio` text DEFAULT NULL,
+  `fine` text DEFAULT NULL,
   `tempoAttivita` int(11) DEFAULT NULL,
-  `type` text,
+  `type` text DEFAULT NULL,
   `modified` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -5398,23 +5391,23 @@ CREATE TABLE `gp_attivita` (
 
 CREATE TABLE `gp_progetti` (
   `id` int(11) NOT NULL,
-  `nome` text,
-  `descrizione` longtext,
-  `tipo` text,
-  `budget` text,
-  `costo_orario` text,
-  `ore_preventivate` text,
-  `data_inizio` text,
-  `data_fine` text,
-  `tecnologie` longtext,
-  `note` longtext,
-  `cliente_nome` text,
-  `cliente_cognome` text,
-  `cliente_email` text,
-  `cliente_telefono` text,
-  `cliente_note` longtext,
-  `stato` text,
-  `type` text,
+  `nome` text DEFAULT NULL,
+  `descrizione` longtext DEFAULT NULL,
+  `tipo` text DEFAULT NULL,
+  `budget` text DEFAULT NULL,
+  `costo_orario` text DEFAULT NULL,
+  `ore_preventivate` text DEFAULT NULL,
+  `data_inizio` text DEFAULT NULL,
+  `data_fine` text DEFAULT NULL,
+  `tecnologie` longtext DEFAULT NULL,
+  `note` longtext DEFAULT NULL,
+  `cliente_nome` text DEFAULT NULL,
+  `cliente_cognome` text DEFAULT NULL,
+  `cliente_email` text DEFAULT NULL,
+  `cliente_telefono` text DEFAULT NULL,
+  `cliente_note` longtext DEFAULT NULL,
+  `stato` text DEFAULT NULL,
+  `type` text DEFAULT NULL,
   `modified` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -5434,7 +5427,7 @@ INSERT INTO `gp_progetti` (`id`, `nome`, `descrizione`, `tipo`, `budget`, `costo
 CREATE TABLE `gp_scadenze` (
   `id` int(11) NOT NULL,
   `id_attivita` int(11) DEFAULT NULL,
-  `stato` text,
+  `stato` text DEFAULT NULL,
   `scadenza` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -5446,8 +5439,8 @@ CREATE TABLE `gp_scadenze` (
 
 CREATE TABLE `gp_tipologie_attivita` (
   `id` int(11) NOT NULL,
-  `nome` text,
-  `descrizione` text
+  `nome` text DEFAULT NULL,
+  `descrizione` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5478,11 +5471,11 @@ INSERT INTO `homepage` (`id`, `pagina_id`, `meta_title`, `meta_description`) VAL
 
 CREATE TABLE `media` (
   `id` int(11) NOT NULL,
-  `permalink` text,
-  `path` text,
+  `permalink` text DEFAULT NULL,
+  `path` text DEFAULT NULL,
   `data_creazione` datetime DEFAULT NULL,
-  `titolo` text,
-  `alt` text
+  `titolo` text DEFAULT NULL,
+  `alt` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -5560,11 +5553,11 @@ INSERT INTO `media` (`id`, `permalink`, `path`, `data_creazione`, `titolo`, `alt
 
 CREATE TABLE `meta` (
   `id` int(11) NOT NULL,
-  `title` text,
-  `entity` text,
-  `entity_id` text,
-  `description` text,
-  `og_image` text
+  `title` text DEFAULT NULL,
+  `entity` text DEFAULT NULL,
+  `entity_id` text DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `og_image` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -5612,12 +5605,12 @@ INSERT INTO `meta` (`id`, `title`, `entity`, `entity_id`, `description`, `og_ima
 
 CREATE TABLE `pagina` (
   `id` int(11) NOT NULL,
-  `title` text,
+  `title` text DEFAULT NULL,
   `slug` varchar(100) DEFAULT NULL,
-  `description` text,
-  `content` longtext,
-  `layout` text,
-  `prova` text
+  `description` text DEFAULT NULL,
+  `content` longtext DEFAULT NULL,
+  `layout` text DEFAULT NULL,
+  `prova` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -5627,28 +5620,28 @@ CREATE TABLE `pagina` (
 INSERT INTO `pagina` (`id`, `title`, `slug`, `description`, `content`, `layout`, `prova`) VALUES
 (1, 'Homepage', '/', '', '', 'page-home.php', ''),
 (2, 'Carrello', 'carrello', NULL, '', 'page-carrello.php', ''),
-(3, 'Chi siamo', 'chi-siamo', NULL, '<h2 class=\"title\">CHI SIAMO</h2>\r\n<p><strong>Cartiamo</strong> &egrave; il negozio on-line, attraverso il quale puoi ordinare direttamente le tue partecipazioni sul web e fartele recapitare comodamente a casa. Grazie alla nostra pluriennale esperienza nel settore delle partecipazioni di nozze, possiamo offrirvi un vasto assortimento di articoli che potranno soddisfare ogni vostra esigenza. Ordinare le partecipazioni di nozze Cartiamo &egrave; semplice e veloce: il nostro servizio clienti &egrave; a vostra disposizione per chiarimenti e informazioni.</p>\r\n<p><strong>Cartiamo</strong> ha scelto di sostenere <strong>Save the Children</strong>, la pi&ugrave; grande organizzazione internazionale indipendente che lavora per migliorare concretamente la vita dei bambini in Italia e nel mondo. Per il tuo matrimonio potrai decidere se contribuire a sostenere il lavoro di Save the Children scegliendo le Linee Partecipazioni di <strong>Cartiamo</strong>. Il tuo gesto di solidariet&agrave; trasformer&agrave; un momento felice della tua vita in un contributo per i regalare un futuro a migliaia di bambini.</p>\r\n<p>&nbsp;</p>\r\n<p>Per conoscere il lavoro di Save the Children vai su <a href=\"http://www.savethechildren.it/?utm_source=crtm&amp;utm_medium=partner&amp;utm_content=sito&amp;utm_campaign=rf-bmb&amp;utm_term=lnk\" target=\"_blank\">www.savethechildren.it</a> e se vuoi aiutare ad assicurare un futuro migliore a tanti bambini vai su <a href=\"http://www.savethechildren.it/donaora?utm_source=crtm&amp;utm_medium=partner&amp;utm_content=sito-cta&amp;utm_campaign=rf-bmb&amp;utm_term=lnk\" target=\"_blank\">www.savethechildren.it/donaora</a></p>\r\n<p>Per i tuoi momenti speciali Save the Children puoi scegliese su <a href=\"http://savethechildren.it/bomboniere?utm_source=crtm&amp;utm_medium=partner&amp;utm_content=bmb&amp;utm_campaign=rf-bmb&amp;utm_term=lnk\" target=\"_blank\">savethechildren.it/bomboniere</a>&nbsp;le bomboniere solidali, sacchetti e scatoline porta-confetti, e hai la possibilit&agrave; di creare online una Lista Nozze per invitare amici e parenti a regalarti simbolicamente vaccini, kit nascita, latte terapeutico, a sostegno dei bambini di tutto il mondo su&nbsp;<a href=\"http://savethechildren.it/listenozze?utm_source=crtm&amp;utm_medium=partner&amp;utm_content=liste-nozze&amp;utm_campaign=rf-bmb&amp;utm_term=lnk\" target=\"_blank\">savethechildren.it/listenozze</a></p>\r\n<div class=\"colonna standardPage\">&nbsp;</div>', 'page-default.php', NULL),
-(4, 'Faq', 'faq', NULL, '<h3><strong class=\"title\">FAQ</strong></h3>\r\n<h3>&nbsp;</h3>\r\n<h3>Come richiedere un campione gratuito?</h3>\r\n<p>Con <strong>Cartiamo</strong>&nbsp;puoi richiedere fino a 3 campioni e la spedizione &egrave; gratuita! Come fare &egrave; semplicissimo!</p>\r\n<p>Accedi a questa sezione e segui le indicazioni:&nbsp;<a href=\"http://www.partecipazionimatrimonioartesposa.com/info/6/Campione-gratuito.html\" target=\"_blank\">Richiedi un Campione gratuito</a></p>\r\n<p>&nbsp;</p>\r\n<h3>Quanto tempo ci vuole per ricevere i campioni gratuiti?</h3>\r\n<p>Ci vogliono in circa 2 settimane per ricevere i campioni. Vengono spediti tramite posta ordinaria ed il postino li lascia dentro la cassetta postale.</p>\r\n<h3>&nbsp;</h3>\r\n<h3>Quanto tempo ci vuole per fare un ordine?</h3>\r\n<p>Per fare un ordine con noi, ci vogliono in circa due settimane. Dal momento dell&rsquo;ordine fino alla ricezione delle partecipazioni a casa tua.</p>\r\n<h3>&nbsp;</h3>\r\n<h3>Le buste sono comprese nelle partecipazioni?</h3>\r\n<p>Si, tutte le nostre partecipazioni sono comprese di busta.</p>\r\n<h3>&nbsp;</h3>\r\n<h3>Il prezzo indicato in ogni partecipazione &egrave; comprensivo anche dell\'invito al ristorante?</h3>\r\n<p>In alcune partecipazioni l\'invito al ristorante &egrave; gi&agrave; compreso ed in alcuni li dovresti ordinare a parte. Nei casi dove l\'invito &egrave; compreso troverai scritto \"Inviti inclusi nel prezzo\", quando clicchi sulla partecipazione scelta. Nei casi dove l\'invito non &egrave; compreso dovrai cliccare sulla casella \"Invito al Ristorante\" per poter inserire la quantit&agrave; desiderata, qui troverai anche il prezzo corrispondente dell\'invito.</p>\r\n<p>&nbsp;</p>\r\n<h3>Qual &egrave; la differenza tra invito al ristorante e invito al party?</h3>\r\n<p>Con l&rsquo;invito al ristorante inviti i tuoi cari a pranzo o a cena dopo la cerimonia, con l&rsquo;invito al party poi invitare altre persone soltanto ad un party che segue al pranzo o la cena o al taglio della torta.</p>\r\n<p>&nbsp;</p>\r\n<h3>Quanto &egrave; il costo per la stampa delle partecipazioni?</h3>\r\n<p>Il costo di stampa &egrave; &euro; 45,00 per l&rsquo;intero ordine.</p>\r\n<p>&nbsp;</p>\r\n<h3>&Egrave; possibile avere un\'anteprima del risultato finale prima di andare in stampa?</h3>\r\n<p>Dopo aver ricevuto il tuo ordine sul nostro sito, prepareremo una bozza di stampa con il tuo testo personale. Questa bozza ti sar&agrave; inviata per e-mail entro massimo due giorni. Qui hai la possibilit&agrave; di fare tutte le modifiche che vuoi al testo e pi&ugrave; che altro di verificare che non ci siano errori nel testo. Andremo in stampa soltanto con la tua approvazione finale della bozza.</p>\r\n<h3>&nbsp;</h3>\r\n<h3>Per le nostre partecipazioni avremmo bisogno di personalizzare le frasi. &Eacute; possibile effettuare delle modifiche al testo?</h3>\r\n<p>Si, &egrave; possibile. Quando riceverai la nostra bozza di stampa, ci poi confermare tutte le modifiche da fare al testo che desideri.</p>\r\n<p>&nbsp;</p>\r\n<h3>In cosa consiste la bomboniera da poter ordinare insieme alla partecipazione?</h3>\r\n<p>Con Bomboniera intendiamo soltanto il bigliettino che viene inserito nella bomboniera, non la bomboniera stessa.</p>\r\n<p>&nbsp;</p>\r\n<h3>Quanti sono le spese di trasporto?</h3>\r\n<p>La spedizione &egrave; gratuita.</p>\r\n<p>&nbsp;</p>\r\n<h3>Avrei bisogno di inserire anche il biglietto per il regalo con codice iban. &Egrave; possibile?</h3>\r\n<p>Si, &egrave; possibile di inserire un bigliettino per il regalo. Possiamo usare lo stesso bigliettino dell\'invito al ristorante, se non &egrave; incluso nella partecipazione. Altrimenti abbiamo dei cartoncini generici nello stesso formato degli inviti disponibili da poter aggiungere.</p>\r\n<p>&nbsp;</p>\r\n<h3>E&rsquo; possibile cambiare colore della partecipazione?</h3>\r\n<p>Tutte le nostre partecipazioni sono gi&agrave; disponibili cos&igrave; come le vedi sul sito nel nostro magazzino e quindi purtroppo non modificabili nel colore.</p>\r\n<p>&nbsp;</p>\r\n<h3>E\' possibile cambiare il colore del fiocco compreso nella partecipazione?</h3>\r\n<p>In generale non &egrave; un problema cambiare il colore del fiocco se abbiamo il colore richiesto disponibile.</p>\r\n<p>&nbsp;</p>\r\n<h3>Cosa si intende per montaggio? Ha un costo a parte?</h3>\r\n<p>Con \"montaggio\" ci riferiamo al confezionamento della partecipazione. Cio&egrave; finiamo le partecipazioni qui da noi prima della spedizione, p.e. montaggio di un eventuale fiocco, piegatura e/o sfustellatura del biglietto, incollatura di un eventuale accessorio etc. Se non viene richiesto il montaggio, le partecipazioni vengono inviati stesi e divisi in tutti i suoi componenti. Il costo del montaggio &egrave; &euro; 0,37 per ogni partecipazione.</p>\r\n<p>&nbsp;</p>\r\n<h3>Dopo l\'invio e l\'ordine, se per qualche motivo dovessimo avere necessit&agrave; di aggiungere altre partecipazioni, dovremmo pagare nuovamente i costi di messa in stampa?</h3>\r\n<p>Se dobbiamo mettere i biglietti nuovamente in macchina per la stampa, dobbiamo addebitare un piccolo costo per la stampa. Non saranno ovviamente i 45,00 &euro; iniziali, ma un piccolo costo a secondo cosa dobbiamo ristampare purtroppo si.</p>\r\n<p>&nbsp;</p>\r\n<h3>Vorrei sapere se il campo \"indirizzo sposa\" si deve lasciare senza testo oppure con il testo segnaposto \"inserisci in seguito\" in caso di convivenza.</h3>\r\n<p>In caso di convivenza lascia pure il testo \"inserisci in seguito\" nel campo &ldquo;indirizzo sposa&rdquo;.</p>\r\n<p>&nbsp;</p>\r\n<h3>Quale partecipazioni fanno parte delle partecipazioni solidali?</h3>\r\n<p>Tutte le nostre partecipazioni che vedi sul nostro sito Cartiamo.it sono partecipazioni solidali e provvedano il sostegno a Save the Children.</p>\r\n<p>&nbsp;</p>\r\n<h3>Quanto &egrave; la quota che viene trasferito a Save the Children?</h3>\r\n<p>Noi trasferiamo il 15% del valore dei biglietti che vengono acquistate a Save the Children.</p>\r\n<p>&nbsp;</p>\r\n<h3>Scegliendo una partecipazione solidale si ha un foglio dove vi &egrave; scritto che &egrave; una partecipazione solidale? O viene scritto sulla partecipazione?</h3>\r\n<p>Riceverai nel pacco insieme alle tue partecipazioni una pergamenina, nella stessa quantit&agrave; delle partecipazioni, che conferma il sostegno che avete fatto a Save the Children. Potete aggiungere una pergamenina ad ogni partecipazione. Non viene scritto sulla partecipazione.</p>\r\n<p>&nbsp;</p>\r\n<h3>Possiamo detrarre la quota che viene trasferita a Save the Children dalla denuncia dei redditi?</h3>\r\n<p>Purtroppo il sostegno che fate a Save the Children non &egrave; detraibile dal reddito, perch&eacute; si tratta di una donazione indiretta.</p>\r\n<p>&nbsp;</p>', 'page-default.php', NULL),
-(5, 'prova', 'termini-e-condizioni', '', '<h1 class=\"title\">TERMINI &amp; CONDIZIONI</h1><div class=\"colonna standardPage\"><h2>OGGETTO DELLE CONDIZIONI GENERALI</h2><p>Le presenti Condizioni Generali hanno per oggetto l\'acquisto di prodotti e di servizi, effettuato a distanza tramite rete telematica sul sito cartiamo.it. Sono esclusi i soggetti quali commercianti, grossisti, rivenditori, professionisti, ecc. che intendano rivendere a terzi i relativi prodotti. Ogni operazione d\'acquisto sar&agrave; regolata dalle disposizioni di cui al Dlgs n. 185/99per la protezione dei consumatori in materia di contratti a distanza e sar&agrave;sottoposta alla normativa di cui al D.Lgs. 196/2003 per quanto concerne latutela della privacy.</p><h2>CONCLUSIONE CONTRATTO E CONDIZIONI GENERALI DI VENDITA</h2><p>Prima di procedere alla conclusione di un contratto di vendita &egrave; necessario registrarsi al Sito, inserendo nome, cognome, indirizzo mail e password (di seguito \"credenziali di registrazione\"). La registrazione sul sito &egrave; gratuita. La registrazione viene confermata a mezzo mail inviata all\'indirizzo fornito dall\'utente. Le credenziali di registrazione devono essere utilizzate esclusivamente dall\'utente e non possono essere cedute a terzi. L\'utente riterr&agrave; Cartiamo&nbsp;indenne da qualsiasi obbligo risarcitorio, sanzione derivante e/o in qualsiasi modo collegati alla violazione da parte dell\'utente delle regole sulla registrazione al Sito. L\'utente &egrave; esclusivo responsabile dell\'accesso al Sito mediante le Credenziali di Registrazione e risponde direttamente di ogni danno o pregiudizio arrecato a&nbsp;Cartiamo o a terze parti da un uso improprio, dalla perdita, dall\'appropriazione indebita da parte di altri ovvero dalla mancata tutela di un\'adeguata segretezza delle proprie Credenziali di Registrazione. Tutte le operazioni effettuate tramite le Credenziali di Registrazione sono considerate effettuate dal cliente a cui le Credenziali stesse si riferiscono.<br />I contratti di vendita dei prodotti sul sito cartiamo.it&nbsp;, si considerano conclusi al momento in cui l\'ordine di acquisto, in formato elettronico, viene trasmesso per via telematica dal cliente a Cartiamo&nbsp;seguendo le istruzioni che compariranno di volta in volta sul sito e quest\'ultima lo accetta inviando all\'utente, all\'indirizzo di posta elettronica indicato, una mail di conferma contenente un link con il quale accedere ad un riepilogo delle Condizioni Generali, delle informazioni relative alle caratteristiche del prodotto acquistato, dell\'indicazione dettagliata del prezzo, del mezzo di pagamento utilizzato, delle modalit&agrave; per l\'esercizio del diritto di recesso, dei costi di spedizione e di eventuali costi aggiuntivi. In ogni modo nessun contratto verr&agrave; ritenuto concluso, senza che il cliente abbia accettato telematicamente le Condizioni Generali di Vendita durante l\'acquisto.<br />Il cliente, con l\'invio telematico del proprio ordine d\'acquisto, dichiara di aver preso visione e di aver accettato le presenti condizioni generali di contratto e si obbliga ad osservarle e rispettarle nei suoi rapporti con Cartiamo.</p><h2>PREZZI</h2><p>I prezzi sono espressi in EURO. Possono subire variazioni. All&rsquo;atto dell&rsquo;acquisto si considerer&agrave; valido il prezzo indicato nel listino. Tutti i prezzi si riferiscono al singolo pezzo.</p><h2>PAGAMENTI</h2><p>Il Cliente potr&agrave; effettuare il pagamento dei prodotti acquistati all&rsquo;atto della conferma d&rsquo;ordine (approvazione bozza di stampa). mediante bonifico bancario, oppure alla consegna della merce mediante contrassegno.</p><h2>COSTI DI SPEDIZIONE</h2><p>I costi di spedizione sono a carico del destinatario, e verranno addebitati in fattura. Al momento della consegna da parte del corriere espresso non deve essere pagata alcuna somma.</p><h2>&nbsp;</h2></div><div class=\"colonna standardPage\"><h2>MODALIT&Agrave; D\'ACQUISTO</h2><p>Le offerte pubblicate sul Sito sono disponibili in durata temporale limitata e con quantit&agrave; di prodotti limitata. La data di validit&agrave; delle offerte &egrave; indicata sul Sito. Tutti i prezzi indicati sul Sito sono espressi in Euro e si intendono comprensivi di IVA. Tale importo sar&agrave; evidenziato separatamente, per ciascun prodotto, sul modulo d\'ordine e sulla mail di conferma dell\'ordine. I prodotti resteranno di propriet&agrave; di Cartiamo&nbsp;fino all\'avvenuto pagamento del prezzo di acquisto e delle spese da parte del Cliente. Cartiamo&nbsp;dar&agrave; corso all\'ordine di acquisto solo dopo aver ricevuto conferma dell\'autorizzazione al pagamento dell\'importo totale dovuto come indicato nell\'ordine. Il cliente acquista il prodotto, le cui caratteristiche sono illustrate on-line nelle relative schede descrittive e tecniche, al prezzo ivi indicato a cui si aggiungono le spese di consegna precisate sul sito. Prima dell\'inoltro dell\'ordine di acquisto viene riepilogato il costo unitario di ogni prodotto prescelto, il costo complessivo in caso di acquisto di pi&ugrave; prodotti e le relative spese di consegna.</p><p>Una volta inoltrato l\'ordine di acquisto, il cliente ricever&agrave; da Cartiamo&nbsp;un messaggio di posta elettronica attestante conferma di avvenuta ricezione dell\'ordine di acquisto e contenente le informazioni relative alle caratteristiche principali del bene acquistato, l\'indicazione dettagliata del prezzo, dei costi di consegna, dei tributi applicabili e dei mezzi di pagamento e contenente un rinvio alle condizioni generali di contratto e alle informazioni circa l\'esistenza del diritto di recesso, alle condizioni e alle modalit&agrave; del suo esercizio visualizzate sul sito.</p><h2>RESPONSABILIT&Agrave; DEGLI UTENTI SUI CONTENUTI CARICATI</h2><p>La selezione dei contenenti da stampare, nonch&eacute; l&rsquo;acquisizione delle relative autorizzazioni alla loro riproduzione, ove necessarie, resta di esclusiva responsabilit&agrave; degli utenti. Nuovaedart non proceder&agrave; in nessun caso alla verifica dei contenuti.</p><h2>DISDETTA ORDINI</h2><p>Lei ha il diritto di recedere dal contratto, senza indicarne le ragioni, entro 14 giorni. Il periodo di recesso scade dopo 14 giorni dal giorno nel caso di un contratto di vendita: &laquo;in cui Lei o un terzo, diverso dal vettore e da Lei designato, acquisisce il possesso fisico dei beni.&raquo;.&nbsp;<br />Per esercitare il diritto di recesso, Lei &egrave; tenuto a informarci della sua decisione di recedere dal presente contratto tramite una dichiarazione esplicita. Per gli ordini gi&agrave; evasi il cliente dovr&agrave; attendere il recapito della merce ed esercitare il Diritto di Recesso.</p><h2>CONSEGNA</h2><p>I prodotti acquistati saranno consegnati da Nuovaedart divisione Cartiamo&nbsp;all\'indirizzo indicato dal Cliente. La consegna avverr&agrave; tramite corriere espresso. Generalmente i corrieri presso cui ci serviamo consegnano la merce nel 95% dei casi entro uno o due giorni dalla spedizione. Al momento della spedizione saranno comunicati, via posta elettronica, gli estremi per monitorare il processo di consegna. La fattura sar&agrave; inserita al l\'interno del pacco contenente le partecipazioni.</p><h2>CONFEZIONI</h2><p>Le confezioni utilizzate sono scatole di cartone. Alla consegna il Cliente deve verificare l&rsquo;integrit&agrave; del pacco, che non sia danneggiato o bagnato o non sigillato In caso di non corrispondenza tra quanto ordinato e quanto consegnato, secondo le caratteristiche sopra descritte, il Cliente dovr&agrave; darne immediata comunicazione contattando il Servizio Clienti.</p></div>', 'page-default.php', NULL),
-(6, 'SICUREZZA & PRIVACY', 'sicurezza-e-privacy', NULL, '<h1 class=\"title\">SICUREZZA &amp; PRIVACY</h1>\r\n<div class=\"colonna standardPage\">\r\n<h2>PRIVACY POLICY</h2>\r\n<p>Il presente sito internet adotta il trattamento dei dati personali in ossequio alla normativa sulla privacy (D.Lgs. 196/2003) e successive modificazioni. La presente Privacy policy pu&ograve; essere suscettibile di integrazioni e modifiche in virt&ugrave; dell&rsquo;evoluzione normativa, tecnologica, delle migliori prassi e sulla scorta di esigenze interne di ristrutturazione dell&rsquo;architettura digitale.</p>\r\n<p>Il Titolare del trattamento &egrave;&nbsp;Nuovaedart srl&nbsp;SEDE LEGALE:&nbsp;Via Fucini, 7 - 51010 Massa e Cozzile, Pistoia In relazione al trattamento dei propri dati personali, l&rsquo;utente potr&agrave; esercitare i diritti previsti dalla legge scrivendo al seguente indirizzo elettronico:&nbsp;info@nuovaedart.it</p>\r\n<p>Il Responsabile del trattamento dei dati elettronici per la piattaforma web &egrave; il Signor Marco Focosiche si occupa delle richieste privacy inoltrate all&rsquo;e.mail indicata sopra.</p>\r\n<p>Dati raccolti e Finalit&agrave;. I dati di contenuto raccolti vengono trattati nel rispetto della legge e unicamente secondo le finalit&agrave; del servizio richiesto.&nbsp;</p>\r\n<p>&nbsp;</p>\r\n</div>\r\n<div class=\"colonna standardPage\">\r\n<p>I dati di navigazione non sono sottoposti a cookies. Non &egrave; applicato nessun meccanismo di archiviazione ne&rsquo; di memorizzazione anche solo temporanea.</p>\r\n<p>Modalit&agrave; di trattamento: i tuoi dati sono trattati temporaneamente, anche elettronicamente nella misura strettamente necessaria per il servizio di vendita online.</p>\r\n<p>Comunicazione a Terzi e diffusione. I Tuoi dati non potranno da noi essere comunicati a terzi o diffusi in alcun modo salvo Tuo esplicito consenso espresso o per eseguire un preciso obbligo di legge o un ordine imperativo dell&rsquo;Autorit&agrave;.</p>\r\n<p>Esercizio diritti Interessato.<br />Ai fini di garantire l&rsquo;esercizio dei diritti dell&rsquo;Interessato di cui all&rsquo;art.&nbsp;7 del D.Lgs. 196/2003&nbsp;il Titolare del trattamento stabilisce come punto di contatto privacy la presente e.mail:&nbsp;info@nuovaedart.it</p>\r\n</div>', 'page-default.php', NULL),
-(7, 'Contatti', 'contatti', NULL, '<h2 class=\"title\">CONTATTI</h2>\r\n<div class=\"row\">\r\n<div class=\"col-sm-6 col-md-4 col-lg-4 content-center\">\r\n<p class=\"centered\"><br />CARTIAMO<br />P.IVA 00895050474</p>\r\n</div>\r\n<div class=\"col-sm-6 col-md-4 col-lg-4 content-center\">\r\n<p class=\"centered\"><br />CARTIAMO<br />VIA RENATO FUCINI, 7<br />51010 MASSA E COZZILE (PT)</p>\r\n</div>\r\n<div class=\"col-sm-6 col-md-4 col-lg-4 content-center\">\r\n<p class=\"centered\"><br /><a href=\"mailto:info@cartiamo.it\">INFO@CARTIAMO.IT</a></p>\r\n</div>\r\n</div>', 'page-default.php', NULL),
-(8, 'Come Funziona', 'come-funziona', NULL, '<h2 class=\"title\">COME FUNZIONA</h2>\r\n<div class=\"row\">\r\n<div class=\"col-sm-6 col-md-3 col-lg-3 \"><img class=\"responsive-full\" title=\"\" src=\"http://beta.websm.it/artesposa.com/images/pagine_footer/come_funziona_shop.jpg\" alt=\"\" /><br />ACCEDI ALLO SHOP</div>\r\n<div class=\"col-sm-6 col-md-3 col-lg-3 \"><img class=\"responsive-full\" title=\"\" src=\"http://beta.websm.it/artesposa.com/images/pagine_footer/come_funziona_scelta.jpg\" alt=\"\" /><br />SCEGLI E AGGIUNGI I PRODOTTI PER LE TUE NOZZE</div>\r\n<div class=\"col-sm-6 col-md-3 col-lg-3 \"><img class=\"responsive-full\" title=\"\" src=\"http://beta.websm.it/artesposa.com/images/pagine_footer/come_funziona_bottone.jpg\" alt=\"\" /><br />CLICCA SUL PULSANTE PERSONALIZZA E ACQUISTA</div>\r\n<div class=\"col-sm-6 col-md-3 col-lg-3 \"><img class=\"responsive-full\" title=\"\" src=\"http://beta.websm.it/artesposa.com/images/pagine_footer/come_funziona_live_preview.jpg\" alt=\"\" /><br />PERSONALIZZA I PRODOTTI INSERENDO I TUOI DATI</div>\r\n<p>&nbsp;<br /><br /><br /></p>\r\n<div class=\"col-sm-6 col-md-3 col-lg-3 \"><img class=\"responsive-full\" title=\"\" src=\"http://beta.websm.it/artesposa.com/images/pagine_footer/come_funziona_acquisti.jpg\" alt=\"\" /><br />&nbsp;CLICCA SUL PULSANTE ACQUISTA</div>\r\n<div class=\"col-sm-6 col-md-3 col-lg-3 \"><img class=\"responsive-full\" title=\"\" src=\"http://beta.websm.it/artesposa.com/images/pagine_footer/come_funziona_carte_credito.jpg\" alt=\"\" /><br />VAI AL CARRELLO E PAGA</div>\r\n<div class=\"col-sm-6 col-md-3 col-lg-3 \"><img class=\"responsive-full\" title=\"\" src=\"http://beta.websm.it/artesposa.com/images/pagine_footer/come_funziona_spedizione.jpg\" alt=\"\" /><br />NOI TE LI FACCIAMO ARRIVARE A CASA TUA</div>\r\n<div class=\"col-sm-6 col-md-3 col-lg-3 \"><img class=\"responsive-full\" title=\"\" src=\"http://beta.websm.it/artesposa.com/images/pagine_footer/come_funziona_anelli.jpg\" alt=\"\" /><br />TI RINGRAZIAMO DI AVERE SCELTO ARTESPOSA</div>\r\n</div>', 'page-default.php', NULL),
-(9, 'Metodo di Pagamento', 'metodo-di-pagamento', NULL, '<h1 class=\"title\">METODI DI PAGAMENTO</h1>\r\n<div class=\"colonna standardPage\">\r\n<p>Qualit&agrave; e sicurezza, questi sono i requisiti per la vendita online di Arte Sposa!&nbsp;<br />Il nostro shop online utilizza i pi&ugrave; comuni metodi di pagamento, dal <strong>bonifico</strong> al pagamento con <strong>contrassegno</strong>.</p>\r\n<p>&nbsp;</p>\r\n</div>\r\n<div class=\"colonna standardPage\">\r\n<p>Per i pi&ugrave; tecnologici &egrave; possibile pagare con <strong>Paypal</strong>, piattaforma di pagamento online pi&ugrave; sicura a livello modiale.</p>\r\n</div>', 'page-default.php', NULL),
-(10, 'Resi & Recessi', 'resi-e-recessi', NULL, '<h2 class=\"title\">RESI &amp; RECESSI</h2>\r\n<div class=\"colonna standardPage\">\r\n<h2>GARANZIE E PRODOTTI DIFETTOSI</h2>\r\n<p>I prodotti acquistati su&nbsp;<a href=\"http://cartiamo.it\">cartiamo.it</a>&nbsp;sono soggetti alla disciplina, per quanto applicabile, di cui al D.lgs 2.2.2002 n. 24 (G.U. n. 57, 8.3.2002) sui contratti di vendita e sulle garanzie concernenti i beni di consumo e, per quanto non ivi contemplato, alle specifiche disposizioni previste in materia dal Codice Civile. La garanzia si applica al prodotto che presenti difetti di conformit&agrave; e/o malfunzionamenti non riscontrabili al momento dell&rsquo;acquisto. La garanzia sar&agrave; valida purch&egrave; il prodotto sia utilizzato correttamente, nel rispetto della sua destinazione, e sia integro. Condizione necessaria per la validit&agrave; della garanzia &egrave; l&rsquo;integrit&agrave; del prodotto. La garanzia &egrave; personale e si applicher&agrave; solo all\' acquirente originario, essendo riservata ai clienti diretti e non a commercianti, rivenditori, ecc. L&rsquo;eventuale difetto dei prodotti dovr&agrave; essere segnalato entro 24 ore dalla ricezione della merce tramite mail al Servizio Clienti.</p>\r\n<h2>I PASSI DA SEGUIRE SONO I SEGUENTI:</h2>\r\n<p>- segnalare entro le 24 ore dal ricevimento del prodotto il difetto/malfunzionamento al Servizio Clienti&nbsp;Cartiamo&nbsp;si riserva la possibilit&agrave; di effettuare la sostituzione del prodotto dopo opportuna verifica sui campioni delle partecipazioni stampate in ns. possesso. Se non ritenessimo che esistano i presupposti per una sostituzione del prodotto potete a norma di legge recedere dal contratto, facendo gli ulteriori passi</p>\r\n<p>- compilare il modulo di reso/recesso in tutte le sue parti e inviarlo tramite fax al n&deg; +39 0572.773888</p>\r\n<h2>&nbsp;</h2>\r\n</div>\r\n<div class=\"colonna standardPage\">\r\n<h2>DIRITTO DI RECESSO</h2>\r\n<p>Gli acquisti effettuati sul sito&nbsp;<a href=\"http://cartiamo.it\">cartiamo.it</a>&nbsp;sono regolati dalla legge italiana sulle vendite per corrispondenza. In caso di errore nell&rsquo;ordine o ricezione di prodotti non richiesti, il Cliente pu&ograve; esercitare il diritto di recesso, ossia la possibilit&agrave; di restituire il prodotto, entro 10 giorni dalla data di consegna.</p>\r\n<h2>I PASSI DA SEGUIRE SONO I SEGUENTI:</h2>\r\n<p>- compilare il modulo di reso/recesso barrando l&rsquo;opzione &ldquo;voglio avvalermi del D.L. 50 del 15 Gennaio 1992 secondo cui &egrave; consentito il diritto di recesso entro 10 (dieci) giorni lavorativi dalla data di ricezione della merce&rdquo; includendo le proprie coordinate bancarie per il riaccredito del costo del prodotto, e inviarlo tramite fax al n&deg; +39 0572.773888 entro e non oltre i 10 giorni (far&agrave; fede la data ricevimento e la data postale della Raccomandata AR) effettuare una Raccomandata con ricevuta di ritorno ( Raccomandata AR) all&rsquo;indirizzo: Nuovaedart S.p.A Via Renato Fucini, 7 51010 Massa e Cozzile (PT) includendo copia stampata di Modulo di reso/recesso compilato, il prodotto sigillato, il relativo imballo, copia stampata della mail di conferma d&rsquo;ordine (fattura). Valido solo per ordine senza stampa.</p>\r\n<p>&nbsp;</p>\r\n</div>\r\n<p>&nbsp;</p>', 'page-default.php', NULL),
-(11, 'Live Preview', 'live-preview', NULL, '<h1 class=\"title\">LIVE PREVIEW</h1>\r\n<div class=\"colonna standardPage\">\r\n<p><strong>Arte Sposa</strong> ti da la possobilit&agrave; di rendere ancora pi&ugrave; speciale il tuo grande giorno con un nuovo servizio: la personalizzazione delle partecipazioni di matrimonio!&nbsp;<br />Sarai direttamente tu a scegliere cosa e come scrivere sulla tua partecipazione! Come?</p>\r\n<p>1. Accedi al nostro <strong>shop.</strong></p>\r\n<p>2. Selezione la partecipazione che preferisci.</p>\r\n<p>3. Aggiungi i prodotti correlati di cui hai bisogno, es. inviti al ristorante, inviti al party, bomboniere, ecc...</p>\r\n<p>4. Selezione la quantit&agrave; dal preventivo online e premi su \"<strong>Personalizza e Acquista</strong>\".</p>\r\n</div>\r\n<div class=\"colonna standardPage\">\r\n<p>5. Accederai alle sezione <strong>Live preview</strong>.<br />In questa sezione puoi digitare direttamente i <strong>contenuti</strong> della tua partecipazione, scegliere il <strong>tipo di carattere</strong> che preferisci ed il <strong>colore</strong>.<br /><br />6. Se vuoi scegliere altri caratteri o colori per la tua partecipazione clicca nella live preview su&nbsp;<a href=\"http://www.partecipazionimatrimonioartesposa.com/personalizzazione.html\"><strong>vai alla personalizzazione</strong></a>.</p>\r\n<p>7. Terminata la tua personalizzazione potrai procedere con l\'acquisto.</p>\r\n<p>8. Vuoi rivedere la tua Live Preview?&nbsp;<br />Una volta terminato l\'acquisto potrai sempre controllare la tua partecipazione accedendo al tuo account nella sezione \"<strong>live preview</strong>\".<br /><br /></p>\r\n<p>&nbsp;</p>\r\n</div>', 'page-default.php', NULL),
-(12, 'Richiedi Assistenza', 'assistenza', NULL, '<h1 class=\"title\">RICHIEDI ASSISTENZA</h1>\r\n<p class=\"centered\">Arte Sposa &egrave; sempre vicina ai proprio clienti!<br />Puoi richiedere assistenza per qualsiasi dubbio sui nostri prodotti o su un ordine effettuato.<br /><br />Compila il form sottostante e scrivici le motivazioni per cui richiedi assistenza.<br />Nel caso di un ordine ricordati di indicare il numero d\'ordine che trovi nel tuo account e allega un file. <br />Sarai contattato il prima possibile dal nostro team di specialisti.</p>\r\n<p><br class=\"clear\" /><strong class=\"title\">COMPILA CON I TUOI DATI</strong></p>', 'page-default.php', NULL),
-(13, 'Campione Gratuito', 'campione-gratuito', NULL, '<header>\r\n<h1 class=\"title\"><strong>CAMPIONE GRATUITO, VALUTA LE TUE IDEE MATRIMONIO</strong></h1>\r\n<h2>Tantissime idee matrimonio, da richiedere gratis per decidere con sicurezza</h2>\r\n</header>\r\n<div class=\"colonna standardPage\">\r\n<p>Con <strong>Cartiamo</strong>&nbsp;richiedere un <strong>Campione Gratuito</strong> per la tua <strong>partecipazione di matrimonio</strong> &egrave; una procedura semplice:</p>\r\n<p>1) Accedi alle sezione del nostro Shop di partecipazioni di matrimonio : Matrimonio chic, glamour, vintage, classico, creativo, trendy.</p>\r\n<p class=\"p1\">3) Lasciati ispirare dalle nostre <strong>idee matrimonio</strong> e scegli la partecipazioni di matrimonio per le quali vuoi richiedere il campione gratuito.</p>\r\n</div>\r\n<div class=\"colonna standardPage\">\r\n<p class=\"p1\">4) Clicca su \"Richiedi un campione\".<br />Hai a disposizione 3 campioni gratuiti, puoi ordinare un solo campione come tutti e tre.</p>\r\n<p>5) Completa l\'ordine ed inserisci i tuoi dati.<br />Ti ricordiamo che i campioni sono gratuiti come anche la spedizione.<strong> I tempi di consegna sono 10/15 giorni lavorativi dalla richiesta d\'invio</strong>.</p>\r\n<p>Se hai dei dubbi puoi sempre contattarci, trovi i nostri dai nella sezione Contatti.</p>\r\n<p>&nbsp;</p>\r\n<h2>Qualche idea per il tuo matrimonio</h2>\r\n<p>Sei indecisa sul tipo di matrimonio che vuoi fare? Non sai quale potrebbe essere la migliore partecipazione per le tue nozze?</p>\r\n<p>Puoi esplorare il nostro shop di partecipzioni di matrimonio oppure consultare il nostro blog per qualche <strong>idea matrimonio!</strong></p>\r\n<ul>\r\n<li class=\"\"><strong><a href=\"https://cartiamo.it/blog/il-matrimonio-perfetto/sposarsi-in-inverno-5-idee-per-un-matrimonio-invernale\">Sposarsi in Inverno: 5 idee per un matrimonio invernale<br /><br /></a></strong></li>\r\n<li class=\"\"><strong><a href=\"https://cartiamo.it/blog/il-matrimonio-perfetto/scegliere-il-bouquet-tutti-gli-stili-per-una-sposa-perfetta\">Scegliere il Bouquet: tutti gli stili per una sposa perfetta<br /><br /></a></strong></li>\r\n<li class=\"\"><strong><a href=\"https://cartiamo.it/blog/il-matrimonio-perfetto/il-matrimonio-country-chic-consigli-idee-e-dettagli\">Il matrimonio country chic: consigli, idee e dettagli<br /><br /></a></strong></li>\r\n<li class=\"\"><strong><a href=\"https://cartiamo.it/blog/il-matrimonio-perfetto/idee-per-matrimonio-tema-viaggio\">Matrimonio a tema viaggio: mappe, valigie, aeroplanini e tante idee per un matrimonio originale</a></strong></li>\r\n</ul>\r\n<p>&nbsp;</p>\r\n</div>\r\n<p class=\"clear\">&nbsp;</p>', 'page-default.php', NULL),
-(14, 'Collabora', 'collabora-con-noi', NULL, '<h2 class=\"title\">COLLABORA CON CARTIAMO</h2>\r\n<p>Il team di Cartiamo &egrave; sempre alla ricerca di nuove idee per offrire ogni anno partecipazioni di matrimonio nuove e contemporanee alle coppie di sposi.<br /><br />Se sei un giovane creativo appassionato di grafica ed hai qualche idea da proporci non esitare a contattarci!</p>\r\n<p><strong>Come funziona?</strong><br /><br />Puoi scriverci all\'indirizzo email <a href=\"mailto:info@cartiamo.it\">info@cartiamo.it</a>&nbsp;per richiedere informazioni pi&ugrave; dettagliate</p>', 'page-default.php', NULL),
-(15, 'Personalizzazione', 'personalizzazione', NULL, '<h1 class=\"title\">PERSONALIZZAZIONE</h1>\r\n<p>Con&nbsp;Cartiamo&nbsp;sei tu a realizzare le partecipazioni del tuo matrimonio.<br />Ma come fare se vuoi un carattere o un colore differente da quelli presenti nella partecipazione?Nessun problema sei nella sezione giusta!</p>\r\n<p>In fase di aggiunta al carrello e modifica dati potrai scegliere il colore ed il font&nbsp;che vorrai per le scritte.</p>\r\n<p>Qui sotto puoi vedere quelli attualmente disponibili :&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<div class=\"row\">\r\n<div class=\"col-md-6\">\r\n<h2>Colori disponibili per il testo su Cartiamo</h2>\r\n<img src=\"https://cartiamo.it/assets/img/tipi-colore.png\" alt=\"\" /></div>\r\n<div class=\"col-md-6\">\r\n<h2>Tipi di font disponibili su Cartiamo</h2>\r\n<img src=\"https://cartiamo.it/assets/img/tipi-font.png\" alt=\"\" /></div>\r\n</div>', 'page-default.php', NULL),
-(16, 'Save the children - Partecipazioni', 'collaborazione-save-the-children', NULL, '<h2>&nbsp;</h2>\r\n<h2>IL TUO SOSTEGNO A SAVE THE CHILDREN!</h2>\r\n<p><img src=\"http://cartiamo.it/assets/img/save-the-children-logo.png\" alt=\"\" /></p>\r\n<p>Dal 2008 insieme a migliaia di coppie di sposi, Cartiamo, con le sue di Partecipazioni di Matrimonio sostiene Save the Children, la pi&ugrave; grande Organizzazione internazionale indipendente che dal 1919 lotta per salvare la vita dei bambini e garantire loro un futuro, a ogni costo. Con il tuo importante gesto di solidariet&agrave; trasformerai, infatti, un momento felice della tua vita in un contributo per garantire scuole, libri, cure mediche, acqua potabile e molto altro ancora a migliaia di bambini.</p>\r\n<h5>Ordinando le Partecipazioni di Matrimonio Cartiamo riceverai, per ogni partecipazione ordinata, una piccola pergamena che testimonier&agrave; l&rsquo;impegno a sostegno dell&rsquo;Organizzazione.</h5>\r\n<p>Questo il testo:&nbsp;</p>\r\n<p>&ldquo;Con questa partecipazione solidale gli sposi hanno sostenuto il lavoro di Save the Children per i diritti dei bambini e per migliorare le loro condizioni di vita in tutto il mondo&rdquo;</p>\r\n<p>&nbsp;</p>\r\n<p>Save the Children &egrave; nata nel 1919 e opera in 125 paesi del mondo con programmi di salute e nutrizione, risposta alle emergenze, educazione e protezione e contrasto alla povert&agrave;.</p>\r\n<p>Per conoscere il lavoro di Save the Children vai su <a href=\"http://www.savethechildren.it?utm_source=crtm&amp;utm_medium=partner&amp;utm_content=sito&amp;utm_campaign=rf-bmb&amp;utm_term=lnk\" target=\"_blank\">www.savethechildren.it</a>&nbsp;e se vuoi aiutare ad assicurare un futuro migliore a tanti bambini vai su <a href=\"http://www.savethechildren.it/donaora?utm_source=crtm&amp;utm_medium=partner&amp;utm_content=sito-cta&amp;utm_campaign=rf-bmb&amp;utm_term=lnk\" target=\"_blank\">www.savethechildren.it/donaora</a></p>\r\n<p>Per tutti i tuoi momenti speciali puoi scegliere anche le bomboniere solidali, sacchetti e scatoline porta-confetti, su <a href=\"http://savethechildren.it/bomboniere?utm_source=crtm&amp;utm_medium=partner&amp;utm_content=bmb&amp;utm_campaign=rf-bmb&amp;utm_term=lnk\" target=\"_blank\">savethechildren.it/bomboniere</a>&nbsp;e hai anche la possibilit&agrave; di creare online una Lista Nozze per invitare amici e parenti a regalarti simbolicamente vaccini, kit nascita e latte terapeutico per sostenere i bambini di tutto il mondo. Crea la tua Lista su&nbsp;<a href=\"http://savethechildren.it/listenozze?utm_source=crtm&amp;utm_medium=partner&amp;utm_content=liste-nozze&amp;utm_campaign=rf-bmb&amp;utm_term=lnk\" target=\"_blank\">savethechildren.it/listenozze</a>.</p>\r\n<p>&nbsp;</p>\r\n<h3>Che cos\'&egrave; una lista nozze di Save the Children e come faccio a crearla online?</h3>\r\n<p>In occasione del tuo matrimonio, puoi creare la tua lista nozze su savethechildren.it/listenozze personalizzandola con un messaggio, una foto, un video e con i doni simbolici che desideri ricevere.</p>\r\n<p>I tuoi invitati avranno l&rsquo;occasione di scegliere tra, ad esempio, latte terapeutico, vaccini, kit nascita e alberi da frutto e tu riceverai una cartolina per ogni regalo, con il loro messaggio. La donazione andr&agrave; concretamente a beneficio dei bambini delle aree in cui Save the Children lavora.</p>\r\n<p>&nbsp;</p>\r\n<h3>Come posso ordinare le bomboniere di Save the Children?</h3>\r\n<p>Per ordinare le tue bomboniere vai su savethechildren.it/bomboniere , scegli il modello che preferisci, seleziona la quantit&agrave; e segui il processo d\'acquisto.</p>\r\n<p>Puoi scegliere tra : scatoline porta-confetti e pergamene (cartacee o digitali), cartoline salva-vita (vaccini/latte terapeutico/kit scolastici/Sostegno a Distanza) e Card usb.</p>\r\n<p>Le bomboniere sono spedite tramite corriere non oltre 7 giorni dalla ricezione dell\'ordine.</p>\r\n<p>&nbsp;</p>\r\n<h3>Come posso sostenere Save the Children con una donazione?</h3>\r\n<p>Puoi sostenere i progetti di Save the Children in aiuto di tanti bambini in Italia e nel mondo, direttamente online su savethechildren.it/donaora. Con la tua donazione, sempre pi&ugrave; bambini avranno tutto ci&ograve; che serve per crescere e diventare grandi. Puoi scegliere di donare anche :</p>\r\n<ul>\r\n<li>\r\n<p>chiamando il numero verde 800 98 88 19 (tutti i giorni dalle 9 alle 21)</p>\r\n</li>\r\n<li>\r\n<p>Con BONIFICO BANCARIO. Intesta il tuo bonifico, ricordandoti di indicare il tuo nome, cognome e recapito nelle note, a:</p>\r\n<p>Save the Children Italia ONLUS - Via Volturno, 58 - 00185 ROMA</p>\r\n<p><strong>Banca Popolare Etica</strong></p>\r\n<p>IT60N0501803200000000118400</p>\r\n<p>Bic-Swift CCRTIT2T84A</p>\r\n<p>&nbsp;</p>\r\n<p>Banca Prossima</p>\r\n<p>IT67A0335901600100000005071</p>\r\n<p>Bic-Swift BCITITMX</p>\r\n<p>&nbsp;</p>\r\n<p>Bancoposta</p>\r\n<p>IT19Z0760101600000043019207</p>\r\n<p>Bic-Swift BPPIITRRXXX</p>\r\n</li>\r\n<li>\r\n<p>Con CONTO CORRENTE POSTALE</p>\r\n<p>C/C POSTALE n.43019207</p>\r\n<p>Intestato a Save the Children Italia ONLUS</p>\r\n<p>Via Volturno 58 - 00185 Roma</p>\r\n</li>\r\n<li>\r\n<p>Destinando il tuo 5 X MILLE a Save the Children, inserendo il codice fiscale 97227450158 e la tua firma nell\'apposito spazio &ldquo;Sostegno del volontariato, delle Organizzazioni Non Lucrative di Utilit&agrave; Sociale&rdquo; della tua dichiarazione dei redditi.</p>\r\n</li>\r\n</ul>', 'page-default.php', NULL),
+(3, 'Chi siamo', 'chi-siamo', NULL, '<h2 class="title">CHI SIAMO</h2>\r\n<p><strong>Cartiamo</strong> &egrave; il negozio on-line, attraverso il quale puoi ordinare direttamente le tue partecipazioni sul web e fartele recapitare comodamente a casa. Grazie alla nostra pluriennale esperienza nel settore delle partecipazioni di nozze, possiamo offrirvi un vasto assortimento di articoli che potranno soddisfare ogni vostra esigenza. Ordinare le partecipazioni di nozze Cartiamo &egrave; semplice e veloce: il nostro servizio clienti &egrave; a vostra disposizione per chiarimenti e informazioni.</p>\r\n<p><strong>Cartiamo</strong> ha scelto di sostenere <strong>Save the Children</strong>, la pi&ugrave; grande organizzazione internazionale indipendente che lavora per migliorare concretamente la vita dei bambini in Italia e nel mondo. Per il tuo matrimonio potrai decidere se contribuire a sostenere il lavoro di Save the Children scegliendo le Linee Partecipazioni di <strong>Cartiamo</strong>. Il tuo gesto di solidariet&agrave; trasformer&agrave; un momento felice della tua vita in un contributo per i regalare un futuro a migliaia di bambini.</p>\r\n<p>&nbsp;</p>\r\n<p>Per conoscere il lavoro di Save the Children vai su <a href="http://www.savethechildren.it/?utm_source=crtm&amp;utm_medium=partner&amp;utm_content=sito&amp;utm_campaign=rf-bmb&amp;utm_term=lnk" target="_blank">www.savethechildren.it</a> e se vuoi aiutare ad assicurare un futuro migliore a tanti bambini vai su <a href="http://www.savethechildren.it/donaora?utm_source=crtm&amp;utm_medium=partner&amp;utm_content=sito-cta&amp;utm_campaign=rf-bmb&amp;utm_term=lnk" target="_blank">www.savethechildren.it/donaora</a></p>\r\n<p>Per i tuoi momenti speciali Save the Children puoi scegliese su <a href="http://savethechildren.it/bomboniere?utm_source=crtm&amp;utm_medium=partner&amp;utm_content=bmb&amp;utm_campaign=rf-bmb&amp;utm_term=lnk" target="_blank">savethechildren.it/bomboniere</a>&nbsp;le bomboniere solidali, sacchetti e scatoline porta-confetti, e hai la possibilit&agrave; di creare online una Lista Nozze per invitare amici e parenti a regalarti simbolicamente vaccini, kit nascita, latte terapeutico, a sostegno dei bambini di tutto il mondo su&nbsp;<a href="http://savethechildren.it/listenozze?utm_source=crtm&amp;utm_medium=partner&amp;utm_content=liste-nozze&amp;utm_campaign=rf-bmb&amp;utm_term=lnk" target="_blank">savethechildren.it/listenozze</a></p>\r\n<div class="colonna standardPage">&nbsp;</div>', 'page-default.php', NULL),
+(4, 'Faq', 'faq', NULL, '<h3><strong class="title">FAQ</strong></h3>\r\n<h3>&nbsp;</h3>\r\n<h3>Come richiedere un campione gratuito?</h3>\r\n<p>Con <strong>Cartiamo</strong>&nbsp;puoi richiedere fino a 3 campioni e la spedizione &egrave; gratuita! Come fare &egrave; semplicissimo!</p>\r\n<p>Accedi a questa sezione e segui le indicazioni:&nbsp;<a href="http://www.partecipazionimatrimonioartesposa.com/info/6/Campione-gratuito.html" target="_blank">Richiedi un Campione gratuito</a></p>\r\n<p>&nbsp;</p>\r\n<h3>Quanto tempo ci vuole per ricevere i campioni gratuiti?</h3>\r\n<p>Ci vogliono in circa 2 settimane per ricevere i campioni. Vengono spediti tramite posta ordinaria ed il postino li lascia dentro la cassetta postale.</p>\r\n<h3>&nbsp;</h3>\r\n<h3>Quanto tempo ci vuole per fare un ordine?</h3>\r\n<p>Per fare un ordine con noi, ci vogliono in circa due settimane. Dal momento dell&rsquo;ordine fino alla ricezione delle partecipazioni a casa tua.</p>\r\n<h3>&nbsp;</h3>\r\n<h3>Le buste sono comprese nelle partecipazioni?</h3>\r\n<p>Si, tutte le nostre partecipazioni sono comprese di busta.</p>\r\n<h3>&nbsp;</h3>\r\n<h3>Il prezzo indicato in ogni partecipazione &egrave; comprensivo anche dell''invito al ristorante?</h3>\r\n<p>In alcune partecipazioni l''invito al ristorante &egrave; gi&agrave; compreso ed in alcuni li dovresti ordinare a parte. Nei casi dove l''invito &egrave; compreso troverai scritto "Inviti inclusi nel prezzo", quando clicchi sulla partecipazione scelta. Nei casi dove l''invito non &egrave; compreso dovrai cliccare sulla casella "Invito al Ristorante" per poter inserire la quantit&agrave; desiderata, qui troverai anche il prezzo corrispondente dell''invito.</p>\r\n<p>&nbsp;</p>\r\n<h3>Qual &egrave; la differenza tra invito al ristorante e invito al party?</h3>\r\n<p>Con l&rsquo;invito al ristorante inviti i tuoi cari a pranzo o a cena dopo la cerimonia, con l&rsquo;invito al party poi invitare altre persone soltanto ad un party che segue al pranzo o la cena o al taglio della torta.</p>\r\n<p>&nbsp;</p>\r\n<h3>Quanto &egrave; il costo per la stampa delle partecipazioni?</h3>\r\n<p>Il costo di stampa &egrave; &euro; 45,00 per l&rsquo;intero ordine.</p>\r\n<p>&nbsp;</p>\r\n<h3>&Egrave; possibile avere un''anteprima del risultato finale prima di andare in stampa?</h3>\r\n<p>Dopo aver ricevuto il tuo ordine sul nostro sito, prepareremo una bozza di stampa con il tuo testo personale. Questa bozza ti sar&agrave; inviata per e-mail entro massimo due giorni. Qui hai la possibilit&agrave; di fare tutte le modifiche che vuoi al testo e pi&ugrave; che altro di verificare che non ci siano errori nel testo. Andremo in stampa soltanto con la tua approvazione finale della bozza.</p>\r\n<h3>&nbsp;</h3>\r\n<h3>Per le nostre partecipazioni avremmo bisogno di personalizzare le frasi. &Eacute; possibile effettuare delle modifiche al testo?</h3>\r\n<p>Si, &egrave; possibile. Quando riceverai la nostra bozza di stampa, ci poi confermare tutte le modifiche da fare al testo che desideri.</p>\r\n<p>&nbsp;</p>\r\n<h3>In cosa consiste la bomboniera da poter ordinare insieme alla partecipazione?</h3>\r\n<p>Con Bomboniera intendiamo soltanto il bigliettino che viene inserito nella bomboniera, non la bomboniera stessa.</p>\r\n<p>&nbsp;</p>\r\n<h3>Quanti sono le spese di trasporto?</h3>\r\n<p>La spedizione &egrave; gratuita.</p>\r\n<p>&nbsp;</p>\r\n<h3>Avrei bisogno di inserire anche il biglietto per il regalo con codice iban. &Egrave; possibile?</h3>\r\n<p>Si, &egrave; possibile di inserire un bigliettino per il regalo. Possiamo usare lo stesso bigliettino dell''invito al ristorante, se non &egrave; incluso nella partecipazione. Altrimenti abbiamo dei cartoncini generici nello stesso formato degli inviti disponibili da poter aggiungere.</p>\r\n<p>&nbsp;</p>\r\n<h3>E&rsquo; possibile cambiare colore della partecipazione?</h3>\r\n<p>Tutte le nostre partecipazioni sono gi&agrave; disponibili cos&igrave; come le vedi sul sito nel nostro magazzino e quindi purtroppo non modificabili nel colore.</p>\r\n<p>&nbsp;</p>\r\n<h3>E'' possibile cambiare il colore del fiocco compreso nella partecipazione?</h3>\r\n<p>In generale non &egrave; un problema cambiare il colore del fiocco se abbiamo il colore richiesto disponibile.</p>\r\n<p>&nbsp;</p>\r\n<h3>Cosa si intende per montaggio? Ha un costo a parte?</h3>\r\n<p>Con "montaggio" ci riferiamo al confezionamento della partecipazione. Cio&egrave; finiamo le partecipazioni qui da noi prima della spedizione, p.e. montaggio di un eventuale fiocco, piegatura e/o sfustellatura del biglietto, incollatura di un eventuale accessorio etc. Se non viene richiesto il montaggio, le partecipazioni vengono inviati stesi e divisi in tutti i suoi componenti. Il costo del montaggio &egrave; &euro; 0,37 per ogni partecipazione.</p>\r\n<p>&nbsp;</p>\r\n<h3>Dopo l''invio e l''ordine, se per qualche motivo dovessimo avere necessit&agrave; di aggiungere altre partecipazioni, dovremmo pagare nuovamente i costi di messa in stampa?</h3>\r\n<p>Se dobbiamo mettere i biglietti nuovamente in macchina per la stampa, dobbiamo addebitare un piccolo costo per la stampa. Non saranno ovviamente i 45,00 &euro; iniziali, ma un piccolo costo a secondo cosa dobbiamo ristampare purtroppo si.</p>\r\n<p>&nbsp;</p>\r\n<h3>Vorrei sapere se il campo "indirizzo sposa" si deve lasciare senza testo oppure con il testo segnaposto "inserisci in seguito" in caso di convivenza.</h3>\r\n<p>In caso di convivenza lascia pure il testo "inserisci in seguito" nel campo &ldquo;indirizzo sposa&rdquo;.</p>\r\n<p>&nbsp;</p>\r\n<h3>Quale partecipazioni fanno parte delle partecipazioni solidali?</h3>\r\n<p>Tutte le nostre partecipazioni che vedi sul nostro sito Cartiamo.it sono partecipazioni solidali e provvedano il sostegno a Save the Children.</p>\r\n<p>&nbsp;</p>\r\n<h3>Quanto &egrave; la quota che viene trasferito a Save the Children?</h3>\r\n<p>Noi trasferiamo il 15% del valore dei biglietti che vengono acquistate a Save the Children.</p>\r\n<p>&nbsp;</p>\r\n<h3>Scegliendo una partecipazione solidale si ha un foglio dove vi &egrave; scritto che &egrave; una partecipazione solidale? O viene scritto sulla partecipazione?</h3>\r\n<p>Riceverai nel pacco insieme alle tue partecipazioni una pergamenina, nella stessa quantit&agrave; delle partecipazioni, che conferma il sostegno che avete fatto a Save the Children. Potete aggiungere una pergamenina ad ogni partecipazione. Non viene scritto sulla partecipazione.</p>\r\n<p>&nbsp;</p>\r\n<h3>Possiamo detrarre la quota che viene trasferita a Save the Children dalla denuncia dei redditi?</h3>\r\n<p>Purtroppo il sostegno che fate a Save the Children non &egrave; detraibile dal reddito, perch&eacute; si tratta di una donazione indiretta.</p>\r\n<p>&nbsp;</p>', 'page-default.php', NULL),
+(5, 'prova', 'termini-e-condizioni', '', '<h1 class="title">TERMINI &amp; CONDIZIONI</h1><div class="colonna standardPage"><h2>OGGETTO DELLE CONDIZIONI GENERALI</h2><p>Le presenti Condizioni Generali hanno per oggetto l''acquisto di prodotti e di servizi, effettuato a distanza tramite rete telematica sul sito cartiamo.it. Sono esclusi i soggetti quali commercianti, grossisti, rivenditori, professionisti, ecc. che intendano rivendere a terzi i relativi prodotti. Ogni operazione d''acquisto sar&agrave; regolata dalle disposizioni di cui al Dlgs n. 185/99per la protezione dei consumatori in materia di contratti a distanza e sar&agrave;sottoposta alla normativa di cui al D.Lgs. 196/2003 per quanto concerne latutela della privacy.</p><h2>CONCLUSIONE CONTRATTO E CONDIZIONI GENERALI DI VENDITA</h2><p>Prima di procedere alla conclusione di un contratto di vendita &egrave; necessario registrarsi al Sito, inserendo nome, cognome, indirizzo mail e password (di seguito "credenziali di registrazione"). La registrazione sul sito &egrave; gratuita. La registrazione viene confermata a mezzo mail inviata all''indirizzo fornito dall''utente. Le credenziali di registrazione devono essere utilizzate esclusivamente dall''utente e non possono essere cedute a terzi. L''utente riterr&agrave; Cartiamo&nbsp;indenne da qualsiasi obbligo risarcitorio, sanzione derivante e/o in qualsiasi modo collegati alla violazione da parte dell''utente delle regole sulla registrazione al Sito. L''utente &egrave; esclusivo responsabile dell''accesso al Sito mediante le Credenziali di Registrazione e risponde direttamente di ogni danno o pregiudizio arrecato a&nbsp;Cartiamo o a terze parti da un uso improprio, dalla perdita, dall''appropriazione indebita da parte di altri ovvero dalla mancata tutela di un''adeguata segretezza delle proprie Credenziali di Registrazione. Tutte le operazioni effettuate tramite le Credenziali di Registrazione sono considerate effettuate dal cliente a cui le Credenziali stesse si riferiscono.<br />I contratti di vendita dei prodotti sul sito cartiamo.it&nbsp;, si considerano conclusi al momento in cui l''ordine di acquisto, in formato elettronico, viene trasmesso per via telematica dal cliente a Cartiamo&nbsp;seguendo le istruzioni che compariranno di volta in volta sul sito e quest''ultima lo accetta inviando all''utente, all''indirizzo di posta elettronica indicato, una mail di conferma contenente un link con il quale accedere ad un riepilogo delle Condizioni Generali, delle informazioni relative alle caratteristiche del prodotto acquistato, dell''indicazione dettagliata del prezzo, del mezzo di pagamento utilizzato, delle modalit&agrave; per l''esercizio del diritto di recesso, dei costi di spedizione e di eventuali costi aggiuntivi. In ogni modo nessun contratto verr&agrave; ritenuto concluso, senza che il cliente abbia accettato telematicamente le Condizioni Generali di Vendita durante l''acquisto.<br />Il cliente, con l''invio telematico del proprio ordine d''acquisto, dichiara di aver preso visione e di aver accettato le presenti condizioni generali di contratto e si obbliga ad osservarle e rispettarle nei suoi rapporti con Cartiamo.</p><h2>PREZZI</h2><p>I prezzi sono espressi in EURO. Possono subire variazioni. All&rsquo;atto dell&rsquo;acquisto si considerer&agrave; valido il prezzo indicato nel listino. Tutti i prezzi si riferiscono al singolo pezzo.</p><h2>PAGAMENTI</h2><p>Il Cliente potr&agrave; effettuare il pagamento dei prodotti acquistati all&rsquo;atto della conferma d&rsquo;ordine (approvazione bozza di stampa). mediante bonifico bancario, oppure alla consegna della merce mediante contrassegno.</p><h2>COSTI DI SPEDIZIONE</h2><p>I costi di spedizione sono a carico del destinatario, e verranno addebitati in fattura. Al momento della consegna da parte del corriere espresso non deve essere pagata alcuna somma.</p><h2>&nbsp;</h2></div><div class="colonna standardPage"><h2>MODALIT&Agrave; D''ACQUISTO</h2><p>Le offerte pubblicate sul Sito sono disponibili in durata temporale limitata e con quantit&agrave; di prodotti limitata. La data di validit&agrave; delle offerte &egrave; indicata sul Sito. Tutti i prezzi indicati sul Sito sono espressi in Euro e si intendono comprensivi di IVA. Tale importo sar&agrave; evidenziato separatamente, per ciascun prodotto, sul modulo d''ordine e sulla mail di conferma dell''ordine. I prodotti resteranno di propriet&agrave; di Cartiamo&nbsp;fino all''avvenuto pagamento del prezzo di acquisto e delle spese da parte del Cliente. Cartiamo&nbsp;dar&agrave; corso all''ordine di acquisto solo dopo aver ricevuto conferma dell''autorizzazione al pagamento dell''importo totale dovuto come indicato nell''ordine. Il cliente acquista il prodotto, le cui caratteristiche sono illustrate on-line nelle relative schede descrittive e tecniche, al prezzo ivi indicato a cui si aggiungono le spese di consegna precisate sul sito. Prima dell''inoltro dell''ordine di acquisto viene riepilogato il costo unitario di ogni prodotto prescelto, il costo complessivo in caso di acquisto di pi&ugrave; prodotti e le relative spese di consegna.</p><p>Una volta inoltrato l''ordine di acquisto, il cliente ricever&agrave; da Cartiamo&nbsp;un messaggio di posta elettronica attestante conferma di avvenuta ricezione dell''ordine di acquisto e contenente le informazioni relative alle caratteristiche principali del bene acquistato, l''indicazione dettagliata del prezzo, dei costi di consegna, dei tributi applicabili e dei mezzi di pagamento e contenente un rinvio alle condizioni generali di contratto e alle informazioni circa l''esistenza del diritto di recesso, alle condizioni e alle modalit&agrave; del suo esercizio visualizzate sul sito.</p><h2>RESPONSABILIT&Agrave; DEGLI UTENTI SUI CONTENUTI CARICATI</h2><p>La selezione dei contenenti da stampare, nonch&eacute; l&rsquo;acquisizione delle relative autorizzazioni alla loro riproduzione, ove necessarie, resta di esclusiva responsabilit&agrave; degli utenti. Nuovaedart non proceder&agrave; in nessun caso alla verifica dei contenuti.</p><h2>DISDETTA ORDINI</h2><p>Lei ha il diritto di recedere dal contratto, senza indicarne le ragioni, entro 14 giorni. Il periodo di recesso scade dopo 14 giorni dal giorno nel caso di un contratto di vendita: &laquo;in cui Lei o un terzo, diverso dal vettore e da Lei designato, acquisisce il possesso fisico dei beni.&raquo;.&nbsp;<br />Per esercitare il diritto di recesso, Lei &egrave; tenuto a informarci della sua decisione di recedere dal presente contratto tramite una dichiarazione esplicita. Per gli ordini gi&agrave; evasi il cliente dovr&agrave; attendere il recapito della merce ed esercitare il Diritto di Recesso.</p><h2>CONSEGNA</h2><p>I prodotti acquistati saranno consegnati da Nuovaedart divisione Cartiamo&nbsp;all''indirizzo indicato dal Cliente. La consegna avverr&agrave; tramite corriere espresso. Generalmente i corrieri presso cui ci serviamo consegnano la merce nel 95% dei casi entro uno o due giorni dalla spedizione. Al momento della spedizione saranno comunicati, via posta elettronica, gli estremi per monitorare il processo di consegna. La fattura sar&agrave; inserita al l''interno del pacco contenente le partecipazioni.</p><h2>CONFEZIONI</h2><p>Le confezioni utilizzate sono scatole di cartone. Alla consegna il Cliente deve verificare l&rsquo;integrit&agrave; del pacco, che non sia danneggiato o bagnato o non sigillato In caso di non corrispondenza tra quanto ordinato e quanto consegnato, secondo le caratteristiche sopra descritte, il Cliente dovr&agrave; darne immediata comunicazione contattando il Servizio Clienti.</p></div>', 'page-default.php', NULL),
+(6, 'SICUREZZA & PRIVACY', 'sicurezza-e-privacy', NULL, '<h1 class="title">SICUREZZA &amp; PRIVACY</h1>\r\n<div class="colonna standardPage">\r\n<h2>PRIVACY POLICY</h2>\r\n<p>Il presente sito internet adotta il trattamento dei dati personali in ossequio alla normativa sulla privacy (D.Lgs. 196/2003) e successive modificazioni. La presente Privacy policy pu&ograve; essere suscettibile di integrazioni e modifiche in virt&ugrave; dell&rsquo;evoluzione normativa, tecnologica, delle migliori prassi e sulla scorta di esigenze interne di ristrutturazione dell&rsquo;architettura digitale.</p>\r\n<p>Il Titolare del trattamento &egrave;&nbsp;Nuovaedart srl&nbsp;SEDE LEGALE:&nbsp;Via Fucini, 7 - 51010 Massa e Cozzile, Pistoia In relazione al trattamento dei propri dati personali, l&rsquo;utente potr&agrave; esercitare i diritti previsti dalla legge scrivendo al seguente indirizzo elettronico:&nbsp;info@nuovaedart.it</p>\r\n<p>Il Responsabile del trattamento dei dati elettronici per la piattaforma web &egrave; il Signor Marco Focosiche si occupa delle richieste privacy inoltrate all&rsquo;e.mail indicata sopra.</p>\r\n<p>Dati raccolti e Finalit&agrave;. I dati di contenuto raccolti vengono trattati nel rispetto della legge e unicamente secondo le finalit&agrave; del servizio richiesto.&nbsp;</p>\r\n<p>&nbsp;</p>\r\n</div>\r\n<div class="colonna standardPage">\r\n<p>I dati di navigazione non sono sottoposti a cookies. Non &egrave; applicato nessun meccanismo di archiviazione ne&rsquo; di memorizzazione anche solo temporanea.</p>\r\n<p>Modalit&agrave; di trattamento: i tuoi dati sono trattati temporaneamente, anche elettronicamente nella misura strettamente necessaria per il servizio di vendita online.</p>\r\n<p>Comunicazione a Terzi e diffusione. I Tuoi dati non potranno da noi essere comunicati a terzi o diffusi in alcun modo salvo Tuo esplicito consenso espresso o per eseguire un preciso obbligo di legge o un ordine imperativo dell&rsquo;Autorit&agrave;.</p>\r\n<p>Esercizio diritti Interessato.<br />Ai fini di garantire l&rsquo;esercizio dei diritti dell&rsquo;Interessato di cui all&rsquo;art.&nbsp;7 del D.Lgs. 196/2003&nbsp;il Titolare del trattamento stabilisce come punto di contatto privacy la presente e.mail:&nbsp;info@nuovaedart.it</p>\r\n</div>', 'page-default.php', NULL),
+(7, 'Contatti', 'contatti', NULL, '<h2 class="title">CONTATTI</h2>\r\n<div class="row">\r\n<div class="col-sm-6 col-md-4 col-lg-4 content-center">\r\n<p class="centered"><br />CARTIAMO<br />P.IVA 00895050474</p>\r\n</div>\r\n<div class="col-sm-6 col-md-4 col-lg-4 content-center">\r\n<p class="centered"><br />CARTIAMO<br />VIA RENATO FUCINI, 7<br />51010 MASSA E COZZILE (PT)</p>\r\n</div>\r\n<div class="col-sm-6 col-md-4 col-lg-4 content-center">\r\n<p class="centered"><br /><a href="mailto:info@cartiamo.it">INFO@CARTIAMO.IT</a></p>\r\n</div>\r\n</div>', 'page-default.php', NULL),
+(8, 'Come Funziona', 'come-funziona', NULL, '<h2 class="title">COME FUNZIONA</h2>\r\n<div class="row">\r\n<div class="col-sm-6 col-md-3 col-lg-3 "><img class="responsive-full" title="" src="http://beta.websm.it/artesposa.com/images/pagine_footer/come_funziona_shop.jpg" alt="" /><br />ACCEDI ALLO SHOP</div>\r\n<div class="col-sm-6 col-md-3 col-lg-3 "><img class="responsive-full" title="" src="http://beta.websm.it/artesposa.com/images/pagine_footer/come_funziona_scelta.jpg" alt="" /><br />SCEGLI E AGGIUNGI I PRODOTTI PER LE TUE NOZZE</div>\r\n<div class="col-sm-6 col-md-3 col-lg-3 "><img class="responsive-full" title="" src="http://beta.websm.it/artesposa.com/images/pagine_footer/come_funziona_bottone.jpg" alt="" /><br />CLICCA SUL PULSANTE PERSONALIZZA E ACQUISTA</div>\r\n<div class="col-sm-6 col-md-3 col-lg-3 "><img class="responsive-full" title="" src="http://beta.websm.it/artesposa.com/images/pagine_footer/come_funziona_live_preview.jpg" alt="" /><br />PERSONALIZZA I PRODOTTI INSERENDO I TUOI DATI</div>\r\n<p>&nbsp;<br /><br /><br /></p>\r\n<div class="col-sm-6 col-md-3 col-lg-3 "><img class="responsive-full" title="" src="http://beta.websm.it/artesposa.com/images/pagine_footer/come_funziona_acquisti.jpg" alt="" /><br />&nbsp;CLICCA SUL PULSANTE ACQUISTA</div>\r\n<div class="col-sm-6 col-md-3 col-lg-3 "><img class="responsive-full" title="" src="http://beta.websm.it/artesposa.com/images/pagine_footer/come_funziona_carte_credito.jpg" alt="" /><br />VAI AL CARRELLO E PAGA</div>\r\n<div class="col-sm-6 col-md-3 col-lg-3 "><img class="responsive-full" title="" src="http://beta.websm.it/artesposa.com/images/pagine_footer/come_funziona_spedizione.jpg" alt="" /><br />NOI TE LI FACCIAMO ARRIVARE A CASA TUA</div>\r\n<div class="col-sm-6 col-md-3 col-lg-3 "><img class="responsive-full" title="" src="http://beta.websm.it/artesposa.com/images/pagine_footer/come_funziona_anelli.jpg" alt="" /><br />TI RINGRAZIAMO DI AVERE SCELTO ARTESPOSA</div>\r\n</div>', 'page-default.php', NULL),
+(9, 'Metodo di Pagamento', 'metodo-di-pagamento', NULL, '<h1 class="title">METODI DI PAGAMENTO</h1>\r\n<div class="colonna standardPage">\r\n<p>Qualit&agrave; e sicurezza, questi sono i requisiti per la vendita online di Arte Sposa!&nbsp;<br />Il nostro shop online utilizza i pi&ugrave; comuni metodi di pagamento, dal <strong>bonifico</strong> al pagamento con <strong>contrassegno</strong>.</p>\r\n<p>&nbsp;</p>\r\n</div>\r\n<div class="colonna standardPage">\r\n<p>Per i pi&ugrave; tecnologici &egrave; possibile pagare con <strong>Paypal</strong>, piattaforma di pagamento online pi&ugrave; sicura a livello modiale.</p>\r\n</div>', 'page-default.php', NULL),
+(10, 'Resi & Recessi', 'resi-e-recessi', NULL, '<h2 class="title">RESI &amp; RECESSI</h2>\r\n<div class="colonna standardPage">\r\n<h2>GARANZIE E PRODOTTI DIFETTOSI</h2>\r\n<p>I prodotti acquistati su&nbsp;<a href="http://cartiamo.it">cartiamo.it</a>&nbsp;sono soggetti alla disciplina, per quanto applicabile, di cui al D.lgs 2.2.2002 n. 24 (G.U. n. 57, 8.3.2002) sui contratti di vendita e sulle garanzie concernenti i beni di consumo e, per quanto non ivi contemplato, alle specifiche disposizioni previste in materia dal Codice Civile. La garanzia si applica al prodotto che presenti difetti di conformit&agrave; e/o malfunzionamenti non riscontrabili al momento dell&rsquo;acquisto. La garanzia sar&agrave; valida purch&egrave; il prodotto sia utilizzato correttamente, nel rispetto della sua destinazione, e sia integro. Condizione necessaria per la validit&agrave; della garanzia &egrave; l&rsquo;integrit&agrave; del prodotto. La garanzia &egrave; personale e si applicher&agrave; solo all'' acquirente originario, essendo riservata ai clienti diretti e non a commercianti, rivenditori, ecc. L&rsquo;eventuale difetto dei prodotti dovr&agrave; essere segnalato entro 24 ore dalla ricezione della merce tramite mail al Servizio Clienti.</p>\r\n<h2>I PASSI DA SEGUIRE SONO I SEGUENTI:</h2>\r\n<p>- segnalare entro le 24 ore dal ricevimento del prodotto il difetto/malfunzionamento al Servizio Clienti&nbsp;Cartiamo&nbsp;si riserva la possibilit&agrave; di effettuare la sostituzione del prodotto dopo opportuna verifica sui campioni delle partecipazioni stampate in ns. possesso. Se non ritenessimo che esistano i presupposti per una sostituzione del prodotto potete a norma di legge recedere dal contratto, facendo gli ulteriori passi</p>\r\n<p>- compilare il modulo di reso/recesso in tutte le sue parti e inviarlo tramite fax al n&deg; +39 0572.773888</p>\r\n<h2>&nbsp;</h2>\r\n</div>\r\n<div class="colonna standardPage">\r\n<h2>DIRITTO DI RECESSO</h2>\r\n<p>Gli acquisti effettuati sul sito&nbsp;<a href="http://cartiamo.it">cartiamo.it</a>&nbsp;sono regolati dalla legge italiana sulle vendite per corrispondenza. In caso di errore nell&rsquo;ordine o ricezione di prodotti non richiesti, il Cliente pu&ograve; esercitare il diritto di recesso, ossia la possibilit&agrave; di restituire il prodotto, entro 10 giorni dalla data di consegna.</p>\r\n<h2>I PASSI DA SEGUIRE SONO I SEGUENTI:</h2>\r\n<p>- compilare il modulo di reso/recesso barrando l&rsquo;opzione &ldquo;voglio avvalermi del D.L. 50 del 15 Gennaio 1992 secondo cui &egrave; consentito il diritto di recesso entro 10 (dieci) giorni lavorativi dalla data di ricezione della merce&rdquo; includendo le proprie coordinate bancarie per il riaccredito del costo del prodotto, e inviarlo tramite fax al n&deg; +39 0572.773888 entro e non oltre i 10 giorni (far&agrave; fede la data ricevimento e la data postale della Raccomandata AR) effettuare una Raccomandata con ricevuta di ritorno ( Raccomandata AR) all&rsquo;indirizzo: Nuovaedart S.p.A Via Renato Fucini, 7 51010 Massa e Cozzile (PT) includendo copia stampata di Modulo di reso/recesso compilato, il prodotto sigillato, il relativo imballo, copia stampata della mail di conferma d&rsquo;ordine (fattura). Valido solo per ordine senza stampa.</p>\r\n<p>&nbsp;</p>\r\n</div>\r\n<p>&nbsp;</p>', 'page-default.php', NULL),
+(11, 'Live Preview', 'live-preview', NULL, '<h1 class="title">LIVE PREVIEW</h1>\r\n<div class="colonna standardPage">\r\n<p><strong>Arte Sposa</strong> ti da la possobilit&agrave; di rendere ancora pi&ugrave; speciale il tuo grande giorno con un nuovo servizio: la personalizzazione delle partecipazioni di matrimonio!&nbsp;<br />Sarai direttamente tu a scegliere cosa e come scrivere sulla tua partecipazione! Come?</p>\r\n<p>1. Accedi al nostro <strong>shop.</strong></p>\r\n<p>2. Selezione la partecipazione che preferisci.</p>\r\n<p>3. Aggiungi i prodotti correlati di cui hai bisogno, es. inviti al ristorante, inviti al party, bomboniere, ecc...</p>\r\n<p>4. Selezione la quantit&agrave; dal preventivo online e premi su "<strong>Personalizza e Acquista</strong>".</p>\r\n</div>\r\n<div class="colonna standardPage">\r\n<p>5. Accederai alle sezione <strong>Live preview</strong>.<br />In questa sezione puoi digitare direttamente i <strong>contenuti</strong> della tua partecipazione, scegliere il <strong>tipo di carattere</strong> che preferisci ed il <strong>colore</strong>.<br /><br />6. Se vuoi scegliere altri caratteri o colori per la tua partecipazione clicca nella live preview su&nbsp;<a href="http://www.partecipazionimatrimonioartesposa.com/personalizzazione.html"><strong>vai alla personalizzazione</strong></a>.</p>\r\n<p>7. Terminata la tua personalizzazione potrai procedere con l''acquisto.</p>\r\n<p>8. Vuoi rivedere la tua Live Preview?&nbsp;<br />Una volta terminato l''acquisto potrai sempre controllare la tua partecipazione accedendo al tuo account nella sezione "<strong>live preview</strong>".<br /><br /></p>\r\n<p>&nbsp;</p>\r\n</div>', 'page-default.php', NULL),
+(12, 'Richiedi Assistenza', 'assistenza', NULL, '<h1 class="title">RICHIEDI ASSISTENZA</h1>\r\n<p class="centered">Arte Sposa &egrave; sempre vicina ai proprio clienti!<br />Puoi richiedere assistenza per qualsiasi dubbio sui nostri prodotti o su un ordine effettuato.<br /><br />Compila il form sottostante e scrivici le motivazioni per cui richiedi assistenza.<br />Nel caso di un ordine ricordati di indicare il numero d''ordine che trovi nel tuo account e allega un file. <br />Sarai contattato il prima possibile dal nostro team di specialisti.</p>\r\n<p><br class="clear" /><strong class="title">COMPILA CON I TUOI DATI</strong></p>', 'page-default.php', NULL),
+(13, 'Campione Gratuito', 'campione-gratuito', NULL, '<header>\r\n<h1 class="title"><strong>CAMPIONE GRATUITO, VALUTA LE TUE IDEE MATRIMONIO</strong></h1>\r\n<h2>Tantissime idee matrimonio, da richiedere gratis per decidere con sicurezza</h2>\r\n</header>\r\n<div class="colonna standardPage">\r\n<p>Con <strong>Cartiamo</strong>&nbsp;richiedere un <strong>Campione Gratuito</strong> per la tua <strong>partecipazione di matrimonio</strong> &egrave; una procedura semplice:</p>\r\n<p>1) Accedi alle sezione del nostro Shop di partecipazioni di matrimonio : Matrimonio chic, glamour, vintage, classico, creativo, trendy.</p>\r\n<p class="p1">3) Lasciati ispirare dalle nostre <strong>idee matrimonio</strong> e scegli la partecipazioni di matrimonio per le quali vuoi richiedere il campione gratuito.</p>\r\n</div>\r\n<div class="colonna standardPage">\r\n<p class="p1">4) Clicca su "Richiedi un campione".<br />Hai a disposizione 3 campioni gratuiti, puoi ordinare un solo campione come tutti e tre.</p>\r\n<p>5) Completa l''ordine ed inserisci i tuoi dati.<br />Ti ricordiamo che i campioni sono gratuiti come anche la spedizione.<strong> I tempi di consegna sono 10/15 giorni lavorativi dalla richiesta d''invio</strong>.</p>\r\n<p>Se hai dei dubbi puoi sempre contattarci, trovi i nostri dai nella sezione Contatti.</p>\r\n<p>&nbsp;</p>\r\n<h2>Qualche idea per il tuo matrimonio</h2>\r\n<p>Sei indecisa sul tipo di matrimonio che vuoi fare? Non sai quale potrebbe essere la migliore partecipazione per le tue nozze?</p>\r\n<p>Puoi esplorare il nostro shop di partecipzioni di matrimonio oppure consultare il nostro blog per qualche <strong>idea matrimonio!</strong></p>\r\n<ul>\r\n<li class=""><strong><a href="https://cartiamo.it/blog/il-matrimonio-perfetto/sposarsi-in-inverno-5-idee-per-un-matrimonio-invernale">Sposarsi in Inverno: 5 idee per un matrimonio invernale<br /><br /></a></strong></li>\r\n<li class=""><strong><a href="https://cartiamo.it/blog/il-matrimonio-perfetto/scegliere-il-bouquet-tutti-gli-stili-per-una-sposa-perfetta">Scegliere il Bouquet: tutti gli stili per una sposa perfetta<br /><br /></a></strong></li>\r\n<li class=""><strong><a href="https://cartiamo.it/blog/il-matrimonio-perfetto/il-matrimonio-country-chic-consigli-idee-e-dettagli">Il matrimonio country chic: consigli, idee e dettagli<br /><br /></a></strong></li>\r\n<li class=""><strong><a href="https://cartiamo.it/blog/il-matrimonio-perfetto/idee-per-matrimonio-tema-viaggio">Matrimonio a tema viaggio: mappe, valigie, aeroplanini e tante idee per un matrimonio originale</a></strong></li>\r\n</ul>\r\n<p>&nbsp;</p>\r\n</div>\r\n<p class="clear">&nbsp;</p>', 'page-default.php', NULL),
+(14, 'Collabora', 'collabora-con-noi', NULL, '<h2 class="title">COLLABORA CON CARTIAMO</h2>\r\n<p>Il team di Cartiamo &egrave; sempre alla ricerca di nuove idee per offrire ogni anno partecipazioni di matrimonio nuove e contemporanee alle coppie di sposi.<br /><br />Se sei un giovane creativo appassionato di grafica ed hai qualche idea da proporci non esitare a contattarci!</p>\r\n<p><strong>Come funziona?</strong><br /><br />Puoi scriverci all''indirizzo email <a href="mailto:info@cartiamo.it">info@cartiamo.it</a>&nbsp;per richiedere informazioni pi&ugrave; dettagliate</p>', 'page-default.php', NULL),
+(15, 'Personalizzazione', 'personalizzazione', NULL, '<h1 class="title">PERSONALIZZAZIONE</h1>\r\n<p>Con&nbsp;Cartiamo&nbsp;sei tu a realizzare le partecipazioni del tuo matrimonio.<br />Ma come fare se vuoi un carattere o un colore differente da quelli presenti nella partecipazione?Nessun problema sei nella sezione giusta!</p>\r\n<p>In fase di aggiunta al carrello e modifica dati potrai scegliere il colore ed il font&nbsp;che vorrai per le scritte.</p>\r\n<p>Qui sotto puoi vedere quelli attualmente disponibili :&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<div class="row">\r\n<div class="col-md-6">\r\n<h2>Colori disponibili per il testo su Cartiamo</h2>\r\n<img src="https://cartiamo.it/assets/img/tipi-colore.png" alt="" /></div>\r\n<div class="col-md-6">\r\n<h2>Tipi di font disponibili su Cartiamo</h2>\r\n<img src="https://cartiamo.it/assets/img/tipi-font.png" alt="" /></div>\r\n</div>', 'page-default.php', NULL),
+(16, 'Save the children - Partecipazioni', 'collaborazione-save-the-children', NULL, '<h2>&nbsp;</h2>\r\n<h2>IL TUO SOSTEGNO A SAVE THE CHILDREN!</h2>\r\n<p><img src="http://cartiamo.it/assets/img/save-the-children-logo.png" alt="" /></p>\r\n<p>Dal 2008 insieme a migliaia di coppie di sposi, Cartiamo, con le sue di Partecipazioni di Matrimonio sostiene Save the Children, la pi&ugrave; grande Organizzazione internazionale indipendente che dal 1919 lotta per salvare la vita dei bambini e garantire loro un futuro, a ogni costo. Con il tuo importante gesto di solidariet&agrave; trasformerai, infatti, un momento felice della tua vita in un contributo per garantire scuole, libri, cure mediche, acqua potabile e molto altro ancora a migliaia di bambini.</p>\r\n<h5>Ordinando le Partecipazioni di Matrimonio Cartiamo riceverai, per ogni partecipazione ordinata, una piccola pergamena che testimonier&agrave; l&rsquo;impegno a sostegno dell&rsquo;Organizzazione.</h5>\r\n<p>Questo il testo:&nbsp;</p>\r\n<p>&ldquo;Con questa partecipazione solidale gli sposi hanno sostenuto il lavoro di Save the Children per i diritti dei bambini e per migliorare le loro condizioni di vita in tutto il mondo&rdquo;</p>\r\n<p>&nbsp;</p>\r\n<p>Save the Children &egrave; nata nel 1919 e opera in 125 paesi del mondo con programmi di salute e nutrizione, risposta alle emergenze, educazione e protezione e contrasto alla povert&agrave;.</p>\r\n<p>Per conoscere il lavoro di Save the Children vai su <a href="http://www.savethechildren.it?utm_source=crtm&amp;utm_medium=partner&amp;utm_content=sito&amp;utm_campaign=rf-bmb&amp;utm_term=lnk" target="_blank">www.savethechildren.it</a>&nbsp;e se vuoi aiutare ad assicurare un futuro migliore a tanti bambini vai su <a href="http://www.savethechildren.it/donaora?utm_source=crtm&amp;utm_medium=partner&amp;utm_content=sito-cta&amp;utm_campaign=rf-bmb&amp;utm_term=lnk" target="_blank">www.savethechildren.it/donaora</a></p>\r\n<p>Per tutti i tuoi momenti speciali puoi scegliere anche le bomboniere solidali, sacchetti e scatoline porta-confetti, su <a href="http://savethechildren.it/bomboniere?utm_source=crtm&amp;utm_medium=partner&amp;utm_content=bmb&amp;utm_campaign=rf-bmb&amp;utm_term=lnk" target="_blank">savethechildren.it/bomboniere</a>&nbsp;e hai anche la possibilit&agrave; di creare online una Lista Nozze per invitare amici e parenti a regalarti simbolicamente vaccini, kit nascita e latte terapeutico per sostenere i bambini di tutto il mondo. Crea la tua Lista su&nbsp;<a href="http://savethechildren.it/listenozze?utm_source=crtm&amp;utm_medium=partner&amp;utm_content=liste-nozze&amp;utm_campaign=rf-bmb&amp;utm_term=lnk" target="_blank">savethechildren.it/listenozze</a>.</p>\r\n<p>&nbsp;</p>\r\n<h3>Che cos''&egrave; una lista nozze di Save the Children e come faccio a crearla online?</h3>\r\n<p>In occasione del tuo matrimonio, puoi creare la tua lista nozze su savethechildren.it/listenozze personalizzandola con un messaggio, una foto, un video e con i doni simbolici che desideri ricevere.</p>\r\n<p>I tuoi invitati avranno l&rsquo;occasione di scegliere tra, ad esempio, latte terapeutico, vaccini, kit nascita e alberi da frutto e tu riceverai una cartolina per ogni regalo, con il loro messaggio. La donazione andr&agrave; concretamente a beneficio dei bambini delle aree in cui Save the Children lavora.</p>\r\n<p>&nbsp;</p>\r\n<h3>Come posso ordinare le bomboniere di Save the Children?</h3>\r\n<p>Per ordinare le tue bomboniere vai su savethechildren.it/bomboniere , scegli il modello che preferisci, seleziona la quantit&agrave; e segui il processo d''acquisto.</p>\r\n<p>Puoi scegliere tra : scatoline porta-confetti e pergamene (cartacee o digitali), cartoline salva-vita (vaccini/latte terapeutico/kit scolastici/Sostegno a Distanza) e Card usb.</p>\r\n<p>Le bomboniere sono spedite tramite corriere non oltre 7 giorni dalla ricezione dell''ordine.</p>\r\n<p>&nbsp;</p>\r\n<h3>Come posso sostenere Save the Children con una donazione?</h3>\r\n<p>Puoi sostenere i progetti di Save the Children in aiuto di tanti bambini in Italia e nel mondo, direttamente online su savethechildren.it/donaora. Con la tua donazione, sempre pi&ugrave; bambini avranno tutto ci&ograve; che serve per crescere e diventare grandi. Puoi scegliere di donare anche :</p>\r\n<ul>\r\n<li>\r\n<p>chiamando il numero verde 800 98 88 19 (tutti i giorni dalle 9 alle 21)</p>\r\n</li>\r\n<li>\r\n<p>Con BONIFICO BANCARIO. Intesta il tuo bonifico, ricordandoti di indicare il tuo nome, cognome e recapito nelle note, a:</p>\r\n<p>Save the Children Italia ONLUS - Via Volturno, 58 - 00185 ROMA</p>\r\n<p><strong>Banca Popolare Etica</strong></p>\r\n<p>IT60N0501803200000000118400</p>\r\n<p>Bic-Swift CCRTIT2T84A</p>\r\n<p>&nbsp;</p>\r\n<p>Banca Prossima</p>\r\n<p>IT67A0335901600100000005071</p>\r\n<p>Bic-Swift BCITITMX</p>\r\n<p>&nbsp;</p>\r\n<p>Bancoposta</p>\r\n<p>IT19Z0760101600000043019207</p>\r\n<p>Bic-Swift BPPIITRRXXX</p>\r\n</li>\r\n<li>\r\n<p>Con CONTO CORRENTE POSTALE</p>\r\n<p>C/C POSTALE n.43019207</p>\r\n<p>Intestato a Save the Children Italia ONLUS</p>\r\n<p>Via Volturno 58 - 00185 Roma</p>\r\n</li>\r\n<li>\r\n<p>Destinando il tuo 5 X MILLE a Save the Children, inserendo il codice fiscale 97227450158 e la tua firma nell''apposito spazio &ldquo;Sostegno del volontariato, delle Organizzazioni Non Lucrative di Utilit&agrave; Sociale&rdquo; della tua dichiarazione dei redditi.</p>\r\n</li>\r\n</ul>', 'page-default.php', NULL),
 (17, 'Prova', 'prova', NULL, NULL, NULL, NULL),
-(18, 'Supporto ordini', 'supporto-ordini', NULL, '<h2>Hai effettuato un ordine e non sai come andare avanti?</h2>\r\n<p>Puoi contattarci direttamente alla mail&nbsp;<a href=\"mailto:info@cartiamo.it\">info@cartiamo.it</a>&nbsp;per spiegarci i tuoi problemi o i tuoi dubbi oppure utilizzare la chat sul sito e parlare con un nostro operatore.</p>\r\n<p>&nbsp;</p>\r\n<h3>Grazie mille</h3>', 'page-default.php', NULL),
+(18, 'Supporto ordini', 'supporto-ordini', NULL, '<h2>Hai effettuato un ordine e non sai come andare avanti?</h2>\r\n<p>Puoi contattarci direttamente alla mail&nbsp;<a href="mailto:info@cartiamo.it">info@cartiamo.it</a>&nbsp;per spiegarci i tuoi problemi o i tuoi dubbi oppure utilizzare la chat sul sito e parlare con un nostro operatore.</p>\r\n<p>&nbsp;</p>\r\n<h3>Grazie mille</h3>', 'page-default.php', NULL),
 (19, 'Metodi di pagamento', 'metodi-di-pagamento', NULL, '<h1>Metodi di pagamento</h1>\r\n<p>I metodi di pagamento accettati su <strong>Cartiamo</strong> sono :</p>\r\n<ul>\r\n<li>Bonifico Bancario</li>\r\n<li>Carta di credito</li>\r\n</ul>\r\n<p>&nbsp;</p>', 'page-default.php', NULL),
 (20, 'Il Montaggio della Partecipazione', 'montaggio partecipazione', NULL, NULL, NULL, NULL),
-(21, 'Il Montaggio', 'montaggio-della-partecipazione', NULL, '<h1 style=\"text-align: center;\"><strong><span style=\"font-size: 1.5em;\">Il Montaggio della Partecipazione</span></strong></h1>\r\n<p>Per Montaggio della Partecipazione, dove disponibile, intendiamo la separazione di ogni singola parte dal&nbsp;foglio di taglio e la composizione della partecipazione con eventuali innesti, collegamenti di cordicelle, fiocchi e tutto ci&ograve; che serve per completare la partecipazione e renderla pronta all\'invio per posta.&nbsp;</p>\r\n<p>&nbsp;</p>', 'page-default.php', NULL),
-(22, 'Matrimonio al sud', 'matrimonio-al-sud', NULL, '<header>\r\n<h1 style=\"text-align: center;\"><span style=\"font-size: 1.3em;\"><strong>Matrimonio al sud</strong></span></h1>\r\n<h2>Luoghi comuni e partecipazioni per matrimoni al sud</h2>\r\n</header>\r\n<div class=\"row\">\r\n<div class=\"col-md-7\">\r\n<p>I luoghi comuni sul <strong>matrimonio al sud</strong> li conosciamo un p&ograve; tutti, tradizionale, esuberante ed infinito. Al Nord si tende a celebrare le nozze in posti ricercati, come spiagge, castelli o giardini fioriti; sposarsi al sud vuol dire invece&nbsp;<strong>sposarsi rigorosamente in chiesa</strong> con presenti tutti i parenti, amici, parenti di amici, amici di parenti di amici di parenti... insomma tutta la famiglia allargata deve essere presente al tuo matrimonio.</p>\r\n<p>L\'abito da sposa non pu&ograve; essere minimale, tutto deve essere classico ed in grande stile.</p>\r\n<p>il tuo matrimonio rappresenta il giorno pi&ugrave; importante della tua vita e per questo ogni <strong>matrimonio al sud&nbsp;</strong>deve terminare con un enorme banchetto con almeno 10 portate.</p>\r\n<p>&nbsp;</p>\r\n<h2>Partecipazioni di matrimonio classiche</h2>\r\n<p>Per un <strong>matrimonio al sud</strong> le&nbsp;<a title=\"Partecipazioni classiche\" href=\"http://localhost/shop/matrimoni/classica\">partecipazioni migliori</a> sono sicuramente quelle della nostra <strong>linea classica.&nbsp;Cartiamo</strong> ti propone una&nbsp;grandissima variet&agrave; di partecipazioni di matrimonio, da quelle creative a quelletrendy, vintage e glamour ma qui sotto puoi trovare una selezione delle nostre migliori <strong>partecipazioni di matrimonio classiche</strong>, sicuramente le migliori per un <em>matrimonio al sud.</em></p>\r\n<p>&nbsp;</p>\r\n</div>\r\n<div class=\"col-md-5\">\r\n<p>Questi sono solo alcuni dei luoghi comuni sui <strong>matrimoni al sud</strong> ma ne esistono tanti altri... ci sono anche molte commedie e film che li rappresentano ma sicuramente un buon concentrato lo possiamo trovare proprio nel film \"<strong>Matrimonio al sud</strong>\"</p>\r\n<h4>Trailer Matrimonio al sud</h4>\r\n<iframe style=\"max-width: 100%;\" src=\"https://www.youtube.com/embed/rvsQfkfB4sQ\" width=\"560\" height=\"315\" frameborder=\"0\" allowfullscreen=\"allowfullscreen\"></iframe></div>\r\n</div>', 'page-default.php', NULL),
-(23, 'Prima comunione', 'auguri-prima-comunione', NULL, '<div class=\"row\">\r\n<div class=\"col-md-7\">\r\n<h1><strong>La prima comunione, frasi e partecipazioni</strong></h1>\r\n<p>Come sappiamo tutti, la <strong>prima comunione</strong>&nbsp;&egrave; il momento in cui i ragazzi si accostano per la prima volta al sacramento dell\'Eucaristia. Da sempre &egrave; un momento importantissimo per la vita di chiunque che viene atteso e festeggiato da tutta la famiglia.</p>\r\n<p>Qui a cartiamo ci occupiamo e teniamo a cuore tutto quello che riguarda la famiglia, non solo il matrimonio ma anche <strong>partecipazioni per la prima comunione</strong> di tuo figlio, siamo sempre a disposizione per domande o suggerimenti, ci puoi contattare quando vuoi tramite la chat sul sito!</p>\r\n<p><strong>La prima comunione di tuo figlio deve essere indimenticabile!</strong></p>\r\n<p>&nbsp;</p>\r\n</div>\r\n<div class=\"col-md-5 bg1 \" style=\"padding: 2em;\">\r\n<h2>In collaborazione con Save the Children</h2>\r\n<p>La nostra collaborazione con&nbsp;<a title=\"Partecipazioni prima comunione Save the Children\" href=\"https://cartiamo.it/collaborazione-save-the-children\">Save the Children</a> risulta forse ancora pi&ugrave; importante se accostata alle <strong>partecipazioni per prima comunione</strong>.</p>\r\n<p>Facendo gli <strong>auguri prima comunione</strong> tramite <strong>Cartiamo</strong> scegli di devolvere una percentuale ai bambini che ne hanno bisogno tramite Save the Children.</p>\r\n</div>\r\n</div>\r\n<h2>Frasi prima comunione</h2>\r\n<p>Prima cosa da&nbsp;trovare&nbsp;per una perfetta <strong>prima comunione</strong> sono le giuste <em>frasi auguri per prima comunione</em>. Ci siamo presi la liberta di&nbsp;farti una piccola lista di <strong>frasi da dedicare</strong> alla <strong>prima comunione</strong> di tuo figlio dalle quali puoi prendere spunto.</p>\r\n<p>Ecco alcune <strong>frasi per la prima comunione</strong> :&nbsp;</p>\r\n<ul>\r\n<li>\r\n<p><em>Ricevere la Prima Comunione &egrave; come nascere di nuovo con Ges&ugrave;. Tanti auguri per questo giorno importante</em></p>\r\n</li>\r\n<li>\r\n<p><em>Oggi con la Prima Comunione, riceverai un bene prezioso; conservalo per sempre nel tuo cuore. Che il Signore ti accompagni in una vita piena di gioia.</em></p>\r\n</li>\r\n<li>\r\n<p><em>Vivi e credi per raggiungere i tuoi sogni.</em></p>\r\n</li>\r\n<li>\r\n<p><em>La tua Prima Comunione &egrave; il primo passo verso la strada del Signore.</em></p>\r\n</li>\r\n</ul>\r\n<p>&nbsp;</p>\r\n<h2>Partecipazioni per prima comunione</h2>\r\n<h3>Personalizza le frasi per comunione da inserire nelle partecipazioni</h3>\r\n<p>Sulle&nbsp;<strong>partecipazioni per comunioni</strong>&nbsp;di cartiamo puoi modificare tutto quello che vuoi, quindi potrai tranquillamente inserire&nbsp;i tuoi&nbsp;<em>auguri prima comunione preferiti</em>!&nbsp;</p>\r\n<p>Ecco alcune partecipazioni che ti consigliamo per fare gli <strong>auguri di prima comunione</strong> per questo giorno importantissimo!</p>\r\n<p>&nbsp;</p>', 'page-default.php', NULL),
-(24, 'Idee matrimonio', 'idee-matrimonio', NULL, '<header>\r\n<h1><span style=\"font-size: 1.2em;\"><strong>Raccolta di idee matrimonio</strong></span></h1>\r\n<h2>Tantissime idee per matrimonio, dal matrimonio country chic al viaggio, fino al matrimonio al sud</h2>\r\n</header>\r\n<p>Siamo sempre attivi per trovare nuove <strong>idee matrimonio&nbsp;</strong>da suggerirvi, dai post del nostro blog e idee un p&ograve; pi&ugrave; particolari su pagine di approfondimento su <strong>Cartiamo.</strong>&nbsp;</p>\r\n<p>Ecco, questa pagina deve essere per te, per facilitarti la ricerca e trovare immediatamente l\'<em>idea giusta per il tuo matrimonio.</em></p>\r\n<p>&nbsp;</p>\r\n<div class=\"row\">\r\n<div class=\"col-md-7\">\r\n<h2><strong>Idee matrimonio particolari</strong></h2>\r\n<p>Ecco una lista di <strong>idee per matrimonio</strong> particolari, per delle nozze perfette!</p>\r\n<div class=\"list-group \"><strong><a class=\"list-group-item\" title=\"Idee matrimonio tema viaggio\" href=\"https://cartiamo.it/blog/il-matrimonio-perfetto/idee-per-matrimonio-tema-viaggio\">MATRIMONIO A TEMA VIAGGIO: MAPPE, VALIGIE, AEROPLANINI E TANTE IDEE PER UN MATRIMONIO ORIGINALE</a></strong> <strong><a class=\"list-group-item\" title=\"Idee matrimonio - matrimonio country chic\" href=\"https://cartiamo.it/blog/il-matrimonio-perfetto/il-matrimonio-country-chic-consigli-idee-e-dettagli\">IL MATRIMONIO COUNTRY CHIC: CONSIGLI, IDEE E DETTAGLI</a></strong> <strong><a class=\"list-group-item\" title=\"Idee matrimonio - matrimonio invernale\" href=\"https://cartiamo.it/blog/il-matrimonio-perfetto/sposarsi-in-inverno-5-idee-per-un-matrimonio-invernale\">SPOSARSI IN INVERNO: 5 IDEE PER UN MATRIMONIO INVERNALE</a></strong> <strong><a class=\"list-group-item\" title=\"Idee matrimonio - matrimonio al sud\" href=\"https://cartiamo.it/matrimonio-al-sud\">MATRIMONIO AL SUD</a></strong></div>\r\n</div>\r\n<div class=\"col-md-5\">\r\n<h2><strong>Idee accessori e gadget per nozze</strong></h2>\r\n<p>Un matrimonio perfetto ha bisogno anche di accessori e gadget correlati, ecco qualche idea per scegliere quelli giusti!</p>\r\n<div class=\"list-group \"><strong><a class=\"list-group-item\" title=\"Idee matrimonio- bouquet\" href=\"https://cartiamo.it/blog/il-matrimonio-perfetto/scegliere-il-bouquet-tutti-gli-stili-per-una-sposa-perfetta\"> SCEGLIERE IL BOUQUET: TUTTI GLI STILI PER UNA SPOSA PERFETTA</a></strong></div>\r\n</div>\r\n</div>\r\n<h2>&nbsp;</h2>\r\n<h2><strong>Facci conoscere la tua storia!</strong></h2>\r\n<p>Hai avuto una <strong>idea particolare per il tuo matrimonio</strong>?&nbsp;</p>\r\n<p>O semplicemente vuoi condividere anche con noi il giorno pi&ugrave; importante della tua vita?</p>\r\n<p>Se vuoi, a noi fa piacere leggere le tue <strong>idee matrimonio&nbsp;</strong>e potrebbero essere utilissime anche ad altre altre persone, per realizzare il loro <strong>matrimonio da sogno!</strong></p>\r\n<p>&nbsp;</p>\r\n<p>Inviaci una mail a <strong><a href=\"mailto:info@cartiamo.it\">info@cartiamo.it</a>&nbsp;,</strong>&nbsp;condividi con noi le tue idee per matrimonio&nbsp;e la tua storia, le pubblicheremo su questa pagina in modo che siano d\'aiuto per i prossimi sposini :)</p>\r\n<p>Grazie!</p>', 'page-default.php', NULL),
+(21, 'Il Montaggio', 'montaggio-della-partecipazione', NULL, '<h1 style="text-align: center;"><strong><span style="font-size: 1.5em;">Il Montaggio della Partecipazione</span></strong></h1>\r\n<p>Per Montaggio della Partecipazione, dove disponibile, intendiamo la separazione di ogni singola parte dal&nbsp;foglio di taglio e la composizione della partecipazione con eventuali innesti, collegamenti di cordicelle, fiocchi e tutto ci&ograve; che serve per completare la partecipazione e renderla pronta all''invio per posta.&nbsp;</p>\r\n<p>&nbsp;</p>', 'page-default.php', NULL),
+(22, 'Matrimonio al sud', 'matrimonio-al-sud', NULL, '<header>\r\n<h1 style="text-align: center;"><span style="font-size: 1.3em;"><strong>Matrimonio al sud</strong></span></h1>\r\n<h2>Luoghi comuni e partecipazioni per matrimoni al sud</h2>\r\n</header>\r\n<div class="row">\r\n<div class="col-md-7">\r\n<p>I luoghi comuni sul <strong>matrimonio al sud</strong> li conosciamo un p&ograve; tutti, tradizionale, esuberante ed infinito. Al Nord si tende a celebrare le nozze in posti ricercati, come spiagge, castelli o giardini fioriti; sposarsi al sud vuol dire invece&nbsp;<strong>sposarsi rigorosamente in chiesa</strong> con presenti tutti i parenti, amici, parenti di amici, amici di parenti di amici di parenti... insomma tutta la famiglia allargata deve essere presente al tuo matrimonio.</p>\r\n<p>L''abito da sposa non pu&ograve; essere minimale, tutto deve essere classico ed in grande stile.</p>\r\n<p>il tuo matrimonio rappresenta il giorno pi&ugrave; importante della tua vita e per questo ogni <strong>matrimonio al sud&nbsp;</strong>deve terminare con un enorme banchetto con almeno 10 portate.</p>\r\n<p>&nbsp;</p>\r\n<h2>Partecipazioni di matrimonio classiche</h2>\r\n<p>Per un <strong>matrimonio al sud</strong> le&nbsp;<a title="Partecipazioni classiche" href="http://localhost/shop/matrimoni/classica">partecipazioni migliori</a> sono sicuramente quelle della nostra <strong>linea classica.&nbsp;Cartiamo</strong> ti propone una&nbsp;grandissima variet&agrave; di partecipazioni di matrimonio, da quelle creative a quelletrendy, vintage e glamour ma qui sotto puoi trovare una selezione delle nostre migliori <strong>partecipazioni di matrimonio classiche</strong>, sicuramente le migliori per un <em>matrimonio al sud.</em></p>\r\n<p>&nbsp;</p>\r\n</div>\r\n<div class="col-md-5">\r\n<p>Questi sono solo alcuni dei luoghi comuni sui <strong>matrimoni al sud</strong> ma ne esistono tanti altri... ci sono anche molte commedie e film che li rappresentano ma sicuramente un buon concentrato lo possiamo trovare proprio nel film "<strong>Matrimonio al sud</strong>"</p>\r\n<h4>Trailer Matrimonio al sud</h4>\r\n<iframe style="max-width: 100%;" src="https://www.youtube.com/embed/rvsQfkfB4sQ" width="560" height="315" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>\r\n</div>', 'page-default.php', NULL),
+(23, 'Prima comunione', 'auguri-prima-comunione', NULL, '<div class="row">\r\n<div class="col-md-7">\r\n<h1><strong>La prima comunione, frasi e partecipazioni</strong></h1>\r\n<p>Come sappiamo tutti, la <strong>prima comunione</strong>&nbsp;&egrave; il momento in cui i ragazzi si accostano per la prima volta al sacramento dell''Eucaristia. Da sempre &egrave; un momento importantissimo per la vita di chiunque che viene atteso e festeggiato da tutta la famiglia.</p>\r\n<p>Qui a cartiamo ci occupiamo e teniamo a cuore tutto quello che riguarda la famiglia, non solo il matrimonio ma anche <strong>partecipazioni per la prima comunione</strong> di tuo figlio, siamo sempre a disposizione per domande o suggerimenti, ci puoi contattare quando vuoi tramite la chat sul sito!</p>\r\n<p><strong>La prima comunione di tuo figlio deve essere indimenticabile!</strong></p>\r\n<p>&nbsp;</p>\r\n</div>\r\n<div class="col-md-5 bg1 " style="padding: 2em;">\r\n<h2>In collaborazione con Save the Children</h2>\r\n<p>La nostra collaborazione con&nbsp;<a title="Partecipazioni prima comunione Save the Children" href="https://cartiamo.it/collaborazione-save-the-children">Save the Children</a> risulta forse ancora pi&ugrave; importante se accostata alle <strong>partecipazioni per prima comunione</strong>.</p>\r\n<p>Facendo gli <strong>auguri prima comunione</strong> tramite <strong>Cartiamo</strong> scegli di devolvere una percentuale ai bambini che ne hanno bisogno tramite Save the Children.</p>\r\n</div>\r\n</div>\r\n<h2>Frasi prima comunione</h2>\r\n<p>Prima cosa da&nbsp;trovare&nbsp;per una perfetta <strong>prima comunione</strong> sono le giuste <em>frasi auguri per prima comunione</em>. Ci siamo presi la liberta di&nbsp;farti una piccola lista di <strong>frasi da dedicare</strong> alla <strong>prima comunione</strong> di tuo figlio dalle quali puoi prendere spunto.</p>\r\n<p>Ecco alcune <strong>frasi per la prima comunione</strong> :&nbsp;</p>\r\n<ul>\r\n<li>\r\n<p><em>Ricevere la Prima Comunione &egrave; come nascere di nuovo con Ges&ugrave;. Tanti auguri per questo giorno importante</em></p>\r\n</li>\r\n<li>\r\n<p><em>Oggi con la Prima Comunione, riceverai un bene prezioso; conservalo per sempre nel tuo cuore. Che il Signore ti accompagni in una vita piena di gioia.</em></p>\r\n</li>\r\n<li>\r\n<p><em>Vivi e credi per raggiungere i tuoi sogni.</em></p>\r\n</li>\r\n<li>\r\n<p><em>La tua Prima Comunione &egrave; il primo passo verso la strada del Signore.</em></p>\r\n</li>\r\n</ul>\r\n<p>&nbsp;</p>\r\n<h2>Partecipazioni per prima comunione</h2>\r\n<h3>Personalizza le frasi per comunione da inserire nelle partecipazioni</h3>\r\n<p>Sulle&nbsp;<strong>partecipazioni per comunioni</strong>&nbsp;di cartiamo puoi modificare tutto quello che vuoi, quindi potrai tranquillamente inserire&nbsp;i tuoi&nbsp;<em>auguri prima comunione preferiti</em>!&nbsp;</p>\r\n<p>Ecco alcune partecipazioni che ti consigliamo per fare gli <strong>auguri di prima comunione</strong> per questo giorno importantissimo!</p>\r\n<p>&nbsp;</p>', 'page-default.php', NULL),
+(24, 'Idee matrimonio', 'idee-matrimonio', NULL, '<header>\r\n<h1><span style="font-size: 1.2em;"><strong>Raccolta di idee matrimonio</strong></span></h1>\r\n<h2>Tantissime idee per matrimonio, dal matrimonio country chic al viaggio, fino al matrimonio al sud</h2>\r\n</header>\r\n<p>Siamo sempre attivi per trovare nuove <strong>idee matrimonio&nbsp;</strong>da suggerirvi, dai post del nostro blog e idee un p&ograve; pi&ugrave; particolari su pagine di approfondimento su <strong>Cartiamo.</strong>&nbsp;</p>\r\n<p>Ecco, questa pagina deve essere per te, per facilitarti la ricerca e trovare immediatamente l''<em>idea giusta per il tuo matrimonio.</em></p>\r\n<p>&nbsp;</p>\r\n<div class="row">\r\n<div class="col-md-7">\r\n<h2><strong>Idee matrimonio particolari</strong></h2>\r\n<p>Ecco una lista di <strong>idee per matrimonio</strong> particolari, per delle nozze perfette!</p>\r\n<div class="list-group "><strong><a class="list-group-item" title="Idee matrimonio tema viaggio" href="https://cartiamo.it/blog/il-matrimonio-perfetto/idee-per-matrimonio-tema-viaggio">MATRIMONIO A TEMA VIAGGIO: MAPPE, VALIGIE, AEROPLANINI E TANTE IDEE PER UN MATRIMONIO ORIGINALE</a></strong> <strong><a class="list-group-item" title="Idee matrimonio - matrimonio country chic" href="https://cartiamo.it/blog/il-matrimonio-perfetto/il-matrimonio-country-chic-consigli-idee-e-dettagli">IL MATRIMONIO COUNTRY CHIC: CONSIGLI, IDEE E DETTAGLI</a></strong> <strong><a class="list-group-item" title="Idee matrimonio - matrimonio invernale" href="https://cartiamo.it/blog/il-matrimonio-perfetto/sposarsi-in-inverno-5-idee-per-un-matrimonio-invernale">SPOSARSI IN INVERNO: 5 IDEE PER UN MATRIMONIO INVERNALE</a></strong> <strong><a class="list-group-item" title="Idee matrimonio - matrimonio al sud" href="https://cartiamo.it/matrimonio-al-sud">MATRIMONIO AL SUD</a></strong></div>\r\n</div>\r\n<div class="col-md-5">\r\n<h2><strong>Idee accessori e gadget per nozze</strong></h2>\r\n<p>Un matrimonio perfetto ha bisogno anche di accessori e gadget correlati, ecco qualche idea per scegliere quelli giusti!</p>\r\n<div class="list-group "><strong><a class="list-group-item" title="Idee matrimonio- bouquet" href="https://cartiamo.it/blog/il-matrimonio-perfetto/scegliere-il-bouquet-tutti-gli-stili-per-una-sposa-perfetta"> SCEGLIERE IL BOUQUET: TUTTI GLI STILI PER UNA SPOSA PERFETTA</a></strong></div>\r\n</div>\r\n</div>\r\n<h2>&nbsp;</h2>\r\n<h2><strong>Facci conoscere la tua storia!</strong></h2>\r\n<p>Hai avuto una <strong>idea particolare per il tuo matrimonio</strong>?&nbsp;</p>\r\n<p>O semplicemente vuoi condividere anche con noi il giorno pi&ugrave; importante della tua vita?</p>\r\n<p>Se vuoi, a noi fa piacere leggere le tue <strong>idee matrimonio&nbsp;</strong>e potrebbero essere utilissime anche ad altre altre persone, per realizzare il loro <strong>matrimonio da sogno!</strong></p>\r\n<p>&nbsp;</p>\r\n<p>Inviaci una mail a <strong><a href="mailto:info@cartiamo.it">info@cartiamo.it</a>&nbsp;,</strong>&nbsp;condividi con noi le tue idee per matrimonio&nbsp;e la tua storia, le pubblicheremo su questa pagina in modo che siano d''aiuto per i prossimi sposini :)</p>\r\n<p>Grazie!</p>', 'page-default.php', NULL),
 (25, 'asdasd', 'asdsd', 'asd', '<p>asdas</p>', 'asdad', NULL),
 (26, 'asdasd', 'asdsd', 'asd', '<p>asdas</p>', 'asdad', NULL),
 (27, 'asdasd', 'asdsd', 'asd', '<p>asdas</p>', 'asdad', NULL),
@@ -5674,18 +5667,15 @@ INSERT INTO `pagina` (`id`, `title`, `slug`, `description`, `content`, `layout`,
 
 CREATE TABLE `popup` (
   `id` int(11) NOT NULL,
-  `nome` text,
-  `titolo` text,
-  `testo` text,
-  `link` text,
-  `layout` text,
+  `nome` text DEFAULT NULL,
+  `titolo` text DEFAULT NULL,
+  `testo` text DEFAULT NULL,
+  `link` text DEFAULT NULL,
+  `layout` text DEFAULT NULL,
   `immagine` int(11) DEFAULT NULL,
   `immagine_mobile` int(11) DEFAULT NULL,
-  `data_creazione` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `data_inizio` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `data_fine` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `attivo` int(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `data_creazione` timestamp NOT NULL DEFAULT current_timestamp
+) ;
 
 -- --------------------------------------------------------
 
@@ -5716,13 +5706,8 @@ CREATE TABLE `posts` (
 
 CREATE TABLE `settings` (
   `id` int(11) NOT NULL,
-  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `modified_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `active` int(11) DEFAULT NULL,
-  `key_name` text,
-  `key_value` text,
-  `key_group` text
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `created_on` timestamp NOT NULL DEFAULT current_timestamp
+) ;
 
 --
 -- Dumping data for table `settings`
@@ -5745,13 +5730,13 @@ INSERT INTO `settings` (`id`, `created_on`, `modified_on`, `active`, `key_name`,
 
 CREATE TABLE `sitemap` (
   `id` int(11) NOT NULL,
-  `titolo` text,
-  `alt` text,
-  `tipo` text,
-  `link` text,
-  `contenuto` longtext,
+  `titolo` text DEFAULT NULL,
+  `alt` text DEFAULT NULL,
+  `tipo` text DEFAULT NULL,
+  `link` text DEFAULT NULL,
+  `contenuto` longtext DEFAULT NULL,
   `id_media` int(11) DEFAULT NULL,
-  `hook` text
+  `hook` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5762,12 +5747,12 @@ CREATE TABLE `sitemap` (
 
 CREATE TABLE `slide` (
   `id` int(11) NOT NULL,
-  `nome` text,
-  `titolo` text,
-  `testo` text,
-  `link` text,
-  `link_text` text,
-  `hook` text,
+  `nome` text DEFAULT NULL,
+  `titolo` text DEFAULT NULL,
+  `testo` text DEFAULT NULL,
+  `link` text DEFAULT NULL,
+  `link_text` text DEFAULT NULL,
+  `hook` text DEFAULT NULL,
   `ordine` int(11) DEFAULT NULL,
   `immagine` int(11) DEFAULT NULL,
   `immagine_mobile` int(11) DEFAULT NULL
@@ -5803,12 +5788,12 @@ CREATE TABLE `stats` (
 
 CREATE TABLE `template` (
   `id` int(11) NOT NULL,
-  `nome` text,
-  `nomemacchina` text,
-  `descrizione` text,
+  `nome` text DEFAULT NULL,
+  `nomemacchina` text DEFAULT NULL,
+  `descrizione` text DEFAULT NULL,
   `altezza` int(11) DEFAULT NULL,
   `larghezza` int(11) DEFAULT NULL,
-  `contenuto` longtext
+  `contenuto` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5849,17 +5834,8 @@ CREATE TABLE `users` (
   `username` text NOT NULL,
   `password` text NOT NULL,
   `email` text NOT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `last_modified` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `last_login` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `type` int(11) NOT NULL,
-  `active` int(11) NOT NULL,
-  `nome` text,
-  `cognome` text,
-  `data_di_nascita` date DEFAULT NULL,
-  `profile_img` int(11) DEFAULT NULL,
-  `storia` longtext
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `created` timestamp NOT NULL DEFAULT current_timestamp
+) ;
 
 --
 -- Dumping data for table `users`
@@ -5877,9 +5853,9 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`, `created`, `last_mod
 
 CREATE TABLE `widget` (
   `id` int(11) UNSIGNED NOT NULL,
-  `class` text COLLATE utf8_bin,
+  `class` text COLLATE utf8_bin DEFAULT NULL,
   `user` int(11) DEFAULT NULL,
-  `data` text COLLATE utf8_bin
+  `data` text COLLATE utf8_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -5896,12 +5872,6 @@ ALTER TABLE `api`
 -- Indexes for table `applicazioni`
 --
 ALTER TABLE `applicazioni`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `articolo`
---
-ALTER TABLE `articolo`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -5926,12 +5896,6 @@ ALTER TABLE `clprodotto`
 -- Indexes for table `cl_articolo`
 --
 ALTER TABLE `cl_articolo`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `cl_campioneomaggio`
---
-ALTER TABLE `cl_campioneomaggio`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -6019,12 +5983,6 @@ ALTER TABLE `ecommerce_country`
   ADD PRIMARY KEY (`id`),
   ADD KEY `country_iso_code` (`iso_code`),
   ADD KEY `country_` (`id_zone`);
-
---
--- Indexes for table `ecommerce_ordine`
---
-ALTER TABLE `ecommerce_ordine`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `ecommerce_prodotto`
@@ -6156,22 +6114,10 @@ ALTER TABLE `pagina`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `popup`
---
-ALTER TABLE `popup`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `posts`
 --
 ALTER TABLE `posts`
   ADD KEY `id` (`id`);
-
---
--- Indexes for table `settings`
---
-ALTER TABLE `settings`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `sitemap`
@@ -6204,12 +6150,6 @@ ALTER TABLE `terms`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `widget`
 --
 ALTER TABLE `widget`
@@ -6224,325 +6164,271 @@ ALTER TABLE `widget`
 --
 ALTER TABLE `api`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `applicazioni`
 --
 ALTER TABLE `applicazioni`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `articolo`
 --
 ALTER TABLE `articolo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `banner`
 --
 ALTER TABLE `banner`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
 --
 -- AUTO_INCREMENT for table `categoria`
 --
 ALTER TABLE `categoria`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT for table `clprodotto`
 --
 ALTER TABLE `clprodotto`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3050;
-
 --
 -- AUTO_INCREMENT for table `cl_articolo`
 --
 ALTER TABLE `cl_articolo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `cl_campioneomaggio`
 --
 ALTER TABLE `cl_campioneomaggio`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3167;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `cl_categoria`
 --
 ALTER TABLE `cl_categoria`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
 --
 -- AUTO_INCREMENT for table `cl_meta_fields`
 --
 ALTER TABLE `cl_meta_fields`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
-
 --
 -- AUTO_INCREMENT for table `cl_strutturadati`
 --
 ALTER TABLE `cl_strutturadati`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
 --
 -- AUTO_INCREMENT for table `cl_template`
 --
 ALTER TABLE `cl_template`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `contenuto`
 --
 ALTER TABLE `contenuto`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
-
 --
 -- AUTO_INCREMENT for table `ecommerce_attributo`
 --
 ALTER TABLE `ecommerce_attributo`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
 --
 -- AUTO_INCREMENT for table `ecommerce_attributo_entita`
 --
 ALTER TABLE `ecommerce_attributo_entita`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-
 --
 -- AUTO_INCREMENT for table `ecommerce_attributo_tipo`
 --
 ALTER TABLE `ecommerce_attributo_tipo`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT for table `ecommerce_attributo_valore`
 --
 ALTER TABLE `ecommerce_attributo_valore`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
-
 --
 -- AUTO_INCREMENT for table `ecommerce_categoria`
 --
 ALTER TABLE `ecommerce_categoria`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT for table `ecommerce_categoria_prodotto`
 --
 ALTER TABLE `ecommerce_categoria_prodotto`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
 --
 -- AUTO_INCREMENT for table `ecommerce_cliente`
 --
 ALTER TABLE `ecommerce_cliente`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
 --
 -- AUTO_INCREMENT for table `ecommerce_cliente_spedizione`
 --
 ALTER TABLE `ecommerce_cliente_spedizione`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
 --
 -- AUTO_INCREMENT for table `ecommerce_country`
 --
 ALTER TABLE `ecommerce_country`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=245;
-
 --
 -- AUTO_INCREMENT for table `ecommerce_ordine`
 --
 ALTER TABLE `ecommerce_ordine`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `ecommerce_prodotto`
 --
 ALTER TABLE `ecommerce_prodotto`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
 --
 -- AUTO_INCREMENT for table `ecommerce_prodotto_campi`
 --
 ALTER TABLE `ecommerce_prodotto_campi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-
 --
 -- AUTO_INCREMENT for table `ecommerce_prodotto_immagine`
 --
 ALTER TABLE `ecommerce_prodotto_immagine`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
 --
 -- AUTO_INCREMENT for table `ecommerce_prodotto_variante`
 --
 ALTER TABLE `ecommerce_prodotto_variante`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
-
 --
 -- AUTO_INCREMENT for table `ecommerce_prodotto_variante_attributi`
 --
 ALTER TABLE `ecommerce_prodotto_variante_attributi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
-
 --
 -- AUTO_INCREMENT for table `ecommerce_prodotto_variante_campi`
 --
 ALTER TABLE `ecommerce_prodotto_variante_campi`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
-
 --
 -- AUTO_INCREMENT for table `ecommerce_prodotto_variante_immagine`
 --
 ALTER TABLE `ecommerce_prodotto_variante_immagine`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT for table `ecommerce_provincia`
 --
 ALTER TABLE `ecommerce_provincia`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=313;
-
 --
 -- AUTO_INCREMENT for table `ecommerce_spedizione`
 --
 ALTER TABLE `ecommerce_spedizione`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `ecommerce_spedizione_prezzo`
 --
 ALTER TABLE `ecommerce_spedizione_prezzo`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `ecommerce_tipologia_prodotto`
 --
 ALTER TABLE `ecommerce_tipologia_prodotto`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT for table `ecommerce_tipologia_prodotto_campi`
 --
 ALTER TABLE `ecommerce_tipologia_prodotto_campi`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
 --
 -- AUTO_INCREMENT for table `ecommerce_zona`
 --
 ALTER TABLE `ecommerce_zona`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
 --
 -- AUTO_INCREMENT for table `gp_attivita`
 --
 ALTER TABLE `gp_attivita`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `gp_progetti`
 --
 ALTER TABLE `gp_progetti`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT for table `gp_scadenze`
 --
 ALTER TABLE `gp_scadenze`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `gp_tipologie_attivita`
 --
 ALTER TABLE `gp_tipologie_attivita`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `homepage`
 --
 ALTER TABLE `homepage`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT for table `media`
 --
 ALTER TABLE `media`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
-
 --
 -- AUTO_INCREMENT for table `meta`
 --
 ALTER TABLE `meta`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
-
 --
 -- AUTO_INCREMENT for table `pagina`
 --
 ALTER TABLE `pagina`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
-
 --
 -- AUTO_INCREMENT for table `popup`
 --
 ALTER TABLE `popup`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `sitemap`
 --
 ALTER TABLE `sitemap`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `slide`
 --
 ALTER TABLE `slide`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT for table `stats`
 --
 ALTER TABLE `stats`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `template`
 --
 ALTER TABLE `template`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `terms`
 --
 ALTER TABLE `terms`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `widget`
 --
 ALTER TABLE `widget`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
