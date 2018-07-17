@@ -1,0 +1,30 @@
+web:
+   build: ./docker/web
+   environment:
+     - ALLOW_OVERRIDE=true
+   ports:
+     - "80:80"
+   links:
+     - db
+   volumes:
+     - ./app:/var/www/html/
+
+db:
+  build: ./docker/mariadb
+  restart: always
+  environment:
+    MYSQL_ROOT_PASSWORD: root
+    MYSQL_USER: root
+    MYSQL_PASSWORD: root
+    MYSQL_DATABASE: cartiamotwig
+  ports:
+    - "3306:3306"
+phpmyadmin:
+  image: corbinu/docker-phpmyadmin
+  links:
+    - db:mysql
+  ports:
+    - "8181:80"
+  environment:
+    MYSQL_USERNAME: admin
+    MYSQL_ROOT_PASSWORD: test
