@@ -19,7 +19,7 @@
                             {% endfor %}
                         </div>
 
-                        {% for variante in prodotto.varianti %}
+                        {% for variante in varianti %}
                             <div class="card variante mb-5">
                                 <div class="card-header">
                                     <h3>{{ variante.nome }}</h3>
@@ -44,6 +44,8 @@
                                                     {{ attributo.valore.valore }}
                                                 {% endfor %}
                                                 </div>
+
+
                                                 <button type="submit" class="btn btn-secondary"><i class="fa fa-cart-plus"></i> Aggiungi al carrello </button>
                                             </div>
 

@@ -20,7 +20,9 @@ class Attributo extends Model{
             "nome"   =>  Field::varchar(512)->editable(),
             "slug"  =>  Field::varchar(64)->editable()->setTemplate("slug")->setTemplateVar("nome"),
             "descrizione"   =>  Field::text()->editable()->setTemplate("textarea"),
-            "tipo"      =>  Field::int()->setTemplate("select")->editable()->setTemplateVar(AttributoTipo::getForSelect("tipo","id"))
+            "tipo"      =>  Field::int()->setTemplate("select")->editable()->setTemplateVar(AttributoTipo::getForSelect("tipo","id")),
+            "parent"      =>  Field::int()->setTemplate("select")->editable()->setTemplateVar(Attributo::getForSelect("nome","id")),
+            "parent_value"   =>  Field::text()->editable(),
         ];
     }
 
@@ -47,6 +49,12 @@ class Attributo extends Model{
 
 
         return $instance;
+    }
+
+    static function getLinked(){
+
+
+        exit;
     }
 
 

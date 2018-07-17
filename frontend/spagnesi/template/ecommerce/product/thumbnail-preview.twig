@@ -7,5 +7,5 @@
     </a>
     <h3>{{ prodotto.nome }}</h3>
     <h4>{{ prodotto.varianti[0].prezzo }}</h4>
-    <div class="descrizione">{{ prodotto.descrizione|raw }}</div>
+    <div class="descrizione">{{ prodotto.valoriCampi.riassunto.valore|raw }}</div>
 </article>

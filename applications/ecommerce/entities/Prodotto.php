@@ -70,4 +70,11 @@ class Prodotto extends Model{
             "id_prodotto"   =>  $this->id
         ]);
     }
+
+    /**
+     * @return TipologiaProdotto
+     */
+    public function getTipologia(){
+        return TipologiaProdotto::findById($this->id_ecommerce_tipologia_prodotto);
+    }
 }

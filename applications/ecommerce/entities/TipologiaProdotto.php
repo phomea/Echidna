@@ -81,6 +81,9 @@ class TipologiaProdotto extends Model{
             ]);
 
             $r[$key]["possibili_valori"] = $valori;
+
+
+            $r[$key]['attributo'] =Attributo::findById($item['id_attributo']);
         }
 
         $attributi = array_merge($attributi,$r);

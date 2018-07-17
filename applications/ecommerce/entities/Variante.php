@@ -21,7 +21,8 @@ class Variante extends Model{
             "id_prodotto"  =>  Field::int(),
             "nome"  =>  Field::varchar(512)->editable(),
             "sku"  =>  Field::varchar(64)->editable(),
-            "prezzo"   =>  Field::text()->editable()
+            "prezzo"   =>  Field::text()->editable(),
+            "descrizione"   =>  Field::text()->editable()->setTemplate("textarea")
 
         ];
     }
@@ -31,8 +32,21 @@ class Variante extends Model{
 
         $this->attributi = $attributi;
         $this->images = $this->getImages();
+        $this->campi = $this->getCampi();
     }
 
+    public function getProduct(){
+        return Prodotto::findById($this->id_prodotto);
+    }
+
+    public function getCampi(){
+
+
+        $sql = "select * from ecommerce_prodotto_variante_campi where id_ecommerce_prodotto_variante = :id";
+        return Db::$connection->fetchAll($sql,[
+            "id"    =>  $this->id
+        ]);
+    }
 
     public function gotAttributeValue ( $id ){
 

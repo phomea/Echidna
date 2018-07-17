@@ -72,11 +72,11 @@ class __TwigTemplate_6f9e9748ead1cafeb4659f1854079c04a3f46663b2acc9dffa18c9173ab
                             </span>
                         </div>
 
-                        <select class=\"form-control\" name=\"attributo[5]\">
+                        <select class=\"form-control\" name=\"attributo[8]\">
                             <option value=\"\">Qualsiasi</option>
-                            <option value=\"19\">2</option>
-                            <option value=\"34\">2.5</option>
-                            <option value=\"20\">3</option>
+                            <option value=\"32\">2</option>
+                            <option value=\"33\">2.5</option>
+                            <option value=\"39\">3</option>
                         </select>
                     </div>
 
@@ -158,11 +158,11 @@ class __TwigTemplate_6f9e9748ead1cafeb4659f1854079c04a3f46663b2acc9dffa18c9173ab
                             </span>
                         </div>
 
-                        <select class=\"form-control\" name=\"attributo[5]\">
+                        <select class=\"form-control\" name=\"attributo[8]\">
                             <option value=\"\">Qualsiasi</option>
-                            <option value=\"19\">2</option>
-                            <option value=\"34\">2.5</option>
-                            <option value=\"20\">3</option>
+                            <option value=\"32\">2</option>
+                            <option value=\"33\">2.5</option>
+                            <option value=\"39\">3</option>
                         </select>
                     </div>
 

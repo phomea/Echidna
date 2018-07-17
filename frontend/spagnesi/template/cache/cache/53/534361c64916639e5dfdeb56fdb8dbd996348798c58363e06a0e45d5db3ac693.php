@@ -21,7 +21,10 @@ class __TwigTemplate_e3a4976ed828983ce4a2f66a73a443d12193e1f6b3ed5ae71417897f0f4
     {
         // line 1
         echo "<!-- Navbar -->
-<header class=\"main-header\">
+<header class=\"main-header ";
+        // line 2
+        echo twig_escape_filter($this->env, ($context["headerClass"] ?? null), "html", null, true);
+        echo "\">
 
     <section class=\"navbar\">
 
@@ -128,13 +131,13 @@ class __TwigTemplate_e3a4976ed828983ce4a2f66a73a443d12193e1f6b3ed5ae71417897f0f4
 
     public function getDebugInfo()
     {
-        return array (  111 => 62,  105 => 61,  98 => 59,  95 => 58,  90 => 56,  87 => 55,  84 => 54,  80 => 53,  73 => 48,  71 => 47,  23 => 1,);
+        return array (  114 => 62,  108 => 61,  101 => 59,  98 => 58,  93 => 56,  90 => 55,  87 => 54,  83 => 53,  76 => 48,  74 => 47,  26 => 2,  23 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Twig_Source("<!-- Navbar -->
-<header class=\"main-header\">
+<header class=\"main-header {{ headerClass }}\">
 
     <section class=\"navbar\">
 

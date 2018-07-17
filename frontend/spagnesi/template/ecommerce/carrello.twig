@@ -11,6 +11,11 @@
                     <a href="{{ router_service.getRoute("frontend.ecommerce.schedaprodotto").build({slug:lineitem.prodotto.slug}) }}">
                         {{ lineitem.prodotto.nome }} - {{ lineitem.variant.nome }}
                     </a>
+
+                    {% for attributo in lineitem.attributi %}
+                        <span>{{ attributo.nome }} : {{ attributo.valore.valore }}</span><br>
+                    {% endfor %}
+
                 </div>
                 <div class="col">
                     {{ lineitem.quantity }}

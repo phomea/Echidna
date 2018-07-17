@@ -8,6 +8,9 @@ class LineItem{
     public $cart = null;
     public $price_total = 0;
 
+    public $attributi = [];
+
+
     /**
      * LineItem constructor.
      * @param null $variant_id
@@ -45,6 +48,17 @@ class LineItem{
 
         unset($this->cart->lineitems[$key]);
         $this->cart->lineitems = array_values($this->cart->lineitems);
+    }
+
+
+    public function additionalAttributes( $attributes = [] ){
+        foreach ($attributes as $key=>$value){
+            $a = Attributo::findById($key);
+            $v = AttributoValore::findById($value);
+            $a->valore = $v;
+            $this->attributi[] = $a;
+
+        }
     }
 
 

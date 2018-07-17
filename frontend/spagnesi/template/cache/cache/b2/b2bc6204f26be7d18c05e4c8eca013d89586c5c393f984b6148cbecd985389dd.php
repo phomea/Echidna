@@ -55,23 +55,42 @@ class __TwigTemplate_d5526b95d8d4ec8124e923aa21361882bc4efeb82795c5ceb5094b8d9fd
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["lineitem"], "variant", array()), "nome", array()), "html", null, true);
             echo "
                     </a>
+
+                    ";
+            // line 15
+            $context['_parent'] = $context;
+            $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, $context["lineitem"], "attributi", array()));
+            foreach ($context['_seq'] as $context["_key"] => $context["attributo"]) {
+                // line 16
+                echo "                        <span>";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["attributo"], "nome", array()), "html", null, true);
+                echo " : ";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["attributo"], "valore", array()), "valore", array()), "html", null, true);
+                echo "</span><br>
+                    ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['attributo'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 18
+            echo "
                 </div>
                 <div class=\"col\">
                     ";
-            // line 16
+            // line 21
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["lineitem"], "quantity", array()), "html", null, true);
             echo "
                 </div>
                 <div class=\"col\">
                     ";
-            // line 19
+            // line 24
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["lineitem"], "single_price", array()), "html", null, true);
             echo "
                 </div>
 
                 <div class=\"col\">
                     ";
-            // line 23
+            // line 28
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["lineitem"], "price_total", array()), "html", null, true);
             echo "
                 </div>
@@ -81,7 +100,7 @@ class __TwigTemplate_d5526b95d8d4ec8124e923aa21361882bc4efeb82795c5ceb5094b8d9fd
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['lineitem'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 27
+        // line 32
         echo "        </div>
 
         <a href=\"/checkout\" class=\"btn btn-primary\">Checkout</a>
@@ -101,7 +120,7 @@ class __TwigTemplate_d5526b95d8d4ec8124e923aa21361882bc4efeb82795c5ceb5094b8d9fd
 
     public function getDebugInfo()
     {
-        return array (  85 => 27,  75 => 23,  68 => 19,  62 => 16,  53 => 12,  49 => 11,  43 => 7,  39 => 6,  35 => 4,  32 => 3,  15 => 1,);
+        return array (  104 => 32,  94 => 28,  87 => 24,  81 => 21,  76 => 18,  65 => 16,  61 => 15,  53 => 12,  49 => 11,  43 => 7,  39 => 6,  35 => 4,  32 => 3,  15 => 1,);
     }
 
     public function getSourceContext()
@@ -119,6 +138,11 @@ class __TwigTemplate_d5526b95d8d4ec8124e923aa21361882bc4efeb82795c5ceb5094b8d9fd
                     <a href=\"{{ router_service.getRoute(\"frontend.ecommerce.schedaprodotto\").build({slug:lineitem.prodotto.slug}) }}\">
                         {{ lineitem.prodotto.nome }} - {{ lineitem.variant.nome }}
                     </a>
+
+                    {% for attributo in lineitem.attributi %}
+                        <span>{{ attributo.nome }} : {{ attributo.valore.valore }}</span><br>
+                    {% endfor %}
+
                 </div>
                 <div class=\"col\">
                     {{ lineitem.quantity }}

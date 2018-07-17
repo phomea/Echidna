@@ -23,13 +23,10 @@ class __TwigTemplate_9861ea831c297722285c782338da0c3dea11955850fde64ed03bd749101
     protected function doDisplay(array $context, array $blocks = array())
     {
         // line 1
-        $this->loadTemplate("base/head/head.twig", "base/template.twig", 1)->display($context);
+        $this->loadTemplate("base/head/head.twig", "base/template.twig", 1)->display(array_merge($context, array("headerClass" => ($context["headerClass"] ?? null))));
         // line 2
-        echo "
-";
-        // line 3
         $this->displayBlock('content', $context, $blocks);
-        // line 4
+        // line 3
         echo "
 
 <!-- Footer -->
@@ -159,14 +156,14 @@ class __TwigTemplate_9861ea831c297722285c782338da0c3dea11955850fde64ed03bd749101
 
 
 ";
-        // line 132
+        // line 131
         $this->displayBlock('javascript_footer', $context, $blocks);
-        // line 137
+        // line 136
         echo "
 ";
-        // line 138
+        // line 137
         $this->displayBlock('scripts', $context, $blocks);
-        // line 140
+        // line 139
         echo "
 
 
@@ -180,25 +177,25 @@ class __TwigTemplate_9861ea831c297722285c782338da0c3dea11955850fde64ed03bd749101
 ";
     }
 
-    // line 3
+    // line 2
     public function block_content($context, array $blocks = array())
     {
     }
 
-    // line 132
+    // line 131
     public function block_javascript_footer($context, array $blocks = array())
     {
-        // line 133
+        // line 132
         echo "
     ";
+        // line 133
+        $this->loadTemplate("base/footer/js.twig", "base/template.twig", 133)->display($context);
         // line 134
-        $this->loadTemplate("base/footer/js.twig", "base/template.twig", 134)->display($context);
-        // line 135
         echo "
 ";
     }
 
-    // line 138
+    // line 137
     public function block_scripts($context, array $blocks = array())
     {
     }
@@ -215,13 +212,12 @@ class __TwigTemplate_9861ea831c297722285c782338da0c3dea11955850fde64ed03bd749101
 
     public function getDebugInfo()
     {
-        return array (  202 => 138,  197 => 135,  195 => 134,  192 => 133,  189 => 132,  184 => 3,  170 => 140,  168 => 138,  165 => 137,  163 => 132,  33 => 4,  31 => 3,  28 => 2,  26 => 1,);
+        return array (  199 => 137,  194 => 134,  192 => 133,  189 => 132,  186 => 131,  181 => 2,  167 => 139,  165 => 137,  162 => 136,  160 => 131,  30 => 3,  28 => 2,  26 => 1,);
     }
 
     public function getSourceContext()
     {
-        return new Twig_Source("{% include \"base/head/head.twig\" %}
-
+        return new Twig_Source("{% include \"base/head/head.twig\" with {headerClass : headerClass}%}
 {% block content %}{% endblock content %}
 
 

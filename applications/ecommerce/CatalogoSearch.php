@@ -68,7 +68,7 @@ class CatalogoSearch{
         $sql = "SELECT prodotto.* FROM ecommerce_prodotto as prodotto ";
 
         if( count($this->categories) > 0){
-            $sql .= " JOIN ecommerce_categoria_prodotto as categoria_prodotto ON prodotto.id = categoria_prodotto.id_categoria";
+            $sql .= " JOIN ecommerce_categoria_prodotto as categoria_prodotto ON prodotto.id = categoria_prodotto.id_prodotto";
             $where .= " AND categoria_prodotto.id_categoria IN (:categories)";
         }
 
@@ -81,11 +81,12 @@ class CatalogoSearch{
         }
 
         if( trim($this->query) != ""){
-            $where .= " AND (LOWER(prodotto.nome) LIKE :query OR LOWER(prodotto.descrizione LIKE :query )";
+            $where .= " AND (LOWER(prodotto.nome) LIKE :query OR LOWER(prodotto.descrizione) LIKE :query )";
         }
         $sql .= " ".$where;
 
         $attribute_ids = array_keys($this->attributes);
+
 
         return Db::$connection->fetchAll($sql,[
             "categories"    =>  $this->categories,

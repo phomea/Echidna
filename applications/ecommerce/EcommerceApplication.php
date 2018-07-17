@@ -7,12 +7,15 @@ use applications\ecommerce\entities\Prodotto;
 use applications\ecommerce\entities\TipologiaProdotto;
 use applications\pages\entities\Pagina;
 use core\abstracts\Application;
+use core\Config;
 use core\Model;
 use core\Route;
 use core\services\Response;
 use core\services\RouterService;
 
 class EcommerceApplication extends Application {
+
+    static $config = [];
 
     static function init($n)
     {
@@ -32,6 +35,8 @@ class EcommerceApplication extends Application {
                 ]
                 ]]
         ]);
+
+
 
 
     }
@@ -118,7 +123,12 @@ class EcommerceApplication extends Application {
 
     static function getFrontendApplication()
     {
-        return EcommerceFrontend::class;
+        self::$config= Config::getFile("ecommerce");
+
+        $frontendClass = self::$config['applications']['frontend'];
+
+
+        return $frontendClass;
     }
 
     static function getBackendApplication()
