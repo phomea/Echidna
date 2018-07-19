@@ -25,11 +25,11 @@ class EcommerceApplication extends Application {
                 "gestionecontenuti" => [[
                     "label" =>  "E-commerce",
                     "children"  =>  [
-                        ["label" => "Ordini", "href" =>  "/backend/".static::$name."/ordini"],
+                        ["label" => "Ordini", "href" =>  "/backend/".static::$name."/ordini/lista"],
                         ["label" => "Catalogo","href" =>  "/backend/".static::$name."/catalogo"],
                         ["label" => "Clienti","href" =>  "/backend/".static::$name."/clienti"],
                         ["label" => "Spedizioni","href" =>  "/backend/".static::$name."/spedizioni/"],
-                        ["label" => "Pagamenti","href" =>  "/backend/".static::$name."/pagamenti"],
+                        ["label" => "Pagamenti","href" =>  "/backend/".static::$name."/metodi-di-pagamento/lista"],
                         ["label" => "Attributi","href" =>   RouterService::getRoute(\applications\ecommerce\entities\Attributo::class.".list")->build()],
                     ]
                 ]
@@ -98,6 +98,7 @@ class EcommerceApplication extends Application {
         RouterService::addRoutesPrefixed(\applications\ecommerce\Ordini::declareRoutes(),"/backend/ecommerce/ordini/");
 
         RouterService::addRoutesPrefixed(\applications\ecommerce\Varianti::declareRoutes(),"/backend/ecommerce/varianti/");
+        RouterService::addRoutesPrefixed(\applications\ecommerce\MetodiPagamento::declareRoutes(),"/backend/ecommerce/metodi-di-pagamento/");
 
 
         return array_merge(
