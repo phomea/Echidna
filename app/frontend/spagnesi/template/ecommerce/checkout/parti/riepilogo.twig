@@ -1,4 +1,4 @@
-<div class="pl-5">
+<!--<div class="pl-5">
         <h5 class="mt-5">{{ carrello.lineitems|length }} oggetti nel carrello</h5>
     {% for lineitem in carrello.lineitems %}
 
@@ -24,4 +24,39 @@
         <div class="">
             <a href="">Modifica carrello</a>
         </div>
+</div>
+-->
+<div class="card mt-5 p-5">
+    <div class="card-body">
+        <h3>Riepilogo</h3>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            {% for lineitem in carrello.lineitems %}
+                <tr>
+                    <td>
+                        {{ lineitem.variant.sku }}
+                    </td>
+                    <td>
+                        {{ lineitem.quantity }}
+
+                        X
+
+                        {{ lineitem.single_price }}
+                    </td>
+                    <td class="text-right">
+                        <strong>{{ lineitem.price_total }}</strong>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            <tr>
+                <td></td>
+                <td></td>
+                <td class="text-right">
+                    <strong>{{ carrello.total}}</strong>
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>

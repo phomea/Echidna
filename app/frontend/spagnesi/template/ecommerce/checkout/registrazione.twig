@@ -1,9 +1,27 @@
 {% extends "base/template.twig" %}
 
 {% block content %}
-<main style="padding-top: 100px">
+    <main class="checkout">
+        {% include "ecommerce/checkout/parti/steps.twig" %}
     <div class="container">
-        {% include "ecommerce/checkout/parti/form-registrazione.twig" %}
+        <div class="row">
+            <div class="col-6">
+                <h2 class="pb-1">Crea un nuovo utente</h2>
+                <h5 class="font-weight-bold mb-5">Informazioni personali</h5>
+                {% include "ecommerce/checkout/parti/form-registrazione.twig" %}
+            </div>
+            <div class="col-6">
+
+                <div class=" mt-5 p-5">
+                <div class="card-body">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent dapibus orci lectus, sed faucibus eros auctor ac. Curabitur id tellus ac risus viverra malesuada. Proin blandit velit ut purus porttitor, in dignissim est congue. Nam sed tortor a massa ornare feugiat nec in eros. Aenean vitae ex enim. Etiam rutrum, magna pulvinar faucibus auctor, tortor massa viverra massa, sed sagittis massa mi nec augue. Phasellus consequat tellus ac mauris hendrerit, vel pulvinar lorem malesuada. Mauris laoreet mauris et nulla ultricies, non varius dolor tempor. Nullam quam ex, faucibus a tellus ac, molestie malesuada sapien. Donec finibus magna ut risus iaculis, at lobortis justo viverra.
+                    </p>
+                </div>
+            </div>
+
+            </div>
+        </div>
     </div>
 </main>
 

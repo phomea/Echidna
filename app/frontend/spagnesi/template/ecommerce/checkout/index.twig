@@ -2,29 +2,11 @@
 
 {% block content %}
 
-    <main style="padding-top: 300px;">
+    <main class="checkout">
+        {% include "ecommerce/checkout/parti/steps.twig" %}
         <div class="container">
             <div class="row">
-                <div class="col">
-                    1 account
-                </div>
-                <div class="col">
-                    2 spedizione
-                </div>
-                <div class="col">
-                    3 riepilogo
-                </div>
-                <div class="col">
-                    4 pagamento
-                </div>
-            </div>
-        </div>
-
-
-
-        <div class="container">
-            <div class="row">
-                <div class="col-4 offset-2">
+                <div class="col-6">
                     <h2>Hai già un account?</h2>
                     <p>Ciao! Bentornato, effettua il login per procedere con l'ordine!</p>
                     <form action="{{ router_service.getRoute("frontend.ecommerce.checkout.login").build() }}" method="post">

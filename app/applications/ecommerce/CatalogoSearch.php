@@ -88,12 +88,22 @@ class CatalogoSearch{
         $attribute_ids = array_keys($this->attributes);
 
 
-        return Db::$connection->fetchAll($sql,[
+        $r = Db::$connection->fetchAll($sql,[
             "categories"    =>  $this->categories,
             "attribute_ids" =>  $attribute_ids,
             "attribute_values"  =>  $this->attributes,
             "query"     =>  "%".strtolower($this->query)."%"
         ]);
+
+        if( !empty($r) ){
+            $return = [];
+            foreach ($r as $value){
+                $return[] = new Prodotto($value);
+            }
+            return $return;
+        }else{
+            return [];
+        }
 
     }
 

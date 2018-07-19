@@ -3,34 +3,97 @@
 {% block content %}
     <main style="padding-top: 150px">
         <div class="container">
-            {% for lineitem in carrello.lineitems %}
             <div class="row">
-                <div class="col">
+                <div class="col-8">
+                    <h2>Prodotti presenti nel carrello</h2>
+                    {% for lineitem in carrello.lineitems %}
+                        <div class="card mb-3">
+                            <div class="row card-body">
+                                <div class="col-2">
+                                    <figure class="thumbnail">
+                                        <img class="thumbnail" src="{{ lineitem.variant.images[0].permalink }}">
+                                    </figure>
 
 
-                    <a href="{{ router_service.getRoute("frontend.ecommerce.schedaprodotto").build({slug:lineitem.prodotto.slug}) }}">
-                        {{ lineitem.prodotto.nome }} - {{ lineitem.variant.nome }}
-                    </a>
 
-                    {% for attributo in lineitem.attributi %}
-                        <span>{{ attributo.nome }} : {{ attributo.valore.valore }}</span><br>
+
+                                </div>
+                                <div class="col-10">
+                                    <a href="{{ router_service.getRoute("frontend.ecommerce.schedaprodotto").build({slug:lineitem.prodotto.slug}) }}">
+                                    <h3>{{ lineitem.prodotto.nome }}</h3>
+                                    <h5>{{ lineitem.variant.nome }} <small>{{ lineitem.variant.sku }}</small></h5>
+                                    </a>
+
+
+                                    <div class="row">
+                                        <div class="col">
+                                            <label>Quantità</label>
+                                            <input value="{{ lineitem.quantity }}" class="form-control">
+
+                                        </div>
+                                        <div class="col">
+                                            {{ lineitem.single_price }}
+                                        </div>
+
+                                        <div class="col">
+                                            {{ lineitem.price_total}}
+
+
+                                            {% for attributo in lineitem.attributi %}
+                                                <span>{{ attributo.nome }} : {{ attributo.valore.valore }}</span><br>
+                                            {% endfor %}
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                    </div>
                     {% endfor %}
-
-                </div>
-                <div class="col">
-                    {{ lineitem.quantity }}
-                </div>
-                <div class="col">
-                    {{ lineitem.single_price }}
                 </div>
 
-                <div class="col">
-                    {{ lineitem.price_total}}
+                <div class="col-4 pt-2">
+                    <div class="card mt-5 p-5">
+                        <div class="card-body">
+                            <h3>Riepilogo</h3>
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                            {% for lineitem in carrello.lineitems %}
+                                    <tr>
+                                        <td>
+                                            {{ lineitem.variant.sku }}
+                                        </td>
+                                        <td>
+                                            {{ lineitem.quantity }}
+
+                                            X
+
+                                            {{ lineitem.single_price }}
+                                        </td>
+                                        <td class="text-right">
+                                            <strong>{{ lineitem.price_total }}</strong>
+                                        </td>
+                                    </tr>
+                            {% endfor %}
+
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="text-right">
+                                            <strong>{{ carrello.total}}</strong>
+                                        </td>
+                                    </tr>
+                            </table>
+
+                            <a href="/checkout" class="btn btn-secondary btn-block">Procedi all'acquisto</a>
+                            <a href="/checkout" class="btn btn-white btn-block">Torna allo shop</a>
+
+                        </div>
+                    </div>
                 </div>
-            </div>
-            {% endfor %}
         </div>
-
-        <a href="/checkout" class="btn btn-primary">Checkout</a>
+        </div>
     </main>
 {% endblock %}

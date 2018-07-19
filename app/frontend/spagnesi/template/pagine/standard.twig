@@ -1,6 +1,12 @@
 {% extends "base/template.twig" %}
 
+
 {% block content %}
+    
+    {% for hook in content.hooks.banner %}
+        {{ hook | raw }}
+    {% endfor  %}
+
     <div class="container">
         <h1 class="ama text-center">{{ content.h2 }}</h1>
 

@@ -60,7 +60,9 @@ class Route{
 
 
 
+
         foreach (RouterService::$filters as $filter){
+
 
 
 
@@ -83,10 +85,15 @@ class Route{
                 $r = $filter->callback[0]::{$filter->callback[1]}($this);
 
 
-                if ($r !== null) return $r;
+
+                if ($r !== null && !$r) return $r;
                 //call_user_func($filter,[&$this]);
             }
         }
+
+
+
+
 
         return;
 

@@ -103,8 +103,12 @@ class Response extends Service {
         self::$template = $t;
     }
 
-    static function addVariable( $response ){
-        self::$response  = array_merge_recursive(self::$response,$response);
+    static function addVariable( $response, $override = false ){
+        if($override){
+            self::$response = array_merge(self::$response, $response);
+        }else {
+            self::$response = array_merge_recursive(self::$response, $response);
+        }
         //self::$response += $response;
     }
 
@@ -149,8 +153,6 @@ class Response extends Service {
             self::setTemplateToUse("jsonTemaplate");
             $response = self::$mainResponse;
         }
-
-
         return new self::$config[self::$templateToUse]( $template , $response );
     }
 

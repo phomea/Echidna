@@ -124,10 +124,7 @@ class EcommerceApplication extends Application {
     static function getFrontendApplication()
     {
         self::$config= Config::getFile("ecommerce");
-
         $frontendClass = self::$config['applications']['frontend'];
-
-
         return $frontendClass;
     }
 

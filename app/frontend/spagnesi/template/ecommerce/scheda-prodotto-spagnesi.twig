@@ -38,6 +38,11 @@
 
                         {% for variante in prodotto.varianti %}
                             <div class="card variante mb-5">
+                                <div class="aggiunta-al-carrello">
+                                    <span>Aggiunta del prodotto al carrello</span>
+                                    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                                </div>
+
                                 <div class="card-header">
                                     <h3>{{ variante.nome }}</h3>
                                 </div>
@@ -98,15 +103,15 @@
 
                                 <div class="card-body azioni-finali">
                                     <hr>
-                                    <div class="text-right">
+                                    <div class="text-left">
 
                                         <a href="" class="btn btn-white  annulla-scelta-variante"> Annulla </a>
 
-                                        <a href="{{ router_service.getRoute("frontend.ecommerce.schedaprodotto.variante").build({
+                                        <!--<a href="{{ router_service.getRoute("frontend.ecommerce.schedaprodotto.variante").build({
                                             slug : prodotto.slug,
                                             "slug-variante" : variante.sku
                                         }) }}" class="btn btn-secondary vedi-variante"><i class="fa fa-cart-plus"></i> Aggiungi al carrello </a>
-
+-->
 
                                     </div>
                                 </div>
@@ -241,6 +246,15 @@
         });
         resizeSchedaProdotto()
 
+
+        $(document).on("click",".label-scelta-variante",function(){
+            footer = $(this).closest(".card-footer");
+            index = $(this).index("label");
+
+            $(this).closest(".card").addClass("loading");
+            footer.find('form[data-index="'+index+'"]').submit();
+
+        })
     })(jQuery);
     </script>
 {% endblock %}

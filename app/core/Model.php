@@ -10,16 +10,15 @@ abstract class Model {
      */
     function __construct($data = array())
     {
-
-
        $this->buildProperties($data);
-
     }
 
 
     public function buildProperties( $data = array() ){
-        foreach ($data as $key=>$value) {
-            $this->$key = $value;
+        if( !empty($data) ){
+            foreach ($data as $key=>$value) {
+                $this->$key = $value;
+            }
         }
     }
     /**
@@ -59,14 +58,17 @@ abstract class Model {
              * @var $field Field
              */
             $field = static::schema()[$var];
+            
+           
             if( $field->isUnique()) {
-                return static::getInstance(
-                    Db::getInstance()->fetchOne("select * from $table where $var = :arguments", [
+                $r = Db::getInstance()->fetchOne("select * from $table where $var = :arguments", [
                         "table" => self::getTable(),
                         "arguments" => $arguments
-                    ]));
+                    ]);
+                if(!$r) return $r;
+                return static::getInstance($r);
             }else{
-                $r = [];
+                $r = [];                                         
                 foreach (Db::getInstance()->fetchAll("select * from $table where $var = :arguments", [
                     "table" => self::getTable(),
                     "arguments" => $arguments

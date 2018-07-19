@@ -284,8 +284,11 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
         if( SessionService::get(self::SESSION_USER_LOGGED)){
             RouterService::getRoute(self::ROUTE_SPEDIZIONE)->go();
         }
+
         return [
-            "ecommerce/checkout/index",[]
+            "ecommerce/checkout/index",[
+                "carrello"  => Carrello::get()
+            ]
         ];
     }
 
@@ -427,9 +430,10 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
         $r = $cerca->setQuery($ricerca)->setAttributes($attributi)->setCategories($categoria)
             ->search();
 
-
-        var_dump($r);
-
-        exit;
+        return [
+            "ecommerce/shop/list",[
+                "prodotti"  =>  $r
+            ]
+        ];
     }
 }

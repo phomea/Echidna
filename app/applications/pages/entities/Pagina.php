@@ -34,7 +34,8 @@ class Pagina extends Model {
     static function findBySlug( $slug ){
 
         $r = parent::findBySlug( $slug );
-
+        if(!$r) return false;
+        
         $contenuti = Contenuto::query()
             ->where(Contenuto::PAGINE_ID ."=".$r->getId())
             ->getAll();
