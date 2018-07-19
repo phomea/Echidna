@@ -6,12 +6,14 @@ use applications\ecommerce\entities\Categoria;
 use applications\ecommerce\entities\Cliente;
 use applications\ecommerce\entities\ClienteSpedizione;
 use applications\ecommerce\entities\LineItem;
+use applications\ecommerce\entities\MetodoPagamento;
 use applications\ecommerce\entities\Ordine;
 use applications\ecommerce\entities\Prodotto;
 use applications\ecommerce\entities\Provincia;
 use applications\ecommerce\entities\Spedizione;
 use applications\ecommerce\entities\Variante;
 use applications\ecommerce\gateway\Braintree;
+use applications\ecommerce\gateway\Contrassegno;
 use applications\ecommerce\gateway\Stripe;
 use applications\login\LoginApplication;
 use Aura\Sql\Exception;
@@ -346,48 +348,82 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
 
         $braintree = new Braintree();
 
-        $totale = Carrello::get()->getTotal();
+        $carrello = Carrello::get();
+
 
         $cliente = SessionService::get(self::SESSION_USER_LOGGED);
+        $carrello->setCliente($cliente);
+
+
+
+        $totale = $carrello->getTotal();
+
+
+        $metodiDiPagamento = MetodoPagamento::query()->getAll();
+
         return [
             "ecommerce/checkout/pagamento",[
                 "token"   =>  $braintree->generateToken( $cliente ),
-                "totale"            =>  $totale
+                "totale"            =>  $totale,
+                "metodiDiPagamento" =>  $metodiDiPagamento
             ]
         ];
     }
 
     static function _charge($params = [],$data){
 
+        $metodo = MetodoPagamento::findById($data['metodoDiPagamento']);
+
+
         $carrello = Carrello::get();
         $totale = $carrello->getTotal();
-
         $cliente = SessionService::get(self::SESSION_USER_LOGGED);
-        $braintree  =new Braintree();
 
 
-        $totale = number_format((float)$totale / 100, 2, '.', '');
+        if($metodo->type == Braintree::getType() ) {
+            $braintree = new Braintree();
+            $totale = number_format((float)$totale / 100, 2, '.', '');
+            $result = $braintree->transaction($totale, $data['payment_method_nonce']);
 
-        $result = $braintree->transaction( $totale,$data['payment_method_nonce']);
+            if ($result->success) {
+                // pagamento effettuato
+                $transaction = $result->transaction;
 
-        if( $result->success ){
-            // pagamento effettuato
-            $transaction = $result->transaction;
+                $ordine = new Ordine([
+                    "id_cliente" => $cliente->id,
+                    "gateway" => "braintree",
+                    "id_transaction" => $transaction->id,
+                    "id_metodospedizione" => $carrello->metodoDiSpedizione->id,
+                    "id_indirizzospedizione" => $carrello->indirizzoSpedizione->id,
+                    "spedizione" => $carrello->spedizione,
+                    "subtotale" => $carrello->subtotale,
+                    "totale" => $carrello->totale
+                ]);
 
+                $ordine->save();
+                SessionService::delete(Carrello::SESSION_NAME);
+
+            } else {
+
+            }
+        }
+        if($metodo->type == Contrassegno::getType() ) {
             $ordine = new Ordine([
-                "id_cliente"    =>  $cliente->id,
-                "gateway"       =>  "braintree",
-                "id_transaction"    =>  $transaction->id
+                "id_cliente" => $cliente->id,
+                "gateway" => "contrassegno",
+                "id_metodospedizione" => $carrello->metodoDiSpedizione->id,
+                "id_indirizzospedizione" => $carrello->indirizzoSpedizione->id,
+                "spedizione" => $carrello->spedizione,
+                "subtotale" => $carrello->subtotale,
+                "totale" => $carrello->totale
             ]);
 
             $ordine->save();
             SessionService::delete(Carrello::SESSION_NAME);
-
-        }else{
-
         }
 
         RouterService::getRoute("frontend.ecommerce.checkout.thankyou")->go();
+
 
     }
 

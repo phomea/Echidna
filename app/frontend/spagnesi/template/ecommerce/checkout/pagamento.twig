@@ -2,18 +2,64 @@
 
 
 {% block content %}
-    <main style="padding-top: 200px ;">
-
+    <main class="checkout">
+        {% include "ecommerce/checkout/parti/steps.twig" %}
         <div class="container">
-            <form id="dropin-container" action="{{ router_service.getRoute("frontend.ecommerce.checkout.charge").build() }}" method="post">
-                <div id="payment-form"></div>
-                <input type="submit" value="Paga adesso {{ totale }}" class="btn btn-secondary d-block">
-            </form>
+
+            <div class="row">
+
+                <div class="col-md-8">
+                    <h2>Scegli il metodo ed effettua il pagamento</h2>
+
+                    <div id="accordion">
+                        {% for metodo in metodiDiPagamento %}
+                            <div class="card mb-2">
+                                <div class="card-body pl-4 pr-4">
+                                    <div class="row" data-toggle="collapse" data-target="#metodo{{ metodo.id }}">
+                                        <div class="col">
+                                            <label>{{ metodo.nome }}</label>
+                                        </div>
+                                        <div class="col text-right">
+                                            <strong>+ {{ metodo.prezzo }}€</strong>
+                                        </div>
+                                    </div>
+
+                                    <div id="metodo{{ metodo.id }}" class="collapse" data-parent="#accordion">
+                                        {% if metodo.type == 'braintree' %}
+                                            <form id="dropin-container" action="{{ router_service.getRoute("frontend.ecommerce.checkout.charge").build() }}" method="post">
+                                                <input type="hidden" name="metodoDiPagamento" value="{{ metodo.id }}">
+
+                                                <div id="payment-form"></div>
+                                                <input type="submit" value="Paga adesso {{ totale }}" class="btn btn-secondary btn-block">
+                                            </form>
+                                        {% endif %}
+
+                                        {% if metodo.type == 'contrassegno' %}
+                                            <p>
+                                                Paga in contanti direttamente al corriere che ti consegnerà l'ordine. Questo pagamento prevede una maggiorazione di <strong>{{ metodo.prezzo}}€</strong> sul prezzo finale.
+                                            </p>
+                                            <form id="contrassegno-container" action="{{ router_service.getRoute("frontend.ecommerce.checkout.charge").build() }}" method="post">
+                                                <input type="hidden" name="metodoDiPagamento" value="{{ metodo.id }}">
+                                                <input type="submit" value="Effettua pagamento in contrassegno" class="btn btn-secondary btn-block">
+                                            </form>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+
+                <div class="col-md-4">
+                    {% include "ecommerce/checkout/parti/riepilogo.twig" with { carrello:carrello }%}
+                </div>
+
+            </div>
+
 
 
         </div>
-        <button id="submit-button">Request payment method</button>
-
 
 
 

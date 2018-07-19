@@ -4,13 +4,18 @@ namespace applications\ecommerce\gateway;
 
 use applications\ecommerce\entities\Cliente;
 
-class Braintree{
+class Braintree extends Gateway {
 
     public $merchant_id = "djw36g88h746hxnw";
     public $public_key = "3b6tm77rqq82nty6";
     public $private_key = "8ae8054f68e179b6c8529945c5a86b71";
 
     public $gateway = null;
+
+    static function getType()
+    {
+        return "braintree";
+    }
 
 
     public function __construct()

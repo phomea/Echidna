@@ -37,7 +37,7 @@
                     <td>
                         {{ lineitem.variant.sku }}
                     </td>
-                    <td>
+                    <td class="text-right">
                         {{ lineitem.quantity }}
 
                         X
@@ -51,12 +51,26 @@
             {% endfor %}
 
             <tr>
-                <td></td>
-                <td></td>
+                <td colspan="2" class="text-right">Subtotale</td>
                 <td class="text-right">
-                    <strong>{{ carrello.total}}</strong>
+                    <strong>{{ carrello.subtotale}}</strong>
                 </td>
             </tr>
+
+            <tr>
+                <td colspan="2" class="text-right">Spedizione {{ carrello.metodoDiSpedizione.nome}}</td>
+                <td class="text-right">
+                    <strong>{{ carrello.metodoDiSpedizione.prezzo}}</strong>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" class="text-right">Totale</td>
+                <td class="text-right">
+                    <strong class="h2">{{ carrello.totale}}</strong>
+                </td>
+            </tr>
+
         </table>
     </div>
 </div>

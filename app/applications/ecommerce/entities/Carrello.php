@@ -7,7 +7,14 @@ class Carrello{
     const SESSION_NAME = "ecommerce.carrello";
 
     public $lineitems = [];
+    public $cliente = null;
 
+    public $subtotale = 0;
+    public $totale = 0;
+    public $spedizione = 0;
+
+    public $metodiDiSpedizione = null;
+    public $indirizzoSpedizione = null;
 
     static function get(){
         if($carrello = SessionService::get( Carrello::SESSION_NAME )) {
@@ -49,19 +56,57 @@ class Carrello{
                 $value->update( $this );
             }
         }
+
+        if( $this->cliente != null ){
+            $indirizzoSpedizione = ClienteSpedizione::findById_cliente( $this->cliente->id)[0];
+            $this->indirizzoSpedizione = $indirizzoSpedizione;
+            $provincia = Provincia::findById($indirizzoSpedizione->id_provincia);
+            $zona = \applications\ecommerce\entities\Zona::findById($provincia->id_zone);
+            $metodiDiSpedizione = Spedizione::findById_zona($zona->id);
+
+            if( count($metodiDiSpedizione) == 0 ){
+                $this->setMetodoSpedizione(null);
+            }else{
+                $this->setMetodoSpedizione($metodiDiSpedizione[0]);
+            }
+        }
+
+
+
+        // calcolo totali
+        $totale = 0;
+        foreach ($this->lineitems as $lineitem) {
+            $totale += $lineitem->price_total;
+        }
+        $this->subtotale = $totale;
+
+        if( $this->metodoDiSpedizione != null ){
+
+            $totale += $this->metodoDiSpedizione->prezzo;
+            $this->spedizione = $this->metodoDiSpedizione->prezzo;
+
+
+        }
+        $this->totale = $totale;
+
     }
 
+    public function setMetodoSpedizione( $metodo ){
+        $this->metodoDiSpedizione = $metodo;
+
+    }
     public function save(){
         SessionService::set(Carrello::SESSION_NAME,$this);
     }
 
     public function getTotal(){
         $this->update();
-        $totale = 0;
-        foreach ($this->lineitems as $lineitem) {
-            $totale += $lineitem->price_total;
-        }
 
-        return $totale;
+        return $this->totale;
     }
+
+    public function setCliente( $cliente ){
+        $this->cliente = $cliente;
+    }
+
 }
