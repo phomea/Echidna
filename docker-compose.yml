@@ -12,7 +12,7 @@ services:
        - db
      volumes:
        - ./app:/var/www/html/
-
+     container_name: spagnesi_web
 
 
   db:
@@ -25,6 +25,8 @@ services:
       MYSQL_DATABASE: cartiamotwig
     ports:
       - "3306:3306"
+    container_name: spagnesi_db
+    
   phpmyadmin:
     image: corbinu/docker-phpmyadmin
     links:
