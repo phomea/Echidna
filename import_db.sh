@@ -1,0 +1,1 @@
+docker exec -i spagnesi_db mysql -uroot -proot < docker/mariadb/dump/dump.sql
