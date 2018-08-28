@@ -25,7 +25,6 @@ class Attributo extends Model{
             "parent_value"   =>  Field::text()->editable(),
         ];
     }
-
     static function getModLink(){
         return "attributo/{id:([0-9]*)}";
     }

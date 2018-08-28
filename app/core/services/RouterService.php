@@ -100,16 +100,30 @@ class RouterService extends Service{
 
         foreach($mm[0] as $key=>$value){
 
-            array_push($variabili,$mm[1][$key]);
+            //array_push($variabili,$mm[1][$key]);
+
+            $variabili[$mm[1][$key]] = $params[$mm[1][$key]];
             //$pattern = preg_replace("|{([\(\)A-Za-z:*^{^}.]*)}|i",$mm[2][$key],$pattern);
 
             //$pattern = preg_replace("|".$mm[0][$key]."|i",$mm[2][$key],$pattern);
 
             $pattern = str_replace($mm[0][$key],$params[$mm[1][$key]],$pattern);
 
+
             ///$pattern = str_replace($mm[0][$key],$mm[2][$key],$pattern);
         }
 
+
+
+        $params = array_diff_key($params,$variabili);
+
+
+
+        if(count($params) > 0 ){
+            $pattern .= "?".implode("&", array_map(function( $value, $index){
+                    return $index."=".$value;
+                },$params, array_keys($params)));
+        }
 
 
         //$pattern = trim(str_replace($method,"",$pattern));

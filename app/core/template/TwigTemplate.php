@@ -3,6 +3,7 @@
 namespace core\template;
 
 use core\services\Request;
+use core\services\Response;
 
 abstract class TwigTemplate extends BaseTemplate {
 
@@ -59,6 +60,11 @@ abstract class TwigTemplate extends BaseTemplate {
         }));
 
 
+        $this->twig->addFilter( new \Twig_SimpleFilter('price', function ( $p ) {
+            return Response::formatPrice($p);
+        }));
+
+
 
         $this->twig->addTest(new \Twig_Test('string',function($value){
             return is_string($value);
@@ -76,6 +82,8 @@ abstract class TwigTemplate extends BaseTemplate {
     {
 
         $this->response["current_url"] = Request::getCurrentUrl();
+
+
         return $this->twig->render(
             $this->template.".twig",
             $this->response

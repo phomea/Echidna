@@ -31,46 +31,6 @@
         <h3>Riepilogo</h3>
     </div>
     <div class="card-body">
-        <table class="table">
-            {% for lineitem in carrello.lineitems %}
-                <tr>
-                    <td>
-                        {{ lineitem.variant.sku }}
-                    </td>
-                    <td class="text-right">
-                        {{ lineitem.quantity }}
-
-                        X
-
-                        {{ lineitem.single_price }}
-                    </td>
-                    <td class="text-right">
-                        <strong>{{ lineitem.price_total }}</strong>
-                    </td>
-                </tr>
-            {% endfor %}
-
-            <tr>
-                <td colspan="2" class="text-right">Subtotale</td>
-                <td class="text-right">
-                    <strong>{{ carrello.subtotale}}</strong>
-                </td>
-            </tr>
-
-            <tr>
-                <td colspan="2" class="text-right">Spedizione {{ carrello.metodoDiSpedizione.nome}}</td>
-                <td class="text-right">
-                    <strong>{{ carrello.metodoDiSpedizione.prezzo}}</strong>
-                </td>
-            </tr>
-
-            <tr>
-                <td colspan="2" class="text-right">Totale</td>
-                <td class="text-right">
-                    <strong class="h2">{{ carrello.totale}}</strong>
-                </td>
-            </tr>
-
-        </table>
+        {% include "ecommerce/checkout/parti/riepilogo-tabella.twig" %}
     </div>
 </div>

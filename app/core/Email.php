@@ -2,6 +2,7 @@
 namespace core;
 use controllers\BaseController;
 use core\services\EmailService;
+use core\services\Response;
 
 class Email {
     public $from;
@@ -10,6 +11,7 @@ class Email {
     public $data;
     public $template;
 
+    public $message;
 
 
     function send(){
@@ -35,15 +37,15 @@ class Email {
 
     }
 
+    function setData( $d ){
+        $this->data = $d;
+    }
 
-     function bindData(){
+     function bindData( ){
 
 
 
-
-
-
-        $this->message = BaseController::getTwig()->render("emails/".$this->template.".twig",$this->data);
+        $this->message = Response::getTemplateToUse("emails/".$this->template,$this->data)->render();
 
 
 

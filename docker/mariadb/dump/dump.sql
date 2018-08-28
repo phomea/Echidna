@@ -1,8 +1,8 @@
--- MySQL dump 10.16  Distrib 10.3.7-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.16  Distrib 10.2.12-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: cartiamotwig
 -- ------------------------------------------------------
--- Server version	10.3.7-MariaDB-1:10.3.7+maria~jessie
+-- Server version	10.2.12-MariaDB-10.2.12+maria~jessie
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -18,7 +18,6 @@
 --
 -- Table structure for table `api`
 --
-USE cartiamotwig;
 
 DROP TABLE IF EXISTS `api`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -580,7 +579,7 @@ CREATE TABLE `ecommerce_cliente` (
 
 LOCK TABLES `ecommerce_cliente` WRITE;
 /*!40000 ALTER TABLE `ecommerce_cliente` DISABLE KEYS */;
-INSERT INTO `ecommerce_cliente` VALUES (1,'fabio','pocci','phomea@gmail.com',1,NULL,NULL),(2,'fabio','pocci','phomea@gmail.com',1,NULL,NULL),(3,'fabio','pocci','phomea@gmail.com',1,NULL,NULL),(4,'fabio','pocci','phomea@gmail.com',1,NULL,NULL),(5,'fabio','pocci','phomea@gmail.com',1,NULL,'244066981'),(6,'asd','asd','prova@email.com',1,NULL,'675579751'),(7,'sadasd','asd','asdasd@dasd.com',1,NULL,'223959919'),(8,'fabio ','pocci','phomea@hotmail.com',1,'a8a45b1b5db9edd697984a958b05f92b','518288251'),(9,'','','',1,'189bbbb00c5f1fb7fba9ad9285f193d1',NULL),(10,'fab','po','phomasdea@g123ddamail.com',1,'3dfaaa830360ba14696354ee91e76645','806252799'),(11,'fab','po','phomasdea@g123ddamail.com',1,'a8a45b1b5db9edd697984a958b05f92b','685227844');
+INSERT INTO `ecommerce_cliente` VALUES (1,'fabio','pocci','phomea@gmail.com',1,NULL,NULL),(2,'fabio','pocci','phomea@gmail.com',1,NULL,NULL),(3,'fabio','pocci','phomea@gmail.com',1,NULL,NULL),(4,'fabio','pocci','phomea@gmail.com',1,NULL,NULL),(5,'fabio','pocci','phomea@gmail.com',1,NULL,'244066981'),(6,'asd','asd','prova@email.com',1,NULL,'675579751'),(7,'sadasd','asd','asdasd@dasd.com',1,NULL,'223959919'),(8,'fabio ','pocci','phomea@hotmail.com',1,'a8a45b1b5db9edd697984a958b05f92b','518288251'),(10,'fab','po','phomasdea@g123ddamail.com',1,'3dfaaa830360ba14696354ee91e76645','806252799'),(11,'fab','po','phomasdea@g123ddamail.com',1,'a8a45b1b5db9edd697984a958b05f92b','685227844');
 /*!40000 ALTER TABLE `ecommerce_cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -602,7 +601,7 @@ CREATE TABLE `ecommerce_cliente_spedizione` (
   `id_cliente` int(11) DEFAULT NULL,
   `citta` varchar(512) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -611,7 +610,7 @@ CREATE TABLE `ecommerce_cliente_spedizione` (
 
 LOCK TABLES `ecommerce_cliente_spedizione` WRITE;
 /*!40000 ALTER TABLE `ecommerce_cliente_spedizione` DISABLE KEYS */;
-INSERT INTO `ecommerce_cliente_spedizione` VALUES (1,'fabio','pocci','via di qui, 3','5',NULL,198,4,NULL),(2,'fabio','pocci','via di qui, 3','5',NULL,198,4,NULL),(3,'fabio','pocci','via di qui, 3','4',NULL,198,4,NULL),(4,'fabio','pocci','via di qui, 3','4',NULL,198,4,NULL),(5,'fabio','pocci','via di qui, 3','4',NULL,198,4,NULL),(6,'fabio','pocci','via di qui, 3','4',NULL,198,4,NULL),(7,'fabio','pocci','via di qui, 3','4',NULL,198,4,NULL),(8,'fabio','pocci','via di qui, 3','4',NULL,198,4,'pistoia'),(9,'fabio','pocci','via di qui, 3','4',NULL,198,4,'pistoia'),(10,'fabio','pocci','via di qui, 3','4',NULL,198,4,'pistoia'),(11,'fabio','pocci','via di qui, 3','4',NULL,198,4,'pistoia'),(12,'fabio','pocci','via di qui, 3','',NULL,198,4,'pistoia'),(13,'fabio','pocci','via di qui, 3','',NULL,198,4,'pistoia'),(14,'fabio','pocci','via di qui, 3','3',NULL,198,5,'pistoia'),(15,'fabio','pocci','via di qui, 3','3',NULL,198,5,'pistoia'),(16,'fabio','pocci','via di qui, 3','3',NULL,198,6,'pistoia'),(17,'sadasd','asd','sadasd sad as d','123',NULL,198,7,'pistoia'),(18,'fabio tretreert','pocci','via di qui, 3','3',NULL,181,8,'pistoia'),(19,'fabio cambiato','pocci','via di qui, 3','3',NULL,198,8,'pistoia'),(20,'Fabio','Pocci','via qui','2',NULL,198,10,'pistoia'),(21,'fab','po','via qui','2',NULL,198,11,'pistoia');
+INSERT INTO `ecommerce_cliente_spedizione` VALUES (1,'fabio','pocci','via di qui, 3','5',NULL,198,4,NULL),(2,'fabio','pocci','via di qui, 3','5',NULL,198,4,NULL),(3,'fabio','pocci','via di qui, 3','4',NULL,198,4,NULL),(4,'fabio','pocci','via di qui, 3','4',NULL,198,4,NULL),(5,'fabio','pocci','via di qui, 3','4',NULL,198,4,NULL),(6,'fabio','pocci','via di qui, 3','4',NULL,198,4,NULL),(7,'fabio','pocci','via di qui, 3','4',NULL,198,4,NULL),(8,'fabio','pocci','via di qui, 3','4',NULL,198,4,'pistoia'),(9,'fabio','pocci','via di qui, 3','4',NULL,198,4,'pistoia'),(10,'fabio','pocci','via di qui, 3','4',NULL,198,4,'pistoia'),(11,'fabio','pocci','via di qui, 3','4',NULL,198,4,'pistoia'),(12,'fabio','pocci','via di qui, 3','',NULL,198,4,'pistoia'),(13,'fabio','pocci','via di qui, 3','',NULL,198,4,'pistoia'),(14,'fabio','pocci','via di qui, 3','3',NULL,198,5,'pistoia'),(15,'fabio','pocci','via di qui, 3','3',NULL,198,5,'pistoia'),(16,'fabio','pocci','via di qui, 3','3',NULL,198,6,'pistoia'),(17,'sadasd','asd','sadasd sad as d','123',NULL,198,7,'pistoia'),(18,'fabio tretreert','pocci','via di qui, 3','3',NULL,181,8,'pistoia'),(19,'fabio cambiato','pocci','via di qui, 3','3',NULL,198,8,'pistoia'),(20,'Fabio','Pocci','via qui','2',NULL,198,10,'pistoia'),(21,'fab','po','via qui','2',NULL,198,11,'pistoia'),(22,'fabio','pocci','via di qui, 3','3',NULL,198,9,'pistoia');
 /*!40000 ALTER TABLE `ecommerce_cliente_spedizione` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -651,6 +650,32 @@ INSERT INTO `ecommerce_country` VALUES (1,1,0,'DE',49,0,0,0,1,'NNNNN',1),(2,1,0,
 UNLOCK TABLES;
 
 --
+-- Table structure for table `ecommerce_metodopagamento`
+--
+
+DROP TABLE IF EXISTS `ecommerce_metodopagamento`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ecommerce_metodopagamento` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `nome` varchar(512) DEFAULT NULL,
+  `type` varchar(512) DEFAULT NULL,
+  `prezzo` varchar(512) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ecommerce_metodopagamento`
+--
+
+LOCK TABLES `ecommerce_metodopagamento` WRITE;
+/*!40000 ALTER TABLE `ecommerce_metodopagamento` DISABLE KEYS */;
+INSERT INTO `ecommerce_metodopagamento` VALUES (1,'Carta di credito','braintree',''),(2,'Contrassegno','contrassegno','400');
+/*!40000 ALTER TABLE `ecommerce_metodopagamento` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `ecommerce_ordine`
 --
 
@@ -664,8 +689,13 @@ CREATE TABLE `ecommerce_ordine` (
   `id_transaction` varchar(512) COLLATE utf8_bin DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `update_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `id_metodospedizione` int(11) DEFAULT NULL,
+  `id_indirizzospedizione` int(11) DEFAULT NULL,
+  `subtotale` int(11) DEFAULT NULL,
+  `totale` int(11) DEFAULT NULL,
+  `spedizione` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -674,7 +704,7 @@ CREATE TABLE `ecommerce_ordine` (
 
 LOCK TABLES `ecommerce_ordine` WRITE;
 /*!40000 ALTER TABLE `ecommerce_ordine` DISABLE KEYS */;
-INSERT INTO `ecommerce_ordine` VALUES (1,6,'braintree','gr7bdtee','2018-07-09 19:01:21','2018-07-09 19:01:21'),(2,7,'braintree','3nm1reyx','2018-07-09 19:02:52','2018-07-09 19:02:52'),(3,8,'braintree','81ad2b2g','2018-07-10 22:37:24','2018-07-10 22:37:24');
+INSERT INTO `ecommerce_ordine` VALUES (1,6,'braintree','gr7bdtee','2018-07-09 19:01:21','2018-07-09 19:01:21',NULL,NULL,NULL,NULL,NULL),(2,7,'braintree','3nm1reyx','2018-07-09 19:02:52','2018-07-09 19:02:52',NULL,NULL,NULL,NULL,NULL),(3,8,'braintree','81ad2b2g','2018-07-10 22:37:24','2018-07-10 22:37:24',NULL,NULL,NULL,NULL,NULL),(4,8,'contrassegno',NULL,'2018-07-28 09:49:58','2018-07-28 09:49:58',2,18,789,819,30),(5,8,'contrassegno',NULL,'2018-07-28 09:50:48','2018-07-28 09:50:48',2,18,789,819,30),(6,8,'contrassegno',NULL,'2018-07-28 09:52:30','2018-07-28 09:52:30',2,18,211,241,30),(7,8,'contrassegno',NULL,'2018-07-28 09:53:57','2018-07-28 09:53:57',2,18,1002,1032,30),(8,8,'contrassegno',NULL,'2018-07-28 09:57:33','2018-07-28 09:57:33',2,18,789,819,30),(9,8,'contrassegno',NULL,'2018-07-28 09:58:25','2018-07-28 09:58:25',2,18,211,241,30);
 /*!40000 ALTER TABLE `ecommerce_ordine` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -906,6 +936,7 @@ CREATE TABLE `ecommerce_spedizione` (
   `nome` varchar(512) COLLATE utf8_bin DEFAULT NULL,
   `sku` varchar(512) COLLATE utf8_bin DEFAULT NULL,
   `prezzo` varchar(512) COLLATE utf8_bin DEFAULT NULL,
+  `id_zona` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -916,7 +947,7 @@ CREATE TABLE `ecommerce_spedizione` (
 
 LOCK TABLES `ecommerce_spedizione` WRITE;
 /*!40000 ALTER TABLE `ecommerce_spedizione` DISABLE KEYS */;
-INSERT INTO `ecommerce_spedizione` VALUES (1,'asdas das ',NULL,NULL),(2,'Spedizione dhl','spedizione-dhl','30');
+INSERT INTO `ecommerce_spedizione` VALUES (1,'asdas das ',NULL,NULL,NULL),(2,'Spedizione dhl','spedizione-dhl','30',1);
 /*!40000 ALTER TABLE `ecommerce_spedizione` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1587,4 +1618,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-07-19 22:18:44
+-- Dump completed on 2018-07-28  9:59:24

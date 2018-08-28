@@ -6,6 +6,7 @@ class LineItem{
     public $id_variant;
     public $quantity = 0;
     public $cart = null;
+    public $single_price;
     public $price_total = 0;
 
     public $attributi = [];

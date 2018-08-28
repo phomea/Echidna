@@ -4,6 +4,7 @@ namespace core;
 
 use core\services\ApplicationsService;
 use core\services\Db;
+use core\services\EmailService;
 use core\services\Request;
 use core\services\Response;
 use core\services\RouterService;
@@ -21,7 +22,7 @@ class Bootstrap{
 
         ApplicationsService::init();
         RouterService::init();
-
+        EmailService::init();
 
 
     }

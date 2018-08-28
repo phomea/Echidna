@@ -18,8 +18,11 @@ use applications\ecommerce\gateway\Stripe;
 use applications\login\LoginApplication;
 use Aura\Sql\Exception;
 use core\Config;
+use core\Email;
 use core\Route;
 use core\RouteFilter;
+use core\services\Db;
+use core\services\EmailService;
 use core\services\Request;
 use core\services\Response;
 use core\services\RouterService;
@@ -372,10 +375,26 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
 
     static function _charge($params = [],$data){
 
-        $metodo = MetodoPagamento::findById($data['metodoDiPagamento']);
 
 
         $carrello = Carrello::get();
+        $email = new Email();
+        $email->from= "info";
+        $email->to= "phomea@gmail.com";
+        $email->template = "conferma-ordine";
+        $email->subject ="Conferma ordine";
+
+        $email->setData([
+            "ordine"  =>  $carrello,
+            "lineitems" =>  $carrello->lineitems
+        ]);
+
+
+
+        $metodo = MetodoPagamento::findById($data['metodoDiPagamento']);
+
+
+
         $totale = $carrello->getTotal();
         $cliente = SessionService::get(self::SESSION_USER_LOGGED);
 
@@ -401,6 +420,12 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
                 ]);
 
                 $ordine->save();
+                $numero = $ordine->getNumeroOrdine();
+                $email->data['numeroordine'] = $numero;
+                $email->send();
+
+
+
                 SessionService::delete(Carrello::SESSION_NAME);
 
             } else {
@@ -419,6 +444,14 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
             ]);
 
             $ordine->save();
+
+
+            $numero = $ordine->getNumeroOrdine();
+            $email->data['numeroordine'] = $numero;
+            $email->send();
+
+
+
             SessionService::delete(Carrello::SESSION_NAME);
         }
 
@@ -443,11 +476,14 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
         if( $cliente ) {
             if ($cliente->password == $password) {
                 SessionService::set(EcommerceFrontend::SESSION_USER_LOGGED, $cliente);
+                RouterService::getRoute(self::ROUTE_SPEDIZIONE)->go();
             }
-            RouterService::getRoute(self::ROUTE_SPEDIZIONE)->go();
+
         }
 
-        RouterService::getRoute(self::ROUTE_CHECKOUT)->go();
+        RouterService::getRoute(self::ROUTE_CHECKOUT)->go([
+            "msg"   =>  "Non è stato possibile autenticarsi"
+        ]);
 
     }
 

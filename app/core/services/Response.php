@@ -176,4 +176,9 @@ class Response extends Service {
             ]
         ];
     }
+
+
+    static function formatPrice( $price ){
+        return number_format( (float)($price/100),2,".",".")."€";
+    }
 }

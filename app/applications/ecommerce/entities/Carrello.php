@@ -1,6 +1,7 @@
 <?php
 namespace applications\ecommerce\entities;
 
+use core\services\Response;
 use core\services\SessionService;
 
 class Carrello{
@@ -62,6 +63,7 @@ class Carrello{
             $this->indirizzoSpedizione = $indirizzoSpedizione;
             $provincia = Provincia::findById($indirizzoSpedizione->id_provincia);
             $zona = \applications\ecommerce\entities\Zona::findById($provincia->id_zone);
+
             $metodiDiSpedizione = Spedizione::findById_zona($zona->id);
 
             if( count($metodiDiSpedizione) == 0 ){
@@ -107,6 +109,16 @@ class Carrello{
 
     public function setCliente( $cliente ){
         $this->cliente = $cliente;
+    }
+
+    public function printTotale(){
+        return Response::formatPrice( $this->totale );
+    }
+    public function printSubtotale(){
+        return Response::formatPrice( $this->subtotale );
+    }
+    public function printSpedizione(){
+        return Response::formatPrice( $this->spedizione );
     }
 
 }

@@ -6,6 +6,8 @@
             <div class="row">
                 <div class="col-8">
                     <h2>Prodotti presenti nel carrello</h2>
+
+
                     {% for lineitem in carrello.lineitems %}
                         <div class="card mb-3">
                             <div class="row card-body">
@@ -51,6 +53,9 @@
 
                     </div>
                     {% endfor %}
+
+
+
                 </div>
 
                 <div class="col-4 pt-2">
@@ -59,33 +64,8 @@
                             <h3>Riepilogo</h3>
                         </div>
                         <div class="card-body">
-                            <table class="table">
-                            {% for lineitem in carrello.lineitems %}
-                                    <tr>
-                                        <td>
-                                            {{ lineitem.variant.sku }}
-                                        </td>
-                                        <td>
-                                            {{ lineitem.quantity }}
 
-                                            X
-
-                                            {{ lineitem.single_price }}
-                                        </td>
-                                        <td class="text-right">
-                                            <strong>{{ lineitem.price_total }}</strong>
-                                        </td>
-                                    </tr>
-                            {% endfor %}
-
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td class="text-right">
-                                            <strong>{{ carrello.total}}</strong>
-                                        </td>
-                                    </tr>
-                            </table>
+                            {% include "ecommerce/checkout/parti/riepilogo-tabella.twig" %}
 
                             <a href="/checkout" class="btn btn-secondary btn-block">Procedi all'acquisto</a>
                             <a href="/checkout" class="btn btn-white btn-block">Torna allo shop</a>
