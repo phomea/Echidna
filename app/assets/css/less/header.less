@@ -39,14 +39,39 @@
   }
   nav{
     display: inline-block;
-    a{
-      margin-right: 2em;
-      margin-left: 2em;
-      font-weight: 500;
-      color: #fff;
-      font-size: 1.1em;
+    ul{
+      display: inline-block;
+      list-style: none;
+      li{
+        display: inline-block;
+        position: relative;
+        a{
+          margin-right: 2em;
+          margin-left: 2em;
+          font-weight: 500;
+          color: #fff;
+          font-size: 1.1em;
 
-      transition: all @headerSpeedTransition ;
+          transition: all @headerSpeedTransition ;
+        }
+        ul{
+          display: none;
+          position: absolute;
+          top: 20px;
+          left: 0px;
+          margin-left: 0px;
+          padding-left: 0px;
+          li{
+              display: block;
+          }
+        }
+      }
+      li:hover{
+        ul{
+          display: block;
+          text-align: left;
+        }
+      }
     }
   }
   .logo{
