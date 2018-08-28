@@ -1,1 +1,20 @@
 {% extends "ecommerce/shop/list.twig" %}
+
+
+  {% block topcontent %}
+      <div class="category-top">
+          <img src="{{ immagineTop}}" class="cover">
+          <div class="container">
+            <h1 class="category-title">{{ categoria.nome }}</h1>
+            <h2 class="category-description">{{ categoria.slogan|raw }}</h2>
+          </div>
+      </div>
+
+      <div class="container">
+          <div class="row">
+              <div class="col-8">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate orci convallis hendrerit varius. Quisque eu molestie ex. Aenean non mattis sem, vel efficitur nisl. Sed in ex commodo, tempor est ac, scelerisque lacus. Curabitur luctus felis tempor sem dapibus.</p>
+              </div>
+          </div>
+      </div>
+  {% endblock %}

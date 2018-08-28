@@ -1,11 +1,21 @@
-<article class="product-thumbnail-preview">
-    <a href="{{ router_service.getRoute("frontend.ecommerce.schedaprodotto").build({slug:prodotto.slug}) }}">
-        <figure class="images">
-            <img class="image-1" src="{{ prodotto.images[0].permalink }}">
-            <img class="image-2" src="{{ prodotto.images[1].permalink }}">
-        </figure>
-    </a>
-    <h3>{{ prodotto.nome }}</h3>
-    <h4>{{ prodotto.varianti[0].prezzo }}</h4>
-    <div class="descrizione">{{ prodotto.valoriCampi.riassunto.valore|raw }}</div>
+<article class="product-thumbnail-preview card">
+    <div class="row">
+        <div class="col-5">
+            <a href="{{ router_service.getRoute("frontend.ecommerce.schedaprodotto").build({slug:prodotto.slug}) }}">
+                <figure class="images">
+                    <img class="image-1" src="{{ prodotto.images[0].permalink }}">
+                    <img class="image-2" src="{{ prodotto.images[1].permalink }}">
+                </figure>
+            </a>
+        </div>
+        <div class="col-7 card-body">
+            <h3>{{ prodotto.nome }}</h3>
+            <h4>{{ prodotto.variantePrimaria.prezzo |price }}</h4>
+            <div class="descrizione">{{ prodotto.valoriCampi.riassunto.valore|raw }}</div>
+
+            <div class="">
+                <a href="{{ router_service.getRoute("frontend.ecommerce.schedaprodotto").build({slug:prodotto.slug}) }}" class="btn btn-secondary btn-block">Vedi prodotto</a>
+            </div>
+        </div>
+    </div>
 </article>

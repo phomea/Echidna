@@ -80,7 +80,7 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
             self::ROUTE_SPEDIZIONE_SAVE  =>  (new Route( self::ROUTE_SPEDIZIONE_SAVE,"/checkout/spedizione",[self::class,"_spedizione"]))->method(Route::METHOD_POST),
 
             "frontend.ecommerce.checkout.pagamento"   =>  new Route("frontend.ecommerce.checkout.pagamento","/checkout/pagamento",[self::class,"_pagamento"]),
-            "frontend.ecommerce.checkout.charge"   =>  (new Route("frontend.ecommerce.checkout.charge","/checkout/piazza",[self::class,"_charge"]))->method(Route::METHOD_POST),
+            "frontend.ecommerce.checkout.charge"   =>  (new Route("frontend.ecommerce.checkout.charge","/checkout/piazza",[self::class,"_char\ge"]))->method(Route::METHOD_POST),
 
             "frontend.ecommerce.checkout.thankyou"   =>  (new Route("frontend.ecommerce.checkout.thankyou","/checkout/ordine-effettuato",[self::class,"_thankyou"])),
 
@@ -281,11 +281,17 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
 
         $prodotti = Catalogo::search()->byCategory($categoria);
 
+        $immagineTop = "";
 
+        $immagini = $categoria->getImages();
+        if( count($immagini) > 0 ){
+            $immagineTop = $immagini[0]['permalink'];
+        }
         return [
             "ecommerce/shop/category",[
                 "categoria" =>  $categoria,
-                "prodotti"  =>  $prodotti
+                "prodotti"  =>  $prodotti,
+                "immagineTop" => $immagineTop
             ]
         ];
     }

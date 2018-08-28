@@ -83,6 +83,11 @@ class EcommerceApplication extends Application {
             "ecommerce.catalogo.prodotto.image.remove"  =>  (new Route( "" ,"/backend/ecommerce/catalogo/prodotti/image/remove/".Prodotto::getModLink(),[Catalogo::class,"removeImage"]))->method(Route::METHOD_POST),
 
 
+            "ecommerce.catalogo.categoria.image"  =>  (new Route( "" ,"/backend/ecommerce/catalogo/categoria/".Categoria::getModLink()."/image",[Catalogo::class,"getCategoryImages"])),
+            "ecommerce.catalogo.categoria.image.add"  =>  (new Route( "" ,"/backend/ecommerce/catalogo/categoria/".Categoria::getModLink()."/image/add",[Catalogo::class,"addCategoryImage"]))->method(Route::METHOD_POST),
+            "ecommerce.catalogo.categoria.image.remove"  =>  (new Route( "" ,"/backend/ecommerce/catalogo/categoria/image/remove/".Categoria::getModLink(),[Catalogo::class,"removeCategoryImage"]))->method(Route::METHOD_POST),
+
+
 
 
         ];

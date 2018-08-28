@@ -2,6 +2,8 @@
 namespace applications\ecommerce\traits;
 
 use \applications\ecommerce\entities\Categoria;
+use applications\ecommerce\entities\Variante;
+use core\services\Db;
 use \core\services\Response;
 use core\services\RouterService;
 
@@ -26,11 +28,50 @@ trait metodiCatalogoCategoria{
             ]
         ];
     }
+
+
+    static function getCategoryImages( $params=[]){
+        $sql =  "SELECT * FROM ecommerce_categoria_immagine WHERE id_categoria=:id";
+
+        return Db::$connection->fetchAll($sql,[
+            "id"   =>  $params['id']
+        ]);
+    }
+
     static function editCategoria( $params ){
 
         $data = Categoria::findById( $params['id'] );
 
         $fields = static::generateFields(Categoria::class,$data);
+
+
+
+        return[
+            "tabs", [
+                "tabs" =>[
+                    "proprieta" => [
+                        "label" =>  "Proprietà",
+                        "content"   =>  Response::getTemplateToUse("mod",[
+                            "title" =>  "Modifica",
+                            "data"  =>  $data,
+                            "fields"    =>  $fields,
+                            "entity"    =>  Categoria::class
+                        ],"empty.twig")->render()
+                    ],
+                    "immagini"  =>  [
+                        "label" =>  "Immagini",
+                        "content"   =>  Response::getTemplateToUse("ecommerce/templates/addimages",[
+                            "directory" => "catalogo/categorie/",
+                            "postRoute" =>  RouterService::getRoute("ecommerce.catalogo.categoria.image.add")->build(["id"=>$data->id]),
+                            "deleteRoute" =>  RouterService::getRoute("ecommerce.catalogo.categoria.image.remove")->build(),
+                            "immagini" =>  $data->getImages()
+
+                        ],"empty.twig")->render()
+
+                    ]
+                ]
+            ]
+        ];
 
         return [
             "mod",[
@@ -40,6 +81,37 @@ trait metodiCatalogoCategoria{
                 "entity"    =>  Categoria::class
             ]
         ];
+    }
+
+    static function addCategoryImage( $params = [] , $data ){
+
+        $sql = "INSERT INTO ecommerce_categoria_immagine (id_categoria,permalink) VALUES (:id,:permalink)";
+
+        Db::$connection->perform($sql,[
+            "id" => $params['id'],
+            "permalink" => $data['permalink']
+        ]);
+
+
+        $lastid = Db::$connection->lastInsertId();
+
+        $sql = "SELECT * FROM ecommerce_categoria_immagine where id=:id";
+        return ["",[
+            "data"=>Db::$connection->fetchOne($sql,["id"=>$lastid])
+        ]
+        ];
+
+    }
+
+    static function removeCategoryImage( $params = [], $data ){
+
+        var_dump($params);
+
+        $sql = "DELETE FROM ecommerce_categoria_immagine where id=:id";
+
+        var_dump($sql);
+        Db::$connection->perform($sql,$params);
+        exit;
     }
 
     static function updateCategoria( $params = [] , $data = null ){

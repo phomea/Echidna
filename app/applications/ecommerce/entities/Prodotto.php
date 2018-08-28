@@ -8,6 +8,9 @@ use core\Model;
 use core\services\Db;
 
 class Prodotto extends Model{
+    const VISUALIZZAZIONE_SEMPLICE = 0;
+    const VISUALIZZAZIONE_COMPLESSA = 1;
+
     static function getTable()
     {
         return "ecommerce_prodotto";
@@ -21,7 +24,17 @@ class Prodotto extends Model{
             "slug"  =>  Field::varchar(64)->editable()->setTemplate("slug")->setTemplateVar("nome"),
             "sku"  =>  Field::varchar(512)->editable(),
             "descrizione"   =>  Field::text()->editable()->setTemplate("textarea"),
-            "id_ecommerce_tipologia_prodotto"   =>  Field::int()->editable(true)->setTemplate("select")->setTemplateVar(\applications\ecommerce\TipologiaProdotto::getForSelect())
+            "id_ecommerce_tipologia_prodotto"   =>  Field::int()->editable(true)->setTemplate("select")->setTemplateVar(\applications\ecommerce\TipologiaProdotto::getForSelect()),
+            "visualizzazione"   =>  Field::int()->editable()->setDefault(0)->setTemplate("select")->setTemplateVar([
+                [
+                    "label" => "Semplice",
+                    "value" =>  self::VISUALIZZAZIONE_SEMPLICE
+                ],
+                [
+                    "label" => "Complessa",
+                    "value" =>  self::VISUALIZZAZIONE_COMPLESSA
+                ]
+            ]),
         ];
     }
 
@@ -54,11 +67,20 @@ class Prodotto extends Model{
 
 
     public function getVariants(){
+        $variantePrimaria = false;
+
         $varianti = Variante::findById_prodotto($this->id);
 
         foreach ($varianti as $key=>$value){
             $value->expand();
+            if($value->primaria == 1){
+                $variantePrimaria = true;
+                $this->variantePrimaria = $value;
+            }
+        }
 
+        if( !$variantePrimaria ){
+            $this->variantePrimaria = $varianti[0];
         }
         return $varianti;
     }

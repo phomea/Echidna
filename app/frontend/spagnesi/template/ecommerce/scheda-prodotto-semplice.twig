@@ -1,0 +1,43 @@
+{% extends "base/template.twig" %}
+
+{% block content %}
+    {% set variante = prodotto.variantePrimaria %}
+
+    <figure class="product-top-bg">
+        <img src="{{ prodotto.images[0].permalink }}">
+    </figure>
+    <main id="scheda-prodotto">
+        <div class="container">
+
+
+            <div class="row mt-5">
+                <div class="col-8">
+                    <div class="owl-carousel owl-theme general-carousel" data-nav>
+                    {% for immagine in prodotto.images %}
+                        <img src="{{ immagine.permalink }}">
+                    {% endfor %}
+                    </div>
+                </div>
+                <div class="col-4">
+                    <h2 class="product-name">{{ prodotto.nome }}</h2>
+                    Codice prodotto : {% for variante in prodotto.varianti %}
+                        <span class="product-sku">{{ variante.sku }}</span>
+                    {% endfor %}
+
+
+                    <p class="product-description">{{ prodotto.descrizione }}</p>
+
+                    <span class="price">{{ variante.prezzo | price }}</span>
+
+                    <form method="post" action="/carrello/aggiungi">
+                        <input type="hidden" name="id_variante" value="{{ variante.id }}">
+                        <input type="hidden" name="quantita" value="1">
+
+                        <button type="submit" class="btn btn-secondary" ><i class="fa fa-cart"></i> Aggiungi al carrello</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+

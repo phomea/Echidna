@@ -71,9 +71,11 @@
                 var id = $(this).attr("data-id");
 
 
+
                 $(remove).on("click",function( e ){
                     e.preventDefault();
-                    $.post( "{{ router_service.getRoute("ecommerce.catalogo.prodotto.image.remove").build({id: ""}) }}"+id,{
+
+                    $.post( "{{ deleteRoute }}"+id,{
 
                     }).complete(function(d){
                         $(thumbnail).remove();

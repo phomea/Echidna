@@ -1,7 +1,9 @@
 {% extends "base/template.twig" %}
 
 {% block content %}
-    <main style="padding-top: 300px;">
+    {% block topcontent %}
+    {% endblock %}
+    <main>
         <div class="container">
 
             <div class="row">
@@ -10,9 +12,9 @@
                     <div class="row">
                         {% for prodotto in prodotti %}
                         <div class="col-6">
-                            {% include "ecommerce/product/thumbnail-preview.twig" with {prodotto : prodotto} %}
-                            {% endfor %}
+                            {% include "ecommerce/product/thumbnail-preview.twig" with {prodotto : prodotto} %}s
                         </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>

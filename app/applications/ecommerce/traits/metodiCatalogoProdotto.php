@@ -69,7 +69,7 @@ trait metodiCatalogoProdotto{
 
         $data->expand();
 
-        $fields = static::generateFields(Categoria::class,$data);
+        $fields = static::generateFields(Prodotto::class,$data);
 
         $categorieDisponibili = Categoria::query()->getAll();
 
@@ -84,6 +84,7 @@ trait metodiCatalogoProdotto{
 
         $tipologieProdotto = TipologiaProdotto::query()->getAll();
         $attributiTipologia = $data->tipologia->getAttributes();
+
 
 
         return [
