@@ -17,6 +17,7 @@ class Ordine extends \core\Model {
            "id_cliente" =>  Field::int(),
            "id_metodospedizione" =>  Field::int(),
            "id_indirizzospedizione" =>  Field::int(),
+           "id_coupon" =>  Field::int(),
            "gateway"    =>  Field::varchar(512)->editable(),
            "id_transaction" =>  Field::varchar(512)->editable(),
            "created_at"     =>  Field::date()->editable(),

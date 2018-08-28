@@ -36,7 +36,7 @@ abstract class BackendApplication{
             $entity::getEntity().".add"        =>  new Route("add",$entity::getAddLink(),[static::class,"actionAdd"]),
 
 
-            $entity::getEntity().".update"     =>  (new Route("update",$entity::getListLink(),[static::class,'actionUpdate']))->method(Route::METHOD_PUT),
+            $entity::getEntity().".update"     =>  (new Route("update",$entity::getUpdateLink(),[static::class,'actionUpdate']))->method(Route::METHOD_PUT),
             $entity::getEntity().".insert"     =>  (new Route("insert",$entity::getAddLink(),[static::class,'actionInsert']))->method(Route::METHOD_POST),
             $entity::getEntity().".delete"     =>  (new Route("insert",$entity::getModLink()."/delete",[static::class,'actionDelete']))
         ];

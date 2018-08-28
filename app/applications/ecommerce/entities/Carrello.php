@@ -17,6 +17,9 @@ class Carrello{
     public $metodiDiSpedizione = null;
     public $indirizzoSpedizione = null;
 
+    public $coupon;
+    public $totaleSconto;
+
     static function get(){
         if($carrello = SessionService::get( Carrello::SESSION_NAME )) {
 
@@ -82,13 +85,23 @@ class Carrello{
         }
         $this->subtotale = $totale;
 
-        if( $this->metodoDiSpedizione != null ){
+        if($this->coupon){
+            if($this->coupon->canAddToCart()) {
+                $totaleSconto = $this->coupon->calcolaSconto($totale);
+                $this->totaleSconto = $totaleSconto;
+                $totale -= $this->totaleSconto;
+            }else{
+                $this->coupon=null;
+            }
+        }
 
+        if( $this->metodoDiSpedizione != null ){
             $totale += $this->metodoDiSpedizione->prezzo;
             $this->spedizione = $this->metodoDiSpedizione->prezzo;
-
-
         }
+
+
+        if( $totale < 0 ) $totale = 0;
         $this->totale = $totale;
 
     }
@@ -119,6 +132,22 @@ class Carrello{
     }
     public function printSpedizione(){
         return Response::formatPrice( $this->spedizione );
+    }
+
+    /**
+     * @param $c Coupon
+     */
+    public function addCoupon( $c ){
+        if($c->canAddToCart()) {
+            if ($c) {
+                $this->coupon = $c;
+                return true;
+            }
+        }
+        return false;
+    }
+    public function rimuoviCoupon( ){
+        $this->coupon = null;
     }
 
 }

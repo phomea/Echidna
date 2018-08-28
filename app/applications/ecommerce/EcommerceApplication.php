@@ -30,6 +30,7 @@ class EcommerceApplication extends Application {
                         ["label" => "Clienti","href" =>  "/backend/".static::$name."/clienti"],
                         ["label" => "Spedizioni","href" =>  "/backend/".static::$name."/spedizioni/"],
                         ["label" => "Pagamenti","href" =>  "/backend/".static::$name."/metodi-di-pagamento/lista"],
+                        ["label" => "Coupon","href" =>  "/backend/".static::$name."/coupon/lista"],
                         ["label" => "Attributi","href" =>   RouterService::getRoute(\applications\ecommerce\entities\Attributo::class.".list")->build()],
                     ]
                 ]
@@ -99,6 +100,9 @@ class EcommerceApplication extends Application {
 
         RouterService::addRoutesPrefixed(\applications\ecommerce\Varianti::declareRoutes(),"/backend/ecommerce/varianti/");
         RouterService::addRoutesPrefixed(\applications\ecommerce\MetodiPagamento::declareRoutes(),"/backend/ecommerce/metodi-di-pagamento/");
+
+
+        RouterService::addRoutesPrefixed(\applications\ecommerce\CouponApplication::declareRoutes(),"/backend/ecommerce/coupon/");
 
 
         return array_merge(

@@ -445,6 +445,7 @@ class RouterService extends Service{
 
                 $response = false;
 
+                $r = array_merge($r,$_GET);
                 if( in_array(Request::getMethod(),["POST","PUT"] )){
                     $response = call_user_func_array($route->callback,
                         [

@@ -24,6 +24,20 @@
         </td>
     </tr>
 
+    {% if carrello.coupon %}
+    <tr>
+        <td colspan="2" class="text-right">Coupon {{ carrello.coupon.nome }}
+
+        <br>
+        <a href="{{ router_service.getRoute("frontend.ecommerce.rimuovicoupon").build() }}" class="small">Rimuovi</a>
+        </td>
+        <td class="text-right">
+            <strong>-{{ carrello.totaleSconto|price}}</strong>
+        </td>
+    </tr>
+    {% endif %}
+
+
     <tr>
         <td colspan="2" class="text-right">Spedizione {{ carrello.metodoDiSpedizione.nome}}</td>
         <td class="text-right">

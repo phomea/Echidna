@@ -5,6 +5,7 @@ use applications\ecommerce\entities\Carrello;
 use applications\ecommerce\entities\Categoria;
 use applications\ecommerce\entities\Cliente;
 use applications\ecommerce\entities\ClienteSpedizione;
+use applications\ecommerce\entities\Coupon;
 use applications\ecommerce\entities\LineItem;
 use applications\ecommerce\entities\MetodoPagamento;
 use applications\ecommerce\entities\Ordine;
@@ -89,6 +90,8 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
 
             "frontend.ecommerce.schedaprodotto"   =>  new Route( "frontend.ecommerce.schedaprodotto","/{slug:([0-9a-zA-Z-]*)}",[static::class,"_schedaProdotto"]),
             "frontend.ecommerce.schedaprodotto.variante"   =>  new Route( "frontend.ecommerce.schedaprodotto.variante","/{slug:([0-9a-zA-Z-]*)}/{slug-variante:([0-9a-zA-Z-]*)}",[self::class,"_schedaProdotto"]),
+            "frontend.ecommerce.aggiungicoupon" =>  (new Route("frontend.ecommerce.aggiungicoupon","/carrello/aggiungi-coupon",[static::class,"_aggiungiCoupon"]))->method(Route::METHOD_POST),
+            "frontend.ecommerce.rimuovicoupon" =>  (new Route("frontend.ecommerce.rimuovicoupon","/carrello/rimuovi-coupon",[static::class,"_rimuoviCoupon"]))->method(Route::METHOD_GET),
             self::ROUTE_RICERCA =>  new Route(self::ROUTE_RICERCA,"/shop/cerca",[self::class,"_ricerca"])
 
         ];
@@ -140,9 +143,12 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
 
     static function _carrello( $params =[]){
         $carrello = Carrello::get();
+
+
         return [
             "ecommerce/carrello",[
-                "carrello"  =>  $carrello
+                "carrello"  =>  $carrello,
+                "params"    =>  $params
             ]
         ];
     }
@@ -414,11 +420,16 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
                     "id_transaction" => $transaction->id,
                     "id_metodospedizione" => $carrello->metodoDiSpedizione->id,
                     "id_indirizzospedizione" => $carrello->indirizzoSpedizione->id,
+                    "id_coupon" =>  empty($carrello->coupon) ? null : $carrello->coupon->id,
                     "spedizione" => $carrello->spedizione,
                     "subtotale" => $carrello->subtotale,
                     "totale" => $carrello->totale
                 ]);
 
+                if( !empty($carrello->coupon) ){
+                    $carrello->coupon->utilizzi += 1;
+                    $carrello->coupon->save();
+                }
                 $ordine->save();
                 $numero = $ordine->getNumeroOrdine();
                 $email->data['numeroordine'] = $numero;
@@ -439,10 +450,15 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
                 "id_metodospedizione" => $carrello->metodoDiSpedizione->id,
                 "id_indirizzospedizione" => $carrello->indirizzoSpedizione->id,
                 "spedizione" => $carrello->spedizione,
+                "id_coupon" =>  empty($carrello->coupon) ? null : $carrello->coupon->id,
                 "subtotale" => $carrello->subtotale,
                 "totale" => $carrello->totale
             ]);
 
+            if( !empty($carrello->coupon) ){
+                $carrello->coupon->utilizzi += 1;
+                $carrello->coupon->save();
+            }
             $ordine->save();
 
 
@@ -507,5 +523,26 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
                 "prodotti"  =>  $r
             ]
         ];
+    }
+
+
+    static function _aggiungiCoupon( $params=[],$data){
+        $coupon = Coupon::findByNome($data['coupon']);
+        if( count($coupon) > 0 ){
+            if( Carrello::get()->addCoupon($coupon[0]) ) {
+                RouterService::getRoute(self::ROUTE_CARRELLO)->go(["msg" => "Coupon aggiunto"]);
+            }else{
+                RouterService::getRoute(self::ROUTE_CARRELLO)->go(["msg" => "Coupon non valido"]);
+            }
+        }
+
+        RouterService::getRoute(self::ROUTE_CARRELLO)->go(["msg"=>"Il coupon inserito non esiste"]);
+        exit;
+    }
+    static function _rimuoviCoupon( $params=[]){
+
+        Carrello::get()->rimuoviCoupon();
+
+        RouterService::getRoute(self::ROUTE_CARRELLO)->go(["msg"=>"Coupon rimosso"]);
     }
 }

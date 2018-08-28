@@ -32,6 +32,7 @@ class EcommerceSpagnesiFrontend extends EcommerceFrontend{
         ]);
 
 
+
         $r["frontend.ecommerce.schedaprodotto.variante"] =  new Route( "frontend.ecommerce.schedaprodotto.variante","/{slug:([0-9a-zA-Z-]*)}/{slug-variante:([0-9a-zA-Z-]*)}",[self::class,"_schedaVariante"]);
         return $r;
     }

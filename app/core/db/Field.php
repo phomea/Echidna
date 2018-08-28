@@ -184,7 +184,9 @@ class Field{
                 return '"'.str_replace('"','\"',$value).'"';
 
             case Field::TYPE_DATE:
-                return $value;
+                $value = str_replace('\"','"',$value);
+                return '"'.str_replace('"','\"',$value).'"';
+                //return $value;
 
         }
     }

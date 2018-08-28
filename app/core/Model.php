@@ -220,6 +220,8 @@ abstract class Model {
     }
 
     function save(){
+
+
         if( isset($this->id) && !empty($this->id)){
             $this->update();
         }else{
@@ -255,6 +257,9 @@ abstract class Model {
     }
     static function getAddLink(){
         return "aggiungi";
+    }
+    static function getUpdateLink(){
+        return static::getModLink();
     }
 
 

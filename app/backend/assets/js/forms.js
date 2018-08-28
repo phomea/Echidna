@@ -6,6 +6,7 @@
         var url = $(this).attr("action");
         var form = this;
 
+
         var redirect = $(this).attr("data-redirect");
 
         var postevent = $(this).attr("data-postevent");

@@ -1,5 +1,7 @@
 {% extends template_extend %}
     {% block beforeContent %}
+
+
         <form data-redirect="" action="{{ data.id ? router_service.getRoute(data.getEntity()~".update").build({id:data.id}) : router_service.getRoute(data.getEntity()~".insert").build() }}" class="form-mod" method="{{ data.id ? "PUT" : "POST" }}">
     {% endblock %}
 

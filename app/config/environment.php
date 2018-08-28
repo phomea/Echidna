@@ -1,4 +1,4 @@
 <?php
 return [
-    'mode'  =>  \core\Environment::PROD
+    'mode'  =>  \core\Environment::DEV
 ];
