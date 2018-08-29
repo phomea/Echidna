@@ -17,7 +17,13 @@ abstract class Model {
     public function buildProperties( $data = array() ){
         if( !empty($data) ){
             foreach ($data as $key=>$value) {
+
+
                 $this->$key = $value;
+
+
+                //$this->{"set".ucfirst($key)}($value);
+
             }
         }
     }
@@ -84,6 +90,7 @@ abstract class Model {
 
     function __call($method, $params) {
 
+
         $var = lcfirst(substr($method, 6));
         if (strncasecmp($method, "findBy", 6) === 0) {
 
@@ -115,15 +122,25 @@ abstract class Model {
         }
         if (strncasecmp($method, "set", 3) === 0) {
 
+
             $field = $this->schema()[$var];
-            switch ( $field->getData()["Type"] ){
+
+            if( $field == null ){
+                exit;
+                return;
+            }
+
+
+            $this->$var = $params[0];
+
+            /*switch ( $field->getData()["Type"] ){
                 case Field::TYPE_BOOLEAN:
                     $this->$var = $params[0] == 1 || $params[0];
                     break;
                 default:
                     $this->$var = $params[0];
                     break;
-            }
+            }*/
         }
         if (strncasecmp($method, "is", 2) === 0) {
             $var = lcfirst(substr($method, 2));
@@ -233,6 +250,7 @@ abstract class Model {
     function remove(){
         if( isset($this->id) ){
             $sql = "DELETE FROM ".$this->getTable()." WHERE id=:id";
+
 
 
             $r = Db::$connection->perform($sql,[

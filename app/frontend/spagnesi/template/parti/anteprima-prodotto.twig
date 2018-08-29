@@ -1,10 +1,10 @@
-<div class="anteprima-prodotto mb-5">
-    <div class="row">
+<div class="anteprima-prodotto">
+    <div class="row img-bg">
         <div class="col">
-            <img src="{{ prodotto.images[0].permalink }}">
+            <img src="{{ prodotto.images[ index % 2 == 1 ? 0 : 1 ].permalink }}">
         </div>
         <div class="col">
-            <img src="{{ prodotto.images[1].permalink }}">
+            <img src="{{ prodotto.images[ index % 2 ].permalink }}">
         </div>
     </div>
 
@@ -13,31 +13,19 @@
             <div class="row">
                 <div class="col-6">
                     <h2>{{ prodotto.nome }}</h2>
-                    {{ prodotto.descrizione }}
+                    {{ prodotto.valoriCampi.riassunto.valore | raw }}
+
                 </div>
                 <div class="col-6">
-                    <span class="price">{{ prodotto.varianti[0].prezzo }}</span>
-                    <span class="old-price">1.600€</span>
+                    {% if prodotto.variantePrimaria.prezzo_speciale %}
+                        <span class="price">{{ prodotto.variantePrimaria.prezzo_speciale | price}}</span>
+                        <span class="old-price">{{ prodotto.variantePrimaria.prezzo | price}}</span>
+                    {% else %}
+                        <span class="price">{{ prodotto.variantePrimaria.prezzo | price}}</span>
+                    {% endif %}
 
                     <div class="azioni-veloci">
-                        <div class="row mb-4">
-                            <div class="col-12">
-                                <form action="{{ router_service.getRoute("frontend.ecommerce.carrello.aggiungi").build() }}" method="post">
-                                    <input type="hidden" name="id_variante" value="{{ prodotto.varianti[0].id }}">
-                                    <input type="hidden" name="quantita" value="1">
-                                    <button type="submit"  class="btn btn-primary d-block" style="width: 100%" value="">Compra subito</button>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <a href="{{ router_service.getRoute("frontend.ecommerce.schedaprodotto").build({slug:prodotto.slug}) }}" class="btn btn-primary d-block">Scheda</a>
-                            </div>
-                            <div class="col-6">
-                                <a href="" class="btn btn-primary d-block">Compra subito</a>
-                            </div>
-                        </div>
-
+                        <a href="{{ router_service.getRoute("frontend.ecommerce.schedaprodotto").build({slug:prodotto.slug}) }}" class="btn btn-white btn-block mt-3">Vai alla scheda</a>
                     </div>
                 </div>
             </div>

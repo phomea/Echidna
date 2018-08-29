@@ -27,7 +27,14 @@
 
                     <p class="product-description">{{ prodotto.descrizione }}</p>
 
-                    <span class="price">{{ variante.prezzo | price }}</span>
+                    {% if prodotto.variantePrimaria.prezzo_speciale %}
+                        <span class="price">{{ prodotto.variantePrimaria.prezzo_speciale | price}}</span>
+                        <span class="old-price">{{ prodotto.variantePrimaria.prezzo | price}}</span>
+                    {% else %}
+                        <span class="price">{{ prodotto.variantePrimaria.prezzo | price}}</span>
+                    {% endif %}
+
+
 
                     <form method="post" action="/carrello/aggiungi">
                         <input type="hidden" name="id_variante" value="{{ variante.id }}">

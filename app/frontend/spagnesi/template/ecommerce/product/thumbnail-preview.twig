@@ -1,21 +1,38 @@
-<article class="product-thumbnail-preview card">
+<article class="product-thumbnail-preview card {% for categoria in prodotto.categories %} c-p-{{ categoria.slug }}{% endfor %}">
+
+
     <div class="row">
         <div class="col-5">
             <a href="{{ router_service.getRoute("frontend.ecommerce.schedaprodotto").build({slug:prodotto.slug}) }}">
                 <figure class="images">
-                    <img class="image-1" src="{{ prodotto.images[0].permalink }}">
-                    <img class="image-2" src="{{ prodotto.images[1].permalink }}">
+                    <img class="image-1" src="{{ prodotto.images[1].permalink }}">
+                    <img class="image-2" src="{{ prodotto.images[0].permalink }}">
                 </figure>
             </a>
         </div>
         <div class="col-7 card-body">
             <h3>{{ prodotto.nome }}</h3>
-            <h4>{{ prodotto.variantePrimaria.prezzo |price }}</h4>
+            {% if prodotto.variantePrimaria.prezzo_speciale %}
+                <span class="price">{{ prodotto.variantePrimaria.prezzo_speciale | price}}</span>
+                <span class="old-price">{{ prodotto.variantePrimaria.prezzo | price}}</span>
+            {% else %}
+                <span class="price">{{ prodotto.variantePrimaria.prezzo | price}}</span>
+            {% endif %}
+
+
+
             <div class="descrizione">{{ prodotto.valoriCampi.riassunto.valore|raw }}</div>
 
             <div class="">
                 <a href="{{ router_service.getRoute("frontend.ecommerce.schedaprodotto").build({slug:prodotto.slug}) }}" class="btn btn-secondary btn-block">Vedi prodotto</a>
             </div>
         </div>
+    </div>
+
+
+
+    <div class="badges">
+        <div class="badge-outlet"><span>Outlet</span></div>
+        <div class="badge-outlet"><span>Outlet</span></div>
     </div>
 </article>

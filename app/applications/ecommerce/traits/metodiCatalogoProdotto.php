@@ -192,8 +192,10 @@ trait metodiCatalogoProdotto{
         $idProdotto = $params['id'];
         $ids = $data['ids'];
 
+
         foreach ($ids as $key=>$id_category){
             $present = CategoriaProdotto::findById_categoria($id_category);
+
 
             if( !empty($present) ){
                 /**
@@ -201,8 +203,10 @@ trait metodiCatalogoProdotto{
                  */
                 $cp = $present[0];
                 $r = $cp->remove();
+
             }
         }
+
 
         echo json_encode(true);
         exit;

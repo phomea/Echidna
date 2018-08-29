@@ -30,4 +30,8 @@ class CategoriaProdotto extends Model{
         $this->categoria = Categoria::findById($this->id_categoria);
     }
 
+    public function getCategory(){
+        return Categoria::findById($this->id_categoria);
+    }
+
 }

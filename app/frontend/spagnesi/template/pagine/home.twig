@@ -31,12 +31,16 @@
 
     <div class="container">
         {{ pagina.content | raw}}
+
+
+        {% for prodotto in prodotti %}
+            {% include "parti/anteprima-prodotto.twig" with {prodotto : prodotto, index: loop.index} %}
+        {% endfor %}
+
     </div>
 
 
-    {% for prodotto in prodotti %}
-        {% include "parti/anteprima-prodotto.twig" with {prodotto : prodotto} %}
-    {% endfor %}
+
 
     <!--
     <div class="anteprima-prodotto mb-5">

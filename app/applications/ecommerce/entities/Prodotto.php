@@ -45,6 +45,7 @@ class Prodotto extends Model{
         $instance->tipologia = TipologiaProdotto::findById($instance->id_ecommerce_tipologia_prodotto);
         $instance->tipologia->getFields();
 
+
         $sql = "SELECT * FROM ecommerce_prodotto_campi WHERE id_ecommerce_prodotto=:id";
         $r = Db::$connection->fetchAll($sql,[
             "id"    =>  $instance->id
@@ -57,6 +58,8 @@ class Prodotto extends Model{
 
         $instance->varianti = $instance->getVariants();
         $instance->images = $instance->getImages();
+
+        $instance->categories = $instance->getCategories();
         return $instance;
     }
 
@@ -65,6 +68,21 @@ class Prodotto extends Model{
 
     }
 
+    public function getCategories(){
+        $r = [];
+        $cps = CategoriaProdotto::findById_prodotto($this->id);
+        if( count($cps) > 0 ){
+            foreach ($cps as $value) {
+                $c = $value->getCategory();
+                if( $c ){
+                    $r[ $c->slug ] = $c;
+                }
+
+            }
+        }
+
+        return $r;
+    }
 
     public function getVariants(){
         $variantePrimaria = false;

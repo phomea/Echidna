@@ -10,7 +10,7 @@
             <div class="carousel-container-preview">
                 <div class="owl-carousel owl-theme scheda-prodotto-carousel mb-5" data-nav>
                     {% for immagine in prodotto.images %}
-                        <img src="{{ immagine.permalink }}">
+                        <img src="{{ immagine.permalink }}" data-n="{{ loop.index }}">
                     {% endfor %}
                 </div>
             </div>
