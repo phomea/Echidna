@@ -1,0 +1,8 @@
+
+<div class="row">
+    {% for prodotto in prodotti %}
+        <div class="col">
+            {% include "ecommerce/product/thumbnail-preview.twig" with {prodotto : prodotto} %}
+        </div>
+    {%  endfor %}
+</div>

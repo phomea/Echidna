@@ -3,46 +3,46 @@
 
     <section class="navbar">
 
-            <div class="row">
-                <div class="col-1">
+        <div class="row">
+            <div class="col-1">
 
-                </div>
-                <div class="text-center col-10">
-                    <div id="mainmenu" class="container">
-                        <nav>
-                            <ul>
-                                <li><a href="/divani">Divani</a></li>
-                                <li><a href="/poltrone">Poltrone</a></li>
-                                <li><a href="/divani-letto">Divani letto</a></li>
-                            </ul>
-                        </nav>
+            </div>
+            <div class="text-center col-10">
+                <div id="mainmenu" class="container">
+                    <nav>
+                        <ul>
+                            <li><a href="/divani">Divani</a></li>
+                            <li><a href="/poltrone">Poltrone</a></li>
+                            <li><a href="/divani-letto">Divani letto</a></li>
+                        </ul>
+                    </nav>
 
-                        <a href="/">
-                            <img class="logo" src="/assets/img/logo/logo-lab-white.png" alt="DivaniLab">
-                            <img class="logo logo-black" src="/assets/img/logo/logo-lab.png" alt="DivaniLab">
-                        </a>
+                    <a href="/">
+                        <img class="logo" src="/assets/img/logo/logo-lab-white.png" alt="DivaniLab">
+                        <img class="logo logo-black" src="/assets/img/logo/logo-lab.png" alt="DivaniLab">
+                    </a>
 
-                        <nav>
-                            <ul>
-                                <li><a href="/outlet">Outlet</a></li>
-                                <li><a href="/guida-pelli-tessuti">Pelli e Tessuti</a></li>
-                                <li><a href="#">Divani Lab</a>
-                                    <ul class="submenu">
-                                        <li><a href="/divani">Qualità Artigiana</a></li>
-                                        <li><a href="/divani">Pagamenti Sicuri</a></li>
-                                        <li><a href="/divani">Spedizioni e Resi</a></li>
-                                        <li><a href="/divani">F.A.Q.</a></li>
-                                    </ul>
-                                </li>
-                            </li>                            
-                        </nav>
-
-                    </div>
-                </div>
-                <div class="col-1">
+                    <nav>
+                        <ul>
+                            <li><a href="/outlet">Outlet</a></li>
+                            <li><a href="/guida-pelli-tessuti">Pelli e Tessuti</a></li>
+                            <li><a href="#">Divani Lab</a>
+                                <ul class="submenu">
+                                    <li><a href="/divani">Qualità Artigiana</a></li>
+                                    <li><a href="/divani">Pagamenti Sicuri</a></li>
+                                    <li><a href="/divani">Spedizioni e Resi</a></li>
+                                    <li><a href="/divani">F.A.Q.</a></li>
+                                </ul>
+                            </li>
+                            </li>
+                    </nav>
 
                 </div>
             </div>
+            <div class="col-1">
+
+            </div>
+        </div>
 
         <!-- Main menu -->
 
@@ -53,24 +53,26 @@
     <!-- //end Navbar height -->
 </header>
 <!-- //end Navbar -->
+{#
+{% if breadcrumbs %}
+    <!-- Breadcrumbs-->
+    <section class="breadcrumbs">
+        <div class="container">
+            <a href="/">home</a>
 
-{% if breadcrumbs%}
-<!-- Breadcrumbs-->
-<section class="breadcrumbs">
-    <div class="container">
-        <a href="/">home</a>
+            {% for value in breadcrumbs %}
+                {% if value.nolink %}
+                    <span class="divider">&nbsp;</span>
+                    <a>{{ value.label }}</a>
+                {% else %}
+                    <span class="divider">&nbsp;</span>
+                    <a href="{{ value.url }}">{{ value.label }}</a>
+                {% endif %}
+            {% endfor %}
 
-        {% for value in breadcrumbs %}
-            {% if value.nolink %}
-                <span class="divider">&nbsp;</span>
-                <a >{{ value.label }}</a>
-            {% else %}
-                <span class="divider">&nbsp;</span>
-                <a href="{{ value.url }}">{{ value.label }}</a>
-            {% endif%}
-        {% endfor %}
-
-    </div>
-</section>
-<!-- //end Breadcrumbs -->
+        </div>
+    </section>
+    <!-- //end Breadcrumbs -->
 {% endif %}
+
+#}

@@ -1,8 +1,8 @@
--- MySQL dump 10.16  Distrib 10.2.12-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.16  Distrib 10.3.7-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: cartiamotwig
 -- ------------------------------------------------------
--- Server version	10.2.12-MariaDB-10.2.12+maria~jessie
+-- Server version	10.3.7-MariaDB-1:10.3.7+maria~jessie
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -567,7 +567,7 @@ CREATE TABLE `ecommerce_categoria_prodotto` (
   `id_prodotto` int(11) DEFAULT NULL,
   `id_categoria` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -576,7 +576,7 @@ CREATE TABLE `ecommerce_categoria_prodotto` (
 
 LOCK TABLES `ecommerce_categoria_prodotto` WRITE;
 /*!40000 ALTER TABLE `ecommerce_categoria_prodotto` DISABLE KEYS */;
-INSERT INTO `ecommerce_categoria_prodotto` VALUES (2,1,1),(6,3,2),(14,9,3),(16,9,5),(19,11,6);
+INSERT INTO `ecommerce_categoria_prodotto` VALUES (2,1,1),(6,3,2),(14,9,3),(16,9,5),(19,11,6),(21,10,6);
 /*!40000 ALTER TABLE `ecommerce_categoria_prodotto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -807,7 +807,7 @@ CREATE TABLE `ecommerce_prodotto_campi` (
   `id_ecommerce_prodotto` int(11) NOT NULL,
   `valore` text COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -816,7 +816,7 @@ CREATE TABLE `ecommerce_prodotto_campi` (
 
 LOCK TABLES `ecommerce_prodotto_campi` WRITE;
 /*!40000 ALTER TABLE `ecommerce_prodotto_campi` DISABLE KEYS */;
-INSERT INTO `ecommerce_prodotto_campi` VALUES (1,'schienale',1,'Prova q'),(2,'asdasdas',1,'asd'),(3,'prezzo',1,'as'),(4,'testata',1,'aaaa'),(5,'asd',1,'123'),(6,'asdasdas',3,'as'),(7,'prezzo',3,'as'),(8,'testata',3,'sad'),(9,'asd',3,'c'),(10,'larghezza',6,'88'),(11,'profondita',6,'115'),(12,'altezza-seduta',6,'45'),(13,'volume',6,'0.80'),(14,'peso',6,'44'),(15,'tag',6,'prova'),(16,'provacampo',6,'asdasd'),(17,'provacampo',9,''),(18,'larghezza',9,''),(19,'profondita',9,''),(20,'altezza-seduta',9,''),(21,'volume',9,''),(22,'peso',9,''),(23,'tag',9,''),(24,'riassunto',9,'aLorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac tristique arcu. Pellentesque in luctus elit, non iaculis turpis. Morbi ac nunc ornare, lobortis erat a, rhoncus nunc. Ut sit amet euismod metus. Vivamus egestas vel nunc eu hendrerit. Nullam sit amet nibh rhoncus, efficitur sem ut, euismod neque. Morbi eget efficitur risus, fermentum viverra elit. Praesent viverra eget nulla id pellentesque.');
+INSERT INTO `ecommerce_prodotto_campi` VALUES (1,'schienale',1,'Prova q'),(2,'asdasdas',1,'asd'),(3,'prezzo',1,'as'),(4,'testata',1,'aaaa'),(5,'asd',1,'123'),(6,'asdasdas',3,'as'),(7,'prezzo',3,'as'),(8,'testata',3,'sad'),(9,'asd',3,'c'),(10,'larghezza',6,'88'),(11,'profondita',6,'115'),(12,'altezza-seduta',6,'45'),(13,'volume',6,'0.80'),(14,'peso',6,'44'),(15,'tag',6,'prova'),(16,'provacampo',6,'asdasd'),(17,'provacampo',9,''),(18,'larghezza',9,''),(19,'profondita',9,''),(20,'altezza-seduta',9,''),(21,'volume',9,''),(22,'peso',9,''),(23,'tag',9,''),(24,'riassunto',9,'aLorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac tristique arcu. Pellentesque in luctus elit, non iaculis turpis. Morbi ac nunc ornare, lobortis erat a, rhoncus nunc. Ut sit amet euismod metus. Vivamus egestas vel nunc eu hendrerit. Nullam sit amet nibh rhoncus, efficitur sem ut, euismod neque. Morbi eget efficitur risus, fermentum viverra elit. Praesent viverra eget nulla id pellentesque.'),(25,'provacampo',11,''),(26,'slogan',11,'Divano 3 posti sfoderabile, in tessuto. A partire da 1.570â‚¬'),(27,'descrizione-breve',11,'Divano dal design moderno a base aperta, dall\'aspetto gradevole sia chiuso che aperto come divano letto. I piedi in metallo e le particolari cuciture sulla spalliera donano carattere al modello, che coniuga bellezza e funzionalitÃ . Trova cosÃ¬ spazio in ambienti contemporanei cosÃ¬ come nei piÃ¹ classici.'),(28,'descrizione_breve',11,'Divano dal design moderno a base aperta, dall\'aspetto gradevole sia chiuso che aperto come divano letto. I piedi in metallo e le particolari cuciture sulla spalliera donano carattere al modello, che coniuga bellezza e funzionalitÃ . Trova cosÃ¬ spazio in ambienti contemporanei cosÃ¬ come nei piÃ¹ classici.'),(29,'larghezza',11,'203'),(30,'altezza',11,'84'),(31,'profondita',11,'102');
 /*!40000 ALTER TABLE `ecommerce_prodotto_campi` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -862,7 +862,7 @@ CREATE TABLE `ecommerce_prodotto_variante` (
   `primaria` int(2) DEFAULT 0,
   `prezzo_speciale` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -871,7 +871,7 @@ CREATE TABLE `ecommerce_prodotto_variante` (
 
 LOCK TABLES `ecommerce_prodotto_variante` WRITE;
 /*!40000 ALTER TABLE `ecommerce_prodotto_variante` DISABLE KEYS */;
-INSERT INTO `ecommerce_prodotto_variante` VALUES (52,9,'ITC-2019-200',2000,'Cuscinetto','Cuscinetto comodo etc etc prova descrizione',0,1500),(53,9,'ITC-2019-211',211,'Pouf rettangolare','',0,NULL),(54,9,'ITC-2019-789',123,'Poltrona con Poggiatesta Meccanico','',0,NULL),(55,9,'ITC-2019-791',791,'Divano 2 posti con poggiatesta meccanico',NULL,0,NULL),(56,9,'ITC-2019-793',793,'Divano 2.5 posti con poggiatesta meccanico','',0,NULL),(57,9,'ITC-2019-795',795,'Divano 3 posti con poggiatesta meccanico',NULL,0,NULL),(58,10,'prodottosemplice',455,'Prodotto semplice',NULL,0,NULL),(59,11,'808',808,'pronta consegna 808','',1,400);
+INSERT INTO `ecommerce_prodotto_variante` VALUES (52,9,'ITC-2019-200',2000,'Cuscinetto','Cuscinetto comodo etc etc prova descrizione',0,1500),(53,9,'ITC-2019-211',211,'Pouf rettangolare','',0,NULL),(54,9,'ITC-2019-789',123,'Poltrona con Poggiatesta Meccanico','',0,NULL),(55,9,'ITC-2019-791',791,'Divano 2 posti con poggiatesta meccanico',NULL,0,NULL),(56,9,'ITC-2019-793',793,'Divano 2.5 posti con poggiatesta meccanico','',0,NULL),(57,9,'ITC-2019-795',795,'Divano 3 posti con poggiatesta meccanico',NULL,0,NULL),(58,10,'prodottosemplice',455,'Prodotto semplice',NULL,0,NULL),(59,11,'808',808,'pronta consegna 808','',1,400),(60,9,'200tessuto',123,'200 tessuto',NULL,0,NULL);
 /*!40000 ALTER TABLE `ecommerce_prodotto_variante` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -888,7 +888,7 @@ CREATE TABLE `ecommerce_prodotto_variante_attributi` (
   `id_ecommerce_attributo` int(11) NOT NULL,
   `id_valore` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=138 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=140 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -897,7 +897,7 @@ CREATE TABLE `ecommerce_prodotto_variante_attributi` (
 
 LOCK TABLES `ecommerce_prodotto_variante_attributi` WRITE;
 /*!40000 ALTER TABLE `ecommerce_prodotto_variante_attributi` DISABLE KEYS */;
-INSERT INTO `ecommerce_prodotto_variante_attributi` VALUES (9,18,1,11),(10,19,1,10),(11,19,2,12),(12,19,3,13),(13,19,4,15),(14,20,1,10),(15,20,2,12),(16,20,3,13),(17,20,4,16),(18,21,1,10),(19,21,2,12),(20,21,3,13),(21,21,4,17),(22,22,1,11),(23,22,2,12),(24,22,3,13),(25,22,4,15),(26,23,1,11),(27,23,2,18),(28,23,3,13),(29,23,4,15),(30,24,1,10),(31,24,2,12),(32,24,3,14),(33,24,4,15),(34,25,1,10),(35,25,2,12),(36,25,3,13),(37,25,4,16),(38,26,1,10),(39,26,2,12),(40,26,3,13),(41,26,4,16),(42,27,1,10),(43,27,2,12),(44,27,3,13),(45,27,4,15),(46,28,1,10),(47,28,2,12),(48,28,3,13),(49,28,4,15),(50,29,1,10),(51,29,2,12),(52,29,3,13),(53,29,4,15),(54,30,1,10),(55,30,2,12),(56,30,3,13),(57,30,4,15),(58,31,1,10),(59,31,2,12),(60,31,3,13),(61,31,4,15),(62,32,1,10),(63,32,2,12),(64,32,3,13),(65,32,4,15),(66,33,1,10),(67,33,2,12),(68,33,3,13),(69,33,4,15),(70,36,1,10),(71,36,2,12),(72,36,3,13),(73,36,4,15),(83,40,7,30),(86,42,8,33),(87,42,9,35),(88,43,8,33),(89,43,9,36),(93,45,7,28),(94,46,6,26),(95,46,7,30),(110,51,8,31),(114,52,8,31),(118,53,8,32),(122,54,8,33),(126,55,8,39),(130,56,8,40),(134,57,8,41),(135,59,8,43),(136,59,9,55),(137,59,12,57);
+INSERT INTO `ecommerce_prodotto_variante_attributi` VALUES (9,18,1,11),(10,19,1,10),(11,19,2,12),(12,19,3,13),(13,19,4,15),(14,20,1,10),(15,20,2,12),(16,20,3,13),(17,20,4,16),(18,21,1,10),(19,21,2,12),(20,21,3,13),(21,21,4,17),(22,22,1,11),(23,22,2,12),(24,22,3,13),(25,22,4,15),(26,23,1,11),(27,23,2,18),(28,23,3,13),(29,23,4,15),(30,24,1,10),(31,24,2,12),(32,24,3,14),(33,24,4,15),(34,25,1,10),(35,25,2,12),(36,25,3,13),(37,25,4,16),(38,26,1,10),(39,26,2,12),(40,26,3,13),(41,26,4,16),(42,27,1,10),(43,27,2,12),(44,27,3,13),(45,27,4,15),(46,28,1,10),(47,28,2,12),(48,28,3,13),(49,28,4,15),(50,29,1,10),(51,29,2,12),(52,29,3,13),(53,29,4,15),(54,30,1,10),(55,30,2,12),(56,30,3,13),(57,30,4,15),(58,31,1,10),(59,31,2,12),(60,31,3,13),(61,31,4,15),(62,32,1,10),(63,32,2,12),(64,32,3,13),(65,32,4,15),(66,33,1,10),(67,33,2,12),(68,33,3,13),(69,33,4,15),(70,36,1,10),(71,36,2,12),(72,36,3,13),(73,36,4,15),(83,40,7,30),(86,42,8,33),(87,42,9,35),(88,43,8,33),(89,43,9,36),(93,45,7,28),(94,46,6,26),(95,46,7,30),(110,51,8,31),(114,52,8,31),(118,53,8,32),(122,54,8,33),(126,55,8,39),(130,56,8,40),(134,57,8,41),(135,59,8,43),(136,59,9,55),(137,59,12,57),(138,60,8,31),(139,60,9,55);
 /*!40000 ALTER TABLE `ecommerce_prodotto_variante_attributi` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -914,7 +914,7 @@ CREATE TABLE `ecommerce_prodotto_variante_campi` (
   `id_ecommerce_prodotto_variante` int(11) DEFAULT NULL,
   `valore` text COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -923,7 +923,7 @@ CREATE TABLE `ecommerce_prodotto_variante_campi` (
 
 LOCK TABLES `ecommerce_prodotto_variante_campi` WRITE;
 /*!40000 ALTER TABLE `ecommerce_prodotto_variante_campi` DISABLE KEYS */;
-INSERT INTO `ecommerce_prodotto_variante_campi` VALUES (1,'larghezza',42,'88'),(2,'profondita',42,'115'),(3,'altezza-seduta',42,'45'),(4,'volume',42,'0.80'),(5,'peso',42,'44'),(6,'larghezza',43,'88'),(7,'profondita',43,'115'),(8,'altezza-seduta',43,'45'),(9,'volume',43,'0.80'),(10,'peso',43,'44'),(11,'larghezza',44,'88'),(12,'profondita',44,'115'),(13,'altezza-seduta',44,'45'),(14,'volume',44,'0.80'),(15,'peso',44,'44'),(16,'larghezza',45,'88'),(17,'profondita',45,'115'),(18,'altezza-seduta',45,'45'),(19,'volume',45,'0.80'),(20,'peso',45,'44'),(21,'larghezza',46,'88'),(22,'profondita',46,'115'),(23,'altezza-seduta',46,'45'),(24,'volume',46,'0.80'),(25,'peso',46,'44'),(26,'larghezza',47,'88'),(27,'profondita',47,'115'),(28,'altezza-seduta',47,'45'),(29,'volume',47,'0.80'),(30,'peso',47,'44'),(31,'tag',47,'prova'),(32,'provacampo',47,'asdasd'),(33,'larghezza',48,'88'),(34,'profondita',48,'115'),(35,'altezza-seduta',48,'45'),(36,'volume',48,'0.80'),(37,'peso',48,'44'),(38,'tag',48,'prova'),(39,'provacampo',48,'asdasd'),(40,'larghezza',49,'88'),(41,'profondita',49,'115'),(42,'altezza-seduta',49,'45'),(43,'volume',49,'0.80'),(44,'peso',49,'44'),(45,'tag',49,'prova'),(46,'provacampo',49,'asdasd'),(47,'provacampo',50,''),(48,'larghezza',50,''),(49,'profondita',50,'55'),(50,'altezza-seduta',50,''),(51,'volume',50,'0.00'),(52,'peso',50,''),(53,'tag',50,''),(54,'provacampo',51,''),(55,'larghezza',51,''),(56,'profondita',51,'55'),(57,'altezza-seduta',51,''),(58,'volume',51,'0.00'),(59,'peso',51,''),(60,'tag',51,''),(61,'provacampo',52,''),(62,'larghezza',52,''),(63,'profondita',52,'55'),(64,'altezza-seduta',52,''),(65,'volume',52,'0.00'),(66,'peso',52,''),(67,'tag',52,'cuscino'),(68,'provacampo',53,''),(69,'larghezza',53,'44'),(70,'profondita',53,'65'),(71,'altezza-seduta',53,''),(72,'volume',53,'0.18'),(73,'peso',53,'0'),(74,'tag',53,'pouf'),(75,'provacampo',54,''),(76,'larghezza',54,'72'),(77,'profondita',54,'115'),(78,'altezza-seduta',54,'45'),(79,'volume',54,'0.80'),(80,'peso',54,''),(81,'tag',54,'poltrona'),(82,'provacampo',55,''),(83,'larghezza',55,'72'),(84,'profondita',55,'115'),(85,'altezza-seduta',55,'45'),(86,'volume',55,'1.30'),(87,'peso',55,'71.50'),(88,'tag',55,''),(89,'provacampo',56,''),(90,'larghezza',56,'72'),(91,'profondita',56,'115'),(92,'altezza-seduta',56,'45'),(93,'volume',56,'1.44'),(94,'peso',56,'78.10'),(95,'tag',56,'divano'),(96,'provacampo',57,''),(97,'larghezza',57,'72'),(98,'profondita',57,'115'),(99,'altezza-seduta',57,'45'),(100,'volume',57,'1.57'),(101,'peso',57,'85.80'),(102,'tag',57,'divano');
+INSERT INTO `ecommerce_prodotto_variante_campi` VALUES (1,'larghezza',42,'88'),(2,'profondita',42,'115'),(3,'altezza-seduta',42,'45'),(4,'volume',42,'0.80'),(5,'peso',42,'44'),(6,'larghezza',43,'88'),(7,'profondita',43,'115'),(8,'altezza-seduta',43,'45'),(9,'volume',43,'0.80'),(10,'peso',43,'44'),(11,'larghezza',44,'88'),(12,'profondita',44,'115'),(13,'altezza-seduta',44,'45'),(14,'volume',44,'0.80'),(15,'peso',44,'44'),(16,'larghezza',45,'88'),(17,'profondita',45,'115'),(18,'altezza-seduta',45,'45'),(19,'volume',45,'0.80'),(20,'peso',45,'44'),(21,'larghezza',46,'88'),(22,'profondita',46,'115'),(23,'altezza-seduta',46,'45'),(24,'volume',46,'0.80'),(25,'peso',46,'44'),(26,'larghezza',47,'88'),(27,'profondita',47,'115'),(28,'altezza-seduta',47,'45'),(29,'volume',47,'0.80'),(30,'peso',47,'44'),(31,'tag',47,'prova'),(32,'provacampo',47,'asdasd'),(33,'larghezza',48,'88'),(34,'profondita',48,'115'),(35,'altezza-seduta',48,'45'),(36,'volume',48,'0.80'),(37,'peso',48,'44'),(38,'tag',48,'prova'),(39,'provacampo',48,'asdasd'),(40,'larghezza',49,'88'),(41,'profondita',49,'115'),(42,'altezza-seduta',49,'45'),(43,'volume',49,'0.80'),(44,'peso',49,'44'),(45,'tag',49,'prova'),(46,'provacampo',49,'asdasd'),(47,'provacampo',50,''),(48,'larghezza',50,''),(49,'profondita',50,'55'),(50,'altezza-seduta',50,''),(51,'volume',50,'0.00'),(52,'peso',50,''),(53,'tag',50,''),(54,'provacampo',51,''),(55,'larghezza',51,''),(56,'profondita',51,'55'),(57,'altezza-seduta',51,''),(58,'volume',51,'0.00'),(59,'peso',51,''),(60,'tag',51,''),(61,'provacampo',52,''),(62,'larghezza',52,''),(63,'profondita',52,'55'),(64,'altezza-seduta',52,''),(65,'volume',52,'0.00'),(66,'peso',52,''),(67,'tag',52,'cuscino'),(68,'provacampo',53,''),(69,'larghezza',53,'44'),(70,'profondita',53,'65'),(71,'altezza-seduta',53,''),(72,'volume',53,'0.18'),(73,'peso',53,'0'),(74,'tag',53,'pouf'),(75,'provacampo',54,''),(76,'larghezza',54,'72'),(77,'profondita',54,'115'),(78,'altezza-seduta',54,'45'),(79,'volume',54,'0.80'),(80,'peso',54,''),(81,'tag',54,'poltrona'),(82,'provacampo',55,''),(83,'larghezza',55,'72'),(84,'profondita',55,'115'),(85,'altezza-seduta',55,'45'),(86,'volume',55,'1.30'),(87,'peso',55,'71.50'),(88,'tag',55,''),(89,'provacampo',56,''),(90,'larghezza',56,'72'),(91,'profondita',56,'115'),(92,'altezza-seduta',56,'45'),(93,'volume',56,'1.44'),(94,'peso',56,'78.10'),(95,'tag',56,'divano'),(96,'provacampo',57,''),(97,'larghezza',57,'72'),(98,'profondita',57,'115'),(99,'altezza-seduta',57,'45'),(100,'volume',57,'1.57'),(101,'peso',57,'85.80'),(102,'tag',57,'divano'),(103,'provacampo',60,''),(104,'slogan',60,''),(105,'descrizione_breve',60,''),(106,'larghezza',60,''),(107,'profondita',60,''),(108,'altezza-seduta',60,''),(109,'volume',60,''),(110,'peso',60,''),(111,'tag',60,''),(112,'riassunto',60,'aLorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac tristique arcu. Pellentesque in luctus elit, non iaculis turpis. Morbi ac nunc ornare, lobortis erat a, rhoncus nunc. Ut sit amet euismod metus. Vivamus egestas vel nunc eu hendrerit. Nullam sit amet nibh rhoncus, efficitur sem ut, euismod neque. Morbi eget efficitur risus, fermentum viverra elit. Praesent viverra eget nulla id pellentesque.');
 /*!40000 ALTER TABLE `ecommerce_prodotto_variante_campi` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1052,7 +1052,7 @@ CREATE TABLE `ecommerce_tipologia_prodotto` (
   `prezzo` int(11) DEFAULT NULL,
   `id_tipologia_prodotto` int(11) DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1061,7 +1061,7 @@ CREATE TABLE `ecommerce_tipologia_prodotto` (
 
 LOCK TABLES `ecommerce_tipologia_prodotto` WRITE;
 /*!40000 ALTER TABLE `ecommerce_tipologia_prodotto` DISABLE KEYS */;
-INSERT INTO `ecommerce_tipologia_prodotto` VALUES (1,'Divano a 3 posti','divano-a-3-posti','Divano piccolo a 3 posti',1200,NULL),(2,'Divano a 5 posti','divano-a-5-posti','',500,NULL),(3,'Firenze','firenze','Nome modello Struttura\r\nMolleggio Poggiatesta Spalliera Seduta Braccioli Piedi Meccanismo Altezza Piedi\r\nFIRENZE\r\nlegno massello rinforzato da pannelli di multistrato.\r\nCinghie elastiche incrociate\r\nPoliuretano densita 21 KG. + Piume Poliuretano densita? 23 KG.+ Piuma\r\nPoliuretano HR densita? 30 KG.\r\nPoliuretano densita? 21 KG.\r\nPiede in metallo cromato\r\nPoggiatesta meccanico manuale con cricchetto. 11,0 CM.',1200,5),(4,'Prodotto Generico','prodotto-generico','',123,0),(5,'Divano','divano','',123,4),(6,'pronta consegna tessuto','pronta-consegna-tessuto','sad',123,0),(7,'pronta consegna pelle','pronta-consegna-pelle','sada',123,0);
+INSERT INTO `ecommerce_tipologia_prodotto` VALUES (1,'Divano a 3 posti','divano-a-3-posti','Divano piccolo a 3 posti',1200,NULL),(2,'Divano a 5 posti','divano-a-5-posti','',500,NULL),(3,'Firenze','firenze','Nome modello Struttura\r\nMolleggio Poggiatesta Spalliera Seduta Braccioli Piedi Meccanismo Altezza Piedi\r\nFIRENZE\r\nlegno massello rinforzato da pannelli di multistrato.\r\nCinghie elastiche incrociate\r\nPoliuretano densita 21 KG. + Piume Poliuretano densita? 23 KG.+ Piuma\r\nPoliuretano HR densita? 30 KG.\r\nPoliuretano densita? 21 KG.\r\nPiede in metallo cromato\r\nPoggiatesta meccanico manuale con cricchetto. 11,0 CM.',1200,5),(4,'Prodotto Generico','prodotto-generico','',123,0),(5,'Divano','divano','',123,4),(6,'pronta consegna tessuto','pronta-consegna-tessuto','sad',123,8),(7,'pronta consegna pelle','pronta-consegna-pelle','sada',123,0),(8,'Pronta consegna','','asd',123,4);
 /*!40000 ALTER TABLE `ecommerce_tipologia_prodotto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1079,7 +1079,7 @@ CREATE TABLE `ecommerce_tipologia_prodotto_campi` (
   `valore` varchar(512) COLLATE utf8_bin DEFAULT NULL,
   `id_ecommerce_tipologia_prodotto` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1088,7 +1088,7 @@ CREATE TABLE `ecommerce_tipologia_prodotto_campi` (
 
 LOCK TABLES `ecommerce_tipologia_prodotto_campi` WRITE;
 /*!40000 ALTER TABLE `ecommerce_tipologia_prodotto_campi` DISABLE KEYS */;
-INSERT INTO `ecommerce_tipologia_prodotto_campi` VALUES (1,'sa','asdasdas','Testo',1),(2,'Prezzo','prezzo','Numero',1),(3,'Schienale','schienale','Numero',2),(4,'Testata','testata','Testo',1),(5,'asd','asd','Numero',1),(6,'sda','asd','Testo',1),(7,'Larghezza','larghezza','Testo',3),(8,'Altezza','larghezza','Testo',3),(9,'Profondità','profondita','Testo',3),(10,'Altezza seduta','altezza-seduta','Testo',3),(11,'Volume','volume','Testo',3),(12,'Peso','peso','Testo',3),(13,'Tag','tag','Testo',3),(14,'provacampo','provacampo','Testo',4),(15,'Riassunto','riassunto','Testo',3);
+INSERT INTO `ecommerce_tipologia_prodotto_campi` VALUES (1,'sa','asdasdas','Testo',1),(2,'Prezzo','prezzo','Numero',1),(3,'Schienale','schienale','Numero',2),(4,'Testata','testata','Testo',1),(5,'asd','asd','Numero',1),(6,'sda','asd','Testo',1),(7,'Larghezza','larghezza','Testo',3),(8,'Altezza','larghezza','Testo',3),(9,'Profondità','profondita','Testo',3),(10,'Altezza seduta','altezza-seduta','Testo',3),(11,'Volume','volume','Testo',3),(12,'Peso','peso','Testo',3),(13,'Tag','tag','Testo',3),(14,'provacampo','provacampo','Testo',4),(15,'Riassunto','riassunto','Testo',3),(16,'Slogan','slogan','Testo',4),(17,'Descrizione breve','descrizione_breve','Testo',4),(18,'Larghezza','larghezza','Numero',8),(19,'Altezza','altezza','Numero',8),(20,'ProfonditÃ ','profondita','Numero',8);
 /*!40000 ALTER TABLE `ecommerce_tipologia_prodotto_campi` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1677,4 +1677,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-29 16:12:22
+-- Dump completed on 2018-08-31  8:11:36

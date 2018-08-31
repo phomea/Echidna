@@ -2,40 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d9e71c1a-9d3f-4790-88e1-3388370352fb" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/assets/css/less/checkout.less" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/frontend/spagnesi/template/base/footer/footer-checkout.twig" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/frontend/spagnesi/template/base/header/header-checkout.twig" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/checkout/parti/steps.twig" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/shop/list.twig" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/helpers/sameCategory.twig" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/applications/ecommerce/CatalogoSearch.php" afterPath="$PROJECT_DIR$/app/applications/ecommerce/CatalogoSearch.php" />
-      <change beforePath="$PROJECT_DIR$/app/applications/ecommerce/EcommerceApplication.php" afterPath="$PROJECT_DIR$/app/applications/ecommerce/EcommerceApplication.php" />
-      <change beforePath="$PROJECT_DIR$/app/applications/ecommerce/EcommerceFrontend.php" afterPath="$PROJECT_DIR$/app/applications/ecommerce/EcommerceFrontend.php" />
-      <change beforePath="$PROJECT_DIR$/app/applications/pages/PagesFrontend.php" afterPath="$PROJECT_DIR$/app/applications/pages/PagesFrontend.php" />
-      <change beforePath="$PROJECT_DIR$/app/applications/pages/entities/Pagina.php" afterPath="$PROJECT_DIR$/app/applications/pages/entities/Pagina.php" />
-      <change beforePath="$PROJECT_DIR$/app/assets/css/less/header.less" afterPath="$PROJECT_DIR$/app/assets/css/less/header.less" />
+      <change beforePath="$PROJECT_DIR$/app/assets/css/less/breadcrumbs.less" afterPath="$PROJECT_DIR$/app/assets/css/less/breadcrumbs.less" />
+      <change beforePath="$PROJECT_DIR$/app/assets/css/less/common.less" afterPath="$PROJECT_DIR$/app/assets/css/less/common.less" />
       <change beforePath="$PROJECT_DIR$/app/assets/css/less/prodotto.less" afterPath="$PROJECT_DIR$/app/assets/css/less/prodotto.less" />
-      <change beforePath="$PROJECT_DIR$/app/assets/css/style.less" afterPath="$PROJECT_DIR$/app/assets/css/style.less" />
-      <change beforePath="$PROJECT_DIR$/app/core/Model.php" afterPath="$PROJECT_DIR$/app/core/Model.php" />
-      <change beforePath="$PROJECT_DIR$/app/core/Route.php" afterPath="$PROJECT_DIR$/app/core/Route.php" />
-      <change beforePath="$PROJECT_DIR$/app/core/services/Response.php" afterPath="$PROJECT_DIR$/app/core/services/Response.php" />
+      <change beforePath="$PROJECT_DIR$/app/backend/theme" afterPath="$PROJECT_DIR$/app/backend/theme" />
+      <change beforePath="$PROJECT_DIR$/app/core/Query.php" afterPath="$PROJECT_DIR$/app/core/Query.php" />
       <change beforePath="$PROJECT_DIR$/app/frontend/spagnesi/applications/ecommerce/EcommerceSpagnesiFrontend.php" afterPath="$PROJECT_DIR$/app/frontend/spagnesi/applications/ecommerce/EcommerceSpagnesiFrontend.php" />
-      <change beforePath="$PROJECT_DIR$/app/frontend/spagnesi/template/base/footer/footer.twig" afterPath="$PROJECT_DIR$/app/frontend/spagnesi/template/base/footer/footer.twig" />
-      <change beforePath="$PROJECT_DIR$/app/frontend/spagnesi/template/base/head/head.twig" afterPath="$PROJECT_DIR$/app/frontend/spagnesi/template/base/head/head.twig" />
-      <change beforePath="$PROJECT_DIR$/app/frontend/spagnesi/template/base/template.twig" afterPath="$PROJECT_DIR$/app/frontend/spagnesi/template/base/template.twig" />
-      <change beforePath="$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/carrello.twig" afterPath="$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/carrello.twig" />
-      <change beforePath="$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/checkout/index.twig" afterPath="$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/checkout/index.twig" />
-      <change beforePath="$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/checkout/parti/form-registrazione.twig" afterPath="$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/checkout/parti/form-registrazione.twig" />
-      <change beforePath="$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/checkout/parti/form-spedizione.twig" afterPath="$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/checkout/parti/form-spedizione.twig" />
-      <change beforePath="$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/checkout/parti/riepilogo.twig" afterPath="$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/checkout/parti/riepilogo.twig" />
-      <change beforePath="$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/checkout/registrazione.twig" afterPath="$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/checkout/registrazione.twig" />
-      <change beforePath="$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/checkout/spedizione.twig" afterPath="$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/checkout/spedizione.twig" />
-      <change beforePath="$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/scelta-variante.twig" afterPath="$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/scelta-variante.twig" />
-      <change beforePath="$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/scheda-prodotto-spagnesi.twig" afterPath="$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/scheda-prodotto-spagnesi.twig" />
-      <change beforePath="$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/shop/category.twig" afterPath="$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/shop/category.twig" />
-      <change beforePath="$PROJECT_DIR$/app/frontend/spagnesi/template/pagine/standard.twig" afterPath="$PROJECT_DIR$/app/frontend/spagnesi/template/pagine/standard.twig" />
-      <change beforePath="$PROJECT_DIR$/docker/mariadb/dump/dump.sql" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/app/frontend/spagnesi/template/base/header/header.twig" afterPath="$PROJECT_DIR$/app/frontend/spagnesi/template/base/header/header.twig" />
+      <change beforePath="$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/scheda-prodotto-semplice.twig" afterPath="$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/scheda-prodotto-semplice.twig" />
+      <change beforePath="$PROJECT_DIR$/docker/mariadb/dump/dump.sql" afterPath="$PROJECT_DIR$/docker/mariadb/dump/dump.sql" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -44,61 +21,92 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/app/composer.json</pharConfigPath>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="list.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/shop/list.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="EcommerceFrontend.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/applications/ecommerce/EcommerceFrontend.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="641">
-              <caret line="431" column="0" lean-forward="false" selection-start-line="431" selection-start-column="0" selection-end-line="431" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="db.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/config/db.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="19" lean-forward="false" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CatalogoSearch.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/applications/ecommerce/CatalogoSearch.php">
-          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="289">
-              <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+              <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EcommerceSpagnesiFrontend.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/frontend/spagnesi/applications/ecommerce/EcommerceSpagnesiFrontend.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="32" column="46" lean-forward="false" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
               <folding>
-                <marker date="1531949732222" expanded="true" signature="1369:1422" ph="SELECT prodo... ecommerce_prodotto" />
+                <marker date="1535570714816" expanded="true" signature="3448:3600" ph="select * fro... ecommerce_attributo" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Prodotto.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/applications/ecommerce/entities/Prodotto.php">
+      <file leaf-file-name="scheda-prodotto-semplice.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/scheda-prodotto-semplice.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-81">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="816">
+              <caret line="76" column="12" lean-forward="false" selection-start-line="76" selection-start-column="12" selection-end-line="76" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="thumbnail-preview.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/product/thumbnail-preview.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EcommerceHelper.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/frontend/spagnesi/applications/ecommerce/EcommerceHelper.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="23" column="31" lean-forward="false" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
               <folding>
-                <marker date="1531863188467" expanded="true" signature="1112:1182" ph="SELECT * FRO... ecommerce_prodotto_campi" />
-                <marker date="1531863188467" expanded="true" signature="1866:1938" ph="SELECT * FRO... ecommerce_prodotto_immagine" />
+                <element signature="e#60#106#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sameCategory.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/helpers/sameCategory.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="25" lean-forward="false" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CategoriaProdotto.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/applications/ecommerce/entities/CategoriaProdotto.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="8" column="6" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Categoria.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/applications/ecommerce/entities/Categoria.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="11" column="26" lean-forward="false" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+              <folding>
+                <marker date="1535563983930" expanded="true" signature="824:899" ph="SELECT * FRO... ecommerce_categoria_immagine" />
               </folding>
             </state>
           </provider>
@@ -121,9 +129,16 @@
       <find>azioni-fin</find>
       <find>outer</find>
       <find>ricerca</find>
+      <find>brea</find>
+      <find>font</find>
+      <find>codice</find>
+      <find>Twi</find>
+      <find>que</find>
+      <find>render</find>
     </findStrings>
     <dirStrings>
       <dir>E:\Spagnesi\app\frontend\spagnesi\template</dir>
+      <dir>E:\Spagnesi\app\frontend\spagnesi</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -141,7 +156,6 @@
         <option value="$PROJECT_DIR$/app/applications/pages/PagesFrontend.php" />
         <option value="$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/scelta-variante.twig" />
         <option value="$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/scheda-prodotto-spagnesi.twig" />
-        <option value="$PROJECT_DIR$/app/assets/css/less/prodotto.less" />
         <option value="$PROJECT_DIR$/app/applications/ecommerce/EcommerceApplication.php" />
         <option value="$PROJECT_DIR$/app/core/services/Response.php" />
         <option value="$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/carrello.twig" />
@@ -153,7 +167,6 @@
         <option value="$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/checkout/parti/form-registrazione.twig" />
         <option value="$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/checkout/spedizione.twig" />
         <option value="$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/checkout/parti/form-spedizione.twig" />
-        <option value="$PROJECT_DIR$/app/frontend/spagnesi/applications/ecommerce/EcommerceSpagnesiFrontend.php" />
         <option value="$PROJECT_DIR$/app/frontend/spagnesi/template/base/footer/footer.twig" />
         <option value="$PROJECT_DIR$/app/frontend/spagnesi/template/base/footer/footer-checkout.twig" />
         <option value="$PROJECT_DIR$/app/assets/css/style.less" />
@@ -167,6 +180,16 @@
         <option value="$PROJECT_DIR$/app/applications/ecommerce/CatalogoSearch.php" />
         <option value="$PROJECT_DIR$/app/applications/ecommerce/EcommerceFrontend.php" />
         <option value="$PROJECT_DIR$/app/config/db.php" />
+        <option value="$PROJECT_DIR$/docker/mariadb/dump/dump.sql" />
+        <option value="$PROJECT_DIR$/app/assets/css/less/common.less" />
+        <option value="$PROJECT_DIR$/app/frontend/spagnesi/template/base/header/header.twig" />
+        <option value="$PROJECT_DIR$/app/assets/css/less/prodotto.less" />
+        <option value="$PROJECT_DIR$/app/assets/css/less/breadcrumbs.less" />
+        <option value="$PROJECT_DIR$/app/frontend/spagnesi/applications/ecommerce/EcommerceSpagnesiFrontend.php" />
+        <option value="$PROJECT_DIR$/app/core/Query.php" />
+        <option value="$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/scheda-prodotto-semplice.twig" />
+        <option value="$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/helpers/sameCategory.twig" />
+        <option value="$PROJECT_DIR$/app/frontend/spagnesi/applications/ecommerce/EcommerceHelper.php" />
       </list>
     </option>
   </component>
@@ -237,7 +260,8 @@
               <item name="Spagnesi" type="b2602c69:ProjectViewProjectNode" />
               <item name="Spagnesi" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="applications" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="ecommerce" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="Spagnesi" type="b2602c69:ProjectViewProjectNode" />
@@ -251,6 +275,23 @@
               <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="frontend" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="spagnesi" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Spagnesi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spagnesi" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="frontend" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="spagnesi" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="applications" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Spagnesi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spagnesi" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="frontend" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="spagnesi" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="applications" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="ecommerce" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="Spagnesi" type="b2602c69:ProjectViewProjectNode" />
@@ -259,6 +300,15 @@
               <item name="frontend" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="spagnesi" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="template" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Spagnesi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spagnesi" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="frontend" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="spagnesi" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="template" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="base" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="Spagnesi" type="b2602c69:ProjectViewProjectNode" />
@@ -277,7 +327,7 @@
               <item name="spagnesi" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="template" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="ecommerce" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="shop" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="product" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -393,16 +443,19 @@
       <workItem from="1531831350753" duration="755000" />
       <workItem from="1531832740823" duration="2673000" />
       <workItem from="1531937579886" duration="11109000" />
+      <workItem from="1533108465780" duration="139000" />
+      <workItem from="1535564618294" duration="4961000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14537000" />
+    <option name="totallyTimeSpent" value="19637000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="22" width="1936" height="1066" extended-state="6" />
+    <frame x="59" y="-8" width="1869" height="1096" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25208333" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25202376" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -433,31 +486,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env" />
-    <entry file="file://$PROJECT_DIR$/app/index.php" />
-    <entry file="file://$PROJECT_DIR$/docker/mariadb/Dockerfile" />
-    <entry file="file://$PROJECT_DIR$/docker/web/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="20" lean-forward="false" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/doc/docker-destroy-all.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="30" lean-forward="false" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docker-compose.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -476,7 +504,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="23" column="24" lean-forward="false" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -484,7 +511,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="595">
           <caret line="40" column="25" lean-forward="false" selection-start-line="40" selection-start-column="25" selection-end-line="40" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -492,7 +518,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2427">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -500,7 +525,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="17" column="65" lean-forward="false" selection-start-line="17" selection-start-column="65" selection-end-line="17" selection-end-column="65" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -508,7 +532,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="697">
           <caret line="46" column="8" lean-forward="false" selection-start-line="46" selection-start-column="8" selection-end-line="48" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -516,15 +539,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/core/services/Response.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="154" column="9" lean-forward="false" selection-start-line="154" selection-start-column="9" selection-end-line="154" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -532,7 +546,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="326">
           <caret line="105" column="57" lean-forward="false" selection-start-line="105" selection-start-column="57" selection-end-line="105" selection-end-column="57" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -540,7 +553,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="757">
           <caret line="93" column="26" lean-forward="true" selection-start-line="56" selection-start-column="20" selection-end-line="93" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -548,7 +560,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="395">
           <caret line="116" column="0" lean-forward="true" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -556,9 +567,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="7" lean-forward="false" selection-start-line="5" selection-start-column="7" selection-end-line="14" selection-end-column="18" />
-          <folding>
-            <element signature="n#style#0;n#header#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -566,7 +574,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="701">
           <caret line="425" column="35" lean-forward="true" selection-start-line="425" selection-start-column="35" selection-end-line="425" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -574,7 +581,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="786">
           <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -582,15 +588,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="28" lean-forward="false" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/css/less/prodotto.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1927">
-          <caret line="186" column="0" lean-forward="false" selection-start-line="186" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -598,7 +595,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="4" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="5" selection-end-column="59" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -606,7 +602,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="871">
           <caret line="61" column="6" lean-forward="false" selection-start-line="28" selection-start-column="1" selection-end-line="61" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -614,7 +609,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="59" lean-forward="false" selection-start-line="4" selection-start-column="59" selection-end-line="4" selection-end-column="59" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -622,7 +616,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="29" lean-forward="false" selection-start-line="1" selection-start-column="29" selection-end-line="1" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -630,15 +623,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" column="23" lean-forward="false" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/css/style.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -646,7 +630,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="17" column="37" lean-forward="false" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -654,7 +637,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="14" column="28" lean-forward="false" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -662,7 +644,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="9" lean-forward="false" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -670,23 +651,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="106">
           <caret line="74" column="0" lean-forward="true" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/frontend/spagnesi/template/base/header/header.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/frontend/spagnesi/template/base/head/head.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -694,7 +658,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -702,17 +665,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/frontend/spagnesi/applications/ecommerce/EcommerceSpagnesiFrontend.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="41" column="48" lean-forward="false" selection-start-line="41" selection-start-column="48" selection-end-line="41" selection-end-column="48" />
-          <folding>
-            <marker date="1531947060490" expanded="true" signature="2824:2976" ph="select * fro... ecommerce_attributo" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -720,7 +672,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="40" lean-forward="false" selection-start-line="0" selection-start-column="40" selection-end-line="0" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -728,26 +679,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="309">
           <caret line="240" column="16" lean-forward="false" selection-start-line="240" selection-start-column="16" selection-end-line="240" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/shop/list.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/applications/ecommerce/entities/Prodotto.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-81">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1531863188467" expanded="true" signature="1112:1182" ph="SELECT * FRO... ecommerce_prodotto_campi" />
-            <marker date="1531863188467" expanded="true" signature="1866:1938" ph="SELECT * FRO... ecommerce_prodotto_immagine" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -761,19 +700,186 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/applications/ecommerce/EcommerceFrontend.php">
+    <entry file="file://$PROJECT_DIR$/docker/mariadb/dump/dump.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="641">
-          <caret line="431" column="0" lean-forward="false" selection-start-line="431" selection-start-column="0" selection-end-line="431" selection-end-column="0" />
+        <state relative-caret-position="85">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="6" selection-end-column="64" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config/db.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="19" lean-forward="false" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="19" />
+        <state relative-caret-position="102">
+          <caret line="6" column="26" lean-forward="false" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/frontend/spagnesi/template/base/head/css.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/css/style.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/css/less/breadcrumbs.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="5" lean-forward="false" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/frontend/spagnesi/template/base/head/head.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/frontend/spagnesi/template/base/header/header.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="75" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/css/less/prodotto.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="874">
+          <caret line="505" column="16" lean-forward="false" selection-start-line="505" selection-start-column="16" selection-end-line="505" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/css/less/common.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="857">
+          <caret line="54" column="21" lean-forward="false" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/core/Model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="36" column="26" lean-forward="false" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="26" />
+          <folding>
+            <marker date="1535563984075" expanded="true" signature="1516:1560" ph="select * fro... ${$table}" />
+            <marker date="1535563984075" expanded="true" signature="1914:1958" ph="select * fro... ${$table}" />
+            <marker date="1535563984075" expanded="true" signature="4385:4420" ph="insert into ${$this-&gt;getTable()}... " />
+            <marker date="1535563984075" expanded="true" signature="6233:6279" ph="DELETE FROM ${$this-&gt;getTable()}... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/applications/ecommerce/entities/Categoria.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="11" column="26" lean-forward="false" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+          <folding>
+            <marker date="1535563983930" expanded="true" signature="824:899" ph="SELECT * FRO... ecommerce_categoria_immagine" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/applications/ecommerce/entities/Prodotto.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="9" column="6" lean-forward="false" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+          <folding>
+            <marker date="1535563983932" expanded="true" signature="1616:1686" ph="SELECT * FRO... ecommerce_prodotto_campi" />
+            <marker date="1535563983932" expanded="true" signature="2982:2991" ph="..." />
+            <marker date="1535563983932" expanded="true" signature="3076:3148" ph="SELECT * FRO... ecommerce_prodotto_immagine" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/applications/ecommerce/entities/CategoriaProdotto.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="8" column="6" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/core/Query.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="243" column="10" lean-forward="false" selection-start-line="243" selection-start-column="10" selection-end-line="243" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/core/services/Response.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-646">
+          <caret line="77" column="26" lean-forward="false" selection-start-line="77" selection-start-column="20" selection-end-line="77" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/product/thumbnail-preview.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/scheda-prodotto-semplice.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="76" column="12" lean-forward="false" selection-start-line="76" selection-start-column="12" selection-end-line="76" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/frontend/spagnesi/template/ecommerce/helpers/sameCategory.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="25" lean-forward="false" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/applications/ecommerce/EcommerceFrontend.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/frontend/spagnesi/applications/ecommerce/EcommerceSpagnesiFrontend.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="32" column="46" lean-forward="false" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
+          <folding>
+            <marker date="1535570714816" expanded="true" signature="3448:3600" ph="select * fro... ecommerce_attributo" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/frontend/spagnesi/applications/ecommerce/EcommerceHelper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="31" lean-forward="false" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
+          <folding>
+            <element signature="e#60#106#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

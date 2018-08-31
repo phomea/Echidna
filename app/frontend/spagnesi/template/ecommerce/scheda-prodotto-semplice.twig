@@ -6,8 +6,8 @@
     <figure class="product-top-bg">
         <img src="{{ prodotto.images[0].permalink }}">
     </figure>
-    <main id="scheda-prodotto">
-        <div class="container">
+    <main id="scheda-prodotto" class="scheda-prodotto scheda-prodotto-semplice">
+        <div class="pl-5 pr-5">
 
 
             <div class="row mt-5">
@@ -19,13 +19,40 @@
                     </div>
                 </div>
                 <div class="col-4">
-                    <h2 class="product-name">{{ prodotto.nome }}</h2>
-                    Codice prodotto : {% for variante in prodotto.varianti %}
-                        <span class="product-sku">{{ variante.sku }}</span>
-                    {% endfor %}
+
+                    {% if breadcrumbs %}
+                        <!-- Breadcrumbs-->
+                        <section class="breadcrumbs mb-5">
+                            <div class="container">
+                                <a href="/">home</a>
+
+                                {% for value in breadcrumbs %}
+                                    {% if value.nolink %}
+                                        <span class="divider"><i class="fas fa-chevron-right"></i></span>
+                                        <a>{{ value.label }}</a>
+                                    {% else %}
+                                        <span class="divider"><i class="fas fa-chevron-right"></i></span>
+                                        <a href="{{ value.url }}">{{ value.label }}</a>
+                                    {% endif %}
+                                {% endfor %}
+
+                            </div>
+                        </section>
+                        <!-- //end Breadcrumbs -->
+                    {% endif %}
 
 
-                    <p class="product-description">{{ prodotto.descrizione }}</p>
+                    <h2 class="product-name pb-1">{{ prodotto.nome }}</h2>
+                    <h3 class="product-slogan">{{ prodotto.valoriCampi.slogan.valore }}</h3>
+
+                    <p >
+                        <b>Codice prodotto :</b> <span class="product-sku">{{ variante.sku }}</span>
+                    </p>
+
+                    <p>
+                        <b>Dimensioni : </b> L {{ prodotto.valoriCampi.larghezza.valore }} x P {{ prodotto.valoriCampi.profondita.valore }} x A {{ prodotto.valoriCampi.altezza.valore }}
+                    </p>
+                    <p class="product-description">{{ prodotto.valoriCampi.descrizione_breve.valore }}</p>
 
                     {% if prodotto.variantePrimaria.prezzo_speciale %}
                         <span class="price">{{ prodotto.variantePrimaria.prezzo_speciale | price}}</span>
@@ -40,10 +67,14 @@
                         <input type="hidden" name="id_variante" value="{{ variante.id }}">
                         <input type="hidden" name="quantita" value="1">
 
-                        <button type="submit" class="btn btn-secondary" ><i class="fa fa-cart"></i> Aggiungi al carrello</button>
+                        <button type="submit" class="btn btn-secondary btn-add-to-cart" ><i class="fa fa-cart"></i> Aggiungi al carrello</button>
                     </form>
                 </div>
             </div>
+        </div>
+
+        <div class="container">
+            {{ EcommerceHelper.sameCategory(prodotto) | raw }}
         </div>
     </main>
 {% endblock %}

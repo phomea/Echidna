@@ -241,7 +241,7 @@ class Query
         return 0;
     }
 
-    private function buildQuery()
+    public function buildQuery()
     {
         $query = "SELECT ".$this->fields." FROM ";
         $query .= " `" . $this->table . "` where 1 ";

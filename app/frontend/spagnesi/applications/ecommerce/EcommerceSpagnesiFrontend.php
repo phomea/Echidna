@@ -29,7 +29,8 @@ class EcommerceSpagnesiFrontend extends EcommerceFrontend{
 
         Response::addVariable([
             "headerPart"   =>  "header",
-            "footerPart"    =>  "footer"
+            "footerPart"    =>  "footer",
+            "EcommerceHelper"   =>  new EcommerceHelper()
         ]);
 
 
@@ -93,6 +94,20 @@ class EcommerceSpagnesiFrontend extends EcommerceFrontend{
         $r[1]['varianti'] = $varianti;
 */
 
+
+
+
+        $categoria = reset($r[1]['prodotto']->categories);
+
+
+        Response::addVariable([
+            "breadcrumbs" => [
+                [
+                    "label" =>  $categoria->nome,
+                    "url"   =>  RouterService::getRoute("frontend.ecommerce.categoria")->build(['slug'=>$categoria->slug])
+                ]
+            ]
+        ]);
 
 
         if( $r[1]['prodotto']->visualizzazione == Prodotto::VISUALIZZAZIONE_SEMPLICE){
