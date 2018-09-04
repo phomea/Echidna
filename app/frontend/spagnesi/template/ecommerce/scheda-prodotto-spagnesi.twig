@@ -14,8 +14,30 @@
                     {% endfor %}
                 </div>
             </div>
-            <div class="col-md-4 pt-5 descrizione-generale">
-                <h2 class="product-name mt-5 pt-5">{{ prodotto.nome }}</h2>
+            <div class="col-md-4 pt-5 descrizione-generale mt-5">
+                {% if breadcrumbs %}
+                    <!-- Breadcrumbs-->
+                    <section class="breadcrumbs mb-5">
+                        <div class="container">
+                            <a href="/">home</a>
+
+                            {% for value in breadcrumbs %}
+                                {% if value.nolink %}
+                                    <span class="divider"><i class="fas fa-chevron-right"></i></span>
+                                    <a>{{ value.label }}</a>
+                                {% else %}
+                                    <span class="divider"><i class="fas fa-chevron-right"></i></span>
+                                    <a href="{{ value.url }}">{{ value.label }}</a>
+                                {% endif %}
+                            {% endfor %}
+
+                        </div>
+                    </section>
+                    <!-- //end Breadcrumbs -->
+                {% endif %}
+
+
+                <h2 class="product-name   pt-2">{{ prodotto.nome }}</h2>
                 <p>
                     Codice prodotto :
                 </p>
