@@ -18,6 +18,7 @@
 --
 -- Table structure for table `api`
 --
+USE cartiamotwig;
 
 DROP TABLE IF EXISTS `api`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
