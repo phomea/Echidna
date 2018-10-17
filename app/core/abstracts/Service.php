@@ -21,6 +21,8 @@ abstract class Service implements ServiceInterface{
 
 
         static::$config = Config::getFile( static::getName() );
+
+
         foreach (static::$config as $key => $value) {
             if( property_exists( get_called_class() ,$key) )
                 static::$$key = $value;

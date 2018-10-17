@@ -2,6 +2,7 @@
 
 
 namespace applications\pages\entities;
+use applications\meta\entities\Meta;
 use core\Model;
 use core\db\Field;
 
@@ -72,5 +73,9 @@ class Pagina extends Model {
             ->where(Contenuto::PAGINE_ID ."=".$this->getId())
             ->setOrderBy("ordine","ASC")
             ->getAll();
+    }
+
+    function getMeta(){
+        return Meta::findById($this->id);
     }
 }

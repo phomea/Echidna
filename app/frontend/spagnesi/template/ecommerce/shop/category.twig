@@ -11,10 +11,22 @@
       </div>
 
       <div class="container">
-          <div class="row">
-              <div class="col-8">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate orci convallis hendrerit varius. Quisque eu molestie ex. Aenean non mattis sem, vel efficitur nisl. Sed in ex commodo, tempor est ac, scelerisque lacus. Curabitur luctus felis tempor sem dapibus.</p>
-              </div>
+          <div class="text-center mb-5">
+              <p><em>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate orci convallis hendrerit varius.
+                      Quisque eu molestie ex. Aenean non mattis sem, vel efficitur nisl. Sed in ex commodo, tempor est ac, scelerisque lacus. Curabitur luctus felis tempor sem dapibus.</em></p>
           </div>
+
       </div>
+
+
   {% endblock %}
+
+
+
+    {% block innercontent %}
+        {% if prodotti|length == 0 %}
+            <h2 class="text-center">Ci dispiace! Sembra che non ci siano ancora prodotti in questa categoria!</h2>
+        {% else %}
+            {{ parent() }}
+        {% endif %}
+    {% endblock %}

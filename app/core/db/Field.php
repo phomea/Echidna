@@ -1,5 +1,7 @@
 <?php
 namespace core\db;
+use core\Model;
+
 class Field{
     const TYPE_INT      =   "int(10)";
     const TYPE_BOOLEAN  =   "int(1)";
@@ -7,6 +9,7 @@ class Field{
     const TYPE_STRING   =   "varchar";
     const TYPE_TEXT     =   "text";
     const TYPE_DATE     =   "date";
+    const TYPE_ENTITY     =   "entity";
 
 
     // chiavi
@@ -20,6 +23,9 @@ class Field{
     public $template = "default";
     public $templateVar = null;
 
+    private $entity = false;
+
+
     private $data = [
         "Type"  =>  null,
         "Null"   =>  self::VALUE_NULLABLE,
@@ -29,10 +35,22 @@ class Field{
     ];
 
     public $value ="";
+    public $label = "";
 
     private $unique     =   false;
     private $editable   =   false;
 
+    public function expandTemplateVar(){
+
+        if(is_callable($this->templateVar)){
+            $this->templateVar = call_user_func($this->templateVar);
+        }
+
+    }
+    public function setLabel( $l ){
+        $this->label = $l;
+        return $this;
+    }
 
     public function setTemplateVar($t){
         $this->templateVar = $t;
@@ -117,6 +135,35 @@ class Field{
         ]);
     }
 
+    public function getEntity(){
+
+        return $this->entity;
+
+    }
+
+    public $relation=0;
+    /**
+     * @param $e string
+     * @param int $relation
+     */
+    static function entity( $e , $relation = 1){
+
+
+        $n = new static([
+            "Type"      =>  self::TYPE_ENTITY
+        ]);
+        $n->entity = $e;
+        $n->relation = $relation;
+
+        /*if( $relation == 1 ) {
+            $n->setTemplate("select")->setTemplateVar($e::getForSelect("id","id"));
+        }
+        if($relation == 2){
+            $n->setTemplate("select-multiple")->setTemplateVar($e::getForSelect("id","id"));
+        }*/
+        return $n;
+    }
+
     static function varchar( $length ){
         return new static([
             "Type"      =>  self::TYPE_STRING,
@@ -175,7 +222,7 @@ class Field{
 
             case Field::TYPE_INT_UNSIGNED:
             case Field::TYPE_INT:
-
+                if( empty($value )) return "null";
                 return $value;
 
             case Field::TYPE_STRING:

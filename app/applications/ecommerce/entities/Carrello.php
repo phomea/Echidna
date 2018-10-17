@@ -95,7 +95,7 @@ class Carrello{
             }
         }
 
-        if( $this->metodoDiSpedizione != null ){
+        if( !empty($this->metodoDiSpedizione ) ){
             $totale += $this->metodoDiSpedizione->prezzo;
             $this->spedizione = $this->metodoDiSpedizione->prezzo;
         }

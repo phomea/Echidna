@@ -20,9 +20,12 @@ class PagesFrontend extends FrontendApplication {
 
 
     static function home(){
+
+
         $p = Pagina::findBySlug( "/" );
-
-
+        if(!$p){
+            return false;
+        }
         $slider = new Slider();
         $slider->findByHook("home");
 
@@ -35,11 +38,13 @@ class PagesFrontend extends FrontendApplication {
         ];
     }
     static function pagina($params=[], $data=null){
-        
+
         $pagina = Pagina::findBySlug($params['slug']);
         if(!$pagina){
             return false;
         }
+
+
         $layout = str_replace(".php","",$pagina->layout);
         
         return [

@@ -22,8 +22,13 @@ class EcommerceHelper{
         $c = CategoriaProdotto::query()->where("id_categoria = ".$categoria->id)->where(" id_prodotto <>  ".$product->id)->getAll();
 
         foreach ($c as $item) {
+
+            $p =  Prodotto::findById($item->id_prodotto);
+            if( $p )
             $prodotti[] = Prodotto::findById($item->id_prodotto);
         }
+
+
 
         return Response::getTemplateToUse("ecommerce/helpers/sameCategory",[
             "prodotti"  =>  $prodotti

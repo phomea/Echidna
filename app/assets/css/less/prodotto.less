@@ -50,9 +50,15 @@
 
 .price,.old-price{
   display: block;
+  display: inline-block;
+  font-weight:800;
+  font-size: 3em;
+
 }
 .old-price{
   text-decoration: line-through;
+  opacity:0.3;
+  margin-left:0.4em;
 }
 .price{
   font-size:5em;
@@ -112,7 +118,8 @@
     font-weight:bold;
     display: inline-block;
     margin-left: 0.3em;
-    opacity:0.7;
+    opacity:0.5;
+    font-size: 1.5em;
   }
 
   .images{
@@ -503,5 +510,53 @@ body.scegliendo-variante{
 .btn-add-to-cart{
   display: block;
   width: 100%;
-  font-size: 1.3em;
+  //font-size: 1.3em;
+}
+
+.tab-content{
+  margin-top:-1px;
+}
+.tab-pane{
+  border:1px solid #ddd;
+
+  box-shadow: 0px 5px 20px rgba(0,0,0,0.05);
+}
+
+.nav-tabs .nav-link{
+  font-size: 1.2em;
+  padding: 0.5em 2em;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+  border-color: #ddd;
+  border-bottom-color:#fff;
+  color: #000;
+  font-weight: bold;
+
+}
+
+.nav-tabs .nav-link:focus:not(.active), .nav-tabs .nav-link:hover:not(.active) {
+  background: rgba(0,0,0,0.1);
+}
+
+
+
+
+@media (max-width: 900px) {
+  .product-form-container {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    padding: 15px;
+    border-top: 1px solid #aaa;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.breadcrumbs.sticky-top{
+  background: #fff;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+  z-index: 10;
 }

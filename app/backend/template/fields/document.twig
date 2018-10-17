@@ -1,0 +1,22 @@
+<div class="form-group field-media">
+    <label for="company" class=" form-control-label">{{ property }}</label>
+    <input type="text" class="form-control media-choser value-{{ property }}" placeholder="Enter your company name" class="form-control" name="{{ property }}" value="{{ field.value }}">
+
+</div>
+
+
+<script>
+    $(window).ready(function(){
+
+        (function() {
+            var mediabrowser = new MediaBrowser("#filebrowser");
+            mediabrowser.fileChoose(function (file) {
+                $(".media-choser.value-{{ property }}").val(file.permalink);
+            });
+            $(".media-choser.value-{{ property }}").on("focus", function (e) {
+                e.preventDefault();
+                mediabrowser.open();
+            })
+        })();
+    });
+</script>

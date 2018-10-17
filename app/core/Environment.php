@@ -1,5 +1,6 @@
 <?php
 namespace core;
+use core\services\Db;
 use core\services\Request;
 use core\services\Response;
 use core\services\SessionService;
@@ -32,9 +33,16 @@ class Environment {
         self::$ROOT = $root;
         self::$CACHE_ROOT = $root.DS."cache";
 
+        Response::init();
+        Db::init();
         SessionService::init();
         Request::init();
-        Response::init();
+
+
+
+
+
+
 
     }
 }

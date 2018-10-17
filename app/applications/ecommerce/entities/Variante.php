@@ -35,6 +35,7 @@ class Variante extends Model{
                     "value" =>  1
                 ]
             ]),
+            "immagini"  =>  Field::entity(AttachmentText::class,2)->editable()->setTemplate("select-multiple-images")->setLabel("Galleria immagini"),
 
         ];
     }
@@ -75,12 +76,13 @@ class Variante extends Model{
         return $got;
     }
 
+    /**
+     * @return array
+     * @deprecated
+     */
     public function getImages(){
-        $sql =  "SELECT * FROM ecommerce_prodotto_variante_immagine WHERE id_variante=:id_variante";
 
-        return Db::$connection->fetchAll($sql,[
-            "id_variante"   =>  $this->id
-        ]);
+        return [];
     }
 
     function save()

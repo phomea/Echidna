@@ -1,7 +1,7 @@
 <?php
 
 return[
-    "host"  =>  "db",
+    "host"  =>  "localhost",
     "db"    =>  "cartiamotwig",
     "user"  =>  "root",
     "password"  =>  "root"

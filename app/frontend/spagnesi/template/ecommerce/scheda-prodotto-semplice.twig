@@ -3,75 +3,154 @@
 {% block content %}
     {% set variante = prodotto.variantePrimaria %}
 
-    <figure class="product-top-bg">
-        <img src="{{ prodotto.images[0].permalink }}">
+    <div></div>
+    <figure class="product-top-bg d-none d-sm-block">
+        <img src="{{ prodotto.immagini[0].value}}">
     </figure>
-    <main id="scheda-prodotto" class="scheda-prodotto scheda-prodotto-semplice">
-        <div class="pl-5 pr-5">
 
 
-            <div class="row mt-5">
-                <div class="col-8">
+    <main id="scheda-prodotto" class="scheda-prodotto scheda-prodotto-semplice mb-5">
+
+        {% if breadcrumbs and Request.isMobile %}
+            <!-- Breadcrumbs-->
+            <section class="breadcrumbs sticky-top">
+                <div class="container">
+                    <a href="/">home</a>
+
+                    {% for value in breadcrumbs %}
+                        {% if value.nolink %}
+                            <span class="divider"><i class="fas fa-chevron-right"></i></span>
+                            <a>{{ value.label }}</a>
+                        {% else %}
+                            <span class="divider"><i class="fas fa-chevron-right"></i></span>
+                            <a href="{{ value.url }}">{{ value.label }}</a>
+                        {% endif %}
+                    {% endfor %}
+
+                </div>
+            </section>
+            <!-- //end Breadcrumbs -->
+        {% endif %}
+
+        <div class="pl-5 pr-5 container">
+
+
+
+            <div class="row">
+                <div class="col-md-8">
                     <div class="owl-carousel owl-theme general-carousel" data-nav>
-                    {% for immagine in prodotto.images %}
-                        <img src="{{ immagine.permalink }}">
+                    {% for immagine in prodotto.immagini %}
+                        <img src="{{ immagine.value }}">
                     {% endfor %}
                     </div>
-                </div>
-                <div class="col-4">
 
-                    {% if breadcrumbs %}
-                        <!-- Breadcrumbs-->
-                        <section class="breadcrumbs mb-5">
-                            <div class="container">
-                                <a href="/">home</a>
 
-                                {% for value in breadcrumbs %}
-                                    {% if value.nolink %}
-                                        <span class="divider"><i class="fas fa-chevron-right"></i></span>
-                                        <a>{{ value.label }}</a>
-                                    {% else %}
-                                        <span class="divider"><i class="fas fa-chevron-right"></i></span>
-                                        <a href="{{ value.url }}">{{ value.label }}</a>
-                                    {% endif %}
-                                {% endfor %}
-
+                    <div class="d-none d-sm-block">
+                        <nav>
+                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Descrizione</a>
+                                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Informazioni aggiuntive</a>
+                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Recensioni</a>
                             </div>
-                        </section>
-                        <!-- //end Breadcrumbs -->
-                    {% endif %}
+                        </nav>
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active p-3" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                {{ prodotto.descrizione | raw }}
+                            </div>
+
+                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+                            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+
+                    <div class="sticky-top">
+
+                        {% if breadcrumbs and not Request.isMobile %}
+                            <!-- Breadcrumbs-->
+                            <section class="breadcrumbs mb-5">
+                                <div class="container">
+                                    <a href="/">home</a>
+
+                                    {% for value in breadcrumbs %}
+                                        {% if value.nolink %}
+                                            <span class="divider"><i class="fas fa-chevron-right"></i></span>
+                                            <a>{{ value.label }}</a>
+                                        {% else %}
+                                            <span class="divider"><i class="fas fa-chevron-right"></i></span>
+                                            <a href="{{ value.url }}">{{ value.label }}</a>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                </div>
+                            </section>
+                            <!-- //end Breadcrumbs -->
+                        {% endif %}
 
 
-                    <h2 class="product-name pb-1">{{ prodotto.nome }}</h2>
-                    <h3 class="product-slogan">{{ prodotto.valoriCampi.slogan.valore }}</h3>
+                        <h2 class="product-name pb-1">{{ prodotto.nome }}</h2>
+                        <h3 class="product-slogan">{{ prodotto.valoriCampi.slogan.valore }}</h3>
 
-                    <p >
-                        <b>Codice prodotto :</b> <span class="product-sku">{{ variante.sku }}</span>
-                    </p>
+                        <p >
+                            <b>Codice prodotto :</b> <span class="product-sku">{{ variante.sku }}</span>
+                        </p>
 
-                    <p>
-                        <b>Dimensioni : </b> L {{ prodotto.valoriCampi.larghezza.valore }} x P {{ prodotto.valoriCampi.profondita.valore }} x A {{ prodotto.valoriCampi.altezza.valore }}
-                    </p>
-                    <p class="product-description">{{ prodotto.valoriCampi.descrizione_breve.valore }}</p>
-
-                    {% if prodotto.variantePrimaria.prezzo_speciale %}
-                        <span class="price">{{ prodotto.variantePrimaria.prezzo_speciale | price}}</span>
-                        <span class="old-price">{{ prodotto.variantePrimaria.prezzo | price}}</span>
-                    {% else %}
-                        <span class="price">{{ prodotto.variantePrimaria.prezzo | price}}</span>
-                    {% endif %}
+                        <p>
+                            <b>Dimensioni : </b> L {{ prodotto.valoriCampi.larghezza.valore }} x P {{ prodotto.valoriCampi.profondita.valore }} x A {{ prodotto.valoriCampi.altezza.valore }}
+                        </p>
 
 
+                            {% if prodotto.valoriCampi.struttura.valore %}
+                                <p><b>Struttura</b> : {{ prodotto.valoriCampi.struttura.valore }}</p>
+                            {% endif %}
 
-                    <form method="post" action="/carrello/aggiungi">
-                        <input type="hidden" name="id_variante" value="{{ variante.id }}">
-                        <input type="hidden" name="quantita" value="1">
+                        <p class="product-description">{{ prodotto.valoriCampi.descrizione_breve.valore }}</p>
 
-                        <button type="submit" class="btn btn-secondary btn-add-to-cart" ><i class="fa fa-cart"></i> Aggiungi al carrello</button>
-                    </form>
+                        {% if prodotto.variantePrimaria.prezzo_speciale %}
+                            <span class="price">{{ prodotto.variantePrimaria.prezzo_speciale | price}}</span>
+                            <span class="old-price">{{ prodotto.variantePrimaria.prezzo | price}}</span>
+                        {% else %}
+                            <span class="price">{{ prodotto.variantePrimaria.prezzo | price}}</span>
+                        {% endif %}
+
+
+
+                        {% if not Request.isMobile %}
+                        <div class="product-form-container">
+                            <form method="post" action="/carrello/aggiungi">
+                                <input type="hidden" name="id_variante" value="{{ variante.id }}">
+                                <input type="hidden" name="quantita" value="1">
+
+                                <div class="row ml-0 mr-0">
+
+                                    <button type="submit" class="btn btn-primary btn-add-to-cart col mr-2" ><i class="fas fa-cart-plus mr-4"></i> Aggiungi al carrello</button>
+                                    <button type="button" class="btn btn-light"><i class="fas fa-star"></i> </button>
+                                </div>
+                            </form>
+                        </div>
+                        {% endif %}
+                    </div>
+
                 </div>
             </div>
         </div>
+
+        {% if Request.isMobile %}
+            <div class="product-form-container">
+                <form method="post" action="/carrello/aggiungi">
+                    <input type="hidden" name="id_variante" value="{{ variante.id }}">
+                    <input type="hidden" name="quantita" value="1">
+
+                    <div class="row ml-0 mr-0">
+
+                        <button type="submit" class="btn btn-primary btn-add-to-cart col mr-2" ><i class="fas fa-cart-plus mr-4"></i> Aggiungi al carrello</button>
+                        <button type="button" class="btn btn-light"><i class="fas fa-star"></i> </button>
+                    </div>
+                </form>
+            </div>
+        {% endif %}
 
         <div class="container">
             {{ EcommerceHelper.sameCategory(prodotto) | raw }}

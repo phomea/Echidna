@@ -247,6 +247,10 @@ aside.left-panel{
     justify-self: center;
     width: 100%;
 }
+/*
+.card-body-table{
+  max-width: 100%;
+}*/
 
 .btn-xs{
     font-size: .8em;
@@ -361,16 +365,33 @@ aside.left-panel{
 }
 
 .fileBrowser-file figure{
+
+
     width:80%;
     height:60%;
     position: absolute;
     bottom:20%;
     left:10%;
+    text-align: center;
+}
+.fileBrowser-file figure i,
+.documento i {
+    font-size: 3em;
+    line-height: 2.5em;
 }
 .fileBroswer-entry{
     float: left;
     margin:0.5em;
     position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+
+}
+.fileBroswer-entry:after{
+    transition: all 200ms;
 }
 .fileBroswer-entry h5{
     font-size: 0.9em;
@@ -384,10 +405,20 @@ aside.left-panel{
     bottom:0;
 }
 
+.drag-over:after{
+    transform: rotate3d(1, 0, -0.2, 30deg) translate(-7%,14%);
+}
+
 .fileBrowser-navigation .btn{
-    background: #ccc;
+    background: #fff;
     margin: 0.5em;
     color: #000;
+    border: 1px solid #ddd;
+}
+.fileBrowser-navigation .btn:hover{
+    background: #fafafa;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+
 }
 .fileBrowser-navigation{
     border-bottom:1px solid #ccc;
@@ -403,4 +434,23 @@ aside.left-panel{
     bottom: 0;
     color: #fff;
     text-align: center;
+}
+.form-group{
+    margin-bottom: 1rem;
+    padding: 1em;
+    border-radius:5px;
+}
+
+.form-group:hover{
+    background: #fafafa;
+}
+.form-group:focus-within{
+    background: #eee;
+    box-shadow: 0px 5px 10px rgba(0,0,0,0.05), 0px 0px 0px 1px rgba(0,0,0,0.1);
+}
+.form-group label {
+    font-weight: bold;
+}
+.input-group{
+    background: #fff;
 }

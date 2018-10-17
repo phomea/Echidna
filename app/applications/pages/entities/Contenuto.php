@@ -2,6 +2,7 @@
 
 
 namespace applications\pages\entities;
+use applications\banner\entities\Banner;
 use applications\CLManager\includes\CLCatalog;
 use applications\CLManager\includes\CLProdotto;
 use applications\pages\contents\BannerContentType;
@@ -11,7 +12,7 @@ use core\Cache;
 use core\db\Field;
 use core\Model;
 use core\services\Response;
-use applications\banner\entities\Banner;
+use applications\banner\entities\Articolo;
 use applications\media\entities\Media;
 
 /**

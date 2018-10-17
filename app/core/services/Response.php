@@ -1,6 +1,9 @@
 <?php
 namespace core\services;
+use applications\meta\entities\Meta;
+use applications\pages\entities\Pagina;
 use core\abstracts\Service;
+use core\Cache;
 use core\template\BaseTemplate;
 
 class Response extends Service {
@@ -14,6 +17,9 @@ class Response extends Service {
 
     static $mainResponse= [];
 
+    static $templates = [];
+
+    public $metas = [];
 
     public function setMeta($key,$value){
       $this->metas[$key] = $value;
@@ -40,6 +46,28 @@ class Response extends Service {
 
     static function init(){
       parent::init();
+
+      $meta = new Meta([
+          "title" => "MelaVerde Records",
+          "description" => "Melaverde"
+      ]);
+     /* $query = "/".Request::getQuery();
+      $pagina = Pagina::findBySlug($query);
+      if($pagina)
+      $meta = $pagina->getMeta();*/
+
+      Response::addVariable([
+        "meta"    =>  $meta
+      ]);
+
+      if( $cached = Cache::get("global_cache",Request::getCurrentUrl(),60000)){
+          echo $cached;
+          exit;
+      }
+
+      foreach (static::$config as $key=>$value){
+        static::$templates[$key] = new $value( null , null );
+      }
     }
 
 
@@ -122,7 +150,10 @@ class Response extends Service {
      * @return BaseTemplate
      */
     static function getFrontendTemplate(){
-        return new self::$config['frontendTemplate']( self::$template, self::$response );
+
+
+       // return new self::$config['frontendTemplate']( self::$template, self::$response );
+        return self::$templates['frontendTemplate']->withVars( self::$template, self::$response );
     }
 
     /**
@@ -132,6 +163,7 @@ class Response extends Service {
      * @return BaseTemplate
      */
     static function getTemplateToUse($template = null, $response = false ,$template_extend = ""){
+
 
         if($template_extend!=""){
             $response['template_extend'] = $template_extend;
@@ -153,12 +185,18 @@ class Response extends Service {
             self::setTemplateToUse("jsonTemaplate");
             $response = self::$mainResponse;
         }
-        return new self::$config[self::$templateToUse]( $template , $response );
+
+        //$t = self::$config[self::$templateToUse];
+        //$t::reset();
+
+//        return new self::$config[self::$templateToUse]( $template , $response );
+
+        return self::$templates[self::$templateToUse]->withVars( $template , $response );
     }
 
 
     static function setTemplateToUse( $t ){
-        self::$templateToUse = $t;
+         self::$templateToUse = $t;
     }
 
     /**
@@ -168,11 +206,13 @@ class Response extends Service {
         return new self::$config[self::$templateToUse]( $template,$response );
     }
 
-    static function redirect( $to ){
-        return ["",["data"=>[
-                "type"  =>  "redirect",
-                "to"    =>  $to
-            ]
+    static function redirect( $to, $data = null ){
+        return ["",[
+                "data"=>[
+                    "data"  =>  $data,
+                    "type"  =>  "redirect",
+                    "to"    =>  $to
+                ]
             ]
         ];
     }
@@ -180,5 +220,11 @@ class Response extends Service {
 
     static function formatPrice( $price ){
         return number_format( (float)($price/100),2,".",".")."€";
+    }
+
+
+    static function go( $url ){
+        header("Location: ".$url);
+        exit;
     }
 }

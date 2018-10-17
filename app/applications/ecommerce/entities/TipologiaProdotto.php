@@ -8,6 +8,9 @@ use core\Model;
 use core\services\Db;
 
 class TipologiaProdotto extends Model{
+
+    static $idsSelect = null;
+
     static function getTable()
     {
         return "ecommerce_tipologia_prodotto";
@@ -21,7 +24,7 @@ class TipologiaProdotto extends Model{
             "slug"  =>  Field::varchar(64)->editable()->setTemplate("slug")->setTemplateVar("nome"),
             "descrizione"   =>  Field::text()->editable()->setTemplate("textarea"),
             "prezzo"        =>  Field::int()->editable(),
-            "id_tipologia_prodotto" =>  Field::int()->editable()->setTemplate("select")->setTemplateVar(\applications\ecommerce\TipologiaProdotto::getForSelect())
+            "id_tipologia_prodotto" =>  Field::int()->editable()->setTemplate("select")->setTemplateVar([\applications\ecommerce\TipologiaProdotto::class,"getForSelect"])
         ];
     }
 

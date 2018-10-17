@@ -2,7 +2,7 @@
 namespace applications\media;
 
 
-use applications\banner\entities\Banner;
+use applications\banner\entities\Articolo;
 use applications\banner\BannerBackend;
 
 use applications\media\entities\Media;

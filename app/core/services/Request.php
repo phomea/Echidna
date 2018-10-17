@@ -52,6 +52,11 @@ class Request extends Service{
         self::$mobile = false;
       }
 
+      Response::addVariable([
+          "Request" => [
+              "isMobile"    =>  self::$mobile
+          ]
+      ]);
 
     }
 

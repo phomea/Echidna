@@ -18,4 +18,14 @@ abstract class BaseTemplate{
     abstract static function getBaseDirectory();
 
     abstract public function render();
+
+    static function reset(){
+
+    }
+
+    public function withVars( $template, $response){
+        $this->template = $template;
+        $this->response = $response;
+        return $this;
+    }
 }

@@ -33,9 +33,35 @@ class MediaBackend extends BackendApplication {
             parent::declareRoutes(),
             [
                 "media.upload"  =>  (new Route("","upload",[self::class,"upload"]))->method(Route::METHOD_POST),
-                "media.filebrowser"  =>  (new Route("","filebrowser{folder:(.*)}",[self::class,"fileBrowser"]))
+                "media.filebrowser"  =>  (new Route("","filebrowser{folder:(.*)}",[self::class,"fileBrowser"])),
+                "media.movefile"  =>  (new Route("","moveFile",[self::class,"moveFile"]))->method(Route::METHOD_POST),
+                "media.makeDir"  =>  (new Route("","makeDir",[self::class,"makeDir"]))->method(Route::METHOD_GET),
+                "media.delete"  =>  (new Route("","delete",[self::class,"delete"]))->method(Route::METHOD_GET)
             ]
         );
+    }
+
+    static function delete($params){
+        $path = Environment::$ROOT."/media" . $params['path'];
+
+        unlink($path);
+        exit;
+    }
+
+    static function makeDir( $params ){
+
+        @mkdir(Environment::$ROOT."/media".$params['dir'],true);
+        exit;
+    }
+    static function moveFile($params,$data){
+
+        $from = Environment::$ROOT."/media" . $data['from'];
+        $to     = Environment::$ROOT."/media".$data['to'];
+        if(is_file($from)){
+            $to .= "/".basename($from);
+            rename($from,$to);
+        }
+        exit;
     }
 
     static function actionAdd($params = [])

@@ -12,13 +12,15 @@ use core\services\SessionService;
 
 class Bootstrap{
     static function init( $root ){
+
+
         Environment::init($root);
 
 
         $whoops = new \Whoops\Run;
         $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
         $whoops->register();
-        Db::init();
+
 
         ApplicationsService::init();
         RouterService::init();

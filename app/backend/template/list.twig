@@ -18,15 +18,21 @@
 
 
 
-                    <div class="card-body">
+                    <div class="card-body card-body-table">
                         <div class="table-responsive">
                             {% if data|length > 0 %}
                                 <table id="bootstrap-data-table" class="table table-striped ">
                                     <thead>
 
                                     <tr>
-                                        {% for v in data[0]|cast_to_array  %}
+                                        {#{% for v in data[0]|cast_to_array  %}
                                         <th>{{ v[0] }}</th>
+                                        {% endfor %}#}
+
+                                        {% for key,field in fields %}
+                                            {% if field.isEditable() %}
+                                                <th>{{ key }}</th>
+                                            {% endif %}
                                         {% endfor %}
                                     </tr>
                                     </thead>
@@ -36,30 +42,32 @@
 
                                     <tr>
                                         {% for v in item|cast_to_array  %}
-                                            <td>
-                                                {% if item.schema()[v[0]].template == "media" %}
-                                                    <div class="form-group field-media">
-                                                        <input type="hidden" class="field-media-id" placeholder="Enter your company name" class="form-control" value="{{ v[1] }}">
-                                                        <figure>
-                                                            <img src="" class="field-media-img">
-                                                        </figure>
-                                                    </div>
-                                                {% else %}
 
-
-
-                                                    <a href="{{ router_service.getRoute(item.getEntity()~".mod").build({id:item.id}) }}">
-                                                        <div style="max-width: 300px;max-height: 1.5em;overflow: hidden;">
-                                                            {% if v[1] is iterable %}
-                                                            {%  elseif v[1] is string  %}
-                                                                {{ v[1] }}
-                                                            {% endif %}
+                                                <td>
+                                                    {% if item.schema()[v[0]].template == "media" %}
+                                                        <div class="form-group field-media">
+                                                            <input type="hidden" class="field-media-id" placeholder="Enter your company name" class="form-control" value="{{ v[1] }}">
+                                                            <figure>
+                                                                <img src="" class="field-media-img">
+                                                            </figure>
                                                         </div>
-                                                    </a>
+                                                    {% else %}
 
-                                                {% endif %}
 
-                                            </td>
+
+                                                        <a href="{{ router_service.getRoute(item.getEntity()~".mod").build({id:item.id}) }}">
+                                                            <div style="max-width: 300px;max-height: 1.5em;overflow: hidden;">
+                                                                {% if v[1] is iterable %}
+                                                                {%  elseif v[1] is string  %}
+                                                                    {{ v[1] }}
+                                                                {% endif %}
+                                                            </div>
+                                                        </a>
+
+                                                    {% endif %}
+
+                                                </td>
+
                                         {% endfor %}
                                     </tr>
 

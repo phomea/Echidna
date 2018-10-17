@@ -94,10 +94,12 @@ class EcommerceSpagnesiFrontend extends EcommerceFrontend{
         $r[1]['varianti'] = $varianti;
 */
 
+        if( !$r )return false;
 
 
 
         $categoria = reset($r[1]['prodotto']->categories);
+
 
 
         Response::addVariable([

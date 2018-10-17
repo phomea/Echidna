@@ -36,12 +36,19 @@ class Config
 
 
         $frontendTemplate = Response::$config['frontendTemplate'];
+
+
         if($frontendTemplate != null){
             $dir = $frontendTemplate::getBaseDirectory();
 
             if( file_exists($dir.DIRECTORY_SEPARATOR."config".DIRECTORY_SEPARATOR.$n.".php") ) {
                 $add = include $dir . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . $n . ".php";
-                $return = array_merge_recursive($return,$add);
+
+                if( isset($add['overwrite'])){
+                    return $add['overwrite'];
+                }else{
+                    $return = array_merge_recursive($return,$add);
+                }
             }
 
 

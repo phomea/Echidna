@@ -1,7 +1,7 @@
 <!-- Navbar -->
-<header class="main-header {{ headerClass }}">
+<header class="main-header {{ headerClass }}  ">
 
-    <section class="navbar">
+    <section class="navbar container">
 
         <div class="row">
             <div class="col-1">
@@ -10,11 +10,20 @@
             <div class="text-center col-10">
                 <div id="mainmenu" class="container">
                     <nav>
+
+                        <ul>
+                        {% for item in frontend.menu.header.items %}
+                            <li><a href="{{ item.link }}">{{ item.label }}</a></li>
+                        {% endfor %}
+                        </ul>
+
+                        <!--
                         <ul>
                             <li><a href="/divani">Divani</a></li>
                             <li><a href="/poltrone">Poltrone</a></li>
                             <li><a href="/divani-letto">Divani letto</a></li>
                         </ul>
+                        -->
                     </nav>
 
                     <a href="/">
@@ -23,6 +32,37 @@
                     </a>
 
                     <nav>
+                        <ul>
+                            {% for item in frontend.menu.headerright.items %}
+
+                                {% if item.items %}
+                                    <li><a href="#">{{ item.nome }}</a>
+                                        <ul class="submenu">
+                                            {% for item in item.items %}
+                                                <li><a href="{{ item.link }}">{{ item.label }}</a></li>
+                                            {% endfor %}
+
+                                        </ul>
+                                    </li>
+
+                                {% else %}
+                                    <li><a href="{{ item.link }}">{{ item.label }}</a></li>
+                                {% endif %}
+
+
+                            {% endfor %}
+                            <li><a href="{{ router_service.getRoute("frontend.ecommerce.carrello").build() }}"><i class="fas fa-shopping-cart"></i></a></li>
+                            <li><a href="{{ router_service.getRoute("frontend.ecommerce.carrello").build() }}"><i class="fas fa-user"></i></a>
+
+                                <ul class="submenu">
+                                        <li><a href="{{ item.link }}">Il mio profilo</a></li>
+                                        <li><a href="{{ item.link }}">Logout</a></li>
+                                </ul>
+
+                            </li>
+                        </ul>
+
+                        <!--
                         <ul>
                             <li><a href="/outlet">Outlet</a></li>
                             <li><a href="/guida-pelli-tessuti">Pelli e Tessuti</a></li>
@@ -34,7 +74,9 @@
                                     <li><a href="/divani">F.A.Q.</a></li>
                                 </ul>
                             </li>
-                            </li>
+
+                         </ul>
+                         -->
                     </nav>
 
                 </div>

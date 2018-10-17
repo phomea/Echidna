@@ -21,6 +21,32 @@
                             </div>
                         </div>
                     </div>
+
+
+                    {% for item in frontend.menu.footer.items %}
+
+                        {% if item.items %}
+
+                        <div class="col-12 col-md-3">
+                            <div class="inside">
+                                <h3><span class="link">{{ item.nome }}</span></h3>
+                                <div class="tabBlock" id="TabBlock-1">
+                                    <ul class="menu">
+
+                                        {% for item in item.items %}
+                                            <li><a href="{{ item.link }}">{{ item.label }}</a></li>
+                                        {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+
+                        {% endif %}
+
+
+                    {% endfor %}
+
+
+                    <!--
                     <div class="col-12 col-md-3">
                         <div class="inside">
                             <h3><span class="link">DIVANI LAB</span></h3>
@@ -62,7 +88,9 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
+
+
                 </div>
 
 

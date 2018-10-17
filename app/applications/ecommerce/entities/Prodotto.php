@@ -23,7 +23,7 @@ class Prodotto extends Model{
             "nome"  =>  Field::varchar(256)->editable(),
             "slug"  =>  Field::varchar(64)->editable()->setTemplate("slug")->setTemplateVar("nome"),
             "sku"  =>  Field::varchar(512)->editable(),
-            "descrizione"   =>  Field::text()->editable()->setTemplate("textarea"),
+            "descrizione"   =>  Field::text()->editable()->setTemplate("tinymce"),
             "id_ecommerce_tipologia_prodotto"   =>  Field::int()->editable(true)->setTemplate("select")->setTemplateVar(\applications\ecommerce\TipologiaProdotto::getForSelect()),
             "visualizzazione"   =>  Field::int()->editable()->setDefault(0)->setTemplate("select")->setTemplateVar([
                 [
@@ -35,6 +35,7 @@ class Prodotto extends Model{
                     "value" =>  self::VISUALIZZAZIONE_COMPLESSA
                 ]
             ]),
+            "immagini"  =>  Field::entity(AttachmentText::class,2)->editable()->setTemplate("select-multiple-images")->setLabel("Galleria immagini"),
         ];
     }
 
@@ -89,6 +90,9 @@ class Prodotto extends Model{
 
         $varianti = Variante::findById_prodotto($this->id);
 
+        if(empty($varianti)){
+            return [];
+        }
         foreach ($varianti as $key=>$value){
             $value->expand();
             if($value->primaria == 1){
@@ -103,12 +107,17 @@ class Prodotto extends Model{
         return $varianti;
     }
 
+    /**
+     * @deprecated
+     */
     public function getImages(){
+        return null;
+        /*
         $sql =  "SELECT * FROM ecommerce_prodotto_immagine WHERE id_prodotto=:id_prodotto";
 
         return Db::$connection->fetchAll($sql,[
             "id_prodotto"   =>  $this->id
-        ]);
+        ]);*/
     }
 
     /**

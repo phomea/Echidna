@@ -17,7 +17,8 @@
     <link rel="stylesheet" href="/backend/theme/assets/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="/backend/theme/assets/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<!--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
 
     <link rel="stylesheet" href="/backend/theme/assets/css/themify-icons.css">
@@ -43,7 +44,7 @@
     <script src="/backend/theme/assets/js/vendor/jquery-2.1.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
     <script src="/backend/theme/assets/js/plugins.js"></script>
-    <script src="/backend/theme/assets/js/main.js"></script>
+    <!--<script src="/backend/theme/assets/js/main.js"></script>-->
 
     <script src="/backend/theme/assets/js/lib/data-table/datatables.min.js"></script>
     <script src="/backend/theme/assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
@@ -124,6 +125,11 @@
 {% block scripts %}
 {% endblock %}
 <script type="text/javascript">
+    var menuclosed = localStorage.getItem("menustatus");
+    if( menuclosed == 'closed'){
+        document.querySelector("body").className = "open";
+    }
+
     (function ($) {
         $(document).ready(function() {
             $('#bootstrap-data-table-export').DataTable();

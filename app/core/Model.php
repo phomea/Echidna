@@ -1,7 +1,14 @@
 <?php
 namespace core;
+use applications\ecommerce\TipologiaProdotto;
+use applications\media\entities\Attachment;
 use core\db\Field;
 use core\services\Db;
+use core\services\RouterService;
+use frontend\melaverde\applications\etichetta\entities\Band;
+use frontend\melaverde\applications\etichetta\entities\Evento;
+use frontend\melaverde\applications\etichetta\entities\Pubblicazione;
+use Stripe\Event;
 
 abstract class Model {
 
@@ -39,8 +46,8 @@ abstract class Model {
     /**
      * @return Query
      */
-    static function query(){
-        return new Query(static::class);
+    static function query($rawResult = false){
+        return new Query(static::class,$rawResult);
     }
     static function getTable(){
         $a = explode("\\",static::class);
@@ -181,7 +188,8 @@ abstract class Model {
              * @var $item Field
              */
             $fieldname = $key;
-            if( isset($this->$fieldname) ){
+            if( isset($this->$fieldname)  ){
+
                 $chiavi[]   =   $fieldname;
                 $valori[]   =   $item->getInsertValue( $this->$fieldname );
             }
@@ -191,6 +199,7 @@ abstract class Model {
         $sql.= ") VALUES (";
         $sql.=  implode(',',$valori);
         $sql.= ")";
+
 
 
         Db::$connection->perform($sql);
@@ -208,20 +217,65 @@ abstract class Model {
         $valori = [];
         $primaryKey = "";
 
+
         foreach ($this->schema() as $key => $item) {
-            /**
-             * @var $item Field
-             */
             $fieldname = $key;
-            if( isset($this->$fieldname) && $item->getData()['Type']!=Field::primaryIndex() ){
-                $valori[]   =   $fieldname ." = ".$item->getInsertValue( $this->$fieldname );
-            }
+            if( $item->getEntity()){
+                if( $item->relation == 2){
+                    $entity = static::getEntity();
+                    $entity_id = $this->id;
+                    $type = $item->getEntity();
 
-            if( $item->getData()['Type'] == Field::TYPE_INT_UNSIGNED){
+                    $r = Attachment::query()
+                        ->where('entity="'.static::class.'"')
+                        ->where("entity_id=".$this->id)
+                        ->where('type="'.$type.'"')
+                        ->where('field="'.$fieldname.'"')
+                        ->getAll();
+                    if(!empty($r)){
+                        foreach ($r as $v){
+                            $v->remove();
+                        }
+                    }
+                    if( isset($this->$fieldname)) {
+                        foreach ($this->$fieldname as $item) {
+                            /*Attachment::query()
+                                ->where('entity = "'.$entity.'"')
+                                ->where("entity_id=".$entity_id)
+                                ->where("type=".$type)
+                                ->getOne();*/
 
-                $primaryKey = $fieldname;
+
+                            $a = new Attachment([
+                                "entity" => $entity,
+                                "entity_id" => $entity_id,
+                                "value" => $item,
+                                "type" => $type,
+                                "field" => $fieldname
+                            ]);
+
+
+                            $a->save();
+                        }
+                    }
+                }
+            }else {
+                /**
+                 * @var $item Field
+                 */
+
+                if (isset($this->$fieldname) && $item->getData()['Type'] != Field::primaryIndex()) {
+                    $valori[] = $fieldname . " = " . $item->getInsertValue($this->$fieldname);
+                }
+
+                if ($item->getData()['Type'] == Field::TYPE_INT_UNSIGNED) {
+
+                    $primaryKey = $fieldname;
+                }
             }
         }
+
+
 
 
         $sql.=  implode(',',$valori);
@@ -237,7 +291,6 @@ abstract class Model {
     }
 
     function save(){
-
 
         if( isset($this->id) && !empty($this->id)){
             $this->update();
@@ -266,6 +319,10 @@ abstract class Model {
     }
 
 
+    public function buildModLink(){
+        return RouterService::getRoute(static::getEntity().".mod")->build(["id"=>$this->id]);
+
+    }
 
     static function getModLink(){
         return "{id:([0-9]*)}";
@@ -283,6 +340,26 @@ abstract class Model {
 
 
     static function getInstance( $data ){
+
+        $dati = [];
+
+
+
+            foreach (static::schema() as $key => $value) {
+                if ($value->getEntity()) {
+                    $r = Attachment::query()
+                        ->where('entity="' . static::class . '"')
+                        ->where("entity_id=" . $data['id'])
+                        ->where('type="' . $value->getEntity() . '"')
+                        ->where('field="' . $key . '"')
+                        ->getAll();
+
+                    $data[$key] = $r;
+                }
+            }
+
+
+
         return new static($data);
     }
 
@@ -313,14 +390,17 @@ abstract class Model {
         $entity = static::class;
 
 
-        $tt = $entity::query()->getAll();
+        $tt = $entity::query(true)->getAll();
 
         $options = [];
         $options[] = [
             "label" =>  "---scegli---",
             "value"=> 0
         ];
+
+
         foreach ($tt as $item) {
+
             $options[] = [
                 "label" =>  $item->$label,
                 "value" =>  $item->$id

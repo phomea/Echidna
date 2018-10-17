@@ -51,6 +51,8 @@ class PagesBackend extends BackendApplication{
             "data"  =>  Contenuto::getContentTypes()[$params['type']]
         ]];
     }
+
+
     static function actionContentOrder( $get = [],$post){
 
         $smtp = null;
@@ -86,12 +88,31 @@ class PagesBackend extends BackendApplication{
 
     }
 
+    static function actionAdd( $params =[] ){
+
+
+
+        $entity = static::getEntityClass();
+        $e = new $entity($params);
+        $fields = static::generateFields($entity, $e );
+
+        return [
+            "mod",[
+                "title" =>  "Modifica",
+                "data"  =>  $e ,
+                "fields"    =>  $fields
+            ]
+        ];
+
+    }
+
+
     static function actionMod($params = [])
     {
 
 
 
-        $file = "style.less";
+       /* $file = "main.less";
         \Less_Autoloader::register();
 
 
@@ -103,10 +124,12 @@ class PagesBackend extends BackendApplication{
             Environment::$ROOT."/assets/css"   =>  "css",
             Environment::$ROOT."/assets/css/less"   =>  "less"
         ]);
+        $parser->ModifyVars( array('url'=>'/') );
         $parser->parse($c);
 
 
-        $css = $parser->getCss();
+        $css = $parser->getCss();*/
+       $css ="";
 
 
 

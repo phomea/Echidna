@@ -58,6 +58,7 @@ abstract class BackendApplication{
                     $item->value = $data->$key;
                 }
 
+                $item->expandTemplateVar();
                 $fields[$key] = Response::getTemplateToUse("fields/".$item->template,
                     [
                         "data"  =>  $data,
@@ -71,18 +72,16 @@ abstract class BackendApplication{
 
     static function actionAdd( $params =[] ){
 
+        return static::actionMod($params);
+
         $entity = static::getEntityClass();
-
-
-        $fields = static::generateFields($entity,new $entity());
-
-
-
+        $e = new $entity($params);
+        $fields = static::generateFields($entity, $e );
 
         return [
             "mod",[
                 "title" =>  "Modifica",
-                "data"  =>  new $entity(),
+                "data"  =>  $e ,
                 "fields"    =>  $fields
             ]
         ];
@@ -91,12 +90,11 @@ abstract class BackendApplication{
 
     static function actionMod( $params =[] ){
         $entity = static::getEntityClass();
-
-
-
-
-        $data = $entity::findById( $params['id'] );
-
+        if( isset($params['id']) ) {
+            $data = $entity::findById($params['id']);
+        }else{
+            $data = new $entity($params);
+        }
 
         $fields = static::generateFields($entity,$data);
 
@@ -123,7 +121,7 @@ abstract class BackendApplication{
         $e = new $entity($data);
         $e->save();
 
-        return Response::redirect(RouterService::$routes[$e::getEntity().".mod"]->build(['id'=>$e->id]));
+        return Response::redirect(RouterService::$routes[$e::getEntity().".mod"]->build(['id'=>$e->id]),$e);
     }
 
     static function actionUpdate( $params = [] , $data = null){
@@ -187,10 +185,9 @@ abstract class BackendApplication{
 
 
 
-        $tt = $entity::query()->getAll();
+        $tt = $entity::query()->getAll(true);
 
-        var_dump($tt);
-        exit;
+
 
         $options = [];
         $options[] = [

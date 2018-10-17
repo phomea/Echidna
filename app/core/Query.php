@@ -21,6 +21,8 @@ class Query
 
     private $numberPerPage = 12;
 
+    private $rawResult = false;
+
 
     /**
      * @return Model
@@ -171,8 +173,9 @@ class Query
      * QueryBuilder constructor.
      * @param $nomeEntita
      */
-    public function __construct($nomeEntita)
+    public function __construct($nomeEntita,$rawResult = false)
     {
+        $this->rawResult = $rawResult;
         $this->entity = $nomeEntita;
         $this->table = $nomeEntita::getTable();
         return $this;
@@ -305,7 +308,13 @@ class Query
 
         $e = $this->getEntity();
 
-        return $e::getInstance($data);// new $e($data);
+
+        if($this->rawResult){
+
+            return new $e($data);// new $e($data);
+        }else {
+            return $e::getInstance($data);// new $e($data);
+        }
         exit;
 
         var_dump($data);

@@ -41,6 +41,25 @@ class TipologiaProdotto extends BackendApplication {
         return $r;
     }
 
+
+
+    static function actionAdd( $params =[] ){
+
+
+
+        $entity = static::getEntityClass();
+        $e = new $entity($params);
+        $fields = static::generateFields($entity, $e );
+
+        return [
+            "mod",[
+                "title" =>  "Modifica",
+                "data"  =>  $e ,
+                "fields"    =>  $fields
+            ]
+        ];
+
+    }
     static function updateCampo($params =[], $data){
         $sql = "UPDATE ecommerce_tipologia_prodotto_campi 
         SET 
@@ -123,7 +142,9 @@ class TipologiaProdotto extends BackendApplication {
     static function getForSelect($label="",$id=""){
 
 
-        $tipologie = \applications\ecommerce\entities\TipologiaProdotto::query()->getAll();
+
+        $tipologie = \applications\ecommerce\entities\TipologiaProdotto::query()->getAll(true);
+
 
         $options = [];
         $options[] = [

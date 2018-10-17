@@ -1,7 +1,7 @@
 <?php
 namespace applications\pages\contents;
 
-use applications\banner\entities\Banner;
+use applications\banner\entities\Articolo;
 
 class BannerContentType extends ContentType{
     const TYPE ="banner";
@@ -15,7 +15,7 @@ class BannerContentType extends ContentType{
     function getStructure()
     {
         return [
-            (new EntityContentType())->setFieldLabel("titolo")->setField("id")->setEntity(Banner::class)
+            (new EntityContentType())->setFieldLabel("titolo")->setField("id")->setEntity(Articolo::class)
         ];
     }
 

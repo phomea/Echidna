@@ -15,7 +15,7 @@
             $.ajax({
                 url : url,
                 method : $(form).attr("method"),
-                dataType : "json",
+                //dataType : "json",
                 data :$(form).serialize()
             })
                 .success(function ( o ) {
@@ -28,9 +28,11 @@
 
                 })
                 .complete(function(o){
+
+                    console.log(o);
                     $(form).removeClass("loading");
 
-
+return;
                     if(redirect != undefined ){
                         window.location = redirect;
                         return;
@@ -46,7 +48,11 @@
 
 
 (function ($) {
-    tinymce.init({ selector:'.tinymce' });
+    tinymce.init({ selector:'.tinymce',
+        plugins : "code",
+        toolbar: "code",
+        menubar:"tools"
+    });
 })(jQuery);
 
 

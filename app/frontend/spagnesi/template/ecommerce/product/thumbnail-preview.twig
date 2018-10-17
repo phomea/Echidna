@@ -5,8 +5,8 @@
         <div class="col-5">
             <a href="{{ router_service.getRoute("frontend.ecommerce.schedaprodotto").build({slug:prodotto.slug}) }}">
                 <figure class="images">
-                    <img class="image-1" src="{{ prodotto.images[1].permalink }}">
-                    <img class="image-2" src="{{ prodotto.images[0].permalink }}">
+                    <img class="image-1" src="{{ prodotto.immagini[1].value }}">
+                    <img class="image-2" src="{{ prodotto.immagini[0].value}}">
                 </figure>
             </a>
         </div>
