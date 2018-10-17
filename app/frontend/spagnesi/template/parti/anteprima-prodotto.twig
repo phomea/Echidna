@@ -11,12 +11,12 @@
     <section class="info">
 
             <div class="row">
-                <div class="col-6">
+                <div class="col-md-6">
                     <h2>{{ prodotto.nome }}</h2>
                     {{ prodotto.valoriCampi.descrizione_breve.valore | raw }}
 
                 </div>
-                <div class="col-6">
+                <div class="col-md-6">
                     {% if prodotto.variantePrimaria.prezzo_speciale %}
                         <span class="price">{{ prodotto.variantePrimaria.prezzo_speciale | price}}</span>
                         <span class="old-price">{{ prodotto.variantePrimaria.prezzo | price}}</span>
