@@ -1,0 +1,6 @@
+RewriteEngine on
+RewriteBase /
+
+ 
+# Rewrite all those to insert /folder
+RewriteRule ^(.*)$ /app/$1 [L]
