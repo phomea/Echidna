@@ -50,7 +50,9 @@ class MediaBackend extends BackendApplication {
 
     static function makeDir( $params ){
 
-        @mkdir(Environment::$ROOT."/media".$params['dir'],true);
+        $old = umask(0);
+        @mkdir(Environment::$ROOT."/media".$params['dir'],0777,true);
+        umask($old);
         exit;
     }
     static function moveFile($params,$data){
