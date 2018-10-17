@@ -42,7 +42,8 @@ class CatalogoSearch{
      * @return CatalogoSearch
      */
     function setCategories( $c ){
-        $this->categories = $c;
+
+        $this->categories = array_filter($c);
         return $this;
     }
     /**
@@ -50,7 +51,8 @@ class CatalogoSearch{
      * @return CatalogoSearch
      */
     function setAttributes( $c ){
-        $this->attributes = $c;
+        $this->attributes = array_filter($c);
+
         return $this;
     }
     /**
