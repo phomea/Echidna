@@ -49,9 +49,11 @@ return;
 
 (function ($) {
     tinymce.init({ selector:'.tinymce',
+        plugins: 'print preview fullpage searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools  contextmenu colorpicker textpattern help'
+        /*
         plugins : "code",
-        toolbar: "code",
-        menubar:"tools"
+        toolbar: "code image",
+        menubar:"tools"*/
     });
 })(jQuery);
 
