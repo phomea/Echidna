@@ -52,4 +52,8 @@ abstract class Application{
         return [];
     }
 
+    static function install(){
+        return [];
+    }
+
 }

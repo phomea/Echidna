@@ -35,7 +35,7 @@ class Config
             $return = [];
 
 
-        $frontendTemplate = Response::$config['frontendTemplate'];
+        $frontendTemplate = Response::$config["templateEngines"]['frontendTemplate'];
 
 
         if($frontendTemplate != null){

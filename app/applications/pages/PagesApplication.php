@@ -2,7 +2,10 @@
 namespace applications\pages;
 
 
+use applications\pages\contents\ContentType;
+use applications\pages\entities\Contenuto;
 use applications\pages\entities\Pagina;
+use applications\pages\entities\ProvaInstall;
 use core\abstracts\Application;
 use core\Model;
 use core\services\Response;
@@ -42,5 +45,14 @@ class PagesApplication extends Application {
     {
         return Pagina::class;
     }
+
+    static function install()
+    {
+        return [
+            Pagina::class,
+            Contenuto::class
+        ];
+    }
+
 
 }

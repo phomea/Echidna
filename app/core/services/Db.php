@@ -44,6 +44,13 @@ class Db extends Service {
         return self::$connection;
     }
 
+    static function tableExists( $table ){
+        $query = "SHOW TABLES LIKE '".$table."';";
+        $r = static::getInstance()->query($query)->fetchAll();
+        return count($r) > 0;
+    }
+
+
 
 
 }

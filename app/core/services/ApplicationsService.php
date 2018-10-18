@@ -4,6 +4,8 @@ namespace core\services;
 
 use core\abstracts\Application;
 use core\Config;
+use core\db\Field;
+use core\Environment;
 use core\template\BaseTemplate;
 
 
@@ -11,6 +13,67 @@ class ApplicationsService extends \core\abstracts\Service {
     static function getName()
     {
         return "applications";
+    }
+
+
+    static function install($e){
+        $schema = $e::schema();
+        $table = $e::getTable();
+
+
+
+        $db = Db::getInstance();
+        if(!Db::tableExists($table)){
+            $query = "\nCREATE TABLE $table (\n";
+            $createFields = [];
+            foreach ($schema as $key=>$value){
+                $createFields [] = Field::getCreateSql($key,$value);
+            }
+            $query .= implode(",\n",$createFields);
+            $query .= "\n)\n";
+           // echo $query;
+            $r = $db->query($query);
+        }else{
+            $alters = [];
+            $fieldsDb = [];
+
+            foreach ($db->query("DESCRIBE $table") as $key=> $value){
+                $fieldsDb[] = $value['Field'];
+                if( !isset($schema[$value["Field"]])){
+                    $sql = "ALTER TABLE $table\n";
+                    $sql .= "DROP COLUMN ".$value['Field'];
+                    if( $db->query($sql) ){
+                       // echo "++Colonna $table.$key rimossa correttamente\n";
+                    }
+                    continue;
+                }
+
+                if( !Field::compare( $schema[$value["Field"]], $value ) ){
+
+                    $alters[] ="CHANGE ".$value['Field']." ".Field::getCreateSql( $value['Field'], $schema[$value['Field']],true);
+                }
+
+            }
+            if(count($alters)>0){
+                $sql = "ALTER TABLE $table\n";
+                $sql.=implode(",\n",$alters);
+
+
+                $r = $db->query($sql);
+            }
+
+            foreach ($schema as $key=>$value){
+                if(!in_array($key,$fieldsDb)){
+                    $sql = "ALTER TABLE $table\n";
+                    $sql .= "ADD ".Field::getCreateSql( $key, $value);
+                    if( $db->query($sql) ){
+                        //echo "++Colonna $table.$key aggiunta correttamente\n";
+                    }
+                }
+            }
+        }
+
+
     }
 
     static function init()
@@ -24,6 +87,15 @@ class ApplicationsService extends \core\abstracts\Service {
                  * @var $item Application
                  */
                 $item::init( $key );
+
+                if(Environment::is(Environment::DEV)){
+                    $entities = $item::install();
+                    if(count($entities) > 0 ){
+                        foreach ($entities as $key=>$value){
+                            static::install($value);
+                        }
+                    }
+                }
             }
         }
     }

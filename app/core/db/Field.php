@@ -178,7 +178,7 @@ class Field{
         ]);
     }
 
-    static function getCreateSql( $key, $v ){
+    static function getCreateSql( $key, $v,$skipKey=false ){
         $sql = $key;
 
         $value = $v->getData();
@@ -195,7 +195,7 @@ class Field{
         if(isset($value['Extra'])){
             $sql .=" ".$value['Extra'];
         }
-        if(isset($value['Key'])){
+        if(isset($value['Key']) && !$skipKey){
             $sql .=" PRIMARY KEY";
         }
         return $sql;
@@ -203,10 +203,14 @@ class Field{
     static function compare( $old, $new ){
         foreach ($old->getData() as $key => $item) {
             if( isset($old->getData()['length']) && $key == 'Type'){
+
+
                 if( $old->getData()[$key]."(".$old->getData()['length'].")" != $new[$key] ){
                     return false;
                 }
             }else {
+
+
                 if ($key != "length" && $old->getData()[$key] != $new[$key]) {
                     return false;
                 }

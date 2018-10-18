@@ -46,26 +46,23 @@ class Response extends Service {
 
     static function init(){
       parent::init();
+      parent::init();
 
-      $meta = new Meta([
-          "title" => "MelaVerde Records",
-          "description" => "Melaverde"
-      ]);
-     /* $query = "/".Request::getQuery();
-      $pagina = Pagina::findBySlug($query);
-      if($pagina)
-      $meta = $pagina->getMeta();*/
+      if ( !empty(self::$config['meta'])){
 
-      Response::addVariable([
-        "meta"    =>  $meta
-      ]);
+          $meta = new Meta(self::$config['meta']);
+          Response::addVariable([
+              "meta"    =>  $meta
+          ]);
+      }
+
 
       if( $cached = Cache::get("global_cache",Request::getCurrentUrl(),60000)){
           echo $cached;
           exit;
       }
 
-      foreach (static::$config as $key=>$value){
+      foreach (static::$config["templateEngines"] as $key=>$value){
         static::$templates[$key] = new $value( null , null );
       }
     }
