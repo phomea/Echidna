@@ -24,6 +24,7 @@ class Variante extends Model{
             "sku"  =>  Field::varchar(64)->editable(),
             "prezzo"   =>  Field::text()->editable(),
             "prezzo_speciale"   =>  Field::text()->editable(),
+            "peso"   =>  Field::text()->editable(),
             "descrizione"   =>  Field::text()->editable()->setTemplate("textarea"),
             "primaria"   =>  Field::int()->editable()->setDefault(0)->setTemplate("select")->setTemplateVar([
                 [
