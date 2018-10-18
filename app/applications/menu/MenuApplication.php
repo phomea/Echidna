@@ -2,6 +2,7 @@
 namespace applications\menu;
 
 
+use applications\schematics\entities\Schematics;
 use applications\banner\entities\Banner;
 use applications\banner\BannerBackend;
 use applications\menu\entities\Menu;

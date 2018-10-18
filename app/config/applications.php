@@ -6,6 +6,7 @@ return [
     "pages" =>  \applications\pages\PagesApplication::class,
     "meta"  =>  \applications\meta\MetaApplication::class,
     "banner"    =>  \applications\banner\BannerApplication::class,
+    "schematics"    =>  \applications\schematics\SchematicsApplication::class,
     "media"     =>  \applications\media\MediaApplication::class,
     "menu"     =>  \applications\menu\MenuApplication::class
 ];
