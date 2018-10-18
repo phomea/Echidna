@@ -3,6 +3,7 @@
 namespace applications\ecommerce\entities;
 
 
+use applications\media\entities\AttachmentText;
 use core\db\Field;
 use core\Model;
 use core\services\Db;
@@ -23,7 +24,8 @@ class Categoria extends Model{
             "slogan"         =>  Field::varchar(1024)->editable(),
             "slug"  =>  Field::varchar(64)->editable()->setTemplate("slug")->setTemplateVar("nome"),
             "descrizione"   =>  Field::text()->editable()->setTemplate("textarea"),
-            "padre"         =>  Field::int()->setDefault(-1)
+            "padre"         =>  Field::int()->setDefault(-1),
+            "immagine"  =>  Field::text()->editable()->setTemplate("media")
 
         ];
     }

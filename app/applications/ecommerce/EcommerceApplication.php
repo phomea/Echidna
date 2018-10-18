@@ -46,7 +46,8 @@ class EcommerceApplication extends Application {
     static function install()
     {
         return [
-            Variante::class
+            Variante::class,
+            Categoria::class
         ];
     }
 

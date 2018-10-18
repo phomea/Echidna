@@ -55,9 +55,19 @@ class Spedizioni extends BackendApplication {
         $zone = Zona::query()->getAll();
         return [
             "ecommerce/templates/spedizioni.home",[
-                "provincie" =>  Response::getTemplateToUse("list",["data"=>$provincie,"title"=>"Provincie"],"empty.twig")->render(),
-                "spedizioni" =>  Response::getTemplateToUse("list",["data"=>$spedizioni,"title"=>"Spedizioni"],"empty.twig")->render(),
-                "zone" =>  Response::getTemplateToUse("list",["data"=>$zone,"title"=>"Zone"],"empty.twig")->render()
+                "provincie" =>  Response::getTemplateToUse("list",[
+                    "data"=>$provincie,"title"=>"Provincie",
+                    "entity"    =>  Provincia::class
+                ],"empty.twig")->render(),
+
+                "spedizioni" =>  Response::getTemplateToUse("list",[
+                    "data"=>$spedizioni,"title"=>"Spedizioni",
+                    "entity"    =>  Spedizione::class
+                ],"empty.twig")->render(),
+                "zone" =>  Response::getTemplateToUse("list",[
+                    "data"=>$zone,"title"=>"Zone",
+                    "entity"    =>  Zona::class
+                ],"empty.twig")->render()
             ]
         ];
         exit;

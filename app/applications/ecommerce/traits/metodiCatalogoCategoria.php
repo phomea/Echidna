@@ -57,7 +57,7 @@ trait metodiCatalogoCategoria{
                             "fields"    =>  $fields,
                             "entity"    =>  Categoria::class
                         ],"empty.twig")->render()
-                    ],
+                    ]/*,
                     "immagini"  =>  [
                         "label" =>  "Immagini",
                         "content"   =>  Response::getTemplateToUse("ecommerce/templates/addimages",[
@@ -68,7 +68,7 @@ trait metodiCatalogoCategoria{
 
                         ],"empty.twig")->render()
 
-                    ]
+                    ]*/
                 ]
             ]
         ];

@@ -45,6 +45,9 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
     const ROUTE_SPEDIZIONE = "frontend.ecommerce.checkout.spedizione";
     const ROUTE_SPEDIZIONE_SAVE = "frontend.ecommerce.checkout.spedizione.save";
 
+    const ROUTE_METODO_SPEDIZIONE = "frontend.ecommerce.checkout.spedizione.metodo";
+    const ROUTE_METODO_SPEDIZIONE_SAVE = "frontend.ecommerce.checkout.spedizione.metodo.save";
+
 
 
     const ROUTE_RICERCA = "frontend.ecommerce.ricerca";
@@ -80,6 +83,9 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
 
             self::ROUTE_SPEDIZIONE   =>  new Route(self::ROUTE_SPEDIZIONE,"/checkout/spedizione",[self::class,"_spedizione"]),
             self::ROUTE_SPEDIZIONE_SAVE  =>  (new Route( self::ROUTE_SPEDIZIONE_SAVE,"/checkout/spedizione",[self::class,"_spedizione"]))->method(Route::METHOD_POST),
+
+            self::ROUTE_METODO_SPEDIZIONE   =>  new Route(self::ROUTE_SPEDIZIONE,"/checkout/spedizione/corriere",[self::class,"_metodoSpedizione"]),
+            self::ROUTE_METODO_SPEDIZIONE_SAVE  =>  (new Route( self::ROUTE_SPEDIZIONE_SAVE,"/checkout/spedizione/corriere",[self::class,"_metodoSpedizione"]))->method(Route::METHOD_POST),
 
             "frontend.ecommerce.checkout.pagamento"   =>  new Route("frontend.ecommerce.checkout.pagamento","/checkout/pagamento",[self::class,"_pagamento"]),
             "frontend.ecommerce.checkout.charge"   =>  (new Route("frontend.ecommerce.checkout.charge","/checkout/piazza",[self::class,"_char\ge"]))->method(Route::METHOD_POST),
@@ -348,8 +354,69 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
             }else{
                 $spedizione = new ClienteSpedizione($data['spedizione']);
             }
-
             $spedizione->save();
+
+            $carrello = Carrello::get();
+
+
+
+            if( count($carrello->metodiDiSpedizione) > 1){
+
+                RouterService::getRoute("frontend.ecommerce.checkout.spedizione.metodo")->go();
+
+            }
+
+            RouterService::getRoute("frontend.ecommerce.checkout.pagamento")->go();
+        }
+
+
+        return [
+            "ecommerce/checkout/spedizione",[
+                "cliente"   =>  SessionService::get(self::SESSION_USER_LOGGED),
+                "spedizioniDisponibili" => $spedizioniDisponibili,
+                "provincieDisponibili" => $provincieDisponibili,
+                "indirizzoSpedizione"   =>  empty($indirizziSpedizione) ? [] : $indirizziSpedizione[0]
+            ]
+        ];
+    }
+
+    static function _metodoSpedizione( $params = [],$data = null){
+
+        $carrello = Carrello::get();
+
+        if( Request::isPost()){
+
+            $spedizione = Spedizione::findById($data['id_spedizione']);
+
+            $carrello->setMetodoSpedizione($spedizione);
+            $carrello->save();
+            RouterService::getRoute("frontend.ecommerce.checkout.pagamento")->go();
+        }
+
+
+        return [
+            "ecommerce/checkout/metodo_spedizione",[
+                "spedizioniDisponibili" => $carrello->metodiDiSpedizione,
+                "spedizioneCorrente"    =>  $carrello->metodoDiSpedizione
+            ]
+        ];
+
+        exit;
+
+        if( Request::isPost()){
+            if( isset($data['spedizione']['id']) ){
+                $spedizione = ClienteSpedizione::findById($data['spedizione']['id']);
+                $spedizione->buildProperties($data["spedizione"]);
+            }else{
+                $spedizione = new ClienteSpedizione($data['spedizione']);
+            }
+            $spedizione->save();
+
+            $carrello = Carrello::get();
+
+            if( count($carrello->metodiDiSpedizione) > 1){
+                RouterService::getRoute("frontend.ecommerce.checkout.spedizione.metodo")->go();
+            }
 
             RouterService::getRoute("frontend.ecommerce.checkout.pagamento")->go();
         }
