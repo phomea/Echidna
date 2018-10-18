@@ -43,7 +43,7 @@ class Form extends Model {
 
 
     function expand(){
-        $this->contatto = Indirizzo::findById($this->indirizzo);
+        //$this->contatto = Indirizzo::findById($this->indirizzo);
         $this->action = RouterService::getRoute("frontend.contatti.form.send")->build();
     }
 }

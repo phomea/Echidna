@@ -150,7 +150,7 @@ class Response extends Service {
 
 
        // return new self::$config['frontendTemplate']( self::$template, self::$response );
-        return self::$templates["templateEngines"]['frontendTemplate']->withVars( self::$template, self::$response );
+        return self::$templates['frontendTemplate']->withVars( self::$template, self::$response );
     }
 
     /**

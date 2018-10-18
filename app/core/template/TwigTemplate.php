@@ -5,6 +5,7 @@ namespace core\template;
 use applications\pages\entities\Pagina;
 use core\services\Request;
 use core\services\Response;
+use Twig_Extension_StringLoader;
 
 abstract class TwigTemplate extends BaseTemplate {
 
@@ -51,7 +52,7 @@ abstract class TwigTemplate extends BaseTemplate {
 
 
         $this->twig->addExtension(new \Twig_Extension_Debug());
-
+        $this->twig->addExtension(new Twig_Extension_StringLoader());
         $this->twig->addFilter( new \Twig_SimpleFilter('cast_to_array', function ($stdClassObject) {
             $response = array();
             foreach ($stdClassObject as $key => $value) {
@@ -98,6 +99,30 @@ abstract class TwigTemplate extends BaseTemplate {
             $this->response
         );
     }
+
+    static function renderFunction($callable,$args = []){
+
+
+        list($template,$response) = call_user_func_array($callable,$args);
+        $r =  new \Twig_Markup( Response::getNewFrontendTemplate( $template,$response)->render() , "utf-8" );
+        return $r;
+    }
+    public function addFunction( $name, $callable ){
+
+
+        $this->twig->addFunction(new \Twig_Function($name,function() use ($callable){
+
+            $args = func_get_args();
+
+            return static::renderFunction($callable,$args);
+        } ,
+            array(
+                'pre_escape' => 'html',
+                'is_safe' => array('html')
+            )
+        ));
+    }
+
 
     abstract function getTemplatesDirectory();
 

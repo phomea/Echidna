@@ -9,7 +9,7 @@
     {% endfor  %}
 
     <div class="container mt-5">
-        {{ content.content | raw}}
+        {{ include(template_from_string( content.content))  }}
     </div>
 
     <div class="bg1">

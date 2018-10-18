@@ -4,7 +4,7 @@ return [
     "accounts" => [
         "info" => [
             "from" => "phomea@gmail.com",
-            "to"  =>"phomea@hotmail.com",
+            "to"  =>"phomea@gmail.com;ing.martini@gmail.com",
             "smtp"    => [
                 "host"    => "smtp.gmail.com",
                 "username"=> "phomea@gmail.com",
@@ -18,11 +18,11 @@ return [
         ],
         "ordini" => [
             "from" => "phomea@gmail.com",
-            "to"  =>"phomea@hotmail.com"
+            "to"  =>"phomea@gmail.com"
         ],
         "campioni"  =>  [
             "from" => "phomea@gmail.com",
-            "to"  =>"phomea@hotmail.com"
+            "to"  =>"phomea@gmail.com"
         ]
     ]
 ];
