@@ -46,11 +46,11 @@
 
                                         </div>
                                         <div class="col">
-                                            {{ lineitem.single_price }}
+                                            {{ lineitem.single_price|price}}
                                         </div>
 
                                         <div class="col">
-                                            {{ lineitem.price_total}}
+                                            {{ lineitem.price_total|price}}
 
 
                                             {% for attributo in lineitem.attributi %}

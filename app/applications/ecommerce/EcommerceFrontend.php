@@ -37,6 +37,7 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
     const ROUTE_CARRELLO = "frontend.ecommerce.carrello";
     const ROUTE_CHECKOUT = "frontend.ecommerce.checkout";
     const ROUTE_LOGIN = "frontend.ecommerce.checkout.login";
+    const ROUTE_LOGOUT = "frontend.ecommerce.user.account.logout";
     const ROUTE_REGISTRAZIONE = "frontend.ecommerce.checkout.registrazione";
     const ROUTE_REGISTRAZIONE_SAVE = "frontend.ecommerce.checkout.registrazione.save";
 
@@ -72,6 +73,7 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
 
             self::ROUTE_LOGIN    =>  (new Route(self::ROUTE_LOGIN,"/checkout/login",[self::class,"_login"]))->method(Route::METHOD_POST),
 
+
             self::ROUTE_REGISTRAZIONE   =>  new Route("frontend.ecommerce.checkout.registrazione","/checkout/registrazione",[self::class,"_regitrazione"]),
 
             self::ROUTE_REGISTRAZIONE_SAVE  =>  (new Route( "frontend.ecommerce.checkout.registrazione.save" ,"/checkout/registrazione",[self::class,"_regitrazione"]))->method(Route::METHOD_POST),
@@ -92,8 +94,12 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
             "frontend.ecommerce.schedaprodotto.variante"   =>  new Route( "frontend.ecommerce.schedaprodotto.variante","/{slug:([0-9a-zA-Z-]*)}/{slug-variante:([0-9a-zA-Z-]*)}",[self::class,"_schedaProdotto"]),
             "frontend.ecommerce.aggiungicoupon" =>  (new Route("frontend.ecommerce.aggiungicoupon","/carrello/aggiungi-coupon",[static::class,"_aggiungiCoupon"]))->method(Route::METHOD_POST),
             "frontend.ecommerce.rimuovicoupon" =>  (new Route("frontend.ecommerce.rimuovicoupon","/carrello/rimuovi-coupon",[static::class,"_rimuoviCoupon"]))->method(Route::METHOD_GET),
-            self::ROUTE_RICERCA =>  new Route(self::ROUTE_RICERCA,"/shop/cerca",[self::class,"_ricerca"])
+            self::ROUTE_RICERCA =>  new Route(self::ROUTE_RICERCA,"/shop/cerca",[self::class,"_ricerca"]),
 
+            //user account
+            "frontend.ecommerce.user.account"   =>  new Route("","/user-account",[static::class,"_userAccount"]),
+            "frontend.ecommerce.user.account.save"   =>  (new Route("","/user-account",[static::class,"_userAccount"]))->method(Route::METHOD_POST),
+            self::ROUTE_LOGOUT    =>  (new Route("","/user-account/logout",[self::class,"_logout"])),
         ];
 
 
@@ -509,6 +515,19 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
 
     }
 
+    static function _logout($params=[]){
+
+
+        $cliente = SessionService::get(self::SESSION_USER_LOGGED);
+        SessionService::delete(self::SESSION_USER_LOGGED);
+
+        Response::go("/");
+
+
+
+    }
+
+
 
 
     static function _ricerca( $params= [] ){
@@ -521,8 +540,10 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
 
         $cerca = new CatalogoSearch();
 
+
         $r = $cerca->setQuery($ricerca)->setAttributes($attributi)->setCategories($categoria)
             ->search();
+
 
         return [
             "ecommerce/shop/list",[
@@ -534,6 +555,8 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
 
     static function _aggiungiCoupon( $params=[],$data){
         $coupon = Coupon::findByNome($data['coupon']);
+
+
         if( count($coupon) > 0 ){
             if( Carrello::get()->addCoupon($coupon[0]) ) {
                 RouterService::getRoute(self::ROUTE_CARRELLO)->go(["msg" => "Coupon aggiunto"]);
@@ -550,5 +573,31 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
         Carrello::get()->rimuoviCoupon();
 
         RouterService::getRoute(self::ROUTE_CARRELLO)->go(["msg"=>"Coupon rimosso"]);
+    }
+
+
+    static function _userAccount($params =[],$data=null){
+        if(!SessionService::get(self::SESSION_USER_LOGGED)){
+            Response::go("/");
+        }
+        if(Request::isPost()){
+            $user = SessionService::get(self::SESSION_USER_LOGGED);
+            $user->buildProperties($data);
+            $user->save();
+
+            RouterService::getRoute("frontend.ecommerce.user.account")->go([
+                "msg"=>"Dati del profilo salvati"
+            ]);
+            exit;
+        }else{
+
+            return [
+                "ecommerce/user-account/index",[
+                    "user"  => SessionService::get(self::SESSION_USER_LOGGED),
+                    "spedizione"    =>SessionService::get(self::SESSION_USER_LOGGED)->getDefaultShippingAddress()
+                ]
+            ];
+        }
+
     }
 }

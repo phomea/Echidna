@@ -2,6 +2,7 @@
 
 namespace core\template;
 
+use applications\pages\entities\Pagina;
 use core\services\Request;
 use core\services\Response;
 
@@ -80,6 +81,14 @@ abstract class TwigTemplate extends BaseTemplate {
 
     public function render()
     {
+
+        $query = Request::getQuery();
+        if($query == "" ) $query = "/";
+        $pagina = Pagina::findBySlug($query);
+
+        if($pagina)
+            $this->response['meta'] = $pagina->getMeta();
+
 
         $this->response["current_url"] = Request::getCurrentUrl();
 

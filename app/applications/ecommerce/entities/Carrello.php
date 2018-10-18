@@ -138,6 +138,8 @@ class Carrello{
      * @param $c Coupon
      */
     public function addCoupon( $c ){
+
+
         if($c->canAddToCart()) {
             if ($c) {
                 $this->coupon = $c;

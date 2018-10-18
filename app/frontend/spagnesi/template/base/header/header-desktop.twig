@@ -52,11 +52,11 @@
 
                             {% endfor %}
                             <li><a href="{{ router_service.getRoute("frontend.ecommerce.carrello").build() }}"><i class="fas fa-shopping-cart"></i></a></li>
-                            <li><a href="{{ router_service.getRoute("frontend.ecommerce.carrello").build() }}"><i class="fas fa-user"></i></a>
+                            <li><a href="#"><i class="fas fa-user"></i></a>
 
                                 <ul class="submenu">
-                                    <li><a href="{{ item.link }}">Il mio profilo</a></li>
-                                    <li><a href="{{ item.link }}">Logout</a></li>
+                                    <li><a href="{{ router_service.getRoute("frontend.ecommerce.user.account").build() }}">Il mio profilo</a></li>
+                                    <li><a href="{{ router_service.getRoute("frontend.ecommerce.user.account.logout").build() }}">Logout</a></li>
                                 </ul>
 
                             </li>

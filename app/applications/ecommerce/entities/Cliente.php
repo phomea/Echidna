@@ -33,5 +33,14 @@ class Cliente extends Model {
         return "ecommerce_cliente";
     }
 
+    public function getDefaultShippingAddress(){
+        $indirizziSpedizione = ClienteSpedizione::findById_cliente( $this->id );
+        if( count($indirizziSpedizione)>0){
+            return $indirizziSpedizione[ count($indirizziSpedizione)-1 ];
+        }else{
+            return false;
+        }
+    }
+
 
 }
