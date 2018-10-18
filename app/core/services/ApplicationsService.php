@@ -2,6 +2,8 @@
 
 namespace core\services;
 
+use applications\schematics\entities\Schematics;
+use applications\schematics\SchematicsApplication;
 use core\abstracts\Application;
 use core\Config;
 use core\db\Field;
@@ -17,6 +19,7 @@ class ApplicationsService extends \core\abstracts\Service {
 
 
     static function install($e){
+
         $schema = $e::schema();
         $table = $e::getTable();
 
@@ -88,16 +91,37 @@ class ApplicationsService extends \core\abstracts\Service {
                  */
                 $item::init( $key );
 
+
+
+
                 if(Environment::is(Environment::DEV)){
+
+                    $e = $item::getEntityClass();
+
+
+
+
+
+
+                    if( is_string($e)) {
+                        static::install($e);
+                    }
                     $entities = $item::install();
+
+
+
                     if(count($entities) > 0 ){
+
+
                         foreach ($entities as $key=>$value){
+
                             static::install($value);
                         }
                     }
                 }
             }
         }
+
     }
 
 

@@ -9,12 +9,9 @@
 
 <script>
     $(window).ready(function(){
-
         (function() {
 
-
             var mediabrowser = new MediaBrowser("#filebrowser");
-
 
             mediabrowser.fileChoose(function (file) {
                 $(".media-choser.value-{{ property }}").val(file.permalink);

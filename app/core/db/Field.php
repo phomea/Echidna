@@ -9,7 +9,8 @@ class Field{
     const TYPE_STRING   =   "varchar";
     const TYPE_TEXT     =   "text";
     const TYPE_DATE     =   "date";
-    const TYPE_ENTITY     =   "entity";
+    const TYPE_ENTITY   =   "entity";
+    const TYPE_FLOAT    =   "float";
 
 
     // chiavi
@@ -114,6 +115,11 @@ class Field{
         ]);
     }
 
+    static function float(){
+        return new static([
+            "Type"  =>  self::TYPE_FLOAT
+        ]);
+    }
 
 
     static function boolean(){
@@ -226,6 +232,7 @@ class Field{
 
             case Field::TYPE_INT_UNSIGNED:
             case Field::TYPE_INT:
+            case Field::TYPE_FLOAT:
                 if( empty($value )) return "null";
                 return $value;
 

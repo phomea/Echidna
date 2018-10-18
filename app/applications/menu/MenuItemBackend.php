@@ -7,6 +7,7 @@
  */
 
 namespace applications\menu;
+use applications\schematics\SchematicsApplication;
 use applications\banner\BannerApplication;
 use applications\menu\entities\Menu;
 use applications\menu\entities\MenuItem;
