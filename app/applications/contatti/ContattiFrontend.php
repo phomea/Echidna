@@ -24,12 +24,15 @@ class ContattiFrontend extends FrontendApplication{
     }
 
     static function _formContatti( $params = []){
+
         return self::renderForm($params['id']);
     }
     static function renderForm( $params = []){
 
         $form = Form::findById($params);
         $form->expand();
+
+
         return [
             "form-contatti/".$form->tipo,[
                 "form"  =>  $form
@@ -53,7 +56,7 @@ class ContattiFrontend extends FrontendApplication{
             $email->subject = "Contatto";
 
             $email->setData($data);
-            $email->send();
+            $r = $email->send();
 
             if (empty($form->redirect)) {
                 Response::go($data['current_url']);

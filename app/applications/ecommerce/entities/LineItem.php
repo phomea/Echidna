@@ -33,8 +33,8 @@ class LineItem{
         $this->variant = Variante::findById($this->id_variant);
 
         if( $this->variant) {
-            $this->single_price = $this->variant->prezzo;
-            $this->price_total = $this->variant->prezzo * $this->quantity;
+            $this->single_price = $this->variant->calculatePrice();
+            $this->price_total = $this->single_price * $this->quantity;
 
             $this->prodotto = Prodotto::findById($this->variant->id_prodotto);
             return $this;

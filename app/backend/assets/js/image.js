@@ -441,11 +441,12 @@
 
 
             var div = $("<div draggable='true' data-src='"+currentUrl + "/" + d.name+"'></div>").addClass("fileBrowser-file").addClass("fileBroswer-entry");
-            var file;
+            var file = null;
 
             if( ["jpg","png","gif"].indexOf(extension) > -1 ){
                 //immagine
                 file = $("<figure></figure>");
+                console.log(d);
                 var img = $("<img/>").attr("src","/media/" + currentUrl + "/" + d.name);
                 file.append(img);
             }else if(["pdf","ods","txt"].indexOf(extension) > -1){
@@ -459,7 +460,10 @@
                 var img = $("<i/>").addClass("fa").addClass("fa-pdf-o");
                 file.append(img);
             }
-            div.append('<h5>'+d.name+'</h5>')
+            div.append('<h5>'+d.name+'</h5>');
+
+            if( file == null ) return false;
+
             file.on("dblclick", function ( e ) {
                 e.preventDefault();
                 me.fileClick( d );

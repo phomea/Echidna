@@ -200,7 +200,7 @@ class Response extends Service {
      * @return BaseTemplate
      */
     static function getNewFrontendTemplate( $template,$response){
-        return new self::$config[self::$templateToUse]( $template,$response );
+        return new self::$config["templateEngines"][self::$templateToUse]( $template,$response );
     }
 
     static function redirect( $to, $data = null ){
@@ -216,7 +216,9 @@ class Response extends Service {
 
 
     static function formatPrice( $price ){
-        return number_format( (float)($price/100),2,".",".")."€";
+        return number_format(  (float)$price ,2,".",".")."€";
+        //return number_format(  (float)$price ,2,".",".")."€";
+        //return number_format( (float)($price/100),2,".",".")."€";
     }
 
 

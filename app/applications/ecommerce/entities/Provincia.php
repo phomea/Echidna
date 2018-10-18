@@ -18,7 +18,7 @@ class Provincia extends Model{
         return [
             "id"    =>  Field::primaryIndex(),
             "id_coutry"  =>  Field::int(),
-            "id_zone"  =>  Field::int(),
+            "id_zone"  =>  Field::int()->editable()->setTemplate("select")->setTemplateVar(Zona::getForSelect("name","id")),
             "name"  =>  Field::varchar(64)->editable(),
             "iso_code"   =>  Field::text()->editable(),
 

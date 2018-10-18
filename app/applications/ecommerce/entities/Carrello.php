@@ -20,6 +20,9 @@ class Carrello{
     public $coupon;
     public $totaleSconto;
 
+    public $metodoDiSpedizione = null;
+
+
     static function get(){
         if($carrello = SessionService::get( Carrello::SESSION_NAME )) {
 
@@ -67,12 +70,18 @@ class Carrello{
             $provincia = Provincia::findById($indirizzoSpedizione->id_provincia);
             $zona = \applications\ecommerce\entities\Zona::findById($provincia->id_zone);
 
-            $metodiDiSpedizione = Spedizione::findById_zona($zona->id);
+            $this->metodiDiSpedizione = Spedizione::findById_zona($zona->id);
 
-            if( count($metodiDiSpedizione) == 0 ){
+
+
+            if( count($this->metodiDiSpedizione) == 0 ){
                 $this->setMetodoSpedizione(null);
+            }else if(count($this->metodiDiSpedizione) == 1){
+                $this->setMetodoSpedizione($this->metodiDiSpedizione[0]);
             }else{
-                $this->setMetodoSpedizione($metodiDiSpedizione[0]);
+
+
+                //$this->setMetodoSpedizione(null);
             }
         }
 

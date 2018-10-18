@@ -20,7 +20,7 @@ class Spedizione extends Model{
             "nome"  =>  Field::varchar(64)->editable(),
             "sku"  =>  Field::varchar(64)->editable()->setTemplate("slug")->setTemplateVar("nome"),
             "id_zona"  =>  Field::int(11)->editable()->setTemplate("select")->setTemplateVar(Zona::getForSelect("name","id")),
-            "prezzo"   =>  Field::text(),
+            "prezzo"   =>  Field::float()->editable(),
 
         ];
     }

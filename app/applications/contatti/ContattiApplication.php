@@ -6,6 +6,8 @@ use applications\banner\entities\Articolo;
 use applications\banner\BannerBackend;
 use applications\banner\entities\Banner;
 use applications\contatti\entities\Contatto;
+use applications\contatti\entities\Form;
+use applications\contatti\entities\Indirizzo;
 use applications\pages\entities\Pagina;
 use core\abstracts\Application;
 use core\Model;
@@ -32,7 +34,7 @@ class ContattiApplication extends Application {
                     "label" =>  "Contatti",
                     "icon"=>"address-book",
                     "children"  =>  [
-                        ["label" => "Contatti", "href" =>  "/backend/contatti/indirizzi/lista"],
+
                         ["label" => "Form","href" =>  "/backend/contatti/form/lista"]
                     ]
                 ]]
@@ -60,7 +62,14 @@ class ContattiApplication extends Application {
 
     static function getEntityClass()
     {
-        return Contatto::class;
+        return Indirizzo::class;
+    }
+
+    static function install()
+    {
+        return [
+            Form::class
+        ];
     }
 
 }

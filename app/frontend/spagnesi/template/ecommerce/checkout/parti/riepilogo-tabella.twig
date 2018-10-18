@@ -1,3 +1,5 @@
+
+
 <table class="table">
     {% for lineitem in carrello.lineitems %}
         <tr>
@@ -39,9 +41,15 @@
 
 
     <tr>
-        <td colspan="2" class="text-right">Spedizione {{ carrello.metodoDiSpedizione.nome}}</td>
+        <td colspan="2" class="text-right">
+            Spedizione {{ carrello.metodoDiSpedizione.nome}}
+            {% if carrello.metodiDiSpedizione|length > 1 %}
+                <div><a href="{{ router_service.getRoute("frontend.ecommerce.checkout.spedizione.metodo").build() }}">Cambia</a></div>
+            {% endif %}
+        </td>
         <td class="text-right">
             <strong>{{ carrello.metodoDiSpedizione.prezzo|price}}</strong>
+
         </td>
     </tr>
 
