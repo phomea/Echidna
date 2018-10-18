@@ -5,6 +5,7 @@ namespace applications\ecommerce;
 use applications\ecommerce\entities\Categoria;
 use applications\ecommerce\entities\Prodotto;
 use applications\ecommerce\entities\TipologiaProdotto;
+use applications\ecommerce\entities\Variante;
 use applications\pages\entities\Pagina;
 use core\abstracts\Application;
 use core\Config;
@@ -40,6 +41,13 @@ class EcommerceApplication extends Application {
 
 
 
+    }
+
+    static function install()
+    {
+        return [
+            Variante::class
+        ];
     }
 
     static function declareRoutes()

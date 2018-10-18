@@ -189,8 +189,13 @@ class Field{
 
         $value = $v->getData();
 
+
         if(isset($value['Type'])){
             $sql .= " ".$value['Type'];
+
+            if( $value['Type'] == self::TYPE_ENTITY){
+                return false;
+            }
         }
         if(isset($value['length'])){
             $sql .= " (".$value['length'].")";
@@ -207,6 +212,10 @@ class Field{
         return $sql;
     }
     static function compare( $old, $new ){
+
+        if($old->getData()['Type'] == self::TYPE_ENTITY){
+            return false;
+        }
         foreach ($old->getData() as $key => $item) {
             if( isset($old->getData()['length']) && $key == 'Type'){
 

@@ -68,9 +68,12 @@ class ApplicationsService extends \core\abstracts\Service {
             foreach ($schema as $key=>$value){
                 if(!in_array($key,$fieldsDb)){
                     $sql = "ALTER TABLE $table\n";
-                    $sql .= "ADD ".Field::getCreateSql( $key, $value);
-                    if( $db->query($sql) ){
-                        //echo "++Colonna $table.$key aggiunta correttamente\n";
+
+                    if(Field::getCreateSql( $key, $value) ) {
+                        $sql .= "ADD " . Field::getCreateSql($key, $value);
+                        if ($db->query($sql)) {
+                            //echo "++Colonna $table.$key aggiunta correttamente\n";
+                        }
                     }
                 }
             }
