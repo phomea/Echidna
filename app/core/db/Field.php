@@ -213,11 +213,15 @@ class Field{
     }
     static function compare( $old, $new ){
 
+
+
+
         if($old->getData()['Type'] == self::TYPE_ENTITY){
             return false;
         }
         foreach ($old->getData() as $key => $item) {
             if( isset($old->getData()['length']) && $key == 'Type'){
+
 
 
                 if( $old->getData()[$key]."(".$old->getData()['length'].")" != $new[$key] ){
@@ -227,6 +231,8 @@ class Field{
 
 
                 if ($key != "length" && $old->getData()[$key] != $new[$key]) {
+
+
                     return false;
                 }
             }

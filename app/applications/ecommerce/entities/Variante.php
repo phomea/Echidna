@@ -22,8 +22,8 @@ class Variante extends Model{
             "id_prodotto"  =>  Field::int()->editable(),
             "nome"  =>  Field::varchar(512)->editable(),
             "sku"  =>  Field::varchar(64)->editable(),
-            "prezzo"   =>  Field::text()->editable(),
-            "prezzo_speciale"   =>  Field::text()->editable(),
+            "prezzo"   =>  Field::float()->editable(),
+            "prezzo_speciale"   =>  Field::float()->editable(),
             "peso"   =>  Field::text()->editable(),
             "descrizione"   =>  Field::text()->editable()->setTemplate("textarea"),
             "primaria"   =>  Field::int()->editable()->setDefault(0)->setTemplate("select")->setTemplateVar([
@@ -99,6 +99,14 @@ class Variante extends Model{
     }
 
 
+    function calculatePrice(){
+        if(!empty($this->prezzo_speciale ) && $this->prezzo_speciale < $this->prezzo){
+            return $this->prezzo_speciale;
+        }
+
+
+        return $this->prezzo;
+    }
 
 
 }
