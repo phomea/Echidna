@@ -4,6 +4,8 @@ namespace applications\ecommerce;
 
 use applications\ecommerce\entities\Categoria;
 use applications\ecommerce\entities\Prodotto;
+use applications\ecommerce\entities\Spedizione;
+use applications\ecommerce\entities\SpedizionePrezzo;
 use applications\ecommerce\entities\TipologiaProdotto;
 use applications\ecommerce\entities\Variante;
 use applications\pages\entities\Pagina;
@@ -25,6 +27,7 @@ class EcommerceApplication extends Application {
             "menu"  =>  [
                 "gestionecontenuti" => [[
                     "label" =>  "E-commerce",
+                    "icon"  =>  "shopping-cart",
                     "children"  =>  [
                         ["label" => "Ordini", "href" =>  "/backend/".static::$name."/ordini/lista"],
                         ["label" => "Catalogo","href" =>  "/backend/".static::$name."/catalogo"],
@@ -47,7 +50,9 @@ class EcommerceApplication extends Application {
     {
         return [
             Variante::class,
-            Categoria::class
+            Categoria::class,
+            Spedizione::class,
+            SpedizionePrezzo::class
         ];
     }
 

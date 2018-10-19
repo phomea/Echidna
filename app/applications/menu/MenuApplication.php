@@ -22,6 +22,7 @@ class MenuApplication extends Application {
             "menu"  =>  [
                 "gestionecontenuti" => [[
                     "label" =>  "Menu",
+                    "icon"  =>  "bars",
                     "children"  =>  [
                         ["label" => "Lista", "href" =>  "/backend/menu/lista"],
                         ["label" => "Aggiungi","href" =>  "/backend/menu/aggiungi"]

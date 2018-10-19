@@ -2,7 +2,7 @@
 
 
     <div class="row">
-        <div class="col-5">
+        <div class="col-md-5">
             <a href="{{ router_service.getRoute("frontend.ecommerce.schedaprodotto").build({slug:prodotto.slug}) }}">
                 <figure class="images">
                     <img class="image-1" src="{{ prodotto.immagini[1].value }}">
@@ -10,21 +10,29 @@
                 </figure>
             </a>
         </div>
-        <div class="col-7 card-body">
-            <h3>{{ prodotto.nome }}</h3>
-            {% if prodotto.variantePrimaria.prezzo_speciale %}
-                <span class="price">{{ prodotto.variantePrimaria.prezzo_speciale | price}}</span>
-                <span class="old-price">{{ prodotto.variantePrimaria.prezzo | price}}</span>
-            {% else %}
-                <span class="price">{{ prodotto.variantePrimaria.prezzo | price}}</span>
-            {% endif %}
+        <div class="col-md-7  ">
+            <div class="card-body">
+                <h3>{{ prodotto.nome }}</h3>
+                {% if prodotto.variantePrimaria.prezzo_speciale %}
+                    <span class="price">{{ prodotto.variantePrimaria.prezzo_speciale | price}}</span>
+                    <span class="old-price">{{ prodotto.variantePrimaria.prezzo | price}}</span>
+                {% else %}
+                    <span class="price">{{ prodotto.variantePrimaria.prezzo | price}}</span>
+                {% endif %}
 
 
 
-            <div class="descrizione">{{ prodotto.valoriCampi.riassunto.valore|raw }}</div>
+                <div class="descrizione">{{ prodotto.valoriCampi.descrizione_breve.valore|raw }}</div>
 
-            <div class="">
-                <a href="{{ router_service.getRoute("frontend.ecommerce.schedaprodotto").build({slug:prodotto.slug}) }}" class="btn btn-secondary btn-block">Vedi prodotto</a>
+                <div class="d-flex mt-3">
+                    <a href="{{ router_service.getRoute("frontend.ecommerce.schedaprodotto").build({slug:prodotto.slug}) }}" class="btn btn-secondary">Vedi prodotto</a>
+
+
+                    {% if prodotto.varianti|length == 1 %}
+                    <a href="{{ router_service.getRoute("frontend.ecommerce.carrello.aggiungi.veloce").build({id : prodotto.variantePrimaria.id}) }}" class="btn btn-light ml-auto"><i class="fas fa-shopping-cart"></i> </a>
+                    {% endif %}
+                    <button type="button" class="btn btn-light "><i class="fas fa-star"></i> </button>
+                </div>
             </div>
         </div>
     </div>
@@ -32,7 +40,6 @@
 
 
     <div class="badges">
-        <div class="badge-outlet"><span>Outlet</span></div>
         <div class="badge-outlet"><span>Outlet</span></div>
     </div>
 </article>

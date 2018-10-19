@@ -19,6 +19,7 @@ class PagesApplication extends Application {
             "menu"  =>  [
                 "gestionecontenuti" => [[
                     "label" =>  "Pagine",
+                    "icon"  =>  "file",
                     "children"  =>  [
                         ["label" => "Lista", "href" =>  "/backend/".static::$name."/lista"],
                         ["label" => "Aggiungi","href" =>  "/backend/".static::$name."/aggiungi"]

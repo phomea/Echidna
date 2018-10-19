@@ -374,7 +374,7 @@ abstract class Model {
 
             $entity::getEntity().".update"     =>  (new Route("update",$prefixurl.$entity::getListLink(),[$application,$prefixmethod.'actionUpdate']))->method(Route::METHOD_PUT),
             $entity::getEntity().".insert"     =>  (new Route("insert",$prefixurl.$entity::getAddLink(),[$application,$prefixmethod.'actionInsert']))->method(Route::METHOD_POST),
-            $entity::getEntity().".delete"     =>  (new Route("delete",$prefixurl.$entity::getModLink(),[$application,$prefixmethod.'actionDelete']))->method(Route::METHOD_POST)
+            $entity::getEntity().".delete"     =>  (new Route("delete",$prefixurl.$entity::getModLink()."/delete",[$application,$prefixmethod.'actionDelete']))
         ];
     }
 
