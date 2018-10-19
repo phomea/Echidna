@@ -1,6 +1,7 @@
 <?php
 namespace applications\ecommerce\entities;
 
+use applications\ecommerce\EcommerceFrontend;
 use core\services\Response;
 use core\services\SessionService;
 
@@ -82,6 +83,9 @@ class Carrello{
             }
         }
 
+        if($this->cliente == null && SessionService::get(EcommerceFrontend::SESSION_USER_LOGGED)){
+            $this->cliente = SessionService::get(EcommerceFrontend::SESSION_USER_LOGGED);
+        }
 
         if( $this->cliente != null ){
             $indirizzoSpedizione = ClienteSpedizione::findById_cliente( $this->cliente->id)[0];
