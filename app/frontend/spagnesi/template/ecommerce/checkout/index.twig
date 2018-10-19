@@ -6,7 +6,7 @@
         {% include "ecommerce/checkout/parti/steps.twig" %}
         <div class="container">
             <div class="row">
-                <div class="col-6">
+                <div class="col-md-6">
                     <h2>Hai già un account?</h2>
                     <p>Ciao! Bentornato, effettua il login per procedere con l'ordine!</p>
                     <form action="{{ router_service.getRoute("frontend.ecommerce.checkout.login").build() }}" method="post">
@@ -35,7 +35,7 @@
                     <p>Benvenuto! Ti chiederemo solo i dati necessari per completare il tuo ordine</p>
                     <a href="/checkout/registrazione" class="btn btn-secondary d-block">Registrati adesso</a>
                 </div>
-                <div class="col-6">
+                <div class="col-md-6">
                     {% include "ecommerce/checkout/parti/riepilogo.twig" with { carrello:carrello }%}
                 </div>
             </div>
