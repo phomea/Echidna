@@ -12,6 +12,7 @@ class LineItem{
     public $attributi = [];
 
 
+
     /**
      * LineItem constructor.
      * @param null $variant_id

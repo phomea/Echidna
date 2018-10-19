@@ -4,6 +4,7 @@ namespace applications\ecommerce;
 
 use applications\ecommerce\entities\Categoria;
 use applications\ecommerce\entities\Ordine;
+use applications\ecommerce\entities\OrdineLineItem;
 use applications\ecommerce\entities\Prodotto;
 use applications\ecommerce\entities\Spedizione;
 use applications\ecommerce\entities\SpedizionePrezzo;
@@ -54,7 +55,8 @@ class EcommerceApplication extends Application {
             Categoria::class,
             Spedizione::class,
             SpedizionePrezzo::class,
-            Ordine::class
+            Ordine::class,
+            OrdineLineItem::class
         ];
     }
 
@@ -124,6 +126,9 @@ class EcommerceApplication extends Application {
 
 
         RouterService::addRoutesPrefixed(\applications\ecommerce\CouponApplication::declareRoutes(),"/backend/ecommerce/coupon/");
+
+
+        RouterService::addRoute("ecommerce.emails.preview",new Route("","/backend/ecommerce/email/preview/{nome:(.*)}",[Ordini::class,"_previewEmail"]));
 
 
         return array_merge(

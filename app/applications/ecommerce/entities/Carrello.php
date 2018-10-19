@@ -24,6 +24,8 @@ class Carrello{
 
     public $pesoTotale = 0;
 
+    public $extra = 0;
+
 
     static function get(){
         if($carrello = SessionService::get( Carrello::SESSION_NAME )) {
@@ -126,8 +128,13 @@ class Carrello{
         }
 
 
+        $this->totale += $this->extra;
+
         if( $totale < 0 ) $totale = 0;
         $this->totale = $totale;
+
+
+
 
     }
 
