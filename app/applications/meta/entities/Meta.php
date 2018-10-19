@@ -15,7 +15,7 @@ class Meta extends Model {
             "entity" =>  Field::string()->editable()->setTemplate("hidden"),
             "entity_id" => Field::int()->editable()->setTemplate("hidden"),
             "description" => Field::text()->editable()->setTemplate("textarea"),
-            "og_image" => Field::text()
+            "og_image" => Field::text()->editable()->setTemplate("media")
         ];
     }
 }

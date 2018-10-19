@@ -14,7 +14,7 @@ class PagesFrontend extends FrontendApplication {
     {
         return [
             "home"  =>  new Route("home","/",[self::class,"home"]),
-            "pagina"  =>  new Route("pagina","/{slug:([0-9a-zA-Z-]*)}",[self::class,"pagina"])
+            "pagina"  =>  new Route("pagina","/{slug:(.*)}",[self::class,"pagina"])
         ];
     }
 
@@ -39,7 +39,10 @@ class PagesFrontend extends FrontendApplication {
     }
     static function pagina($params=[], $data=null){
 
+
         $pagina = Pagina::findBySlug($params['slug']);
+
+
         if(!$pagina){
             return false;
         }
