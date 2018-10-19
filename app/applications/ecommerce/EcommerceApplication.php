@@ -3,6 +3,7 @@ namespace applications\ecommerce;
 
 
 use applications\ecommerce\entities\Categoria;
+use applications\ecommerce\entities\Ordine;
 use applications\ecommerce\entities\Prodotto;
 use applications\ecommerce\entities\Spedizione;
 use applications\ecommerce\entities\SpedizionePrezzo;
@@ -52,7 +53,8 @@ class EcommerceApplication extends Application {
             Variante::class,
             Categoria::class,
             Spedizione::class,
-            SpedizionePrezzo::class
+            SpedizionePrezzo::class,
+            Ordine::class
         ];
     }
 

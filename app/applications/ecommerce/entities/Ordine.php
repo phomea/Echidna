@@ -24,7 +24,12 @@ class Ordine extends \core\Model {
            "updated_at"     =>  Field::date()->editable(),
            "subtotale"     =>  Field::int()->editable(),
            "totale"     =>  Field::int()->editable(),
-           "spedizione"     =>  Field::int()->editable()
+           "spedizione"     =>  Field::int()->editable(),
+           "stato"  =>  Field::varchar(128)->editable()->setTemplate("select")->setTemplateVar([
+               ["label"=>"Piazzato","value"=>"placed"],
+               ["label"=>"In attesa di spedizione","value"=>"shipping"],
+               ["label"=>"Spedito","value"=>"delivered"],
+           ])
        ];
     }
 
@@ -32,5 +37,13 @@ class Ordine extends \core\Model {
     function getNumeroOrdine(){
         return Date("y").Date("m").str_pad($this->id, 4, '0', STR_PAD_LEFT);
     }
+
+    function getShippingAddress(){
+        if( !empty($this->id_indirizzospedizione ))
+            return ClienteSpedizione::findById($this->id_indirizzospedizione);
+
+        return null;
+    }
+
 
 }
