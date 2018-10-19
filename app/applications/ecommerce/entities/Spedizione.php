@@ -19,8 +19,7 @@ class Spedizione extends Model{
             "id"    =>  Field::primaryIndex(),
             "nome"  =>  Field::varchar(64)->editable(),
             "sku"  =>  Field::varchar(64)->editable()->setTemplate("slug")->setTemplateVar("nome"),
-            "id_zona"  =>  Field::int(11)->editable()->setTemplate("select")->setTemplateVar(Zona::getForSelect("name","id")),
-            "prezzo"   =>  Field::float()->editable(),
+            "id_zona"  =>  Field::int(11)->editable()->setTemplate("select")->setTemplateVar(Zona::getForSelect("name","id"))
 
         ];
     }
@@ -29,5 +28,11 @@ class Spedizione extends Model{
         $attributi = VarianteAttributo::findByVariante( $this->id );
 
         $this->attributi = $attributi;
+    }
+
+
+    public function setPrezzo( $prezzo ){
+        $this->prezzoObj = $prezzo;
+        $this->prezzo = $prezzo->prezzo;
     }
 }

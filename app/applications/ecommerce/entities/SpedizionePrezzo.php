@@ -17,22 +17,22 @@ class SpedizionePrezzo extends Model{
     {
         return [
             "id"    =>  Field::primaryIndex(),
-            "id_ecommerce_spedizione"    =>  Field::int(),
-            "min"    =>  Field::int(),
-            "max"    =>  Field::int(),
-            "type"  =>  Field::varchar(512)->editable()->setTemplate("select")->setTemplateVar([
-                "options"=>[
-                    "label"=>"Peso","value"=>"Peso",
-                    "label"=>"Prezzo","value"=>"PREZZO"
+            "id_ecommerce_spedizione"    =>  Field::int()->editable(),
+            "min"    =>  Field::int()->editable(),
+            "max"    =>  Field::int()->editable(),
+            "prezzo"    =>  Field::float()->editable(),
+            "type"  =>  Field::varchar(512)->editable()->setTemplate("select")->setTemplateVar(
+                [
+                    ["label"=>"Peso","value"=>"peso"],
+                    ["label"=>"Prezzo","value"=>"prezzo"]
                 ]
-            ])
+            )
 
         ];
     }
 
     public function expand(){
         $attributi = VarianteAttributo::findByVariante( $this->id );
-
         $this->attributi = $attributi;
     }
 }

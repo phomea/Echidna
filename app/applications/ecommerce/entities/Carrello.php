@@ -22,6 +22,8 @@ class Carrello{
 
     public $metodoDiSpedizione = null;
 
+    public $pesoTotale = 0;
+
 
     static function get(){
         if($carrello = SessionService::get( Carrello::SESSION_NAME )) {
@@ -37,6 +39,18 @@ class Carrello{
     public function createLineItem( $id_variant, $quantity){
         $this->add(new LineItem($id_variant,$quantity));
         return $this;
+    }
+
+    public function removeByVariant($id){
+        if( count($this->lineitems) > 0){
+            foreach ($this->lineitems as $key => $li) {
+                if($li->variant->id == $id){
+                    unset($this->lineitems[$key]);
+                    break;
+                }
+            }
+        }
+        $this->save();
     }
     public function add( $lineitem ){
         $found =false;
@@ -58,19 +72,20 @@ class Carrello{
     }
 
     public function update(){
+        $this->pesoTotale = 0;
         if(count($this->lineitems)>0){
             foreach ($this->lineitems as $value){
                 $value->update( $this );
+                $this->pesoTotale += $value->variant->peso * $value->quantity;
             }
         }
 
         if( $this->cliente != null ){
             $indirizzoSpedizione = ClienteSpedizione::findById_cliente( $this->cliente->id)[0];
             $this->indirizzoSpedizione = $indirizzoSpedizione;
-            $provincia = Provincia::findById($indirizzoSpedizione->id_provincia);
-            $zona = \applications\ecommerce\entities\Zona::findById($provincia->id_zone);
 
-            $this->metodiDiSpedizione = Spedizione::findById_zona($zona->id);
+
+            $this->metodiDiSpedizione = $this->findAvailableShippingTypes($indirizzoSpedizione);
 
 
 
@@ -115,6 +130,33 @@ class Carrello{
 
     }
 
+    public function findAvailableShippingTypes( $indirizzoSpedizione ){
+        $provincia = Provincia::findById($indirizzoSpedizione->id_provincia);
+        $zona = \applications\ecommerce\entities\Zona::findById($provincia->id_zone);
+
+        $spedizioniZone = Spedizione::findById_zona($zona->id);
+
+        $spedizioniDisponibili = [];
+        foreach ($spedizioniZone as $value){
+            $query = SpedizionePrezzo::query();
+
+            $prezziDisponibili = $query
+                ->where("id_ecommerce_spedizione = ".$value->id)
+                ->where("(min < ".$this->pesoTotale." OR min is NULL)")
+                ->where("(max > ".$this->pesoTotale." OR max is NULL)")
+                ->getAll();
+
+            if( count($prezziDisponibili) > 0 ){
+                $value->setPrezzo($prezziDisponibili[0]);
+                $spedizioniDisponibili [] = $value;
+            }
+        }
+
+
+
+        return $spedizioniDisponibili;
+        return Spedizione::findById_zona($zona->id);
+    }
     public function setMetodoSpedizione( $metodo ){
         $this->metodoDiSpedizione = $metodo;
 

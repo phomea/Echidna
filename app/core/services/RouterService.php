@@ -93,6 +93,7 @@ class RouterService extends Service{
 
 
 
+
         $variabili = [];
 
         preg_match_all("|{([a-z-_]*):([\[\]\^/\(\)\.\[\]a-zA-Z0-9+*-]*)}|i",$pattern,$mm);
@@ -114,17 +115,17 @@ class RouterService extends Service{
         }
 
 
+        if(is_array($params)) {
 
-        $params = array_diff_key($params,$variabili);
+            $params = array_diff_key($params, $variabili);
 
 
-
-        if(count($params) > 0 ){
-            $pattern .= "?".implode("&", array_map(function( $value, $index){
-                    return $index."=".$value;
-                },$params, array_keys($params)));
+            if (count($params) > 0) {
+                $pattern .= "?" . implode("&", array_map(function ($value, $index) {
+                        return $index . "=" . $value;
+                    }, $params, array_keys($params)));
+            }
         }
-
 
         //$pattern = trim(str_replace($method,"",$pattern));
         return $pattern;

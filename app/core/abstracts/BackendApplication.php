@@ -105,7 +105,9 @@ abstract class BackendApplication{
             "mod",[
                 "title" =>  "Modifica",
                 "data"  =>  $data,
-                "fields"    =>  $fields
+                "fields"    =>  $fields,
+                "entity"    =>  $entity
+
             ]
         ];
 
@@ -170,7 +172,10 @@ abstract class BackendApplication{
     static function actionDelete( $params =[]){
         $entity = static::getEntityClass();
         $entity::findById($params['id'])->remove();
-        RouterService::getRoute($entity::getEntity().".list")->go();
+
+        return Response::redirect(
+            RouterService::getRoute($entity::getEntity().".list")->build()
+        );
 
     }
 
