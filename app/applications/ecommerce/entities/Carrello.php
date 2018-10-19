@@ -35,7 +35,13 @@ class Carrello{
 
             return $carrello;
         }else{
-            return new self();
+            $carrello =  new self();
+            if($carrello->cliente == null && SessionService::get(EcommerceFrontend::SESSION_USER_LOGGED)){
+                $carrello->cliente = SessionService::get(EcommerceFrontend::SESSION_USER_LOGGED);
+            }
+
+
+            return $carrello;
         }
     }
 
@@ -83,9 +89,6 @@ class Carrello{
             }
         }
 
-        if($this->cliente == null && SessionService::get(EcommerceFrontend::SESSION_USER_LOGGED)){
-            $this->cliente = SessionService::get(EcommerceFrontend::SESSION_USER_LOGGED);
-        }
 
         if( $this->cliente != null ){
             $indirizzoSpedizione = ClienteSpedizione::findById_cliente( $this->cliente->id)[0];
