@@ -1,9 +1,17 @@
 .category-top{
   position: relative;
+  overflow: hidden;
   .cover {
     width: 100%;
     min-height: 10vw;
     max-height: 20vw;
+    @media (max-width:900px){
+      height: 25vh;
+      width: auto;
+      max-width: none;
+      object-fit: cover;
+      transform: translate(-50%,0);
+    }
   }
   >.container{
     position: absolute;
