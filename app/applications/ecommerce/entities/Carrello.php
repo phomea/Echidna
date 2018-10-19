@@ -174,6 +174,7 @@ class Carrello{
 
     public function setCliente( $cliente ){
         $this->cliente = $cliente;
+        $this->save();
     }
 
     public function printTotale(){
