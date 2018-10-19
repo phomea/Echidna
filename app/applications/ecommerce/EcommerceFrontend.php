@@ -68,6 +68,10 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
             (new RouteFilter())->setName("filter.frontend.ecommerce.login")->setRegex("/checkout/{a:(.*)}")->setCallback([self::class,"loginEcommerceFilter"])
         );
 
+        RouterService::addFilter(
+            (new RouteFilter())->setName("filter.frontend.ecommerce.variables")->setRegex("/{a:(.*)}")->setCallback([self::class,"loginEcommerceFilterVariables"])
+        );
+
 
 
         return [
@@ -113,7 +117,17 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
 
     }
 
+    static function loginEcommerceFilterVariables( $route ){
+
+
+        Response::addVariable([
+             "carrello"  =>  Carrello::get(),
+            "user"  =>  SessionService::get(self::SESSION_USER_LOGGED)
+        ],true);
+        return true;
+    }
     static function loginEcommerceFilter( $route ){
+
 
         if( !SessionService::get(self::SESSION_USER_LOGGED)){
 
@@ -128,9 +142,9 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
             }
         }
 
-        Response::addVariable([
-            "carrello"  =>  Carrello::get()
-        ]);
+
+
+
         return true;
     }
 
@@ -181,7 +195,7 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
 
         return [
             "ecommerce/carrello",[
-                "carrello"  =>  $carrello,
+
                 "params"    =>  $params
             ]
         ];

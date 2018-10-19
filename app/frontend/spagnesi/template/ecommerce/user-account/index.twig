@@ -30,7 +30,7 @@
                     </form>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-4 mt-5 mt-md-0">
                     <h2>Indirizzo di spedizione</h2>
                     <p>Questi sono i dati correnti per la spedizione</p>
                     <div class="card mb-3">
@@ -45,8 +45,60 @@
                         <a href="" class="btn btn-secondary ml-auto"><i class="fas fa-plus mr-3"></i> Nuovo indirizzo</a>
                     </div>
                 </div>
+
+
+
+
             </div>
 
+
+
+            <div class="row">
+                <div class="mt-5 col-md-8 offset-md-2">
+                    <h2>I miei ordini</h2>
+                    <p>Riepilogo dei tuoi ordini</p>
+
+                    {% for ordine in  user.getOrders() %}
+                        <div class="card mb-2">
+                            <div class="card-body" data-toggle="collapse" href="#ordinebody{{ ordine.id }}">
+                                <div class="row">
+                                    <div class="col-md mr-auto">
+                                        <b>Data</b> : {{ ordine.updated_at | date }}<br>
+                                        <b>Pagamento</b> : {{ ordine.gateway }}
+                                    </div>
+
+                                    <div class="ml-4 ml-md-auto mr-auto h5 ">
+                                        {% if ordine.stato %}
+                                            <span class="badge badge-primary badge-pill">
+                                            {{ ordine.stato }}
+                                                {% endif %}
+                                        </span>
+                                    </div>
+                                    <div class="">
+                                        <span class="price" style="font-size:2em;">{{ ordine.totale|price }}</span>
+                                    </div>
+                                    <div class="mr-3 ml-3">
+                                        <i class="fas fa-angle-down"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="card-header collapse" id="ordinebody{{ ordine.id }}">
+
+                                {% set spedizione = ordine.getShippingAddress() %}
+
+                                <h5><b>Spedito a</b></h5>
+                                <div>
+                                    {{ spedizione.nome }} {{ spedizione.cognome }}<br>
+                                    {{ spedizione.via }} {{ spedizione.numero }} <br>
+                                    {{ spedizione.citta }}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
 
         </div>
     </main>

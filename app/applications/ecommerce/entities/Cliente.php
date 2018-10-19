@@ -42,5 +42,13 @@ class Cliente extends Model {
         }
     }
 
+    public function getOrders(){
+
+        return Ordine::query()
+            ->where("id_cliente=".$this->id)
+            ->setOrderBy("id","DESC")
+            ->getAll();
+
+    }
 
 }
