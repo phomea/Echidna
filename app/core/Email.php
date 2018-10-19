@@ -8,7 +8,7 @@ class Email {
     public $from;
     public $to;
     public $subject;
-    public $data;
+    public $data=[];
     public $template;
 
     public $message;
@@ -42,6 +42,7 @@ class Email {
     }
 
      function bindData( ){
+
 
 
 

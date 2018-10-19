@@ -45,24 +45,37 @@ class Pagina extends Model {
 
 
 
+
         $r->hooks = $r->getHooks( $contenuti );
+
         return $r;
+    }
+
+    static function findRawBySlug( $slug ){
+        return parent::findBySlug( $slug );
     }
 
     function prepareHooks(){
 
+
         $contenuti = Contenuto::query()
             ->where(Contenuto::PAGINE_ID ."=".$this->getId())
             ->getAll();
+
         $this->hooks = $this->getHooks( $contenuti );
     }
 
     function getHooks($contenuti){
         $hooks = [];
+
+
         foreach ($contenuti as $key => $value){
             if( !isset($hooks[$value->getHook()] ) ){
                 $hooks[$value->getHook()]=[];
             }
+
+
+
             $hooks[$value->getHook()][] = $value->render();
         }
         return $hooks;

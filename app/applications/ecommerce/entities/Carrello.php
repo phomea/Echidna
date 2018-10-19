@@ -1,6 +1,7 @@
 <?php
 namespace applications\ecommerce\entities;
 
+use applications\ecommerce\EcommerceFrontend;
 use core\services\Response;
 use core\services\SessionService;
 
@@ -24,6 +25,8 @@ class Carrello{
 
     public $pesoTotale = 0;
 
+    public $extra = 0;
+
 
     static function get(){
         if($carrello = SessionService::get( Carrello::SESSION_NAME )) {
@@ -32,7 +35,13 @@ class Carrello{
 
             return $carrello;
         }else{
-            return new self();
+            $carrello =  new self();
+            if($carrello->cliente == null && SessionService::get(EcommerceFrontend::SESSION_USER_LOGGED)){
+                $carrello->cliente = SessionService::get(EcommerceFrontend::SESSION_USER_LOGGED);
+            }
+
+
+            return $carrello;
         }
     }
 
@@ -126,8 +135,13 @@ class Carrello{
         }
 
 
+        $this->totale += $this->extra;
+
         if( $totale < 0 ) $totale = 0;
         $this->totale = $totale;
+
+
+
 
     }
 

@@ -27,4 +27,11 @@ class ClienteSpedizione extends Model{
         ];
     }
 
+
+
+    function formatToString(){
+
+        $provincia = Provincia::findById($this->id_provincia);
+        return $this->nome." ".$this->cognome.", ".$this->via." ".$this->numero.",".$this->citta." (".$provincia->name.")";
+    }
 }

@@ -68,6 +68,10 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
             (new RouteFilter())->setName("filter.frontend.ecommerce.login")->setRegex("/checkout/{a:(.*)}")->setCallback([self::class,"loginEcommerceFilter"])
         );
 
+        RouterService::addFilter(
+            (new RouteFilter())->setName("filter.frontend.ecommerce.variables")->setRegex("/{a:(.*)}")->setCallback([self::class,"loginEcommerceFilterVariables"])
+        );
+
 
 
         return [
@@ -88,7 +92,7 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
             self::ROUTE_METODO_SPEDIZIONE_SAVE  =>  (new Route( self::ROUTE_SPEDIZIONE_SAVE,"/checkout/spedizione/corriere",[self::class,"_metodoSpedizione"]))->method(Route::METHOD_POST),
 
             "frontend.ecommerce.checkout.pagamento"   =>  new Route("frontend.ecommerce.checkout.pagamento","/checkout/pagamento",[self::class,"_pagamento"]),
-            "frontend.ecommerce.checkout.charge"   =>  (new Route("frontend.ecommerce.checkout.charge","/checkout/piazza",[self::class,"_char\ge"]))->method(Route::METHOD_POST),
+            "frontend.ecommerce.checkout.charge"   =>  (new Route("frontend.ecommerce.checkout.charge","/checkout/piazza",[self::class,"_charge"]))->method(Route::METHOD_POST),
 
             "frontend.ecommerce.checkout.thankyou"   =>  (new Route("frontend.ecommerce.checkout.thankyou","/checkout/ordine-effettuato",[self::class,"_thankyou"])),
 
@@ -113,7 +117,17 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
 
     }
 
+    static function loginEcommerceFilterVariables( $route ){
+
+
+        Response::addVariable([
+             "carrello"  =>  Carrello::get(),
+            "user"  =>  SessionService::get(self::SESSION_USER_LOGGED)
+        ],true);
+        return true;
+    }
     static function loginEcommerceFilter( $route ){
+
 
         if( !SessionService::get(self::SESSION_USER_LOGGED)){
 
@@ -128,9 +142,9 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
             }
         }
 
-        Response::addVariable([
-            "carrello"  =>  Carrello::get()
-        ]);
+
+
+
         return true;
     }
 
@@ -181,7 +195,7 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
 
         return [
             "ecommerce/carrello",[
-                "carrello"  =>  $carrello,
+
                 "params"    =>  $params
             ]
         ];
@@ -481,10 +495,10 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
     }
 
     static function _charge($params = [],$data){
-
-
-
         $carrello = Carrello::get();
+        $cliente = SessionService::get(self::SESSION_USER_LOGGED);
+
+
         $email = new Email();
         $email->from= "info";
         $email->to= "phomea@gmail.com";
@@ -503,12 +517,12 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
 
 
         $totale = $carrello->getTotal();
-        $cliente = SessionService::get(self::SESSION_USER_LOGGED);
+
 
 
         if($metodo->type == Braintree::getType() ) {
             $braintree = new Braintree();
-            $totale = number_format((float)$totale / 100, 2, '.', '');
+            $totale = number_format( (float)$totale , 2, '.', '');
             $result = $braintree->transaction($totale, $data['payment_method_nonce']);
 
             if ($result->success) {
@@ -520,13 +534,16 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
                     "gateway" => "braintree",
                     "id_transaction" => $transaction->id,
                     "id_metodospedizione" => $carrello->metodoDiSpedizione->id,
+                    "metodospedizione"  =>  $carrello->metodoDiSpedizione->nome." - prezzo ".Response::formatPrice($carrello->metodoDiSpedizione->prezzo),
                     "id_indirizzospedizione" => $carrello->indirizzoSpedizione->id,
                     "id_coupon" =>  empty($carrello->coupon) ? null : $carrello->coupon->id,
                     "spedizione" => $carrello->spedizione,
                     "subtotale" => $carrello->subtotale,
-                    "totale" => $carrello->totale
-                ]);
+                    "totale" => $carrello->totale,
+                    "lineitems" =>  $carrello->lineitems
 
+                ]);
+                $ordine->build();
                 if( !empty($carrello->coupon) ){
                     $carrello->coupon->utilizzi += 1;
                     $carrello->coupon->save();
@@ -545,17 +562,22 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
             }
         }
         if($metodo->type == Contrassegno::getType() ) {
+            $carrello->extra = 4;
+            $totale = $carrello->getTotal();
+
             $ordine = new Ordine([
                 "id_cliente" => $cliente->id,
                 "gateway" => "contrassegno",
                 "id_metodospedizione" => $carrello->metodoDiSpedizione->id,
+                "metodospedizione"  =>  $carrello->metodoDiSpedizione->nome." - prezzo ".Response::formatPrice($carrello->metodoDiSpedizione->prezzo),
                 "id_indirizzospedizione" => $carrello->indirizzoSpedizione->id,
                 "spedizione" => $carrello->spedizione,
                 "id_coupon" =>  empty($carrello->coupon) ? null : $carrello->coupon->id,
                 "subtotale" => $carrello->subtotale,
-                "totale" => $carrello->totale
+                "totale" => $carrello->totale,
+                "lineitems" =>  $carrello->lineitems
             ]);
-
+            $ordine->build();
             if( !empty($carrello->coupon) ){
                 $carrello->coupon->utilizzi += 1;
                 $carrello->coupon->save();

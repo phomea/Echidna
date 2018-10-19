@@ -90,7 +90,7 @@ abstract class TwigTemplate extends BaseTemplate {
 
         $query = Request::getQuery();
         if($query == "" ) $query = "/";
-        $pagina = Pagina::findBySlug($query);
+        $pagina = Pagina::findRawBySlug($query);
 
         if($pagina)
             $this->response['meta'] = $pagina->getMeta();

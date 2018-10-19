@@ -54,10 +54,12 @@
                             <li><a href="{{ router_service.getRoute("frontend.ecommerce.carrello").build() }}"><i class="fas fa-shopping-cart"></i></a></li>
                             <li><a href="#"><i class="fas fa-user"></i></a>
 
+                                {% if user  %}
                                 <ul class="submenu">
                                     <li><a href="{{ router_service.getRoute("frontend.ecommerce.user.account").build() }}">Il mio profilo</a></li>
                                     <li><a href="{{ router_service.getRoute("frontend.ecommerce.user.account.logout").build() }}">Logout</a></li>
                                 </ul>
+                                {% endif %}
 
                             </li>
                         </ul>

@@ -444,6 +444,10 @@ class RouterService extends Service{
 
                 call_user_func([$route->callback[0],"init"]);
 
+
+
+
+
                 $response = false;
 
                 $r = array_merge($r,$_GET);
@@ -454,9 +458,12 @@ class RouterService extends Service{
                             "data"  =>  Request::getData()
                         ]
                     );
+
                 }else{
                     $response = call_user_func($route->callback,$r);
                 }
+
+
 
                 if($response) {
                     Response::add($response);
@@ -468,6 +475,7 @@ class RouterService extends Service{
             }
 
         }
+        exit;
 
 
         throw new NotFoundException();
