@@ -80,6 +80,7 @@ class Carrello{
             }
         }
 
+
         if( $this->cliente != null ){
             $indirizzoSpedizione = ClienteSpedizione::findById_cliente( $this->cliente->id)[0];
             $this->indirizzoSpedizione = $indirizzoSpedizione;

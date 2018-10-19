@@ -582,6 +582,8 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
             if ($cliente->password == $password) {
                 SessionService::set(EcommerceFrontend::SESSION_USER_LOGGED, $cliente);
                 RouterService::getRoute(self::ROUTE_SPEDIZIONE)->go();
+                $carrello = Carrello::get();
+                $carrello->setCliente($cliente);
             }
 
         }
