@@ -543,7 +543,7 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
                     "lineitems" =>  $carrello->lineitems
 
                 ]);
-
+                $ordine->build();
                 if( !empty($carrello->coupon) ){
                     $carrello->coupon->utilizzi += 1;
                     $carrello->coupon->save();
@@ -577,7 +577,7 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
                 "totale" => $carrello->totale,
                 "lineitems" =>  $carrello->lineitems
             ]);
-
+            $ordine->build();
             if( !empty($carrello->coupon) ){
                 $carrello->coupon->utilizzi += 1;
                 $carrello->coupon->save();

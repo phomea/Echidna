@@ -40,11 +40,7 @@ class Ordine extends \core\Model {
        ];
     }
 
-    public function __construct(array $data = array())
-    {
-        parent::__construct($data);
-
-
+    function build(){
 
         $indirizzoSpedizione = ClienteSpedizione::findById($this->id_indirizzospedizione);
         $this->indirizzospedizione = $indirizzoSpedizione->formatToString();
