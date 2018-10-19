@@ -95,6 +95,7 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
 
             "frontend.ecommerce.categoria"   =>  new Route("frontend.ecommerce.categoria","/{slug:([0-9a-zA-Z-]*)}",[self::class,"_categoria"]),
             "frontend.ecommerce.carrello.aggiungi"   =>  (new Route("frontend.ecommerce.carrello.aggiungi" ,"/carrello/aggiungi",[self::class,"_carrelloAggiungi"]))->method(Route::METHOD_POST),
+            "frontend.ecommerce.carrello.aggiungi.veloce"   =>  (new Route("frontend.ecommerce.carrello.aggiungi" ,"/carrello/aggiungi/veloce/{id:([0-9]*)}",[self::class,"_carrelloAggiungiVeloce"])),
             "frontend.ecommerce.carrello.rimuovi"   =>  (new Route("frontend.ecommerce.carrello.rimuovi" ,"/carrello/rimuovi/{id:([0-9]*)}",[self::class,"_carrelloRimuovi"])),
 
             "frontend.ecommerce.schedaprodotto"   =>  new Route( "frontend.ecommerce.schedaprodotto","/{slug:([0-9a-zA-Z-]*)}",[static::class,"_schedaProdotto"]),
@@ -150,7 +151,18 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
 
 
 
-       RouterService::getRoute("frontend.ecommerce.carrello")->go();
+        RouterService::getRoute("frontend.ecommerce.carrello")->go();
+
+    }
+
+
+    static function _carrelloAggiungiVeloce($params=[]){
+
+
+
+        $carrello = Carrello::get()->createLineItem($params['id'],1);
+
+        RouterService::getRoute("frontend.ecommerce.carrello")->go();
 
     }
 
