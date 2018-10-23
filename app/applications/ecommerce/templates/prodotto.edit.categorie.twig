@@ -55,7 +55,11 @@
 
 
             function updateSelects( ) {
-                $.get(urlGetCategoris).done(function(d){
+                $.ajax({
+                    url : urlGetCategoris,
+                    method : "GET",
+                    dataType :"json"
+                }).done(function(d){
                     $(".categoria-disponibile").show();
                     d.forEach(function( o ){
                         $('.categoria-disponibile[value="'+o.categoria.id+'"]').hide();

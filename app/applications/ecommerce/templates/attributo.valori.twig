@@ -81,7 +81,11 @@
            var valoreForm = $(".valore-form").clone();
 
            function updateValues(){
-                $.get("{{ urllist }}").done(function( d ){
+                $.ajax({
+                    url : "{{ urllist }}",
+                    method : "GET",
+                    dataType : "json"
+                }).done(function( d ){
                     $("#lista-valori").empty();
 
                     d.forEach(function( o ){

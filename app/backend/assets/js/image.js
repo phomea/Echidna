@@ -55,7 +55,7 @@
                 type: 'POST',
                 contentType: false,
                 processData: false,
-
+                dataType : "json",
                 complete : function( e ){
 
                     if( me._finish != null){
@@ -205,7 +205,8 @@
                     from : from,
                     to : to
                 },
-                method : "POST"
+                method : "POST",
+                dataType : "json"
             });
         }
 

@@ -1,3 +1,5 @@
+
+
 (function ($) {
 
     $(document).on("submit",".form-mod, .form-ajax",function (e) {
@@ -15,7 +17,7 @@
             $.ajax({
                 url : url,
                 method : $(form).attr("method"),
-                //dataType : "json",
+                dataType : "json",
                 data :$(form).serialize()
             })
                 .success(function ( o ) {
@@ -67,7 +69,7 @@ return;
                 url : "/backend/media/" + id,
                 method : "GET",
                 dataType : "json"
-            }).success(function (dati) {
+            }).success(function d(dati) {
                 console.log(dati);
                 $(field).find(".field-media-img").attr("src",dati.permalink);
             });

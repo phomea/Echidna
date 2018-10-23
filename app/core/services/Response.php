@@ -178,7 +178,7 @@ class Response extends Service {
         }
 
 
-        if($mainResponse && strpos(Request::$headers['Accept'],"text/html")===false ){// isset(Request::$headers[Request::AJAX_REQUEST_NAME])){
+        if($mainResponse && strpos(Request::$headers['Accept'],"json")!==false ){// isset(Request::$headers[Request::AJAX_REQUEST_NAME])){
             self::setTemplateToUse("jsonTemaplate");
             $response = self::$mainResponse;
         }
