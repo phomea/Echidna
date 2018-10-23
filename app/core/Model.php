@@ -238,7 +238,9 @@ abstract class Model {
                         }
                     }
                     if( isset($this->$fieldname)) {
-                        foreach ($this->$fieldname as $item) {
+                        $converted = $type::convertToDb($this->$fieldname);
+
+                        foreach ($converted as $item) {
                             /*Attachment::query()
                                 ->where('entity = "'.$entity.'"')
                                 ->where("entity_id=".$entity_id)
@@ -354,7 +356,8 @@ abstract class Model {
                         ->where('field="' . $key . '"')
                         ->getAll();
 
-                    $data[$key] = $r;
+
+                    $data[$key] = $value->getEntity()::convertFromDb($r);
                 }
             }
 

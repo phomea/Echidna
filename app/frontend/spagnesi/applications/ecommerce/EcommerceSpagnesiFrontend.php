@@ -7,6 +7,7 @@ use applications\ecommerce\entities\Attributo;
 use applications\ecommerce\entities\AttributoValore;
 use applications\ecommerce\entities\Prodotto;
 use applications\ecommerce\entities\Variante;
+use applications\media\entities\Attachment;
 use core\Route;
 use core\RouteFilter;
 use core\services\Db;
@@ -93,6 +94,10 @@ class EcommerceSpagnesiFrontend extends EcommerceFrontend{
 
         $r[1]['varianti'] = $varianti;
 */
+
+
+
+
 
         if( !$r )return false;
 

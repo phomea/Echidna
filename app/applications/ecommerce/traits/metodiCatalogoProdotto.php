@@ -87,6 +87,7 @@ trait metodiCatalogoProdotto{
 
 
 
+
         return [
             "tabs",[
                 "tabs"=>[

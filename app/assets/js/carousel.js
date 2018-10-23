@@ -27,10 +27,21 @@
             nav = true;
         }
         $(this).owlCarousel({
-            loop:true,
+            loop:false,
             margin:10,
             nav:nav,
-            items:n
+
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:1
+                },
+                1000:{
+                    items:n
+                }
+            }
         });
     });
 

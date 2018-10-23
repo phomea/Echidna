@@ -6,6 +6,11 @@
   .col-6{
     padding: 0 5em;
   }
+
+
+  > .container{
+    padding: 2em;
+  }
 }
 
 .checkout-steps{
@@ -27,12 +32,62 @@
       margin-bottom: 1em;
     }
   }
+
+
+  @media (max-width: 900px){
+      padding:0;
+      position: sticky;
+      top:0;
+      background: #fff;
+      margin-bottom: 2em;
+      z-index: 2;
+      border-bottom:1px solid #ccc;
+      .col{
+        padding:0;
+      }
+      .checkout-step{
+        span{
+          display: block;
+        }
+        .number{
+          display: inline-block;
+          border-radius: 0%;
+          border: none;
+          width: auto;
+          height: auto;
+          font-size: 1em;
+          line-height: auto;
+          font-weight: bold;
+          margin-bottom: none;
+          display: none;
+        }
+        .label{
+          font-size: 10px;
+          padding: 1em;
+          font-weight:bold;
+        }
+      }
+
+  }
 }
 
 .header-checkout{
-  background: #ccc;
+  background: #eeeeee;
+  border-bottom: 1px solid #ccc;
+  padding:1em;
+  position: sticky;
   .logo{
-    height: 5em;
+    height: 4em;
+  }
+  .container{
+    max-width: 100em;
+  }
+  h1{
+    display: inline-block;
+    font-weight: 900;
+    font-size: 3em;
+    vertical-align: middle;
+
   }
 }
 
@@ -44,4 +99,8 @@ body{
   display: flex;
   background: #ddd;
   height: 100px;
+
+  background: #eeeeee;
+  border-top: 1px solid #ccc;
+
 }

@@ -3,6 +3,8 @@
 namespace applications\ecommerce\entities;
 
 
+use applications\media\entities\AttachmentTag;
+use applications\media\entities\AttachmentText;
 use core\db\Field;
 use core\Model;
 use core\services\Db;
@@ -36,6 +38,7 @@ class Prodotto extends Model{
                 ]
             ]),
             "immagini"  =>  Field::entity(AttachmentText::class,2)->editable()->setTemplate("select-multiple-images")->setLabel("Galleria immagini"),
+            "tag"  =>  Field::entity(AttachmentTag::class,2)->editable()->setTemplate("default")
         ];
     }
 

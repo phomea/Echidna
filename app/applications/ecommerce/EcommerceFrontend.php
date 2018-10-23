@@ -129,7 +129,10 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
     static function loginEcommerceFilter( $route ){
 
 
-        if( !SessionService::get(self::SESSION_USER_LOGGED)){
+
+        if( !SessionService::get(self::SESSION_USER_LOGGED) && $route->name!="pagina"){
+
+
 
             if(
                 !in_array( $route->name,[
@@ -140,6 +143,8 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
             ) {
                 RouterService::getRoute(self::ROUTE_CHECKOUT)->go();
             }
+
+
         }
 
 
@@ -358,6 +363,8 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
     }
 
     static function _regitrazione( $params=[], $data = null){
+
+
         if(Request::isPost()){
 
             $data['password'] = LoginApplication::generateHash($data['password']);

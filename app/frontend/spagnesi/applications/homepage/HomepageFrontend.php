@@ -1,6 +1,9 @@
 <?php
 namespace frontend\spagnesi\applications\homepage;
 
+use applications\ecommerce\Catalogo;
+use applications\ecommerce\CatalogoSearch;
+use applications\ecommerce\entities\Categoria;
 use applications\ecommerce\entities\Prodotto;
 use applications\pages\PagesApplication;
 use applications\pages\PagesFrontend;
@@ -24,8 +27,15 @@ class HomepageFrontend extends FrontendApplication{
         $templatedausare = "tshirt";
 
 
-        $prodotti = Prodotto::query()->getAll();
+        //$prodotti = Prodotto::query()->getAll();
 
+        $prodotti = [];
+
+        $categoriaHome = Categoria::findBySlug("home");
+        if( count($categoriaHome) > 0 ) {
+            $search = new CatalogoSearch();
+            $prodotti = $search->byCategory( $categoriaHome[0] );
+        }
 
         return[
             "pagine/home",

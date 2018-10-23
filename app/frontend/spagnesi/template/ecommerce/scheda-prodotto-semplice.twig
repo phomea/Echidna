@@ -152,9 +152,16 @@
             </div>
         {% endif %}
 
-        <div class="container">
-            {{ EcommerceHelper.sameCategory(prodotto) | raw }}
-        </div>
+        <section class="more-products pb-5">
+            <div class="container pl-5 pr-5 mt-5">
+                <h2>Altri prodotti che ti potrebbero interessare</h2>
+
+                {{ EcommerceHelper.sameTag(prodotto) | raw }}
+
+            </div>
+        </section>
+
+
     </main>
 {% endblock %}
 
