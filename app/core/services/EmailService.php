@@ -32,8 +32,6 @@ class EmailService {
             return self::sendNormal($from,$to,$subject,$message);
         }
 
-
-
     }
 
 
@@ -86,8 +84,8 @@ class EmailService {
             $mail->SMTPSecure = 'tls';                  // Enable TLS encryption, `ssl` also accepted
             $mail->Port = 587;                          // TCP port to connect to
 
-            $mail->setFrom($f, 'Cartiamo');
-            $mail->addReplyTo($f, 'Cartiamo');
+            $mail->setFrom($f, 'DivaniLab');
+            $mail->addReplyTo($f, 'DivaniLab');
             $mail->addAddress($to);   // Add a recipient
 
             $mail->isHTML(true);  // Set email format to HTML
