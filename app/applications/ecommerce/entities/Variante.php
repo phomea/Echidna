@@ -100,11 +100,13 @@ class Variante extends Model{
 
 
     function calculatePrice(){
+
+        return new Price($this->prezzo_speciale,$this->prezzo);
+
+
         if(!empty($this->prezzo_speciale ) && $this->prezzo_speciale < $this->prezzo){
             return $this->prezzo_speciale;
         }
-
-
         return $this->prezzo;
     }
 

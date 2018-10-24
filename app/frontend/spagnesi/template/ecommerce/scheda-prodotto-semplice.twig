@@ -38,6 +38,9 @@
 
             <div class="row">
                 <div class="col-md-8">
+                    <div class="sconto">
+                        <span>-{{ prodotto.variantePrimaria.calculatePrice().sconto_perc}}%</span>
+                    </div>
                     <div class="owl-carousel owl-theme general-carousel" data-nav>
                     {% for immagine in prodotto.immagini %}
                         <img src="{{ immagine.value }}">
@@ -165,11 +168,21 @@
 
                         <p class="product-description">{{ prodotto.valoriCampi.descrizione_breve.valore }}</p>
 
-                        {% if prodotto.variantePrimaria.prezzo_speciale %}
-                            <span class="price">{{ prodotto.variantePrimaria.prezzo_speciale | price}}</span>
-                            <span class="old-price">{{ prodotto.variantePrimaria.prezzo | price}}</span>
+                        {% if prodotto.variantePrimaria.calculatePrice().sconto > 0 %}
+                            <span class="price">
+
+                                {{ prodotto.variantePrimaria.calculatePrice().real_price | price }}
+
+
+                            </span>
+                            <span class="old-price">
+                                 {{ prodotto.variantePrimaria.calculatePrice().old_price | price }}
+
+                            </span>
                         {% else %}
-                            <span class="price">{{ prodotto.variantePrimaria.prezzo | price}}</span>
+                            <span class="price">
+                                   {{ prodotto.variantePrimaria.calculatePrice().real_price | price }}
+                            </span>
                         {% endif %}
 
 

@@ -9,6 +9,7 @@
                     <img class="image-2" src="{{ prodotto.immagini[0].value}}">
                 </figure>
             </a>
+
         </div>
         <div class="col-md-7  ">
             <div class="card-body">
@@ -40,6 +41,10 @@
 
 
     <div class="badges">
-        <div class="badge-outlet"><span>Outlet</span></div>
+
+        <div class="sconto">
+            <span>-{{ prodotto.variantePrimaria.calculatePrice().sconto_perc}}%</span>
+        </div>
+
     </div>
 </article>

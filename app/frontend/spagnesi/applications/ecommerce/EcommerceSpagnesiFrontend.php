@@ -117,6 +117,9 @@ class EcommerceSpagnesiFrontend extends EcommerceFrontend{
         ]);
 
 
+        $prodotto = $r[1]['prodotto'];
+
+
         if( $r[1]['prodotto']->visualizzazione == Prodotto::VISUALIZZAZIONE_SEMPLICE){
             $r[0] = "ecommerce/scheda-prodotto-semplice";
         }
