@@ -3,6 +3,7 @@
 namespace core\template;
 
 use applications\pages\entities\Pagina;
+use core\Environment;
 use core\services\Request;
 use core\services\Response;
 use Twig_Extension_StringLoader;
@@ -41,17 +42,24 @@ abstract class TwigTemplate extends BaseTemplate {
         }
 
 
-
-        $this->twig = new \Twig_Environment($this->twigloader, array(
+        $twigOptions = [
             'cache' => $this->getCacheDir().'/cache',
-            'auto_reload' => true,
-            'debug' => true,
-        ));
+            'auto_reload' => false
+        ];
 
+        if(Environment::is(Environment::DEV)){
+            $twigOptions +=[
+                'auto_reload' => true,
+                'debug' => true,
+            ];
+        }
 
+        $this->twig = new \Twig_Environment($this->twigloader,$twigOptions);
 
+        if(Environment::is(Environment::DEV)) {
+            $this->twig->addExtension(new \Twig_Extension_Debug());
+        }
 
-        $this->twig->addExtension(new \Twig_Extension_Debug());
         $this->twig->addExtension(new Twig_Extension_StringLoader());
         $this->twig->addFilter( new \Twig_SimpleFilter('cast_to_array', function ($stdClassObject) {
             $response = array();
