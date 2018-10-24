@@ -53,8 +53,10 @@ class Response extends Service {
           $meta = new Meta(self::$config['meta']);
           Response::addVariable([
               "meta"    =>  $meta
+
           ]);
       }
+
 
 
       if( $cached = Cache::get("global_cache",Request::getCurrentUrl(),60000)){

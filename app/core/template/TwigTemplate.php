@@ -48,11 +48,10 @@ abstract class TwigTemplate extends BaseTemplate {
         ];
 
         if(Environment::is(Environment::DEV)){
-            $twigOptions +=[
-                'auto_reload' => true,
-                'debug' => true,
-            ];
+            $twigOptions['auto_reload'] = true;
+            $twigOptions['debug'] = true;
         }
+
 
         $this->twig = new \Twig_Environment($this->twigloader,$twigOptions);
 

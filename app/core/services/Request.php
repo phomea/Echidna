@@ -20,6 +20,9 @@ class Request extends Service{
 
     static $headers;
 
+
+    static $host;
+
     static function getName(){
       return "request";
     }
@@ -30,6 +33,12 @@ class Request extends Service{
     static function init(){
       parent::init();
 
+
+      self::$host = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[SERVER_NAME]";
+
+      Response::addVariable([
+        "host"    =>  Request::$host
+        ]);
 
       self::$headers = getallheaders();
 
