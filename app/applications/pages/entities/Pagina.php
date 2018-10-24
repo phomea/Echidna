@@ -89,6 +89,11 @@ class Pagina extends Model {
     }
 
     function getMeta(){
-        return Meta::findById($this->id);
+
+        return Meta::query()
+            ->where('entity = "Pagina"')
+            ->where("entity_id = ".$this->id)
+            ->getOne();
+
     }
 }
