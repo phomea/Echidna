@@ -54,11 +54,63 @@
                             </div>
                         </nav>
                         <div class="tab-content" id="nav-tabContent">
-                            <div class="tab-pane fade show active p-3" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                            <div class="tab-pane fade show active p-5" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                 {{ prodotto.descrizione | raw }}
                             </div>
 
-                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+                            <div class="tab-pane fade p-5" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+                                {% if prodotto.valoriCampi["informazioni-aggiuntive"].valore %}
+                                    <p><b>Informazioni aggiuntive</b> : {{ prodotto.valoriCampi["informazioni-aggiuntive"].valore }}</p>
+                                {% endif %}
+
+                                {% if prodotto.valoriCampi.disponibile_in_crosta.valore %}
+                                    <p><b>Disponibile in crosta</b> : {{ prodotto.valoriCampi.disponibile_in_crosta.valore }}</p>
+                                {% endif %}
+
+                                {% if prodotto.valoriCampi.struttura.valore %}
+                                    <p><b>Struttura</b> : {{ prodotto.valoriCampi.struttura.valore }}</p>
+                                {% endif %}
+
+                                {% if prodotto.valoriCampi.molleggio.valore %}
+                                    <p><b>Molleggio</b> : {{ prodotto.valoriCampi.molleggio.valore }}</p>
+                                {% endif %}
+
+                                {% if prodotto.valoriCampi.poggiatesta.valore %}
+                                    <p><b>Poggiatesta</b> : {{ prodotto.valoriCampi.poggiatesta.valore }}</p>
+                                {% endif %}
+
+                                {% if prodotto.valoriCampi.spalliera.valore %}
+                                    <p><b>Spalliera</b> : {{ prodotto.valoriCampi.spalliera.valore }}</p>
+                                {% endif %}
+
+                                {% if prodotto.valoriCampi.poggiareni.valore %}
+                                    <p><b>Poggiareni</b> : {{ prodotto.valoriCampi.poggiareni.valore }}</p>
+                                {% endif %}
+
+                                {% if prodotto.valoriCampi.seduta.valore %}
+                                    <p><b>Seduta</b> : {{ prodotto.valoriCampi.seduta.valore }}</p>
+                                {% endif %}
+
+                                {% if prodotto.valoriCampi.braccioli.valore %}
+                                    <p><b>Braccioli</b> : {{ prodotto.valoriCampi.braccioli.valore }}</p>
+                                {% endif %}
+
+                                {% if prodotto.valoriCampi.piedi.valore %}
+                                    <p><b>Piedi</b> : {{ prodotto.valoriCampi.piedi.valore }}</p>
+                                {% endif %}
+
+                                {% if prodotto.valoriCampi.meccanismo.valore %}
+                                    <p><b>Meccanismo</b> : {{ prodotto.valoriCampi.meccanismo.valore }}</p>
+                                {% endif %}
+
+                                {% if prodotto.valoriCampi.dimensioni_speciali.valore %}
+                                    <p><b>Dimensioni speciali</b> : {{ prodotto.valoriCampi.dimensioni_speciali.valore }}</p>
+                                {% endif %}
+
+
+
+                            </div>
                             <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
                         </div>
                     </div>
@@ -97,14 +149,19 @@
                             <b>Codice prodotto :</b> <span class="product-sku">{{ variante.sku }}</span>
                         </p>
 
-                        <p>
-                            <b>Dimensioni : </b> L {{ prodotto.valoriCampi.larghezza.valore }} x P {{ prodotto.valoriCampi.profondita.valore }} x A {{ prodotto.valoriCampi.altezza.valore }}
-                        </p>
 
-
-                            {% if prodotto.valoriCampi.struttura.valore %}
-                                <p><b>Struttura</b> : {{ prodotto.valoriCampi.struttura.valore }}</p>
-                            {% endif %}
+                        {% if prodotto.valoriCampi.larghezza.valore %}
+                            <p><b>Larghezza</b> : {{ prodotto.valoriCampi.larghezza.valore }}</p>
+                        {% endif %}
+                        {% if prodotto.valoriCampi.profondita.valore %}
+                            <p><b>Profondità</b> : {{ prodotto.valoriCampi.profondita.valore }}</p>
+                        {% endif %}
+                        {% if prodotto.valoriCampi.altezza.valore %}
+                            <p><b>Altezza</b> : {{ prodotto.valoriCampi.altezza.valore }}</p>
+                        {% endif %}
+                        {% if prodotto.valoriCampi["altezza-seduta"].valore %}
+                            <p><b>Altezza seduta</b> : {{ prodotto.valoriCampi["altezza-seduta"].valore }}</p>
+                        {% endif %}
 
                         <p class="product-description">{{ prodotto.valoriCampi.descrizione_breve.valore }}</p>
 

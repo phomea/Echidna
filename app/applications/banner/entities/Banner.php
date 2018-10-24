@@ -2,6 +2,7 @@
 
 namespace applications\banner\entities;
 
+use applications\banner\BannerApplication;
 use core\Model;
 use core\db\Field;
 
@@ -28,11 +29,10 @@ class Banner extends Model {
         return[
             "id"    =>  Field::primaryIndex(),
             "titolo"  =>  Field::string()->editable(),
-            "tipo" =>  Field::string()->editable(),
+            "tipo" =>  Field::varchar(512)->editable()->setTemplate("select")->setTemplateVar(BannerApplication::getType()),
             "link" => Field::text()->editable(),
-            "contenuto" => Field::text()->editable(),
-            "id_media" => Field::int()->editable()->setTemplate("media"),
-            "hook" => Field::text()->editable(),
+            "media" => Field::varchar(512)->editable()->setTemplate("media"),
+            "hook" => Field::varchar(512)->editable()->setTemplate("select")->setTemplateVar(BannerApplication::getPositions()),
             "alt" => Field::text()->editable(),
         ];
     }

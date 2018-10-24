@@ -3,6 +3,7 @@ namespace applications\ecommerce\traits;
 
 use \applications\ecommerce\entities\Categoria;
 use applications\ecommerce\entities\Variante;
+use applications\meta\entities\Meta;
 use core\services\Db;
 use \core\services\Response;
 use core\services\RouterService;
@@ -46,6 +47,22 @@ trait metodiCatalogoCategoria{
 
 
 
+
+        $meta = Meta::query()->where('entity="ecommerce.categoria"')->where("entity_id=".$data->id)->getOne();
+       
+
+        if(!$meta){
+            $meta = new Meta([
+                "entity"    =>  "ecommerce.categoria",
+                "entity_id" =>  $data->id
+            ]);
+        }
+        $metaform = Response::getTemplateToUse("mod",[
+            "template_extend"   =>  "empty.twig",
+            "data"      =>  $meta,
+            "fields"    =>  self::generateFields(Meta::class,$meta)
+        ])->render();
+
         return[
             "tabs", [
                 "tabs" =>[
@@ -57,7 +74,13 @@ trait metodiCatalogoCategoria{
                             "fields"    =>  $fields,
                             "entity"    =>  Categoria::class
                         ],"empty.twig")->render()
-                    ]/*,
+                    ],
+                    "meta"    =>  [
+                        "label" =>  "Meta",
+                        "content"   => $metaform
+                    ],
+
+                    /*,
                     "immagini"  =>  [
                         "label" =>  "Immagini",
                         "content"   =>  Response::getTemplateToUse("ecommerce/templates/addimages",[

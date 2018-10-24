@@ -4,12 +4,11 @@ namespace applications\ecommerce\gateway;
 
 use applications\ecommerce\entities\Cliente;
 
-class Contrassegno extends Gateway {
+class Bonifico extends Gateway {
     static function getType()
     {
-        return "contrassegno";
+        return "bonifico";
     }
-
 
 
 }

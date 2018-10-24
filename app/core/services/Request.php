@@ -60,8 +60,11 @@ class Request extends Service{
 
     }
 
-    static function getParams(){
-      return self::$get;
+    static function getParams( $name= null ){
+        if($name != null ){
+            return isset(self::$get[$name]) ? self::$get[$name] : null;
+        }
+        return self::$get;
     }
     static function getPost(){
         if(isset(self::$headers['Content-Type'])){

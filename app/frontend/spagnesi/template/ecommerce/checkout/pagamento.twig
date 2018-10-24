@@ -19,8 +19,16 @@
                                         <div class="col">
                                             <label>{{ metodo.nome }}</label>
                                         </div>
+
                                         <div class="col text-right">
-                                            <strong>+ {{ metodo.prezzo }}€</strong>
+
+                                            <strong>
+                                                {% if metodo.prezzo %}+ {{ metodo.prezzo }}€
+                                                {% else %}
+                                                    Gratis
+                                                {% endif %}
+                                            </strong>
+
                                         </div>
                                     </div>
 
@@ -32,17 +40,20 @@
                                                 <div id="payment-form"></div>
                                                 <input type="submit" value="Paga adesso {{ totale }}" class="btn btn-secondary btn-block">
                                             </form>
-                                        {% endif %}
 
-                                        {% if metodo.type == 'contrassegno' %}
-                                            <p>
-                                                Paga in contanti direttamente al corriere che ti consegnerà l'ordine. Questo pagamento prevede una maggiorazione di <strong>{{ metodo.prezzo}}€</strong> sul prezzo finale.
-                                            </p>
+
+                                        {% else %}
+                                            <div>
+                                                {{ metodo.descrizione |raw }}
+                                            </div>
                                             <form id="contrassegno-container" action="{{ router_service.getRoute("frontend.ecommerce.checkout.charge").build() }}" method="post">
                                                 <input type="hidden" name="metodoDiPagamento" value="{{ metodo.id }}">
-                                                <input type="submit" value="Effettua pagamento in contrassegno" class="btn btn-secondary btn-block">
+                                                <input type="submit" value="Effettua pagamento in bonifico" class="btn btn-secondary btn-block">
                                             </form>
                                         {% endif %}
+
+
+
                                     </div>
                                 </div>
                             </div>

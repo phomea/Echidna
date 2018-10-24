@@ -1,0 +1,46 @@
+{% extends "base/template.twig" %}
+
+{% block content %}
+<main  class="mb-5 pt-5">
+    <div class="container">
+        {% block backButtonAccount %}
+            <a href="{{ router_service.getRoute("frontend.ecommerce.user.account").build() }}" class="btn btn-light mb-5"><i class="fas fa-angle-left"></i> Torna al tuo account </a>
+        {% endblock %}
+
+        {% if params.msg %}
+            <div class="alert alert-dark">
+
+                {{ params.msg }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+        {% endif %}
+
+        <div class="row">
+            <div class="col-md-8">
+                {% block innerAccount %}
+
+                {% endblock %}
+
+            </div>
+            <div class="col-md-4">
+                <section class="">
+                    <h1 class="mb-5">Hai bisogno di aiuto?</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec varius rutrum mollis. Nullam tincidunt venenatis augue sed lobortis. </p>
+
+
+                    <div class="row">
+                        <div class="col"><a href="mailto:assistenza@divanilab.it?subject=Richiesta%20di%20assistenza" class="btn btn-secondary btn-block">Contattaci via email<br>assistenza@divanilab.it</a> </div>
+
+                    </div>
+                </section>
+            </div>
+
+
+        </div>
+
+    </div>
+</main>
+{% endblock %}

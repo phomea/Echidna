@@ -6,6 +6,7 @@ use applications\banner\entities\Banner;
 use applications\banner\BannerBackend;
 use applications\pages\entities\Pagina;
 use core\abstracts\Application;
+use core\Config;
 use core\Model;
 use core\services\Response;
 
@@ -26,6 +27,8 @@ class BannerApplication extends Application {
             ]
         ]);
 
+        $t = Response::getFrontendTemplate();
+        $t->addFunction("banner",[self::class, "renderBanner" ]);
 
     }
 
@@ -46,5 +49,59 @@ class BannerApplication extends Application {
     {
         return Banner::class;
     }
+
+    static function getPositions(){
+        $f = Config::getFile("banner");
+        $return = [[
+            "value" =>  "",
+            "label" =>  "---Nessuna---"
+        ]];
+        if(isset($f['positions'])){
+            foreach ($f['positions'] as $key => $position) {
+                $return[] = [
+                    "value" =>  $key,
+                    "label" =>  $position
+                ];
+            }
+
+            return $return;
+        }
+        return [];
+    }
+
+    static function getType(){
+        $f = Config::getFile("banner");
+        $return = [[
+            "value" =>  "",
+            "label" =>  "---Nessuno---"
+        ]];
+        if(isset($f['types'])){
+            foreach ($f['types'] as $key => $position) {
+                $return[] = [
+                    "value" =>  $key,
+                    "label" =>  $position
+                ];
+            }
+
+            return $return;
+        }
+        return [];
+    }
+
+
+
+    static function renderBanner( $params = [] ){
+        $banners = Banner::findByHook( $params );
+        if( count($banners)>0) {
+            return [
+                "banner/default", [
+                    "banners" => $banners
+                ]
+            ];
+        }
+        return false;
+    }
+
+
 
 }

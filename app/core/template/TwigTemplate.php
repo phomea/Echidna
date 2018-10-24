@@ -83,6 +83,7 @@ abstract class TwigTemplate extends BaseTemplate {
     public function render()
     {
 
+        if (!$this->response) return false;
 
         if( isset($this->response['data']) && is_array($this->response['data'])  && isset($this->response['data']['type']) && $this->response['data']['type']=="redirect"){
             Response::go($this->response['data']['to']);

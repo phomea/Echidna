@@ -3,6 +3,7 @@ namespace applications\ecommerce;
 
 
 use applications\ecommerce\entities\Categoria;
+use applications\ecommerce\entities\MetodoPagamento;
 use applications\ecommerce\entities\Ordine;
 use applications\ecommerce\entities\OrdineLineItem;
 use applications\ecommerce\entities\Prodotto;
@@ -56,7 +57,8 @@ class EcommerceApplication extends Application {
             Spedizione::class,
             SpedizionePrezzo::class,
             Ordine::class,
-            OrdineLineItem::class
+            OrdineLineItem::class,
+            MetodoPagamento::class
         ];
     }
 

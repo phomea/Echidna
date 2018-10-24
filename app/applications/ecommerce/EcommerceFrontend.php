@@ -17,6 +17,7 @@ use applications\ecommerce\gateway\Braintree;
 use applications\ecommerce\gateway\Contrassegno;
 use applications\ecommerce\gateway\Stripe;
 use applications\login\LoginApplication;
+use applications\meta\entities\Meta;
 use Aura\Sql\Exception;
 use core\Config;
 use core\Email;
@@ -110,7 +111,15 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
 
             //user account
             "frontend.ecommerce.user.account"   =>  new Route("","/user-account",[static::class,"_userAccount"]),
-            "frontend.ecommerce.user.account.save"   =>  (new Route("","/user-account",[static::class,"_userAccount"]))->method(Route::METHOD_POST),
+
+
+
+
+            "frontend.ecommerce.user.account.ordini"   =>  new Route("","/user-account/ordini",[static::class,"_userAccountOrdini"]),
+            "frontend.ecommerce.user.account.profilo"   =>  new Route("","/user-account/profilo",[static::class,"_userAccountProfilo"]),
+            "frontend.ecommerce.user.account.profilo.save"   =>  (new Route("","/user-account/profilo",[static::class,"_userAccountProfilo"]))->method(Route::METHOD_POST),
+            "frontend.ecommerce.user.account.spedizione"   =>  new Route("","/user-account/spedizione",[static::class,"_userAccountSpedizione"]),
+
             self::ROUTE_LOGOUT    =>  (new Route("","/user-account/logout",[self::class,"_logout"])),
         ];
 
@@ -340,6 +349,20 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
         if( count($immagini) > 0 ){
             $immagineTop = $immagini[0]['permalink'];
         }
+
+        $meta = Meta::query()->where('entity="ecommerce.categoria"')->where("entity_id=".$categoria->id)->getOne();
+
+        if( !$meta ) {
+            $meta = new Meta([
+                "title" =>  "Categoria ".$categoria->nome." | Divani Lab",
+                "description"   =>  $categoria->descrizione
+            ]);
+        }
+        Response::addVariable(
+            [
+                'meta' => $meta
+            ]
+            , true);
         return [
             "ecommerce/shop/category",[
                 "categoria" =>  $categoria,
@@ -522,12 +545,20 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
         $metodo = MetodoPagamento::findById($data['metodoDiPagamento']);
 
 
+        if( $ordine = $metodo->processOrder($cliente,$carrello,$data) ){
+            $numero = $ordine->getNumeroOrdine();
+            $email->data['numeroordine'] = $numero;
+            $email->send();
+
+            SessionService::delete(Carrello::SESSION_NAME);
+            RouterService::getRoute("frontend.ecommerce.checkout.thankyou")->go();
+        }
 
         $totale = $carrello->getTotal();
 
 
 
-        if($metodo->type == Braintree::getType() ) {
+        /*if($metodo->type == Braintree::getType() ) {
             $braintree = new Braintree();
             $totale = number_format( (float)$totale , 2, '.', '');
             $result = $braintree->transaction($totale, $data['payment_method_nonce']);
@@ -567,8 +598,9 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
             } else {
 
             }
-        }
-        if($metodo->type == Contrassegno::getType() ) {
+        }*/
+
+        /*if($metodo->type == Contrassegno::getType() ) {
             $carrello->extra = 4;
             $totale = $carrello->getTotal();
 
@@ -599,7 +631,8 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
 
 
             SessionService::delete(Carrello::SESSION_NAME);
-        }
+        }*/
+
 
         RouterService::getRoute("frontend.ecommerce.checkout.thankyou")->go();
 
@@ -722,4 +755,84 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
         }
 
     }
+
+    static function _userAccountOrdini($params =[],$data=null){
+        if(!SessionService::get(self::SESSION_USER_LOGGED)){
+            Response::go("/");
+        }
+        if(Request::isPost()){
+            $user = SessionService::get(self::SESSION_USER_LOGGED);
+            $user->buildProperties($data);
+            $user->save();
+
+            RouterService::getRoute("frontend.ecommerce.user.account")->go([
+                "msg"=>"Dati del profilo salvati"
+            ]);
+            exit;
+        }else{
+
+            return [
+                "ecommerce/user-account/ordini",[
+                    "user"  => SessionService::get(self::SESSION_USER_LOGGED)
+                ]
+            ];
+        }
+
+    }
+
+
+    static function _userAccountProfilo($params =[],$data=null){
+        if(!SessionService::get(self::SESSION_USER_LOGGED)){
+            Response::go("/");
+        }
+        if(Request::isPost()){
+            $user = SessionService::get(self::SESSION_USER_LOGGED);
+            $user->buildProperties($data);
+            $user->save();
+
+            RouterService::getRoute("frontend.ecommerce.user.account.profilo")->go([
+                "msg"=>"Dati del profilo salvati"
+            ]);
+            exit;
+        }else{
+
+            return [
+                "ecommerce/user-account/profilo",[
+                    "user"  => SessionService::get(self::SESSION_USER_LOGGED)
+                ]
+            ];
+        }
+
+    }
+
+    static function _userAccountSpedizione($params =[],$data=null){
+        if(!SessionService::get(self::SESSION_USER_LOGGED)){
+            Response::go("/");
+        }
+        if(Request::isPost()){
+            $user = SessionService::get(self::SESSION_USER_LOGGED);
+            $user->buildProperties($data);
+            $user->save();
+
+            RouterService::getRoute("frontend.ecommerce.user.account")->go([
+                "msg"=>"Dati del profilo salvati"
+            ]);
+            exit;
+        }else{
+
+            return [
+                "ecommerce/user-account/spedizione",[
+                    "user"  => SessionService::get(self::SESSION_USER_LOGGED),
+                    "spedizione"    =>SessionService::get(self::SESSION_USER_LOGGED)->getDefaultShippingAddress()
+                ]
+            ];
+        }
+
+    }
+
+
+
+
+
+
 }

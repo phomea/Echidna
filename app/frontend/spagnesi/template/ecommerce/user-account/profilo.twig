@@ -1,0 +1,32 @@
+{% extends "ecommerce/user-account/base.twig" %}
+
+{% block innerAccount %}
+    <h1 class="mb-5">Il tuo profilo</h1>
+
+
+    <form method="post">
+        <div class="form-group">
+            <label>Nome</label>
+            <input type="text" name="nome" class="form-control" value="{{ user.nome }}">
+        </div>
+        <div class="form-group">
+            <label>Cognome</label>
+            <input type="text" name="cognome" class="form-control" value="{{ user.cognome }}">
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="text" name="email" class="form-control" value="{{ user.email }}">
+        </div>
+
+
+        <div class="d-flex">
+            <button type="submit" class="btn btn-white"> Cambia password <i
+                        class="fas fa-plug ml-3"></i></button>
+            <button type="submit" class="btn btn-secondary ml-auto"><i
+                        class="fas fa-save mr-3"></i> Salva
+            </button>
+        </div>
+    </form>
+
+
+{% endblock %}

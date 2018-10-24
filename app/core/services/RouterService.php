@@ -475,7 +475,7 @@ class RouterService extends Service{
             }
 
         }
-        exit;
+
 
 
         throw new NotFoundException();
