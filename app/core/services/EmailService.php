@@ -86,8 +86,9 @@ class EmailService {
 
             $mail->setFrom($f, 'DivaniLab');
             $mail->addReplyTo($f, 'DivaniLab');
-            $mail->addAddress($to);   // Add a recipient
-
+            foreach (explode(";",$to) as $value){
+                $mail->addAddress($value);   // Add a recipient
+            }
             $mail->isHTML(true);  // Set email format to HTML
 
             $bodyContent = $message;

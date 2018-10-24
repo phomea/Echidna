@@ -550,6 +550,16 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
             $email->data['numeroordine'] = $numero;
             $email->send();
 
+            $email->to= "info";
+            $email->template = "conferma-ordine-interno";
+            $email->setData([
+                "ordine"  =>  $carrello,
+                "lineitems" =>  $carrello->lineitems
+            ]);
+            $email->data['numeroordine'] = $numero;
+            $email->send();
+            exit;
+
             SessionService::delete(Carrello::SESSION_NAME);
             RouterService::getRoute("frontend.ecommerce.checkout.thankyou")->go();
         }

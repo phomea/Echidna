@@ -392,7 +392,7 @@
     </style>
 </head>
 <body>
-<span class="preheader">Mail di conferma campione omaggio.</span>
+<span class="preheader">Mail di conferma ordine.</span>
 <table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0">
     <tr>
         <td align="center">
@@ -405,6 +405,9 @@
                         </a>
                     </td>
                 </tr>
+
+
+                {% block before %}{% endblock %}
                 <!-- Email Body -->
                 <tr>
                     <td class="email-body" width="100%" cellpadding="0" cellspacing="0">
@@ -468,9 +471,9 @@
                         <table class="email-footer" align="center" width="570" cellpadding="0" cellspacing="0">
                             <tr>
                                 <td class="content-cell" align="center">
-                                    <p class="sub align-center">&copy; 2017 Cartiamo. All rights reserved.</p>
+                                    <p class="sub align-center">&copy; 2018 DivaniLab. All rights reserved.</p>
                                     <p class="sub align-center">
-                                        corium.it
+                                        divanilab.it
 
                                     </p>
                                 </td>
