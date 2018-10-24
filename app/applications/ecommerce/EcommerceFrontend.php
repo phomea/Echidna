@@ -311,6 +311,21 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
         $variante = $prodotto[0]->varianti[0];
 
 
+        $meta = Meta::query()->where('entity="ecommerce.prodotto"')->where("entity_id=".$prodotto[0]->id)->getOne();
+
+        if( !$meta ) {
+            $meta = new Meta([
+                "title" =>  $prodotto[0]->nome." | Divani Lab",
+                "description"   =>  $prodotto[0]->descrizione
+            ]);
+        }
+        Response::addVariable(
+            [
+                'meta' => $meta
+            ]
+            , true);
+
+
         if(isset($params['slug-variante'])){
             $v = Variante::query()->where('id_prodotto='.$prodotto[0]->id)->where('sku="'.$params['slug-variante'].'"')->getOne();
 

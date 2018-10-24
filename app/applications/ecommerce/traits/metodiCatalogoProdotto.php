@@ -6,6 +6,7 @@ use applications\ecommerce\entities\CategoriaProdotto;
 use applications\ecommerce\entities\Prodotto;
 use applications\ecommerce\entities\TipologiaProdotto;
 use applications\ecommerce\entities\Variante;
+use applications\meta\entities\Meta;
 use core\services\Db;
 use \core\services\Response;
 use core\services\RouterService;
@@ -86,7 +87,20 @@ trait metodiCatalogoProdotto{
         $attributiTipologia = $data->tipologia->getAttributes();
 
 
+        $meta = Meta::query()->where('entity="ecommerce.prodotto"')->where("entity_id=".$data->id)->getOne();
 
+
+        if(!$meta){
+            $meta = new Meta([
+                "entity"    =>  "ecommerce.prodotto",
+                "entity_id" =>  $data->id
+            ]);
+        }
+        $metaform = Response::getTemplateToUse("mod",[
+            "template_extend"   =>  "empty.twig",
+            "data"      =>  $meta,
+            "fields"    =>  self::generateFields(Meta::class,$meta)
+        ])->render();
 
         return [
             "tabs",[
@@ -133,6 +147,11 @@ trait metodiCatalogoProdotto{
                             "attributiTipologia"=>$attributiTipologia
                         ])->render()
                     ],
+                    "meta"    =>  [
+                        "label" =>  "Meta",
+                        "content"   => $metaform
+                    ],
+                    /*,
                     "immagini"    =>  [
                         "label" =>  "Immagini",
                         "content"   => Response::getTemplateToUse(
@@ -143,7 +162,7 @@ trait metodiCatalogoProdotto{
                             "immagini" =>  $data->images
 
                         ])->render()
-                    ]
+                    ]*/
 
                 ]
             ]
