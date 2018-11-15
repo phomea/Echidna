@@ -516,6 +516,7 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
     static function _pagamento(){
 
         $braintree = new Braintree();
+        $stripe = new Stripe();
 
         $carrello = Carrello::get();
 
@@ -533,6 +534,7 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
         return [
             "ecommerce/checkout/pagamento",[
                 "token"   =>  $braintree->generateToken( $cliente ),
+                "stripeKey" =>  $stripe->publishable_key,
                 "totale"            =>  $totale,
                 "metodiDiPagamento" =>  $metodiDiPagamento
             ]
@@ -573,14 +575,13 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
             ]);
             $email->data['numeroordine'] = $numero;
             $email->send();
-            exit;
+
 
             SessionService::delete(Carrello::SESSION_NAME);
             RouterService::getRoute("frontend.ecommerce.checkout.thankyou")->go();
         }
 
         $totale = $carrello->getTotal();
-
 
 
         /*if($metodo->type == Braintree::getType() ) {

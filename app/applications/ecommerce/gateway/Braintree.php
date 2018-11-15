@@ -59,7 +59,7 @@ class Braintree extends Gateway {
 
     public function transaction($amount, $nonce){
         $result = $this->gateway->transaction()->sale([
-            'amount' => $amount,
+            'amount' => $amount * 100,
             'paymentMethodNonce' => $nonce,
             'options' => [
                 'submitForSettlement' => true

@@ -188,7 +188,9 @@ abstract class Model {
              * @var $item Field
              */
             $fieldname = $key;
-            if( isset($this->$fieldname)  ){
+
+            if( isset($this->$fieldname) && !$item->getEntity()  ){
+
 
                 $chiavi[]   =   $fieldname;
                 $valori[]   =   $item->getInsertValue( $this->$fieldname );
@@ -276,6 +278,7 @@ abstract class Model {
                 }
             }
         }
+
 
 
 
