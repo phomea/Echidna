@@ -110,5 +110,12 @@ class Variante extends Model{
         return $this->prezzo;
     }
 
+    function getAttributeValue($slug){
+        foreach ($this->attributi as $attr){
+            if( $attr->attributo->slug == $slug)
+            return $attr->valore->valore;
+        }
+    }
+
 
 }

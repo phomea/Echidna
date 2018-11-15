@@ -8,6 +8,7 @@ use core\abstracts\Application;
 use core\abstracts\BackendApplication;
 
 class Prodotti extends BackendApplication {
+
     static function getApplication()
     {
         return EcommerceApplication::class;

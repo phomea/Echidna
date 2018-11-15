@@ -45,8 +45,8 @@ class Carrello{
         }
     }
 
-    public function createLineItem( $id_variant, $quantity){
-        $this->add(new LineItem($id_variant,$quantity));
+    public function createLineItem( $id_variant, $quantity, $stack=true){
+        $this->add(new LineItem($id_variant,$quantity),$stack);
         return $this;
     }
 
@@ -61,14 +61,16 @@ class Carrello{
         }
         $this->save();
     }
-    public function add( $lineitem ){
+    public function add( $lineitem , $stack=true ){
         $found =false;
-        if( count($this->lineitems) > 0){
-            foreach ($this->lineitems as $li) {
-                if($li->variant->id == $lineitem->variant->id){
-                    $found = true;
-                    $li->quantity += $lineitem->quantity;
-                    break;
+        if($stack) {
+            if (count($this->lineitems) > 0) {
+                foreach ($this->lineitems as $li) {
+                    if ($li->variant->id == $lineitem->variant->id) {
+                        $found = true;
+                        $li->quantity += $lineitem->quantity;
+                        break;
+                    }
                 }
             }
         }
@@ -85,7 +87,8 @@ class Carrello{
         if(count($this->lineitems)>0){
             foreach ($this->lineitems as $value){
                 $value->update( $this );
-                $this->pesoTotale += $value->variant->peso * $value->quantity;
+
+                $this->pesoTotale += (int)$value->variant->peso * (int)$value->quantity;
             }
         }
 

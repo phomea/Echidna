@@ -99,9 +99,9 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
 
 
             "frontend.ecommerce.categoria"   =>  new Route("frontend.ecommerce.categoria","/{slug:([0-9a-zA-Z-]*)}",[self::class,"_categoria"]),
-            "frontend.ecommerce.carrello.aggiungi"   =>  (new Route("frontend.ecommerce.carrello.aggiungi" ,"/carrello/aggiungi",[self::class,"_carrelloAggiungi"]))->method(Route::METHOD_POST),
-            "frontend.ecommerce.carrello.aggiungi.veloce"   =>  (new Route("frontend.ecommerce.carrello.aggiungi" ,"/carrello/aggiungi/veloce/{id:([0-9]*)}",[self::class,"_carrelloAggiungiVeloce"])),
-            "frontend.ecommerce.carrello.rimuovi"   =>  (new Route("frontend.ecommerce.carrello.rimuovi" ,"/carrello/rimuovi/{id:([0-9]*)}",[self::class,"_carrelloRimuovi"])),
+            "frontend.ecommerce.carrello.aggiungi"   =>  (new Route("frontend.ecommerce.carrello.aggiungi" ,"/carrello/aggiungi",[static::class,"_carrelloAggiungi"]))->method(Route::METHOD_POST),
+            "frontend.ecommerce.carrello.aggiungi.veloce"   =>  (new Route("frontend.ecommerce.carrello.aggiungi" ,"/carrello/aggiungi/veloce/{id:([0-9]*)}",[static::class,"_carrelloAggiungiVeloce"])),
+            "frontend.ecommerce.carrello.rimuovi"   =>  (new Route("frontend.ecommerce.carrello.rimuovi" ,"/carrello/rimuovi/{id:([0-9]*)}",[static::class,"_carrelloRimuovi"])),
 
             "frontend.ecommerce.schedaprodotto"   =>  new Route( "frontend.ecommerce.schedaprodotto","/{slug:([0-9a-zA-Z-]*)}",[static::class,"_schedaProdotto"]),
             "frontend.ecommerce.schedaprodotto.variante"   =>  new Route( "frontend.ecommerce.schedaprodotto.variante","/{slug:([0-9a-zA-Z-]*)}/{slug-variante:([0-9a-zA-Z-]*)}",[self::class,"_schedaProdotto"]),
