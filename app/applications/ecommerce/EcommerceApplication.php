@@ -39,6 +39,7 @@ class EcommerceApplication extends Application {
                         ["label" => "Pagamenti","href" =>  "/backend/".static::$name."/metodi-di-pagamento/lista"],
                         ["label" => "Coupon","href" =>  "/backend/".static::$name."/coupon/lista"],
                         ["label" => "Attributi","href" =>   RouterService::getRoute(\applications\ecommerce\entities\Attributo::class.".list")->build()],
+                        ["label" => "Importa CSV", "href" =>  "/backend/".static::$name."/prodotti/importa"],
                     ]
                 ]
                 ]]
@@ -129,6 +130,7 @@ class EcommerceApplication extends Application {
 
         RouterService::addRoutesPrefixed(\applications\ecommerce\CouponApplication::declareRoutes(),"/backend/ecommerce/coupon/");
 
+        RouterService::addRoutesPrefixed(\applications\ecommerce\Prodotti::declareRoutes(),"/backend/ecommerce/prodotti/");
 
         RouterService::addRoute("ecommerce.emails.preview",new Route("","/backend/ecommerce/email/preview/{nome:(.*)}",[Ordini::class,"_previewEmail"]));
 

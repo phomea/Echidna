@@ -3,7 +3,9 @@
     <input type="hidden" value="{{ valore.id }}" name="id">
     <div class="form-group">
 
-        <input type="text" value="{{ valore.valore }}" name="valore" class="form-control">
+        Nome: <input type="text" value="{{ valore.valore }}" name="valore" class="form-control">
+
+        Nome File: <input type="text" value="{{ valore.nomefile }}" name="nomefile" class="form-control">
 
         <button type="submit" class="btn btn-xs btn-success mr-2" value="Aggiorna" name="action"><i class="fa fa-save"></i> </button>
 
@@ -28,7 +30,8 @@
                     <input type="hidden" value="{{ valore.id }}" name="id">
                     <div class="form-group">
 
-                            <input type="text" value="{{ valore.valore }}" name="valore" class="form-control">
+                            Nome: <input type="text" value="{{ valore.valore }}" name="valore" class="form-control">
+                            Nome File: <input type="text" value="{{ valore.nomefile }}" name="nomefile" class="form-control">
 
                         <button type="submit" class="btn btn-sm btn-light btn-icon mr-2" value="Aggiorna" name="action"><i class="fa fa-save"></i> </button>
 
@@ -60,7 +63,10 @@
                     <input type="hidden" name="id_ecommerce_attributo" value="{{ attributo.id }}">
                     <div class="form-group">
                         <div class="input-group mb-3">
-                            <input type="text" value="{{ valore.valore }}" class="form-control" name="valore">
+                            Nome: &nbsp;<input type="text" value="{{ valore.valore }}" class="form-control" name="valore">
+                        </div>
+                        <div class="input-group mb-3">
+                            Nome File: &nbsp;<input type="text" value="{{ valore.nomefile }}" class="form-control" name="nomefile">
                         </div>
                         <div class="input-group-append">
                             <button class="btn btn-xs btn-success mr-2" type="submit"><i class="fa fa-trash"></i>Aggiorna </button>
@@ -91,6 +97,7 @@
                     d.forEach(function( o ){
                         var v = valoreForm.clone();
                         v.find('[name="valore"]').val(o.valore);
+                        v.find('[name="nomefile"]').val(o.nomefile);
                         v.find('[data-id]').attr("data-id",o.id);
                         v.show();
 
@@ -112,6 +119,7 @@
            $(document).on("ecommerce.valore.aggiunto",function(){
                $("#modalInsertContent").modal("hide");
                $(".form-aggiungi").find('[name="valore"]').val("");
+               $(".form-aggiungi").find('[name="nomefile"]').val("");
                updateValues();
            })
            /*

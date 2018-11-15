@@ -52,7 +52,7 @@ class Attributo extends BackendApplication {
     }
 
     static function valoreInsert( $params=[], $data){
-        $sql = "INSERT into ecommerce_attributo_valore (id_ecommerce_attributo,valore) VALUES (:id_ecommerce_attributo,:valore)";
+        $sql = "INSERT into ecommerce_attributo_valore (id_ecommerce_attributo,valore,nomefile) VALUES (:id_ecommerce_attributo,:valore,:nomefile)";
         $r = Db::$connection->perform($sql,$data);
         exit;
     }
@@ -65,7 +65,8 @@ class Attributo extends BackendApplication {
     static function valoreUpdate( $params=[], $data){
 
         $sql = "UPDATE ecommerce_attributo_valore SET 
-              valore=:valore 
+              valore=:valore,
+              nomefile=:nomefile              
               WHERE id=:id";
 
         $r = Db::$connection->perform($sql,$data);
