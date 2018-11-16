@@ -110,9 +110,6 @@ class ApplicationsService extends \core\abstracts\Service {
 
 
 
-
-
-
                     if( is_string($e)) {
                         static::install($e);
                     }
