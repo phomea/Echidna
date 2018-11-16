@@ -1,0 +1,24 @@
+{% extends "base/template.twig" %}
+{% block content %}
+
+    <div class="container pt-3">
+
+        {% block titolo %}
+            <h2>Articoli in {{ categoria.nome }}</h2>
+        {% endblock %}
+        {% block  descrizione%}
+            {{ categoria.descrizione | raw }}
+        {% endblock %}
+        <div class="row">
+            <div class="col-md-8">
+                {% include "blog/list/default.twig" with{articoli:articoli}%}
+            </div>
+
+            <div class="col-md-4">
+                <aside class="main-aside">
+                    {% include "blog/sidebar.twig" %}
+                </aside>
+            </div>
+        </div>
+    </div>
+{% endblock %}

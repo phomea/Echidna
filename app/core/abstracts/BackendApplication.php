@@ -21,6 +21,7 @@ abstract class BackendApplication{
         return [];
     }
 
+
     static function getEntityClass(){
         $appllication = static::getApplication();
         return $appllication::getEntityClass();

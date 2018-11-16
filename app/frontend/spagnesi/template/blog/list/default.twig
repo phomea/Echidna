@@ -1,0 +1,39 @@
+<div class="lista-blog">
+{% for articolo in articoli %}
+
+
+        {% if expandFirst and loop.index == 1 %}
+
+            <div class="card">
+                <a href="{{ router_service.getRoute("frontend.blog.articolo").build({slug:articolo.slug}) }}">
+                    <figure class="preview">
+                        <img src="{{ articolo.anteprima }}">
+                    </figure>
+                </a>
+                <div class="card-body">
+            {% include "blog/_parts/articolobody.twig" with {articolo:articolo} %}
+                    <footer>
+                        <a href="{{ router_service.getRoute("frontend.blog.articolo").build({slug:articolo.slug}) }}">Vai all'articolo completo</a>
+                    </footer>
+
+                </div>
+            </div>
+
+        {% else %}
+            <article class="card articolo mb-3 {{ loop.index == 1 ? "expanded" : "" }}">
+                <a href="{{ router_service.getRoute("frontend.blog.articolo").build({slug:articolo.slug}) }}">
+                    <figure class="preview">
+                        <img src="{{ articolo.anteprima }}" data-transition="immagine-blog-articolo-{{ articolo.id }}">
+                        <h2>{{ articolo.titolo }}</h2>
+                    </figure>
+                </a>
+                <div class="card-body">
+                    <p>{{ articolo.riassunto }}</p>
+                    <footer>
+                        <a href="{{ router_service.getRoute("frontend.blog.articolo").build({slug:articolo.slug}) }}">Leggi l'articolo</a>
+                    </footer>
+                </div>
+            </article>
+        {% endif %}
+{% endfor %}
+</div>

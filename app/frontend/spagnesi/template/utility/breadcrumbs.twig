@@ -1,0 +1,21 @@
+{% if breadcrumbs %}
+    <!-- Breadcrumbs-->
+    <section class="breadcrumbs ">
+        <div class="container">
+            <div class="list">
+            <a href="/"><i class="fas fa-home"></i> </a>
+
+            {% for value in breadcrumbs %}
+                {% if value.nolink %}
+                    <span class="divider"></span>
+                    <a>{{ value.label }}</a>
+                {% else %}
+                    <span class="divider"></span>
+                    <a href="{{ value.url }}">{{ value.label }}</a>
+                {% endif %}
+            {% endfor %}
+
+        </div></div>
+    </section>
+    <!-- //end Breadcrumbs -->
+{% endif %}

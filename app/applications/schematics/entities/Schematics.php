@@ -35,6 +35,7 @@ class Schematics extends Model {
             */
             "vista" => Field::varchar(1)->editable(),
             "sedute" => Field::float()->editable(),
+            "descrizione"   =>  Field::text()->editable()->setTemplate("tinymce")
         ];
     }
 }

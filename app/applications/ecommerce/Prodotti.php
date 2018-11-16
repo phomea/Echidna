@@ -11,6 +11,7 @@ use core\Environment;
 use core\services\RouterService;
 
 class Prodotti extends BackendApplication {
+
     static function getApplication()
     {
         return EcommerceApplication::class;
