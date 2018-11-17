@@ -5,6 +5,7 @@ namespace applications\ecommerce\entities;
 use applications\ecommerce\gateway\Bonifico;
 use applications\ecommerce\gateway\Braintree;
 use applications\ecommerce\gateway\Contrassegno;
+use applications\ecommerce\gateway\Stripe;
 use core\db\Field;
 use core\Model;
 use core\services\Response;
@@ -16,6 +17,10 @@ class MetodoPagamento extends Model{
             [
                 "label" =>  "Braintree",
                 "value" =>  "braintree"
+            ],
+            [
+                "label" =>  "Stripe",
+                "value" =>  "stripe"
             ],
             [
                 "label" =>  "Contrassegno",
@@ -37,6 +42,9 @@ class MetodoPagamento extends Model{
         }
         if( $this->type == "bonifico"){
             return Bonifico::class;
+        }
+        if( $this->type == "stripe"){
+            return Stripe::class;
         }
     }
 

@@ -53,7 +53,41 @@ abstract class Application{
     }
 
     static function install(){
-        return [];
+        return static::entities();
     }
+
+    /**
+     * @return Model[]
+     */
+    static function entities(){
+        $child = new static;
+        $class_info = new \ReflectionClass($child);
+
+        $dir = dirname($class_info->getFileName());
+        $dirname = basename($dir);
+
+        $entities = [];
+
+        foreach (glob($dir."/entities/*.php") as $file)
+        {
+
+            $name = str_replace(".php","", basename($file) );
+            $path = str_replace(basename($file),"",$file);
+            $path = "/applications/".$dirname.str_replace($dir,"",$path);
+            $class = $path.$name;
+
+            $class = str_replace("/",'\\',$class);
+
+            /**
+             * @var $class Model
+             */
+            if( method_exists($class,"getEntity") ) {
+                $entities[] = $class::getEntity();
+            }
+        }
+
+        return $entities;
+    }
+
 
 }

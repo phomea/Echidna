@@ -3,25 +3,30 @@
 
                 <div class="col-12 p-5">
 
-                    <h2>Scegli rivestimento e colore</h2>
-                    {% for combinazione in combinazioni %}
-                        <form method="post" action="/carrello/aggiungi" data-index="{{ loop.index-1 }}">
-                            <input type="hidden" name="id_variante" value="{{ variante.id }}" >
-                            <input type="hidden" name="quantita" value="1">
-                            {% for valore in combinazione %}
-                                <input type="hidden" name="attributi[{{ valore.id_ecommerce_attributo }}]" value="{{ valore.id }}">
+                    <h2>Scegli il colore</h2>
+                    <div class="wrapper-scelta-varianti">
+                        <div class="lista-scelta-variante">
+                            {% for combinazione in combinazioni %}
+                                <form method="post" action="/carrello/aggiungi" data-index="{{ loop.index-1 }}">
+                                    <input type="hidden" name="id_variante" value="{{ variante.id }}" >
+                                    <input type="hidden" name="quantita" value="1">
+                                    {% for valore in combinazione %}
+                                        <input type="hidden" name="attributi[{{ valore.id_ecommerce_attributo }}]" value="{{ valore.id }}">
+                                    {% endfor %}
+                                </form>
                             {% endfor %}
-                        </form>
-                    {% endfor %}
-                    
-                    {% for combinazione in combinazioni %}
-                            <label class="label-scelta-variante">
-                                <img src="/media/tessuti/{% for valore in combinazione %}attr{{ valore.id_ecommerce_attributo }}_val{{ valore.id }}{% endfor %}.jpg">
-                                <span>{% for valore in combinazione %}{{ valore.valore }} {% endfor %}</span>
 
-                            </label>
-                    {% endfor %}
+                            {% for combinazione in combinazioni %}
+                                    <label class="label-scelta-variante" data-index="{{ loop.index-1 }}">
+                                        <figure>
+                                            <img src="/media/rivestimenti/{{ combinazione[0].nomefile }}">
+                                        </figure>
+                                        <span>{% for valore in combinazione %}{{ valore.valore }} {% endfor %}</span>
 
+                                    </label>
+                            {% endfor %}
+                        </div>
+                    </div>
                 </div>
 
             </div>

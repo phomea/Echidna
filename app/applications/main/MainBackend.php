@@ -12,9 +12,11 @@ use applications\main\entities\Widget;
 use applications\main\widgets\WidgetCard;
 use applications\main\widgets\WidgetFather;
 use core\abstracts\Application;
+use core\Model;
 use core\Route;
 use core\services\ApplicationsService;
 use core\services\Response;
+use core\services\RouterService;
 use core\services\SessionService;
 
 class MainBackend extends \core\abstracts\BackendApplication{
@@ -25,10 +27,36 @@ class MainBackend extends \core\abstracts\BackendApplication{
     {
         return [
             "dashboard" =>  (new Route("dashboard","",[self::class,"dashboard"])),
-            "widget.render" =>  (new Route("widget.render","widget/render/{id:([0-9]*)}",[self::class,"renderWidget"]))
+            "widget.render" =>  (new Route("widget.render","widget/render/{id:([0-9]*)}",[self::class,"renderWidget"])),
+            "backend.generic.list.entity"   =>  new Route("","listEntity",[self::class,"genericListEntity"])
         ];
     }
 
+
+
+
+    static function genericListEntity( $params ){
+
+        //var_dump(Widget::getEntityName());
+        $entity = $params['entity'];
+        $entityFound = null;
+
+        foreach (ApplicationsService::$applications as $application){
+            foreach($application::entities() as $ent){
+                 if( $ent::getEntityName() == $entity ){
+                     $entityFound = $ent;
+                 }
+            }
+        }
+
+       $route = RouterService::getRoute($entityFound::getEntity().".list" );
+
+        RouterService::dispatchRoute($route,$params);
+
+        $template = Response::getTemplateToUse();
+        echo $template->render();
+        exit;
+    }
 
     static function renderWidget( $params = [] ){
 

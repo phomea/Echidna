@@ -41,6 +41,20 @@
                                                 <input type="submit" value="Paga adesso {{ totale }}" class="btn btn-secondary btn-block">
                                             </form>
 
+                                        {% elseif metodo.type == 'stripe' %}
+                                            <form action="{{ router_service.getRoute("frontend.ecommerce.checkout.charge").build() }}" method="POST">
+                                                <input type="hidden" name="metodoDiPagamento" value="{{ metodo.id }}">
+                                                <script
+                                                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                                        data-key="{{ stripeKey }}"
+                                                        data-amount="{{ totale * 100 }}"
+                                                        data-name="Stripe.com"
+                                                        data-description="Widget"
+                                                        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                                                        data-locale="auto"
+                                                        data-zip-code="true">
+                                                </script>
+                                            </form>
 
                                         {% else %}
                                             <div>

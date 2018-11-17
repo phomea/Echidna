@@ -413,9 +413,39 @@ class RouterService extends Service{
 
     }
 
+    /**
+     * @param $route Route
+     * @return bool
+     */
+
+    static function dispatchRoute( $route , $params = [] ){
+
+
+        call_user_func([$route->callback[0],"init"]);
+
+        $r = array_merge($params,$_GET);
+
+        if( in_array(Request::getMethod(),["POST","PUT"] )){
+            $response = call_user_func_array($route->callback,
+                [
+                    "params"=>$r,
+                    "data"  =>  Request::getData()
+                ]
+            );
+
+        }else{
+            $response = call_user_func($route->callback,$r);
+        }
+
+        if($response) {
+            Response::add($response);
+            return true;
+        }
+        return false;
+    }
+
+
     static function dispatch(){
-
-
 
 
 
@@ -435,41 +465,11 @@ class RouterService extends Service{
 
 
             if( is_array($r) ){
-
-
-
-                if( $route->applyFilters( $query ) === false ) continue;
-
-
-
-                call_user_func([$route->callback[0],"init"]);
-
-
-
-
-
                 $response = false;
 
-                $r = array_merge($r,$_GET);
-                if( in_array(Request::getMethod(),["POST","PUT"] )){
-                    $response = call_user_func_array($route->callback,
-                        [
-                            "params"=>$r,
-                            "data"  =>  Request::getData()
-                        ]
-                    );
-
-                }else{
-                    $response = call_user_func($route->callback,$r);
-                }
-
-
-
-                if($response) {
-                    Response::add($response);
-
-                    return;
-                }
+                if( $route->applyFilters( $query ) === false ) continue;
+                $response = self::dispatchRoute($route , $r );
+                if($response) return;
 
 
             }

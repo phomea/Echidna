@@ -19,8 +19,7 @@ class AttributoEntita extends Model{
             "id"    =>  Field::primaryIndex(),
             "id_attributo"  =>  Field::int(),
             "id_entita"  =>  Field::int(),
-            "entita"  =>  Field::varchar(64)
-
+            "entita"  =>  Field::varchar(64),
         ];
     }
 

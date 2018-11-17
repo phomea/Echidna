@@ -12,6 +12,12 @@ use core\template\BaseTemplate;
 
 
 class ApplicationsService extends \core\abstracts\Service {
+
+    /**
+     * @var Application[]
+     */
+    static $applications = array();
+
     static function getName()
     {
         return "applications";
@@ -94,15 +100,13 @@ class ApplicationsService extends \core\abstracts\Service {
                  */
                 $item::init( $key );
 
+                static::$applications[] = $item;
 
 
 
                 if(Environment::is(Environment::DEV)){
 
                     $e = $item::getEntityClass();
-
-
-
 
 
 

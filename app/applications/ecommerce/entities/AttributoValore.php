@@ -19,7 +19,11 @@ class AttributoValore extends Model{
             "id"    =>  Field::primaryIndex(),
 
             "id_ecommerce_attributo"  =>  Field::int(),
-            "valore"    =>  Field::text()
+            "valore"    =>  Field::text(),
+            "nomefile"    =>  Field::text(),
+            "label"    =>  Field::text()
+
+
         ];
     }
 

@@ -1,0 +1,15 @@
+h3{
+	margin: 20px 0px; 
+	font-weight: bold;	
+}
+.theformCSV{ 
+	margin: 20px 0px; 
+}
+.theformCSV input[type="submit"]{
+	margin: 20px 0px;
+}
+
+a{ 
+	text-decoration: underline;
+	color: #51c126;
+}

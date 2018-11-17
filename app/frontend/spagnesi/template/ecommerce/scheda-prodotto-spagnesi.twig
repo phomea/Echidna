@@ -9,15 +9,16 @@
         <div class="row">
             <div class="carousel-container-preview">
                 <div class="owl-carousel owl-theme scheda-prodotto-carousel mb-5" data-nav>
-                    {% for immagine in prodotto.images %}
-                        <img src="{{ immagine.permalink }}" data-n="{{ loop.index }}">
+                    {% for immagine in prodotto.immagini %}
+                        <img src="{{ immagine.value }}" data-n="{{ loop.index }}">
                     {% endfor %}
                 </div>
             </div>
-            <div class="col-md-4 pt-5 descrizione-generale mt-5">
+            <div class="col-md-4 pt-5   mt-5" >
+                <div style="position:sticky;top:0">
                 {% if breadcrumbs %}
                     <!-- Breadcrumbs-->
-                    <section class="breadcrumbs mb-5">
+                    <section class="breadcrumbs mb-5"  >
                         <div class="container">
                             <a href="/">home</a>
 
@@ -44,6 +45,7 @@
                 <div>
                     {{ prodotto.descrizione|raw }}
                 </div>
+                </div>
             </div>
         </div>
 
@@ -58,7 +60,7 @@
                     <div class="col-md-8">
                         <h2>Prodotti disponibili : </h2>
 
-                        {% for variante in prodotto.varianti %}
+                        {% for versione in varianti %}
                             <div class="card variante mb-5">
                                 <div class="aggiunta-al-carrello">
                                     <span>Aggiunta del prodotto al carrello</span>
@@ -66,32 +68,42 @@
                                 </div>
 
                                 <div class="card-header">
-                                    <h3>{{ variante.nome }}</h3>
+
                                 </div>
                                 <div class="card-body">
                                     <form method="post" action="/carrello/aggiungi">
-                                        <input type="hidden" name="id_variante" value="{{ variante.id }}">
+
                                         <input type="hidden" name="quantita" value="1">
 
                                         <div class="row">
                                             <div class="col-2">
-                                                <img src="{{ variante.images[0].permalink }}">
+                                                <img src="/media/schematics/{{ versione.schematics.nome_file }}">
                                             </div>
 
 
                                             <div class="col-6">
-                                                {{ variante.descrizione }}
+                                                <h3>{{ versione.varianti[0].nome }}</h3>
+
+                                                {{ versione.varianti[0].descrizione | raw }}
                                             </div>
                                             <div class="col-4">
 
+                                                {% for variante in versione.varianti  %}
+                                                    <div data-idvariante="{{ variante.id }}" style="display: none;">
+                                                        <b>Rivestimento {{ variante.getAttributeValue("rivestimento") }}</b>
+                                                        <br>
+                                                        <small><a href="/rivestimenti-in-tessuto" target="_blank" data-href="popup">Vedi i colori disponibili</a></small>
 
-                                                <div>
-                                                    {% for attributo in variante.attributi %}
-                                                        <b>{{ attributo.attributo.nome }}</b> :{{ attributo.valore.valore }}
-                                                    {% endfor %}
-                                                </div>
-
-
+                                                        <span class="price">
+                                                            {{ variante.calculatePrice().real_price | price }}
+                                                        </span>
+                                                        {% if variante.calculatePrice().sconto > 0 %}
+                                                            <span class="old-price">
+                                                                 {{ variante.calculatePrice().old_price | price }}
+                                                            </span>
+                                                        {% endif %}
+                                                    </div>
+                                                {% endfor %}
 
 
 
@@ -107,12 +119,27 @@
                                         <hr>
                                         <div class="text-right">
 
-                                            <a href="" class="btn btn-white  "><i class="fa fa-info-circle"></i> Informazioni aggiuntive </a>
+                                            <label>Rivestimento:</label>
 
-                                            <a href="{{ router_service.getRoute("frontend.ecommerce.schedaprodotto.variante").build({
-                                                slug : prodotto.slug,
-                                                "slug-variante" : variante.sku
-                                            }) }}" class="btn btn-secondary vedi-variante"><i class="fa fa-cart-plus"></i> Scegli colore e aggiungi al carrello </a>
+                                                <select class="btn btn-outline-dark select-variant" >
+                                                    {% for variante in versione.varianti  %}
+                                                        <option name="id_variante" value="{{ variante.id }}">{{ variante.getAttributeValue("rivestimento") }}</option>
+                                                    {% endfor %}
+                                                </select>
+
+
+
+
+                                            <!--<a href="" class="btn btn-white  "><i class="fa fa-info-circle"></i> Informazioni aggiuntive </a>-->
+
+                                            {% for variante in versione.varianti  %}
+                                                <a href="{{ router_service.getRoute("frontend.ecommerce.schedaprodotto.variante").build({
+                                                    slug : prodotto.slug,
+                                                    "slug-variante" : variante.sku
+                                                }) }}" class="btn btn-secondary vedi-variante" data-idvariante="{{ variante.id }}" style="display: none;"><i class="fa fa-cart-plus"></i> Scegli colore e aggiungi al carrello </a>
+                                            {% endfor %}
+
+
 
 
                                         </div>
@@ -271,10 +298,12 @@
 
         $(document).on("click",".label-scelta-variante",function(){
             footer = $(this).closest(".card-footer");
-            index = $(this).index("label");
+            index = $(this).attr("data-index");
+
 
             $(this).closest(".card").addClass("loading");
-            footer.find('form[data-index="'+index+'"]').submit();
+            form = footer.find('form[data-index="'+index+'"]');
+            form.submit();
 
         })
     })(jQuery);

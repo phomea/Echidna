@@ -5,9 +5,12 @@ namespace frontend\spagnesi\applications\ecommerce;
 use applications\ecommerce\EcommerceFrontend;
 use applications\ecommerce\entities\Attributo;
 use applications\ecommerce\entities\AttributoValore;
+use applications\ecommerce\entities\Carrello;
+use applications\ecommerce\entities\LineItem;
 use applications\ecommerce\entities\Prodotto;
 use applications\ecommerce\entities\Variante;
 use applications\media\entities\Attachment;
+use applications\schematics\entities\Schematics;
 use core\Route;
 use core\RouteFilter;
 use core\services\Db;
@@ -60,7 +63,9 @@ class EcommerceSpagnesiFrontend extends EcommerceFrontend{
     static function _schedaProdotto($params = [])
     {
 
-        $r = parent::_schedaProdotto($params);;
+        $r = parent::_schedaProdotto($params);
+
+        if($r[1] == null ) return $r;
 /*
         $a = \applications\ecommerce\entities\Attributo::findBySlug("versione");
         $attributoVarianti = $a[0];
@@ -97,7 +102,20 @@ class EcommerceSpagnesiFrontend extends EcommerceFrontend{
 
 
 
+        $varianti = [];
 
+
+        foreach ($r[1]['prodotto']->varianti as $variante){
+            $versione = $variante->getAttributeValue("versione");
+            if(!isset($varianti[$versione])) $varianti[$versione]=[
+                "schematics"    =>  Schematics::query()->where('DMVER="'.$versione.'"')->getOne(),
+                "varianti"  => []
+            ];
+
+            $varianti[$versione]["varianti"][] = $variante;
+
+        }
+        $r[1]['varianti'] = $varianti;
 
         if( !$r )return false;
 
@@ -366,6 +384,25 @@ class EcommerceSpagnesiFrontend extends EcommerceFrontend{
             "variante"  =>  $variante[0],
             "combinazioni"  =>  $combinazioni
         ]];
+    }
+
+
+    static function _carrelloAggiungi($params=[],$data){
+
+
+
+        if(isset($data['attributi'])){
+            $lineitem = new LineItem($data['id_variante'],$data['quantita']);
+            $lineitem->additionalAttributes($data['attributi']);
+
+            $carrello = Carrello::get()->add($lineitem,false);
+
+        }else{
+            $carrello = Carrello::get()->createLineItem($data['id_variante'],$data['quantita'],false);
+        }
+
+        RouterService::getRoute("frontend.ecommerce.carrello")->go();
+
     }
 
 
