@@ -19,6 +19,7 @@ class MediaApplication extends Application {
         Response::addVariable([
             "menu"  =>  [
                 "gestionecontenuti" => [[
+                    "icon"  =>  "picture",
                     "label" =>  "Media",
                     "children"  =>  [
                         ["label" => "Lista", "href" =>  "/backend/media/lista"],

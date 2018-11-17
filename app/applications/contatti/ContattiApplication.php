@@ -32,7 +32,7 @@ class ContattiApplication extends Application {
             "menu"  =>  [
                 "gestionecontenuti" => [[
                     "label" =>  "Contatti",
-                    "icon"=>"address-book",
+                    "icon"=>"envelope",
                     "children"  =>  [
 
                         ["label" => "Form","href" =>  "/backend/contatti/form/lista"]

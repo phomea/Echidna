@@ -15,6 +15,7 @@ class HomepageApplication extends \core\abstracts\Application {
         Response::addVariable([
             "menu"  =>  [
                 "gestionecontenuti" => [[
+                    "icon"=>"home",
                     "label" =>  "Homepage",
                     "children"  =>  [
                         ["label" => "Gestisci", "href" =>  "/backend/".static::$name."/gestisci"],

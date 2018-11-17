@@ -17,6 +17,7 @@ use applications\ecommerce\gateway\Braintree;
 use applications\ecommerce\gateway\Contrassegno;
 use applications\ecommerce\gateway\Stripe;
 use applications\login\LoginApplication;
+use applications\main\entities\Notification;
 use applications\meta\entities\Meta;
 use Aura\Sql\Exception;
 use core\Config;
@@ -561,6 +562,8 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
 
 
         if( $ordine = $metodo->processOrder($cliente,$carrello,$data) ){
+            Notification::notify("Ordine effettuato",$ordine);
+            exit;
             $numero = $ordine->getNumeroOrdine();
             $email->data['numeroordine'] = $numero;
             $email->send();

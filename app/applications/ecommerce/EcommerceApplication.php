@@ -30,7 +30,7 @@ class EcommerceApplication extends Application {
             "menu"  =>  [
                 "gestionecontenuti" => [[
                     "label" =>  "E-commerce",
-                    "icon"  =>  "shopping-cart",
+                    "icon"  =>  "store",
                     "children"  =>  [
                         ["label" => "Ordini", "href" =>  "/backend/".static::$name."/ordini/lista"],
                         ["label" => "Catalogo","href" =>  "/backend/".static::$name."/catalogo"],

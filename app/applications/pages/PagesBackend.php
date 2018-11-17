@@ -182,7 +182,7 @@ class PagesBackend extends BackendApplication{
             'tabs',[
                 "tabs"  =>  [
                     "pagina"    =>  [
-                        "label" =>  "Proprietà pagina",
+                        "label" =>  "Pro    prietà pagina",
                         "content"   => $e
                     ],
                     "meta"    =>  [

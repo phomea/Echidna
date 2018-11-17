@@ -37,7 +37,7 @@ class Field{
 
     public $value ="";
     public $label = "";
-
+    public $hint = "";
     private $unique     =   false;
     private $editable   =   false;
 
