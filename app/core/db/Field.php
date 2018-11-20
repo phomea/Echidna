@@ -41,6 +41,10 @@ class Field{
     private $unique     =   false;
     private $editable   =   false;
 
+    public function setHint( $s ){
+        $this->hint = $s;
+        return $this;
+    }
     public function expandTemplateVar(){
 
         if(is_callable($this->templateVar)){

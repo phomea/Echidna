@@ -22,8 +22,8 @@ class Prodotto extends Model{
     {
         return [
             "id"    =>  Field::primaryIndex(),
-            "nome"  =>  Field::varchar(256)->editable(),
-            "slug"  =>  Field::varchar(64)->editable()->setTemplate("slug")->setTemplateVar("nome"),
+            "nome"  =>  Field::varchar(256)->editable()->setHint("Nome prodotto"),
+            "slug"  =>  Field::varchar(64)->editable()->setTemplate("slug")->setTemplateVar("nome")->setHint("Rappresentazione in url del prodotto ( si consiglia di utilizzare solamanete caratteri minuscoli, numeri e -)"),
             "sku"  =>  Field::varchar(512)->editable(),
             "descrizione"   =>  Field::text()->editable()->setTemplate("tinymce"),
             "id_ecommerce_tipologia_prodotto"   =>  Field::int()->editable(true)->setTemplate("select")->setTemplateVar(\applications\ecommerce\TipologiaProdotto::getForSelect()),

@@ -48,5 +48,9 @@ class MediaApplication extends Application {
     {
         return Media::class;
     }
+    static function install()
+    {
+        return [];
+    }
 
 }
