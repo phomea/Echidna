@@ -42,9 +42,11 @@
 
     <div class="badges">
 
+        {% if prodotto.variantePrimaria.calculatePrice.sconto > 0  %}
         <div class="sconto">
             <span>-{{ prodotto.variantePrimaria.calculatePrice().sconto_perc}}%</span>
         </div>
+        {% endif %}
 
     </div>
 </article>

@@ -20,11 +20,10 @@ class Bootstrap{
         $whoops = new \Whoops\Run;
         $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
         $whoops->register();
-
-
-        ApplicationsService::init();
-        RouterService::init();
         EmailService::init();
+        RouterService::init();
+        ApplicationsService::init();
+
 
 
     }

@@ -1,3 +1,10 @@
+####ECH_ASSETS####
+    RewriteEngine on
+
+    RewriteRule ^assets/img/(.*) /frontend/spagnesi/assets/img/$1 [L,QSA]
+    RewriteRule ^assets/js/(.*) /frontend/spagnesi/assets/js/$1 [L,QSA]
+####END_ECH_ASSETS###
+
 ##### expires section #####
 <IfModule mod_expires.c> 
     ExpiresActive On
