@@ -47,6 +47,7 @@ class Cache{
     }
 
     static function set($entita, $chiave,$value){
+
         global $echidna;
         $path = dirname(__DIR__).DS."cache";
         $md=md5($chiave);

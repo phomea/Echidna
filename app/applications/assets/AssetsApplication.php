@@ -5,6 +5,8 @@ namespace applications\assets;
 
 
 use core\abstracts\Application;
+use core\Environment;
+use core\services\Response;
 
 class AssetsApplication extends Application {
 
@@ -31,5 +33,6 @@ class AssetsApplication extends Application {
     {
 
     }
+
 
 }

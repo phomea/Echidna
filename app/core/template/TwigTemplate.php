@@ -3,9 +3,12 @@
 namespace core\template;
 
 use applications\pages\entities\Pagina;
+use core\abstracts\Application;
 use core\Environment;
+use core\services\ApplicationsService;
 use core\services\Request;
 use core\services\Response;
+use core\template\TwigLoader;
 use Twig_Extension_StringLoader;
 
 abstract class TwigTemplate extends BaseTemplate {
@@ -26,11 +29,13 @@ abstract class TwigTemplate extends BaseTemplate {
     public function __construct( $template,$response )
     {
         parent::__construct($template, $response );
-        $this->twigloader = new \Twig_Loader_Filesystem();
+        $this->twigloader = new TwigLoader();
 
 
 
         $tdd = $this->getTemplatesDirectory();
+
+
 
         if( is_array($tdd) ){
 
@@ -40,6 +45,10 @@ abstract class TwigTemplate extends BaseTemplate {
         }else{
             $this->twigloader->addPath($tdd);
         }
+
+        $this->twigloader->addPath(   Environment::$ROOT."/applications");
+
+
 
 
         $twigOptions = [
@@ -87,8 +96,15 @@ abstract class TwigTemplate extends BaseTemplate {
         */
     }
 
+
+
     public function render()
     {
+
+
+        $ex = explode("/",$this->template);
+
+
 
 
         if (!$this->response || !$this->template) return false;
@@ -112,6 +128,7 @@ abstract class TwigTemplate extends BaseTemplate {
             $this->template.".twig",
             $this->response
         );
+
     }
 
     static function renderFunction($callable,$args = []){

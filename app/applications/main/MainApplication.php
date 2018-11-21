@@ -41,6 +41,7 @@ class MainApplication extends Application {
 
     static function install()
     {
+
         return [
             Widget::class,
             Notification::class

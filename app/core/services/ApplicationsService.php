@@ -94,13 +94,12 @@ class ApplicationsService extends \core\abstracts\Service {
 
 
         if( count(self::$config) > 0 ){
-            foreach (self::$config as $key => $item) {
+            foreach (self::$config as $name => $item) {
                 /**
                  * @var $item Application
                  */
-                $item::init( $key );
 
-                static::$applications[] = $item;
+
 
 
 
@@ -126,6 +125,11 @@ class ApplicationsService extends \core\abstracts\Service {
                         }
                     }
                 }
+
+                $item::init( $name );
+                static::$applications[] = $item;
+
+
             }
         }
 

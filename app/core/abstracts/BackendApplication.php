@@ -146,15 +146,11 @@ abstract class BackendApplication{
 
     static function actionList( $params = [] ){
         $entity = static::getEntityClass();
-
-
-
         $data = $entity::query()->getAll();
-
 
         Response::addVariable(
             [
-                "title"         =>  "Prova",
+                "title"         =>  "Lista ".$entity::getEntityName(),
                 "breadcrumbs"   =>  [
                     ["link"=>"qwe","label"=>"qwe"]
                 ]
@@ -164,7 +160,8 @@ abstract class BackendApplication{
         return [
             "list",[
                 "data"      => $data,
-                "entity"    =>  $entity
+                "entity"    =>  $entity,
+                "fields"    =>  $entity::schema()
             ]
         ];
     }

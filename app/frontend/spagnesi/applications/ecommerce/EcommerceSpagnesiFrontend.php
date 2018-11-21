@@ -64,44 +64,7 @@ class EcommerceSpagnesiFrontend extends EcommerceFrontend{
     {
 
         $r = parent::_schedaProdotto($params);
-
         if($r[1] == null ) return $r;
-/*
-        $a = \applications\ecommerce\entities\Attributo::findBySlug("versione");
-        $attributoVarianti = $a[0];
-
-
-
-        $prodotto =$r[1]['prodotto'];
-
-        $varianti = [];
-
-        foreach ($attributoVarianti->possibili_valori as $key=>$value){
-
-
-            foreach ($prodotto->varianti as $item) {
-
-
-                foreach ( $item->attributi as $attributo ){
-
-
-                    if(!isset($varianti[$value['id']])){
-
-
-                        if( $value['id']== $attributo->valore->id ){
-                            $varianti[ $value['id'] ] = $item;
-                        }
-                    }
-                }
-            }
-
-        }
-
-        $r[1]['varianti'] = $varianti;
-*/
-
-
-
         $varianti = [];
 
 

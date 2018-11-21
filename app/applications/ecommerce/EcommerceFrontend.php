@@ -338,7 +338,7 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
 
 
         return [
-            "ecommerce/scheda-prodotto-spagnesi",[
+            "ecommerce/scheda-prodotto",[
                 "prodotto"  =>  $prodotto[0],
                 "attributi" =>  $attributi,
                 "variante"  =>  $variante
@@ -537,7 +537,8 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
                 "token"   =>  $braintree->generateToken( $cliente ),
                 "stripeKey" =>  $stripe->publishable_key,
                 "totale"            =>  $totale,
-                "metodiDiPagamento" =>  $metodiDiPagamento
+                "metodiDiPagamento" =>  $metodiDiPagamento,
+                "cliente"   =>  $cliente
             ]
         ];
     }
@@ -565,7 +566,7 @@ class EcommerceFrontend extends \core\abstracts\FrontendApplication{
 
         if( $ordine = $metodo->processOrder($cliente,$carrello,$data) ){
             Notification::notify("Ordine effettuato",$ordine);
-            exit;
+
             $numero = $ordine->getNumeroOrdine();
             $email->data['numeroordine'] = $numero;
             $email->send();

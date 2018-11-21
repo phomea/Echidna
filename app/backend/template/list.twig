@@ -1,6 +1,9 @@
 {% extends template_extend %}
 {% block content %}
 
+    {% if not fields %}
+        {% set fields =  data[0].schema()%}
+    {% endif %}
     <div class="animated fadeIn">
         <div class="row">
 
@@ -11,7 +14,8 @@
 
                         <div class="list-actions float-right">
 
-                            <a href="{{ router_service.getRoute(entity~".add").build(routeParams) }}" class="btn btn-sm btn-light btn-icon" data-toggle="tooltip" title="Aggiungi"><i class="fa fa-plus"></i></a>
+                            <!--<a href="{{ router_service.getRoute(entity~".add").build(routeParams) }}" class="btn btn-sm btn-light btn-icon" data-toggle="tooltip" title="Aggiungi"><i class="fa fa-plus"></i> Aggiungi</a>-->
+                            <a href="{{ router_service.getRoute(entity~".add").build(routeParams) }}" class="btn btn-sm btn-light " data-toggle="tooltip" title="Aggiungi"><i class="fa fa-plus"></i> <b>Aggiungi</b></a>
                         </div>
 
                     </div>
@@ -24,14 +28,14 @@
                                 <table id="bootstrap-data-table" class="table table-striped ">
                                     <thead>
 
-                                    <tr>
+                                    <tr style="position:sticky;top:0">
                                         {#{% for v in data[0]|cast_to_array  %}
                                         <th>{{ v[0] }}</th>
                                         {% endfor %}#}
 
                                         {% for key,field in fields %}
                                             {% if field.isEditable() %}
-                                                <th>{{ key }}</th>
+                                                <th>{{ field.label ? field.label : key }}</th>
                                             {% endif %}
                                         {% endfor %}
                                     </tr>
@@ -40,7 +44,40 @@
 
                                     {% for item in data %}
 
-                                    <tr>
+                                        <tr>
+                                            {% for key,field in fields %}
+
+                                                {% if field.isEditable() %}
+                                                <td>
+                                                    {% if item.schema()[v[0]].template == "media" %}
+                                                        <div class="form-group field-media">
+                                                            <input type="hidden" class="field-media-id" placeholder="Enter your company name" class="form-control" value="{{ v[1] }}">
+                                                            <figure>
+                                                                <img src="" class="field-media-img">
+                                                            </figure>
+                                                        </div>
+                                                    {% else %}
+
+
+
+                                                        <a href="{{ router_service.getRoute(item.getEntity()~".mod").build({id:item.id}) }}">
+                                                            <div style="max-width: 300px;max-height: 1.5em;overflow: hidden;">
+                                                                {% if attribute(item,key) is iterable %}
+                                                                {%  elseif attribute(item,key) is string  %}
+                                                                    {{ attribute(item,key) }}
+                                                                {% endif %}
+                                                            </div>
+                                                        </a>
+
+                                                    {% endif %}
+
+                                                </td>
+                                                {% endif %}
+
+                                        {% endfor %}
+                                    </tr>
+
+                                    <!--<tr>
                                         {% for v in item|cast_to_array  %}
 
                                                 <td>
@@ -69,7 +106,7 @@
                                                 </td>
 
                                         {% endfor %}
-                                    </tr>
+                                    </tr>-->
 
                                     {% endfor %}
                                     </tbody>

@@ -1,0 +1,250 @@
+{% extends "base/template.twig" %}
+
+
+{% block content %}
+    <main class="checkout">
+        {% include "ecommerce/checkout/parti/steps.twig" %}
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-8">
+                    <h2>Scegli il metodo ed effettua il pagamento</h2>
+
+                    <div id="accordion">
+                        {% for metodo in metodiDiPagamento %}
+                            <div class="card mb-2">
+                                <div class="card-body pl-4 pr-4">
+                                    <div class="row" data-toggle="collapse" data-target="#metodo{{ metodo.id }}">
+                                        <div class="col">
+                                            <label>{{ metodo.nome }}</label>
+                                        </div>
+
+                                        <div class="col text-right">
+
+                                            <strong>
+                                                {% if metodo.prezzo %}+ {{ metodo.prezzo }}€
+                                                {% else %}
+                                                    Gratis
+                                                {% endif %}
+                                            </strong>
+
+                                        </div>
+                                    </div>
+
+                                    <div id="metodo{{ metodo.id }}" class="collapse" data-parent="#accordion">
+                                        {% if metodo.type == 'braintree' %}
+                                            <form id="dropin-container" action="{{ router_service.getRoute("frontend.ecommerce.checkout.charge").build() }}" method="post">
+                                                <input type="hidden" name="metodoDiPagamento" value="{{ metodo.id }}">
+
+                                                <div id="payment-form"></div>
+                                                <input type="submit" value="Paga adesso {{ totale }}" class="btn btn-secondary btn-block">
+                                            </form>
+
+                                            <script src="https://js.braintreegateway.com/js/braintree-2.32.1.min.js"></script>
+
+                                            <script>
+
+
+
+                                                var button = document.querySelector('#submit-button');
+                                                var clientToken = "{{ token }}";
+
+
+                                                braintree.setup(clientToken, "dropin", {
+                                                    container: "payment-form"
+                                                });
+
+
+
+                                                /* function paga( payload ){
+
+                                                 $.ajax({
+                                                 url : "{{ router_service.getRoute("frontend.ecommerce.checkout.charge").build() }}",
+                                                 data :
+                                                 {
+                                                 nonce : payload.nonce,
+                                                 amount : {{ totale }}
+                                                 }
+                                                 });
+
+                                                 }
+
+
+                                                 braintree.dropin.create({
+                                                 authorization: '{{ token }}',
+                                                 container: '#dropin-container'
+                                                 }, function (createErr, instance) {
+
+                                                 $(button).on("click",function(){
+                                                 instance.requestPaymentMethod(function (err, payload) {
+                                                 // Submit payload.nonce to your server
+
+                                                 paga( payload );
+
+                                                 });
+                                                 })
+
+                                                 });
+                                                 */
+
+                                            </script>
+
+
+                                        {% elseif metodo.type == 'stripe' %}
+                                            <!-- <form action="{{ router_service.getRoute("frontend.ecommerce.checkout.charge").build() }}" method="POST">
+                                                <input type="hidden" name="metodoDiPagamento" value="{{ metodo.id }}">
+                                               <script
+                                                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                                        data-key="{{ stripeKey }}"
+                                                        data-amount="{{ totale * 100 }}"
+                                                        data-name="Stripe.com"
+                                                        data-description="Widget"
+                                                        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                                                        data-locale="auto"
+                                                        data-zip-code="true">
+                                                </script>
+
+                                            </form>-->
+
+                                            <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+                                            <hr>
+                                            <div>
+                                                {{ metodo.descrizione |raw }}
+                                            </div>
+
+                                            <form action="{{ router_service.getRoute("frontend.ecommerce.checkout.charge").build() }}" method="POST" id="payment-form"">
+                                                <input type="hidden" name="metodoDiPagamento" value="{{ metodo.id }}">
+
+                                                <div class="form-group">
+                                                    <label>Nome e cognome</label>
+                                                    <input class="form-control" type="text" data-stripe="name" placeholder="Palo Rossi"/>
+                                                </div>
+
+
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <div class="form-group">
+                                                            <label>Numero carta</label>
+                                                            <input class="form-control" type="text" data-stripe="number" placeholder="XXXX-XXXX-XXXX-XXXX"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label>CVC</label>
+                                                            <input class="form-control" type="text" size="4" data-stripe="cvc" placeholder="123"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>Scadenza</label>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <input type="text" size="2" data-stripe="exp-month" class="form-control" placeholder="mese"/>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <input type="text" size="4" data-stripe="exp-year" class="form-control" placeholder="anno"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <input type="hidden" name="emailAddress" value="{{ cliente.email }}" />
+
+                                                <button type="submit" class="btn btn-secondary">Paga {{ totale | price}}</button>
+
+                                            </form>
+
+
+
+
+
+
+                                        {% else %}
+                                            <hr>
+                                            <div>
+                                                {{ metodo.descrizione |raw }}
+                                            </div>
+                                            <form id="contrassegno-container" action="{{ router_service.getRoute("frontend.ecommerce.checkout.charge").build() }}" method="post">
+                                                <input type="hidden" name="metodoDiPagamento" value="{{ metodo.id }}">
+                                                <input type="submit" value="Effettua pagamento in bonifico" class="btn btn-secondary btn-block">
+                                            </form>
+                                        {% endif %}
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+
+                <div class="col-md-4">
+                    {% include "ecommerce/checkout/parti/riepilogo.twig" with { carrello:carrello }%}
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+    </main>
+{% endblock %}
+
+{% block scripts %}
+
+
+    <script type="text/javascript">
+
+        var StripeErrors = {
+            incorrect_number : "La carta inserita non è valida.",
+            expired_card    :   "La carta inserita è scaduta",
+            incorrect_cvc : "Non siamo riusciti a verificare il CVC, controlla per favore.",
+            processing_error : "C'è stato un errore generico nel processare il pagamento.",
+            card_declined   :   "La tua carta è stata rifiutata, prova con un altro metodo."
+        }
+        $(window).ready(function(){
+            if(Stripe == undefined ) return;
+            Stripe.setPublishableKey('{{ stripeKey }}');
+
+            $("#payment-form").on("submit",function (e) {
+                e.preventDefault();
+                onSubmitDo();
+            })
+            function onSubmitDo () {
+
+                Stripe.card.createToken( document.getElementById('payment-form'), myStripeResponseHandler );
+
+                return false;
+
+            };
+            function myStripeResponseHandler ( status, response ) {
+
+                console.log( status );
+                console.log( response );
+
+
+                if ( response.error ) {
+                    Alert.simple( StripeErrors[response.error.code]);
+                } else {
+                    var tokenInput = document.createElement("input");
+                    tokenInput.type = "hidden";
+                    tokenInput.name = "stripeToken";
+                    tokenInput.value = response.id;
+                    var paymentForm = document.getElementById('payment-form');
+                    paymentForm.appendChild(tokenInput);
+                    paymentForm.submit();
+                }
+
+            };
+        })
+
+    </script>
+
+
+{% endblock %}

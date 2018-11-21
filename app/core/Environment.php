@@ -12,7 +12,7 @@ class Environment {
 
     static $ROOT = "";
     static $CACHE_ROOT = "";
-
+    static $APPLICATION_ROOT = "";
     static $config;
 
     static function set( $env ){
@@ -32,6 +32,7 @@ class Environment {
         defined("DS") or define("DS",DIRECTORY_SEPARATOR);
         self::$ROOT = $root;
         self::$CACHE_ROOT = $root.DS."cache";
+        self::$APPLICATION_ROOT = $root."/applications";
 
         Response::init();
         Db::init();

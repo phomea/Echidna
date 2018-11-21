@@ -4,8 +4,8 @@ namespace applications\ecommerce\gateway;
 
 class Stripe extends Gateway {
 
-    public $secret_key = "sk_test_qZetIRLOLfQPfDxBHAKBnK4f";
-    public $publishable_key = "pk_test_dd2F4UToQQ3EGiAix7Eollue";
+    public $secret_key = "sk_test_orwhH9rqVUQR7PFlMwcmzUOR";
+    public $publishable_key = "pk_test_D1vXcuZxSRIb74GKbJhAbuSQ";
 
 
     public function __construct($cliente=null,$carrello=null)
@@ -37,7 +37,7 @@ class Stripe extends Gateway {
 
         $charge = \Stripe\Charge::create(array(
             'customer' => $customer->id,
-            'amount'   => $amount,
+            'amount'   => $amount*100,
             'currency' => 'eur'
         ));
 

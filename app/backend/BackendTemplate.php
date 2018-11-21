@@ -10,7 +10,6 @@ class BackendTemplate extends TwigTemplate {
     {
         return [
             __DIR__."/template",
-           Environment::$ROOT."/applications",
             Environment::$ROOT."/frontend/spagnesi/applications",
             Environment::$ROOT."/frontend/spagnesi/template"
         ];

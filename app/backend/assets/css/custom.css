@@ -626,9 +626,26 @@ aside.left-panel{
 
 .right-aside{
     display: table-cell;
-    width: 200px;
+    width: 220px;
     background: #f5f5f5;
     border-left: 1px solid #ddd;
+    position: relative;
+}
+
+
+.right-aside > .inner{
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.right-aside > .inner > * {
+    display: flex;
+    flex-direction: column;
 }
 
 body{
@@ -662,4 +679,108 @@ body{
 
 #userAreaToggle{
     margin: -2px -57px 0 30px;
+}
+
+.aside-card.collapse.show{
+    display: flex;
+    flex-direction: column;
+}
+.aside-card header{
+    padding: 1em;
+}
+.aside-card > section {
+    flex:1;
+    overflow: auto;
+}
+.aside-card-item{
+
+    background: #eee;
+    display: block;
+    padding: 0.7em 1em;
+    border-bottom: 1px solid #ddd;
+}
+
+.profile-preview{
+
+    padding: 1em;
+    border-bottom: 1px solid #ddd;
+}
+.profile-picture{
+    background: #000;
+    border-radius: 100%;
+    width: 7em;
+    height:7em;
+    margin:0 auto;
+    position: relative;
+}
+.profile-name{
+    font-size:1.5em;
+    text-align: center;
+}
+.profile-role{
+    font-size:1em;
+    text-align: center;
+    font-weight:normal;
+}
+
+.aside-widget{
+    border-bottom: 1px solid #ddd
+}
+.aside-widget .menu-item .lnr{
+    float: left;
+    margin-top: 6px;
+    width: 37px;
+    text-align: left;
+    z-index: 9;
+    font-size: 18px;
+}
+.aside-widget .menu-item{
+
+
+    background: none !important;
+    color: #c8c9ce !important;
+    display: inline-block;
+    font-family: 'Open Sans';
+    font-size: 14px;
+    line-height: 30px;
+    padding: 10px 20px;
+    position: relative;
+    width: 100%;
+    color: #333!important;
+}
+
+.profile-preview .logout{
+    position: absolute;
+    transform: translate(75%,-50%);
+    top: 50%;
+    right: 0px;
+    background: #e74c3c;
+    color: #fff;
+    border-radius:100%;
+    font-size:18px;
+    width: 2em;
+    height:2em;
+    line-height:2.2em;
+    text-align: center;
+    font-weight:bold;
+    box-shadow: 0px 1px 10px rgba(0,0,0,0.2);
+
+}
+
+.profile-preview .edit-profile{
+    position: absolute;
+    transform: translate(-75%,-50%);
+    top: 50%;
+    left: 0px;
+    background: #eee;
+    color: #000;
+    border-radius:100%;
+    font-size:18px;
+    width: 2em;
+    height:2em;
+    line-height:2.2em;
+    text-align: center;
+    font-weight:bold;
+    box-shadow: 0px 1px 10px rgba(0,0,0,0.2);
+
 }

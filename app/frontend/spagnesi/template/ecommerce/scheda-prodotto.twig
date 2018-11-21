@@ -1,69 +1,175 @@
 {% extends "base/template.twig" %}
 
 {% block content %}
-    <figure class="product-top-bg">
-        <img src="{{ prodotto.images[0].permalink }}">
-    </figure>
+
+
     <main id="scheda-prodotto">
+
+
+        <div class="row">
+            <div class="carousel-container-preview">
+                <div class="owl-carousel owl-theme scheda-prodotto-carousel mb-5" data-nav>
+                    {% for immagine in prodotto.immagini %}
+                        <img src="{{ immagine.value }}" data-n="{{ loop.index }}">
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-4 pt-5   mt-5" >
+                <div style="position:sticky;top:0">
+                {% if breadcrumbs %}
+                    <!-- Breadcrumbs-->
+                    <section class="breadcrumbs mb-5"  >
+                        <div class="container">
+                            <a href="/">home</a>
+
+                            {% for value in breadcrumbs %}
+                                {% if value.nolink %}
+                                    <span class="divider"><i class="fas fa-chevron-right"></i></span>
+                                    <a>{{ value.label }}</a>
+                                {% else %}
+                                    <span class="divider"><i class="fas fa-chevron-right"></i></span>
+                                    <a href="{{ value.url }}">{{ value.label }}</a>
+                                {% endif %}
+                            {% endfor %}
+
+                        </div>
+                    </section>
+                    <!-- //end Breadcrumbs -->
+                {% endif %}
+
+
+                <h2 class="product-name   pt-2">{{ prodotto.nome }}</h2>
+                <p>
+                    Codice prodotto :
+                </p>
+                <div>
+                    {{ prodotto.descrizione|raw }}
+                </div>
+                </div>
+            </div>
+        </div>
+
+
+
         <div class="container">
 
             <div>
 
 
                 <div class="row mt-5">
-                    <div class="col-8">
-                        <div class="owl-carousel owl-theme general-carousel mb-5" data-nav>
-                            {% for immagine in prodotto.images %}
-                                <img src="{{ immagine.permalink }}">
-                            {% endfor %}
-                        </div>
+                    <div class="col-md-8">
+                        <h2>Prodotti disponibili : </h2>
 
-                        {% for variante in varianti %}
+                        {% for versione in varianti %}
                             <div class="card variante mb-5">
+                                <div class="aggiunta-al-carrello">
+                                    <span>Aggiunta del prodotto al carrello</span>
+                                    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                                </div>
+
                                 <div class="card-header">
-                                    <h3>{{ variante.nome }}</h3>
+
                                 </div>
                                 <div class="card-body">
                                     <form method="post" action="/carrello/aggiungi">
-                                        <input type="hidden" name="id_variante" value="{{ variante.id }}">
+
                                         <input type="hidden" name="quantita" value="1">
 
                                         <div class="row">
-                                            <div class="col-3">
-                                                <img src="{{ variante.images[0].permalink }}">
+                                            <div class="col-2">
+                                                <img src="/media/schematics/{{ versione.schematics.nome_file }}">
                                             </div>
 
 
-                                            <div class="col-9">
+                                            <div class="col-6">
+                                                <h3>{{ versione.varianti[0].nome }}</h3>
 
+                                                {{ versione.varianti[0].descrizione | raw }}
+                                            </div>
+                                            <div class="col-4">
 
-                                                <div>
-                                                {% for attributo in variante.attributi %}
-                                                    {{ attributo.attributo.nome }}
-                                                    {{ attributo.valore.valore }}
+                                                {% for variante in versione.varianti  %}
+                                                    <div data-idvariante="{{ variante.id }}" style="display: none;">
+                                                        <b>Rivestimento {{ variante.getAttributeValue("rivestimento") }}</b>
+                                                        <br>
+                                                        <small><a href="/rivestimenti-in-tessuto" target="_blank" data-href="popup">Vedi i colori disponibili</a></small>
+
+                                                        <span class="price">
+                                                            {{ variante.calculatePrice().real_price | price }}
+                                                        </span>
+                                                        {% if variante.calculatePrice().sconto > 0 %}
+                                                            <span class="old-price">
+                                                                 {{ variante.calculatePrice().old_price | price }}
+                                                            </span>
+                                                        {% endif %}
+                                                    </div>
                                                 {% endfor %}
-                                                </div>
 
 
-                                                <button type="submit" class="btn btn-secondary"><i class="fa fa-cart-plus"></i> Aggiungi al carrello </button>
+
                                             </div>
 
                                         </div>
 
 
                                     </form>
+
+
+                                    <div class="azioni-iniziali">
+                                        <hr>
+                                        <div class="text-right">
+
+                                            <label>Rivestimento:</label>
+
+                                                <select class="btn btn-outline-dark select-variant" >
+                                                    {% for variante in versione.varianti  %}
+                                                        <option name="id_variante" value="{{ variante.id }}">{{ variante.getAttributeValue("rivestimento") }}</option>
+                                                    {% endfor %}
+                                                </select>
+
+
+
+
+                                            <!--<a href="" class="btn btn-white  "><i class="fa fa-info-circle"></i> Informazioni aggiuntive </a>-->
+
+                                            {% for variante in versione.varianti  %}
+                                                <a href="{{ router_service.getRoute("frontend.ecommerce.schedaprodotto.variante").build({
+                                                    slug : prodotto.slug,
+                                                    "slug-variante" : variante.sku
+                                                }) }}" class="btn btn-secondary vedi-variante" data-idvariante="{{ variante.id }}" style="display: none;"><i class="fa fa-cart-plus"></i> Scegli colore e aggiungi al carrello </a>
+                                            {% endfor %}
+
+
+
+
+                                        </div>
+                                    </div>
                                 </div>
+                                <div class="card-footer">
+
+                                </div>
+
+
+                                <div class="card-body azioni-finali">
+                                    <hr>
+                                    <div class="text-left">
+
+                                        <a href="" class="btn btn-white  annulla-scelta-variante"> Annulla </a>
+
+                                        <!--<a href="{{ router_service.getRoute("frontend.ecommerce.schedaprodotto.variante").build({
+                                            slug : prodotto.slug,
+                                            "slug-variante" : variante.sku
+                                        }) }}" class="btn btn-secondary vedi-variante"><i class="fa fa-cart-plus"></i> Aggiungi al carrello </a>
+-->
+
+                                    </div>
+                                </div>
+
                             </div>
                         {%  endfor %}
                     </div>
-                    <div class="col-4">
-                        <h2 class="product-name">{{ prodotto.nome }}</h2>
-                        <p>
-                            Codice prodotto :
-                        </p>
-                        <div>
-                            {{ prodotto.descrizione|raw }}
-                        </div>
+                    <div class="col-md-4 descrizione-generale">
+
                     </div>
                 </div>
 
@@ -71,119 +177,135 @@
 
 
             </div>
-            <div class="row mt-5">
-                <div class="col-8">
-                    <div class="owl-carousel owl-theme general-carousel" data-nav>
-                    {% for immagine in prodotto.images %}
-                        <img src="{{ immagine.permalink }}">
-                    {% endfor %}
-                    </div>
-                </div>
-                <div class="col-4">
-                    <h2 class="product-name">{{ prodotto.nome }}</h2>
-                    Codice prodotto : {% for variante in prodotto.varianti %}
-                        <span class="product-sku" style="display: none;" {% for attributo in variante.attributi %}
-                            data-attribute{{ attributo.attributo.id }}="{{ attributo.valore.id }}"
-                                {% endfor %}>{{ variante.sku }}</span>
-                    {% endfor %}
-
-
-                    <p class="product-description">{{ prodotto.descrizione }}</p>
-
-                    {% if prodotto.varianti|length > 1 %}
-
-                        <form id="form-add-variant" class="variante" method="post" action="/carrello/aggiungi">
-                            {% for variante in prodotto.varianti %}
-
-
-                                <input type="radio" name="id_variante" value="{{ variante.id }}"
-                                {% for attributo in variante.attributi %}
-                                    data-attribute{{ attributo.attributo.id }}="{{ attributo.valore.id }}"
-                                {% endfor %}>
-                            {% endfor  %}
 
 
 
 
-                                    <span class="prezzo">{{ variante.prezzo }}</span>
-
-                            <input type="hidden" name="quantita" value="1">
-
-                        </form>
-
-
-
-                        <form class="scelta-attributi">
-                            {#{% for attributo in attributi %}
-                                <label>{{ attributo.attributo.nome }}</label>
-                                <select name="{{ attributo.attributo.id }}" class="form-control">
-
-                                    <option value="">...scegli</option>
-
-                                    {% for valore in attributo.valori %}
-
-                                        <option value="{{ valore.valore.id }}" {% if valore.attributoprecedentevalore %}
-                                            data-idprec="{{ valore.attributoprecedenteid }}" data-valueprec="{{ valore.attributoprecedentevalore }}"
-                                        {% endif %}>{{ valore.valore.valore }}</option>
-                                    {% endfor %}
-
-                                </select>
-                            {% endfor %}
-                            #}
-
-
-                            {% for attributo in attributi %}
-
-                                {% if attributo.valori|length == 1 %}
-                                    <input type="hidden" name="{{ attributo.attributo.id }}" value="{{ attributo.valori[0].valore.id }}">
-
-
-                                {% else %}
-                                <label>{{ attributo.attributo.nome }}</label>
-                                <select name="{{ attributo.attributo.id }}" class="form-control">
-
-                                    <option value="">...scegli</option>
-
-                                    {% for valore in attributo.valori %}
-
-                                        <option value="{{ valore.valore.id }}"
-                                                {% if valore.parents %}
-                                                    {% for p in valore.parents %}
-                                                        data-attribute{{ p[0] }}="{{ p[1] }}"
-                                                    {% endfor  %}
-                                                {% endif %}
-                                                {% if valore.attributoprecedentevalore %}
-                                            data-idprec="{{ valore.attributoprecedenteid }}" data-valueprec="{{ valore.attributoprecedentevalore }}"
-                                                {% endif %}
-
-
-                                                {% if variante.gotAttributeValue( valore.valore.id) %}
-                                                    selected
-                                                {% endif %}
-                                        >{{ valore.valore.valore }}</option>
-                                    {% endfor %}
-
-                                </select>
-
-                                {% endif %}
-
-                            {% endfor %}
-                        </form>
-
-
-                    {% else %}
-                        {% set variante = prodotto.varianti[0] %}
-                        <form class="variante">
-                            <div class="prezzo">
-                                {{ variante.prezzo }}
-                            </div>
-                        </form>
-                    {% endif %}
-
-                    <button type="submit" class="btn btn-secondary" form="form-add-variant"><i class="fa fa-cart"></i> Aggiungi al carrello</button>
-                </div>
-            </div>
         </div>
     </main>
+
+
+
+    <div class="modal-variante">
+
+
+    </div>
 {% endblock %}
 
+
+
+{% block scripts %}
+
+    <script>
+    (function($){
+        $(".vedi-variante").on("click",function( e ){
+            e.preventDefault();
+            l = $(this).attr("href");
+
+            $(this).closest(".card").find(".card-footer").load(l,function(){
+                $(this).addClass("open");
+                $(this).closest(".card").addClass("scegliendo-variante");
+                $("body").addClass("scegliendo-variante");
+
+                o = $(this).closest(".card").offset();
+
+                console.log(o);
+
+                $("body,html").animate({
+                    scrollTop : o.top - $(window).height() / 2 + $(this).closest(".card").height() / 2
+                })
+
+            })
+
+        })
+
+        $(".annulla-scelta-variante").on("click",function( e ){
+            e.preventDefault();
+            $(".scegliendo-variante").removeClass("scegliendo-variante");
+            $(".card-footer").removeClass("open");
+        });
+
+
+
+
+        $(window).on("scroll",function(){
+            scroll = $(window).scrollTop();
+
+            diff = $(".descrizione-generale").height() - $(window).height();
+            diffScroll = $(".descrizione-generale").height() - ($(window).height() + scroll);
+
+            if(diffScroll > -200){
+                $(".descrizione-generale").css({
+
+                    "top" : -(-diffScroll + diff),
+
+                })
+            }else{
+                $(".descrizione-generale").css({
+
+                    "top" : -(200 + diff),
+
+                })
+            }
+
+            console.log( diff )
+        })
+
+
+        function resizeSchedaProdotto(){
+            wc = $(".col-md-8").width();
+            wc4 = $(".col-md-4").width();
+            wcc = $("main > .container").width();
+
+
+            wlato = ($(window).width() - wcc) / 2;
+
+            $(".carousel-container-preview").css({
+                "width" : (wlato + wc) + 15
+            });
+
+            $(".descrizione-generale").css({
+                "position": "fixed",
+                "top" : 0,
+                "left" : (wlato + wc) + 15,
+
+            })
+
+
+            $('.scheda-prodotto-carousel').each(function(){
+                var n = $(this).attr("data-n");
+                if(n == undefined ) n =1;
+
+                var nav =false;
+                if( $(this).attr("data-nav")!== undefined ){
+                    nav = true;
+                }
+                $(this).owlCarousel({
+                    loop:true,
+                    margin:10,
+                    nav:nav,
+                    items:n
+                });
+            });
+
+        }
+
+        $(window).on("resize",function () {
+            resizeSchedaProdotto()
+        });
+        resizeSchedaProdotto()
+
+
+        $(document).on("click",".label-scelta-variante",function(){
+            footer = $(this).closest(".card-footer");
+            index = $(this).attr("data-index");
+
+
+            $(this).closest(".card").addClass("loading");
+            form = footer.find('form[data-index="'+index+'"]');
+            form.submit();
+
+        })
+    })(jQuery);
+    </script>
+{% endblock %}

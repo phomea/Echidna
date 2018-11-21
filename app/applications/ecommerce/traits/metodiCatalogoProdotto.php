@@ -26,7 +26,8 @@ trait metodiCatalogoProdotto{
         return [
             "ecommerce/templates/prodotto.list",[
                 "data" => $data,
-                "entity"    =>  Prodotto::class
+                "entity"    =>  Prodotto::class,
+                "fields"    =>  Prodotto::schema()
             ]
         ];
     }
