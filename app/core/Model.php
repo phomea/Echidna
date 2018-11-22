@@ -247,6 +247,7 @@ abstract class Model {
                     if( isset($this->$fieldname)) {
                         $converted = $type::convertToDb($this->$fieldname);
 
+
                         foreach ($converted as $item) {
                             /*Attachment::query()
                                 ->where('entity = "'.$entity.'"')
@@ -265,6 +266,9 @@ abstract class Model {
 
 
                             $a->save();
+
+                         
+
                         }
                     }
                 }
@@ -355,14 +359,19 @@ abstract class Model {
 
 
 
+
+
             foreach (static::schema() as $key => $value) {
                 if ($value->getEntity()) {
-                    $r = Attachment::query()
-                        ->where('entity="' . static::class . '"')
+                    $query = Attachment::query();
+                    $query->where('entity="' . str_replace('\\','\\\\',static::class) . '"')
                         ->where("entity_id=" . $data['id'])
-                        ->where('type="' . $value->getEntity() . '"')
-                        ->where('field="' . $key . '"')
-                        ->getAll();
+                        ->where('type="' . str_replace('\\','\\\\', $value->getEntity()) . '"')
+                        ->where('field="' . $key . '"');
+
+
+                    $r = $query->getAll();
+
 
 
                     $data[$key] = $value->getEntity()::convertFromDb($r);
