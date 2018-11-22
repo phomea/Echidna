@@ -30,7 +30,9 @@ abstract class BackendApplication{
     static function declareRoutes(){
 
         $entity = static::getEntityClass();
-
+        if($entity == null){
+            return [];
+        }
         return [
             $entity::getEntity().".list"       =>  new Route("list",$entity::getListLink(),[static::class,"actionList"]),
             $entity::getEntity().".mod"        =>  new Route("mod",$entity::getModLink(),[static::class,"actionMod"]),
@@ -79,9 +81,18 @@ abstract class BackendApplication{
         $e = new $entity($params);
         $fields = static::generateFields($entity, $e );
 
+        Response::addVariable(
+            [
+                "title"         =>  "Aggiungi ".$entity::getEntityName(),
+                "breadcrumbs"   =>  [
+                    ["link"=>"qwe","label"=>"qwe"]
+                ]
+            ],true
+        );
+
         return [
             "mod",[
-                "title" =>  "Modifica",
+
                 "data"  =>  $e ,
                 "fields"    =>  $fields
             ]
@@ -99,12 +110,24 @@ abstract class BackendApplication{
 
         $fields = static::generateFields($entity,$data);
 
-
+        Response::addVariable(
+            [
+                "title"         =>  "Modifica ".$entity::getEntityName(),
+                "breadcrumbs"   =>  [
+                    ["link"=>"qwe","label"=>"qwe"]
+                ],
+                "application_info"  =>  [
+                    "icon"   =>  static::getIcon("actionMod"),
+                    "title"   =>  static::getTitle("actionMod"),
+                    "description"   =>  static::getDescription("actionMod")
+                ]
+            ]
+        );
 
 
         return [
             "mod",[
-                "title" =>  "Modifica",
+
                 "data"  =>  $data,
                 "fields"    =>  $fields,
                 "entity"    =>  $entity
@@ -153,6 +176,11 @@ abstract class BackendApplication{
                 "title"         =>  "Lista ".$entity::getEntityName(),
                 "breadcrumbs"   =>  [
                     ["link"=>"qwe","label"=>"qwe"]
+                ],
+                "application_info"  =>  [
+                    "icon"   =>  static::getIcon("actionMod"),
+                    "title"   =>  static::getTitle("actionList"),
+                    "description"   =>  static::getDescription("actionList")
                 ]
             ]
         );
@@ -206,5 +234,17 @@ abstract class BackendApplication{
         return $options;
     }
 
+    static function getDescription( $method = "" )
+    {
+        return "";
+    }
+    static function getTitle( $method = "" )
+    {
+        return "";
+    }
+    static function getIcon( $method = "" )
+    {
+        return "";
+    }
 
 }

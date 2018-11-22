@@ -113,8 +113,11 @@ abstract class TwigTemplate extends BaseTemplate {
             Response::go($this->response['data']['to']);
         }
 
+        $pagina = false;
+
         $query = Request::getQuery();
-        if($query == "" ) $query = "/";
+
+        if ($query == "") $query = "/";
         $pagina = Pagina::findRawBySlug($query);
 
         if($pagina)

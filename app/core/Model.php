@@ -20,6 +20,10 @@ abstract class Model {
        $this->buildProperties($data);
     }
 
+    static function getDescription(){
+        return "";
+    }
+
 
     public function buildProperties( $data = array() ){
         if( !empty($data) ){
@@ -133,6 +137,7 @@ abstract class Model {
             $field = $this->schema()[$var];
 
             if( $field == null ){
+
                 exit;
                 return;
             }
@@ -414,5 +419,15 @@ abstract class Model {
         }
         return $options;
     }
+
+
+    function expand(){
+    }
+    static function expandArray( $array = [] ){
+        foreach ($array as $key=>$value){
+            $value->expand();
+        }
+    }
+
 
 }

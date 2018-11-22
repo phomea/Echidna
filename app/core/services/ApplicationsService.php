@@ -77,6 +77,8 @@ class ApplicationsService extends \core\abstracts\Service {
 
                     if(Field::getCreateSql( $key, $value) ) {
                         $sql .= "ADD " . Field::getCreateSql($key, $value);
+
+
                         if ($db->query($sql)) {
                             //echo "++Colonna $table.$key aggiunta correttamente\n";
                         }
@@ -121,7 +123,13 @@ class ApplicationsService extends \core\abstracts\Service {
 
                         foreach ($entities as $key=>$value){
 
-                            static::install($value);
+                            try {
+                                static::install($value);
+                            }catch (\Exception $e){
+                                echo $e->getMessage();
+                                var_dump($item);
+                                exit;
+                            }
                         }
                     }
                 }

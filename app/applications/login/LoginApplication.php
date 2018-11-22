@@ -51,6 +51,11 @@ class LoginApplication extends \core\abstracts\Application{
             (new Route("backend.login","/backend/{a:(.*)}",[self::class,"actionLogin"]))->addFilter([self::class,"loginBackendFilter"])
         );*/
 
+
+       Response::addVariable([
+           "admin_user" =>  self::getUserLogged()
+       ]);
+
     }
 
 
@@ -107,5 +112,9 @@ class LoginApplication extends \core\abstracts\Application{
         }
     }
 
+    static function getUserLogged(){
+
+       return SessionService::get(self::LOGGER_USER);
+    }
 
 }

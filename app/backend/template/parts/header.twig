@@ -15,49 +15,34 @@
                 </div>
 
 
-
+                <h4 class="text-white d-inline-block">{{ title }}</h4>
 
             </div>
+
+
+
         </div>
 
         <div class="col-sm-5">
             <!--<a id="userAreaToggle" class="menutoggle pull-right"><i class="fa fa fa-angle-right"></i></a>-->
 
-            <div class="user-area dropdown float-right">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-user"></i>
-                </a>
+            <div class="info-popup dropdown float-right">
+                <a href="" class="btn btn-light btn-icon float-right" data-toggle="dropdown"><span class="lnr lnr-layers"></span> </a>
 
-                <div class="user-menu dropdown-menu">
-                    <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
+                <div class="user-menu dropdown-menu" style="width: 400px;height: 400px;background: #fff">
+                    <div class="pl-5 pr-5 pb-3 pt-3">
+                        <div class="text-center">
+                            <span class="lnr lnr-{{ application_info.icon }} h1"></span>
+                            <h5>{{ application_info.title }}</h5>
+                        </div>
+                        <hr>
 
-                    <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">{{ notifications | length }}</span></a>
-
-                    <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
-
-                    <a class="nav-link" href="/backend/logout"><i class="fa fa-power-off"></i>Logout</a>
-                </div>
-            </div>
-
-            <div class="language-select dropdown" id="language-select">
-                <a class="dropdown-toggle" href="#" data-toggle="dropdown"  id="language" aria-haspopup="true" aria-expanded="true">
-                    <i class="flag-icon flag-icon-us"></i>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="language" >
-                    <div class="dropdown-item">
-                        <span class="flag-icon flag-icon-fr"></span>
-                    </div>
-                    <div class="dropdown-item">
-                        <i class="flag-icon flag-icon-es"></i>
-                    </div>
-                    <div class="dropdown-item">
-                        <i class="flag-icon flag-icon-us"></i>
-                    </div>
-                    <div class="dropdown-item">
-                        <i class="flag-icon flag-icon-it"></i>
+                        <p>{{ application_info.description }}</p>
                     </div>
                 </div>
             </div>
+
+
 
         </div>
     </div>

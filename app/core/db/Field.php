@@ -52,6 +52,13 @@ class Field{
         }
 
     }
+
+
+    public function onUpdate( $s ){
+        $this->data['Extra'] = "on update ".$s;
+        return $this;
+    }
+
     public function setLabel( $l ){
         $this->label = $l;
         return $this;
@@ -258,11 +265,17 @@ class Field{
             case Field::TYPE_STRING:
             case Field::TYPE_TEXT:
                 $value = str_replace('\"','"',$value);
+                $value = str_replace('\\','\\\\',$value);
                 return '"'.str_replace('"','\"',$value).'"';
 
             case Field::TYPE_DATE:
-                $value = str_replace('\"','"',$value);
-                return '"'.str_replace('"','\"',$value).'"';
+                if( $value instanceof \DateTime){
+                    return '"'.$value->format("Y-m-d").'"';
+                }else {
+                    exit;
+                    $value = str_replace('\"', '"', $value);
+                    return '"' . str_replace('"', '\"', $value) . '"';
+                }
                 //return $value;
 
         }

@@ -125,14 +125,14 @@
     <div class="inner">
         <section class="profile-preview">
 
-            <figure class="profile-picture">
+            <figure class="profile-picture" style="background-image: url({{ admin_user.profile_img }});">
                 <a href="/backend/logout" class="logout"><span class="lnr lnr-exit"></span> </a>
-                <a href="/backend/logout" class="edit-profile"><span class="lnr lnr-pencil"></span> </a>
+                <a href="/backend/users/{{ admin_user.id }}" class="edit-profile"  ><span class="lnr lnr-pencil"></span> </a>
 
-                    <img>
+
                 </figure>
-            <h2 class="profile-name">Fabio Pocci</h2>
-            <h3 class="profile-role">Admin</h3>
+            <h2 class="profile-name">{{ admin_user.nome }} {{ admin_user.cognome }}</h2>
+            <h3 class="profile-role">{{ admin_user.type }}</h3>
         </section>
 
 

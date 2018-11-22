@@ -28,9 +28,20 @@ class TwigLoader extends \Twig_Loader_Filesystem{
 
         $ex = explode("/",$name);
 
+
         $r = parent::findTemplate($name,false);
 
+
         if(!$r){
+            $frontendtemplate = Response::getFrontendTemplate();
+
+            if(is_dir( $frontendtemplate::getBaseDirectory()."/applications/".$ex[0])){
+                $path = $ex[0];
+
+
+                $this->addPath(   $frontendtemplate::getBaseDirectory()."/applications/".$path);
+            }
+
             if(is_dir(Environment::$APPLICATION_ROOT."/".$ex[0])){
                 if(Response::$templateToUse == "frontendTemplate"){
                     $path = $ex[0]."/templates/frontend/";
@@ -43,6 +54,10 @@ class TwigLoader extends \Twig_Loader_Filesystem{
         }else{
             return $r;
         }
+
+
+
+
 
         array_shift($ex);
         $name = implode("/",$ex);

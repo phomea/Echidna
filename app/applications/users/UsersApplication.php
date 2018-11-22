@@ -28,7 +28,7 @@ class UsersApplication extends Application {
 
     static function getEntityClass()
     {
-        return User::class;
+        return \applications\login\entities\User::class;
     }
 
 
