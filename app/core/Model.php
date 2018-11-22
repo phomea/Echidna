@@ -234,9 +234,9 @@ abstract class Model {
                     $type = $item->getEntity();
 
                     $r = Attachment::query()
-                        ->where('entity="'.static::class.'"')
+                        ->where('entity="'.str_replace("\\","\\\\",static::class).'"')
                         ->where("entity_id=".$this->id)
-                        ->where('type="'.$type.'"')
+                        ->where('type="'.str_replace("\\","\\\\",$type).'"')
                         ->where('field="'.$fieldname.'"')
                         ->getAll();
                     if(!empty($r)){
@@ -267,7 +267,7 @@ abstract class Model {
 
                             $a->save();
 
-                         
+
 
                         }
                     }
