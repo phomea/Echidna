@@ -1,0 +1,54 @@
+{% extends template_extend %}
+    {% block beforeContent %}
+
+
+<form  action="">
+    {% endblock %}
+
+    {% block content %}
+
+
+
+
+
+
+        <div class="card">
+            <div class="card-header">
+                <h6>Inserisci i campi richiesti per questa ricerca</h6>
+            </div>
+            <div class="card-body">
+                {% for field in fields %}
+                    {{ field|raw }}
+                {% endfor %}
+                {% for a in askfor %}
+                    {% include "fields/default.twig" with{
+                        field:{
+                            label : a,
+                            value : "now"|date("Y-m-d")
+                        },
+                        property : a
+                    } %}
+                {% endfor %}
+
+
+
+
+            </div>
+
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <button type="submit" class="btn btn-success" > Effettua la ricerca</button>
+            </div>
+        </div>
+
+    {% endblock %}
+
+    {% block afterContent %}
+</form>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

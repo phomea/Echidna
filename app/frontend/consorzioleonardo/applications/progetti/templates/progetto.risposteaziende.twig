@@ -1,0 +1,79 @@
+<td class="card">
+
+
+    <tr class="card-body">
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ vista == "azienda" ? "Nome progetto" : "Nome azienda" }}</th>
+                <th>SI</th>
+                <th>NO</th>
+                <th>NON RISPOSTO</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for impresa in imprese %}
+
+                {% if impresa.progetto %}
+                    <tr>
+                        <td>
+
+
+
+                            {% if vista == "azienda" %}
+                            <a href="/backend/progetti/{{ impresa.progetto.id }}" class="btn btn-light">
+                                Progetto : <b>{{  impresa.progetto.nome }}</b>
+                                <span class="lnr lnr-chevron-right ml-2"></span>
+                            </a>
+
+                            {% else %}
+
+
+                                <a href="/backend/imprese/{{ impresa.azienda.id }}" class="btn btn-light">
+                                    Impresa : <b>{{  impresa.azienda.nome }}</b>
+                                    <span class="lnr lnr-chevron-right ml-2"></span>
+                                </a>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <input data-id="{{ impresa.id }}" type="radio" class="risposta-impresa" name="risposta_{{ impresa.id }}" id="risposta_{{ impresa.id }}" value="si" {{ impresa.risposta == "si" ? "checked" : "" }}>
+                        </td>
+                        <td>
+                            <input data-id="{{ impresa.id }}" type="radio" class="risposta-impresa" name="risposta_{{ impresa.id }}" id="risposta_{{ impresa.id }}" value="no" {{ impresa.risposta == "no" ? "checked" : "" }}>
+                        </td>
+                        <td>
+                            <input data-id="{{ impresa.id }}" type="radio" class="risposta-impresa" name="risposta_{{ impresa.id }}" id="risposta_{{ impresa.id }}" value="nonrisposto" {{ impresa.risposta == "nonrisposto" ? "checked" : "" }}>
+                        </td>
+                    </tr>
+
+                {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
+        <script>
+            $(".risposta-impresa").on("change",function () {
+                name = $(this).attr("name");
+                checkato = $('[name="'+name + '"]:checked');
+                valore =  checkato.val();
+                id = checkato.attr("data-id");
+
+                $.ajax({
+                    url : "{{ router_service.getRoute('backend.progetti.aggiornarisposta').build({id:progetto.id}) }}",
+                    method:"POST",
+                    data : {
+                        id : id,
+                        valore : valore
+                    },
+                    dataType : "json"
+                }).success(function(data){
+                    console.log(data);
+                })
+            })
+        </script>
