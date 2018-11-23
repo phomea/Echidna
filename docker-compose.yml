@@ -12,20 +12,19 @@ services:
        - db
      volumes:
        - ./app:/var/www/html/
-     container_name: spagnesi_web
+     container_name: echidna_web
 
 
   db:
     build: ./docker/mariadb
-    restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: pssrtcdn
       MYSQL_USER: root
-      MYSQL_PASSWORD: root
-      MYSQL_DATABASE: cartiamotwig
+      MYSQL_PASSWORD: pssrtcdn
+      MYSQL_DATABASE: echidnadb
     ports:
       - "3306:3306"
-    container_name: spagnesi_db
+    container_name: echidna_db
     
   phpmyadmin:
     image: corbinu/docker-phpmyadmin
@@ -34,8 +33,8 @@ services:
     ports:
       - "8181:80"
     environment:
-      MYSQL_USERNAME: admin
-      MYSQL_ROOT_PASSWORD: test
+      MYSQL_USERNAME: root
+      MYSQL_ROOT_PASSWORD: pssrtcdn
       MYSQL_PORT_3306_TCP_ADDR: db
 
   composer:

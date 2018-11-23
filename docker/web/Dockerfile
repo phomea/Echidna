@@ -6,6 +6,7 @@ FROM php:7.2-apache
 MAINTAINER Raphael Mäder <me@randm.ch>
 
 RUN a2enmod rewrite
+RUN a2enmod headers
 
 #install some base extensions
 RUN apt-get update && apt-get install -y \
