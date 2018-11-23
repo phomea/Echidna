@@ -256,6 +256,13 @@ class Field{
     function getInsertValue( $value ){
         switch ( $this->getData()["Type"] ){
 
+            case Field::TYPE_BOOLEAN:
+                if($value){
+                    return true;
+                }else{
+                    return false;
+                }
+                break;
             case Field::TYPE_INT_UNSIGNED:
             case Field::TYPE_INT:
             case Field::TYPE_FLOAT:
@@ -272,7 +279,7 @@ class Field{
                 if( $value instanceof \DateTime){
                     return '"'.$value->format("Y-m-d").'"';
                 }else {
-                    exit;
+
                     $value = str_replace('\"', '"', $value);
                     return '"' . str_replace('"', '\"', $value) . '"';
                 }

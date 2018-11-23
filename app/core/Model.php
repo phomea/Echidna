@@ -194,18 +194,23 @@ abstract class Model {
              */
             $fieldname = $key;
 
+
             if( isset($this->$fieldname) && !$item->getEntity()  ){
 
 
                 $chiavi[]   =   $fieldname;
                 $valori[]   =   $item->getInsertValue( $this->$fieldname );
+
+
             }
+
         }
 
         $sql.= implode(",",$chiavi);
         $sql.= ") VALUES (";
         $sql.=  implode(',',$valori);
         $sql.= ")";
+
 
 
 
@@ -321,6 +326,10 @@ abstract class Model {
             ]);
             return $r;
         }
+    }
+
+    function displayValue( $key ){
+        return $this->$key;
     }
 
     static function __set_state($an_array)

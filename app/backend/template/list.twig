@@ -64,7 +64,8 @@
                                                             <div style="max-width: 300px;max-height: 1.5em;overflow: hidden;">
                                                                 {% if attribute(item,key) is iterable %}
                                                                 {%  elseif attribute(item,key) is string  %}
-                                                                    {{ attribute(item,key) }}
+                                                                    {{ item.displayValue(key) }}
+
                                                                 {% endif %}
                                                             </div>
                                                         </a>
