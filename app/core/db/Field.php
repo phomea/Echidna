@@ -257,11 +257,10 @@ class Field{
         switch ( $this->getData()["Type"] ){
 
             case Field::TYPE_BOOLEAN:
-                if($value){
-                    return true;
-                }else{
-                    return false;
+                if(empty($value) || !$value){
+                    return 0;
                 }
+                return 1;
                 break;
             case Field::TYPE_INT_UNSIGNED:
             case Field::TYPE_INT:

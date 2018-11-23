@@ -4,6 +4,7 @@ namespace core;
 use applications\meta\entities\Meta;
 use applications\pages\entities\Contenuto;
 use core\services\Db;
+use core\services\Response;
 
 ;
 
@@ -190,8 +191,19 @@ class Query
         $query = $this->buildQuery();
 
         $risultato = [];
-        foreach ( Db::$connection->fetchAll($query) as $value){
-            $risultato[] = $this->getResults( $value );
+
+
+
+
+        if( $cached = Cache::get($this->entity,$this->query)){
+            return $this->getResults( $cached );
+        }else{
+            $r = Db::$connection->fetchAll($query);
+            Cache::set($this->entity,$this->query,$risultato);
+            foreach ( $r as $value){
+                $risultato[] = $this->getResults( $value );
+            };
+
         }
 
         return $risultato;
@@ -203,12 +215,13 @@ class Query
         $query = $this->buildQuery();
         //$this->query .= " limit 1 ";
 
-        /*if( $cached = Cache::get($this->entity,$this->query)){
-
-            return $cached ? $cached[0] : false;
-        }else{*/
-            $risultato = $this->getResults(  Db::$connection->fetchOne($query) );
-        //}
+        if( $cached = Cache::get($this->entity,$this->query)){
+            return $this->getResults( $cached );
+        }else{
+            $r = Db::$connection->fetchOne($query);
+            $risultato = $this->getResults(  $r );
+            Cache::set($this->entity,$this->query,$r);
+        }
         //$risultato = $this->getResults(Db::query($query,$this->entity));
 
 
@@ -246,6 +259,20 @@ class Query
 
     public function buildQuery()
     {
+
+        if(Response::$templateToUse !== null ) {
+
+            if(Response::$templateToUse == "frontendTemplate"){
+
+                $r = Db::$connection->perform("SHOW COLUMNS FROM `$this->table` LIKE '__active__';")->fetchAll();
+
+
+                if( count($r) > 0 )
+                    $this->where("__active__=1");
+            }
+
+        }
+
         $query = "SELECT ".$this->fields." FROM ";
         $query .= " `" . $this->table . "` where 1 ";
         if (isset($this->where["and"])) {
@@ -257,8 +284,9 @@ class Query
             foreach ($this->where["or"] as $valueOr) {
                 $query .= " or " . $valueOr;
             }
-        }
 
+
+        }
 
         if ($this->getOrder() != "") {
             switch (strtolower($this->order)) {

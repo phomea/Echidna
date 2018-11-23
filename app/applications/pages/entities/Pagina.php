@@ -23,9 +23,9 @@ class Pagina extends Model {
     {
         return[
             "id"    =>  Field::primaryIndex()->unique(),
-            "title"  =>  Field::string()->editable()->setTemplate("title"),
-            "slug" =>  Field::varchar( 100 )->unique()->editable()->setTemplate("slug")->setTemplateVar("title"),
-            "description" => Field::text()->editable(),
+            "title"  =>  Field::string()->editable()->setTemplate("title")->setHint("Il nome della pagina. Serve per riconoscerla nel backend, non viene utilizzato per i meta lato frontend."),
+            "slug" =>  Field::varchar( 100 )->unique()->editable()->setTemplate("slug")->setTemplateVar("title")->setHint("Identificativo per la pagina in formato URL. Può contenere solo caratteri, numeri e -"),
+            "description" => Field::text()->editable()->setHint("Una breve descrizione della pagina. Non viene utilizzata per creare i meta tag"),
             "content"   =>  Field::text()->editable()->setTemplate("tinymce"),
             "layout"    => Field::text()->editable()
         ];

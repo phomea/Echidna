@@ -3,20 +3,7 @@
 
 {% block additionalFields %}
 
-    <div class="form-group">
-        <label>Tipologia prodotto</label>
-        <select class="form-control" name="id_ecommerce_tipologia_prodotto">
-            {% for tipologia in tipologieProdotto %}
-                <option value="{{ tipologia.id }}" {{ tipologia.id == data.id_ecommerce_tipologia_prodotto ? 'selected' : ""  }}>{{ tipologia.nome }}</option>
-            {% endfor %}
-        </select>
-    </div>
 
-
-    <div class="form-group">
-        <label>Prezzo base</label>
-        <input class="form-control" value="{{ data.prezzo ? data.prezzo : data.tipologia.prezzo }}">
-    </div>
 
 
 

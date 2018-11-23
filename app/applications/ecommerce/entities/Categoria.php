@@ -20,7 +20,7 @@ class Categoria extends Model{
     {
         return [
             "id"    =>  Field::primaryIndex(),
-            "nome"  =>  Field::varchar(256)->editable(),
+            "nome"  =>  Field::varchar(256)->editable()->setHint("Nome della categoria, viene visualizzato nei menù e sul sito"),
             "slogan"         =>  Field::varchar(1024)->editable(),
             "slug"  =>  Field::varchar(64)->editable()->setTemplate("slug")->setTemplateVar("nome"),
             "descrizione"   =>  Field::text()->editable()->setTemplate("textarea"),

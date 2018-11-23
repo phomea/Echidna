@@ -76,6 +76,7 @@ class Request extends Service{
         return self::$get;
     }
     static function getPost(){
+
         if(isset(self::$headers['Content-Type'])){
             switch (self::$headers['Content-Type']){
                 case "application/json":

@@ -38,11 +38,13 @@ class RouterService extends Service{
     }
 
     public static function addRoute( $name, $route ){
+        $route->name = $name;
         self::$routes[$name] = $route;
     }
     public static function addRoutes( $routes ){
 
         foreach ($routes as $key => $route) {
+            $route->name = $key;
             self::$routes[$key] = $route;
         }
         //self::$routes += $routes;
@@ -61,8 +63,15 @@ class RouterService extends Service{
      * @param $routes Route[]
      * @param $prefix
      */
-    public static function addRoutesPrefixed( $routes , $prefix , $filter=null){
+    public static function addRoutesPrefixed( $routes , $prefix , $filter=null,$backend = true){
         foreach ($routes as $key => $value){
+
+            $value->name = $key;
+            if($backend){
+                $value->setBackend();
+            }else{
+                $value->setFrontend();
+            }
             if($filter != null){
                 $value->addFilter($filter);
             }
@@ -466,6 +475,8 @@ class RouterService extends Service{
 
             if( is_array($r) ){
                 $response = false;
+
+                $route->name = $key;
 
                 if( $route->applyFilters( $query ) === false ) continue;
                 $response = self::dispatchRoute($route , $r );

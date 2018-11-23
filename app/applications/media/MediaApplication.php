@@ -7,9 +7,11 @@ use applications\banner\BannerBackend;
 
 use applications\media\entities\Media;
 use applications\pages\entities\Pagina;
+use backend\Menu;
 use core\abstracts\Application;
 use core\Model;
 use core\services\Response;
+use core\services\RouterService;
 
 class MediaApplication extends Application {
     static function init($n)
@@ -28,6 +30,18 @@ class MediaApplication extends Application {
                 ]]
             ]
         ]);
+
+
+        $menu = new Menu("Media","picture");
+        $menu->addItem("Lista",RouterService::getRoute(Media::getEntity().".list"));
+        $menu->addItem("Aggiungi",RouterService::getRoute(Media::getEntity().".add"));
+
+
+
+        $backend = Response::getBackendTemplate();
+        $backend::addMenu($menu);
+
+
     }
 
 

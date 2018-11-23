@@ -20,9 +20,15 @@
                 {% if data.id %}
                 <div class="mod-actions float-right">
 
-                    <a href="" class="btn btn-sm btn-light btn-icon" data-toggle="tooltip" title="Clona"><i class="fa fa-plus"></i></a>
-                    <a href="{{ router_service.getRoute(data.getEntity()~".delete").build({id:data.id})}}" class="btn btn-sm btn-light btn-icon" data-toggle="tooltip" title="Elimina"><i class="fa fa-trash"></i></a>
-                    <a href="" class="btn btn-sm btn-light btn-icon" data-toggle="tooltip" title="Attiva o disattiva"><i class="fa fa-eye"></i></a>
+                    <a href="" class="btn btn-xs btn-light " data-toggle="tooltip" title="Clona"><i class="fa fa-plus"></i></a>
+                    <a href="{{ router_service.getRoute(data.getEntity()~".delete").build({id:data.id})}}" class="btn btn-xs btn-light confirm" data-toggle="tooltip" title="Elimina"><i class="fa fa-trash"></i> Elimina</a>
+
+
+                    {% if data.__active__ %}
+                        <a href="{{ router_service.getRoute(data.getEntity()~".deactivate").build({id:data.id})}}" class="btn btn-xs btn-light " data-toggle="tooltip" title="Attiva o disattiva"><i class="fa fa-eye"></i> Disattiva </a>
+                    {% else %}
+                        <a href="{{ router_service.getRoute(data.getEntity()~".activate").build({id:data.id})}}" class="btn btn-xs btn-light " data-toggle="tooltip" title="Attiva o disattiva"><i class="fa fa-eye"></i> Attiva </a>
+                    {% endif %}
                 </div>
                 {% endif %}
             </div>

@@ -27,6 +27,10 @@
                         return;
                     }
 
+                    if(o.type != undefined && o.type == "error"){
+                        error(o);
+                    }
+
 
                 })
                 .complete(function(o){
@@ -59,6 +63,10 @@ return;
     });
 })(jQuery);
 
+
+function error( error ){
+    alert(error.msg);
+}
 
 
 (function ($) {
@@ -98,4 +106,18 @@ return;
 
         })
     });
-})(jQuery)
+})(jQuery);
+
+
+(function ($) {
+    $(window).ready(function(){
+        $("a.confirm").on("click",function( e ){
+            e.preventDefault();
+            link = $(this).attr("href");
+            if( confirm("Confermi?") ){
+                window.location = link;
+            }
+        })
+    })
+
+})(jQuery);

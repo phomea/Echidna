@@ -24,9 +24,9 @@ class Prodotto extends Model{
             "id"    =>  Field::primaryIndex(),
             "nome"  =>  Field::varchar(256)->editable()->setHint("Nome prodotto"),
             "slug"  =>  Field::varchar(64)->editable()->setTemplate("slug")->setTemplateVar("nome")->setHint("Rappresentazione in url del prodotto ( si consiglia di utilizzare solamanete caratteri minuscoli, numeri e -)"),
-            "sku"  =>  Field::varchar(512)->editable(),
+            "sku"  =>  Field::varchar(512)->editable()->setHint("Codice identificativo del prodotto"),
             "descrizione"   =>  Field::text()->editable()->setTemplate("tinymce"),
-            "id_ecommerce_tipologia_prodotto"   =>  Field::int()->editable(true)->setTemplate("select")->setTemplateVar(\applications\ecommerce\TipologiaProdotto::getForSelect()),
+            "id_ecommerce_tipologia_prodotto"   =>  Field::int()->editable(true)->setTemplate("select")->setTemplateVar(\applications\ecommerce\TipologiaProdotto::getForSelect())->setLabel("Famiglia prodotto"),
             "visualizzazione"   =>  Field::int()->editable()->setDefault(0)->setTemplate("select")->setTemplateVar([
                 [
                     "label" => "Semplice",
@@ -36,9 +36,10 @@ class Prodotto extends Model{
                     "label" => "Complessa",
                     "value" =>  self::VISUALIZZAZIONE_COMPLESSA
                 ]
-            ]),
+            ])->setHint("Scegli se visualizzare il prodotto in modalità semplice ( con singola variante ) o complessa ( con più varianti )"),
             "immagini"  =>  Field::entity(AttachmentText::class,2)->editable()->setTemplate("select-multiple-images")->setLabel("Galleria immagini"),
-            "tag"  =>  Field::entity(AttachmentTag::class,2)->editable()->setTemplate("default")
+            "tag"  =>  Field::entity(AttachmentTag::class,2)->editable()->setTemplate("default")->setHint("Inserisci una serie di parole identificative del prodotto separate da punto e virgola (;)"),
+            "prova" =>  Field::text()->editable()
         ];
     }
 

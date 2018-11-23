@@ -1,0 +1,46 @@
+<div class="card">
+    <div class="card-body">
+
+
+
+        <form action="{{ router_service.getRoute("backend.users.permessi.update").build({id:user.id})}}" class="form-mod" method="POST">
+
+            <button type="submit" class="btn btn-success" ><i class="fa fa-save"></i> Salva</button>
+
+            <br>
+            <hr>
+            <p>
+            <input type="checkbox" id="seleziona-tutti" > Seleziona tutti
+            </p>
+            <hr>
+
+            {% set i=0 %}
+            <div class="permessi-disponibli">
+            {% for key,route in routes if (route.type == 0) %}
+                <p>
+                    <input type="hidden" name="routes[{{ i }}][name]" value="{{ key }}"
+                    <input type="hidden" name="routes[{{ i }}][value]" value="0">
+                    <input type="checkbox" name="routes[{{ i }}][value]" value="1" {{ permessi[key].isActive() ? "checked" : "" }}> {{ key }}
+                </p>
+
+
+                {% set i = i + 1 %}
+            {% endfor %}
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script>
+
+    $(window).ready(function () {
+        $("#seleziona-tutti").on("change",function () {
+            if($(this).is(":checked")){
+                $(".permessi-disponibli input").prop("checked",true);
+            }else{
+                $(".permessi-disponibli input").prop("checked",false);
+            }
+        })
+    })
+</script>

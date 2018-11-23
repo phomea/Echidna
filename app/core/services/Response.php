@@ -2,6 +2,7 @@
 namespace core\services;
 use applications\meta\entities\Meta;
 use applications\pages\entities\Pagina;
+use backend\BackendTemplate;
 use core\abstracts\Service;
 use core\Cache;
 use core\template\BaseTemplate;
@@ -143,6 +144,13 @@ class Response extends Service {
         self::setTemplate($r[0]);
         self::$mainResponse = $r[1];
         //self::addVariable($r[1]);
+    }
+
+    /**
+     * @return BackendTemplate
+     */
+    static function getBackendTemplate(){
+        return self::$templates['backendTemplate']->withVars( self::$template, self::$response );
     }
 
     /**

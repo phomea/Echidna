@@ -23,7 +23,7 @@
                 </li>
                 <h3 class="menu-title">Gestione contenuti</h3>
 
-                {% for m in menu.gestionecontenuti %}
+<!--                {% for m in menu.gestionecontenuti %}
 
 
                     <li class="menu-item-has-children dropdown" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
@@ -37,7 +37,24 @@
                         </ul>
                         {% endif %}
                     </li>
+                {% endfor %}-->
+
+                {% for m in backend_menu %}
+
+
+                    <li class="menu-item-has-children dropdown" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon lnr lnr-{{ m.icon?m.icon : "laptop" }}"></i>{{ m.label }}</a>
+                        {% if m.children %}
+                            <ul class="sub-menu children dropdown-menu">
+                                {% for children in m.children %}
+                                    <li><a href="{{ children.href }}">{{ children.label }}</a></li>
+                                {% endfor %}
+
+                            </ul>
+                        {% endif %}
+                    </li>
                 {% endfor %}
+
 
                 <!--<li class="active">
                     <a href="index.html"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>

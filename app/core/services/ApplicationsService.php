@@ -26,9 +26,11 @@ class ApplicationsService extends \core\abstracts\Service {
 
     static function install($e){
 
+
         $schema = $e::schema();
         $table = $e::getTable();
 
+        $schema['__active__'] = Field::boolean()->setDefault(1);
 
 
         $db = Db::getInstance();
@@ -87,6 +89,7 @@ class ApplicationsService extends \core\abstracts\Service {
             }
         }
 
+ ;
 
     }
 
