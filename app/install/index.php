@@ -36,7 +36,7 @@ if($template == "savedb"){
     $dbh = new DbPdo("mysql:host=$host", $user, $password);
 
 
-    $dbh->exec("CREATE DATABASE `$db`;
+    $dbh->exec("CREATE DATABASE IF NOT EXISTS `$db`;
                 CREATE USER '$user'@'localhost' IDENTIFIED BY '$pass';
                 GRANT ALL ON `$db`.* TO '$user'@'localhost';
                 FLUSH PRIVILEGES;")
