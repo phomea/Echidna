@@ -1,5 +1,5 @@
 
-# Docker LAMP
+# Echidna using Docker LAMP
 Linux + Apache + MariaDB (MySQL) + PHP 5 on Docker Compose. Mod_rewrite enabled by default.
 
 ## Instructions
@@ -13,5 +13,8 @@ To stop them, use this:
 ```bash
 $ docker-compose stop
 ```
-
-Feel free to make pull requests and help to improve this.
+Use data from docker-compose.yml to access the db :
+Db host => db
+Username => root
+Password => pssrtcdn
+Database => echidnadb
