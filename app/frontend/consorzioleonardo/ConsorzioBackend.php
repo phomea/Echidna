@@ -9,6 +9,7 @@ class ConsorzioBackend extends TwigTemplate {
     function getTemplatesDirectory()
     {
         return [
+            __DIR__."/template",
             Environment::$ROOT."/backend/template"
         ];
     }

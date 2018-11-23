@@ -40,7 +40,17 @@ class Ricerca extends Model{
             "_where"     =>  Field::text()->editable(),
             "_groupby"   =>  Field::text()->editable(),
             "askfor"    =>  Field::text()->editable(),
-            "query" =>  Field::text()->editable()
+            "query" =>  Field::text()->editable(),
+            "template"  =>  Field::text()->editable()->setTemplate("select")->setTemplateVar([
+                [
+                    "label" =>  "Template lista standard",
+                    "value"  =>  "RicercaTemplate"
+                ],
+                [
+                    "label" =>  "Impresa con risposte date",
+                    "value"  =>  "ImpresaTemplate"
+                ]
+            ])
         ];
     }
 
@@ -55,6 +65,7 @@ class Ricerca extends Model{
 
         $from = $this->entity::getTable();
 
+
         if($this->_select == "" ) $this->_select ="*";
 
         $query = "select ".$this->_select;
@@ -64,8 +75,11 @@ class Ricerca extends Model{
         if( $this->_join != null && $this->_join != "no"){
             $query .= " join ".$this->_join::getTable()." on ".$this->_joinon." ";
         }
+        $query .= " where 1=1 and deleted=0";
         if( $this->_where != "")
-            $query .= " where 1=1 and ".$this->_where;
+            $query .= "   and ".$this->_where;
+
+
 
         if( $this->_groupby != "") {
             $query .= " group by " . $this->_groupby;

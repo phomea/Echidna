@@ -6,6 +6,7 @@
         <table class="table table-striped">
             <thead>
             <tr>
+                <th style="width: 100px;white-space:nowrap">Data aggiornamento</th>
                 <th>{{ vista == "azienda" ? "Nome progetto" : "Nome azienda" }}</th>
                 <th>SI</th>
                 <th>NO</th>
@@ -18,6 +19,7 @@
 
                 {% if impresa.progetto %}
                     <tr>
+                        <td class="text-center">{{impresa.update_at}}</td>
                         <td>
 
 
@@ -28,13 +30,16 @@
                                 <span class="lnr lnr-chevron-right ml-2"></span>
                             </a>
 
+
                             {% else %}
 
 
                                 <a href="/backend/imprese/{{ impresa.azienda.id }}" class="btn btn-light">
                                     Impresa : <b>{{  impresa.azienda.nome }}</b>
                                     <span class="lnr lnr-chevron-right ml-2"></span>
+
                                 </a>
+
                             {% endif %}
                         </td>
                         <td>
