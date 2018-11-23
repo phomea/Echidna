@@ -199,4 +199,20 @@ class PagesBackend extends BackendApplication{
         ];
     }
 
+    static function getTitle($method = "")
+    {
+        return "Gestione pagine";
+    }
+
+    static function getIcon($method = "")
+    {
+        return "file-empty";
+    }
+
+    static function getDescription($method = "")
+    {
+        return "Gestisci le pagine del sito. Aggiungi pagine scegliendo un layout e inserisci i contenuti";
+    }
+
+
 }

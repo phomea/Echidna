@@ -41,7 +41,9 @@ abstract class BackendApplication{
 
             $entity::getEntity().".update"     =>  (new Route("update",$entity::getUpdateLink(),[static::class,'actionUpdate']))->method(Route::METHOD_PUT),
             $entity::getEntity().".insert"     =>  (new Route("insert",$entity::getAddLink(),[static::class,'actionInsert']))->method(Route::METHOD_POST),
-            $entity::getEntity().".delete"     =>  (new Route("insert",$entity::getModLink()."/delete",[static::class,'actionDelete']))
+            $entity::getEntity().".delete"     =>  (new Route("insert",$entity::getModLink()."/delete",[static::class,'actionDelete'])),
+            $entity::getEntity().".deactivate"     =>  (new Route("deactivate",$entity::getModLink()."/deactivate",[static::class,'actionDeactivate'])),
+            $entity::getEntity().".activate"     =>  (new Route("activate",$entity::getModLink()."/activate",[static::class,'actionActivate'])),
         ];
     }
 
@@ -232,6 +234,42 @@ abstract class BackendApplication{
             ];
         }
         return $options;
+    }
+
+    static function actionActivate($params){
+        $entity = static::getEntityClass();
+        if( isset($params['id']) ) {
+            $data = $entity::findById($params['id']);
+            $data->__active__ = 1;
+            $data->save();
+
+            RouterService::getRoute($entity::getEntity().".mod")->go([
+                "id"    =>  $params['id']
+            ]);
+            exit;
+        }
+    }
+
+
+    static function actionDeactivate($params){
+
+
+        $entity = static::getEntityClass();
+        if( isset($params['id']) ) {
+
+
+
+            $data = $entity::findById($params['id']);
+            $data->__active__ = 0;
+            $data->save();
+
+            RouterService::getRoute($entity::getEntity().".mod")->go([
+                "id"    =>  $params['id']
+            ]);
+
+
+            exit;
+        }
     }
 
     static function getDescription( $method = "" )

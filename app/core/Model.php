@@ -4,6 +4,7 @@ use applications\ecommerce\TipologiaProdotto;
 use applications\media\entities\Attachment;
 use core\db\Field;
 use core\services\Db;
+use core\services\Response;
 use core\services\RouterService;
 use frontend\melaverde\applications\etichetta\entities\Band;
 use frontend\melaverde\applications\etichetta\entities\Evento;
@@ -76,9 +77,21 @@ abstract class Model {
              */
             $field = static::schema()[$var];
             
-           
+            $where = "";
+
+            if(Response::$templateToUse !== null ) {
+
+                if(Response::$templateToUse == "frontendTemplate"){
+
+                    $r = Db::$connection->perform("SHOW COLUMNS FROM `$table` LIKE '__active__';")->fetchAll();
+                    if( count($r) > 0 )
+                        $where = "__active__=1 AND ";
+                }
+
+            }
+
             if( $field->isUnique()) {
-                $r = Db::getInstance()->fetchOne("select * from $table where $var = :arguments", [
+                $r = Db::getInstance()->fetchOne("select * from $table where $where $var = :arguments", [
                         "table" => self::getTable(),
                         "arguments" => $arguments
                     ]);
@@ -86,7 +99,7 @@ abstract class Model {
                 return static::getInstance($r);
             }else{
                 $r = [];                                         
-                foreach (Db::getInstance()->fetchAll("select * from $table where $var = :arguments", [
+                foreach (Db::getInstance()->fetchAll("select * from $table where $where $var = :arguments", [
                     "table" => self::getTable(),
                     "arguments" => $arguments
                 ]) as $key => $value){
@@ -224,8 +237,10 @@ abstract class Model {
         $valori = [];
         $primaryKey = "";
 
+        $schema = $this->schema();
+        $schema['__active__'] = Field::boolean()->setDefault(1);
 
-        foreach ($this->schema() as $key => $item) {
+        foreach ($schema as $key => $item) {
             $fieldname = $key;
             if( $item->getEntity()){
                 if( $item->relation == 2){
@@ -394,7 +409,10 @@ abstract class Model {
 
             $entity::getEntity().".update"     =>  (new Route("update",$prefixurl.$entity::getListLink(),[$application,$prefixmethod.'actionUpdate']))->method(Route::METHOD_PUT),
             $entity::getEntity().".insert"     =>  (new Route("insert",$prefixurl.$entity::getAddLink(),[$application,$prefixmethod.'actionInsert']))->method(Route::METHOD_POST),
-            $entity::getEntity().".delete"     =>  (new Route("delete",$prefixurl.$entity::getModLink()."/delete",[$application,$prefixmethod.'actionDelete']))
+            $entity::getEntity().".delete"     =>  (new Route("delete",$prefixurl.$entity::getModLink()."/delete",[$application,$prefixmethod.'actionDelete'])),
+
+            $entity::getEntity().".deactivate"     =>  (new Route("deactivate",$prefixurl.$entity::getModLink()."/deactivate",[$application,$prefixmethod.'actionDeactivate'])),
+            $entity::getEntity().".activate"     =>  (new Route("activate",$prefixurl.$entity::getModLink()."/activate",[$application,$prefixmethod.'actionActivate']))
         ];
     }
 
@@ -437,6 +455,7 @@ abstract class Model {
             $value->expand();
         }
     }
+
 
 
 }

@@ -6,6 +6,7 @@ use applications\banner\BannerBackend;
 use applications\blog\entities\Articolo;
 use applications\blog\entities\Categoria;
 use applications\pages\entities\Pagina;
+use backend\Menu;
 use core\abstracts\Application;
 use core\Model;
 use core\services\Response;
@@ -28,6 +29,14 @@ class BlogApplication extends Application {
                 ]]
             ]
         ]);
+
+
+        $menu = new Menu("Blog",self::getBackendApplication()::getIcon());
+        $menu->addItem("Articoli",RouterService::getRoute(Articolo::getEntity().".list"));
+        $menu->addItem("Categorie",RouterService::getRoute(Categoria::getEntity().".list"));
+
+        $backend = Response::getBackendTemplate();
+        $backend::addMenu($menu);
 
 
     }

@@ -29,6 +29,7 @@ class ApplicationsService extends \core\abstracts\Service {
         $schema = $e::schema();
         $table = $e::getTable();
 
+        $schema['__active__'] = Field::boolean()->setDefault(1);
 
 
         $db = Db::getInstance();

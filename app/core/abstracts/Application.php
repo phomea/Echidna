@@ -43,7 +43,7 @@ abstract class Application{
         if(!empty($backendApplication )) {
 
             //[LoginApplication::class,"loginBackendFilter"]
-            RouterService::addRoutesPrefixed($backendApplication::declareRoutes(),"/backend/".static::$name."/");
+            RouterService::addRoutesPrefixed($backendApplication::declareRoutes(),"/backend/".static::$name."/",null);
         }
     }
 

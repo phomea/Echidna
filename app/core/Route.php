@@ -11,6 +11,7 @@ class Route{
     public $filters = [];
 
 
+    public $type = 1; // 0 backend 1 frontend
 
     const METHOD_GET    =   "GET";
     const METHOD_POST   =   "POST";
@@ -31,6 +32,12 @@ class Route{
         $this->method = static::METHOD_GET;
     }
 
+    public function setFrontend(){
+        $this->type = 1;
+    }
+    public function setBackend(){
+        $this->type = 0;
+    }
 
     public function method( $method ){
         $this->method = $method;

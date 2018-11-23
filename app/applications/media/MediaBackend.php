@@ -41,6 +41,7 @@ class MediaBackend extends BackendApplication {
         );
     }
 
+
     static function delete($params){
         $path = Environment::$ROOT."/media" . $params['path'];
 

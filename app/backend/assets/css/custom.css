@@ -519,6 +519,12 @@ aside.left-panel{
     text-transform: capitalize;
     flex-direction: column;
 }
+.form-group label small{
+    opacity:0.4;
+}
+.form-group:hover label small,.form-group:focus-within label small{
+    opacity:1;
+}
 .input-group{
     background: #fff;
     display: flex;
@@ -797,4 +803,15 @@ body{
     right:-2px;
     left:auto !important;
     box-shadow: 0px 5px 20px rgba(0,0,0,0.2);
+}
+
+.header-menu .btn-icon{
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 20px;
+    height: 41px;
+    /* width: 43px; */
+    line-height: 38px;
 }

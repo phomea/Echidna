@@ -256,6 +256,12 @@ class Field{
     function getInsertValue( $value ){
         switch ( $this->getData()["Type"] ){
 
+            case Field::TYPE_BOOLEAN:
+                if(empty($value) || !$value){
+                    return 0;
+                }
+                return 1;
+                break;
             case Field::TYPE_INT_UNSIGNED:
             case Field::TYPE_INT:
             case Field::TYPE_FLOAT:

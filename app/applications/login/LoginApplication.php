@@ -2,7 +2,9 @@
 
 namespace applications\login;
 
+use applications\login\entities\RolePermission;
 use applications\login\entities\User;
+use applications\login\entities\UserRole;
 use core\Route;
 use core\RouteFilter;
 use core\services\Response;
@@ -60,7 +62,11 @@ class LoginApplication extends \core\abstracts\Application{
 
 
     static function actionLogout(){
+
         SessionService::set(self::LOGGED_KEY,false);
+        SessionService::delete(self::LOGGER_USER);
+
+
         RouterService::getRoute("backend.login")->go();
         exit;
     }
@@ -72,16 +78,23 @@ class LoginApplication extends \core\abstracts\Application{
     }
 
     static function actionAuthenticate( $get, $post ){
+
+
         $user = User::findByUsername( $post['username']);
+
         if( !empty($user) && $user[0]->password === self::generateHash( $post['password'] )){
-            SessionService::set(self::LOGGED_KEY,true);
-            SessionService::set(self::LOGGER_USER,$user[0]);
+            self::setUserLogged($user[0]);
             RouterService::getRoute("dashboard")->go([]);
         }else{
             RouterService::getRoute("backend.login")->go();
         }
 
 
+    }
+
+    static function setUserLogged( $user ){
+        SessionService::set(self::LOGGED_KEY,true);
+        SessionService::set(self::LOGGER_USER,$user);
     }
 
     static function actionLogin(){
@@ -115,6 +128,15 @@ class LoginApplication extends \core\abstracts\Application{
     static function getUserLogged(){
 
        return SessionService::get(self::LOGGER_USER);
+    }
+
+    static function install()
+    {
+        return [
+            User::class,
+            UserRole::class,
+            RolePermission::class
+        ];
     }
 
 }
