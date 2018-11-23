@@ -1,0 +1,24 @@
+{% extends "mod.twig" %}
+ {% block additionalFields %}
+
+     <div class="form-group">
+         <label for="company" class=" form-control-label">Aggiungi l'azienda ai progetti attivi?
+             <br><small>
+                 Così facendo l'impresa verrà aggiunta ai progetti attualmente attivi come se non avesse ancora risposta. Sarà poi possibile modificare le risposte date per ogni progetto presente.
+             </small>
+         </label>
+
+         <div class="d-flex">
+
+
+
+             <label class="switch" style="flex-basis: auto;align-self: center;">
+                 <input type="checkbox" name="aggiungiaiprogetti">
+                 <span class="slider round"><i class="active">Attivo</i><i class="nonactive">Non attivo</i> </span>
+             </label>
+
+         </div>
+     </div>
+
+
+ {% endblock %}

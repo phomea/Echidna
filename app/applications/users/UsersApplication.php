@@ -4,6 +4,7 @@ namespace applications\users;
 
 use applications\banner\entities\Banner;
 use applications\banner\BannerBackend;
+use applications\login\entities\RolePermission;
 use applications\pages\entities\Pagina;
 use applications\users\entities\User;
 use core\abstracts\Application;
@@ -48,8 +49,14 @@ class UsersApplication extends Application {
 
 
         RouterService::addRoutesPrefixed(UserRolesBackend::declareRoutes(),"/backend/users/ruoli/");
-
         RouterService::addFilter( (new RouteFilter())->setRegex("/backend/*")->setName("filter.permissions")->setCallback([UserRolesBackend::class,"_filterPermission"]));
+
+        RolePermission::$permissions[] = "backend.right_aside.show";
+        RolePermission::$permissions[] = "backend.right_aside.notifications.show";
+        RolePermission::$permissions[] = "backend.right_aside.profile.edit.show";
+        RolePermission::$permissions[] = "backend.right_aside.users";
+        RolePermission::$permissions[] = "backend.right_aside.users.roles";
+
 
     }
 

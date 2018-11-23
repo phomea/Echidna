@@ -5,6 +5,8 @@ use core\db\Field;
 use core\Model;
 
 class RolePermission extends Model{
+    static $permissions = [];
+
     static function schema()
     {
         return [

@@ -52,16 +52,17 @@ class UserRolesBackend extends \core\abstracts\BackendApplication{
         return "users";
     }
 
-    static function checkRoutePermission( $route, $userrole = null ){
+    static function checkRoutePermission( $route, $userRole = null ){
         if(!LoginApplication::getUserLogged() ) return true;
 
-        if($userrole == null ){
+        if($userRole == null ){
             $user = LoginApplication::getUserLogged();
             $userRole = $user->type;
         }
 
-
-
+        if($userRole == null ){
+            $userRole = 0;
+        }
 
 
 
@@ -85,6 +86,9 @@ class UserRolesBackend extends \core\abstracts\BackendApplication{
         $user = LoginApplication::getUserLogged();
         $userRole = $user->type;
 
+        if($userRole == null ){
+            $userRole = 0;
+        }
 
         $permission = RolePermission::query()->where("userrole_id=$userRole")->where('route="'.str_replace("\\","\\\\",$route->name).'"')->getOne();
 
@@ -155,6 +159,12 @@ class UserRolesBackend extends \core\abstracts\BackendApplication{
 
         $routes = RouterService::$routes;
 
+        foreach ( RolePermission::$permissions as $value) {
+            $r = new Route($value,"",[]);
+            $r->setBackend();
+            $routes[$value] = $r;
+        }
+
         $permessi = [];
 
 
@@ -163,9 +173,6 @@ class UserRolesBackend extends \core\abstracts\BackendApplication{
             $query = RolePermission::query();
 
             $permessi[$key] = $query->where("userrole_id=".$params['id'])->where('route="'.str_replace("\\","\\\\",$key).'"')->getOne();
-
-
-
 
         }
 

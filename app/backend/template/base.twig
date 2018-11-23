@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="/backend/theme/assets/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="/backend/theme/assets/css/font-awesome.min.css">
-<!--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">-->
+    <!--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
 
@@ -99,14 +99,14 @@
     <div class="content mt-3">
 
         {% block content_notification %}
-        <!--<div class="col-sm-12">
-            <div class="alert  alert-success alert-dismissible fade show" role="alert">
-                <span class="badge badge-pill badge-success">Success</span> You successfully read this important alert message.
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        </div>-->
+            <!--<div class="col-sm-12">
+                <div class="alert  alert-success alert-dismissible fade show" role="alert">
+                    <span class="badge badge-pill badge-success">Success</span> You successfully read this important alert message.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>-->
         {% endblock %}
 
 
@@ -124,62 +124,71 @@
 
 <!-- Right Panel -->
 
+{% if admin_user.checkPermission("backend.right_aside.show") %}
+    <aside class="right-aside">
+        <div class="inner">
+            <section class="profile-preview">
 
-<aside class="right-aside">
-    <div class="inner">
-        <section class="profile-preview">
+                <figure class="profile-picture" style="background-image: url({{ admin_user.profile_img }});">
+                    <a href="/backend/logout" class="logout"><span class="lnr lnr-exit"></span> </a>
 
-            <figure class="profile-picture" style="background-image: url({{ admin_user.profile_img }});">
-                <a href="/backend/logout" class="logout"><span class="lnr lnr-exit"></span> </a>
-                <a href="/backend/users/{{ admin_user.id }}" class="edit-profile"  ><span class="lnr lnr-pencil"></span> </a>
-
+                    {% if admin_user.checkPermission("backend.right_aside.profile.edit.show") %}
+                        <a href="/backend/users/{{ admin_user.id }}" class="edit-profile"  ><span class="lnr lnr-pencil"></span> </a>
+                    {% endif %}
 
                 </figure>
-            <h2 class="profile-name">{{ admin_user.nome }} {{ admin_user.cognome }}</h2>
-            <h3 class="profile-role">{{ admin_user.type }}</h3>
-        </section>
+                <h2 class="profile-name">{{ admin_user.nome }} {{ admin_user.cognome }}</h2>
+                <h3 class="profile-role">{{ admin_user.displayValue("type") }}</h3>
+            </section>
 
 
-        <div class="aside-widget">
-            <button class="btn btn-block" type="button" id="notification" data-toggle="collapse" data-target="#notification-dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="lnr lnr-alarm"></i>
-                Notifiche <span class="badge badge-danger">{{ notifications | length }}</span>
-            </button>
-            <div class="notification-dropdown collapse aside-card" id="notification-dropdown">
-                <header  >Ci sono {{ notifications | length }} notifiche non lette</header>
 
-                <section>
-                {% for notification in notifications %}
-                    <a class="aside-card-item" href="#">
-                        <i class="fa fa-check"></i>
-                        <span>{{  notification.message }}</span>
+            {% if admin_user.checkPermission("backend.right_aside.notifications.show") %}
+                <div class="aside-widget">
+                    <button class="btn btn-block" type="button" id="notification" data-toggle="collapse" data-target="#notification-dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="lnr lnr-alarm"></i>
+                        Notifiche <span class="badge badge-danger">{{ notifications | length }}</span>
+                    </button>
+                    <div class="notification-dropdown collapse aside-card" id="notification-dropdown">
+                        <header  >Ci sono {{ notifications | length }} notifiche non lette</header>
+
+                        <section>
+                            {% for notification in notifications %}
+                                <a class="aside-card-item" href="#">
+                                    <i class="fa fa-check"></i>
+                                    <span>{{  notification.message }}</span>
+                                </a>
+                            {% endfor %}
+                        </section>
+                    </div>
+                </div>
+            {% endif %}
+
+
+            {% if admin_user.checkPermission("backend.right_aside.users") %}
+                <div class="aside-widget">
+                    <a href="/backend/users/lista" class="menu-item">
+                        <span class="lnr lnr-users"></span> Gestisci utenti
                     </a>
-                {% endfor %}
-                </section>
-            </div>
+                </div>
+            {% endif %}
+
+            {% if admin_user.checkPermission("backend.right_aside.users.roles") %}
+                <div class="aside-widget">
+                    <a href="/backend/users/ruoli/lista" class="menu-item">
+                        <span class="lnr lnr-users"></span> Gestisci ruoli
+                    </a>
+                </div>
+            {% endif %}
+
+
         </div>
 
 
-        <div class="aside-widget">
-            <a href="/backend/users/lista" class="menu-item">
-                <span class="lnr lnr-users"></span> Gestisci utenti
-            </a>
-        </div>
-
-        <div class="aside-widget">
-            <a href="/backend/users/ruoli/lista" class="menu-item">
-                <span class="lnr lnr-users"></span> Gestisci ruoli
-            </a>
-        </div>
+    </aside>
 
 
-    </div>
-
-
-</aside>
-
-
-
+{% endif %}
 
 
 {% block scripts %}
@@ -196,7 +205,9 @@
         } );
 
 
-        $(".datapicker").datepicker();
+        $(".datapicker").datepicker({
+            format : "yyyy-mm-dd"
+        });
     })(jQuery);
 
 

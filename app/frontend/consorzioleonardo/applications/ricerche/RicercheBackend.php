@@ -6,6 +6,7 @@ namespace frontend\consorzioleonardo\applications\ricerche;
 use core\abstracts\BackendApplication;
 use core\Route;
 use frontend\consorzioleonardo\applications\ricerche\entities\Ricerca;
+use frontend\consorzioleonardo\applications\ricerche\templates\ricerche\RicercaTemplate;
 
 
 class RicercheBackend extends BackendApplication{
@@ -66,12 +67,14 @@ class RicercheBackend extends BackendApplication{
         }
         $risultati = $ricerca->doSearch();
 
-        return [
-            "list",[
-                "data"  =>  $risultati,
-                "title" =>  $ricerca->nome
-            ]
-        ];
+        /**
+         * @var $template RicercaTemplate
+         * @var $templateClass RicercaTemplate
+         */
+        $templateClass = "frontend\\consorzioleonardo\\applications\\ricerche\\templates\\ricerche\\".$ricerca->template;
+        $template =  new $templateClass($ricerca,$risultati);
+
+        return $template->render();
 
 
 

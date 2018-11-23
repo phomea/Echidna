@@ -21,7 +21,7 @@
                     {{ field|raw }}
                 {% endfor %}
                 {% for a in askfor %}
-                    {% include "fields/default.twig" with{
+                    {% include "fields/data.twig" with{
                         field:{
                             label : a,
                             value : "now"|date("Y-m-d")
