@@ -23,8 +23,11 @@ class PagesFrontend extends FrontendApplication {
 
 
         $p = Pagina::findBySlug( "/" );
+
         if(!$p){
-            return false;
+            return [
+                "pagine/home",[]
+            ];
         }
         $slider = new Slider();
         $slider->findByHook("home");

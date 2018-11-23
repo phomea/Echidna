@@ -2,7 +2,7 @@
 
 return [
     "templateEngines"   =>  [
-        "frontendTemplate"  =>  \frontend\spagnesi\SpagnesiTemplate::class,
+        "frontendTemplate"  =>  \frontend\standard\DefaultTemplate::class,
         "backendTemplate"   =>  \backend\BackendTemplate::class,
         "jsonTemaplate"     =>  \core\template\JsonTemplate::class
     ]

@@ -1,0 +1,86 @@
+{% extends "base.twig" %}
+
+
+{% block mainbody %}
+
+    <div class="navbar mb-0">
+        <figure class="navbar-brand">
+            <img src="/backend/assets/img/echidna.png">
+        </figure>
+
+        <div class="text-center mt-2">
+            <h5 style="font-weight: 800">Echidna Framework</h5>
+        </div>
+    </div>
+    <hr>
+
+
+    <div class="container " style="max-width: 60em">
+        <p class="pl-3">
+            Imposta i dati di connessione al database. <br>
+            Questo passaggio è obbligatorio per poter far funzionare Echidna.<br>
+            Assicurati di avere un database MySql a disposizione.
+        </p>
+        <form action="?step=savedb" method="POST">
+            <div class="form-group">
+                <label for="company" class=" form-control-label">Nome utente
+                    <br><small></small>
+                </label>
+
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
+                    </div>
+                    <input type="text" id="company" placeholder="Enter your company name" class="form-control" name="user" value="{{ configdb.user }}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="company" class=" form-control-label">Password
+                    <br><small></small>
+                </label>
+
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-user-secret"></i></span>
+                    </div>
+                    <input type="text" id="company" placeholder="Enter your company name" class="form-control" name="password" value="{{ configdb.password }}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="company" class=" form-control-label">Host
+                    <br><small></small>
+                </label>
+
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-database"></i></span>
+                    </div>
+                    <input type="text" id="company" placeholder="Enter your company name" class="form-control" name="host" value="{{ configdb.host }}">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="company" class=" form-control-label">Nome database
+                    <br><small></small>
+                </label>
+
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-database"></i></span>
+                    </div>
+                    <input type="text" id="company" placeholder="Enter your company name" class="form-control" name="db" value="{{ configdb.db }}">
+                </div>
+            </div>
+
+            <hr>
+
+            <button type="submit" class="btn btn-light" value="Salva dati"><i class="fa fa-database mr-3"></i> Testa connessione </button>
+            <button type="submit" class="btn btn-light float-right" value="Salva dati"><i class="fa fa-save mr-3"></i> Salva dati </button>
+
+        </form>
+    </div>
+
+{% endblock %}

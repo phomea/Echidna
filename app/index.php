@@ -13,12 +13,13 @@ if (!function_exists('getallheaders')) {
     }
 }
 
-require __DIR__ . '/vendor/autoload.php';
+    if(!file_exists(__DIR__."/vendor/autoload.php")){
+        echo "Run composer install";
+        exit;
+    }
+    require __DIR__ . '/vendor/autoload.php';
 
-
-
-\core\Bootstrap::init(__DIR__);
-
+    \core\Bootstrap::init(__DIR__);
 
 
 try {

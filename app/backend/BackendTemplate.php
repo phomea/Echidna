@@ -12,11 +12,15 @@ class BackendTemplate extends TwigTemplate {
 
     function getTemplatesDirectory()
     {
-        return [
-            __DIR__."/template",
-            Environment::$ROOT."/frontend/spagnesi/applications",
-            Environment::$ROOT."/frontend/spagnesi/template"
-        ];
+
+        $r = [ __DIR__."/template"];
+        if( file_exists( Response::getFrontendTemplate()::getBaseDirectory()."/frontend/spagnesi/applications"))
+            $r[] =  Response::getFrontendTemplate()::getBaseDirectory()."/frontend/spagnesi/applications";
+
+        if( file_exists( Response::getFrontendTemplate()::getBaseDirectory()."/frontend/spagnesi/template"))
+            $r[] =  Response::getFrontendTemplate()::getBaseDirectory()."/frontend/spagnesi/template";
+
+        return $r;
     }
 
     static function getBaseDirectory()

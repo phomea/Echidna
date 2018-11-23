@@ -85,6 +85,7 @@
 
 </head>
 <body>
+{% block mainbody %}
 
 {% include "parts/left-panel.twig" %}
 
@@ -192,6 +193,9 @@
 
 
 {% block scripts %}
+{% endblock %}
+
+
 {% endblock %}
 <script type="text/javascript">
     var menuclosed = localStorage.getItem("menustatus");
