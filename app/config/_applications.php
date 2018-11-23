@@ -7,6 +7,6 @@ return [
     "schematics"    =>  \applications\schematics\SchematicsApplication::class,
     "media"     =>  \applications\media\MediaApplication::class,
     "menu"     =>  \applications\menu\MenuApplication::class,
-    "contatti"  =>  \applications\contatti\ContattiApplication::class,
-    "blog"  =>  \applications\blog\BlogApplication::class
+    "contatti"  =>  \applications\contatti\ContattiApplication::class
+    //"blog"  =>  \applications\blog\BlogApplication::class
 ];

@@ -14,7 +14,9 @@ if (!function_exists('getallheaders')) {
 }
 
     if(!file_exists(__DIR__."/vendor/autoload.php")){
-        echo "Run composer install";
+        echo "Go in app directory and run 'php composer.phar install'";
+
+
         exit;
     }
     require __DIR__ . '/vendor/autoload.php';

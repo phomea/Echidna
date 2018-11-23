@@ -95,10 +95,20 @@ if($template == 'saveuser'){
     $user->type = $role->id;
     $user->save();
 
+
     header("Location: /backend/login");
     exit;
 }
 
+if( $template == "home"){
+    if(!file_exists($root."/backend/theme")) {
+
+        $backendTheme = new ZipArchive();
+        $backendTheme->open($root . "/backend/theme.zip");
+        $backendTheme->extractTo($root . "/backend");
+        $backendTheme->close();
+    }
+}
 //-------render
 echo $twig->render("$template.twig",[
     "configdb"  =>  $configdb,
