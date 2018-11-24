@@ -32,7 +32,7 @@ class Db extends Service {
         {
 
 
-            header("Location: /app/install");
+            header("Location: /install");
             // notifica in caso di errore nel tentativo di connessione
             echo $e->getMessage();
         }
