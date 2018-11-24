@@ -1,3 +1,4 @@
+![alt text](https://raw.githubusercontent.com/phomea/Echidna/master/app/backend/assets/img/echidna.png)
 # Echidna CMS and Framework
 Echidna aim to be an easy and fast framework to develop websites, management softwares and e-commerces.
 Echidna is based on applications and entities. Each application holds all the logic, entities, controllers
