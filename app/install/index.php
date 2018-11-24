@@ -41,6 +41,21 @@ if($template == "savedb"){
                 GRANT ALL ON `$db`.* TO '$user'@'localhost';
                 FLUSH PRIVILEGES;")
     or die(print_r($dbh->errorInfo(), true));
+
+    $dbh->exec("USE $db");
+    $dbh->exec('CREATE TABLE if not EXISTS settings (
+    id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    setting_key VARCHAR(30),
+    setting_value VARCHAR(30),
+    active INT(1)
+    )');
+
+
+    $dbh->exec('insert into settings (setting_key,setting_value) values("echidna.version","1")');
+
+
+
+
     header("Location: ?step=choseapplications");
     exit;
 }
@@ -65,6 +80,9 @@ if($template == 'saveapplications'){
 
     \core\Bootstrap::init($root);
 
+    if( \core\services\Db::getVersion() === false ){
+        \core\services\Db::$connection->query('INSERT into settings ("key","value") values("echidna.version","1")');
+    }
     foreach ($_POST as $key => $item) {
         $mock = \core\Environment::$ROOT."/applications/$key/mock/mockdata.sql";
         if( file_exists($mock) ){
