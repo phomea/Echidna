@@ -29,17 +29,13 @@ class Environment {
         if( isset(self::$config['mode']) )
             self::$current = self::$config['mode'];
 
+
+
+
         defined("DS") or define("DS",DIRECTORY_SEPARATOR);
         self::$ROOT = $root;
         self::$CACHE_ROOT = $root.DS."cache";
         self::$APPLICATION_ROOT = $root."/applications";
-
-        Response::init();
-        Db::init();
-        SessionService::init();
-        Request::init();
-
-
 
 
 

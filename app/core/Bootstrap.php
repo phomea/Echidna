@@ -13,8 +13,12 @@ use core\services\SessionService;
 class Bootstrap{
     static function init( $root ){
 
-
         Environment::init($root);
+        Response::init();
+        Db::init();
+        SessionService::init();
+        Request::init();
+
 
 
         $whoops = new \Whoops\Run;
