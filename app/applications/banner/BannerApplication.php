@@ -105,6 +105,8 @@ class BannerApplication extends Application {
 
     static function renderBanner( $params = [] ){
         $banners = Banner::findByHook( $params );
+
+
         if( count($banners)>0) {
             return [
                 "banner/default", [

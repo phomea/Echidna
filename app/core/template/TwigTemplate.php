@@ -136,9 +136,13 @@ abstract class TwigTemplate extends BaseTemplate {
 
     static function renderFunction($callable,$args = []){
 
+        $result = call_user_func_array($callable,$args);
 
-        list($template,$response) = call_user_func_array($callable,$args);
+
+        if( is_string($result)) return $result;
+        list($template,$response) = $result;
         $r =  new \Twig_Markup( Response::getNewFrontendTemplate( $template,$response)->render() , "utf-8" );
+
         return $r;
     }
     public function addFunction( $name, $callable ){
@@ -147,7 +151,6 @@ abstract class TwigTemplate extends BaseTemplate {
         $this->twig->addFunction(new \Twig_Function($name,function() use ($callable){
 
             $args = func_get_args();
-
             return static::renderFunction($callable,$args);
         } ,
             array(

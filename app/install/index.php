@@ -22,6 +22,13 @@ if( isset($_GET['step'])){
     $template = $_GET['step'];
 }
 
+if($template == "db" && isset($_ENV["MYSQL_HOST"])){
+    $_POST["host"] = $_ENV["MYSQL_HOST"];
+    $_POST["db"] = $_ENV["MYSQL_DATABASE"];
+    $_POST["user"] = $_ENV["MYSQL_USER"];
+    $_POST["password"] = $_ENV["MYSQL_PASSWORD"];
+    $template ="savedb";
+}
 
 
 if($template == "savedb"){
