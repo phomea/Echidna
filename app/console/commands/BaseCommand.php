@@ -19,6 +19,9 @@ class BaseCommand{
     function success( $m ){
         echo " * * ".$m." * *\n";
     }
+    function line( $m){
+        echo $m."\n";
+    }
 
     function error($m,$die = false){
         echo " !!! ".$m." !!!\n";
