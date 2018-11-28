@@ -20,4 +20,16 @@ class Menu{
         if( UserRolesBackend::checkRoutePermission($route) )
             $this->children[] = new MenuItem($label,$route);
     }
+
+    public function contains( $route ){
+
+
+        foreach ($this->children as $key => $value){
+            if( $route->name == $value->route->name ){
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

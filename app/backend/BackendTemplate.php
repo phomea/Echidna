@@ -36,6 +36,16 @@ class BackendTemplate extends TwigTemplate {
     public function render()
     {
 
+
+        if( isset($this->response['data']) ){
+            if(is_array($this->response['data']) && isset($this->response['data']['type']) && $this->response['data']['type'] == 'redirect'){
+                Response::go($this->response['data']['to']);
+                exit;
+            }
+        }
+
+
+
         $this->response['backend_menu'] = [];
 
         foreach (static::$menu as $menu){
