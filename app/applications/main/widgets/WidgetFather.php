@@ -102,7 +102,7 @@ class WidgetFather implements \ArrayAccess {
     }
 
     public function prepareToRender(){
-
+        $this->widget_title = static::getWidgetLabel();
         return $this->toArray();
     }
 

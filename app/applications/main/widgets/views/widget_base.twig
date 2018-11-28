@@ -1,4 +1,5 @@
 <div class="{{ dimension == 3 ? "col-sm-12" : ( dimension == 2 ? "col-sm-12 col-md-6" : "col-lg-4 col-md-4" ) }}">
+    <div class="float-left p-2 text-white pl-4">{{ widget_title }}</div>
     <div class="dropdown float-right">
         {% if admin_user.checkPermission("backend.widgets.edit") %}
         <button class="btn bg-transparent dropdown-toggle theme-toggle text-light" type="button" id="dropdownMenuButton" data-toggle="dropdown">

@@ -8,6 +8,7 @@ use applications\main\widgets\WidgetFather;
 use applications\pages\entities\Pagina;
 use core\db\Field;
 use core\services\Response;
+use core\services\RouterService;
 
 class WidgetAggiungiNuovaPagina extends WidgetCard {
 
@@ -15,9 +16,14 @@ class WidgetAggiungiNuovaPagina extends WidgetCard {
     public $label = "Aggiungi nuova pagina";
     public function prepareToRender(){
 
+        $opzioniPagina = [];
 
-        $this->count = Pagina::query()->count();
-        $this->inactivePages = Pagina::query()->where("__active__=0")->count();
+        if($this->layout != "nonsettare"){
+            $opzioniPagina['layout'] =  $this->layout;
+        }
+
+        $this->href = RouterService::getRoute(Pagina::getEntity().".insert")->build();
+
 
        return parent::prepareToRender();
     }
