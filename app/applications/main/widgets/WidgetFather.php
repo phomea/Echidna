@@ -4,6 +4,7 @@ namespace applications\main\widgets;
 
 
 use applications\main\entities\Widget;
+use core\db\Field;
 
 class WidgetFather implements \ArrayAccess {
 
@@ -13,10 +14,29 @@ class WidgetFather implements \ArrayAccess {
     const DIMENSION_MEDIUM = 2;
     const DIMENSION_BIG = 3;
 
+
+    public static function schema(){
+        return [
+            "dimension" =>  Field::text()->editable()->setTemplate("select")->setTemplateVar([
+                ["label"=>"Grande","value"=> self::DIMENSION_BIG],
+                ["label"=>"Medio","value"=> self::DIMENSION_MEDIUM],
+                ["label"=>"Piccolo","value"=> self::DIMENSION_SMALL]
+            ])
+        ];
+    }
+
+    protected  static function mergeSchema( $s ){
+        return array_merge( self::schema() , $s );
+    }
     public $actions = [
         ["label"    =>  "Rimuovi","action"  =>  "remove"],
         ["label"    =>  "Modifica","action"  =>  "edit"]
     ];
+
+
+    static function getTemplate(){
+        return "";
+    }
 
     static function getEntity(){
         return Widget::class;
@@ -63,23 +83,27 @@ class WidgetFather implements \ArrayAccess {
         return "widget.father";
     }
 
-    static function getSchema(){
 
-    }
 
     static function fromJson( $json ){
         $j = json_decode($json,true);
 
 
+
         $widget = new static();
         if($j) {
             foreach ($j as $key => $value) {
-                if (property_exists($widget, $key)) {
+                //if (property_exists($widget, $key)) {
                     $widget->$key = $value;
-                }
+                //}
             }
         }
         return $widget;
+    }
+
+    public function prepareToRender(){
+
+        return $this->toArray();
     }
 
 }

@@ -1,12 +1,14 @@
-<div class="col-sm-{{ dimension == 3 ? "col-sm-12" : ( dimensione == 2 ? "col-xl-6" : "col-lg-4 col-md-4" ) }}">
+<div class="{{ dimension == 3 ? "col-sm-12" : ( dimension == 2 ? "col-sm-12 col-md-6" : "col-lg-4 col-md-4" ) }}">
     <div class="dropdown float-right">
+        {% if admin_user.checkPermission("backend.widgets.edit") %}
         <button class="btn bg-transparent dropdown-toggle theme-toggle text-light" type="button" id="dropdownMenuButton" data-toggle="dropdown">
             <i class="fa fa-cog"></i>
         </button>
+        {% endif %}
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <div class="dropdown-menu-content">
-                <a class="dropdown-item" href="#"><i class="fa fa-edit mr-2"></i> Modifica</a>
-                <a class="dropdown-item" href="#"><i class="fa fa-trash mr-2"></i> Rimuovi</a>
+                <a class="dropdown-item" href="{{ router_service.getRoute(widget.getEntity()~".mod").build({id:widget.id}) }}"><i class="fa fa-edit mr-2"></i> Modifica</a>
+                <a class="dropdown-item" href="{{ router_service.getRoute(widget.getEntity()~".delete").build({id:widget.id}) }}"><i class="fa fa-trash mr-2"></i> Rimuovi</a>
             </div>
         </div>
     </div>

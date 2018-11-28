@@ -1,26 +1,35 @@
 {% extends "base.twig" %}
 
+{% if admin_user.checkPermission("backend.widgets.edit") %}
+    {% set headermenu_right_buttons = '
+        <a href="javascript:void(0)" data-toggle="collapse" data-target="#widget-disponibili" class="btn-icon float-right ml-4" ><span class="lnr lnr-layers" title="Vai al sito"></span> </a>
+    ' %}
+{% endif %}
 {% block content %}
 
+     <!--
+<div class="float-right p-3">
+        <button type="button" class="btn btn-light" data-toggle="collapse" data-target="#widget-disponibili"><i class="fas fa-plus"></i> Aggiungi widget</button>
+    </div>-->
 
 
     <div class="content mt-3">
+        <div id="widget-disponibili" class=" text-white collapse" style="position: relative;background:#393939">
 
-        <div id="widget-disponibili" class="bg-dark text-white" style="height: 200px;position: relative;">
-            <div class="float-right p-3">
-                <button type="button" class="btn btn-light" data-toggle="collapse" data-target="#widget-disponibili"><i class="fas fa-plus"></i> </button>
-            </div>
             <br clear="both">
 
-            <div class="container">
+            <div id="widget-disponibili" class="container">
                 <div class="row pt-3">
                 {% for widget in widgetDisponibili %}
                     <div class="col-md-3">
-                        <a href="{{ router_service.getRoute(widget.getEntity()~".add").build({
-                            class : widget.getClass()
-                        }) }}">
-                        <div class="p-3" style="border: 1px solid rgba(255,255,255,0.4);background: rgba(255,255,255,0.1);border-radius: 5px;">
+
+                        <div class="p-3" style="border: 1px solid rgba(255,255,255,0.4);background: rgba(255,255,255,0.1);border-radius: 5px;color:#fff">
+                            <a href="{{ router_service.getRoute(widget.getEntity()~".add").build({
+                                class : widget.getClass(),
+                                user : admin_user.id
+                            }) }}">
                             <i class="fa fa-plus mr-3"></i>
+                            </a>
                             {{ widget.getWidgetLabel() }}
                             <i class="fa fa-info mr-3  float-right"></i>
                         </div>
@@ -29,22 +38,16 @@
                 {% endfor %}
                 </div>
             </div>
+
+
             <br clear="both">
         </div>
 
-        
+        <div class="pt-4">
         {% for widget in widgets %}
-
-
                 {{ widget.render() }}
-        
-
         {% endfor %}
-
-
-
-
-
+        </div>
     </div> <!-- .content -->
 
 

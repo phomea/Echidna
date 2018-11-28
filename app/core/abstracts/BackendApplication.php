@@ -54,7 +54,7 @@ abstract class BackendApplication{
         ]);
     }
 
-    static function generateFields( $entity, $data ){
+    static function generateFields( $entity, $data ,$parent ="" ){
 
         $fields = [];
         foreach ($entity::schema() as $key => $item) {
@@ -67,7 +67,7 @@ abstract class BackendApplication{
                 $fields[$key] = Response::getTemplateToUse("fields/".$item->template,
                     [
                         "data"  =>  $data,
-                        "property"  =>  $key,
+                        "property"  =>  $parent!="" ? $parent."[".$key."]": $key,
                         "field" =>  $item
                     ])->render();
             }
