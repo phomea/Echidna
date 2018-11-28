@@ -18,7 +18,7 @@
 
 
             <ul class="nav navbar-nav">
-                <li class="active">
+                <li class="{{ "dashboard" == current_route.name ? "active" : "" }}">
                     <a href="/backend/main/"> <i class="menu-icon lnr lnr-file-empty"></i>Dashboard </a>
                 </li>
                 <h3 class="menu-title">Gestione contenuti</h3>
@@ -42,12 +42,12 @@
                 {% for m in backend_menu %}
 
 
-                    <li class="menu-item-has-children dropdown" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+                    <li class="menu-item-has-children dropdown {{ m.contains(current_route) ? 'active open show' : "" }}" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon lnr lnr-{{ m.icon?m.icon : "laptop" }}"></i>{{ m.label }}</a>
                         {% if m.children %}
-                            <ul class="sub-menu children dropdown-menu">
+                            <ul class="sub-menu children dropdown-menu {{ m.contains(current_route) ? ' show' : "" }}">
                                 {% for children in m.children %}
-                                    <li><a href="{{ children.href }}">{{ children.label }}</a></li>
+                                    <li><a href="{{ children.href }}" class="{{ children.route.name == current_route.name ? "active" : "" }}">{{ children.label }} </a></li>
                                 {% endfor %}
 
                             </ul>

@@ -447,6 +447,7 @@ class RouterService extends Service{
         }
 
         if($response) {
+
             Response::add($response);
             return true;
         }
@@ -480,6 +481,14 @@ class RouterService extends Service{
 
                 if( $route->applyFilters( $query ) === false ) continue;
                 $response = self::dispatchRoute($route , $r );
+                if($response) {
+                    Response::addVariable([
+                        "current_route" =>  $route
+                    ]);
+                    return;
+                }
+
+
                 if($response) return;
 
 
