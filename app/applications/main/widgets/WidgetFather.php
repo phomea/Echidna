@@ -3,6 +3,8 @@
 namespace applications\main\widgets;
 
 
+use applications\main\entities\Widget;
+
 class WidgetFather implements \ArrayAccess {
 
     public $dimension = self::DIMENSION_MEDIUM ;
@@ -15,6 +17,14 @@ class WidgetFather implements \ArrayAccess {
         ["label"    =>  "Rimuovi","action"  =>  "remove"],
         ["label"    =>  "Modifica","action"  =>  "edit"]
     ];
+
+    static function getEntity(){
+        return Widget::class;
+    }
+
+    static function getClass(){
+        return static::class;
+    }
 
     public function offsetExists($offset)
     {

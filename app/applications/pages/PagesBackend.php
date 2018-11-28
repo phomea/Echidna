@@ -7,6 +7,7 @@ use applications\meta\entities\Meta;
 use applications\meta\MetaBackend;
 use applications\pages\entities\Contenuto;
 use applications\pages\entities\Pagina;
+use applications\pages\widgets\WidgetPageNumber;
 use core\abstracts\Application;
 use core\abstracts\BackendApplication;
 use core\Cache;
@@ -19,7 +20,7 @@ class PagesBackend extends BackendApplication{
     static function declareWidgets()
     {
         return[
-            WidgetCard::class
+            WidgetPageNumber::class
         ];
     }
 

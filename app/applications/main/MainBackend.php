@@ -25,11 +25,33 @@ class MainBackend extends \core\abstracts\BackendApplication{
 
     static function declareRoutes()
     {
+
         return [
+
+            Widget::getEntity().".add"        =>  new Route("add",Widget::getAddLink(),[static::class,"actionAdd"]),
+            Widget::getEntity().".mod"        =>  new Route("add","widget/".Widget::getModLink(),[static::class,"actionMod"]),
+            Widget::getEntity().".delete"        =>  new Route("add",Widget::getModLink()."/remove",[static::class,"actionDelete"]),
+            Widget::getEntity().".insert"        =>  (new Route("add",Widget::getAddLink(),[static::class,"actionInsert"]))->method(Route::METHOD_POST),
+            Widget::getEntity().".list"        =>  new Route("add","lista",[static::class,"actionList"]),
             "dashboard" =>  (new Route("dashboard","",[self::class,"dashboard"])),
             "widget.render" =>  (new Route("widget.render","widget/render/{id:([0-9]*)}",[self::class,"renderWidget"])),
             "backend.generic.list.entity"   =>  new Route("","listEntity",[self::class,"genericListEntity"])
         ];
+
+        $r = parent::declareRoutes();
+
+        $r["dashboard"] =  (new Route("dashboard","",[self::class,"dashboard"]));
+            $r["widget.render"] =  (new Route("widget.render","widget/render/{id:([0-9]*)}",[self::class,"renderWidget"]));
+            $r["backend.generic.list.entity"] =  new Route("","listEntity",[self::class,"genericListEntity"]);
+
+
+            return $r;
+        exit;
+        return array_merge( parent::declareRoutes(), [
+            "dashboard" =>  (new Route("dashboard","",[self::class,"dashboard"])),
+            "widget.render" =>  (new Route("widget.render","widget/render/{id:([0-9]*)}",[self::class,"renderWidget"])),
+            "backend.generic.list.entity"   =>  new Route("","listEntity",[self::class,"genericListEntity"])
+        ]);
     }
 
 
@@ -102,23 +124,7 @@ class MainBackend extends \core\abstracts\BackendApplication{
         $widgetDisponibili = self::getAvailableWidgets();
 
 
-        //$widgets[] = Response::getTemplateToUse("main/widgets/views/widget_card",[])->render();
-
-        /*
-        $widgets[] = new WidgetCard();
-
-
-        $widgetDisponibili = [];
-
-        foreach ( ApplicationsService::getAll() as $item) {
-            if( $item::getBackendApplication() !== null ) {
-                foreach ($item::getBackendApplication()::declareWidgets() as $widget) {
-                    $widgetDisponibili[] = new $widget();
-                }
-            }
-        }*/
-
-        return ["main/templates/dashboard",
+        return ["main/templates/dashboard-widgets",
             [
                 "widgets"   =>  $widgets,
                 "widgetDisponibili"    =>  $widgetDisponibili

@@ -10,8 +10,8 @@ class Widget extends Model {
     {
         return[
             "id"    =>  Field::primaryIndex()->unique(),
-            "class"  =>  Field::text(),
-            "user" =>  Field::int(),
+            "class"  =>  Field::text()->editable(),
+            "user" =>  Field::int()->editable(),
             "data" => Field::text()->editable()
         ];
     }

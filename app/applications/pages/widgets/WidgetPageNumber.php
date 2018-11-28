@@ -13,6 +13,7 @@ class WidgetPageNumber extends WidgetFather {
     public $label = "Widget Card";
     public function render(){
         $this->count = Pagina::query()->count();
+        $this->inactivePages = Pagina::query()->where("__active__=0")->count();
 
         echo Response::getTemplateToUse("pages/widgets/views/page_number",
             $this->toArray()

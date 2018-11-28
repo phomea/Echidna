@@ -1,16 +1,25 @@
 {% extends "main/widgets/views/widget_base.twig" %}
     {% block content %}
 
-<div class="card">
-    <div class="card-body">
-        <div class="stat-widget-one">
-            <div class="stat-icon dib"><i class="fa fa-file-alt text-success border-success"></i></div>
-            <div class="stat-content dib">
-                <div class="stat-text">Pagine totali</div>
-                <div class="stat-digit">{{ count }}</div>
-            </div>
+
+
+    <div class="widget social-box facebook">
+        <i class="lnr lnr-file-empty"></i>
+        <ul>
+            <li>
+                <strong><span class="count">{{ count }}</span></strong>
+                <span>Attive</span>
+            </li>
+            <li>
+                <strong><span class="count">{{ inactivePages }}</span></strong>
+                <span>Non attive</span>
+            </li>
+        </ul>
+        <div class="card-footer">
+            <a href="/backend/pages/lista" class="btn btn-light"><em class="fas fa-list"></em></a>
+            <a href="/backend/pages/aggiungi" class="btn btn-light"><em class="fas fa-plus"></em></a>
         </div>
     </div>
-</div>
+
 
 {% endblock %}
