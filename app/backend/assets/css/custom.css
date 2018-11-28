@@ -907,6 +907,12 @@ input:checked + .slider:before {
 }
 
 
+
+
+.navbar .navbar-nav li.active .menu-icon, .navbar .navbar-nav li:hover .toggle_nav_button:before, .navbar .navbar-nav li .toggle_nav_button.nav-open:before{
+    color: #e16c08 !important;
+}
+
 .widget{
     background: #fff;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.1);

@@ -23,24 +23,25 @@
         <div class="col-sm-5">
             <!--<a id="userAreaToggle" class="menutoggle pull-right"><i class="fa fa fa-angle-right"></i></a>-->
 
-            {{ headermenu_right_buttons | raw}}
+            {% if  application_info  %}
+                <div class="info-popup dropdown float-right">
+                    <a href="" class="btn-icon" data-toggle="dropdown"><span class="lnr lnr-question-circle"></span> </a>
 
-            <div class="info-popup dropdown float-right">
-                <a href="" class="btn-icon" data-toggle="dropdown"><span class="lnr lnr-question-circle"></span> </a>
+                    <div class="user-menu dropdown-menu" style="width: 400px;height: 400px;background: #fff">
+                        <div class="pl-5 pr-5 pb-3 pt-3">
+                            <div class="text-center">
+                                <span class="lnr lnr-{{ application_info.icon }} h1"></span>
+                                <h5>{{ application_info.title }}</h5>
+                            </div>
+                            <hr>
 
-                <div class="user-menu dropdown-menu" style="width: 400px;height: 400px;background: #fff">
-                    <div class="pl-5 pr-5 pb-3 pt-3">
-                        <div class="text-center">
-                            <span class="lnr lnr-{{ application_info.icon }} h1"></span>
-                            <h5>{{ application_info.title }}</h5>
+                            <p>{{ application_info.description }}</p>
                         </div>
-                        <hr>
-
-                        <p>{{ application_info.description }}</p>
                     </div>
                 </div>
-            </div>
-            <a href="/" class="btn-icon float-right" ><span class="lnr lnr-earth" title="Vai al sito"></span> </a>
+            {% endif %}
+
+<a href="/" class="btn-icon float-right" ><span class="lnr lnr-earth" title="Vai al sito"></span> </a>
 
 
         </div>
