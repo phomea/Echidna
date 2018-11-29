@@ -44,8 +44,60 @@
 <a href="/" class="btn-icon float-right" ><span class="lnr lnr-earth" title="Vai al sito"></span> </a>
 
 
+
+            <div class="info-popup dropdown float-right mr-3">
+                <a href="" id="icon-performance" class="btn-icon" data-toggle="dropdown"><span class="lnr lnr-bug"></span> </a>
+
+                <div class="user-menu dropdown-menu" style="width: 400px;height: 400px;background: #fff">
+                    <div class="pl-5 pr-5 pb-3 pt-3">
+                        <b>Load :</b> <span id="load1"></span> - <span id="load2"></span> - <span id="load3"></span>
+                        <br>
+                        <b>Ram :</b> <span id="freeram"></span> / <span id="totalram"></span>
+                        <br>
+                        <b>Disk : </b><span id="freedisk"></span> / <span id="totaldisk"></span> (<span id="useddisk"></span> )
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
 </header><!-- /header -->
 <!-- Header-->
+
+<script>
+    $(window).ready(function(){
+        var getInfoUrl = "";
+
+
+        function updateStats(){
+            $.get("/backend/main/get-performance-stats",function ( d ) {
+                d = JSON.parse(d);
+                $("#load1").text(d.load[0]);
+                $("#load2").text(d.load[1]);
+                $("#load3").text(d.load[2]);
+
+                $("#freeram").text( (d.freeram / 1024 ).toFixed(2) + "M" );
+                $("#totalram").text( (d.totalram / 1024).toFixed(2) + "M" );
+
+                $("#freedisk").text( (d.disk.free / 1024 / 1024 ).toFixed(2) + "M" );
+                $("#totaldisk").text( (d.disk.total / 1024 / 1024).toFixed(2) + "M" );
+                $("#useddisk").text( d.disk.used);
+
+
+                if( d.load[0] > 1){
+                    $("#icon-performance").addClass("danger");
+                }else{
+                    $("#icon-performance").removeClass("danger");
+                }
+
+
+            })
+        }
+
+        setInterval(function () {
+            updateStats()
+        },1000);
+        updateStats();
+    })
+</script>

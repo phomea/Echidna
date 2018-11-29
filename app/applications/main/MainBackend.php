@@ -37,16 +37,21 @@ class MainBackend extends \core\abstracts\BackendApplication{
 
             "dashboard" =>  (new Route("dashboard","",[self::class,"dashboard"])),
             "widget.render" =>  (new Route("widget.render","widget/render/{id:([0-9]*)}",[self::class,"renderWidget"])),
-            "backend.generic.list.entity"   =>  new Route("","listEntity",[self::class,"genericListEntity"])
+            "backend.generic.list.entity"   =>  new Route("","listEntity",[self::class,"genericListEntity"]),
+            "backend.performance.get"   =>   new Route("","get-performance-stats",[self::class,"_getPerformanceStats"])
         ];
 
         $r = parent::declareRoutes();
 
         $r["dashboard"] =  (new Route("dashboard","",[self::class,"dashboard"]));
-            $r["widget.render"] =  (new Route("widget.render","widget/render/{id:([0-9]*)}",[self::class,"renderWidget"]));
-            $r["backend.generic.list.entity"] =  new Route("","listEntity",[self::class,"genericListEntity"]);
+        $r["widget.render"] =  (new Route("widget.render","widget/render/{id:([0-9]*)}",[self::class,"renderWidget"]));
+        $r["backend.generic.list.entity"] =  new Route("","listEntity",[self::class,"genericListEntity"]);
+
+        $r["backend.performance.get"] =  new Route("","get-performance-stats",[self::class,"_getPerformanceStats"]);
 
 
+        var_dump($r);
+        exit;
             return $r;
         exit;
         return array_merge( parent::declareRoutes(), [
@@ -57,6 +62,20 @@ class MainBackend extends \core\abstracts\BackendApplication{
     }
 
 
+
+    static function _getPerformanceStats(){
+
+        $stats = [
+            "load"  =>  ServerStats::shapeSpace_system_load( ServerStats::shapeSpace_system_cores() ),
+            "totalram"  =>  ServerStats::getTotalam(),
+            "freeram"   =>  ServerStats::getFreeRam(),
+            "disk"  =>  ServerStats::diskInfo(),
+            "uptime"    =>  ServerStats::shapeSpace_server_uptime()
+        ];
+
+        echo json_encode($stats);
+        exit;
+    }
 
 
     static function genericListEntity( $params ){
