@@ -1,0 +1,28 @@
+{% extends "base.twig" %}
+
+{% if admin_user.checkPermission("backend.widgets.edit") %}
+    {% set headermenu_right_buttons = '
+        <a href="javascript:void(0)" data-toggle="collapse" data-target="#widget-disponibili" class="btn-icon float-right ml-4" ><span class="lnr lnr-layers" title="Vai al sito"></span> </a>
+    ' %}
+{% endif %}
+{% block content %}
+
+
+
+
+    <div class="content mt-3">
+        {% for k,app in risultati %}
+                <h3>{{ k }}</h3>
+
+                {% for risultato in app.risultati %}
+                    <div>
+                        {{ dump(risultato) }}
+                        <a href="{{ router_service.getRoute(app.entity~".mod").build({id:risultato.id}) }}">Vedi scheda</a>
+                    </div>
+                {% endfor %}
+        {% endfor %}
+
+    </div> <!-- .content -->
+
+
+{% endblock %}

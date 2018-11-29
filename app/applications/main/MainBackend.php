@@ -15,6 +15,7 @@ use core\abstracts\Application;
 use core\Model;
 use core\Route;
 use core\services\ApplicationsService;
+use core\services\Db;
 use core\services\Response;
 use core\services\RouterService;
 use core\services\SessionService;
@@ -38,7 +39,9 @@ class MainBackend extends \core\abstracts\BackendApplication{
             "dashboard" =>  (new Route("dashboard","",[self::class,"dashboard"])),
             "widget.render" =>  (new Route("widget.render","widget/render/{id:([0-9]*)}",[self::class,"renderWidget"])),
             "backend.generic.list.entity"   =>  new Route("","listEntity",[self::class,"genericListEntity"]),
-            "backend.performance.get"   =>   new Route("","get-performance-stats",[self::class,"_getPerformanceStats"])
+            "backend.performance.get"   =>   new Route("","get-performance-stats",[self::class,"_getPerformanceStats"]),
+
+            "backend.search"   =>   new Route("","search",[self::class,"_search"])
         ];
 
         $r = parent::declareRoutes();
@@ -62,6 +65,52 @@ class MainBackend extends \core\abstracts\BackendApplication{
     }
 
 
+    static function _search( $params = []){
+        $s = $params['s'];
+        $risultati = [];
+
+        foreach (ApplicationsService::$applications as $app =>$value){
+            $c = $value::getEntityClass();
+            $db = Db::$connection;
+
+            if( $c !== null ){
+
+                $sql = "select *   from ".$c::getTable()." where 1=1 AND (";
+                $where = [];
+                $whereValues =[];
+
+                foreach ($c::schema() as $key=>$value){
+                    if( strpos($value->getData()["Type"],"int") !== false ){
+
+                    }else{
+                        $where[]="$key LIKE :$key";
+                        $whereValues[$key]  = "%$s%";
+                    }
+
+                }
+
+                $sql .= implode(" OR ",$where).")";
+
+
+
+                $rr  = $db->fetchAll($sql,$whereValues);
+
+                if( count($rr)>0){
+                    $risultati[$app] = [
+                        "entity"    =>  $c::getEntity(),
+                        "risultati" => $rr
+                    ];
+                }
+            }
+        }
+
+
+        return [
+            "applications/main/templates/risultati-ricerca",[
+                "risultati" =>  $risultati
+            ]
+        ];
+    }
 
     static function _getPerformanceStats(){
 

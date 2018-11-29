@@ -138,7 +138,7 @@ class ApplicationsService extends \core\abstracts\Service {
                 }
 
                 $item::init( $name );
-                static::$applications[] = $item;
+                static::$applications[$name] = $item;
 
 
             }

@@ -270,9 +270,17 @@ class Field{
 
             case Field::TYPE_STRING:
             case Field::TYPE_TEXT:
-                $value = str_replace('\"','"',$value);
-                $value = str_replace('\\','\\\\',$value);
-                return '"'.str_replace('"','\"',$value).'"';
+
+                if(is_array($value)){
+                    $value = json_encode($value);
+
+                    return "'".$value."'";
+
+                }else {
+                    $value = str_replace('\"', '"', $value);
+                    $value = str_replace('\\', '\\\\', $value);
+                    return '"' . str_replace('"', '\"', $value) . '"';
+                }
 
             case Field::TYPE_DATE:
                 if( $value instanceof \DateTime){
