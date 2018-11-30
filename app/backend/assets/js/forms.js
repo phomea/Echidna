@@ -118,9 +118,15 @@ function error( error ){
         $("a.confirm").on("click",function( e ){
             e.preventDefault();
             link = $(this).attr("href");
+            Alerts.confrm("Elimina","Sicuro di volerlo eliminare? Questa azione è irreversibile.",function(){
+                alert(link);
+                window.location = link;
+            })
+            /*
+            link = $(this).attr("href");
             if( confirm("Confermi?") ){
                 window.location = link;
-            }
+            }*/
         })
     })
 

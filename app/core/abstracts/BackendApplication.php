@@ -67,17 +67,29 @@ abstract class BackendApplication
         $fields = [];
         foreach ($entity::schema() as $key => $item) {
             if ($item->isEditable()) {
-                if ($data && property_exists($data, $key)) {
-                    $item->value = $data->$key;
-                }
+                if( !empty($item->customRenderer )){
 
-                $item->expandTemplateVar();
-                $fields[$key] = Response::getTemplateToUse("fields/" . $item->template,
-                    [
-                        "data" => $data,
-                        "property" => $parent != "" ? $parent . "[" . $key . "]" : $key,
-                        "field" => $item
-                    ])->render();
+                    $fields[$key]  = call_user_func_array($item->customRenderer,[
+                        "field" =>  $item,
+                        "entity"    =>  $entity,
+                        "data"  =>  $data,
+                        "property"  =>   $parent != "" ? $parent . "[" . $key . "]" : $key
+                    ]);
+                }else{
+
+
+                    if ($data && property_exists($data, $key)) {
+                        $item->value = $data->$key;
+                    }
+
+                    $item->expandTemplateVar();
+                    $fields[$key] = Response::getTemplateToUse("fields/" . $item->template,
+                        [
+                            "data" => $data,
+                            "property" => $parent != "" ? $parent . "[" . $key . "]" : $key,
+                            "field" => $item
+                        ])->render();
+                }
             }
         }
         return $fields;

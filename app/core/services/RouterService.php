@@ -474,7 +474,10 @@ class RouterService extends Service{
             $r = self::parseQuery("/".$query,$route->method." ".$route->regex);
 
 
+
             if( is_array($r) ){
+
+
                 $response = false;
 
                 $route->name = $key;

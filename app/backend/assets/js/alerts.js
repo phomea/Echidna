@@ -75,4 +75,40 @@ window.Alerts = new function(){
         $body.addClass("alert-open");
         $body.append(wrapper);
     }
+
+    this.confrm = function(titleText,pText,callback){
+        var $body = $("body");
+        var wrapper = $("<div class='alert-wrapper'></div>");
+        var alert  = $('<div class="alert two-buttons"></div>');
+
+
+        var title = $("<h2>"+titleText+"</h2>");
+        var text = $("<p>"+pText+"</p>");
+
+        var buttons = $('<div class="alert-buttons"></div>');
+        var button = $('<a href="" class="btn btn-danger"><i class="fa fa-close"></i></a>');
+        var button2 = $('<a href="" class="btn btn-success"><i class="fas fa-check"></i></a>');
+        (function(alert,callback){
+            button.on("click",function (e) {
+                e.preventDefault();
+                window.Alerts.closeAlert(alert)
+            });
+
+            button2.on("click",function( e ){
+                e.preventDefault();
+                callback();
+                window.Alerts.closeAlert(alert)
+            })
+        })(alert,callback);
+
+        alert.append(title);
+        alert.append(text);
+        buttons.append(button);
+        buttons.append(button2);
+        alert.append(buttons);
+
+        wrapper.append(alert);
+        $body.addClass("alert-open");
+        $body.append(wrapper);
+    }
 }

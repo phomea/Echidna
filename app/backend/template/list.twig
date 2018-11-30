@@ -37,8 +37,9 @@
                                             {% if field.isEditable() %}
                                                 <th>{{ field.label ? field.label : key }}</th>
                                             {% endif %}
-                                        {% endfor %}
+                                        {% endfor %}   <th >Azioni</th>
                                     </tr>
+
                                     </thead>
                                     <tbody>
 
@@ -76,6 +77,11 @@
                                                 {% endif %}
 
                                         {% endfor %}
+                                            <td style="width: 1px;white-space: nowrap">
+                                                <a href="{{ router_service.getRoute(item.getEntity()~".mod").build({id:item.id}) }}" class="btn btn-light  btn-xs"><i class="fas fa-edit"></i> </a>
+
+                                                <a href="{{ router_service.getRoute(item.getEntity()~".delete").build({id:item.id}) }}" class="btn btn-danger btn-xs  confirm"><i class="fas fa-trash"></i> </a>
+                                            </td>
                                     </tr>
 
                                     <!--<tr>

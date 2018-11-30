@@ -64,6 +64,13 @@ class Field{
         return $this;
     }
 
+    public $customRenderer = null;
+
+    public function setCustomRenderer($callable){
+        $this->customRenderer = $callable;
+        return $this;
+    }
+
     public function setTemplateVar($t){
         $this->templateVar = $t;
         return $this;

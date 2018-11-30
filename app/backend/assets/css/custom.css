@@ -528,7 +528,7 @@ aside.left-panel{
     opacity:1;
 }
 .input-group{
-    background: #fff;
+    /*background: #fff;*/
     display: flex;
     flex: 1;
     align-self: baseline;
@@ -958,4 +958,10 @@ input:checked + .slider:before {
     position: absolute;
     top: 0;
     left: 0;
+}
+.input-group > .input-group-prepend .input-group-text{
+    border-top-left-radius: 1.5em;
+    border-bottom-left-radius: 1.5em;
+    padding-left: 1.3em;
+    background: #eee;
 }
