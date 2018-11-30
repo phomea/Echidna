@@ -18,7 +18,8 @@ class ApiFrontend extends FrontendApplication {
     static function declareRoutes()
     {
         return [
-            "api.wrapper"  =>  new Route("home","/api/{apiquery:(.*)}",[self::class,"apiWrapper"]),
+            "api.wrapper.get"  =>  new Route("home","/api/{apiquery:(.*)}",[self::class,"apiWrapper"]),
+            "api.wrapper.post"  =>  (new Route("home","/api/{apiquery:(.*)}",[self::class,"apiWrapper"]))->method(Route::METHOD_POST),
         ];
     }
 
@@ -28,7 +29,6 @@ class ApiFrontend extends FrontendApplication {
         if( isset(Request::$headers['Token']) ){
             $token = Request::$headers['Token'];
         }
-
 
 
         $listaapi = Api::query()->getAll();
@@ -46,21 +46,61 @@ class ApiFrontend extends FrontendApplication {
                     return static::nonAutorizzato();
                 }
             }
+
+
             $r = RouterService::parseQuery("/".$params['apiquery'],$value->metodo." /".$value->url);
+
             if( $r!== false){
-                if($value->tiporisposta == "array") {
-                    $risultati = Db::$connection->fetchAll($value->query, $r);
-                }else{
-                    $risultati = Db::$connection->fetchOne($value->query, $r);
+                if(Request::getMethod() == Route::METHOD_GET){
+                    echo self::respondGet($value,$r);
+                    exit;
                 }
-                echo json_encode($risultati);
-                exit;
+                if(Request::getMethod() == Route::METHOD_POST){
+                    echo self::respondPost($value,$r,Request::getPost());
+                    exit;
+                }
+
+                if(Request::getMethod() == Route::METHOD_PUT){
+                    echo self::respondPost($value,$r,Request::getPost());
+                    exit;
+                }
             }
 
         }
 
 
         exit;
+    }
+
+    static function respondGet($api,$get,$post =[]){
+        if($value->tiporisposta == "array") {
+            $risultati = Db::$connection->fetchAll($api->query, $get);
+        }else{
+            $risultati = Db::$connection->fetchOne($api->query, $get);
+        }
+        return json_encode($risultati);
+    }
+
+    static function respondPut($api,$get,$post =[]){
+        echo "put";
+        exit;
+    }
+    static function respondPost($api,$get,$post =[]){
+
+
+        if( $api->entity_method == "save"){
+            $dati = array_merge($get,$post);
+            $e = new $api->entity($dati);
+            $e->save();
+            echo json_encode($e);
+        }
+        exit;
+        if($value->tiporisposta == "array") {
+            $risultati = Db::$connection->fetchAll($api->query, $get);
+        }else{
+            $risultati = Db::$connection->fetchOne($api->query, $get);
+        }
+        return json_encode($risultati);
     }
 
 
