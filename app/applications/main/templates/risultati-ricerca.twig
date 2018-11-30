@@ -1,28 +1,68 @@
 {% extends "base.twig" %}
 
-{% if admin_user.checkPermission("backend.widgets.edit") %}
-    {% set headermenu_right_buttons = '
-        <a href="javascript:void(0)" data-toggle="collapse" data-target="#widget-disponibili" class="btn-icon float-right ml-4" ><span class="lnr lnr-layers" title="Vai al sito"></span> </a>
-    ' %}
-{% endif %}
 {% block content %}
+{% if risultati|length == 0  %}
+
+        <div class="text-center p-5">
+            <i class="lnr lnr-warning h1"></i>
+            <h1>Nessun risultato</h1>
+            <h2>per la ricerca "{{ ricerca }}"</h2>
+
+            <p>Se vuoi puoi effettuare un nuova ricerca</p>
 
 
+            <form class="search-form" action="/backend/main/search">
+                <input class="p-3 mr-sm-2 h2" type="text" placeholder="Cerca qualcosa" value="{{ ricerca }}" aria-label="Search" name="s">
+            </form>
 
+
+        </div>
+
+{% else %}
 
     <div class="content mt-3">
         {% for k,app in risultati %}
-                <h3>{{ k }}</h3>
+            <div class="card mb-0" data-toggle="collapse" data-target="#{{ k }}-collapse-search">
+                <div class="card-header">
+                    <div class="float-left">
+                        <h3 class="">{{ app.title }} </h3>
+                        <span class="small">({{ app.risultati|length }} risultati)</span>
+                    </div>
+                    <button class="btn btn-link float-right"> <i class="fas fa-plus"></i></button>
+                </div>
+                <div class="card-footer collapse" id="{{ k }}-collapse-search">
+
+
 
                 {% for risultato in app.risultati %}
-                    <div>
-                        {{ dump(risultato) }}
-                        <a href="{{ router_service.getRoute(app.entity~".mod").build({id:risultato.id}) }}">Vedi scheda</a>
+                    <div class="bg-white">
+                        <div class="card-body">
+                            {% for k,e in risultato %}
+                                {% if ricerca in e %}
+                                    <div>
+                                     <b>{{ k }} : </b>
+                                    <p >
+                                        {{ e|replace({ (ricerca) : "<b>"~ricerca~"</b>" }) | raw }}
+                                    </p>
+                                    </div>
+                                {% endif %}
+
+                            {% endfor%}
+
+                            <hr>
+                            <a class="btn btn-light" href="{{ router_service.getRoute(app.entity~".mod").build({id:risultato.id}) }}">Vedi scheda <i class="fas fa-chevron-right ml-3"></i> </a>
+                        </div>
+
                     </div>
                 {% endfor %}
+                </div>
+            </div>
         {% endfor %}
 
     </div> <!-- .content -->
 
+
+
+{% endif %}
 
 {% endblock %}

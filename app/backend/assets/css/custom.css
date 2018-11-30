@@ -1,11 +1,13 @@
 html,body{
     font-size: 13px;
 }
-.btn{
-    border-radius: 5px;
-    padding: .375rem 1.5rem;
-}
 
+
+.btn {
+    border-radius: 3em;
+    padding: .375rem 2rem;
+    box-shadow: 1px 2px 2px rgba(0,0,0,0.1);
+}
 @keyframes rotating {
     from {
         -ms-transform: rotate(0deg);
@@ -735,6 +737,10 @@ body{
 
 .aside-widget{
     border-bottom: 1px solid #ddd
+}
+.aside-widget > .btn-block{
+    box-shadow: 0px 1px 1px rgba(0,0,0,0.1);
+    border-radius: 0px;
 }
 .aside-widget .menu-item .lnr{
     float: left;

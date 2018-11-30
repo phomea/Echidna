@@ -70,7 +70,18 @@ class MainBackend extends \core\abstracts\BackendApplication{
         $risultati = [];
 
         foreach (ApplicationsService::$applications as $app =>$value){
-            $c = $value::getEntityClass();
+
+            if( !$value::getBackendApplication() ) continue;
+            $rr  = $value::getBackendApplication()::search( $params );
+
+            if( count($rr)>0){
+                $risultati[$app] = [
+                    "title"  =>  !empty($value::getBackendApplication()::getTitle()) ? $value::getBackendApplication()::getTitle() : $key,
+                    "entity"    =>  $value::getEntityClass(),
+                    "risultati" => $rr
+                ];
+            }
+            /*$c = $value::getEntityClass();
             $db = Db::$connection;
 
             if( $c !== null ){
@@ -101,12 +112,13 @@ class MainBackend extends \core\abstracts\BackendApplication{
                         "risultati" => $rr
                     ];
                 }
-            }
+            }*/
         }
 
 
         return [
             "applications/main/templates/risultati-ricerca",[
+                "ricerca"   =>  $s,
                 "risultati" =>  $risultati
             ]
         ];

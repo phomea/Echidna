@@ -22,6 +22,7 @@
 
         <div class="col-sm-5">
             <!--<a id="userAreaToggle" class="menutoggle pull-right"><i class="fa fa fa-angle-right"></i></a>-->
+            {{ headermenu_right_buttons | raw }}
 
             {% if  application_info  %}
                 <div class="info-popup dropdown float-right">
@@ -42,6 +43,7 @@
             {% endif %}
 
 <a href="/" class="btn-icon float-right" ><span class="lnr lnr-earth" title="Vai al sito"></span> </a>
+
 
 
 
@@ -97,7 +99,7 @@
 
         setInterval(function () {
             updateStats()
-        },1000);
+        },20000);
         updateStats();
     })
 </script>
