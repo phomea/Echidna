@@ -19,17 +19,17 @@ window.Alerts = new function(){
         })(a);
     }
 
-    this.simple = function(){
+    this.simple = function(titleText,msg){
         var $body = $("body");
         var wrapper = $("<div class='alert-wrapper'></div>");
         var alert  = $('<div class="alert simple"></div>');
 
 
-        var title = $("<h2>Prova titolo</h2>");
-        var text = $("<p>Prova testo di conferma di qualcosa</p>");
+        var title = $("<h2>"+titleText+"</h2>");
+        var text = $("<p>"+msg+"</p>");
 
 
-        var button = $('<a href="" class="btn btn-light">Ok</a>');
+        var button = $('<a href="" class="btn btn-success"><i class="fas fa-check"></i></a>');
         (function(alert){
             button.on("click",function (e) {
                 e.preventDefault();

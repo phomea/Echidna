@@ -22,17 +22,21 @@
             })
                 .success(function ( o ) {
 
-                    Alerts.oneAction("Salvato","Salvataggio avvenuto. Vuoi andare alla lista?");
-                    return;
+
 
                     if(o.type!== undefined && o.type == 'redirect'){
-                        window.location = o.to;
+                        Alerts.oneAction("Salvato","Salvataggio avvenuto. Vuoi andare alla lista?",function () {
+                            window.location = o.to;
+                        });
+                        return;
+
                         return;
                     }
                     if(o.type != undefined && o.type == "error"){
                         error(o);
                     }
 
+                    Alerts.simple("Salvato","Salvataggio avvenuto con successo");
 
 
                 })

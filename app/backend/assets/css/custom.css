@@ -965,3 +965,10 @@ input:checked + .slider:before {
     padding-left: 1.3em;
     background: #eee;
 }
+
+
+body.loading{
+    transition: opacity 500ms;
+    pointer-events: none;
+    opacity: 0.3;
+}

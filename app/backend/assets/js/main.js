@@ -55,4 +55,9 @@ jQuery(document).ready(function($) {
     // });
 
 
+    window.onbeforeunload = function(event) {
+        $("body").addClass("loading");
+    }
+
+
 });
