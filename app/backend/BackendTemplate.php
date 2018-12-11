@@ -30,6 +30,7 @@ class BackendTemplate extends TwigTemplate {
 
 
     static function addMenu( $menu){
+        if( !empty(count($menu->children)))
         static::$menu[] = $menu;
     }
 
