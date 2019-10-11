@@ -1,0 +1,9 @@
+{# @var slider \applications\sliders\entities\Slider #}
+
+<div id="{{ slider.hook }}" class="owl-carousel slider-full">
+    {% for slide in slider.slides %}
+        <a href="{{ slide.link }}">
+            <img alt="{{ slide.titolo }}" src="{{ slide.getImageSrc() }}">
+        </a>
+    {% endfor %}
+</div>

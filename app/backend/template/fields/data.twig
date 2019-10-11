@@ -1,0 +1,23 @@
+
+{{ field.newLine ?  '<div style="width: 100%"></div>' : ''}}
+
+<div class="form-group {{ field.fieldsize ? field.fieldsize : '' }} {{ field.classgroup ? field.classgroup : '' }}" {% if field.hideIf %}
+
+    data-hideselectors="{% for v in field.hideIf %}{{v[0]}}|{% endfor %}" data-hidevalues="{% for v in field.hideIf %}{{v[1]|join("]")}}|{% endfor %}"
+
+        {% endif %} >
+    <label class=" form-control-label">{{ field.label ? field.label : property }}
+        <br><small>{{ field.hint ? field.hint : "formato: AAAA-MM-GG" }}</small>
+    </label>
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-calendar"></i></span>
+        </div>
+
+        <input type="text" data-date-format="dd/mm/yyyy"   autocomplete="off" placeholder="{{ field.placeholder ? field.placeholder : 'Inserisci valore' }}" class="form-control datapicker  "   value="{{ field.value ? field.value | date("d/m/Y") :""}}">
+        <input type="hidden" class="real_data_hidden" name="{{ property }}" value="{{ field.value }}">
+    </div>
+</div>
+
+<!--pattern="(?:19|20|21)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"-->

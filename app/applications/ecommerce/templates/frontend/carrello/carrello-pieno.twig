@@ -1,0 +1,92 @@
+<div class="row">
+    <div class="col-md-8">
+        <h2>Prodotti presenti nel carrello</h2>
+
+
+
+        {% for lineitem in carrello.lineitems %}
+            <div class="card mb-3">
+                <div class="row card-body">
+                    <div class="col-md-2">
+                        <figure class="thumbnail">
+
+                            <img class="thumbnail" src="{{ lineitem.prodotto.immagini[0].value}}">
+                        </figure>
+
+
+
+
+                    </div>
+                    <div class="col-10">
+
+                        <div class="flex-column">
+                            <div class="row">
+                                <div class="d-flex text-center">
+                                    <span class="cart-number">  {{ lineitem.quantity }} x </span>
+                                </div>
+                                <div class="col text-center">
+                                    <a href="{{ router_service.getRoute("frontend.ecommerce.schedaprodotto").build({slug:lineitem.prodotto.slug}) }}">
+                                        <h3>{{ lineitem.prodotto.nome }}</h3>
+                                        <h5>{{ lineitem.variant.nome }} <small>{{ lineitem.variant.sku }}</small></h5>
+                                    </a>
+                                    <!--
+                                                <div class="col">
+                                                    <span class="price"> {{ lineitem.single_price|price}}</span>
+                                                </div>-->
+
+                                </div>
+                                <div class="d-flex text-center mr-5">
+                                    <span class="cart-number price"> = {{ lineitem.price_total|price}} </span>
+                                    {% for attributo in lineitem.attributi %}
+                                        <span>{{ attributo.nome }} : {{ attributo.valore.valore }}</span><br>
+                                    {% endfor %}
+
+                                </div>
+
+                                <div class="d-flex mr-5">
+                                    <a href="{{ router_service.getRoute("frontend.ecommerce.carrello.rimuovi").build({id:lineitem.variant.id}) }}"> <i class="fas fa-trash cart-action"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        {% endfor %}
+
+
+
+    </div>
+
+    <div class="col-md-4 pt-2">
+        {% if not carrello.coupon %}
+            <div class="card mt-5 p-2 bg-light">
+
+                <div class="card-body">
+                    <h3>Hai un coupon?</h3>
+                    <form action="{{ router_service.getRoute("frontend.ecommerce.aggiungicoupon").build() }}" method="post">
+                        <span>Inserisci il codice coupon per ottenere uno sconto</span>
+                        <input type="text" class="form-control p-2" placeholder="Inserisci qui il codice coupon" name="coupon">
+                        <button class="btn btn-secondary btn-block">Salva coupon</button>
+                    </form>
+                </div>
+            </div>
+        {% endif %}
+        <div class="card mt-5 p-2">
+            <div class="card-body">
+                <h3>Riepilogo</h3>
+            </div>
+            <div class="card-body">
+
+                {% include "ecommerce/checkout/parti/riepilogo-tabella.twig" %}
+
+                <a href="/checkout" class="btn btn-secondary btn-block">Procedi all'acquisto</a>
+                <a href="/checkout" class="btn btn-white btn-block">Torna allo shop</a>
+
+            </div>
+        </div>
+    </div>
+</div>

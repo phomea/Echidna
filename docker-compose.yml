@@ -1,0 +1,89 @@
+version: '3'
+services:
+  web:
+     build:
+        context: ./
+        dockerfile: ./docker/web/Dockerfile
+     restart: always
+     environment:
+        #- ALLOW_OVERRIDE=true
+        MYSQL_USER: ${MYSQL_USER}
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        MYSQL_DATABASE: ${MYSQL_DATABASE}
+        MYSQL_HOST: ${MYSQL_HOST}
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        DBCONTAINER_NAME: thermadb
+     ports:
+       - "8080:80"
+     links:
+       - db:db
+       - composer:composer
+      # - thermadbdemo:dbdemo
+     volumes:
+       - ./app:/var/www/html/
+       #- /var/run/docker.sock:/var/run/docker.sock:Z
+       #- vendorvolume:/var/www/html/vendor
+
+
+  db:
+    build: ./docker/mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadbdata:/var/lib/mysql
+
+  #thermadbdemo:
+  #  build: ./docker/mariadb
+  #  environment:
+  #    MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+  #    MYSQL_USER: ${MYSQL_USER}
+  #    MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+  #    MYSQL_DATABASE: ${MYSQL_DATABASE}
+  #  ports:
+  #    - "3307:3306"
+  #  volumes:
+  #    - mariadbdatademo:/var/lib/mysql
+    
+  # phpmyadmin:
+  #   image: corbinu/docker-phpmyadmin
+  #   links:
+  #     - db:mysql
+  #   ports:
+  #     - "8181:80"
+  #   environment:
+  #     MYSQL_USERNAME: ${MYSQL_USER}
+  #     MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+  #     MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+  #     MYSQL_PORT_3306_TCP_ADDR: thermadb
+
+  composer:
+      image: composer
+      volumes:
+        - ./app:/app
+        #- ./app/composer.json:/app/composer.json
+        #- vendorvolume:/app/vendor
+      command: install --ignore-platform-reqs
+
+  # ftp:
+  #   image: stilliard/pure-ftpd:hardened
+  #   ports:
+  #     - "21:21"
+  #     - "30000-30009:30000-30009"
+  #   volumes:
+  #     - ./app:/home/username
+  #   environment:
+  #     PUBLICHOST: "localhost"
+  #     FTP_USER_NAME: username
+  #     FTP_USER_PASS: mypass
+  #     FTP_USER_HOME: /home/username
+
+volumes:
+  mariadbdata:
+  mariadbdatademo:
+  vendorvolume:

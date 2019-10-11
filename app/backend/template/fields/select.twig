@@ -1,0 +1,37 @@
+<div class="form-group {{ field.fieldsize ? field.fieldsize : '' }}" {% if field.hideIf %}
+
+    data-hideselectors="{% for v in field.hideIf %}{{v[0]}}|{% endfor %}" data-hidevalues="{% for v in field.hideIf %}{{v[1]|join("]")}}|{% endfor %}"
+
+{% endif %}
+>
+    <label class=" form-control-label">{{ field.label ? field.label : property }}
+        <br><small>{{ field.hint }}</small>
+    </label>
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-list-ul"></i></span>
+        </div>
+
+        <select id="input_{{ property }}" name="{{ property }}" class="form-control {{ field.fieldsize ? field.fieldsize : '' }}" {{ field.isRequired()  ? 'required="required"' : ""}}>
+            {% for option in field.templateVar %}
+                <option value="{{ option.value }}" {{ field.value == option.value or (field.value == "" and field.defaultValue == option.value) ? "selected" :""}} >{{ option.label }}</option>
+            {% endfor %}
+        </select>
+
+
+        {% if field.appendAction %}
+        <div class="input-group-append">
+
+                <a href="{{ field.appendActionAction.build({
+                    template_extend : "empty.twig",
+                    formClass : "form-return"
+                }) | format(field.value) }}" class="input-group-addon" target="_popup">
+                {% if field.appendActionIcon %}
+                    <i class="fa fa-{{ field.appendActionIcon }}"></i>
+                {% endif %}
+                </a>
+        </div>
+        {% endif %}
+    </div>
+</div>

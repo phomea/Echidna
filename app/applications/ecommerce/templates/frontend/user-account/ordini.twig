@@ -1,0 +1,58 @@
+{% extends "ecommerce/user-account/base.twig" %}
+
+{% block innerAccount %}
+    <h1 class="mb-5">I miei ordini</h1>
+    <p>Riepilogo dei tuoi ordini</p>
+
+    {% for ordine in  user.getOrders() %}
+        <div class="card mb-2">
+            <a href="javascript:void(0)">
+            <div class="p-1   bg-primary text-light font-weight-bold" data-toggle="collapse" href="#ordinebody{{ ordine.id }}">
+                <div class="row">
+                    <div class="col-4 pl-5">
+                        {{ ordine.updated_at | date }}
+                    </div>
+                    <div class="col-4 text-center">
+                        {{ ordine.stato }}
+                    </div>
+                    <div class="col-4 text-right pr-5">
+                        {{ ordine.totale|price }}
+                        <i class="fas fa-angle-down ml-4"></i>
+                    </div>
+                </div>
+
+            </div>
+            </a>
+
+
+            <div class="card-header collapse" id="ordinebody{{ ordine.id }}">
+
+                <div class="row">
+                    <div class="col-md mr-auto">
+                        <b>Data</b> : {{ ordine.updated_at | date }}<br>
+                        <b>Pagamento</b> : {{ ordine.gateway }}
+                    </div>
+
+                    <div class="ml-4 ml-md-auto mr-auto h5 ">
+
+                    </div>
+                    <div class="mr-4">
+                        <h5><b>Totale ordine</b></h5>
+                        <span class="price" style="font-size:2em;">{{ ordine.totale|price }}</span>
+                    </div>
+
+
+                </div>
+
+                {% set spedizione = ordine.getShippingAddress() %}
+
+                <h5><b>Spedito a</b></h5>
+                <div>
+                    {{ spedizione.nome }} {{ spedizione.cognome }}<br>
+                    {{ spedizione.via }} {{ spedizione.numero }} <br>
+                    {{ spedizione.citta }}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

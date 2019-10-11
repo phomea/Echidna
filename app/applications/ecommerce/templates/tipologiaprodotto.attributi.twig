@@ -1,0 +1,90 @@
+
+<div class="card">
+    <div class="card-body">
+
+
+        <form class="form-ajax" action="{{ router_service.getRoute("ecommerce.tipologiaprodotto.attributi.save").build() }}" method="post">
+            <input type="hidden" name="id"  value="{{ data.id }}">
+
+        {% for attributo in attributiDisponibili %}
+            <div class="form-group">
+                <label class="border-info">
+                    <input type="hidden" name="attributi[{{ attributo.id }}]" value="off">
+                    <input type="checkbox" name="attributi[{{ attributo.id }}]" value="on" {% for as in attributiAssegnati %}
+
+                        {{ as.id_attributo == attributo.id ? "checked" : ""}}
+                    {% endfor %}> {{ attributo.nome }}
+                    <p class="small">
+                        Possibili valori : {% for valore in  attributo.possibili_valori %}
+                            "{{ valore.valore }}"
+                        {% endfor %}
+                    </p>
+                </label>
+
+            </div>
+
+
+        {%  endfor %}
+
+            <input type="submit" class="btn btn-success" value="Salva">
+        </form>
+    </div>
+</div>
+
+
+
+{% block scripts %}
+    <script>
+        (function(){
+            var categorieDisponibili;
+            var urlAddCategory = "{{ router_service.getRoute("ecommerce.catalogo.prodotto.category.add").build({id : idProdotto}) }}";
+            var urlRemoveCategory = "{{ router_service.getRoute("ecommerce.catalogo.prodotto.category.remove").build({id : idProdotto}) }}";
+            var urlGetCategoris = "{{ router_service.getRoute("ecommerce.catalogo.prodotto.category").build({id : idProdotto}) }}";
+
+
+            function updateSelects( ) {
+                $.ajax({
+                    url : urlGetCategoris,
+                    method : "GET",
+                    dataType : "json"
+                }).done(function(d){
+                    $(".categoria-disponibile").show();
+                    d.forEach(function( o ){
+                        $('.categoria-disponibile[value="'+o.categoria.id+'"]').hide();
+                    });
+
+                    $("#categorieAssociate").empty();
+
+                    d.forEach(function( o ){
+                        nc = $('<option value="' + o.categoria.id + '" name="categorieAssociate[]">' + o.categoria.nome + '</option>')
+
+                        $("#categorieAssociate").append( nc );
+                    });
+                });
+            }
+
+            updateSelects();
+
+            $("#moveLeft").on("click",function(){
+                daAggiungere = $("#categorieDisponibili").val();
+                console.log(daAggiungere);
+                $.post(urlAddCategory,{
+                    ids : daAggiungere
+                }).done(updateSelects);
+            });
+
+            $("#moveRight").on("click",function(){
+                daRimuovere = $("#categorieAssociate").val();
+
+                $.post(urlRemoveCategory,{
+                    ids : daRimuovere
+                }).done(updateSelects);
+            });
+
+
+            $(document).ready(function(){
+                $()
+            })
+        })(jQuery)
+    </script>
+{% endblock %}

@@ -1,0 +1,90 @@
+
+<div class="image-dropper">
+    <span>Drop files</span>
+</div>
+
+
+<div class="text-center">
+
+        oppure
+        <br>
+        <a href="" id="filebrowser" class="btn btn-primary btn-sm">Aggiungi da media</a>
+    <br>
+    <br>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="row lista-thumbnail">
+
+            {% for immagine in immagini %}
+            <figure class="float-left d-flex" style="margin: 0.5em;" data-id="{{ immagine.id }}">
+                <img src="{{ immagine.permalink }}" alt="" class="img-thumbnail">
+            </figure>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+
+{% block scripts %}
+<script>
+    new FileDropper(".image-dropper","catalogo/prodotti/");
+
+    var mediabrowser = new MediaBrowser("#filebrowser");
+
+    mediabrowser.fileChoose(function( file ){
+        console.log(file);
+
+
+        var lista = $(".lista-thumbnail");
+
+
+        $.post( "{{ router_service.getRoute("ecommerce.catalogo.prodotto.image.add").build({id:prodotto.id}) }}",{
+                permalink : file.permalink
+        }).complete(function(d){
+
+            d = d.responseJSON;
+
+            var t = $('<figure class="float-left d-flex" data-id="'+d.id+'" style="margin: 0.5em;">\n' +
+                '                <img src="'+d.permalink+'" alt="" class="img-thumbnail">\n' +
+                '            </figure>');
+
+            $(".lista-thumbnail").append(t);
+        })
+    });
+
+    $(window).ready(function(){
+        $("#filebrowser").on( "click",function (e) {
+            e.preventDefault();
+            mediabrowser.open();
+        })
+    });
+
+
+    $(document).on("mouseenter",".lista-thumbnail figure",function(){
+
+       if( $(this).find(".thumbnail-actions").length == 0  ){
+           var thumbnail = this;
+           var actions = $('<div class="thumbnail-actions"></div>');
+           var remove = $('<a href="" class="btn"><i class="fa fa-trash"></i></a>');
+           var id = $(this).attr("data-id");
+
+
+           $(remove).on("click",function( e ){
+               e.preventDefault();
+               $.post( "{{ router_service.getRoute("ecommerce.catalogo.prodotto.image.remove").build({id: ""}) }}"+id,{
+
+               }).complete(function(d){
+                    $(thumbnail).remove();
+               })
+           });
+           actions.append(remove);
+
+           $(this).append(actions);
+       }
+    })
+
+</script>
+{% endblock %}

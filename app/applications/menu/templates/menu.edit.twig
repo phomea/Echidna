@@ -1,0 +1,27 @@
+{% extends "mod.twig" %}
+
+    {% block beforeContent %}
+        {% if data.id_menu %}
+            <a class="btn btn-light mb-3" href="{{ data.getParentMenu().buildModLink() }}"><i class="fas fa-arrow-left"></i> Livello superiore</a>
+        {%  endif %}
+
+        {{  parent()}}
+    {% endblock %}
+
+
+{% block additionalFields %}
+
+
+    <h2>Campi menu</h2>
+
+
+    {% for item in data.items %}
+        <div>
+            {{ item.label }}
+            <a href="{{ item.buildModLink() }}">Modifica</a>
+        </div>
+    {% endfor %}
+
+    <a href="/backend/menu/aggiungi?id_menu={{ data.id }}" id="aggiungi-sottomenu">Aggiungi sotto menu</a>
+    <a href="/backend/menuitem/aggiungi?id_menu={{ data.id }}&position={{ data.items|length + 1 }}" id="aggiungi-menu">Aggiungi campo</a>
+{% endblock %}

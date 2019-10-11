@@ -1,0 +1,32 @@
+
+
+
+<div class="card">
+    <div class="card-body  ">
+        <div>
+            <h5>Reimposta mese di reset per i contatori</h5>
+            <br>
+
+            <form action="{{ router_service.getRoute("condominio.mesedireset.imposta").build({
+                id:condominio.id
+            }) }}" method="post">
+
+                <label>Scegli il mese di reset</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-list-ul"></i></span>
+                    </div>
+                    <select class="form-control" name="meseDiReset">
+                        {% for index,mese in mesi %}
+                            <option value="{{ index+1 }}" {{ index +1 == condominio.meseDiReset ? "selected" : "" }}>{{ mese }}</option>
+                        {% endfor %}
+                    </select>
+                    <div class="input-group-append">
+                        <button type="submit" href="" class="btn btn-primary corners">Applica mese di reset</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

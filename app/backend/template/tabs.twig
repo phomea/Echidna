@@ -1,0 +1,40 @@
+{% extends template_extend %}
+{% block content %}
+
+    {% for key,notice in notices %}
+        <div class="text-center m-4 top-notice">
+            <button class="close"><i class="fa fa-close"></i> </button>
+
+            <i class="fa fa-exclamation"></i>
+            <h4 class="mb-3">{{ notice.message|raw }}</h4>
+
+            {% for cta in notice.cta %}
+                <a href="{{ cta.route.build() }}" target="{{ cta.target|default('_self') }}" class="btn btn-light btn-xs">Visualizza {{ cta.label }}</a>
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    {% for key,tab in tabs %}
+        <li class="nav-item {{ (loop.index==1 and not Request.get.tab ) or (Request.get.tab == key) ? "active":"" }}" >
+            <a class="nav-link {{ (loop.index==1 and not Request.get.tab ) or (Request.get.tab == key) ? "active show":"" }}" id="{{ key }}-tab" data-toggle="tab" href="#{{ key }}" role="tab" aria-controls="{{ key }}" aria-selected="true">{{ tab.label }}</a>
+        </li>
+    {% endfor %}
+
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+    {% for key,tab in tabs %}
+        <div class="tab-pane {{ (loop.index==1 and not Request.get.tab ) or (Request.get.tab == key) ? "active show":"" }}" id="{{ key }}" role="tabpanel" aria-labelledby="{{ key }}-tab">{{ tab.content|raw }}</div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+{% endblock %}

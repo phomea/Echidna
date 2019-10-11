@@ -1,0 +1,40 @@
+{% extends "main/widgets/views/widget_base.twig" %}
+    {% block content %}
+
+
+
+        <div class="widget social-box clearfix">
+
+
+
+            <div class="card-body m-0">
+                <form class="text-left">
+                    <div class="">
+                        <div class="">
+                            <label>Nome condominio</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="">
+                        <div class="">
+                            <label>Importa unità abitative</label>
+                            <input type="file" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="">
+                        <div class="">
+                            <label>Importa unità contatori</label>
+                            <input type="file" class="form-control">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Inserisci</button>
+            </div>
+        </div>
+
+
+    {% endblock %}

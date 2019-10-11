@@ -1,0 +1,73 @@
+<div class="form-group {{ field.fieldsize ? field.fieldsize : '' }}" {% if field.hideIf %}
+
+    data-hideselectors="{% for v in field.hideIf %}{{v[0]}}|{% endfor %}" data-hidevalues="{% for v in field.hideIf %}{{v[1]|join("]")}}|{% endfor %}"
+
+        {% endif %}>
+    <label class=" form-control-label">{{ field.label ? field.label : property }}
+        <br><small>{{ field.hint }}</small>
+    </label>
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-font"></i></span>
+        </div>
+        <input type="text"  class="form-control ricerca-indirizzo" autocomplete="off" name="{{ property }}" value="{{ field.value }}">
+    </div>
+</div>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7b3vWCZFr-U-C65gHC-lb04shCJMFBak&libraries=places"></script>
+
+<script>
+    var autocomplete = new google.maps.places.Autocomplete( document.getElementsByClassName("ricerca-indirizzo")[0]);
+
+autocomplete.addListener('place_changed', function() {
+
+    var place = autocomplete.getPlace();
+    console.log(place);
+
+    if (place.address_components) {
+
+        var functGetPlaceComponent = function (placeObj, component_name, getLongName) {
+            for (i = 0; i < placeObj.length; i++) {
+                var types = placeObj[i].types;
+                var indexFound = types.indexOf(component_name);
+                if (indexFound > -1) {
+                    if (!getLongName)
+                        return placeObj[i].short_name;
+                    else
+                        return placeObj[i].long_name;
+                }
+            }
+            return null;
+        };
+
+        var zip = functGetPlaceComponent(place.address_components, 'postal_code');
+        console.log('ZIP: ' + zip);
+        var city = functGetPlaceComponent(place.address_components, 'locality');
+
+        if( !city){
+            city = functGetPlaceComponent(place.address_components, 'administrative_area_level_3');
+        }
+        console.log('CITY: ' + city);
+        var province = functGetPlaceComponent(place.address_components, 'administrative_area_level_2');
+        console.log('PROVINCE: ' + province);
+        var state = functGetPlaceComponent(place.address_components, 'administrative_area_level_1');
+        console.log('STATE\\REGION: ' + state);
+        var country = functGetPlaceComponent(place.address_components, 'country');
+        console.log('COUNTRY: ' + country);
+
+
+        var route = functGetPlaceComponent(place.address_components, 'route');
+        var numero = functGetPlaceComponent(place.address_components, 'street_number');
+
+
+        $('[name="cap"]').val(zip);
+        $('[name="indirizzo"]').val( route + ", "+numero);
+        $('[name="citta"]').val(city);
+        $('[name="provincia"]').val(province);
+        $('[name="paese"]').val(country);
+    }
+    })
+
+</script>

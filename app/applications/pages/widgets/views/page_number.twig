@@ -1,0 +1,25 @@
+{% extends "main/widgets/views/widget_base.twig" %}
+    {% block content %}
+
+
+
+    <div class="widget social-box facebook">
+        <i class="lnr lnr-file-empty"></i>
+        <ul>
+            <li>
+                <strong><span class="count">{{ count }}</span></strong>
+                <span>Pagine totali</span>
+            </li>
+            <li>
+                <strong><span class="count">{{ inactivePages }}</span></strong>
+                <span>Non attive</span>
+            </li>
+        </ul>
+        <div class="card-footer">
+            <a href="/backend/pages/lista" class="btn btn-light"><em class="fas fa-list"></em></a>
+            <a href="/backend/pages/aggiungi" class="btn btn-light"><em class="fas fa-plus"></em></a>
+        </div>
+    </div>
+
+
+{% endblock %}

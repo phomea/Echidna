@@ -1,0 +1,18 @@
+.paddingboxed{
+	padding: 20px;
+}
+.paddingboxed h3{
+	margin:10px 0px; 
+	font-weight: bold;	
+}
+.paddingboxed .theformCSV{ 
+	margin: 20px 0px; 
+}
+.paddingboxed .theformCSV input[type="submit"]{
+	margin: 20px 0px;
+}
+
+.paddingboxed a{ 
+	text-decoration: underline;
+	color: #51c126;
+}

@@ -1,0 +1,262 @@
+<!-- Header-->
+<header id="header" class="header" {% if demoMode %}style="background: #f00;"{% endif %}>
+
+    <div class="header-menu">
+
+        <div class="col-sm-7">
+            <a id="menuToggle" class="menutoggle pull-left" data-tooltip="Collassa menù laterale"><i class="fa fa-list"></i></a>
+            <div class="header-left">
+                <!--<button class="search-trigger btn-icon"><i class="lnr lnr-magnifier"></i></button>-->
+                <div class="form-inline">
+                    <form class="search-form" action="/backend/main/search" >
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search" name="s">
+                        <!--<button class="search-close" type="submit"><i class="fa fa-times"></i></button>-->
+                    </form>
+                </div>
+
+
+                <h4 class="text-white d-inline-block">{{ demoMode ? "DEMO - " : "" }}{{ title ? title : "Echidna" }}</h4>
+                {% if demoMode %}
+                    <br>
+                <small style="color:#fff;font-weight: bold">Nella modalità demo puoi testare le funzionalità del cms senza alterare i dati reali del database. Ogni modifica che fai sarà legata al tuo utente e invisibile a tutti gli altri</small>
+                {% endif %}
+
+
+            </div>
+
+
+
+
+        </div>
+
+        <div class="col-sm-5">
+            <!--<a id="userAreaToggle" class="menutoggle pull-right"><i class="fa fa fa-angle-right"></i></a>-->
+
+            {% if not admin_user.checkPermission("backend.right_aside.show") %}
+
+
+                <a href="/backend/logout"  data-tooltip="Esci dal sistema" class="btn-icon float-right" ><span class="lnr lnr-exit"></span>  </a>
+
+            {% endif %}
+
+
+            {{ headermenu_right_buttons | raw }}
+
+
+
+
+
+            {% if  application_info  %}
+                <div class="info-popup dropdown float-right">
+                    <a href="" class="btn-icon" data-toggle="dropdown"><span class="lnr lnr-question-circle"></span> </a>
+
+                    <div class="user-menu dropdown-menu" style="width: 400px;height: 400px;background: #fff">
+                        <div class="pl-5 pr-5 pb-3 pt-3">
+                            <div class="text-center">
+                                <span class="lnr lnr-{{ application_info.icon }} h1"></span>
+                                <h5>{{ application_info.title }}</h5>
+                            </div>
+                            <hr>
+
+                            <p>{{ application_info.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
+            <a href="/" target="_blank" class="btn-icon float-right" ><span class="lnr lnr-earth" title="Vai al sito"></span> </a>
+
+
+
+
+            <div class="info-popup dropdown float-right mr-3">
+                <a href="" id="icon-performance" class="btn-icon" data-toggle="dropdown"><span class="lnr lnr-heart-pulse"></span> </a>
+
+                <div class="user-menu dropdown-menu" style="width: 400px;height: 400px;background: #fff">
+                    <div class="pl-5 pr-5 pb-3 pt-3">
+                        <b>Load :</b> <span id="load1"></span> - <span id="load2"></span> - <span id="load3"></span>
+                        <br>
+                        <b>Ram :</b> <span id="freeram"></span> / <span id="totalram"></span>
+                        <br>
+                        <b>Disk : </b><span id="freedisk"></span> / <span id="totaldisk"></span> (<span id="useddisk"></span> )
+                    </div>
+                </div>
+            </div>
+
+
+
+            {% if not admin_user.checkPermission("backend.right_aside.show") %}
+                {% if admin_user.checkPermission("backend.right_aside.notifications.show") %}
+                    <div class="   float-right">
+                        <button class="btn-icon   " type="button" id="notification"  data-toggle="dropdown"   aria-haspopup="true" aria-expanded="false">
+                            <i class="lnr lnr-alarm"></i>
+                              <span class="badge badge-danger">{{ notifications | length }}</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right" id="notification-dropdown">
+                            <header  >Ci sono {{ notifications | length }} notifiche non lette</header>
+
+                            <section>
+                                {% for notification in notifications %}
+                                    <a class="aside-card-item" href="#">
+                                        <i class="fa fa-check"></i>
+                                        <span>{{  notification.message }}</span>
+                                    </a>
+                                {% endfor %}
+                            </section>
+                        </div>
+                    </div>
+                {% endif %}
+
+            {% endif %}
+
+
+            {% if demoMode %}
+                {% if admin_user.checkPermission("environment.prod.access") %}
+                    <div class=" dropdown-header-notifications float-right">
+
+
+
+                        <form action="{{ router_service.getRoute("demomode.toggle").build() }}" onchange="this.submit()">
+                            <input type="hidden" name="return_url" value="{{ current_url }}">
+                            <div class=" switch switch-demo-mode">
+
+
+                                <div class=" " data-tooltip="Clicca per passare alla modalità di produzione">
+                                    <label class=" form-control-label">
+                                        <span>{{ field.label ? field.label : property }}</span>
+
+
+                                        <!--<div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-check-square"></i></span>
+                                        </div>-->
+                                        <div class="ml-2">
+                                            <input type="hidden" value="0" name="{{ property }}">
+                                            <input type="checkbox" data-toggle="toggle" value="1" name="{{ property }}" {% if field.value == 1 %} checked="checked" {% endif %} class="form-check-input" >
+
+                                            <div class="form-check-label slider round"  >
+                                                <b>DEMO</b>
+                                            </div>
+
+                                        </div>
+
+                                    </label>
+
+                                </div>
+
+                                {% if field.hint %}
+                                    <small>{{ field.hint }}</small>
+                                {% endif %}
+
+
+                            </div>
+                        </form>
+
+
+                        <!--
+
+                        <a href="{{ router_service.getRoute("demomode.toggle").build({
+                            return_url : current_url
+                        }) }}" class="btn btn-light"  >
+                            {% if demoMode %} Passa alla modalità di produzione {% else %} Passa alla modalità demo {% endif %}
+
+                        </a>-->
+                    </div>
+                {% endif %}
+
+            {% else %}
+                {% if admin_user.checkPermission("environment.demo.access") %}
+                    <div class=" dropdown-header-notifications float-right">
+
+
+
+
+                        <form action="{{ router_service.getRoute("demomode.toggle").build() }}" onchange="this.submit()">
+                            <input type="hidden" name="return_url" value="{{ current_url }}">
+                            <div class=" switch switch-demo-mode ">
+
+
+                                <div class=" " data-tooltip="Clicca per passare alla modalità demo">
+                                    <label class=" form-control-label">
+                                        <span>{{ field.label ? field.label : property }}</span>
+
+
+                                        <!--<div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-check-square"></i></span>
+                                        </div>-->
+                                        <div class="ml-2">
+                                            <input type="hidden" value="0" name="{{ property }}">
+                                            <input type="checkbox" data-toggle="toggle" value="1" name="{{ property }}" checked class="form-check-input" >
+
+                                            <div class="form-check-label slider round">
+                                                <b>PROD</b>
+                                            </div>
+
+                                        </div>
+
+                                    </label>
+
+                                </div>
+
+                                {% if field.hint %}
+                                    <small>{{ field.hint }}</small>
+                                {% endif %}
+
+
+                            </div>
+                        </form>
+
+
+                        <!--
+
+                        <a href="{{ router_service.getRoute("demomode.toggle").build({
+                            return_url : current_url
+                        }) }}" class="btn btn-light"  >
+                            {% if demoMode %} Passa alla modalità di produzione {% else %} Passa alla modalità demo {% endif %}
+
+                        </a>
+                        -->
+                    </div>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+
+</header><!-- /header -->
+<!-- Header-->
+
+<script>
+    $(window).ready(function(){
+        var getInfoUrl = "";
+
+
+        function updateStats(){
+            $.get("/backend/main/get-performance-stats",function ( d ) {
+                d = JSON.parse(d);
+                $("#load1").text(d.load[0]);
+                $("#load2").text(d.load[1]);
+                $("#load3").text(d.load[2]);
+
+                $("#freeram").text( (d.freeram / 1024 ).toFixed(2) + "M" );
+                $("#totalram").text( (d.totalram / 1024).toFixed(2) + "M" );
+
+                $("#freedisk").text( (d.disk.free / 1024 / 1024 ).toFixed(2) + "M" );
+                $("#totaldisk").text( (d.disk.total / 1024 / 1024).toFixed(2) + "M" );
+                $("#useddisk").text( d.disk.used);
+
+
+                if( d.load[0] > 1){
+                    $("#icon-performance").addClass("danger");
+                }else{
+                    $("#icon-performance").removeClass("danger");
+                }
+
+
+            })
+        }
+
+        setInterval(function () {
+            updateStats()
+        },20000);
+        updateStats();
+    })
+</script>

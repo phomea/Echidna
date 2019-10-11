@@ -1,0 +1,157 @@
+
+<form class="form-ajax valore-form" action="{{ urlupdate }}" method="post" style="display: none;">
+    <input type="hidden" value="{{ valore.id }}" name="id">
+    <div class="form-group">
+
+        Label: <input type="text" value="{{ valore.label }}" name="label" class="form-control">
+
+        Valore: <input type="text" value="{{ valore.valore }}" name="valore" class="form-control">
+
+        Nome File: <input type="text" value="{{ valore.nomefile }}" name="nomefile" class="form-control">
+
+        <button type="submit" class="btn btn-xs btn-success mr-2" value="Aggiorna" name="action"><i class="fa fa-save"></i> </button>
+
+        <button type="button" data-id="{{ valore.id }}"  class="btn btn-xs btn-danger remove-value"  value="Elimina" name="action"><i class="fa fa-trash"></i></button>
+
+    </div>
+</form>
+
+
+
+
+<div class="card">
+    <div class="card-header">
+        <div class="float-right">
+            <button class="btn btn-sm btn-light btn-icon" id="aggiungiValore"><i class="fa fa-plus"></i> </button>
+        </div>
+    </div>
+    <div   class="card-body" style="max-width: 50em">
+        <div id="lista-valori">
+            {% for valore in valori %}
+                <form class="form-ajax" action="{{ urlupdate }}" method="post">
+                    <input type="hidden" value="{{ valore.id }}" name="id">
+                    <div class="form-group">
+
+                            Label: <input type="text" value="{{ valore.label }}" name="label" class="form-control">
+                            Valore: <input type="text" value="{{ valore.valore }}" name="valore" class="form-control">
+                            Nome File: <input type="text" value="{{ valore.nomefile }}" name="nomefile" class="form-control">
+
+                        <button type="submit" class="btn btn-sm btn-light btn-icon mr-2" value="Aggiorna" name="action"><i class="fa fa-save"></i> </button>
+
+                        <button type="button" data-id="{{ valore.id }}"  class="btn btn-sm btn-light btn-icon remove-value"  value="Elimina" name="action"><i class="fa fa-trash"></i></button>
+
+                    </div>
+                </form>
+            {% endfor %}
+        </div>
+
+
+    </div>
+</div>
+
+
+<div class="modal" tabindex="-1" role="dialog" id="modalInsertContent">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form class="form-ajax form-aggiungi" action="{{ urlinsert }}" method="post" data-postevent="ecommerce.valore.aggiunto">
+
+                    <input type="hidden" name="id_ecommerce_attributo" value="{{ attributo.id }}">
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            Label: &nbsp;<input type="text" value="{{ valore.label }}" class="form-control" name="label">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            Valore: &nbsp;<input type="text" value="{{ valore.valore }}" class="form-control" name="valore">
+                        </div>
+                        <div class="input-group mb-3">
+                            Nome File: &nbsp;<input type="text" value="{{ valore.nomefile }}" class="form-control" name="nomefile">
+                        </div>
+                        <div class="input-group-append">
+                            <button class="btn btn-xs btn-success mr-2" type="submit"><i class="fa fa-trash"></i>Aggiorna </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    (function( $ ){
+       $(window).ready(function(){
+
+           var valoreForm = $(".valore-form").clone();
+
+           function updateValues(){
+                $.ajax({
+                    url : "{{ urllist }}",
+                    method : "GET",
+                    dataType : "json"
+                }).done(function( d ){
+                    $("#lista-valori").empty();
+
+                    d.forEach(function( o ){
+                        var v = valoreForm.clone();
+                        v.find('[name="valore"]').val(o.valore);
+                        v.find('[name="nomefile"]').val(o.nomefile);
+                        v.find('[data-id]').attr("data-id",o.id);
+                        v.show();
+
+                        $("#lista-valori").append(v);
+                    })
+                })
+           }
+
+           $(document).on("click",".remove-value",function(){
+               id = $( this ).attr("data-id");
+               url = "{{ urlremove }}";
+               $.post(url,{
+                   id : id
+               }).done(updateValues);
+           });
+
+
+
+           $(document).on("ecommerce.valore.aggiunto",function(){
+               $("#modalInsertContent").modal("hide");
+               $(".form-aggiungi").find('[name="valore"]').val("");
+               $(".form-aggiungi").find('[name="nomefile"]').val("");
+               updateValues();
+           })
+           /*
+            <form class="form-ajax">
+            <input type="hidden" value="{{ valore.id }}">
+            <div class="form-group">
+            <div class="input-group mb-3">
+            <input type="text" value="{{ valore.valore }}" class="form-control">
+            </div>
+            <div class="input-group-append">
+            <button class="btn btn-xs btn-success mr-2" type="button"><i class="fa fa-trash"></i>Aggiorna </button>
+            <button class="btn btn-xs btn-danger" type="button"><i class="fa fa-trash"></i>Elimina </button>
+            </div>
+            </div>
+            </form>
+            */
+
+           $("#aggiungiValore").on("click",function(){
+               $("#modalInsertContent").modal();
+           })
+
+
+
+       });
+
+
+    })(jQuery);
+</script>

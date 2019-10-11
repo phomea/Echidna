@@ -1,0 +1,119 @@
+<div class="card">
+    <div class="card-body">
+
+
+        {% for campo in campi %}
+        <form class="form-ajax" action="{{ router_service.getRoute("ecommerce.tipologiaprodotto.campi.update").build() }}" method="post">
+
+            <input type="hidden" name="id" value="{{ campo.id}}">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label>Nome campo</label>
+                        <input class="form-control" name="nome" value="{{ campo.nome }}">
+                    </div>
+
+                </div>
+
+                <div class="col">
+                    <div class="form-group">
+                        <label>Slug</label>
+                        <input class="form-control" name="slug" value="{{ campo.slug }}">
+                    </div>
+
+                </div>
+
+                <div class="col">
+                    <div class="form-group">
+                        <label>Dato richiesto</label>
+                        <select class="form-control" name="valore">
+                            <option {{ campo.valore == 'Numero' ? "selected" : '' }}>Numero</option>
+                            <option {{ campo.valore == 'Testo' ? "selected" : '' }}>Testo</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="form-group pt-4 mt-2">
+                        <input type="submit" value="Salva" class="btn btn-success">
+                        <button type="button" class="btn btn-danger">Elimina</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+
+        {% endfor %}
+
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-body">
+        <a href="" class="btn btn-primary aggiungi-campo">Aggiungi campo</a>
+    </div>
+</div>
+
+
+<div class="modal" tabindex="-1" role="dialog" id="modalInsertContent">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form class="form-ajax form-aggiungi" action="{{ urlinsert }}" method="post" data-postevent="ecommerce.valore.aggiunto">
+
+                    <input type="hidden" name="id_ecommerce_tipologia_prodotto" value="{{ item.id }}">
+                    <div class="form-group">
+                        <label>Nome campo</label>
+                        <input class="form-control" name="nome">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Slug</label>
+                        <input class="form-control" name="slug">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Dato richiesto</label>
+                        <select class="form-control" name="valore">
+                            <option>Numero</option>
+                            <option>Testo</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-success" value="Salva">
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% block scripts %}
+    <script>
+        (function(){
+            $(".aggiungi-campo").on("click",function( e ){
+                e.preventDefault();
+                $("#modalInsertContent").modal();
+            })
+        })(jQuery)
+    </script>
+{% endblock %}

@@ -1,0 +1,12 @@
+<div class="form-group {{ field.fieldsize ? field.fieldsize : '' }}" data-check="cap">
+    <label class=" form-control-label">{{ field.label ? field.label : property }}
+    <br><small>{{ field.hint }}</small>
+    </label>
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-map-marker-alt"></i></span>
+        </div>
+        <input type="text" {% if field.isRequired() %} required="required" {% endif %} placeholder="{{ field.placeholder ? field.placeholder : 'Inserisci valore' }}" class="form-control " name="{{ property }}" value="{{ field.value }}" maxlength="{{ field.maxlength ? field.maxlength : 5 }}">
+    </div>
+</div>

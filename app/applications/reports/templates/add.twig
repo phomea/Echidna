@@ -1,0 +1,98 @@
+{% extends template_extend %}
+
+    {% block beforeContent %}
+        <form data-redirect="" action="{{ router_service.getRoute("Backend-NewBollettaStep2").build() }}"  method="{{ data.id ? "PUT" : "POST" }}">
+    {% endblock %}
+
+
+    {% block content %}
+
+
+        <div class="card">
+            <div class="card-header">
+                <strong class="card-title">Crea nuova bolletta</strong>
+            </div>
+
+
+
+            <div class="card-body">
+
+
+                {% include "fields/select.twig" with{
+                    property : "idTipoDocumento",
+                    field : {
+                        fieldsize: "large",
+                        hint: "Seleziona il tipo di documento da generare",
+                        label: "Tipo Documento da Generare",
+                        templateVar: listaTipiDocumento
+                    }
+                } %}
+
+                {% include "fields/data.twig" with{
+                    property : "dataDocumento",
+                    field : {
+                        fieldsize: "small",
+                        label: "Data Emissione Documento",
+                        value : dataodierna
+                    }
+                } %}
+
+                {% include "fields/select.twig" with{
+                    property : "idCondominio",
+                    field : {
+                        fieldsize: "medium",
+                        hint: "Seleziona il condominio",
+                        value : dataodierna,
+                        label: "Condominio",
+                        templateVar: listaCondomini
+                    }
+                } %}
+                <div id="listaAbitazioniAjax" class="form-group medium">
+                    <!-- da caricare una volta scelto il condominio -->
+                </div>
+
+                <hr style="width:100%" />
+
+
+                {% include "fields/data.twig" with{
+                    property : "dataReportInizio",
+                    field : {
+                        fieldsize: "small",
+                        label: "Data INIZIO periodo di riferimento",
+                        value : dataodierna
+                    }
+                } %}
+
+                {% include "fields/data.twig" with{
+                    property : "dataReportFine",
+                    field : {
+                        fieldsize: "small",
+                        label: "Data FINE periodo di riferimento",
+                        value : dataodierna
+                    }
+                } %}
+
+                <hr style="width:100%" />
+
+                <input type="submit" value="Crea bolletta">
+            </div>
+
+        </div>
+    {% endblock %}
+
+    {% block afterContent %}
+    </form>
+    {% endblock %}
+
+    {% block scripts %}
+        <script>
+            $( document ).ready(function() {
+                //console.log($("#input_idCondominio").val());
+                $("#input_idCondominio").change(function() {
+                    var idCond = $(this).children("option:selected").val();
+                    //Call Appartamenti via ajax
+                    $("#listaAbitazioniAjax").load( '{{ajaxUrl}}/'+idCond );
+                });
+            });
+        </script>
+    {% endblock %}

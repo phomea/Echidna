@@ -1,0 +1,200 @@
+{% extends "base/template.twig" %}
+
+{% block content %}
+    <figure class="product-top-bg">
+        <img src="{{ prodotto.images[0].permalink }}">
+    </figure>
+    <main id="scheda-prodotto">
+        <div class="container">
+
+            <div>
+
+
+                <div class="row mt-5">
+                    <div class="col-8">
+                        <div class="owl-carousel owl-theme general-carousel mb-5" data-nav>
+                            {% for immagine in prodotto.images %}
+                                <img src="{{ immagine.permalink }}">
+                            {% endfor %}
+                        </div>
+
+                        {% for variante in varianti %}
+                            <div class="card variante mb-5">
+                                <div class="card-header">
+                                    <h3>{{ variante.nome }}</h3>
+                                </div>
+                                <div class="card-body">
+                                    <form method="post" action="/carrello/aggiungi">
+                                        <input type="hidden" name="id_variante" value="{{ variante.id }}">
+                                        <input type="hidden" name="quantita" value="1">
+
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <img src="{{ variante.images[0].permalink }}">
+                                            </div>
+
+
+                                            <div class="col-9">
+
+
+                                                <div>
+                                                {% for attributo in variante.attributi %}
+                                                    {{ attributo.attributo.nome }}
+                                                    {{ attributo.valore.valore }}
+                                                {% endfor %}
+                                                </div>
+
+
+                                                <button type="submit" class="btn btn-secondary"><i class="fa fa-cart-plus"></i> Aggiungi al carrello </button>
+                                            </div>
+
+                                        </div>
+
+
+                                    </form>
+                                </div>
+                            </div>
+                        {%  endfor %}
+                    </div>
+                    <div class="col-4">
+                        <h2 class="product-name">{{ prodotto.nome }}</h2>
+                        <p>
+                            Codice prodotto :
+                        </p>
+                        <div>
+                            {{ prodotto.descrizione|raw }}
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            <div class="row mt-5">
+                <div class="col-8">
+                    <div class="owl-carousel owl-theme general-carousel" data-nav>
+                    {% for immagine in prodotto.images %}
+                        <img src="{{ immagine.permalink }}">
+                    {% endfor %}
+                    </div>
+                </div>
+                <div class="col-4">
+                    <h2 class="product-name">{{ prodotto.nome }}</h2>
+                    Codice prodotto : {% for variante in prodotto.varianti %}
+                        <span class="product-sku" style="display: none;" {% for attributo in variante.attributi %}
+                            data-attribute{{ attributo.attributo.id }}="{{ attributo.valore.id }}"
+                                {% endfor %}>{{ variante.sku }}</span>
+                    {% endfor %}
+
+
+                    <p class="product-description">{{ prodotto.descrizione }}</p>
+
+                    {% if prodotto.varianti|length > 1 %}
+
+                        <form id="form-add-variant" class="variante" method="post" action="/carrello/aggiungi">
+                            {% for variante in prodotto.varianti %}
+
+
+                                <input type="radio" name="id_variante" value="{{ variante.id }}"
+                                {% for attributo in variante.attributi %}
+                                    data-attribute{{ attributo.attributo.id }}="{{ attributo.valore.id }}"
+                                {% endfor %}>
+                            {% endfor  %}
+
+
+
+
+                                    <span class="prezzo">{{ variante.prezzo }}</span>
+
+                            <input type="hidden" name="quantita" value="1">
+
+                        </form>
+
+
+
+                        <form class="scelta-attributi">
+                            {#{% for attributo in attributi %}
+                                <label>{{ attributo.attributo.nome }}</label>
+                                <select name="{{ attributo.attributo.id }}" class="form-control">
+
+                                    <option value="">...scegli</option>
+
+                                    {% for valore in attributo.valori %}
+
+                                        <option value="{{ valore.valore.id }}" {% if valore.attributoprecedentevalore %}
+                                            data-idprec="{{ valore.attributoprecedenteid }}" data-valueprec="{{ valore.attributoprecedentevalore }}"
+                                        {% endif %}>{{ valore.valore.valore }}</option>
+                                    {% endfor %}
+
+                                </select>
+                            {% endfor %}
+                            #}
+
+
+                            {% for attributo in attributi %}
+
+                                {% if attributo.valori|length == 1 %}
+                                    <input type="hidden" name="{{ attributo.attributo.id }}" value="{{ attributo.valori[0].valore.id }}">
+
+
+                                {% else %}
+                                <label>{{ attributo.attributo.nome }}</label>
+                                <select name="{{ attributo.attributo.id }}" class="form-control">
+
+                                    <option value="">...scegli</option>
+
+                                    {% for valore in attributo.valori %}
+
+                                        <option value="{{ valore.valore.id }}"
+                                                {% if valore.parents %}
+                                                    {% for p in valore.parents %}
+                                                        data-attribute{{ p[0] }}="{{ p[1] }}"
+                                                    {% endfor  %}
+                                                {% endif %}
+                                                {% if valore.attributoprecedentevalore %}
+                                            data-idprec="{{ valore.attributoprecedenteid }}" data-valueprec="{{ valore.attributoprecedentevalore }}"
+                                                {% endif %}
+
+
+                                                {% if variante.gotAttributeValue( valore.valore.id) %}
+                                                    selected
+                                                {% endif %}
+                                        >{{ valore.valore.valore }}</option>
+                                    {% endfor %}
+
+                                </select>
+
+                                {% endif %}
+
+                            {% endfor %}
+                        </form>
+
+
+                    {% else %}
+                        {% set variante = prodotto.varianti[0] %}
+                        <form class="variante">
+                            <div class="prezzo">
+                                {{ variante.prezzo }}
+                            </div>
+                        </form>
+                    {% endif %}
+
+                    <button type="submit" class="btn btn-secondary" form="form-add-variant"><i class="fa fa-cart"></i> Aggiungi al carrello</button>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+    </main>
+{% endblock %}
+

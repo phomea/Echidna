@@ -1,0 +1,47 @@
+{% extends template_extend %}
+    {% block beforeContent %}
+
+
+<form method="post">
+    {% endblock %}
+
+    {% block content %}
+
+        <div class="card">
+        <div class="card-body">
+            <div>
+
+
+            <h1>Impostazioni Php My admin</h1>
+
+                {% if status %}
+
+                    <p>
+                        Php My Admin è attivo. Puoi accedere con i dati di accesso al DB.
+                    </p>
+                    <button type="submit" name="operazione" value="stoppa" class="btn btn-danger">Stoppa PHP My Admin</button>
+
+
+                    <a href="{{ host }}:8181" class="btn btn-info" target="_blank">Vai a Php My Admin</a>
+                {% else %}
+                    <p>
+                        Php My Admin è servizio che ti permettere di effettuare operazioni direttamente sul database.
+                        <br>
+                        <b>Nota Bene: dovrai comunque conoscere i dati accesso al Database per poter effettuare il login su Php My Admin</b>
+                    </p>
+                    <button type="submit" name="operazione" value="avvia" class="btn btn-primary">Attiva PHP My Admin</button>
+                {% endif %}
+
+            </div>
+        </div>
+        </div>
+
+    {% endblock %}
+
+    {% block afterContent %}
+</form>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

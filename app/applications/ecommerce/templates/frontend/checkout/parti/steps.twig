@@ -1,0 +1,34 @@
+<div class="checkout-steps">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="checkout-step {{step==1?'attivo':''}} {{step>1?'passato':''}}">
+                    <span class="number">1</span>
+                    <span class="label">Account</span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="checkout-step {{step==2?'attivo':''}} {{step>2?'passato':''}}">
+                    <a href="{{router_service.getRoute('frontend.ecommerce.checkout.spedizione').build()}}">
+                        <span class="number">2</span>
+                        <span class="label">Indirizzo</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col">
+                <div class="checkout-step {{step==3?'attivo':''}} {{step>3?'passato':''}}">
+                    <a href="{{router_service.getRoute('frontend.ecommerce.checkout.spedizione.metodo').build()}}">
+                        <span class="number">3</span>
+                        <span class="label">Spedizione</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col">
+                <div class="checkout-step {{step==4?'attivo':''}}">
+                    <span class="number">4</span>
+                    <span class="label">Pagamento</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

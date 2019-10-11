@@ -1,0 +1,12 @@
+{% for banner in banners %}
+
+    <figure class="banner">
+    {% if banner.link %}
+        <a href="{{ banner.link }}">
+    {% endif %}
+        <img src="{{ banner.media }}" alt="{{ banner.alt }}">
+    {% if banner.link %}
+        </a>
+        {% endif %}
+    </figure>
+{% endfor %}

@@ -1,0 +1,62 @@
+
+<table class="table">
+    {% for lineitem in carrello.lineitems %}
+        <tr>
+            <td>
+                {{ lineitem.variant.sku }}
+            </td>
+            <td class="text-right">
+                {{ lineitem.quantity }}
+
+                X
+
+                {{ lineitem.single_price|price }}
+            </td>
+            <td class="text-right">
+                <strong>{{ lineitem.price_total|price }}</strong>
+            </td>
+        </tr>
+    {% endfor %}
+
+    <tr>
+        <td colspan="2" class="text-right">Subtotale</td>
+        <td class="text-right">
+            <strong>{{ carrello.subtotale|price}}</strong>
+        </td>
+    </tr>
+
+    {% if carrello.coupon %}
+    <tr>
+        <td colspan="2" class="text-right">Coupon {{ carrello.coupon.nome }}
+
+        <br>
+        <a href="{{ router_service.getRoute("frontend.ecommerce.rimuovicoupon").build() }}" class="small">Rimuovi</a>
+        </td>
+        <td class="text-right">
+            <strong>-{{ carrello.totaleSconto|price}}</strong>
+        </td>
+    </tr>
+    {% endif %}
+
+
+    <tr>
+        <td colspan="2" class="text-right">
+            Spedizione {{ carrello.metodoDiSpedizione.nome}}
+            {% if carrello.metodiDiSpedizione|length > 1 %}
+                <div><a href="{{ router_service.getRoute("frontend.ecommerce.checkout.spedizione.metodo").build() }}">Cambia</a></div>
+            {% endif %}
+        </td>
+        <td class="text-right">
+            <strong>{{ carrello.metodoDiSpedizione.prezzo|price}}</strong>
+
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" class="text-right">Totale</td>
+        <td class="text-right">
+            <strong class="h2">{{ carrello.totale|price }}</strong>
+        </td>
+    </tr>
+
+</table>

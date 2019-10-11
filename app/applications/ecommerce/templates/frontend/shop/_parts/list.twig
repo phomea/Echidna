@@ -1,0 +1,10 @@
+{% set col = 12 / (num_per_row ? num_per_row : 2 ) %}
+<div class="container list-container">
+        <div class="row shop-list">
+            {% for prodotto in prodotti %}
+                <div class="col-6 col-md-{{ col }} mb-5">
+                    {% include "ecommerce/product/thumbnail-preview.twig" with {prodotto : prodotto} %}
+                </div>
+            {% endfor %}
+        </div>
+</div>

@@ -1,0 +1,354 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{ (title != "") ? title : '' }} - Echidna CMS</title>
+    <meta name="description" content="Echidna CMS">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+
+
+    <link rel="stylesheet" href="/backend/theme/assets/css/normalize.css">
+    <link rel="stylesheet" href="/backend/theme/assets/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/backend/theme/assets/css/font-awesome.min.css">
+    <!--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="/backend/theme/assets/css/themify-icons.css">
+    <link rel="stylesheet" href="/backend/theme/assets/css/flag-icon.min.css">
+    <link rel="stylesheet" href="/backend/theme/assets/css/cs-skin-elastic.css">
+    <!-- <link rel="stylesheet" href="/backend/theme/assets/css/bootstrap-select.less"> -->
+    <link rel="stylesheet" href="/backend/theme/assets/scss/style.css">
+    <link href="/backend/theme/assets/css/lib/vector-map/jqvmap.min.css" rel="stylesheet">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:100,100i,300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:200,300,400,700" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="/backend/assets/css/custom.css">
+    <link rel="stylesheet" href="/backend/assets/css/alerts.css">
+
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+
+
+    <script src="/backend/theme/assets/js/vendor/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+    <script src="/backend/theme/assets/js/plugins.js"></script>
+    <!--<script src="/backend/theme/assets/js/main.js"></script>-->
+
+
+    <script src="/backend/theme/assets/js/lib/data-table/datatables.min.js"></script>
+    <script src="/backend/theme/assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+    <script src="/backend/theme/assets/js/lib/data-table/dataTables.buttons.min.js"></script>
+    <script src="/backend/theme/assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
+    <script src="/backend/theme/assets/js/lib/data-table/jszip.min.js"></script>
+    <script src="/backend/theme/assets/js/lib/data-table/pdfmake.min.js"></script>
+    <script src="/backend/theme/assets/js/lib/data-table/vfs_fonts.js"></script>
+    <script src="/backend/theme/assets/js/lib/data-table/buttons.html5.min.js"></script>
+    <script src="/backend/theme/assets/js/lib/data-table/buttons.print.min.js"></script>
+    <script src="/backend/theme/assets/js/lib/data-table/buttons.colVis.min.js"></script>
+    <script src="/backend/theme/assets/js/lib/data-table/datatables-init.js"></script>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.6/ace.js" integrity="sha256-CVkji/u32aj2TeC+D13f7scFSIfphw2pmu4LaKWMSY8=" crossorigin="anonymous"></script>
+
+    <!--<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>-->
+    <script src="/backend/assets/js/lib/tinymce/tinymce.min.js"></script>
+    <script
+            src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
+            integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
+            crossorigin="anonymous"></script>
+
+
+
+    <style>
+        {{ additional_css|raw }}
+    </style>
+    {% block styles %}
+    {% endblock %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/grapesjs/0.12.17/css/grapes.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/grapesjs/0.12.17/grapes.min.js"></script>
+<script src="https://raw.githubusercontent.com/artf/grapesjs-blocks-basic/master/dist/grapesjs-blocks-basic.min.js"></script>
+
+
+
+    <script src="https://grapesjs.com/js/grapesjs-preset-webpage.min.js?v0.1.11"></script>
+    <script src="https://grapesjs.com/js/grapesjs-lory-slider.min.js?0.1.5"></script>
+    <script src="https://grapesjs.com/js/grapesjs-tabs.min.js?0.1.1"></script>
+    <script src="https://grapesjs.com/js/grapesjs-custom-code.min.js?0.1.2"></script>
+    <script src="https://grapesjs.com/js/grapesjs-touch.min.js?0.1.1"></script>
+    <script src="https://grapesjs.com/js/grapesjs-parser-postcss.min.js?0.1.1"></script>
+    <script src="https://grapesjs.com/js/grapesjs-tooltip.min.js?0.1.1"></script>
+    <script src="https://grapesjs.com/js/grapesjs-tui-image-editor.min.js?0.1.2"></script>
+
+
+
+
+
+    <script src="/backend/assets/js/alerts.js"></script>
+    <script src="/backend/assets/js/forms.js"></script>
+    <script src="/backend/assets/js/main.js"></script>
+    <script src="/backend/assets/js/image.js"></script>
+    <script src="/backend/assets/js/popup.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+
+
+
+
+
+
+
+
+</head>
+<body>
+{% block mainbody %}
+
+{% include "parts/left-panel.twig" %}
+
+<!-- Right Panel -->
+
+
+<div id="right-panel" class="right-panel">
+
+    {% include "parts/header.twig" %}
+
+    {% include "parts/breadcrumbs.twig" %}
+
+
+    <div class="content mt-3">
+        {% if Request.get.message %}
+
+            <script>
+                Alerts.simple( "{{ (Request.get.titlemsg != "") ? Request.get.titlemsg : 'Operazione eseguita' }}", "{{ Request.get.message | raw }}");
+            </script>
+            <!--
+            <div class="alert-wrapper">
+            <div class="alert notification">
+                {{ Request.get.message }} <a href="" class="btn btn-light close">Ok</a>
+            </div>
+            </div>-->
+        {% endif %}
+
+
+        {% block content_notification %}
+            <!--<div class="col-sm-12">
+                <div class="alert  alert-success alert-dismissible fade show" role="alert">
+                    <span class="badge badge-pill badge-success">Success</span> You successfully read this important alert message.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>-->
+        {% endblock %}
+
+
+        {% block beforeContent %}
+        {% endblock %}
+
+        {% block content %}
+        {% endblock %}
+
+        {% block afterContent %}
+        {% endblock %}
+
+    </div> <!-- .content -->
+</div><!-- /#right-panel -->
+
+<!-- Right Panel -->
+
+{% if admin_user.checkPermission("backend.right_aside.show") %}
+    <aside class="right-aside">
+
+        <div class="inner">
+            <section class="profile-preview">
+
+                <figure class="profile-picture" style="background-image: url({{ admin_user.profile_img }});">
+                    <a href="/backend/logout" class="logout"><span class="lnr lnr-exit"></span> </a>
+
+                    {% if admin_user.checkPermission("backend.right_aside.profile.edit.show") %}
+                        <a href="/backend/users/{{ admin_user.id }}" class="edit-profile"  ><span class="lnr lnr-pencil"></span> </a>
+                    {% endif %}
+
+                </figure>
+                <h2 class="profile-name">{{ admin_user.nome }} {{ admin_user.cognome }}</h2>
+                <h3 class="profile-role">{{ admin_user.displayValue("type") }}</h3>
+            </section>
+
+
+
+            {% if admin_user.checkPermission("backend.right_aside.notifications.show") %}
+                <div class="aside-widget">
+                    <button class="btn btn-block" type="button" id="notification" data-toggle="collapse" data-target="#notification-dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="lnr lnr-alarm"></i>
+                        Notifiche <span class="badge badge-danger">{{ notifications | length }}</span>
+                    </button>
+                    <div class="notification-dropdown collapse aside-card" id="notification-dropdown">
+                        <header  >Ci sono {{ notifications | length }} notifiche non lette</header>
+
+                        <section>
+                            {% for notification in notifications %}
+                                <a class="aside-card-item" href="#">
+                                    <i class="fa fa-check"></i>
+                                    <span>{{  notification.message }}</span>
+                                </a>
+                            {% endfor %}
+                        </section>
+                    </div>
+                </div>
+            {% endif %}
+
+
+            {% if admin_user.checkPermission("backend.right_aside.users") %}
+                <div class="aside-widget">
+                    <a href="/backend/users/lista" class="menu-item">
+                        <span class="lnr lnr-users"></span> Gestisci utenti
+                    </a>
+                </div>
+            {% endif %}
+
+            {% if admin_user.checkPermission("backend.right_aside.users.roles") %}
+                <div class="aside-widget">
+                    <a href="/backend/users/ruoli/lista" class="menu-item">
+                        <span class="lnr lnr-rocket"></span> Gestisci ruoli
+                    </a>
+                </div>
+            {% endif %}
+
+
+        </div>
+
+
+    </aside>
+
+
+{% endif %}
+
+
+
+
+{% block scripts %}
+{% endblock %}
+
+
+{% endblock %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/it.js"></script>
+
+<script type="text/javascript">
+
+
+    $.fn.datepicker.dates['it'] = {
+        days: ["Domenica", "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato"],
+        daysShort: ["Dom", "Lun", "mar", "Mer", "Gio", "Ven", "Sab"],
+        daysMin: ["Do", "Lu", "Ma", "Me", "Gi", "Ve", "Sa"],
+        months: ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"],
+        monthsShort: ["Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic"],
+        today: "Oggi",
+        clear: "Pulisci",
+        format: "dd/mm/yyyy",
+        titleFormat: "MM yyyy", /* Leverages same syntax as 'format' */
+        weekStart: 0
+    };
+
+
+
+    var menuclosed = localStorage.getItem("menustatus");
+    if( menuclosed == 'closed'){
+        document.querySelector("body").className = "open";
+    }
+
+    (function ($) {
+        $(document).ready(function() {
+            $('#bootstrap-data-table-export').DataTable();
+
+
+
+
+        } );
+
+
+        $(".datapicker").datepicker({
+            todayBtn: true,
+            todayHighlight: true,
+            language : "it",
+            defaultDate : null,
+            defaultViewDate : null
+        });
+        $(".datapicker").on("change",function () {
+            $(this).next(".real_data_hidden").val(
+
+                moment($(this).datepicker("getDate")).format("YYYY-MM-DD")
+            )
+        })
+    })(jQuery);
+
+
+</script>
+
+<!--
+<script src="/backend/theme/assets/js/lib/chart-js/Chart.bundle.js"></script>
+<script src="/backend/theme/assets/js/dashboard.js"></script>
+<script src="/backend/theme/assets/js/widgets.js"></script>
+<script src="/backend/theme/assets/js/lib/vector-map/jquery.vmap.js"></script>
+<script src="/backend/theme/assets/js/lib/vector-map/jquery.vmap.min.js"></script>
+<script src="/backend/theme/assets/js/lib/vector-map/jquery.vmap.sampledata.js"></script>
+<script src="/backend/theme/assets/js/lib/vector-map/country/jquery.vmap.world.js"></script>
+<script>
+    ( function ( $ ) {
+        "use strict";
+
+        jQuery( '#vmap' ).vectorMap( {
+            map: 'world_en',
+            backgroundColor: null,
+            color: '#ffffff',
+            hoverOpacity: 0.7,
+            selectedColor: '#1de9b6',
+            enableZoom: true,
+            showTooltip: true,
+            values: sample_data,
+            scaleColors: [ '#1de9b6', '#03a9f5' ],
+            normalizeFunction: 'polynomial'
+        } );
+    } )( jQuery );
+</script>
+-->
+</body>
+</html>

@@ -1,0 +1,149 @@
+{% extends template_extend %}
+{% block content %}
+
+    {% if not fields %}
+        {% set fields =  data[0].schema()%}
+    {% endif %}
+
+    BAAAAAAAAAA
+    <div class="animated fadeIn">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">{{ title }}</strong>
+
+                        <div class="list-actions float-right">
+
+                            <!--<a href="{{ router_service.getRoute(entity~".add").build(routeParams) }}" class="btn btn-sm btn-light btn-icon" data-toggle="tooltip" title="Aggiungi"><i class="fa fa-plus"></i> Aggiungi</a>-->
+                            <a href="{{ router_service.getRoute(entity~".add").build(routeParams) }}" class="btn btn-sm btn-light " data-toggle="tooltip" title="Aggiungi"><i class="fa fa-plus"></i> <b>Aggiungi</b></a>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="card-body card-body-table">
+                        <div class="table-responsive">
+                            {% if data|length > 0 %}
+                                <table id="bootstrap-data-table" class="table table-striped ">
+                                    <thead>
+
+                                    <tr style="position:sticky;top:0">
+                                        {#{% for v in data[0]|cast_to_array  %}
+                                        <th>{{ v[0] }}</th>
+                                        {% endfor %}#}
+
+                                        {% for key,field in fields %}
+                                            {% if field.isEditable() %}
+                                                <th>{{ field.label ? field.label : key }}</th>
+                                            {% endif %}
+                                        {% endfor %}   <th >Azioni</th>
+                                    </tr>
+
+                                    </thead>
+                                    <tbody>
+
+                                    {% for item in data %}
+
+                                        <tr>
+                                            {% for key,field in fields %}
+
+                                                {% if field.isEditable() %}
+                                                    <td>
+                                                        {% if item.schema()[v[0]].template == "media" %}
+                                                            <div class="form-group field-media">
+                                                                <input type="hidden" class="field-media-id" placeholder="Enter your company name" class="form-control" value="{{ v[1] }}">
+                                                                <figure>
+                                                                    <img src="" class="field-media-img">
+                                                                </figure>
+                                                            </div>
+                                                        {% else %}
+
+
+
+                                                            <a href="{{ router_service.getRoute(item.getEntity()~".mod").build({id:item.id}) }}">
+                                                                <div style="max-width: 300px;max-height: 1.5em;overflow: hidden;">
+                                                                    {% if attribute(item,key) is iterable %}
+                                                                    {%  elseif attribute(item,key) is string  %}
+                                                                        {{ item.displayValue(key) }}
+
+                                                                    {% endif %}
+                                                                </div>
+                                                            </a>
+
+                                                        {% endif %}
+
+                                                    </td>
+                                                {% endif %}
+
+                                            {% endfor %}
+                                            <td style="width: 1px;white-space: nowrap">
+                                                <a href="{{ router_service.getRoute(item.getEntity()~".mod").build({id:item.id}) }}" class="btn btn-light  btn-xs"><i class="fas fa-edit"></i> </a>
+
+                                                <a href="{{ router_service.getRoute(item.getEntity()~".delete").build({id:item.id}) }}" class="btn btn-danger btn-xs  confirm"><i class="fas fa-trash"></i> </a>
+                                            </td>
+                                        </tr>
+
+                                        <!--<tr>
+                                        {% for v in item|cast_to_array  %}
+
+                                                <td>
+                                                    {% if item.schema()[v[0]].template == "media" %}
+                                                        <div class="form-group field-media">
+                                                            <input type="hidden" class="field-media-id" placeholder="Enter your company name" class="form-control" value="{{ v[1] }}">
+                                                            <figure>
+                                                                <img src="" class="field-media-img">
+                                                            </figure>
+                                                        </div>
+                                                    {% else %}
+
+
+
+                                                        <a href="{{ router_service.getRoute(item.getEntity()~".mod").build({id:item.id}) }}">
+                                                            <div style="max-width: 300px;max-height: 1.5em;overflow: hidden;">
+                                                                {% if v[1] is iterable %}
+                                                                {%  elseif v[1] is string  %}
+                                                                    {{ v[1] }}
+                                                                {% endif %}
+                                                            </div>
+                                                        </a>
+
+                                                    {% endif %}
+
+                                                </td>
+
+                                        {% endfor %}
+                                    </tr>-->
+
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+
+                            {% else %}
+                                <h2>Nessun risultato</h2>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div><!-- .animated -->
+
+
+{% endblock %}
+
+
+{% block scripts %}
+    <script type="text/javascript">
+        (function ($) {
+            $(document).ready(function() {
+                $('#bootstrap-data-table-export').DataTable();
+            } );
+        })(jQuery);
+
+    </script>
+{% endblock %}

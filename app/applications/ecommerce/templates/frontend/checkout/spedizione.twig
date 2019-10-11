@@ -1,0 +1,27 @@
+{% extends "base/template.twig" %}
+
+{% block content %}
+    <main class="checkout">
+        {% include "ecommerce/checkout/parti/steps.twig" %}
+        <div class="container">
+            <div class="row">
+                <div class="col">
+
+                    <form method="post">
+                        {% include "ecommerce/checkout/parti/form-spedizione.twig" with {
+                            cliente:cliente,
+                            spedizioniDisponibili   :   spedizioniDisponibili,
+                            provincieDisponibili    :   provincieDisponibili,
+                            indirizzoSpedizione     :   indirizzoSpedizione
+                        } %}
+                    </form>
+
+                </div>
+                <div class="col-md-5">
+                    {% include "ecommerce/checkout/parti/riepilogo.twig" with { carrello:carrello }%}
+                </div>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}

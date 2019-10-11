@@ -1,0 +1,38 @@
+{% extends "base/template.twig" %}
+
+{% block content %}
+    <main class="checkout">
+        {% include "ecommerce/checkout/parti/steps.twig" %}
+        <div class="container">
+            <div class="row">
+                <div class="col">
+
+
+
+                    {% if spedizioniDisponibili | length > 0 %}
+                    <form method="post">
+                        {% for spedizione in spedizioniDisponibili %}
+                            <div>
+                            <label>
+                                <input name="id_spedizione" value="{{ spedizione.id }}" type="radio" {{ spedizione.id == spedizioneCorrente.id ? "checked" : "" }}>
+                                {{ spedizione.nome }} + {{ spedizione.prezzo|price }}
+                            </label>
+                            </div>
+                        {% endfor %}
+                        <button type="submit">Salva</button>
+                    </form>
+
+                    {% else %}
+
+                        <h2>Non sono disponibili metodi di spedizioni per l'indirizzo che hai inserito</h2>
+                    {% endif %}
+
+                </div>
+                <div class="col-5">
+                    {% include "ecommerce/checkout/parti/riepilogo.twig" with { carrello:carrello }%}
+                </div>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}

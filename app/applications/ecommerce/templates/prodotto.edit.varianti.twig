@@ -1,0 +1,182 @@
+
+
+<div class="card">
+    <div class="card-body">
+
+        {% for variante in prodotto.varianti %}
+            <div class="variante">
+            <div class="row">
+                <!--{% for varianteattributo in variante.attributi %}
+                    <div class="col">
+
+                            <div class="form-group">
+                                <label>{{ varianteattributo.attributo.nome }}</label>
+
+                                <select class="form-control" name="{{ varianteattributo.attributo.id }}">
+                                    {% for valore in varianteattributo.attributo.possibili_valori %}
+                                        <option>{{ valore.valore }}</option>
+                                    {% endfor %}
+
+                                </select>
+                            </div>
+
+                    </div>
+                {% endfor %}-->
+
+                <div class="col">
+                    <div class="form-group">
+                        <label>Attributi</label>
+
+                        <ul>
+                            {% for varianteattributo in variante.attributi %}
+                                <li>{{ varianteattributo.attributo.nome }} : {{ varianteattributo.valore.valore }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="form-group">
+                        <label>Sku</label>
+                        <input type="text" class="form-control" value="{{ variante.sku }}">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>Prezzo</label>
+                        <input type="text" class="form-control" value="{{ variante.prezzo }}">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>Disponibilità</label>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+
+                <div class="col">
+                    <a href="{{ router_service.getRoute(variante.getEntity()~".mod").build({id:variante.id}) }}" target="_blank" class="btn btn-icon" data-id="{{ variante.id }}"><i class="fa fa-eye"></i></a>
+                    <a href="" class="btn btn-icon delete-variant" data-id="{{ variante.id }}"><i class="fa fa-trash"></i></a>
+                </div>
+            </div>
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <button id="add-variant" class="btn btn-primary">Aggiungi variante</button>
+    </div>
+
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="modalInsertContent">
+    <div class="modal-dialog" role="document" style="max-width: 1000px">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <strong>Aggiungi variante</strong>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+
+            <form class="form-ajax" action="{{ router_service.getRoute("ecommerce.catalogo.prodotto.variant.add").build({id:prodotto.id}) }}" method="post" >
+
+
+            <div class="modal-body">
+
+
+
+                    <div class="row">
+                        <div class="col-6">
+                            <h5>Impostazioni variante</h5>
+                            <br>
+
+                            {% for attributo in attributiTipologia %}
+                            <div class="form-group">
+                                <label>{{ attributo.nome }}</label>
+                                <select class="form-control" name="attributi[{{ attributo.id }}]">
+                                    {% for valore in attributo.possibili_valori %}
+                                        <option value="{{ valore.id }}">{{ valore.valore }}</option>
+                                    {% endfor %}
+
+                                </select>
+                            </div>
+                            {% endfor %}
+
+                            <div class="form-group">
+                                <label>Nome</label>
+                                <input type="text" class="form-control" name="nome">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Sku</label>
+                                <input type="text" class="form-control" name="sku">
+                            </div>
+                            <div class="form-group">
+                                <label>Prezzo</label>
+                                <input type="text" class="form-control" name="prezzo">
+                            </div>
+                            <div class="form-group">
+                                <label>Disponibilità</label>
+                                <input type="text" class="form-control">
+                            </div>
+
+                        </div>
+
+                        <div class="col-6">
+                            <h5>Sovrascrivi campi prodotto</h5>
+                            <br>
+                            {% for campo in prodotto.tipologia.campi   %}
+
+
+                                {% include "fields/default.twig" with {
+                                    label : campo.nome,
+                                    property : "campi["~campo.slug~"]",
+                                    field:{
+                                        value : prodotto.valoriCampi[campo.slug].valore
+                                        }
+
+                                    }
+                                %}
+                            {% endfor %}
+                        </div>
+                    </div>
+
+
+            </div>
+
+                <div class="card-header text-center">
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-success" value="Salva">
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    (function($){
+        $(document).on("click","#add-variant",function( e ){
+            e.preventDefault();
+
+            $("#modalInsertContent").modal();
+        })
+
+        $(document).on("click",".delete-variant",function(e){
+            e.preventDefault();
+            id = $(this).attr("data-id");
+            $.post("{{ router_service.getRoute('ecommerce.catalogo.prodotto.variant.remove').build({id:prodotto.id}) }}",{
+                id : id
+            });
+        })
+    })(jQuery);
+</script>

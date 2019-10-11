@@ -1,0 +1,118 @@
+<div class="card">
+    <div class="card-header">
+        <span class="h3">Fatture generate</span>
+
+        <div class="mod-actions float-right">
+            <a href="{{ router_service.getRoute('Backend-CalcoloBolletta').build({id:bolletta.id}) }}" class="btn btn-primary btn-sm"><i class="fa fa-refresh mr-3"></i> Rigenera fatture</a>
+
+            <a href="{{ router_service.getRoute('Backend-ScaricaFatture').build({id:bolletta.id}) }}" class="btn btn-success btn-sm ml-2" target="_blank"><i class="fa fa-download mr-3"></i> Scarica tutto</a>
+        </div>
+    </div>
+    <div class="card-body card-body-table">
+        <div class="table-responsive">
+            <table id="bootstrap-data-table" class="table table-striped ">
+                <thead>
+
+                <tr style="position:sticky;top:0">
+
+                    <th>Codice</th>
+                    <th>Denominazione</th>
+                    <!--
+                    <th>Piano / Interno / Scala</th>
+                    -->
+                    <th>Data generazione </th>
+                    <th>Totale</th>
+                    <th>Azioni</th>
+                </tr>
+
+                </thead>
+                <tbody>
+
+                {% for fattura in fatture %}
+                    <tr>
+                        <td>
+                            {{ "%02d" | format(fattura.unitaAbitativa.codice) }}
+                        </td>
+                        <td>
+                            {% if fattura.unitaAbitativa %}
+                                {{ fattura.unitaAbitativa.denominazione }}
+                            {% else %}
+                                <strong>Prospetto Consuntivo</strong>
+                            {% endif %}
+                            <a href="/backend/fornitori/1">
+                                <div style="max-width: 300px;max-height: 1.5em;overflow: hidden;">
+                                </div>
+                            </a>
+                        </td>
+                        <!--
+                        <td>
+                            {{ fattura.unitaAbitativa.piano }} / {{ fattura.unitaAbitativa.interno }} / {{ fattura.unitaAbitativa.scala }}
+                            <a href="/backend/fornitori/1">
+                                <div style="max-width: 300px;max-height: 1.5em;overflow: hidden;">
+                                </div>
+                            </a>
+                        </td>
+                        -->
+                        <td>
+                            {{ fattura.data_generazione|date("d/m/Y") }}
+                            <a href="/backend/fornitori/1">
+                                <div style="max-width: 300px;max-height: 1.5em;overflow: hidden;">
+                                </div>
+                            </a>
+                        </td>
+                        <td>
+                            {{ fattura.totale|number_format(2, ',', ".") }} €
+
+                        </td>
+
+                        <td style="width: 1px;white-space: nowrap">
+                            <a href="{{ fattura.pdf }}?nocache={{ 'now'|date('U') }}" target="_blank" download="{{ fattura.nomefile }}" class="btn btn-success  btn-xs"><i class="fas fa-download"></i> Download PDF</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+
+    <div class="card-body">
+
+        <a href="{{ router_service.getRoute('Backend-CalcoloBolletta').build({id:bolletta.id}) }}" class="btn btn-primary btn-sm"><i class="fa fa-refresh mr-3"></i> Rigenera tutte le fatture</a>
+
+        <a href="{{ router_service.getRoute('Backend-ScaricaFatture').build({id:bolletta.id}) }}" class="btn btn-success btn-sm ml-2" target="_blank"><i class="fa fa-download mr-3"></i> Scarica tutti i PDF come file compresso</a>
+
+    </div>
+
+
+    <div class="card-body">
+
+        {% if dzip is not empty %}
+            <script>
+                $(function() {
+                    function scarica(el,tempo=2000){
+                        setTimeout(function() {
+                            //window.location = el.attr('href');
+                            window.open(el.attr('href'), 'Download');
+                        }, tempo);
+                    }
+                    $('a[data-auto-download]').click(function (e) {
+                        e.preventDefault();
+                        scarica($(this),300);
+                    })
+                    $('a[data-auto-download]').each(function(){
+                        scarica($(this));
+                    });
+                });
+            </script>
+            <div class="wrapper">
+                <p>Il download inizier&agrave; tra pochi istanti.
+                    Altrimenti <a data-auto-download href="{{ dzip }}?nocache={{ 'now'|date('U') }}" target="_blank">clicca qui</a>.</p>
+            </div>
+        {% endif %}
+
+    </div>
+
+</div>
+

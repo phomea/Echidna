@@ -1,0 +1,52 @@
+{% extends template_extend %}
+    {% block beforeContent %}
+
+
+<form method="post">
+    {% endblock %}
+
+    {% block content %}
+
+        <div class="card">
+        <div class="card-body">
+            <div>
+            <h1>Impostazioni FTP</h1>
+                <hr>
+                {% if status %}
+                    <h4>Il server FTP è già attivo</h4>
+                    <p>Utilizza i dati che hai impostato all'attivazione per connetterti.</p>
+
+                    <button type="submit" name="operazione" value="riavvia" class="btn btn-primary">Riavvia</button>
+                    <button href="" name="operazione" value="stoppa" class="btn btn-danger">Stoppa server FTP</button>
+
+                {% else %}
+
+                    <div class="form-group mb-0">
+                        <label>Username:</label>
+                        <small>Il nome utente che intendi utilizzare per accedere via ftp</small>
+                        <input type="text" name="username" class="form-control" placeholder="Username" required>
+                    </div>
+
+                    <div class="form-group mb-0">
+                        <label>Password:</label>
+                        <small>La password per accedere ftp</small>
+                        <input type="password" name="password" class="form-control" placeholder="Utilizza una password sicura" required>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" name="operazione" value="avvia" class="btn btn-primary">Attiva FTP</button>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        </div>
+
+    {% endblock %}
+
+    {% block afterContent %}
+</form>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

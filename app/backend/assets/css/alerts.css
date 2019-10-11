@@ -1,0 +1,81 @@
+.alert-wrapper{
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.5);
+    z-index: 999999;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+}
+
+body{
+    transition: none;
+}
+
+body.alert-open #left-panel{
+    filter: blur(5px);
+}
+body.alert-open #right-panel{
+    filter: blur(5px);
+}
+body.alert-open aside.right-aside{
+    filter: blur(5px);
+}
+
+@keyframes alertEnter {
+    from {
+        transform: scale(0.3) translate(0,-50%);
+    }
+    to {
+        transform: scale(1) translate(0,0);
+
+    }
+}
+
+@keyframes alertClose {
+    from {
+        transform: scale(1) translate(0,0%);
+    }
+    to {
+        transform: scale(0.3) translate(0,100%);
+        opacity: 0;
+    }
+}
+.alert-wrapper.closing{
+    opacity: 0;
+    pointer-events: none;
+    transition: all 500ms;
+}
+.alert-wrapper.closing .alert{
+    animation: alertClose 300ms forwards 1;
+}
+
+.alert{
+    background: #fff;
+    max-width: 40em;
+    margin-top: -10em;
+    padding:2em;
+    animation: alertEnter 500ms forwards 1;
+    text-align: center;
+    box-shadow: 0px 0px 30px rgba(0,0,0,0.1), 1px 2px 5px rgba(0,0,0,0.2);
+}
+
+.alert.simple .btn{
+    margin-bottom: -4.3em;
+    font-size: 1.2em;
+
+}
+.alert.two-buttons .alert-buttons{
+    margin-bottom: -2.5em;
+    margin-top: 2em;
+    font-size: 1.2em;
+}
+.alert.two-buttons .alert-buttons .btn{
+    margin-left: 0.3em;
+    margin-right: 0.3em;
+
+}

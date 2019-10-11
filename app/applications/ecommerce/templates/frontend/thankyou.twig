@@ -1,0 +1,72 @@
+{% extends "base/template.twig" %}
+
+{% block content %}
+
+    <main class="pt-5">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="mb-0 pb-2" style="font-size:3em">Ordine effettuato</h2>
+                <p class="h2 text-success"><i class="fas fa-check"></i></p>
+                <p>Il tuo ordine è andato a buon fine<br>L'importo che hai pagato è</p>
+                <p class="price mb-0">{{ ordine.totale | price }}</p>
+
+                <p><b>Riceverai una mail con la conferma ordine e le eventuali informazioni aggiuntive</b></p>
+
+               <!--<div class="row text-left">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4>Spedizione</h4>
+                                <p>L'ordine verrà spedito al seguente indirizzo : <br>
+                                    <b>{{ ordine.indirizzospedizione }}</b>
+                                </p>
+
+                                <p>Tramite il seguente metodo di spedizione : <br> <b>{{ ordine.metodospedizione }}</b></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+                <p>{{ gateway.infomail | raw}}</p>
+            </div>
+
+
+
+
+            <p class="text-center"><a href="/" class="btn btn-danger">Torna alla home</a> </p>
+
+            <p>&nbsp;</p>
+
+            <!--
+            <p class="text-center">oppure</p>
+
+            <div class="row  text-center ">
+                <div class="col-md-6">
+                    <p>
+                        <i class="fas fa-shopping-cart" style="font-size: 5em;"></i>
+                    </p>
+
+                    <h2 class="mt-5">Esplora lo shop</h2>
+                    <p>Non hai ancora aggiunto oggetti al tuo carrello. Prova a fare un giro su <strong>DivaniLab</strong> <br>e scoprirai tantissimi <strong>divani</strong> e <strong>poltrone</strong> per arredare al meglio il tuo salotto!</p>
+                    <p>
+                        <a href="/divani" class="btn btn-dark">Scopri i divani</a>
+                        <a href="/poltrone" class="btn btn-outline-dark">Scopri le poltrone</a>
+                    </p>
+                </div>
+
+                <div class="col-md-6">
+                    <p>
+                        <i class="fas fa-gift" style="font-size: 5em;"></i>
+                    </p>
+
+                    <h2 class="mt-5">Divani e poltrone outlet</h2>
+                    <p>Ehy, non ti dimenticare di dare un occhio alla nostra sezione <strong>outlet</strong>,<br> ci puoi trovare tantissimi divani e poltrone in pronto consegna a prezzi convenienti!</p>
+                    <p><a href="/outlet" class="btn btn-danger">Divani e poltrone a sconto</a> </p>
+                </div>
+            </div>
+
+            -->
+
+
+        </div>
+    </main>
+{% endblock %}

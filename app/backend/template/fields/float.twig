@@ -1,0 +1,27 @@
+<div class="form-group {{ field.fieldsize ? field.fieldsize : '' }}" data-check="float" {% if field.hideIf %}
+
+    data-hideselectors="{% for v in field.hideIf %}{{v[0]}}|{% endfor %}" data-hidevalues="{% for v in field.hideIf %}{{v[1]|join("]")}}|{% endfor %}"
+
+        {% endif %}>
+
+    {% if not simple %}
+    <label class=" form-control-label">{{ field.label ? field.label : property }}
+    <br><small>{{ field.hint }}</small>
+    </label>
+    {% endif %}
+
+    <div class="input-group">
+        {% if not simple %}
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-calculator"></i></span>
+        </div>
+        {% endif %}
+        <input type="text" pattern="[0-9]+([\.,][0-9]+)?" {% if field.isRequired() %} required="required" {% endif %} placeholder="{{ field.placeholder ? field.placeholder : 'Numerico (es: 45.2)' }}" class="form-control onlydigits  " name="{{ property }}" value="{{ field.value }}" maxlength="{{ field.maxlength ? field.maxlength : 30 }}">
+
+        {% if field.appendText %}
+            <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2">{{ field.appendText }}</span>
+            </div>
+        {% endif %}
+    </div>
+</div>

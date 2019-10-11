@@ -1,0 +1,32 @@
+{% for key,select in field.templateVar.values %}
+
+<div class="form-group select-choice-{{ field.templateVar.field }} {{ field.fieldsize ? field.fieldsize : '' }}" id="select-choice-{{ field.templateVar.field }}-{{ key }}">
+    <label class=" form-control-label">{{ label ? label : property }}</label>
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-font"></i></span>
+        </div>
+
+            <select name="{{ property }}" class="form-control  " >
+                {% for option in select %}
+                    <option value="{{ option.value }}" {{ field.value == option.value ? "selected" :""}} >{{ option.label }}</option>
+                {% endfor %}
+            </select>
+
+
+    </div>
+</div>
+{% endfor %}
+
+<script>
+    $(window).ready(function () {
+
+        $('[name="{{ field.templateVar.field }}"]').on("change",function () {
+            value = $(this).val();
+            $(".select-choice-{{ field.templateVar.field }}").hide().find("select").prop("disabled",true);
+            $("#select-choice-{{ field.templateVar.field }}-"+value).show().find("select").prop("disabled",false);
+        });
+        $('[name="{{ field.templateVar.field }}"]').trigger("change");
+    })
+</script>

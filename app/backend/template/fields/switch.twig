@@ -1,0 +1,33 @@
+
+
+<div class="form-group switch {{ field.fieldsize ? field.fieldsize : '' }}">
+
+
+    <div class="input-group">
+        <label class=" form-control-label">
+            <span>{{ field.label ? field.label : property }}</span>
+
+
+        <!--<div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-check-square"></i></span>
+        </div>-->
+        <div class="ml-2">
+            <input type="hidden" value="0" name="{{ property }}">
+            <input type="checkbox" data-toggle="toggle" value="1" name="{{ property }}" {% if field.value == 1 %} checked="checked" {% endif %} class="form-check-input" >
+
+            <div class="form-check-label slider round">
+                <!--{{ field.label ? field.label : property }}-->
+            </div>
+
+        </div>
+
+        </label>
+
+    </div>
+
+    {% if field.hint %}
+    <small>{{ field.hint }} asddas</small>
+    {% endif %}
+
+</div>
+

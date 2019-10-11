@@ -1,0 +1,60 @@
+{% extends template_extend %}
+    {% block beforeContent %}
+
+
+        <form data-redirect="" action="{{ data.id ? router_service.getRoute(data.getEntity()~".update").build({id:data.id}) : router_service.getRoute(data.getEntity()~".insert").build() }}" class="{{ Request.get.formClass ? Request.get.formClass :  "form-mod"}}" method="{{ data.id ? "PUT" : "POST" }}">
+    {% endblock %}
+
+{% block content %}
+
+
+        <input value="{{ data.getEntity() }}" name="form_entity" type="hidden">
+        {% if data.id %}
+        <input value="{{ data.id }}" type="hidden" name="id">
+        {% endif %}
+        <div class="card">
+            <div class="card-header">
+                <strong class="card-title">{{ title }}</strong>
+
+                {% if data.id %}
+                <div class="mod-actions float-right">
+
+                  <!--  <a href="" class="btn btn-xs btn-light " data-toggle="tooltip" title="Clona"><i class="fa fa-plus"></i> <span>Clona</span></a>-->
+                    <a href="{{ router_service.getRoute(data.getEntity()~".delete").build({id:data.id})}}" class="btn btn-xs btn-light confirm" data-toggle="tooltip" title="Elimina"><i class="fa fa-trash"></i> <span>Elimina</span></a>
+
+
+                    {% if data.__active__ %}
+                        <a href="{{ router_service.getRoute(data.getEntity()~".deactivate").build({id:data.id})}}" class="btn btn-xs btn-warning " data-tooltip="Disattiva l'elemento" title="Attiva o disattiva"><i class="fa fa-eye"></i> <span>Disattiva</span></a>
+                    {% else %}
+                        <a href="{{ router_service.getRoute(data.getEntity()~".activate").build({id:data.id})}}" class="btn btn-xs btn-warning" data-tooltip="Attiva l'elemento" title="Attiva l'elemento"><i class="fa fa-eye-slash"></i> <span>Attiva</span></a>
+                    {% endif %}
+
+                    <button type="submit" class="btn btn-xs btn-success" data-tooltip="Salva le modifiche" ><i class="fa fa-save"></i> Salva</button>
+
+                </div>
+                {% endif %}
+            </div>
+         <div class="card-body">{% for field in fields %}{{ field|raw }}{% endfor %}{% block additionalFields %}{{ additional_fields|raw }}{% endblock %}</div>
+
+        </div>
+
+    <div class="card">
+        <div class="card-body">
+            <button type="button" class="btn btn-danger" onclick="javascript:window.location.href='{{ router_service.getRoute(data.getEntity()~".list").build() }}';" ><i class="fa fa-arrow-left" aria-hidden="true"></i> Torna alla lista</button>
+            <span class="h_space">&nbsp;</span>
+            <button type="submit" class="btn btn-success" data-tooltip="Salva le modifiche"><i class="fa fa-save"></i> Salva</button>
+            {%  for button in bottomButtons %}
+                <a href="{{ button.url }}" class="btn btn-default ml-2">{{ button.text }}</a>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
+
+  {% block afterContent %}
+        </form>
+  {% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

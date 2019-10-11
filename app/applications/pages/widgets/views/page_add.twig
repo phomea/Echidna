@@ -1,0 +1,8 @@
+{% extends "main/widgets/views/widget_card.twig" %}
+    {% block innercontent %}
+        <form action="{{ href }}"  method="post" class="text-center">
+            <input type="hidden" name="layout" value="{{ layout }}">
+            <input type="text" name="title" class="form-control" placeholder="Nome pagina">
+            <button type="submit"  class="btn text-white btn-light btn-sm mb-3 mt-2" style="background: transparent"> <i class="fa fa-plus"></i> Aggiungi pagina</button>
+        </form>
+    {% endblock %}

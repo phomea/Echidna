@@ -1,0 +1,45 @@
+<div class="card-body">
+
+    <div class=" mb-3">
+        <div class="">
+            <h5>Categorie blog</h5>
+            <div class="">
+                {% for categoria in blog_categorie %}
+                    <a href="{{ router_service.getRoute("frontend.blog.categoria").build({slug:categoria.slug}) }}">
+
+                        <div class="">
+                            <a href="{{ router_service.getRoute("frontend.blog.categoria").build({slug:categoria.slug}) }}">
+                            {{ categoria.nome }}
+                            </a>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="">
+        <div class="">
+            <h5>Ultimi articoli</h5>
+            <div class="">
+                {% for articolo in blog_ultimi_articoli %}
+                    <a href="{{ router_service.getRoute("frontend.blog.articolo").build({slug:articolo.slug}) }}">
+
+                        <div class="mb-2">
+                            {{ articolo.titolo}}
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+
+            <hr>
+
+
+        </div>
+
+    </div>
+
+
+</div>

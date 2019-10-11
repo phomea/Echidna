@@ -1,0 +1,12 @@
+</div>
+<div class="card collapsing-card field-card">
+
+
+    <div class="card-header {{ field.templateVar.open ? '':'collapsed' }}" data-toggle="collapse" data-target="#collapse-group-{{ property }}">
+
+        <strong class=" ">{{ field.label ? field.label : property }}
+            <br><small>{{ field.hint }}</small>
+        </strong>
+        <i class="fa fa fa-angle-down"></i>
+    </div>
+    <div id="collapse-group-{{ property }}" class="card-body collapse {{ field.templateVar.open ? 'in show':'' }}">

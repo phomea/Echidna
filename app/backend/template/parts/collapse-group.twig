@@ -1,0 +1,11 @@
+<div class="card collapsing-card">
+
+    <div class="card-header {{ open ? '':'collapsed' }}" data-toggle="collapse" data-target="#collapse-group-{{ name }}">
+
+        <strong class="card-title">{{ label }}</strong>
+        <i class="fa fa fa-angle-down"></i>
+    </div>
+    <div id="collapse-group-{{ name }}" class="card-body collapse {{ open ? 'in show':'' }}">
+    {{ content | raw }}
+    </div>
+</div>

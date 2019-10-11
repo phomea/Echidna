@@ -1,0 +1,31 @@
+{% extends template_extend %}
+
+{% block content %}
+
+
+
+
+    <div class="card">
+        <div class="card-body">
+            <a href="" class="btn btn-primary"> Aggiungi zona</a>
+            <a href="" class="btn btn-info"> Aggiungi metodo di spedizione</a>
+            <a href="" class="btn btn-warning"> Aggiungi provincia</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{  spedizioni | raw}}
+            {{  zone | raw}}
+
+
+        </div>
+
+        <div class="col">
+            {{  provincie | raw}}
+
+
+        </div>
+    </div>
+
+{% endblock %}

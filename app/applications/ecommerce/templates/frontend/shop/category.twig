@@ -1,0 +1,36 @@
+{#{% extends "ecommerce/shop/list.twig" %}#}
+{% extends "ecommerce/shophome.twig" %}
+
+
+  {% block topcontent %}
+      <div id="toparea" class="category-top" {{ categoria.colore ? 'style=background-color:'~categoria.colore : '' }}>
+          <img src="{{ categoria.immagine}}" class="cover">
+          <div class="container">
+              <h1 class="category-title">{{ categoria.nome }}</h1>
+
+              <div class="category-breadcrumbs">
+                  <a href="/shop">Shop</a>
+
+                  <span>{{ categoria.nome }}</span>
+              </div>
+              <!--<h2 class="category-description">{{ categoria.slogan|raw }}</h2>-->
+
+              <div class="text-center mb-5">
+                  <p><em>{{ categoria.descrizione|raw }}</em></p>
+              </div>
+
+          </div>
+      </div>
+
+
+  {% endblock %}
+
+
+
+    {% block innercontent %}
+        {% if prodotti|length == 0 %}
+            <h2 class="text-center">Ci dispiace! Sembra che non ci siano ancora prodotti in questa categoria!</h2>
+        {% else %}
+            {{ parent() }}
+        {% endif %}
+    {% endblock %}

@@ -1,0 +1,16 @@
+<div class="card">
+    <div class="card-header">
+    <strong class="card-title">{{ title }}</strong>
+
+    <div class="list-actions float-right">
+
+        <!--<a href="{{ router_service.getRoute(entity~".add").build(routeParams) }}" class="btn btn-sm btn-light btn-icon" data-toggle="tooltip" title="Aggiungi"><i class="fa fa-plus"></i> Aggiungi</a>-->
+        <a href="{{ router_service.getRoute(entity~".add").build(routeParams) }}" class="btn btn-sm btn-primary " data-toggle="tooltip" title="Aggiungi"><i class="fa fa-plus"></i> <b>Aggiungi</b></a>
+
+        <a target="_blank" href="{{ router_service.getRoute(entity~".export").build(routeParams) }}" class="btn btn-sm btn-warning " data-toggle="tooltip" title="Esporta"><i class="fa fa-download"></i> <b>Esporta</b></a>
+        <a target="" href="{{ router_service.getRoute(entity~".import").build(routeParams) }}" class="btn btn-sm btn-warning " data-toggle="tooltip" title="Importa"><i class="fa fa-upload"></i> <b>Importa</b></a>
+
+    </div>
+
+</div>
+</div>

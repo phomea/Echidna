@@ -1,0 +1,52 @@
+<!--<div class="pl-5">
+        <h5 class="mt-5">{{ carrello.lineitems|length }} oggetti nel carrello</h5>
+    {% for lineitem in carrello.lineitems %}
+
+
+        <div class="row">
+            <div class="col-5">
+
+                <img src="{{ lineitem.prodotto.images[0].permalink }}">
+            </div>
+
+            <div class="col-7">
+                <article>
+                    <h3>{{ lineitem.prodotto.nome }}</h3>
+                    <span>{{ lineitem.variant.sku}}</span><br>
+                    <strong>{{ lineitem.variant.prezzo}}€</strong>
+                </article>
+
+
+            </div>
+        </div>
+    {% endfor %}
+
+        <div class="">
+            <a href="">Modifica carrello</a>
+        </div>
+</div>
+-->
+<div class="card mt-5 pl-2 pr-2">
+
+    <div class="card-body">
+        {% if carrello.indirizzoSpedizione %}
+            <div class="row mb-3">
+                <div class="col">
+                <h5>Spedizione</h5>
+                {{ carrello.indirizzoSpedizione.nome }} {{ carrello.indirizzoSpedizione.cognome }},
+                {{ carrello.indirizzoSpedizione.via }}
+                {{ carrello.indirizzoSpedizione.citta }}
+                </div>
+                <div class="mr-3">
+                        <a class="btn btn-light ml-auto" href="{{ router_service.getRoute("frontend.ecommerce.checkout.spedizione").build() }}">Modifica</a>
+
+                </div>
+            </div>
+            <hr>
+        {% endif %}
+        <h5>Riepilogo</h5>
+
+        {% include "ecommerce/checkout/parti/riepilogo-tabella.twig" %}
+
+    </div>
+</div>

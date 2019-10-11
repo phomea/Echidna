@@ -1,0 +1,102 @@
+
+<div class="card">
+    <div class="card-body">
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Categorie associate</label>
+                    <select size="10" class="form-control" multiple id="categorieAssociate">
+                        {% for cat in categorieAssociate %}
+                            <option value="{{ cat.categoria.id }}" name="categorieAssociate[]">{{ cat.categoria.nome }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-4" style="align-items: center;
+    justify-items: center;
+    justify-content: center;
+    align-content: center;
+    display: flex;
+    flex-direction: column;">
+                <div>
+                    <button type="button" id="moveRight"> > </button>
+                </div>
+                <div>
+                    <button type="button" id="moveLeft"> < </button>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Categorie disponibili</label>
+                    <select size="10" class="form-control" id="categorieDisponibili" multiple>
+                        {% for cat in categorieDisponibili %}
+                            <option value="{{ cat.id }}" class="categoria-disponibile">{{ cat.nome }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+{% block scripts %}
+    <script>
+        (function(){
+            var categorieDisponibili;
+            var urlAddCategory = "{{ router_service.getRoute("ecommerce.catalogo.prodotto.category.add").build({id : idProdotto}) }}";
+            var urlRemoveCategory = "{{ router_service.getRoute("ecommerce.catalogo.prodotto.category.remove").build({id : idProdotto}) }}";
+            var urlGetCategoris = "{{ router_service.getRoute("ecommerce.catalogo.prodotto.category").build({id : idProdotto}) }}";
+
+
+            function updateSelects( ) {
+                $.ajax({
+                    url : urlGetCategoris,
+                    method : "GET",
+                    dataType :"json"
+                }).done(function(d){
+                    $(".categoria-disponibile").show();
+                    d.forEach(function( o ){
+                        $('.categoria-disponibile[value="'+o.categoria.id+'"]').hide();
+                    });
+
+                    $("#categorieAssociate").empty();
+
+                    d.forEach(function( o ){
+                        nc = $('<option value="' + o.categoria.id + '" name="categorieAssociate[]">' + o.categoria.nome + '</option>')
+
+                        $("#categorieAssociate").append( nc );
+                    });
+                });
+            }
+
+            updateSelects();
+
+            $("#moveLeft").on("click",function(){
+                daAggiungere = $("#categorieDisponibili").val();
+                console.log(daAggiungere);
+                $.post(urlAddCategory,{
+                    ids : daAggiungere
+                }).done(updateSelects);
+            });
+
+            $("#moveRight").on("click",function(){
+                daRimuovere = $("#categorieAssociate").val();
+
+                $.post(urlRemoveCategory,{
+                    ids : daRimuovere
+                }).done(updateSelects);
+            });
+
+
+            $(document).ready(function(){
+                $()
+            })
+        })(jQuery)
+    </script>
+{% endblock %}

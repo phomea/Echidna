@@ -1,0 +1,226 @@
+
+
+(function ($) {
+
+    $(document).on("submit",".form-mod, .form-ajax",function (e) {
+        e.preventDefault();
+        $(this).addClass("loading");
+        var url = $(this).attr("action");
+        var form = this;
+        var redirect = $(this).attr("data-redirect");
+        var postevent = $(this).attr("data-postevent");
+
+
+        var check = true;
+
+        $(form).find("[data-check]").each(function () {
+            if( check ) {
+                check = $(this).triggerHandler("check", form);
+            }
+        })
+
+
+
+        if( check ) {
+            (function (form) {
+                $.ajax({
+                    url: url,
+                    method: $(form).attr("method"),
+                    dataType: "json",
+                    data: $(form).serialize()
+                })
+                    .success(function (o) {
+
+
+                        if (o.type !== undefined && o.type == 'redirect') {
+                            Alerts.oneAction("Salvato", "Salvataggio avvenuto. Vuoi andare alla lista?", function () {
+                                window.location = o.to;
+                            });
+                            return;
+
+                            return;
+                        }
+                        if (o.type != undefined && o.type == "error") {
+                            error(o);
+                        }
+
+                        Alerts.simple("Salvato", "Salvataggio avvenuto con successo");
+
+
+                    })
+                    .complete(function (o) {
+
+                        console.log(o);
+                        $(form).removeClass("loading");
+
+                        return;
+                        if (redirect != undefined) {
+                            window.location = redirect;
+                            return;
+                        }
+
+                        if (postevent != undefined)
+                            $(form).trigger(postevent);
+                    });
+            })(form);
+        }else{
+            $(this).removeClass("loading");
+            Alerts.simple("Attenzione!","Controlla i campi inseriti e riprova");
+        }
+
+        $('.colorpicker-component').colorpicker();
+
+    });
+})(jQuery);
+
+
+(function ($) {
+    tinymceplugins = [
+
+        "print",
+        "preview",
+        "searchreplace",
+        "autolink",
+        "directionality",
+        "visualblocks",
+        "visualchars",
+        "fullscreen",
+        "image",
+
+        "code",
+        "link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools  contextmenu colorpicker textpattern help"
+    ]
+
+    tinymce.init({ selector:'.tinymce',
+        plugins: tinymceplugins.join(" "),
+        valid_children : 'p[strong|a|#text|span]'
+        /*
+        plugins : "code",
+        toolbar: "code image",
+        menubar:"tools"*/
+    });
+})(jQuery);
+
+
+function error( error ){
+    Alerts.simple("Errore",error.msg);
+    return;
+}
+
+
+(function ($) {
+    $(".field-media").each(function () {
+        var id = $(this).find(".field-media-id").val();
+        (function(field) {
+            $.ajax({
+                url : "/backend/media/" + id,
+                method : "GET",
+                dataType : "json"
+            }).success(function d(dati) {
+                console.log(dati);
+                $(field).find(".field-media-img").attr("src",dati.permalink);
+            });
+        })(this)
+
+    })
+})(jQuery);
+
+(function ($) {
+    window.slugify = function ( t ) {
+      return t.replace(
+          /(['" ]+)/g
+          ,"-").toLowerCase();
+    };
+
+    $(window).ready(function() {
+
+        $('[slug-from]').each(function () {
+            var me = $(this);
+            var form = $(this).closest("form");
+            var slugFrom = form.find('[name="' + $(this).attr("slug-from") + '"]');
+
+            slugFrom.on("keyup", function () {
+                me.val(slugify($(this).val()));
+            })
+
+        })
+    });
+})(jQuery);
+
+
+(function ($) {
+    $(window).ready(function(){
+        $("a.confirm").on("click",function( e ){
+            e.preventDefault();
+            link = $(this).attr("href");
+            Alerts.confrm("Elimina","Sicuro di volerlo eliminare? Questa azione è irreversibile.",function(){
+                //alert(link);
+                window.location = link;
+            })
+            /*
+             link = $(this).attr("href");
+             if( confirm("Confermi?") ){
+             window.location = link;
+             }*/
+        })
+    })
+
+})(jQuery);
+
+
+
+
+(function ($) {
+    $(window).ready(function(){
+        $('[data-check="cap"]').on("check",function (e) {
+            //ToDo: Controlli sull'input CAP
+
+            return true;
+        })
+        $('[data-check="email"]').on("check",function (e) {
+            //ToDo: Controlli sull'input Email
+
+            return true;
+        })
+        $('[data-check="int"]').on("check",function (e) {
+            //Mi serve per il check finale del form
+            return true;
+        })
+        $('[data-check="float"]').on("check",function (e) {
+<<<<<<< HEAD
+            //Mi serve per il check finale del form
+            return true;
+        })
+
+        $('[data-check="int"]').keypress(function(e){
+            // allowed char: 0 1 2 3 4 5 6 7 8 9 . ,
+            let allow_char = [48,49,50,51,52,53,54,55,56,57];
+            if(allow_char.indexOf(e.which) === -1 ){
+                return false;
+            }
+            return true;
+=======
+            //ToDo: Controlli sull'input Float
+            console.log(parseFloat($(this).find("input").val()));
+            return false;
+>>>>>>> 7f97d406673ea1bb50796020ff774a4e22c05ae6
+        })
+        $('[data-check="float"]').keypress(function(e){
+            // allowed char: 0 1 2 3 4 5 6 7 8 9 . ,
+            let allow_char = [48,49,50,51,52,53,54,55,56,57,46,44];
+            if(allow_char.indexOf(e.which) !== -1 ){
+                if(e.which==44){
+                    inputbox = $(this).find("input");
+                    e.preventDefault();
+                    inputbox.val(inputbox.val() + '.');
+                }
+            }
+            else{
+                return false;
+            }
+            return true;
+        });
+    })
+
+})(jQuery);
+

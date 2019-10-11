@@ -1,0 +1,1 @@
+docker exec spagnesi_db mysqldump -uroot -proot cartiamotwig > docker/mariadb/dump/dump.sql

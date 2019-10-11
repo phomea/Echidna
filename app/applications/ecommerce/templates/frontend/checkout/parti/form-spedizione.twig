@@ -1,0 +1,135 @@
+
+
+
+<input type="hidden" name="spedizione[id_cliente]" value="{{ cliente.id }}">
+
+
+
+{% if indirizzoSpedizione %}
+    <input type="hidden" name="spedizione[id]"  value="{{ indirizzoSpedizione.id }}">
+{% endif %}
+
+<h2>Indirizzo di spedizione</h2>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>Nome</label>
+            <input type="text" name="spedizione[nome]" class="form-control" value="{{ indirizzoSpedizione.nome?indirizzoSpedizione.nome:cliente.nome }}">
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>Cognome</label>
+            <input type="text" name="spedizione[cognome]" class="form-control" value="{{ indirizzoSpedizione.cognome?indirizzoSpedizione.cognome:cliente.cognome }}">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>Telefono</label>
+            <input type="text" name="spedizione[telefono]" class="form-control" value="{{ indirizzoSpedizione.telefono?indirizzoSpedizione.telefono: "" }}">
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>Codice fiscale</label>
+            <input type="text" name="spedizione[cf]" class="form-control" value="{{ indirizzoSpedizione.cf?indirizzoSpedizione.cf: "" }}">
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-9">
+        <div class="form-group">
+            <label>Via / Piazza</label>
+            <input type="text" name="spedizione[via]" class="form-control" value="{{ indirizzoSpedizione.via }}">
+        </div>
+    </div>
+
+    <div class="col-3">
+        <div class="form-group">
+            <label>Numero</label>
+            <input type="text" name="spedizione[numero]" class="form-control" value="{{ indirizzoSpedizione.numero }}">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6 col-md-4">
+        <div class="form-group">
+            <label>Città</label>
+            <input type="text" name="spedizione[citta]" class="form-control" value="{{ indirizzoSpedizione.citta }}">
+        </div>
+    </div>
+
+
+
+
+    <div class="col-6 col-md-4">
+        <div class="form-group">
+            <label>Zona</label>
+            <select name="spedizione[id_zona]" class="form-control">
+                {% for zona in zoneDisponibili %}
+                    <option value="{{ zona.id }}" {{ indirizzoSpedizione.id_zona == zona.id ? "selected" : "" }}>{{ zona.name }}</option>
+                {% endfor %}
+            </select>
+
+        </div>
+    </div>
+
+    <div class="col-6 col-md-4 contenitore-paese">
+        <div class="form-group">
+            <label>Paese</label>
+            <input type="text" name="spedizione[paese]" class="form-control" value="{{ indirizzoSpedizione.paese }}">
+        </div>
+    </div>
+
+
+    <div class="col-6 col-md-4 container-provincia" {{ indirizzoSpedizione.id_zona ? 'style="display:none"' : "" }}>
+        <div class="form-group">
+            <label>Provincia</label>
+            <select name="spedizione[id_provincia]" class="form-control">
+                <option value="" id="option-null">--seleziona--</option>
+                {% for provincia in provincieDisponibili %}
+                    <option value="{{ provincia.id }}" {{ indirizzoSpedizione.id_provincia == provincia.id ? "selected" : "" }}>{{ provincia.name }}</option>
+                {% endfor %}
+            </select>
+
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="form-group">
+            <label>Cap</label>
+            <input type="text" name="spedizione[cap]" class="form-control" value="{{ indirizzoSpedizione.cap }}" required>
+        </div>
+    </div>
+
+</div>
+
+{% block scripts %}
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            $('[name="spedizione[id_zona]"]').on("change",function () {
+            if($(this).val() == 1){
+                $(".container-provincia").show();
+                $('[name="spedizione[paese]"]').val("");
+                $(".contenitore-paese").hide();
+
+            }else{
+                $(".container-provincia").hide();
+                $('[name="spedizione[id_provincia]"]').val("");
+                $('[name="spedizione[paese]"]').show().val("");
+                $(".contenitore-paese").show();
+            }
+        })
+        });
+
+
+    </script>
+
+{% endblock %}

@@ -1,0 +1,312 @@
+{% extends template_extend %}
+    {% block beforeContent %}
+
+
+<form data-redirect="" action="{{ importSaveUrl }}"   method="POST" enctype="multipart/form-data">
+    {% endblock %}
+
+    {% block content %}
+        <div class="card">
+
+            <div class="card-header">
+                <h2>Importa dati</h2>
+            </div>
+            <div class="card-body">
+
+
+                <div class="form-group">
+                    <label>Scegli il file (csv)</label>
+                    <input id="dealCsv" class="form-control" type="file" name="csvToImport">
+                </div>
+
+
+                {% for index,campo in extraValues %}
+
+
+                    {% if campo.type == "select" %}
+                        <div class="form-control">
+                            <label>{{ campo.label }}</label>
+                            <select class="form-control" name="fixedValues[{{ index }}]">
+                                {% for i,v in campo.values %}
+                                    <option value="{{ v }}">{{ campo.labels[i] }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    {% endif %}
+
+
+                    {% if campo.type == "hidden" %}
+
+                        <input type="hidden" name="fixedValues[{{ index }}]" value="{{ campo.value }}">
+
+                    {% endif %}
+
+
+                {% endfor %}
+
+
+            </div>
+
+
+
+            {% if mappatura %}
+                {% for index,campo in mappatura %}
+                    <input type="hidden" name="mappatura[{{ index }}]" value="{{ campo }}">
+                {% endfor %}
+
+            {% endif %}
+
+            {% if campoprimario %}
+                <input type="hidden" name="campoprimario" value="{{ campoprimario }}">
+            {% endif %}
+
+
+
+
+
+
+            <div class="hidden-actions" style="display: none">
+                <div class="card-body">
+                    <h3>Record : <span class="numerorecord">132</span> trovati</h3>
+
+
+
+
+
+                    {% for index,campo in extraConditions %}
+
+
+                        <div class="form-control">
+                            <label>{{ campo.label }}</label>
+
+                            {% if campo.type == "select" %}
+                                <select class="form-control" name="extraConditions[{{ index }}]">
+                                    {% for i,v in campo.values %}
+                                        <option value="{{ v }}">{{ campo.labels[i] }}</option>
+                                    {% endfor %}
+                                </select>
+                            {% endif %}
+
+
+                            {% if campo.type == "hidden" %}
+
+                                <input type="hidden" name="fixedValues[{{ index }}]" value="{{ campo.value }}">
+
+                            {% endif %}
+
+                        </div>
+                    {% endfor %}
+
+
+
+                </div>
+
+                <div class="card-body" style="display: block">
+                    <h3>Mappatura colonne</h3>
+
+                    <hr>
+                    <div class="" style="width: 100%;display: flex;flex-wrap: wrap;font-weight: bold">
+                        <div style="flex: 1" class="nome-campo">Campo CSV</div>
+                        <div style="flex: 1">
+                            Campo DB
+                        </div>
+                        <hr style="width: 100%">
+                    </div>
+
+
+
+
+                    <div id="lista-mappature">
+
+                    </div>
+
+
+
+
+
+
+                    <div class="mappatura mappatura-template" style="width: 100%;display: flex;flex-wrap: wrap;display: none;">
+                        <div class="mr-2">
+                            <input type="checkbox" checked>
+                        </div>
+                        <div style="flex: 1" class="nome-campo">Campo CSV</div>
+                        <div style="flex: 1">
+                            <select class="form-control">
+                                {%  for key,field in fields %}
+                                    <option value="{{ key }}">{{ key }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="ml-5">
+                            Campo primario
+                            <input type="radio" name="campoprimario">
+                        </div>
+                        <hr style="width: 100%">
+                    </div>
+
+
+
+                    <div class="mappatura" style="width: 100%;display: flex;flex-wrap: wrap;">
+                        <div class="mr-2">
+
+                        </div>
+                        <div style="flex: 1" class="nome-campo"></div>
+                        <div style="flex: 1">
+
+                        </div>
+                        <div class="ml-5">
+                            Nessun campo primario
+                            <input type="radio" name="campoprimario" value="">
+                        </div>
+                        <hr style="width: 100%">
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+                <div class="card-body">
+                    <h3>Comportamento</h3>
+                    <hr>
+                    <div class="form-group">
+                        <label>Azioni sul campo primario</label>
+                        <select name="comportamento" class="form-control">
+                            <option value="normale">Sovrascrivi dati se presenti, altrimenti inserisci</option>
+                            <option value="sovrascrivi">Sovrascrivi dati se presenti, altrimenti non fare niente</option>
+                            <option value="sincronizza">Sincronizza aggiornando quelli presenti, inserendo quelli mancanti nel db e disattivando quelli mancanti nel csv</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="card-body">
+                   <button type="submit" class="btn btn-primary">Importa dati</button>
+                </div>
+
+            </div>
+
+            {% if mappatura %}
+                <div class="card-body">
+                    <button type="submit" class="btn btn-primary">Importa dati</button>
+                </div>
+            {% endif %}
+        </div>
+    {% endblock %}
+
+    {% block afterContent %}
+</form>
+{% endblock %}
+
+
+
+{% block scripts %}
+
+    {% if not mappatura %}
+    <script>
+
+
+        $(window).ready(function () {
+
+            function uploadDealcsv () {};
+
+            /*------ Method for read uploded csv file ------*/
+            uploadDealcsv.prototype.getCsv = function(e) {
+
+                let input = document.getElementById('dealCsv');
+                input.addEventListener('change', function() {
+
+                    if (this.files && this.files[0]) {
+
+                        var myFile = this.files[0];
+                        var reader = new FileReader();
+
+                        reader.addEventListener('load', function (e) {
+
+                            let csvdata = e.target.result;
+                            parseCsv.getParsecsvdata(csvdata); // calling function for parse csv data
+                        });
+
+                        reader.readAsBinaryString(myFile);
+                    }
+                });
+            }
+
+            /*------- Method for parse csv data and display --------------*/
+            uploadDealcsv.prototype.getParsecsvdata = function(data) {
+
+
+
+                headers = [];
+
+                let parsedata = [];
+
+                let newLinebrk = data.trim().split("\n");
+
+
+                $(".numerorecord").text(newLinebrk.length - 1);
+
+                headers = newLinebrk[0].split(";");
+
+                for(let i = 1; i < newLinebrk.length; i++) {
+                    parsedata.push(newLinebrk[i].split(","))
+                }
+
+                console.log(parsedata);
+
+                var mappaTemplate = $(".mappatura-template");
+
+                campiMancanti = [];
+
+                headers.forEach(function (o) {
+                    var t = mappaTemplate.clone();
+
+
+                    t.find('[type="checkbox"]').attr("name",o);
+                    t.removeClass("mappa-template");
+                    t.find(".nome-campo").text(o);
+
+                    t.find("select").attr("name","mappatura["+o+"]");
+                    t.css({
+                        display:"flex"
+                    });
+
+
+                    t.find("select").val(o);
+
+                    if( t.find('[value="'+o+'"]').length == 0 ){
+                        campiMancanti.push(o);
+                    }
+                    $("#lista-mappature").append(t);
+                    t.find('[name="campoprimario"]').val(o);
+                    if( o == 'id'){
+                        t.find('[name="campoprimario"]').prop("checked",true);
+                    }
+                });
+
+                if(campiMancanti.length > 0 ){
+                    Alerts.simple("ATTENZIONE : Campi mancanti!", "I seguenti campi non risultano essere presenti nel DB : <br> " + campiMancanti.join(" - ") + "<br> Controlla di aver caricato il file giusto oppure riassegna i campi.");
+                }
+
+                if( $('[name="campoprimario"]:checked').length == 0 ){
+                    $('[name="campoprimario"]').first().prop("checked",true)
+                }
+
+                $(".hidden-actions").show();
+            }
+
+
+
+
+
+            var parseCsv = new uploadDealcsv();
+            parseCsv.getCsv();
+        })
+    </script>
+
+    {% endif %}
+
+{% endblock %}

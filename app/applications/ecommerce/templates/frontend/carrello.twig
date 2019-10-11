@@ -1,0 +1,16 @@
+{% extends "base/template.twig" %}
+
+{% block content %}
+    <main  class="mb-5 pt-5">
+        <div class="container">
+
+
+            {% if carrello.lineitems| length > 0 %}
+                {% include "ecommerce/carrello/carrello-pieno.twig" %}
+            {% else %}
+                {% include "ecommerce/carrello/carrello-vuoto.twig" %}
+            {% endif %}
+
+        </div>
+    </main>
+{% endblock %}

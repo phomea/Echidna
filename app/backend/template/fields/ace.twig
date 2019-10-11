@@ -1,0 +1,14 @@
+<div style="height:500px;width:100%"> 
+<input type="hidden" name="{{ property }}" id="acevalue">
+<div id="ace" style="height: 100%">{{ field.value }}</div>
+</div>
+
+<script>
+    var editor = ace.edit("ace");
+    editor.setTheme("ace/theme/monokai");
+    editor.session.setMode("ace/mode/twig");
+    $("#ace").closest("form").submit(function(e){
+        var v = editor.getValue();
+        $("#acevalue").val(v)
+    })
+</script>

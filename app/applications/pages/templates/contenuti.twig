@@ -1,0 +1,709 @@
+<div class="card">
+    <div class="card-body">
+
+
+        <div>
+
+        <h2>Contenuti della pagina</h2>
+
+        <p>
+            Imposta i contenuti addizionali della pagina.
+            <br>
+            <b>Nota bene</b> : questi contenuti possono anche essere ignorati dalla pagina qualora il template non li preveda.
+        </p>
+
+
+
+
+        </div>
+        <div class="row">
+            <div class="col" id="list-card-content">
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+
+
+<div class="card">
+    <div class="card-body">
+
+
+
+    <div style="width: 100%;">
+    <style>
+    .contenuto header{
+        padding:1em;
+        cursor: pointer;
+        background: transparent;
+    }
+    .contenuto content{
+        display: none;
+        background: #eee;
+        padding:1em;
+    }
+    .contenuto.active content{
+        display: block;
+    }
+    .contenuto.active footer{
+        display: block;
+    }
+    .contenuto{
+        border: 1px solid rgba(0,0,0,0.1);
+    }
+    .contenuto footer{
+        display: none;
+        padding: 0 1em;
+
+    }
+    .handler{
+        background: #fff;
+        padding: 3em;
+        border-right: 1px solid rgba(0,0,0,0.2);
+        padding: 1em;
+        margin-top: -1em;
+        margin-left: -1em;
+        float: left;
+        margin-right: 1em;
+    }
+    #nuovocontenuto .handler{
+        display: none;
+    }
+    #nuovocontenuto{
+        margin-top: 2em;
+    }
+</style>
+
+
+<div class="lista-contenuti">
+
+
+
+    {% for contenuto in data %}
+        <div class="contenuto draggable">
+            <input type="hidden" name="id" value="{{ contenuto.id }}">
+            <header class="p2" onclick="$(this).closest('.contenuto').toggleClass('active')"> <i class="handler fa fa-arrows"></i> {{ contenuto.titolo }}</header>
+            <content>
+
+                <div flex>
+
+                    {% include "fields/default.twig" with {
+                    property : "titolo",
+                    field : {
+                    fieldsize:"full",
+                    label : "Titolo",
+                    value : contenuto.titolo
+                    }
+                    }
+                    %}
+
+
+                    {% include "fields/default.twig" with {
+                    property : "hook",
+                    field : {
+                    label : "Hook",
+                    value : contenuto.hook
+                    }
+                    }
+                    %}
+
+                    {% include "fields/default.twig" with {
+                    property : "tipo",
+                    field : {
+                    label : "Tipo",
+                    value : contenuto.tipo
+                    }
+                    }
+                    %}
+
+                </div>
+
+                <div class="contenuto-contenuto">
+                    {% include "fields/textarea.twig" with {
+                    property : "contenuto",
+                    field : {
+                    label : "Contenuto",
+                    value : contenuto.contenuto
+                    }
+                    }
+                    %}
+                </div>
+
+
+
+
+
+            </content>
+            <footer flex>
+                <a href="" class="btn" onclick="eliminaContenuto(event,$(this).closest('.contenuto'))">Elimina contenuto</a>
+                <a href="" class="btn" onclick="salvaContenuto(event,$(this).closest('.contenuto'))">Salva contenuto</a>
+            </footer>
+        </div>
+    {% endfor %}
+
+
+
+
+
+
+
+
+</div>
+
+
+        <!--
+
+          {% include "fields/default.twig" with {
+        property : "tipo",
+        field : {
+        label : "Tipo",
+        value : ""
+        }
+        }
+        %}
+-->
+
+<div class="contenuto" id="nuovocontenuto" style="ì">
+
+    <header class="p2" onclick="$(this).closest('.contenuto').toggleClass('active')">
+        <i class="handler fa fa-arrows"></i>  <span bind="titolo">Nuovo contenuto</span>
+    </header>
+
+    <content>
+
+        <input type="hidden" name="pagine_id" value="{{ pagina.id }}">
+        <div style="display: flex;flex-wrap: wrap;">
+
+            {% include "fields/default.twig" with {
+            property : "titolo",
+
+            field : {
+            fieldsize:"full",
+            label : "Titolo",
+            value : ""
+            }
+            }
+            %}
+
+
+            {% include "fields/default.twig" with {
+            property : "hook",
+            field : {
+            label : "Hook",
+            value : ""
+            }
+            }
+            %}
+
+
+          
+
+
+            <div class="form-group ">
+                <label class=" form-control-label">Tipo
+
+                </label>
+                <select class="form-control" name="tipo">
+
+                    <option value="">---</option>
+                    {% for n,c in contentTypes %}
+                        <option value="{{n}}">{{n}}</option>
+                    {% endfor %}
+                
+                </select>
+            </div>
+<!--
+            $this->helper("html")->label("Tipo")
+            ->noTable()
+            ->setValue('')
+            ->setId("tipo")
+            ->setArraySelect($this->templatesContenuti)
+            ->input('select')->render();
+            ?>-->
+        </div>
+
+
+        <div class="contenuto-contenuto">
+
+
+
+        </div>
+
+
+    </content>
+    <footer flex>
+        <a href="" class="btn" onclick="eliminaContenuto(event,$(this).closest('.contenuto'))">Elimina contenuto</a>
+        <a href="" class="btn" onclick="salvaContenuto(event,$(this).closest('.contenuto'))">Salva contenuto</a>
+    </footer>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+    function aggiungiContenuto(){
+
+    }
+
+    function caricaContenuti(){
+
+
+        id = {{ pagina.id }}
+        $.ajax({
+            //url : '/api/contenuto/pagina/'+id,
+            url : '/backend/pages/'+id+"/contenuti",
+            method : 'GET',
+            success : function(d){
+
+                console.log(d);
+                $(".lista-contenuti").empty();
+
+                d = JSON.parse(d);
+                if(!d) return;
+
+
+
+                for(i=0;i < d.length;i++){
+                    object = d[i];
+                    c = $("#nuovocontenuto").clone();
+                    $(c).removeClass("active");
+                    c.attr("id",object.id);
+
+
+                    $(c).find('[bind]').each(function(o){
+                        $(this).html(object[$(this).attr("bind")]);
+                    });
+                    $(c).find('[name]').each(function(o){
+                        $(this).val(object[$(this).attr("name")]);
+                        delete object[$(this).attr("name")];
+                    });
+
+                    for (var property in object) {
+                        if (object.hasOwnProperty(property)) {
+                            v = "";
+                            if(object[property]!=null){
+                                v = object[property].replace("'","\'");
+                            }else{
+                                v = object[property];
+                            }
+                            $(c).prepend('<input type="hidden" value=\''+v+'\' name="'+property+'">');
+                        }
+                    }
+
+
+
+                    if( object.contenuto === undefined || !object.contenuto ) object.contenuto ="";
+                    object.contenuto = object.contenuto.replace(/\\"/g,'\"')
+
+
+                    try {
+                        $(c).find(".contenuto-contenuto").data("oggetto", JSON.parse(object.contenuto));
+                    }catch (w) {
+
+                    }
+
+
+
+                    $(".lista-contenuti").append(c);
+
+
+
+                }
+
+
+
+
+                $('.contenuto [name="tipo"]').each(function(t){
+
+                    var c = $(this).closest(".contenuto").find(".contenuto-contenuto");
+
+
+                    parseInfoTipo(c,$(this).val());
+                })
+
+            }
+
+
+
+        });
+
+
+
+
+    }
+
+    caricaContenuti();
+
+    $.fn.serializeObject = function(){
+
+        var self = this,
+            json = {},
+            push_counters = {},
+            patterns = {
+                "validate": /^[a-zA-Z][a-zA-Z0-9_]*(?:\[(?:\d*|[a-zA-Z0-9_]+)\])*$/,
+                "key":      /[a-zA-Z0-9_]+|(?=\[\])/g,
+                "push":     /^$/,
+                "fixed":    /^\d+$/,
+                "named":    /^[a-zA-Z0-9_]+$/
+            };
+
+
+        this.build = function(base, key, value){
+            base[key] = value;
+            return base;
+        };
+
+        this.push_counter = function(key){
+            if(push_counters[key] === undefined){
+                push_counters[key] = 0;
+            }
+            return push_counters[key]++;
+        };
+
+        $.each($(this).serializeArray(), function(){
+
+            // skip invalid keys
+            if(!patterns.validate.test(this.name)){
+                return;
+            }
+
+            var k,
+                keys = this.name.match(patterns.key),
+                merge = this.value,
+                reverse_key = this.name;
+
+            while((k = keys.pop()) !== undefined){
+
+                // adjust reverse_key
+                reverse_key = reverse_key.replace(new RegExp("\\[" + k + "\\]$"), '');
+
+                // push
+                if(k.match(patterns.push)){
+                    merge = self.build([], self.push_counter(reverse_key), merge);
+                }
+
+                // fixed
+                else if(k.match(patterns.fixed)){
+                    merge = self.build([], k, merge);
+                }
+
+                // named
+                else if(k.match(patterns.named)){
+                    merge = self.build({}, k, merge);
+                }
+            }
+
+            json = $.extend(true, json, merge);
+        });
+
+        return json;
+    };
+
+    function salvaContenuto(e,c){
+        e.preventDefault();
+        $(c).find("textarea.tinymce").each(function () {
+            id = $(this).attr("id")
+           
+            $(this).val( tinyMCE.editors[id].getContent().replace(/"/g,"\\\"") );
+        })
+
+
+        var formdata = $(c).find("select, textarea, input").serialize();
+        var data = {};
+
+
+
+
+        /*$(formdata ).each(function(index, obj){
+         data[obj.name] = obj.value;
+         });*/
+
+
+        data = $(c).find("select, textarea, input").serializeObject();
+
+        data.contenuto = JSON.stringify(data.contenuto);
+
+
+
+        let url ="/backend/contenuti/aggiungi";
+        let method = "POST";
+        if( data.id!== undefined ) {
+            url = "/backend/contenuti/"+data.id;
+            method = "PUT";
+        }
+
+
+        data.form_entity = "applications\\pages\\entities\\Contenuto";
+
+
+        console.log(data);
+        $.ajax({
+            url : url,
+            method : method,
+            dataType: "json",
+            data : data,
+            success : function(d){
+                console.log(d);
+                caricaContenuti();
+            }
+        })
+
+        /*ech_ajax("/api/contenuto",data,function(o){
+         console.log(o);
+         });*/
+
+    }
+
+    function eliminaContenuto(e,c){
+        e.preventDefault();
+        var id = $(c).find('[name="id"]').val();
+        $.ajax({
+            url : '/backend/contenuti/'+id+"/delete",
+            method : 'GET',
+            contentType: "application/json",
+            dataType: 'json',
+            success : function(d){
+                console.log(d);
+                caricaContenuti();
+            }
+        })
+
+        /*ech_ajax("/api/contenuto",data,function(o){
+         console.log(o);
+         });*/
+
+    }
+
+
+    function parseInfoTipo(element,tipo){
+
+
+        var v = tipo;
+        var c = element;
+
+
+
+        if( tipo == '') return;
+
+
+        (function(c,v){
+
+
+           // $.get("/backend/contenuti/tipo/"+v).then(function(d){
+            $.ajax({
+
+                url : "/backend/contenuti/tipo/"+v,
+                method : 'GET',
+                contentType: "application/json",
+                dataType: 'json',
+                success: function(d){
+
+
+
+                c.empty();
+
+                dati = c.data("oggetto");
+
+
+
+
+                if(!d) return;
+
+
+                if( d.contenuto =='libero' ){
+
+                    console.log(d.contenuto);
+
+                    if( !dati ){
+                        dati = "";
+                    }
+
+                    template =`<div class="form-group full}"><label class=" form-control-label">Contenuto<br></label>
+                            <textarea placeholder="Contenuto" class="form-control  " name="contenuto">${dati}</textarea>
+                            </div>`
+
+
+                    //c.append('<div class="input textarea"><label>Contenuto</label><textarea name="contenuto">'+dati+'</textarea></div>')
+                    c.append(template)
+                    return;
+                }
+
+
+                if( !dati ){
+                    dati = {};
+                }
+
+
+                for(i=0;i<d.contenuto.length;i++){
+
+
+
+
+                    if( d.contenuto[i].type=='text' ){
+
+
+                        if( !dati[d.contenuto[i].name] )
+                            dati[d.contenuto[i].name] ="Contenuto";
+
+
+
+                        template =`<div class="form-group full}"><label class=" form-control-label">${d.contenuto[i].label}<br></label>
+                            <textarea placeholder="Contenuto" class="form-control  " name="contenuto[${d.contenuto[i].name}]">${dati[d.contenuto[i].name]}</textarea>
+                            </div>`
+
+
+                        //c.append('<div class="input textarea"><label>'+d.contenuto[i].label+'</label><textarea name="contenuto['+d.contenuto[i].name+']">'+dati[d.contenuto[i].name]+'</textarea></div>')
+                        c.append(template)
+                    }
+
+                    if( d.contenuto[i].type=='html' ){
+
+                        if( !dati[d.contenuto[i].name] )
+                            dati[d.contenuto[i].name] ="";
+
+
+
+
+                        id = "contenttinymce-" + (new Date()).getMilliseconds();
+
+                        textarea = $('<textarea id="'+id+'" class="tinymce" name="contenuto['+d.contenuto[i].name+']">'+dati[d.contenuto[i].name]+'</textarea>');
+                        div = $('<div class="input textarea editor"><label>'+d.contenuto[i].label+'</label></div>');
+                        $(div).append(textarea);
+                        c.append(div);
+
+                        init_tinymce();
+                    }
+
+                    if( d.contenuto[i].type=='select' ){
+                        if( !dati[d.contenuto[i].name] )
+                            dati[d.contenuto[i].name] ="";
+
+
+                        if( !d.contenuto[i].values )
+                            return;
+
+                        var obj = d.contenuto[i];
+                        ee = d.contenuto[i].values;
+
+                        var div = $('<div class="input select"></div>');
+                        var select =$('<select name="contenuto['+d.contenuto[i].name+']"></select>');
+                        for(y=0;y<ee.length;y++){
+                            console.log(ee[y]);
+                            var option = $('<option value="'+ee[y]["value"]+'">'+ee[y]["label"]+'</option>');
+
+
+                            if(dati &&  ee[y]["value"] == dati[obj.name]){
+                                $(option).attr("selected",true);
+                            }
+                            select.append(option);
+                        }
+                        div.append('<label>'+obj.label+'</label>')
+                        div.append(select);
+                        c.append(div);
+                    }
+
+                    if( d.contenuto[i].type=='Entity' ){
+                        if( !dati[d.contenuto[i].name] )
+                            dati[d.contenuto[i].name] ="";
+
+
+
+                        var obj = d.contenuto[i];
+                        console.log(d.contenuto[i].entity);
+
+                        $.ajax({
+                            url : "/backend/"+d.contenuto[i].entity+"/lista",
+                            method : "GET",
+                            dataType : "json"
+                        }).then(function(ee){
+
+                       // $.get("/api/"+d.contenuto[i].entity).then(function(ee){
+
+                            var div = $('<div class="input select"></div>');
+                            var select =$('<select name="contenuto['+obj.name+']"></select>');
+
+                            var option = $('<option value="">...</option>');
+                            select.append(option);
+                            for(y=0;y<ee.length;y++){
+                                console.log(ee[y]);
+                                var option = $('<option value="'+ee[y][obj['field']]+'">'+ee[y][obj['fieldlabel']]+'</option>');
+
+
+                                if(dati &&  ee[y][obj['field']] == dati[obj.name]){
+                                    $(option).attr("selected",true);
+                                }
+                                select.append(option);
+                            }
+                            div.append('<label>'+obj.label+'</label>')
+                            div.append(select);
+                            c.append(div);
+                        })
+
+                    }
+                }
+
+            }});
+
+        })(c,v);
+    }
+
+    $(document).on("change",'.contenuto [name="tipo"]',function(){
+
+        var v = $(this).val();
+        var element = this;
+
+
+        var c = $(element).closest(".contenuto").find(".contenuto-contenuto");
+
+        parseInfoTipo(c,v);
+
+    })
+
+    $(".lista-contenuti").sortable({
+        handle: ".handler",
+        stop: function(e,ui) {
+
+            console.log(ui.item.index())
+            listaid=[];
+            $(".lista-contenuti .contenuto").each(function(o){
+                id = $(this).find('[name="id"]').val();
+
+
+                listaid.push(id);
+            })
+
+            console.log(listaid);
+            $.ajax({
+                url : '/backend/contenuti/riordina',
+                method : 'POST',
+                contentType: "application/json",
+                dataType: 'json',
+                data:JSON.stringify(listaid),
+                success : function(d){
+                    console.log(d);
+                    caricaContenuti();
+                }
+            })
+
+
+        }
+    });
+</script>

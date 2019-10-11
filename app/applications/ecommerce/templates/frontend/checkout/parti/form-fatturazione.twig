@@ -1,0 +1,92 @@
+
+
+
+<input type="hidden" name="fatturazione[id_cliente]" value="{{ cliente.id }}">
+
+
+
+{% if indirizzoSpedizione %}
+    <input type="hidden" name="fatturazione[id]"  value="{{ indirizzoFatturazione.id }}">
+{% endif %}
+
+<h2>Indirizzo di fatturazione</h2>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>Nome</label>
+            <input type="text" name="fatturazione[nome]" class="form-control" value="{{ indirizzoFatturazione.nome?indirizzoFatturazione.nome:cliente.nome }}">
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>Cognome</label>
+            <input type="text" name="fatturazione[cognome]" class="form-control" value="{{ indirizzoFatturazione.cognome?indirizzoFatturazione.cognome:cliente.cognome }}">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>Telefono</label>
+            <input type="text" name="fatturazione[telefono]" class="form-control" value="{{ indirizzoFatturazione.telefono?indirizzoFatturazione.telefono: "" }}">
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>Codice fiscale</label>
+            <input type="text" name="fatturazione[cf]" class="form-control" value="{{ indirizzoFatturazione.cf?indirizzoFatturazione.cf: "" }}">
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-9">
+        <div class="form-group">
+            <label>Via / Piazza</label>
+            <input type="text" name="fatturazione[via]" class="form-control" value="{{ indirizzoFatturazione.via }}">
+        </div>
+    </div>
+
+    <div class="col-3">
+        <div class="form-group">
+            <label>Numero</label>
+            <input type="text" name="fatturazione[numero]" class="form-control" value="{{ indirizzoFatturazione.numero }}">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6 col-md-4">
+        <div class="form-group">
+            <label>Città</label>
+            <input type="text" name="fatturazione[citta]" class="form-control" value="{{ indirizzoFatturazione.citta }}">
+        </div>
+    </div>
+
+
+
+
+
+    <div class="col-6 col-md-4">
+        <div class="form-group">
+            <label>Provincia</label>
+            <select name="fatturazione[id_provincia]" class="form-control">
+                {% for provincia in provincieDisponibili %}
+                    <option value="{{ provincia.id }}" {{ indirizzoFatturazione.id_provincia == provincia.id ? "selected" : "" }}>{{ provincia.name }}</option>
+                {% endfor %}
+            </select>
+
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="form-group">
+            <label>Cap</label>
+            <input type="text" name="fatturazione[cap]" class="form-control" value="{{ indirizzoFatturazione.cap }}">
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,32 @@
+{% extends template_extend %}
+
+    {% block beforeContent %}
+
+    {% endblock %}
+
+
+    {% block content %}
+
+        <div class="card">
+            <div class="card-header">
+                <strong class="card-title">Bollette Generate</strong>
+            </div>
+            <div class="card-body">
+
+                    {{ errore | raw }}
+
+            </div>
+        </div>
+
+    {% endblock %}
+
+    {% block afterContent %}
+    {% endblock %}
+
+    {% block scripts %}
+        <script>
+            $( document ).ready(function() {
+
+            });
+        </script>
+    {% endblock %}

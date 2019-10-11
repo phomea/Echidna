@@ -1,0 +1,47 @@
+<form class="form-ajax" action="{{ router_service.getRoute("ecommerce.catalogo.prodotto.variant.add").build({id:prodotto.id}) }}" method="post" >
+
+
+    <div class="card">
+
+    <div class="card-body">
+
+        {% for attributo in attributiTipologia %}
+            <div class="form-group">
+                <label>{{ attributo.nome }}</label>
+                <select class="form-control" name="attributi[{{ attributo.id }}]">
+                    {% for valore in attributo.possibili_valori %}
+                        <option value="{{ valore.id }}">{{ valore.valore }}</option>
+                    {% endfor %}
+
+                </select>
+            </div>
+        {% endfor %}
+
+
+
+                <h5>Sovrascrivi campi prodotto</h5>
+                <br>
+                {% for campo in prodotto.tipologia.campi   %}
+
+
+                    {% include "fields/default.twig" with {
+                    label : campo.nome,
+                    property : "campi["~campo.slug~"]",
+                    field:{
+                    value : prodotto.valoriCampi[campo.slug].valore
+                    }
+
+                    }
+                    %}
+                {% endfor %}
+
+
+    </div>
+
+    <div class="card-header text-center">
+        <div class="form-group">
+            <input type="submit" class="btn btn-success" value="Salva">
+        </div>
+    </div>
+    </div>
+</form>

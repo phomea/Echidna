@@ -1,0 +1,250 @@
+<style>
+    .table td, .table th {
+        vertical-align: middle;
+    }
+</style>
+
+<div class="p-3">
+    <div><b>Nome generatore : </b>{{ generatore.descrizione }}  <a href="{{ router_service.getRoute(generatore.getEntity~".mod").build({
+            id : generatore.id
+        }) }}" class="btn btn-info btn-xs" target="_blank">Visualizza dati generatore</a></div>
+
+
+
+</div>
+
+
+
+<div class="">
+
+    <form action="{{ router_service.getRoute("backend.bolletta.aggiornaconsumi").build(
+    {
+        id : bolletta.id
+    }) }}" method="post" class="form-mod">
+
+    <h6 class="p-3 bg-white font-weight-bold">Consumi dei vettori associati al generatore : </h6>
+
+
+
+    <div class="card-body">
+
+
+
+
+
+    <table id="bootstrap-data-table" class="table table-striped ">
+
+        <tr style="position:sticky;top:0">
+
+            <th>Serv.</th>
+            <!--
+            <th>Lettura iniziale</th>
+            <th>Lettura finale</th>
+            -->
+            <th>Valore</th>
+            <th>Costo Energia</th>
+
+        </tr>
+
+        <tbody>
+
+
+
+    {% for index,vettore in generatore.vettori  %}
+                        <tr>
+                            <td>
+                                <b>{{ vettore.displayValue('tipologiaVettore') }}</b>
+
+
+                                {% if vettore.consumo %}
+                                    <input  type="hidden" name="consumo[{{ index }}][id]" value="{{ vettore.consumo.id }}">
+                                {% endif %}
+                                <input type="hidden" name="consumo[{{ index }}][idBolletta]" value="{{ bolletta.id }}">
+
+
+                                <input type="hidden" name="consumo[{{ index }}][idVettore]" value="{{ vettore.id }}">
+                            </td>
+                            <!--
+                            <td>
+                                {% include "fields/float.twig" with{
+                                    simple:true,
+                                    property : "consumo["~index~"][lettura_iniziale]",
+                                    field:{
+                                        isRequired : true,
+                                        value : vettore.consumo ? vettore.consumo.lettura_iniziale : ""
+                                    }
+                                } %}
+                            </td>
+                            <td>
+                                {% include "fields/float.twig" with{
+                                    simple:true,
+                                    property : "consumo["~index~"][lettura_finale]",
+                                    field:{
+                                        isRequired : true,
+                                        value : vettore.consumo ? vettore.consumo.lettura_finale : ""
+                                    }
+                                } %}
+                            </td>
+                            -->
+                            <td>
+                                {% include "fields/float.twig" with{
+                                    simple:true,
+                                property : "consumo["~index~"][valore]",
+                                field:{
+                                isRequired : true,
+                                appendText: vettore.displayValue("tipologiaVettore_unitamisura"),
+                                value : vettore.consumo ? vettore.consumo.valore : ""
+                                }
+                                } %}
+
+                            </td>
+                            <td>
+                                {% include "fields/float.twig" with{
+                                simple:true,
+                                property : "consumo["~index~"][spesa_nel_periodo]",
+                                field:{
+                                isRequired : true,
+                                        appendText : '€',
+                                value : vettore.consumo ? vettore.consumo.spesa_nel_periodo : ""
+                                }
+                                } %}
+                            </td>
+
+                        </tr>
+
+
+
+
+    {% endfor %}
+
+        </tbody>
+    </table>
+           <!-- <button type="submit" class="btn btn-primary">{{ vettore.consumo ? "Aggiorna": "Salva" }}</button>-->
+
+
+
+
+
+    </div>
+
+
+    <h4 class="pt-3 pb-3 pl-3 bg-white font-weight-bold">Servizi erogati : </h4>
+
+
+    <div class="card-body">
+        {#
+         "fabbisognoCLI"  =>  Field::float()->editable()->setTemplate("float")->setFieldsize("small")->setLabel("Fabbisogno per CLI nel periodo considerato")->inlist(false),
+         "fabbisognoACS"  =>  Field::float()->editable()->setTemplate("float")->setFieldsize("small")->setLabel("Fabbisogno per AcS nel periodo considerato")->inlist(false),
+         "fabbisognoCLE"  =>  Field::float()->editable()->setTemplate("float")->setFieldsize("small")->setLabel("Fabbisogno per CLE nel periodo considerato")->inlist(false),
+        #}
+
+
+       <!-- <form action="{{ router_service.getRoute("backend.bolletta.aggiornaenergiaerogata").build(
+        {
+            id : bolletta.id
+        }) }}" method="post" >-->
+
+        <table id="bootstrap-data-table" class="table table-striped ">
+
+            <tr style="position:sticky;top:0">
+
+                <th>Serv.</th>
+                <th>Tipo gestione</th>
+
+            </tr>
+
+            <tbody>
+
+            {% for index,en in generatore.energiaDaErogare %}
+
+
+
+                <tr>
+                    <td width="100px">
+                       <h5>{{ en.tipo }}</h5>
+
+
+                    </td>
+                    <td>
+
+
+                            <input type="hidden" name="energia[{{ index }}][servizio]" value="{{ en.tipo }}">
+                            <input type="hidden" name="energia[{{ index }}][idBolletta]" value="{{ bolletta.id }}">
+                            <input type="hidden" name="energia[{{ index }}][idGeneratore]" value="{{ generatore.id }}">
+
+                            <div class=" form-group">
+                                <select class="form-control select-tipo-energia" name="energia[{{ index }}][virtuale]">
+                                    <option value="0" {{ en.energiaErogata.virtuale == 0 ? "selected" : ''  }}>Calcola energia erogata automaticamente (virtuale)</option>
+                                    <option value="1" {{ en.energiaErogata.virtuale == 1 ? "selected" : ''  }}>Misura energia (con contatore o inserimento manuale)</option>
+                                </select>
+
+
+                                {% if en.energiaErogata.virtuale == 0 and  en.energiaErogata.valore %}
+                                    <div class="p-3">
+                                        Valore generato automaticamente : <b>{{ en.energiaErogata.valore }}</b> kWh
+
+                                    </div>
+
+                                {% endif %}
+
+                            </div>
+
+                            <div class=" form-group input-gestione-manuale" style="{{ en.energiaErogata.virtuale ? "": "display:none" }}">
+
+                                <label>Valore lettura contatore / manuale (KW)  : </label>
+                                <input class="form-control" type="float" name="energia[{{ index }}][valore]" value="{{ en.energiaErogata.valore ? en.energiaErogata.valore : generatore.lettureContatori[en.tipo]}}" pattern="[0-9]+([\.,][0-9]+)?">
+
+                                {% if generatore.lettureContatori[en.tipo] %}
+                                <div class="p-3">
+                                    Lettura da contatore : <b>{{ generatore.lettureContatori[en.tipo] }}</b> <button type="button" class="btn btn-info btn-xs" onclick="usaLettura(this,{{ generatore.lettureContatori[en.tipo] }})">Usa questa lettura</button>
+
+                                </div>
+                                {% endif %}
+
+                            </div>
+
+
+                    </td>
+
+
+                </tr>
+
+
+            {% endfor %}
+
+            </tbody>
+        </table>
+
+        <div class="p-3">
+            <button type="submit"   class="btn btn-primary ">Aggiorna</button>
+        </div>
+        <!--</form>-->
+
+    </div>
+
+
+    </form>
+
+
+
+</div>
+
+
+<script>
+
+
+    function usaLettura(who,valore) {
+        $(who).closest(".input-gestione-manuale").find("input").val(valore);
+    }
+    $(".select-tipo-energia").on("change",function(){
+        if($(this).val() == 0 ){
+            $(this).closest("tr").find(".input-gestione-manuale").hide();
+            $(this).closest("tr").find(".input-gestione-manuale").find("input").prop("required",false)
+        }else{
+            $(this).closest("tr").find(".input-gestione-manuale").show();
+            //$(this).closest("tr").find(".input-gestione-manuale").find("input").val("");
+            $(this).closest("tr").find(".input-gestione-manuale").find("input").prop("required",true)
+        }
+
+    })
+</script>

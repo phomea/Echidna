@@ -1,0 +1,35 @@
+<div class="form-group select-entity   {{ field.fieldsize ? field.fieldsize : '' }}">
+    <label class=" form-control-label">{{ field.label ? field.label : property }}
+        <br><small>{{ field.hint }}</small>
+    </label>
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-list-ul"></i></span>
+        </div>
+
+        <select name="{{ property }}" class="form-control selectpicker {{ field.fieldsize ? field.fieldsize : '' }}" data-fieldlabel="{{ field.templateVar.fieldlabel }}" data-fieldid="{{ field.templateVar.fieldid }}" >
+            {% for option in field.templateVar.list %}
+                <option value="{{ option.value }}" {{ field.value == option.value ? "selected" :""}} >{{ option.label }}</option>
+            {% endfor %}
+        </select>
+
+
+        <div class="input-group-append">
+
+            <a href="{{ router_service.getRoute(field.templateVar.entity ~ ".add").build({
+                template_extend : "empty.twig",
+                formClass : "form-return"
+            }) }}"
+               target="_popup"
+               data-event="datareturn"
+
+               class="input-group-addon primary  "><i class="fa fa-plus"></i> </a>
+        </div>
+
+
+
+
+    </div>
+
+</div>

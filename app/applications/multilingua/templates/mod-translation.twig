@@ -1,0 +1,66 @@
+{% extends template_extend %}
+    {% block beforeContent %}
+
+
+
+<form  action="{{ data.id ? router_service.getRoute(data.getEntity()~".update").build({id:data.id}) : router_service.getRoute(data.getEntity()~".insert").build() }}" class="form-mod" method="{{ data.id ? "PUT" : "POST" }}">
+    {% endblock %}
+
+    {% block content %}
+
+
+
+
+        <input value="{{ data.getEntity() }}" name="form_entity" type="hidden">
+        {% if data.id %}
+            <input value="{{ data.id }}" type="hidden" name="id">
+        {% endif %}
+        <div class="card">
+            <div class="card-header">
+
+                {% if data.id %}
+                    <div class="mod-actions float-right">
+
+                        <a href="" class="btn btn-xs btn-light " data-toggle="tooltip" title="Clona"><i class="fa fa-plus"></i></a>
+                        <a href="{{ router_service.getRoute(data.getEntity()~".delete").build({id:data.id})}}" class="btn btn-xs btn-light confirm" data-toggle="tooltip" title="Elimina"><i class="fa fa-trash"></i> Elimina</a>
+
+
+                        {% if data.__active__ %}
+                            <a href="{{ router_service.getRoute(data.getEntity()~".deactivate").build({id:data.id})}}" class="btn btn-xs btn-light " data-toggle="tooltip" title="Attiva o disattiva"><i class="fa fa-eye"></i> Disattiva </a>
+                        {% else %}
+                            <a href="{{ router_service.getRoute(data.getEntity()~".activate").build({id:data.id})}}" class="btn btn-xs btn-light " data-toggle="tooltip" title="Attiva o disattiva"><i class="fa fa-eye"></i> Attiva </a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="card-body">
+                {% for field in fields %}
+                    {{ field|raw }}
+                {% endfor %}
+
+
+                {% block additionalFields %}{{ additional_fields|raw }}{% endblock %}
+
+
+
+
+
+            </div>
+
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <button type="submit" class="btn btn-success" ><i class="fa fa-save"></i> Salva</button>
+            </div>
+        </div>
+
+    {% endblock %}
+
+    {% block afterContent %}
+</form>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

@@ -1,0 +1,11 @@
+
+<div class="row">
+        <div class="owl-carousel owl-theme general-carousel pl-5 pr-5" data-nav data-n="2">
+    {% for prodotto in prodotti %}
+
+        <div class="pt-4">
+            {% include "ecommerce/product/thumbnail-preview.twig" with {prodotto : prodotto} %}
+        </div>
+    {%  endfor %}
+        </div>
+</div>

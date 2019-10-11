@@ -1,0 +1,23 @@
+{% extends "base/template.twig" %}
+
+{% block content %}
+    {% block topcontent %}
+    {% endblock %}
+    <main>
+        <div class="container">
+
+            {% block innercontent %}
+            <div class="row">
+
+                <div class="col">
+
+                    {% include "ecommerce/shop/_parts/list.twig" with {prodotti : prodotti} %}
+
+                </div>
+            </div>
+
+            {% endblock %}
+
+        </div>
+    </main>
+{% endblock %}

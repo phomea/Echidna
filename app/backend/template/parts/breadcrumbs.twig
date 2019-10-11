@@ -1,0 +1,30 @@
+<div class="breadcrumbs">
+
+    <div class=" ">
+
+
+                <ol class="breadcrumb">
+                    <li class="active">
+                        <a class="btn btn-light" href="/backend/main/">
+                            <i class="menu-icon lnr lnr-home"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    {% for breadcrumb in breadcrumbs %}
+                        <li class="active">
+                            {% if breadcrumb.link %}
+                            <a class="btn btn-light" href="{{ breadcrumb.link }}">
+
+                                {{ breadcrumb.label }}
+
+                            </a>{% else %}
+                                <span> {{ breadcrumb.label }}</span>
+
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ol>
+
+
+    </div>
+</div>

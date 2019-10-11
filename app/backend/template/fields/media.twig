@@ -1,0 +1,29 @@
+<div class="form-group field-media field-media-{{ property }} {{ field.fieldsize ? field.fieldsize : '' }}">
+    <label class="form-control-label">{{ field.label ? field.label : property }}</label>
+    <input type="text" placeholder="{{ field.placeholder ? field.placeholder : 'Seleziona file' }}" class="form-control media-choser value-{{ property }}  "  name="{{ property }}" value="{{ field.value }}">
+    <button class="btn btn-light">Cerca</button>
+</div>
+<figure>
+    <img src="" class="field-media-img image-{{ property }}" style="max-width: 200px;max-height: 200px">
+</figure>
+
+
+<script>
+    $(window).ready(function(){
+        (function() {
+
+            var mediabrowser = new MediaBrowser("#filebrowser");
+
+            mediabrowser.fileChoose(function (file) {
+                $(".media-choser.value-{{ property }}").val(file.permalink);
+                $(".field-media-img.image-{{ property }}").attr("src", file.permalink);
+            });
+           // $(".media-choser.value-{{ property }}").on("focus", function (e) {
+
+            $(".field-media-{{ property }} button").on("click", function (e) {
+                e.preventDefault();
+                mediabrowser.open();
+            })
+        })();
+    });
+</script>

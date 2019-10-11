@@ -1,0 +1,234 @@
+{% extends template_extend %}
+    {% block beforeContent %}
+
+
+<form data-redirect="" action="{{ importSaveUrl }}"   method="POST" enctype="multipart/form-data">
+    {% endblock %}
+
+    {% block content %}
+        <div class="card">
+
+            <div class="card-header">
+                <h2>Importa dati</h2>
+            </div>
+            <div class="card-body">
+                <div class="form-group" style="flex-basis:100%;">
+                    <label>Crea lettura di reset (senza file)</label>
+                    <input id="resetImport" class="form-control" type="checkbox" name="resetImport" value="1">
+                    <small>Importa una lettura di tutti i contatori con valore 0 nella data specificata</small>
+                </div>
+                {% include "fields/data.twig" with{
+                    property : "dataImport",
+                    field : {
+                        fieldsize: "medium",
+                        label: "Data di Import",
+                        classgroup: "dataImport"
+                    }
+                } %}
+                <div class="form-group">
+                    <label>Scegli il file (csv)</label>
+                    <input id="dealCsv" class="form-control" type="file" name="csvToImport">
+                </div>
+            </div>
+
+
+
+            <div class="hidden-actions" style="display: none">
+
+                <div class="card-body">
+                    <button type="submit" class="btn btn-primary">Importa dati</button>
+                </div>
+
+            </div>
+        </div>
+
+
+        {% for index,campo in extraValues %}
+
+
+
+
+                {% if campo.type == "select" %}
+                    <div class="form-control">
+                    <label>{{ campo.label }}</label>
+                    <select class="form-control" name="fixedValues[{{ index }}]">
+                        {% for i,v in campo.values %}
+                            <option value="{{ v }}">{{ campo.labels[i] }}</option>
+                        {% endfor %}
+                    </select>
+                    </div>
+                {% endif %}
+
+
+                {% if campo.type == "hidden" %}
+
+                    <input type="hidden" name="fixedValues[{{ index }}]" value="{{ campo.value }}">
+
+                {% endif %}
+
+
+        {% endfor %}
+
+
+
+        {% for index,campo in extraConditions %}
+
+
+            <div class="form-control">
+                <label>{{ campo.label }}</label>
+
+                {% if campo.type == "select" %}
+                    <select class="form-control" name="extraConditions[{{ index }}]">
+                        {% for i,v in campo.values %}
+                            <option value="{{ v }}">{{ campo.labels[i] }}</option>
+                        {% endfor %}
+                    </select>
+                {% endif %}
+
+
+                {% if campo.type == "hidden" %}
+
+                    <input type="hidden" name="fixedValues[{{ index }}]" value="{{ campo.value }}">
+
+                {% endif %}
+
+            </div>
+        {% endfor %}
+
+    {% endblock %}
+
+    {% block afterContent %}
+</form>
+{% endblock %}
+
+{% block scripts %}
+
+
+    <script>
+
+        $(window).ready(function () {
+
+            function showhidereset(checckato){
+                if(checckato){
+                    $("#dealCsv").prop('disabled', true);
+                    $("#dealCsv").val('');
+                    if($(".datapicker").val()!=""){
+                        $(".hidden-actions").show();
+                    }else{
+                        $(".hidden-actions").hide();
+                    }
+                    $(".dataImport").show();
+                }else{
+                    $("#dealCsv").prop('disabled', false);
+                    $(".hidden-actions").hide();
+                    $(".dataImport").hide();
+                }
+            }
+            showhidereset(false);
+
+            $("#resetImport").change(function(){
+                checckato = $(this).is(':checked');
+                showhidereset(checckato);
+            });
+            $(".datapicker").change(function(){
+                if($(this).val()!=""){
+                    $(".hidden-actions").show();
+                }else{
+                    $(".hidden-actions").hide();
+                }
+            });
+
+            function uploadDealcsv () {};
+
+            /*------ Method for read uploded csv file ------*/
+            uploadDealcsv.prototype.getCsv = function(e) {
+
+                let input = document.getElementById('dealCsv');
+                input.addEventListener('change', function() {
+
+                    if (this.files && this.files[0]) {
+
+                        var myFile = this.files[0];
+                        var reader = new FileReader();
+
+                        reader.addEventListener('load', function (e) {
+
+                            let csvdata = e.target.result;
+                            parseCsv.getParsecsvdata(csvdata); // calling function for parse csv data
+                        });
+
+                        reader.readAsBinaryString(myFile);
+                    }
+                });
+            }
+
+            /*------- Method for parse csv data and display --------------*/
+            uploadDealcsv.prototype.getParsecsvdata = function(data) {
+
+
+
+                headers = [];
+
+                let parsedata = [];
+
+                let newLinebrk = data.trim().split("\n");
+
+
+                $(".numerorecord").text(newLinebrk.length - 1);
+
+                headers = newLinebrk[0].split(";");
+
+                for(let i = 1; i < newLinebrk.length; i++) {
+                    parsedata.push(newLinebrk[i].split(";"))
+                }
+
+                console.log(parsedata);
+
+                var mappaTemplate = $(".mappatura-template");
+
+                campiMancanti = [];
+
+                headers.forEach(function (o) {
+                    var t = mappaTemplate.clone();
+
+
+                    t.find('[type="checkbox"]').attr("name",o);
+                    t.removeClass("mappa-template");
+                    t.find(".nome-campo").text(o);
+
+                    t.find("select").attr("name","mappatura["+o+"]");
+                    t.css({
+                        display:"flex"
+                    });
+
+
+                    t.find("select").val(o);
+
+                    if( t.find('[value="'+o+'"]').length == 0 ){
+                        campiMancanti.push(o);
+                    }
+                    $("#lista-mappature").append(t);
+                    t.find('[name="campoprimario"]').val(o);
+                    if( o == 'id'){
+                        t.find('[name="campoprimario"]').prop("checked",true);
+                    }
+                });
+
+
+
+                if( $('[name="campoprimario"]:checked').length == 0 ){
+                    $('[name="campoprimario"]').first().prop("checked",true)
+                }
+
+                $(".hidden-actions").show();
+            }
+
+
+
+
+
+            var parseCsv = new uploadDealcsv();
+            parseCsv.getCsv();
+        })
+    </script>
+{% endblock %}

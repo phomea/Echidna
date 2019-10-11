@@ -1,0 +1,76 @@
+{% extends "base/template.twig" %}
+
+{% block topcontent %}
+    <div id="toparea" class="category-top">
+        <img src="{{ categoria.immagine}}" class="cover">
+        <div class="container">
+            <h1 class="category-title">{{ categoria.nome }}</h1>
+            <h2 class="category-description">{{ categoria.slogan|raw }}</h2>
+
+            <div class="text-center mb-5">
+                <p><em>{{ categoria.descrizione|raw }}</em></p>
+            </div>
+
+        </div>
+    </div>
+
+
+
+{% endblock %}
+
+{% block content %}
+    <div class="container" style="max-width: 100%;">
+        <div class="row">
+            <div class="col-md-3" style="background: #eee">
+                <aside class="ecommerce-filters p-md-3">
+
+
+                    <div class="d-block d-md-none">
+                        <a href="javascript:void(0)" class="open-filters"> <span>Apri filtri</span> <i class="lnr lnr-chevron-up"></i> </a>
+                    </div>
+
+
+                        <form class="filter-search mt-3">
+                            <input type="text" class="form-control" placeholder="Cerca qualcosa...">
+                            <button type="submit"><i class="fas fa-search"></i> </button>
+                        </form>
+
+
+                    <div class="filters-body">
+
+
+                        {% if categorie | length > 0 %}
+                            <div class="pt-4">
+                            <h2 class="h6 filter-title">Categorie</h2>
+                                {% for categoria in categorie %}
+                                    <a href="{{ categoria.getUrl() }}"> {{ categoria.nome }}</a>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+
+                        <div class="pt-5">
+                        {% for attributo in attributi %}
+                            <div><span class="h6 filter-title">Filtra per {{ attributo.nome }}</span></div>
+                            {% for valore in attributo.possibili_valori %}
+                                <label class="filtro-attributo"><span>{{ valore.valore }}</span><input type="checkbox" style="display: none;"><span class="checked"></span> </label>
+                            {% endfor %}
+                        {% endfor %}
+                        </div>
+
+
+                    </div>
+
+                </aside>
+            </div>
+            <div class="col p-0 pl-md-5 pr-md-5 pb-md-5 pt-md-4">
+                <div class="small text-center text-md-left">{{ prodotti | length }} prodotti mostrati</div>
+
+                <div class="pt-md-3">
+                    {% include "ecommerce/shop/_parts/list.twig" with {prodotti : prodotti,num_per_row : 4} %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

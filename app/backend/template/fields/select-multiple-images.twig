@@ -1,0 +1,54 @@
+<div data-name="{{ property }}">
+
+    <label>{{ field.label }}</label>
+    <figure class="immagine template" style="background: #eee;display: inline-block;width: 10em; height: 10em;border-radius: 5px;text-align: center;display: none;float: left;margin:5px;">
+        <input type="hidden" name="{{ property }}[]" disabled>
+        <img src="">
+    </figure>
+
+    <div class="lista-immagini">
+        {% for im in field.value %}
+            <figure class="immagine" style="background: #eee;display: inline-block;width: 10em; height: 10em;border-radius: 5px;text-align: center;float: left;margin:5px;">
+                <input type="hidden" name="{{ property }}[]" value="{{ im }}">
+                <img src="{{ im }}">
+
+                <button onclick="$(this).parent().remove()"><i class="fa fa-trash"></i> </button>
+            </figure>
+        {% endfor %}
+    </div>
+    <br clear="both">
+    <figure id="aggiungi-immagine" class="thumbnail" style="background: #eee;display: inline-block;width: 4em; height: 4em;border-radius: 5px;text-align: center;">
+        <i class="fa fa-plus" style="font-size: 2em;line-height: 2em;"></i>
+    </figure>
+</div>
+
+
+
+<script>
+    $(window).ready(function(){
+        (function() {
+            var template = $(".immagine.template").clone().removeClass("template");
+            template.prop("disabled", false).show();
+            template.find("input").prop("disabled", false);
+
+
+                var mediabrowser = new MediaBrowser("#filebrowser");
+            mediabrowser.accept = ["jpg","png","gif"];
+
+            mediabrowser.fileChoose(function (file) {
+                    t = template.clone();
+
+                    t.find("img").attr("src", file.permalink);
+                    t.find("input").val(file.permalink);
+                    $(".lista-immagini").append(t);
+
+                });
+                $("#aggiungi-immagine").on("click", function (e) {
+                    e.preventDefault();
+                    mediabrowser.open();
+                })
+
+        })();
+    });
+</script>
+

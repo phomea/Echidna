@@ -1,0 +1,14 @@
+{% extends template_extend %}
+
+
+{% block beforeContent %}
+    {{ beforeContent |raw }}
+{% endblock %}
+
+{% block content %}
+    {{ content | raw}}
+{% endblock %}
+
+{% block afterContent %}
+    {{ afterContent |raw}}
+{% endblock %}

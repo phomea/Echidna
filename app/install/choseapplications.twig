@@ -1,0 +1,47 @@
+{% extends "base.twig" %}
+
+
+{% block mainbody %}
+
+    <div class="navbar mb-0">
+        <figure class="navbar-brand">
+            <img src="/backend/assets/img/echidna.png">
+        </figure>
+
+        <div class="text-center mt-2">
+            <h5 style="font-weight: 800">Echidna Framework</h5>
+        </div>
+    </div>
+    <hr>
+
+
+    <div class="container " style="max-width: 60em">
+        <h1 class="text-center">Scegli le applicazioni</h1>
+        <p class="mt-3">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sit amet elit accumsan, fermentum nibh a, molestie ligula. Aliquam a lectus fringilla, vulputate nulla ac, commodo odio.
+        </p>
+
+        <form action="?step=saveapplications" method="post">
+            {% for key,app in configapplications %}
+                <div>
+                    <div class="form-group">
+                    <label class="switch" style="flex-basis: auto;align-self: center;">
+                        <input type="checkbox" name="{{ key }}" value="{{ app }}">
+                        <span class="slider round"><i class="active">Attivo</i><i class="nonactive">Non attivo</i> </span>
+                    </label>
+
+                    <h4>{{ app|split('\\')|last }}</h4>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+
+            <button type="submit" class="btn btn-light float-right">Dagliene secche</button>
+        </form>
+
+        <hr>
+
+    </div>
+
+{% endblock %}

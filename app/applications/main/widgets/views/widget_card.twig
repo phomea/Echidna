@@ -1,0 +1,23 @@
+ {% extends "main/widgets/views/widget_base.twig" %}
+    {% block content %}
+
+     <div class="bg-flat-color-{{ color }}">
+            <div class="card text-white " style="width:100%">
+                <div class="card-body pb-0">
+
+                    {% block innercontent %}
+
+
+                    <p class="text-light">{{ label }}</p>
+
+
+                    <div class="chart-wrapper px-0" style="height:70px;" height="70">
+                        <canvas id="widgetChart1"></canvas>
+                    </div>
+                    {% endblock %}
+                </div>
+
+            </div>
+        </div>
+    {% endblock %}
+

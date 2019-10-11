@@ -1,0 +1,52 @@
+{% extends "ecommerce/user-account/base.twig" %}
+{% block backButtonAccount %}{% endblock %}
+
+{% block innerAccount %}
+    <h1 class="mb-5">Il tuo account</h1>
+    <div class="row">
+
+        <div class="col-4">
+            <a href="/user-account/ordini" class="text-dark">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <div class="h1">
+                            <i class="fas fa-money-bill-alt"></i>
+                        </div>
+                        <span>I miei ordini</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+
+        <div class="col-4">
+            <a href="/user-account/profilo" class="text-dark">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <div class="h1">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <span>Profilo</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+
+
+        <div class="col-4">
+            <a href="/user-account/spedizione" class="text-dark">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <div class="h1">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <span>Spedizione</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+{% endblock %}

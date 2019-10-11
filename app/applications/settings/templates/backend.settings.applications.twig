@@ -1,0 +1,25 @@
+{% extends template_extend %}
+
+{% block content %}
+
+    <div class="card">
+        <div class="card-header">
+            <h1>Applicazioni disponibili</h1>
+        </div>
+        <div class="card-body">
+            <form method="post">
+            {% for app in availableApplications %}
+                <input type="hidden" name="appclass[{{app.slug}}]" value="{{app.application}}">
+                {% include "fields/switch.twig" with {
+                    property : "app["~app.slug~"]",
+                    field :{
+                        label : app.name,
+                        value : 0
+                    }
+                }%}
+            {% endfor %}
+                <button type="submit" class="btn btn-success">Salve</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends template_extend %}
+
+{% block content %}
+
+    <div class="card">
+        <div class="card-header">
+            <h1>Impostazioni cache</h1>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% include "fields/switch.twig" with {
+                    property : "dev[setting_value]",
+                    field :{
+                        label : "Modalità sviluppatore",
+                        value : setting_value("dev")
+                    }
+                }%}
+
+
+
+            {% include "fields/switch.twig" with {
+                property : "cache_pagine[setting_value]",
+                field :{
+                    label : "Attiva cache pagine",
+                    value : setting_value("cache_pagine")
+                }
+            }%}
+
+            {% include "fields/switch.twig" with {
+                property : "cache_templates[setting_value]",
+                field :{
+                    label : "Attiva cache dei templates",
+                    value : setting_value("cache_templates")
+                }
+            }%}
+
+
+            {% include "fields/switch.twig" with {
+                property : "cache_queries[setting_value]",
+                field :{
+                    label : "Attiva cache delle query",
+                    value : setting_value("cache_queries")
+                }
+            }%}
+
+
+                <button type="submit" class="btn btn-success">Salva impostazioni</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <a href="" class="btn btn-primary">Cancella la cache delle pagine</a>
+            <a href="{{ router_service.getRoute("backend.settings.cache.cleantemplates").build() }}" class="btn btn-light">Cancella la cache templates</a>
+
+            <a href="{{ router_service.getRoute("backend.settings.cache.cleanqueries").build() }}" class="btn btn-light">Cancella cache query</a>
+        </div>
+    </div>
+{% endblock %}

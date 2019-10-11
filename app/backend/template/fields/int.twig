@@ -1,0 +1,12 @@
+<div class="form-group {{ field.fieldsize ? field.fieldsize : '' }}" data-check="int">
+    <label class=" form-control-label">{{ field.label ? field.label : property }}
+    <br><small>{{ field.hint }}</small>
+    </label>
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-calculator"></i></span>
+        </div>
+        <input pattern="[0-9]{10}" type="number" step="1" {% if field.isRequired() %} required="required" {% endif %} placeholder="{{ field.placeholder ? field.placeholder : 'Numerico (es: 6)' }}" class="form-control onlydigits  " name="{{ property }}" value="{{ field.value }}" maxlength="{{ field.maxlength ? field.maxlength : 30 }}">
+    </div>
+</div>

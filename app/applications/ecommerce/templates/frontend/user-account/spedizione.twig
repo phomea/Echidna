@@ -1,0 +1,20 @@
+{% extends "ecommerce/user-account/base.twig" %}
+
+{% block innerAccount %}
+    <h1 class="mb-5">Indirizzo di spedizione</h1>
+    <p>Questi sono i dati correnti per la spedizione</p>
+    <div class="card mb-3">
+        <div class="card-body">
+            <p>{{ spedizione.nome }} {{ spedizione.cognome }}</p>
+            <p>{{ spedizione.via }} {{ spedizione.numero }}, {{ spedizione.citta }}</p>
+        </div>
+
+    </div>
+    <div class="d-flex">
+        <a href="" class="btn btn-white"><i class="fas fa-edit"></i> Modifica</a>
+        <a href="" class="btn btn-secondary ml-2"><i class="fas fa-plus mr-3"></i> Nuovo
+            indirizzo</a>
+    </div>
+
+
+{% endblock %}

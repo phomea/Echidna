@@ -1,0 +1,71 @@
+{% extends template_extend %}
+{% block content %}
+
+    <div class="p-5">
+        <div class="row ">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body ">
+                        <div class="container">
+                            <div class="row">
+                                <div class="">
+                                    <a href="{{ router_service.getRoute(entita.categoria ~ ".list").build() }}" class="btn btn-light p-4">
+                                        <span class="lnr lnr-dice d-block h1"></span>
+                                        <span class="h5"> Gestisci Categorie</span>
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <p>Gestisci le categorie del negozio, la posizione e la SEO delle relative pagine. </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br>
+                        <p>
+                            <a  href="{{ router_service.getRoute(entita.categoria ~ ".list").build() }}" class="btn btn-light"><span class="fa fa-list mr-2"></span> Lista categorie</a>
+                        </p>
+                        <p>
+                            <a href="{{ router_service.getRoute(entita.categoria ~ ".add").build() }}" class="btn btn-light"><span class="fa fa-plus mr-2"></span> Aggiungi categoria</a>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="">
+                                    <a href="{{ router_service.getRoute(entita.prodotto ~ ".list").build() }}" class="btn btn-light p-4">
+                                        <span class="lnr lnr-store d-block h1"></span>
+                                        <span class="h5"> Gestisci Prodotti</span>
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <p>Gestisci i prodotti, associali alle categorie, definisci le varianti, le immagini, i prezzi e le disponibilità.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br>
+                        <p>
+                            <a  href="{{ router_service.getRoute(entita.prodotto ~ ".list").build() }}" class="btn btn-light"><span class="fa fa-list mr-2"></span> Lista prodotti</a>
+                        </p>
+                        <p>
+                            <a href="{{ router_service.getRoute(entita.prodotto ~ ".add").build() }}" class="btn btn-light"><span class="fa fa-plus mr-2"></span> Aggiungi prodotto</a>
+                        </p>
+
+                        <p>
+                            <a href="{{ router_service.getRoute("ecommerce.catalogo.prodotto.gestione").build() }}" class="btn btn-light"><span class="fa fa-cog mr-2"></span> Impostazioni famiglie prodotto</a>
+                        </p>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

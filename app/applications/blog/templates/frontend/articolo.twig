@@ -1,0 +1,27 @@
+{% extends "base/template.twig" %}
+{% block content %}
+
+    <div class="container mt-3">
+
+
+    <section class="row">
+        <div class="col-md-8">
+
+            {% include "blog/_parts/articolobody.twig" with {articolo:articolo} %}
+        </div>
+
+        <div class="col-md-4">
+            <aside class="main-aside">
+                <figure class="preview">
+                    <img src="{{ articolo.anteprima }}" data-transition="immagine-blog-articolo-{{ articolo.id }}">
+                </figure>
+
+
+                {% include "utility/shareicons.twig" %}
+
+            {% include "blog/sidebar.twig" %}
+            </aside>
+        </div>
+    </section>
+    </div>
+{% endblock %}

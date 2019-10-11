@@ -1,0 +1,45 @@
+{% extends template_extend %}
+
+{% block content %}
+
+<div class="paddingboxed">
+
+        {% if stato==1 %}
+
+            <h3>FATTO</h3>
+            <p>{{messaggio}}</p>
+            <p>Torna alla <a href="/backend/ecommerce/prodotti/importa">pagina di importazione</a></p>
+
+        {% elseif stato==2 %}
+
+            <h3>ERRORE!!</h3>
+            <p>Si sono verificati degli errori durante l'importazione:</p>
+            <p>{{messaggio}}</p>
+            <p>Torna alla <a href="/backend/ecommerce/prodotti/importa">pagina di importazione</a></p>
+
+        {% else %}
+
+            <h3>CARICA E INVIA IL FILE</h3>
+            <p>Carica un file CSV secondo il formato specificato in <a href="/media/csv/demoCSV.csv" target="_blank" title="scarica file CSV demo">questo file di test</a></p>
+            <div class="theformCSV">
+                <form name="formfile" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="MAX_FILE_SIZE" value="5000000">
+                    <p>Carica il file CVS: <input name="csv" type="file"></p>
+                    <p>Importa soltanto i modelli già inseriti nel gestionale: <input type="checkbox" id="solo_inseriti" name="solo_inseriti" value="1" checked="checked"></p>
+                    <p>Aggiorna soltanto i prezzi: <input type="checkbox" id="solo_prezzi" name="solo_prezzi" value="1"></p>
+                    <p>Elimina tutte le varianti non presenti nel file: <input type="checkbox" id="elimina_varianti" name="elimina_varianti" value="1"></p>
+                    <input type="submit" value="Invia File">
+                </form>
+            </div>
+
+        {% endif %}
+
+</div>
+
+
+{% endblock %}
+
+
+{% block scripts %}
+
+{% endblock %}

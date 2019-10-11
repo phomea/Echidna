@@ -1,0 +1,12 @@
+<div class="form-group {{ field.fieldsize ? field.fieldsize : '' }}" data-check="email">
+    <label class=" form-control-label">{{ field.label ? field.label : property }}
+    <br><small>{{ field.hint }}</small>
+    </label>
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-at"></i></span>
+        </div>
+        <input type="email" {% if field.isRequired() %} required="required" {% endif %} placeholder="{{ field.placeholder ? field.placeholder : 'Inserisci email' }}" class="form-control  " name="{{ property }}" value="{{ field.value }}" maxlength="{{ field.maxlength }}">
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="form-group {{ field.fieldsize ? field.fieldsize : '' }}" {% if field.hideIf %}
+
+    data-hideselectors="{% for v in field.hideIf %}{{v[0]}}|{% endfor %}" data-hidevalues="{% for v in field.hideIf %}{{v[1]|join("]")}}|{% endfor %}"
+
+        {% endif %}>
+    <label class=" form-control-label">{{ field.label ? field.label : property }}
+    <br><small>{{ field.hint }}</small>
+    </label>
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-font"></i></span>
+        </div>
+        <input type="text" {% if field.isRequired() %} required="required" {% endif %} placeholder="{{ field.placeholder ? field.placeholder : 'Inserisci valore' }}" class="form-control  " name="{{ property }}" value="{{ field.value }}" maxlength="{{ field.maxlength }}">
+    </div>
+</div>
