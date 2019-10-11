@@ -10,6 +10,14 @@ use core\template\TwigTemplate;
 class BackendTemplate extends TwigTemplate {
     static $menu = [];
 
+    static function getFieldTemplate( $t ){
+        if( strpos($t,"@custom/") !== false ){
+ 
+            return str_replace("@custom/","",$t);
+        }else{
+            return "fields/".$t;
+        }
+    }
 
     function getTemplatesDirectory()
     {

@@ -59,7 +59,7 @@ class PagesFrontend extends FrontendApplication {
         $layout = str_replace(".php","",$pagina->layout);
         
         return [
-            "pagine/".$layout,
+            "pages/".$layout,
             [
                 "content"    =>  $pagina
             ]

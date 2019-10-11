@@ -3,6 +3,7 @@ namespace applications\pages\entities;
 use applications\meta\entities\Meta;
 use core\Model;
 use core\db\Field;
+use core\services\Response;
 
 /**
  * Class Pagina
@@ -26,7 +27,21 @@ class Pagina extends Model {
             "slug" =>  Field::varchar( 100 )->unique()->editable()->setTemplate("slug")->setTemplateVar("title")->setHint("Identificativo per la pagina in formato URL. Può contenere solo caratteri, numeri e -"),
             "description" => Field::text()->editable()->setHint("Una breve descrizione della pagina. Non viene utilizzata per creare i meta tag"),
             "content"   =>  Field::text()->editable()->setTemplate("tinymce")->inlist(false)->setLabel("Contenuto della pagina")->setHint("Contenuto testuale della pagina. Per strutture più complesse utilizzare la tab Contenuti in alto"),
-            "layout"    => Field::text()->editable()
+            "layout"    => Field::text()->editable()->setTemplate("select")->setTemplateVar(function(){
+                $td = Response::getFrontendTemplate()::getBaseDirectory()."/template/pages";
+                $templates=[];
+                foreach( glob($td."/*") as $value){
+                    $name = basename(pathinfo($value,PATHINFO_FILENAME));
+
+                    $templates[] = [
+                        "label" =>  $name,
+                        "value" =>  $name
+                    ];
+                }
+
+                return ($templates);
+                
+            })
         ],parent::schema());
     }
 

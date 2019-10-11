@@ -1,4 +1,4 @@
 # Dockerfile
 FROM mariadb
 
-ADD dump /docker-entrypoint-initdb.d
+#ADD dump /docker-entrypoint-initdb.d

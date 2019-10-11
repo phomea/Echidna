@@ -5,6 +5,7 @@ namespace applications\pages;
 
 use applications\pages\entities\Contenuto;
 use applications\pages\entities\Pagina;
+use applications\pages\entities\TipoContenuto;
 use backend\Menu;
 use core\abstracts\Application;
 use core\Config;
@@ -33,17 +34,21 @@ class PagesApplication extends Application {
         //self::addMenu("Lista",RouterService::getRoute(Pagina::getEntity().".list"));
         //self::addMenu("Lista",RouterService::getRoute(Pagina::getEntity().".list"));
 
+        RouterService::addRoutesPrefixed( ContenutiBackend::declareRoutes(),"/backend/contenuti/");
+        RouterService::addRoutesPrefixed( TipiContenutoBackend::declareRoutes(),"/backend/tipi-contenuto/");
+
+
         $menu = new Menu("Pagine",self::getBackendApplication()::getIcon());
         $menu->addItem("Lista",RouterService::getRoute(Pagina::getEntity().".list"));
         $menu->addItem("Aggiungi",RouterService::getRoute(Pagina::getEntity().".add"));
+
+        $menu->addItem("Tipi contenuto",RouterService::getRoute(TipoContenuto::getEntity().".list"));
 
         $backend = Response::getBackendTemplate();
         $backend::addMenu($menu);
 
 
-        RouterService::addRoutesPrefixed( ContenutiBackend::declareRoutes(),"/backend/contenuti/");
-
-
+      
     }
 
     static function getFrontendApplication()
@@ -68,7 +73,8 @@ class PagesApplication extends Application {
     {
         return [
             Pagina::class,
-            Contenuto::class
+            Contenuto::class,
+            TipoContenuto::class
         ];
     }
 

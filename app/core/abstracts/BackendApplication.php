@@ -4,6 +4,7 @@ namespace core\abstracts;
 
 
 use applications\anagraficaimmobili\entities\ResponsabileImpianto;
+use backend\BackendTemplate;
 use core\db\Field;
 use core\db\Pagination;
 use core\Events;
@@ -192,7 +193,9 @@ abstract class BackendApplication
 
                     }
                     $item->expandTemplateVar($data);
-                    $fields[$fieldKey] = Response::getTemplateToUse("fields/".$item->template,
+                    
+                    $template = BackendTemplate::getFieldTemplate($item->template);
+                    $fields[$fieldKey] = Response::getTemplateToUse($template,
                         [
                             "data"  =>  $data,
                             "property"  =>  $fieldKey,
