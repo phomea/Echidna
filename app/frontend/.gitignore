@@ -1,6 +1,6 @@
-**/*/cache
 *
 !standard
 !standard/*
 !standard/**/*
+**/*/cache
 !.gitignore
