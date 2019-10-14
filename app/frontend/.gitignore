@@ -1,4 +1,6 @@
 **/*/cache
 *
-!.gitignore
 !standard
+!standard/*
+!standard/**/*
+!.gitignore

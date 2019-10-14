@@ -1,0 +1,21 @@
+
+{% extends "base.twig" %}
+{% block content %}
+
+    <div class="hh2 bg-dot "></div>
+
+    {% for hook in hooks.banner %}
+        {{ hook | raw }}
+    {% endfor  %}
+
+    <div class="container mt-5">
+        {{ include(template_from_string( content.content))  }}
+    </div>
+
+    <div class="bg1">
+        {% for hook in hooks.ciao %}
+            {{ hook | raw }}
+        {% endfor  %}
+    </div>
+
+{% endblock %}
