@@ -1,0 +1,69 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+    <div class="image-dropper">
+        <span>Drop files</span>
+    </div>
+{% endblock %}
+
+
+
+{% block scripts %}
+
+    <script>
+        (function($){
+
+            var preview = $(".image-dropper");
+
+            function renderThumbnail( file ){
+
+                if (!file.type.startsWith('image/')){ return; }
+
+                var figure = document.createElement("figure");
+                figure.classList.add("thumbnail");
+
+                var img = document.createElement("img");
+                img.file = file;
+
+                figure.appendChild(img);
+                preview.append( figure ); // Assuming that "preview" is the div output where the content will be displayed.
+
+                var reader = new FileReader();
+                reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
+                reader.readAsDataURL(file);
+            }
+
+            $(".image-dropper").on("dragover",function ( e ) {
+                e.preventDefault();
+                e.stopPropagation();
+
+
+
+                console.log("dragover");
+            });
+            $(".image-dropper").on("dragenter",function ( e ) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log("dragenter");
+            });
+            $(".image-dropper").on("drop",function ( e ) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                var dt = e.originalEvent.dataTransfer;
+                var files = dt.files;
+
+                var count = files.length;
+
+
+                for (var i = 0; i < files.length; i++) {
+                    renderThumbnail(files[i]);
+                }
+
+
+            })
+        })(jQuery);
+    </script>
+
+{% endblock  %}
