@@ -1,6 +1,8 @@
 # Frontend template
 Echidna usa [Twig](https://twig.symfony.com/doc/2.x/) come **Template Engine** di default.
-I template frontend risiedono normalmente nella cartella */app/frontend* e devono, come minimo, dichiarare la class template che estenda [core\template\TwigTemplate](../../app/core/template/TwigTemplate.php).
+
+I template frontend risiedono normalmente nella cartella */app/frontend* e devono, come minimo, dichiarare la class template che estenda [core\template\TwigTemplate]([../../app/core/template/TwigTemplate.php](https://github.com/phomea/Echidna/blob/master/app/core/template/TwigTemplate.php)).
+
  La configurazione del template da utilizzare avviene nel file di configurazione */app/config/response.php*, alla voce **frontendTemplate**. Qui andrà inserito il full namespace del template da utilizzare
     
 ```php
