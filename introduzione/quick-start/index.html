@@ -219,7 +219,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../per-cosa-usare-echidna/" class="md-tabs__link md-tabs__link--active">
+        <a href="../" class="md-tabs__link md-tabs__link--active">
           Introduzione
         </a>
       
@@ -309,6 +309,18 @@
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Echidna" class="md-nav__link">
+      Echidna
+    </a>
+  </li>
+
         
           
           
@@ -560,21 +572,25 @@
                 
                 <h1 id="quick-start">Quick start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h1>
 <p>Puoi utilizzare echidna direttamente con un server apache puntando il vhost alla root del progetto. ( in locale puoi utilizzare anche applicazioni standalone come MAMP o XAMMP)</p>
-<p>Segui questi passaggi per la configurazione iniziale : 
-1. Installa composer nella cartella /app
-2. Compila il file di configurazione per l'accesso al db con i dati di accesso al tuo mysql server</p>
-<pre><code>**/app/config/db.php**
-```
-&lt;?php return array (
+<p>Segui questi passaggi per la configurazione iniziale : </p>
+<ol>
+<li>
+<p>Installa composer nella cartella /app <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
+</li>
+<li>
+<p>Compila il file di configurazione per l'accesso al db con i dati di accesso al tuo mysql server
+   <strong>/app/config/db.php</strong></p>
+<pre><code>&lt;?php return array (
     'host' =&gt; 'localhost',
     'db' =&gt; 'dbname',
     'user' =&gt; 'dbuser',
     'password' =&gt; 'dbpassword',
 );
-```
 </code></pre>
-<ol>
-<li>Vai alla url del tuo sito web e segui la procedura di installazione per creare l'utente admin.</li>
+</li>
+<li>
+<p>Vai alla url del tuo sito web e segui la procedura di installazione per creare l'utente admin.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Phasellus posuere in sem ut cursus</p>
@@ -582,11 +598,13 @@
 nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
 massa, nec semper lorem quam in massa.</p>
 </div>
+<!--[^1]: Lorem ipsum dolor sit amet, consectetur adipiscing elit.-->
+
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:1">
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Se non conosci composer o non sai come installare puoi controllare <strong><a href="https://getcomposer.org/download/">a questo link</a></strong>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
