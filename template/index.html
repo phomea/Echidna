@@ -246,6 +246,19 @@
   
 
       
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../esempi/creare-nuovo-template-frontend/" class="md-tabs__link">
+          Esempi
+        </a>
+      
+    </li>
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -431,7 +444,7 @@
 
 
   <li class="md-nav__item">
-    <a href=".." title="Docker" class="md-nav__link">
+    <a href="../infrastruttura/docker/" title="Docker" class="md-nav__link">
       Docker
     </a>
   </li>
@@ -632,6 +645,42 @@
   </li>
 
     
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Esempi
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Esempi
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../esempi/creare-nuovo-template-frontend/" title="Creare un nuovo template frontend" class="md-nav__link">
+      Creare un nuovo template frontend
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
   </ul>
 </nav>
                   </div>
@@ -741,7 +790,7 @@
                 
                 <h1 id="frontend-template">Frontend template<a class="headerlink" href="#frontend-template" title="Permanent link">&para;</a></h1>
 <p>Echidna usa <a href="https://twig.symfony.com/doc/2.x/">Twig</a> come <strong>Template Engine</strong> di default.</p>
-<p>I template frontend risiedono normalmente nella cartella <em>/app/frontend</em> e devono, come minimo, dichiarare la class template che estenda <a href="[../../app/core/template/TwigTemplate.php](https://github.com/phomea/Echidna/blob/master/app/core/template/TwigTemplate.php)">core\template\TwigTemplate</a>.</p>
+<p>I template frontend risiedono normalmente nella cartella <em>/app/frontend</em> e devono, come minimo, dichiarare la class template che estenda <a href="https://github.com/phomea/Echidna/blob/master/app/core/template/TwigTemplate.php">core\template\TwigTemplate</a>.</p>
 <p>La configurazione del template da utilizzare avviene nel file di configurazione <em>/app/config/response.php</em>, alla voce <strong>frontendTemplate</strong>. Qui andrà inserito il full namespace del template da utilizzare</p>
 <pre><code class="php">    use frontend\standard\StandardTemplate;
     return [
@@ -755,12 +804,13 @@
 
 <h2 id="twigtemplate">TwigTemplate<a class="headerlink" href="#twigtemplate" title="Permanent link">&para;</a></h2>
 <p>Un template che estende TwigTemplate deve necessariamente implementare i seguenti metodi astratti :
-1. <strong>function getTemplatesDirectory()</strong> -&gt; deve ritornare un valore di tipo stringa che rappresenta il path assoluto della directory dove risiedono i template twig da utilizzare
-    <code>php
-    function getTemplatesDirectory()
+1. <strong>function getTemplatesDirectory()</strong> -&gt; deve ritornare un valore di tipo stringa che rappresenta il path assoluto della directory dove risiedono i template twig da utilizzare</p>
+<pre><code class="php">    function getTemplatesDirectory()
     {
-        return __DIR__."/template";
-    }</code></p>
+        return __DIR__.&quot;/template&quot;;
+    }
+</code></pre>
+
 <ol>
 <li><strong>static function getBaseDirectory()</strong> <strong>deprecata</strong> -&gt; ritorna la directory dove risiede la classe template. <strong>Verrà rimossa nelle prossime versioni</strong></li>
 </ol>
@@ -768,38 +818,38 @@
 <p>Echidna dispone <em>out of the box</em> di un semplicissimo template frontend pronto all'utilizzo.</p>
 <p>Il template standard è un barebone dal quale costruire il proprio template personalizzato.</p>
 <h3 id="struttura">Struttura<a class="headerlink" href="#struttura" title="Permanent link">&para;</a></h3>
-<pre><code>app/frontend/standard/
-                      | StandardTemplate.php
-                      | assets
-                            | css
-                                | style.less
-                      | template
-                            | pages
-                                | default.twig
-                                | home.twig
-                            | base.twig
-                            | nofound.twig
+<pre><code>    app/frontend/standard/
+                        | StandardTemplate.php
+                        | assets
+                                | css
+                                    | style.less
+                        | template
+                                | pages
+                                    | default.twig
+                                    | home.twig
+                                | base.twig
+                                | nofound.twig
 
 </code></pre>
 
 <h2 id="standardtemplatephp">StandardTemplate.php<a class="headerlink" href="#standardtemplatephp" title="Permanent link">&para;</a></h2>
 <p>La classe template che definisce le directory e si occupa di effettuare il render. Estende TwigTemplate.</p>
 <pre><code class="php">&lt;?php
-namespace frontend\standard;
+    namespace frontend\standard;
 
-use core\services\Request;
-use core\template\TwigTemplate;
+    use core\services\Request;
+    use core\template\TwigTemplate;
 
-class StandardTemplate extends TwigTemplate {
-    function getTemplatesDirectory()
-    {
-        return __DIR__.&quot;/template&quot;;
+    class StandardTemplate extends TwigTemplate {
+        function getTemplatesDirectory()
+        {
+            return __DIR__.&quot;/template&quot;;
+        }
+        static function getBaseDirectory()
+        {
+            return __DIR__;
+        }
     }
-    static function getBaseDirectory()
-    {
-        return __DIR__;
-    }
-}
 </code></pre>
 
 <blockquote>
@@ -854,7 +904,7 @@ verrà riscritta in  -&gt; miosito.it/frontend/{nometemplate}/assets/js/main.js
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../infrastruttura/directories/" title="Le principali directories" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../infrastruttura/docker/" title="Docker" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -863,11 +913,25 @@ verrà riscritta in  -&gt; miosito.it/frontend/{nometemplate}/assets/js/main.js
                 <span class="md-footer-nav__direction">
                   Precedente
                 </span>
-                Le principali directories
+                Docker
               </span>
             </div>
           </a>
         
+        
+          <a href="../esempi/creare-nuovo-template-frontend/" title="Creare un nuovo template frontend" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Prossimo
+                </span>
+                Creare un nuovo template frontend
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
         
       </nav>
     </div>
