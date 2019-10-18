@@ -1,0 +1,1118 @@
+
+
+
+
+<!doctype html>
+<html lang="it" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Echidna framework php">
+      
+      
+      
+        <meta name="author" content="Fabio Pocci">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copia">
+      
+        <meta name="lang:clipboard.copied" content="Copiato">
+      
+        <meta name="lang:search.language" content="it">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="Nessun documento trovato">
+      
+        <meta name="lang:search.result.one" content="1 documento trovato">
+      
+        <meta name="lang:search.result.other" content="# documenti trovati">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
+    
+    
+      
+        <title>Creare una nuova applicazione - Echidna framework</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.30686662.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#546e7a">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-150348542-1", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="blue-grey" data-md-color-accent="red">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#creare-una-nuova-applicazione" tabindex="1" class="md-skip">
+        Vai al contenuto
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="Echidna framework" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Echidna framework
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Creare una nuova applicazione
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Cerca" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Scrivi per iniziare a cercare
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/phomea/Echidna/" title="Apri repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../introduzione/" class="md-tabs__link">
+          Introduzione
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../infrastruttura/struttura/" class="md-tabs__link">
+          Guida
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../creare-nuovo-template-frontend/" class="md-tabs__link md-tabs__link--active">
+          Esempi
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../.." title="Echidna framework" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Echidna framework
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/phomea/Echidna/" title="Apri repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      Introduzione
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        Introduzione
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../introduzione/" title="Echidna" class="md-nav__link">
+      Echidna
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../introduzione/per-cosa-usare-echidna/" title="Per cosa è possibile utilizzare echidna?" class="md-nav__link">
+      Per cosa è possibile utilizzare echidna?
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../introduzione/quick-start/" title="Quick start" class="md-nav__link">
+      Quick start
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../introduzione/docker/" title="Utilizzo con Docker" class="md-nav__link">
+      Utilizzo con Docker
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Guida
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Guida
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1">
+    
+    <label class="md-nav__link" for="nav-2-1">
+      Infrastruttura
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-1">
+        Infrastruttura
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../infrastruttura/struttura/" title="Come è strutturato Echidna" class="md-nav__link">
+      Come è strutturato Echidna
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../infrastruttura/directories/" title="Le principali directories" class="md-nav__link">
+      Le principali directories
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../infrastruttura/docker/" title="Docker" class="md-nav__link">
+      Docker
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2">
+    
+    <label class="md-nav__link" for="nav-2-2">
+      Routing System
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-2">
+        Routing System
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="L'oggetto Route" class="md-nav__link">
+      L'oggetto Route
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Come dichiarare le route" class="md-nav__link">
+      Come dichiarare le route
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-3" type="checkbox" id="nav-2-3">
+    
+    <label class="md-nav__link" for="nav-2-3">
+      Frontend
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-3">
+        Frontend
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../template/" title="I template frontend" class="md-nav__link">
+      I template frontend
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Esempi
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Esempi
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../creare-nuovo-template-frontend/" title="Creare un nuovo template frontend" class="md-nav__link">
+      Creare un nuovo template frontend
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Creare una nuova applicazione
+      </label>
+    
+    <a href="./" title="Creare una nuova applicazione" class="md-nav__link md-nav__link--active">
+      Creare una nuova applicazione
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Indice</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#preparazione" class="md-nav__link">
+    Preparazione
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#applicazioni-del-template" class="md-nav__link">
+    Applicazioni del template
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creare-lapplicazione-prodotti" class="md-nav__link">
+    Creare l'applicazione "Prodotti"
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prodottiapplicationphp" class="md-nav__link">
+    ProdottiApplication.php
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prodottibackendphp" class="md-nav__link">
+    ProdottiBackend.php
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attivare-la-nostra-applicazione" class="md-nav__link">
+    Attivare la nostra applicazione
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prodottifrontendphp" class="md-nav__link">
+    ProdottiFrontend.php
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entita-e-come-modellare-il-database" class="md-nav__link">
+    Entità e come modellare il database
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creare-menu-backend" class="md-nav__link">
+    Creare menù backend
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#collegare-un-prodotto-lato-frontend" class="md-nav__link">
+    Collegare un prodotto lato frontend
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Indice</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#preparazione" class="md-nav__link">
+    Preparazione
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#applicazioni-del-template" class="md-nav__link">
+    Applicazioni del template
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creare-lapplicazione-prodotti" class="md-nav__link">
+    Creare l'applicazione "Prodotti"
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prodottiapplicationphp" class="md-nav__link">
+    ProdottiApplication.php
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prodottibackendphp" class="md-nav__link">
+    ProdottiBackend.php
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attivare-la-nostra-applicazione" class="md-nav__link">
+    Attivare la nostra applicazione
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prodottifrontendphp" class="md-nav__link">
+    ProdottiFrontend.php
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entita-e-come-modellare-il-database" class="md-nav__link">
+    Entità e come modellare il database
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creare-menu-backend" class="md-nav__link">
+    Creare menù backend
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#collegare-un-prodotto-lato-frontend" class="md-nav__link">
+    Collegare un prodotto lato frontend
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/phomea/Echidna/edit/master/docs/esempi/creare-nuova-applicazione.md" title="Modifica" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="creare-una-nuova-applicazione">Creare una nuova applicazione<a class="headerlink" href="#creare-una-nuova-applicazione" title="Permanent link">&para;</a></h1>
+<h2 id="preparazione">Preparazione<a class="headerlink" href="#preparazione" title="Permanent link">&para;</a></h2>
+<p>Per prima cosa conviene recarsi nel backend all'indirizzo /backend/settings/cache e controllare che la modalità sviluppatore sia attiva e tutti i sistemi di cache siano disattivati.</p>
+<p>Supponiamo di avere già un template frontend custom ( Vedi esempio <a href="../creare-nuovo-template-frontend/">Creare un nuovo template frontend</a>) di nome "primo".</p>
+<h2 id="applicazioni-del-template">Applicazioni del template<a class="headerlink" href="#applicazioni-del-template" title="Permanent link">&para;</a></h2>
+<p>Le applicazioni di Echidna possono essere dichiarate in 2 posizioni diverse:</p>
+<ul>
+<li>dentro la cartella /app/applications ci sono le applicazioni "core", condivise con tutti i template</li>
+<li>dentro la cartella del template frontend in applications ( es : /app/frontend/primo/applications) che saranno disponibili solo quando il template è in uso</li>
+</ul>
+<p>E' buona norma creare le proprie applicazioni personalizzate direttamente dentro al template frontend.</p>
+<h2 id="creare-lapplicazione-prodotti">Creare l'applicazione "Prodotti"<a class="headerlink" href="#creare-lapplicazione-prodotti" title="Permanent link">&para;</a></h2>
+<p>Innanzitutto creiamo la cartella applications all'interno del nostro template frontend.</p>
+<p>Dentro questa cartella creiamo una directory denominato "prodotti" che conterrà la nostra applicazione ed i file necessari.</p>
+<pre><code>path template frontend
+                | applications
+                    | prodotti
+                        | entities
+                            | Prodotto.php
+                        | ProdottiApplication.php
+                        | ProdottiFrontend.php
+                        | ProdottiBackend.php
+</code></pre>
+
+<h3 id="prodottiapplicationphp">ProdottiApplication.php<a class="headerlink" href="#prodottiapplicationphp" title="Permanent link">&para;</a></h3>
+<p>Conterrà la classe madre della nostra applicazione Prodotti.</p>
+<p>L'applicazione madre deve estendere core\abstracts\Application e implementare i 3 metodi astratti.</p>
+<pre><code class="php">&lt;?php 
+namespace frontend\primo\applications\prodotti;
+
+use core\abstracts\Application;
+use frontend\primo\applications\prodotti\entities\Prodotto;
+
+class ProdottiApplication extends Application{
+    static function getBackendApplication()
+    {
+        return ProdottiBackend::class;   
+    }
+    static function getFrontendApplication()
+    {
+        return ProdottiFrontend::class;
+    }
+    static function getEntityClass()
+    {
+        return Prodotto::class;
+    }
+}
+</code></pre>
+
+<p>L'applicazione madre si occupa di dichiarare quale entità gestisce e quali sono le sotto applicazioni a cui delegare la gestione del backend e del frontend.</p>
+<h3 id="prodottibackendphp">ProdottiBackend.php<a class="headerlink" href="#prodottibackendphp" title="Permanent link">&para;</a></h3>
+<p>L'applicazione che gestirà il backend deve estendere la classe core\abstracts\BackendApplication e la sua minima implementazione è questa:</p>
+<pre><code class="php">&lt;?php 
+namespace frontend\primo\applications\prodotti;
+
+use core\abstracts\BackendApplication;
+
+class ProdottiBackend extends BackendApplication{
+    static function getApplication()
+    {
+        return ProdottiApplication::class;
+    }    
+}
+</code></pre>
+
+<p>In questa forma l'applicazione ProdottiBackend crea già le route di base per gestire l'entità "Prodotto" come liste, maschere di aggiunta e modifica.</p>
+<p>Possiamo aggiungere, rimuovere o modificare le route effettuando l'override del metodo declareRoutes().</p>
+<p>In questo esempio creiamo una nuova route accessibile tramite /backend/prodotti/routeprova che viene gestita dal metodo "routeProva" della nostra classe backend</p>
+<pre><code>    static function declareRoutes()
+    {
+        $routes = parent::declareRoutes();
+        $routes[&quot;prodotti.backend.routeprova&quot;]  = new Route(&quot;&quot;,&quot;routeprova&quot;,[static::class,&quot;routeProva&quot;]);
+        return $routes;
+    }
+    static function routeProva( $params = [] ){
+            echo &quot;Questa è una route di prova&quot;;
+            exit;
+    }
+</code></pre>
+
+<h3 id="attivare-la-nostra-applicazione">Attivare la nostra applicazione<a class="headerlink" href="#attivare-la-nostra-applicazione" title="Permanent link">&para;</a></h3>
+<p>Per attivare la nostra applicazione dobbiamo creare la cartella config dentro il nostro tema con all'interno il file applications.php.</p>
+<p>Il file applications all'interno delle configurazioni del template ha la stessa funzione del file applications.php situato in /app/config, quella di dichiarare al applicazioni da utilizzare.</p>
+<p>La differenza è che il file interno al template verrà utilizzato solo nel caso in cui il tema sia attivo e andrà ad integrare il file applications globale, aggiungedo o sovrascrivendo le applicazioni da utilizzare.</p>
+<p><strong>Contenuto del file applications.php interno al template frontend per il nostro esempio</strong></p>
+<pre><code>&lt;?php
+use frontend\primo\applications\prodotti\ProdottiApplication;
+
+return [
+    &quot;prodotti&quot;  =&gt;  ProdottiApplication::class
+];
+</code></pre>
+
+<h3 id="prodottifrontendphp">ProdottiFrontend.php<a class="headerlink" href="#prodottifrontendphp" title="Permanent link">&para;</a></h3>
+<p>Questa è la classe che gestisce la parte frontend della nostra applicazione. Può anche non essere dichiarata ( in questo caso il metodo getFrontendApplication() della nostra applicazione dovrà ritornare null) nel caso in cui l'applicazione non debba gestire route lato frontend.</p>
+<p>Anche l'applicazione frontend può dichiarare le route da gestire esattamente come l'applicazione backend facendo l'override del metodo declareRoutes().</p>
+<p>Creiamo una route "pagina prodotto" : </p>
+<pre><code>static function declareRoutes()
+    {
+        $routes = parent::declareRoutes();
+
+        $routes[&quot;prodotti.frontend.paginaprodotto&quot;] = new Route(&quot;&quot;,&quot;/paginaprodotto&quot;,[static::class,&quot;paginaProdotto&quot;]);
+
+        return $routes;
+    }
+</code></pre>
+
+<p>e il metodo che dovrà gestire la richiesta</p>
+<pre><code>static function paginaProdotto( $params =[] ){
+        return [
+            &quot;prodotti/pagina-prodotto&quot;,[
+                &quot;variabilediprova&quot; =&gt; &quot;Io sono una variabile&quot;
+            ]
+        ];
+    }
+</code></pre>
+
+<p>Il metodo paginaProdotto ritorna un array di 2 elementi, che permette al template engine di effettuare il rendering della risorsa richiesta.</p>
+<p>Il primo valore dell'array rappresenta il path al template richiesta, partendo dalla route dei nostri template.</p>
+<p>Il secondo elemento è un array chiave/valore con i dati da passare al template.</p>
+<p>In questo caso stiamo dicendo di renderizzare il template <strong>prodotti/pagina-prodotto</strong> che rappresenta il file /app/frontend/primo/template/prodotti/pagina-prodotto.twig. </p>
+<pre><code>Questa è la nostra pagina prodotto
+&lt;br&gt;
+e questa è la variabile : {{variabilediprova}}
+</code></pre>
+
+<h2 id="entita-e-come-modellare-il-database">Entità e come modellare il database<a class="headerlink" href="#entita-e-come-modellare-il-database" title="Permanent link">&para;</a></h2>
+<p>Abbiamo dichiarato che l'applicazione Prodotti dovrà utilizzare come entità principale "Prodotto", che si trova fisicamente in /app/frontend/primo/applications/prodotti/entities/Prodotto.php</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Normalmente la tabella generate equivale al nome della classe minuscolo ( nel nostro caso "prodotto" ) ma può essere impostata sovrascrivendo static function getTable() e ritornando il nuovo nome</p>
+<pre><code>static function getTable(){
+    return "nometabellaprodotto";
+}
+</code></pre>
+</div>
+<p>Per costruire la struttura della tabella possiamo fare l'override del metodo static function schema() e ritornare un array di oggetti Field.</p>
+<p><strong>In questo esempio la nostra tabella prodotto avrà questa struttura</strong></p>
+<ul>
+<li>id        -&gt; campo prima autoindex</li>
+<li>nome      -&gt; campo varchar lunghezza 256</li>
+<li>prezzo    -&gt; campo float con precisione 2 decimali</li>
+<li>url       -&gt; la url relativa alla quale sarà disponibile la risorsa</li>
+<li>immagine  -&gt; campo varchar lunghezza 512 contenente la url dell'immagine</li>
+</ul>
+<p><strong>
+Stiamo inoltre dichiarando che i campi nome,url, prezzo e immagine sono editabili da backend e che il campo immagine dovrà utilizzare, per i form, il template media ( presente in backend/template/fields) che richiama l'editor di immagini dell'applicazione media.</strong></p>
+<pre><code class="php">&lt;?php 
+namespace frontend\primo\applications\prodotti\entities;
+
+use core\db\Field;
+use core\Model;
+
+class Prodotto extends Model{
+    static function schema()
+    {
+        return [
+            &quot;id&quot;        =&gt;  Field::primaryIndex(),
+            &quot;nome&quot;      =&gt;  Field::varchar(256)-&gt;editable(),
+            &quot;prezzo&quot;    =&gt;  Field::float(10,3)-&gt;editable(),
+            &quot;url&quot;       =&gt;  Field::varchar(256)-&gt;editable(),
+            &quot;immagine&quot;  =&gt;  Field::varchar(512)-&gt;editable()-&gt;setTemplate(&quot;media&quot;)
+        ];
+    }
+}
+</code></pre>
+
+<h2 id="creare-menu-backend">Creare menù backend<a class="headerlink" href="#creare-menu-backend" title="Permanent link">&para;</a></h2>
+<p>Adesso abbiamo l'entità pronta e l'applicazione backend già disponibile a gestire le route di modifica base. 
+Ad esempio la lista dei nostri prodotti sarà disponibile qua : /backend/prodotti/lista</p>
+<p>Non abbiamo però inserito la nostra applicazione nel menù del backend.</p>
+<p>Possiamo farlo con il seguente codice nella classe ProdottiApplication, facendo l'override del metodo init.</p>
+<p><strong>use delle classi</strong></p>
+<pre><code>use backend\BackendTemplate;
+use backend\Menu;
+use core\abstracts\Application;
+use core\services\RouterService;
+</code></pre>
+
+<p><strong>metodo init sovrascritto</strong></p>
+<pre><code>static function init( $n ){
+        parent::init($n);
+
+        $menu = new Menu(&quot;Prodotti&quot;,ProdottiBackend::getIcon());
+        $menu-&gt;addItem(&quot;Lista prodotti&quot;, RouterService::getRoute(Prodotto::getEntity().&quot;.list&quot;));
+        BackendTemplate::addMenu($menu);
+    }
+</code></pre>
+
+<h2 id="collegare-un-prodotto-lato-frontend">Collegare un prodotto lato frontend<a class="headerlink" href="#collegare-un-prodotto-lato-frontend" title="Permanent link">&para;</a></h2>
+<p>Dopo aver creato un prodotto tramite il backend, possiamo utilizzare i metodi di ricerca dei Model per caricare i dati dal database e passarli dal template.</p>
+<p>Il metodo paginaProdotto all'interno di ProdottiFrontend può essere modificato così</p>
+<pre><code>static function paginaProdotto( $params =[] ){
+        $prodotto = Prodotto::findById(1);
+
+        return [
+            &quot;prodotti/pagina-prodotto&quot;,[
+                &quot;prodotto&quot; =&gt; $prodotto
+            ]
+        ];
+    }
+</code></pre>
+
+<p>Per recuperare il prodotto con id 1 e passarlo al template.</p>
+<p>All'interno del template possiamo poi accedere al prodotto tramite la variabile "prodotto" che sarà una istanza della nostra entità Prodotto.</p>
+<p>Modifichiamo il template in questo modo per visualizzare le informazioni del prodotto.</p>
+<pre><code>{% extends &quot;base.twig&quot; %}
+
+{% block content %} 
+    Questa è la nostra pagina prodotto
+    &lt;br&gt;
+    &lt;p&gt;
+        Nome prodotto : {{prodotto.nome}}
+        &lt;br&gt;
+        Prezzo : {{prodotto.prezzo | price}}
+        &lt;img src=&quot;{{prodotto.immagine}}&quot; /&gt;
+    &lt;/p&gt;
+{% endblock %}
+</code></pre>
+
+<p>Il filtro twig "price" si occupa di formattare un numero come prezzo in €</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../creare-nuovo-template-frontend/" title="Creare un nuovo template frontend" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Precedente
+                </span>
+                Creare un nuovo template frontend
+              </span>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            © MIT - Fabio Pocci - 2019
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.ac79c3b0.js"></script>
+      
+        
+        
+          
+          <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+              
+                <script src="../../assets/javascripts/lunr/lunr.it.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>
