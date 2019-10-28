@@ -1,0 +1,53 @@
+{% extends template_extend %}
+
+    {% block content %}
+
+        <script>
+            $( document ).ready(function() {
+
+                currentvalue = "";
+
+                inputCondominio = $("#input_idCondominio");
+                idCondominio = inputCondominio.val();
+                console.log(idCondominio);
+
+                if(idCondominio>0){
+                    caricaDefaults(idCondominio);
+                }
+
+
+                inputCondominio.change(function() {
+                    idCondominio = $(this).val();
+                    if(idCondominio!=currentvalue){
+                        caricaDefaults(idCondominio);
+                    }
+                });
+
+                function caricaDefaults(id){
+                    currentvalue = id;
+                    console.log("caricaDefaults");
+                    urltocall = '{{ router_service.getRoute("backend.bolletta.caricadefault").build() }}';
+                    console.log(urltocall);
+
+                    $.ajax({
+                        method: "POST",
+                        url: urltocall,
+                        data: {
+                            idCondominio: id
+                        }
+                    })
+                    .done(function( msg ) {
+                        var obj = JSON.parse(msg);
+
+                        $.each( obj, function( key, value ) {
+                            if(value!=null){
+                                $("*[name='"+key+"']").val(value).trigger('change');
+                            }
+                        });
+
+                    });
+                }
+
+            });
+        </script>
+{% endblock %}
