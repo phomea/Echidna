@@ -1,6 +1,8 @@
 <?php
 
-
+/**
+ * If not present declare the getallheaders function
+ */
 if (!function_exists('getallheaders')) {
     function getallheaders() {
         $headers = [];
@@ -13,12 +15,14 @@ if (!function_exists('getallheaders')) {
     }
 }
 
+// Check composer
     if(!file_exists(__DIR__."/vendor/autoload.php")){
         echo "Go in app directory and run 'php composer.phar install'";
 
 
         exit;
     }
+    // load composer
     $autoloader = require __DIR__ . '/vendor/autoload.php';
 
     \core\Bootstrap::init(__DIR__, $autoloader);
